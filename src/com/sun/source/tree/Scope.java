@@ -31,24 +31,24 @@ import javax.lang.model.element.TypeElement;
  */
 @jdk.Exported
 public interface Scope {
-	/**
-	 * Returns the enclosing scope.
-	 */
-	public Scope getEnclosingScope();
+    /**
+     * Returns the enclosing scope.
+     */
+    public Scope getEnclosingScope();
 
-	/**
-	 * Returns the innermost type element containing the position of this scope
-	 */
-	public TypeElement getEnclosingClass();
+    /**
+     * Returns the innermost type element containing the position of this scope
+     */
+    public TypeElement getEnclosingClass();
 
-	/**
-	 * Returns the innermost executable element containing the position of this
-	 * scope.
-	 */
-	public ExecutableElement getEnclosingMethod();
+    /**
+     * Returns the innermost executable element containing the position of this
+     * scope.
+     */
+    public ExecutableElement getEnclosingMethod();
 
-	/**
-	 * Returns the elements directly contained in this scope.
-	 */
-	public Iterable<? extends Element> getLocalElements();
+    /**
+     * Returns the elements directly contained in this scope.
+     */
+    public Iterable<? extends Element> getLocalElements();
 }

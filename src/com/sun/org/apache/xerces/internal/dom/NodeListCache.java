@@ -31,28 +31,28 @@ import java.io.Serializable;
  */
 class NodeListCache implements Serializable {
 
-	/** Serialization version. */
-	private static final long serialVersionUID = -7927529254918631002L;
+    /** Serialization version. */
+    private static final long serialVersionUID = -7927529254918631002L;
 
-	/** Cached node list length. */
-	int fLength = -1;
+    /** Cached node list length. */
+    int fLength = -1;
 
-	/** Last requested node index. */
-	int fChildIndex = -1;
+    /** Last requested node index. */
+    int fChildIndex = -1;
 
-	/** Last requested node. */
-	ChildNode fChild;
+    /** Last requested node. */
+    ChildNode fChild;
 
-	/** Owner of this cache */
-	ParentNode fOwner;
+    /** Owner of this cache */
+    ParentNode fOwner;
 
-	/**
-	 * Pointer to the next object on the list, only meaningful when actully
-	 * stored in the free list.
-	 */
-	NodeListCache next;
+    /**
+     * Pointer to the next object on the list, only meaningful when actully
+     * stored in the free list.
+     */
+    NodeListCache next;
 
-	NodeListCache(ParentNode owner) {
-		fOwner = owner;
-	}
+    NodeListCache(ParentNode owner) {
+        fOwner = owner;
+    }
 }

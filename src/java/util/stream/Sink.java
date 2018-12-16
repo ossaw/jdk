@@ -90,8 +90,8 @@ import java.util.function.LongConsumer;
  *          	IntSink is = new Sink.ChainedReference<U>(sink) {
  *          		public void accept(U u) {
  *          			downstream.accept(mapper.applyAsInt(u));
- *          		}
- *          	};
+ *                  }
+ *              };
  *          }
  *          </pre>
  *
@@ -109,258 +109,258 @@ import java.util.function.LongConsumer;
  * @since 1.8
  */
 interface Sink<T> extends Consumer<T> {
-	/**
-	 * Resets the sink state to receive a fresh data set. This must be called
-	 * before sending any data to the sink. After calling {@link #end()}, you
-	 * may call this method to reset the sink for another calculation.
-	 * 
-	 * @param size
-	 *             The exact size of the data to be pushed downstream, if known
-	 *             or {@code -1} if unknown or infinite.
-	 *
-	 *             <p>
-	 *             Prior to this call, the sink must be in the initial state,
-	 *             and
-	 *             after this call it is in the active state.
-	 */
-	default void begin(long size) {}
+    /**
+     * Resets the sink state to receive a fresh data set. This must be called
+     * before sending any data to the sink. After calling {@link #end()}, you
+     * may call this method to reset the sink for another calculation.
+     * 
+     * @param size
+     *             The exact size of the data to be pushed downstream, if known
+     *             or {@code -1} if unknown or infinite.
+     *
+     *             <p>
+     *             Prior to this call, the sink must be in the initial state,
+     *             and
+     *             after this call it is in the active state.
+     */
+    default void begin(long size) {}
 
-	/**
-	 * Indicates that all elements have been pushed. If the {@code Sink} is
-	 * stateful, it should send any stored state downstream at this time, and
-	 * should clear any accumulated state (and associated resources).
-	 *
-	 * <p>
-	 * Prior to this call, the sink must be in the active state, and after this
-	 * call it is returned to the initial state.
-	 */
-	default void end() {}
+    /**
+     * Indicates that all elements have been pushed. If the {@code Sink} is
+     * stateful, it should send any stored state downstream at this time, and
+     * should clear any accumulated state (and associated resources).
+     *
+     * <p>
+     * Prior to this call, the sink must be in the active state, and after this
+     * call it is returned to the initial state.
+     */
+    default void end() {}
 
-	/**
-	 * Indicates that this {@code Sink} does not wish to receive any more data.
-	 *
-	 * @implSpec The default implementation always returns false.
-	 *
-	 * @return true if cancellation is requested
-	 */
-	default boolean cancellationRequested() {
-		return false;
-	}
+    /**
+     * Indicates that this {@code Sink} does not wish to receive any more data.
+     *
+     * @implSpec The default implementation always returns false.
+     *
+     * @return true if cancellation is requested
+     */
+    default boolean cancellationRequested() {
+        return false;
+    }
 
-	/**
-	 * Accepts an int value.
-	 *
-	 * @implSpec The default implementation throws IllegalStateException.
-	 *
-	 * @throws IllegalStateException
-	 *                               if this sink does not accept int values
-	 */
-	default void accept(int value) {
-		throw new IllegalStateException("called wrong accept method");
-	}
+    /**
+     * Accepts an int value.
+     *
+     * @implSpec The default implementation throws IllegalStateException.
+     *
+     * @throws IllegalStateException
+     *                               if this sink does not accept int values
+     */
+    default void accept(int value) {
+        throw new IllegalStateException("called wrong accept method");
+    }
 
-	/**
-	 * Accepts a long value.
-	 *
-	 * @implSpec The default implementation throws IllegalStateException.
-	 *
-	 * @throws IllegalStateException
-	 *                               if this sink does not accept long values
-	 */
-	default void accept(long value) {
-		throw new IllegalStateException("called wrong accept method");
-	}
+    /**
+     * Accepts a long value.
+     *
+     * @implSpec The default implementation throws IllegalStateException.
+     *
+     * @throws IllegalStateException
+     *                               if this sink does not accept long values
+     */
+    default void accept(long value) {
+        throw new IllegalStateException("called wrong accept method");
+    }
 
-	/**
-	 * Accepts a double value.
-	 *
-	 * @implSpec The default implementation throws IllegalStateException.
-	 *
-	 * @throws IllegalStateException
-	 *                               if this sink does not accept double values
-	 */
-	default void accept(double value) {
-		throw new IllegalStateException("called wrong accept method");
-	}
+    /**
+     * Accepts a double value.
+     *
+     * @implSpec The default implementation throws IllegalStateException.
+     *
+     * @throws IllegalStateException
+     *                               if this sink does not accept double values
+     */
+    default void accept(double value) {
+        throw new IllegalStateException("called wrong accept method");
+    }
 
-	/**
-	 * {@code Sink} that implements {@code Sink<Integer>}, re-abstracts
-	 * {@code accept(int)}, and wires {@code accept(Integer)} to bridge to
-	 * {@code accept(int)}.
-	 */
-	interface OfInt extends Sink<Integer>, IntConsumer {
-		@Override
-		void accept(int value);
+    /**
+     * {@code Sink} that implements {@code Sink<Integer>}, re-abstracts
+     * {@code accept(int)}, and wires {@code accept(Integer)} to bridge to
+     * {@code accept(int)}.
+     */
+    interface OfInt extends Sink<Integer>, IntConsumer {
+        @Override
+        void accept(int value);
 
-		@Override
-		default void accept(Integer i) {
-			if (Tripwire.ENABLED)
-				Tripwire.trip(getClass(),
-						"{0} calling Sink.OfInt.accept(Integer)");
-			accept(i.intValue());
-		}
-	}
+        @Override
+        default void accept(Integer i) {
+            if (Tripwire.ENABLED)
+                Tripwire.trip(getClass(),
+                        "{0} calling Sink.OfInt.accept(Integer)");
+            accept(i.intValue());
+        }
+    }
 
-	/**
-	 * {@code Sink} that implements {@code Sink<Long>}, re-abstracts
-	 * {@code accept(long)}, and wires {@code accept(Long)} to bridge to
-	 * {@code accept(long)}.
-	 */
-	interface OfLong extends Sink<Long>, LongConsumer {
-		@Override
-		void accept(long value);
+    /**
+     * {@code Sink} that implements {@code Sink<Long>}, re-abstracts
+     * {@code accept(long)}, and wires {@code accept(Long)} to bridge to
+     * {@code accept(long)}.
+     */
+    interface OfLong extends Sink<Long>, LongConsumer {
+        @Override
+        void accept(long value);
 
-		@Override
-		default void accept(Long i) {
-			if (Tripwire.ENABLED)
-				Tripwire.trip(getClass(),
-						"{0} calling Sink.OfLong.accept(Long)");
-			accept(i.longValue());
-		}
-	}
+        @Override
+        default void accept(Long i) {
+            if (Tripwire.ENABLED)
+                Tripwire.trip(getClass(),
+                        "{0} calling Sink.OfLong.accept(Long)");
+            accept(i.longValue());
+        }
+    }
 
-	/**
-	 * {@code Sink} that implements {@code Sink<Double>}, re-abstracts
-	 * {@code accept(double)}, and wires {@code accept(Double)} to bridge to
-	 * {@code accept(double)}.
-	 */
-	interface OfDouble extends Sink<Double>, DoubleConsumer {
-		@Override
-		void accept(double value);
+    /**
+     * {@code Sink} that implements {@code Sink<Double>}, re-abstracts
+     * {@code accept(double)}, and wires {@code accept(Double)} to bridge to
+     * {@code accept(double)}.
+     */
+    interface OfDouble extends Sink<Double>, DoubleConsumer {
+        @Override
+        void accept(double value);
 
-		@Override
-		default void accept(Double i) {
-			if (Tripwire.ENABLED)
-				Tripwire.trip(getClass(),
-						"{0} calling Sink.OfDouble.accept(Double)");
-			accept(i.doubleValue());
-		}
-	}
+        @Override
+        default void accept(Double i) {
+            if (Tripwire.ENABLED)
+                Tripwire.trip(getClass(),
+                        "{0} calling Sink.OfDouble.accept(Double)");
+            accept(i.doubleValue());
+        }
+    }
 
-	/**
-	 * Abstract {@code Sink} implementation for creating chains of sinks. The
-	 * {@code begin}, {@code end}, and {@code cancellationRequested} methods are
-	 * wired to chain to the downstream {@code Sink}. This implementation takes
-	 * a downstream {@code Sink} of unknown input shape and produces a
-	 * {@code Sink<T>}. The implementation of the {@code accept()} method must
-	 * call the correct {@code accept()} method on the downstream {@code Sink}.
-	 */
-	static abstract class ChainedReference<T, E_OUT> implements Sink<T> {
-		protected final Sink<? super E_OUT> downstream;
+    /**
+     * Abstract {@code Sink} implementation for creating chains of sinks. The
+     * {@code begin}, {@code end}, and {@code cancellationRequested} methods are
+     * wired to chain to the downstream {@code Sink}. This implementation takes
+     * a downstream {@code Sink} of unknown input shape and produces a
+     * {@code Sink<T>}. The implementation of the {@code accept()} method must
+     * call the correct {@code accept()} method on the downstream {@code Sink}.
+     */
+    static abstract class ChainedReference<T, E_OUT> implements Sink<T> {
+        protected final Sink<? super E_OUT> downstream;
 
-		public ChainedReference(Sink<? super E_OUT> downstream) {
-			this.downstream = Objects.requireNonNull(downstream);
-		}
+        public ChainedReference(Sink<? super E_OUT> downstream) {
+            this.downstream = Objects.requireNonNull(downstream);
+        }
 
-		@Override
-		public void begin(long size) {
-			downstream.begin(size);
-		}
+        @Override
+        public void begin(long size) {
+            downstream.begin(size);
+        }
 
-		@Override
-		public void end() {
-			downstream.end();
-		}
+        @Override
+        public void end() {
+            downstream.end();
+        }
 
-		@Override
-		public boolean cancellationRequested() {
-			return downstream.cancellationRequested();
-		}
-	}
+        @Override
+        public boolean cancellationRequested() {
+            return downstream.cancellationRequested();
+        }
+    }
 
-	/**
-	 * Abstract {@code Sink} implementation designed for creating chains of
-	 * sinks. The {@code begin}, {@code end}, and {@code cancellationRequested}
-	 * methods are wired to chain to the downstream {@code Sink}. This
-	 * implementation takes a downstream {@code Sink} of unknown input shape and
-	 * produces a {@code Sink.OfInt}. The implementation of the {@code accept()}
-	 * method must call the correct {@code accept()} method on the downstream
-	 * {@code Sink}.
-	 */
-	static abstract class ChainedInt<E_OUT> implements Sink.OfInt {
-		protected final Sink<? super E_OUT> downstream;
+    /**
+     * Abstract {@code Sink} implementation designed for creating chains of
+     * sinks. The {@code begin}, {@code end}, and {@code cancellationRequested}
+     * methods are wired to chain to the downstream {@code Sink}. This
+     * implementation takes a downstream {@code Sink} of unknown input shape and
+     * produces a {@code Sink.OfInt}. The implementation of the {@code accept()}
+     * method must call the correct {@code accept()} method on the downstream
+     * {@code Sink}.
+     */
+    static abstract class ChainedInt<E_OUT> implements Sink.OfInt {
+        protected final Sink<? super E_OUT> downstream;
 
-		public ChainedInt(Sink<? super E_OUT> downstream) {
-			this.downstream = Objects.requireNonNull(downstream);
-		}
+        public ChainedInt(Sink<? super E_OUT> downstream) {
+            this.downstream = Objects.requireNonNull(downstream);
+        }
 
-		@Override
-		public void begin(long size) {
-			downstream.begin(size);
-		}
+        @Override
+        public void begin(long size) {
+            downstream.begin(size);
+        }
 
-		@Override
-		public void end() {
-			downstream.end();
-		}
+        @Override
+        public void end() {
+            downstream.end();
+        }
 
-		@Override
-		public boolean cancellationRequested() {
-			return downstream.cancellationRequested();
-		}
-	}
+        @Override
+        public boolean cancellationRequested() {
+            return downstream.cancellationRequested();
+        }
+    }
 
-	/**
-	 * Abstract {@code Sink} implementation designed for creating chains of
-	 * sinks. The {@code begin}, {@code end}, and {@code cancellationRequested}
-	 * methods are wired to chain to the downstream {@code Sink}. This
-	 * implementation takes a downstream {@code Sink} of unknown input shape and
-	 * produces a {@code Sink.OfLong}. The implementation of the
-	 * {@code accept()} method must call the correct {@code accept()} method on
-	 * the downstream {@code Sink}.
-	 */
-	static abstract class ChainedLong<E_OUT> implements Sink.OfLong {
-		protected final Sink<? super E_OUT> downstream;
+    /**
+     * Abstract {@code Sink} implementation designed for creating chains of
+     * sinks. The {@code begin}, {@code end}, and {@code cancellationRequested}
+     * methods are wired to chain to the downstream {@code Sink}. This
+     * implementation takes a downstream {@code Sink} of unknown input shape and
+     * produces a {@code Sink.OfLong}. The implementation of the
+     * {@code accept()} method must call the correct {@code accept()} method on
+     * the downstream {@code Sink}.
+     */
+    static abstract class ChainedLong<E_OUT> implements Sink.OfLong {
+        protected final Sink<? super E_OUT> downstream;
 
-		public ChainedLong(Sink<? super E_OUT> downstream) {
-			this.downstream = Objects.requireNonNull(downstream);
-		}
+        public ChainedLong(Sink<? super E_OUT> downstream) {
+            this.downstream = Objects.requireNonNull(downstream);
+        }
 
-		@Override
-		public void begin(long size) {
-			downstream.begin(size);
-		}
+        @Override
+        public void begin(long size) {
+            downstream.begin(size);
+        }
 
-		@Override
-		public void end() {
-			downstream.end();
-		}
+        @Override
+        public void end() {
+            downstream.end();
+        }
 
-		@Override
-		public boolean cancellationRequested() {
-			return downstream.cancellationRequested();
-		}
-	}
+        @Override
+        public boolean cancellationRequested() {
+            return downstream.cancellationRequested();
+        }
+    }
 
-	/**
-	 * Abstract {@code Sink} implementation designed for creating chains of
-	 * sinks. The {@code begin}, {@code end}, and {@code cancellationRequested}
-	 * methods are wired to chain to the downstream {@code Sink}. This
-	 * implementation takes a downstream {@code Sink} of unknown input shape and
-	 * produces a {@code Sink.OfDouble}. The implementation of the
-	 * {@code accept()} method must call the correct {@code accept()} method on
-	 * the downstream {@code Sink}.
-	 */
-	static abstract class ChainedDouble<E_OUT> implements Sink.OfDouble {
-		protected final Sink<? super E_OUT> downstream;
+    /**
+     * Abstract {@code Sink} implementation designed for creating chains of
+     * sinks. The {@code begin}, {@code end}, and {@code cancellationRequested}
+     * methods are wired to chain to the downstream {@code Sink}. This
+     * implementation takes a downstream {@code Sink} of unknown input shape and
+     * produces a {@code Sink.OfDouble}. The implementation of the
+     * {@code accept()} method must call the correct {@code accept()} method on
+     * the downstream {@code Sink}.
+     */
+    static abstract class ChainedDouble<E_OUT> implements Sink.OfDouble {
+        protected final Sink<? super E_OUT> downstream;
 
-		public ChainedDouble(Sink<? super E_OUT> downstream) {
-			this.downstream = Objects.requireNonNull(downstream);
-		}
+        public ChainedDouble(Sink<? super E_OUT> downstream) {
+            this.downstream = Objects.requireNonNull(downstream);
+        }
 
-		@Override
-		public void begin(long size) {
-			downstream.begin(size);
-		}
+        @Override
+        public void begin(long size) {
+            downstream.begin(size);
+        }
 
-		@Override
-		public void end() {
-			downstream.end();
-		}
+        @Override
+        public void end() {
+            downstream.end();
+        }
 
-		@Override
-		public boolean cancellationRequested() {
-			return downstream.cancellationRequested();
-		}
-	}
+        @Override
+        public boolean cancellationRequested() {
+            return downstream.cancellationRequested();
+        }
+    }
 }

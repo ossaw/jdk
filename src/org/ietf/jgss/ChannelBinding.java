@@ -59,145 +59,145 @@ import java.util.Arrays;
  */
 public class ChannelBinding {
 
-	private InetAddress initiator;
-	private InetAddress acceptor;
-	private byte[] appData;
+    private InetAddress initiator;
+    private InetAddress acceptor;
+    private byte[] appData;
 
-	/**
-	 * Create a ChannelBinding object with user supplied address information and
-	 * data. <code>null</code> values can be used for any fields which the
-	 * application does not want to specify.
-	 *
-	 * @param initAddr
-	 *                   the address of the context initiator. <code>null</code>
-	 *                   value
-	 *                   can be supplied to indicate that the application does
-	 *                   not want
-	 *                   to set this value.
-	 * @param acceptAddr
-	 *                   the address of the context acceptor. <code>null</code>
-	 *                   value
-	 *                   can be supplied to indicate that the application does
-	 *                   not want
-	 *                   to set this value.
-	 * @param appData
-	 *                   application supplied data to be used as part of the
-	 *                   channel
-	 *                   bindings. <code>null</code> value can be supplied to
-	 *                   indicate
-	 *                   that the application does not want to set this value.
-	 */
-	public ChannelBinding(InetAddress initAddr, InetAddress acceptAddr,
-			byte[] appData) {
+    /**
+     * Create a ChannelBinding object with user supplied address information and
+     * data. <code>null</code> values can be used for any fields which the
+     * application does not want to specify.
+     *
+     * @param initAddr
+     *                   the address of the context initiator. <code>null</code>
+     *                   value
+     *                   can be supplied to indicate that the application does
+     *                   not want
+     *                   to set this value.
+     * @param acceptAddr
+     *                   the address of the context acceptor. <code>null</code>
+     *                   value
+     *                   can be supplied to indicate that the application does
+     *                   not want
+     *                   to set this value.
+     * @param appData
+     *                   application supplied data to be used as part of the
+     *                   channel
+     *                   bindings. <code>null</code> value can be supplied to
+     *                   indicate
+     *                   that the application does not want to set this value.
+     */
+    public ChannelBinding(InetAddress initAddr, InetAddress acceptAddr,
+            byte[] appData) {
 
-		initiator = initAddr;
-		acceptor = acceptAddr;
+        initiator = initAddr;
+        acceptor = acceptAddr;
 
-		if (appData != null) {
-			this.appData = new byte[appData.length];
-			java.lang.System.arraycopy(appData, 0, this.appData, 0,
-					appData.length);
-		}
-	}
+        if (appData != null) {
+            this.appData = new byte[appData.length];
+            java.lang.System.arraycopy(appData, 0, this.appData, 0,
+                    appData.length);
+        }
+    }
 
-	/**
-	 * Creates a ChannelBinding object without any addressing information.
-	 *
-	 * @param appData
-	 *                application supplied data to be used as part of the
-	 *                channel
-	 *                bindings.
-	 */
-	public ChannelBinding(byte[] appData) {
-		this(null, null, appData);
-	}
+    /**
+     * Creates a ChannelBinding object without any addressing information.
+     *
+     * @param appData
+     *                application supplied data to be used as part of the
+     *                channel
+     *                bindings.
+     */
+    public ChannelBinding(byte[] appData) {
+        this(null, null, appData);
+    }
 
-	/**
-	 * Get the initiator's address for this channel binding.
-	 *
-	 * @return the initiator's address. <code>null</code> is returned if the
-	 *         address has not been set.
-	 */
-	public InetAddress getInitiatorAddress() {
-		return initiator;
-	}
+    /**
+     * Get the initiator's address for this channel binding.
+     *
+     * @return the initiator's address. <code>null</code> is returned if the
+     *         address has not been set.
+     */
+    public InetAddress getInitiatorAddress() {
+        return initiator;
+    }
 
-	/**
-	 * Get the acceptor's address for this channel binding.
-	 *
-	 * @return the acceptor's address. null is returned if the address has not
-	 *         been set.
-	 */
-	public InetAddress getAcceptorAddress() {
-		return acceptor;
-	}
+    /**
+     * Get the acceptor's address for this channel binding.
+     *
+     * @return the acceptor's address. null is returned if the address has not
+     *         been set.
+     */
+    public InetAddress getAcceptorAddress() {
+        return acceptor;
+    }
 
-	/**
-	 * Get the application specified data for this channel binding.
-	 *
-	 * @return the application data being used as part of the ChannelBinding.
-	 *         <code>null</code> is returned if no application data has been
-	 *         specified for the channel binding.
-	 */
-	public byte[] getApplicationData() {
+    /**
+     * Get the application specified data for this channel binding.
+     *
+     * @return the application data being used as part of the ChannelBinding.
+     *         <code>null</code> is returned if no application data has been
+     *         specified for the channel binding.
+     */
+    public byte[] getApplicationData() {
 
-		if (appData == null) {
-			return null;
-		}
+        if (appData == null) {
+            return null;
+        }
 
-		byte[] retVal = new byte[appData.length];
-		System.arraycopy(appData, 0, retVal, 0, appData.length);
-		return retVal;
-	}
+        byte[] retVal = new byte[appData.length];
+        System.arraycopy(appData, 0, retVal, 0, appData.length);
+        return retVal;
+    }
 
-	/**
-	 * Compares two instances of ChannelBinding.
-	 *
-	 * @param obj
-	 *            another ChannelBinding to compare this one with
-	 * @return true if the two ChannelBinding's contain the same values for the
-	 *         initiator and acceptor addresses and the application data.
-	 */
-	public boolean equals(Object obj) {
+    /**
+     * Compares two instances of ChannelBinding.
+     *
+     * @param obj
+     *            another ChannelBinding to compare this one with
+     * @return true if the two ChannelBinding's contain the same values for the
+     *         initiator and acceptor addresses and the application data.
+     */
+    public boolean equals(Object obj) {
 
-		if (this == obj)
-			return true;
+        if (this == obj)
+            return true;
 
-		if (!(obj instanceof ChannelBinding))
-			return false;
+        if (!(obj instanceof ChannelBinding))
+            return false;
 
-		ChannelBinding cb = (ChannelBinding) obj;
+        ChannelBinding cb = (ChannelBinding) obj;
 
-		if ((initiator != null && cb.initiator == null) || (initiator == null
-				&& cb.initiator != null))
-			return false;
+        if ((initiator != null && cb.initiator == null) || (initiator == null
+                && cb.initiator != null))
+            return false;
 
-		if (initiator != null && !initiator.equals(cb.initiator))
-			return false;
+        if (initiator != null && !initiator.equals(cb.initiator))
+            return false;
 
-		if ((acceptor != null && cb.acceptor == null) || (acceptor == null
-				&& cb.acceptor != null))
-			return false;
+        if ((acceptor != null && cb.acceptor == null) || (acceptor == null
+                && cb.acceptor != null))
+            return false;
 
-		if (acceptor != null && !acceptor.equals(cb.acceptor))
-			return false;
+        if (acceptor != null && !acceptor.equals(cb.acceptor))
+            return false;
 
-		return Arrays.equals(appData, cb.appData);
-	}
+        return Arrays.equals(appData, cb.appData);
+    }
 
-	/**
-	 * Returns a hashcode value for this ChannelBinding object.
-	 *
-	 * @return a hashCode value
-	 */
-	public int hashCode() {
-		if (initiator != null)
-			return initiator.hashCode();
-		else if (acceptor != null)
-			return acceptor.hashCode();
-		else if (appData != null)
-			return new String(appData).hashCode();
-		else
-			return 1;
-	}
+    /**
+     * Returns a hashcode value for this ChannelBinding object.
+     *
+     * @return a hashCode value
+     */
+    public int hashCode() {
+        if (initiator != null)
+            return initiator.hashCode();
+        else if (acceptor != null)
+            return acceptor.hashCode();
+        else if (appData != null)
+            return new String(appData).hashCode();
+        else
+            return 1;
+    }
 }

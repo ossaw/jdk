@@ -133,43 +133,43 @@ import java.security.BasicPermission;
 
 public class AudioPermission extends BasicPermission {
 
-	/**
-	 * Creates a new <code>AudioPermission</code> object that has the specified
-	 * symbolic name, such as "play" or "record". An asterisk can be used to
-	 * indicate all audio permissions.
-	 * 
-	 * @param name
-	 *             the name of the new <code>AudioPermission</code>
-	 *
-	 * @throws NullPointerException
-	 *                                  if <code>name</code> is
-	 *                                  <code>null</code>.
-	 * @throws IllegalArgumentException
-	 *                                  if <code>name</code> is empty.
-	 */
-	public AudioPermission(String name) {
+    /**
+     * Creates a new <code>AudioPermission</code> object that has the specified
+     * symbolic name, such as "play" or "record". An asterisk can be used to
+     * indicate all audio permissions.
+     * 
+     * @param name
+     *             the name of the new <code>AudioPermission</code>
+     *
+     * @throws NullPointerException
+     *                                  if <code>name</code> is
+     *                                  <code>null</code>.
+     * @throws IllegalArgumentException
+     *                                  if <code>name</code> is empty.
+     */
+    public AudioPermission(String name) {
 
-		super(name);
-	}
+        super(name);
+    }
 
-	/**
-	 * Creates a new <code>AudioPermission</code> object that has the specified
-	 * symbolic name, such as "play" or "record". The <code>actions</code>
-	 * parameter is currently unused and should be <code>null</code>.
-	 * 
-	 * @param name
-	 *                the name of the new <code>AudioPermission</code>
-	 * @param actions
-	 *                (unused; should be <code>null</code>)
-	 *
-	 * @throws NullPointerException
-	 *                                  if <code>name</code> is
-	 *                                  <code>null</code>.
-	 * @throws IllegalArgumentException
-	 *                                  if <code>name</code> is empty.
-	 */
-	public AudioPermission(String name, String actions) {
+    /**
+     * Creates a new <code>AudioPermission</code> object that has the specified
+     * symbolic name, such as "play" or "record". The <code>actions</code>
+     * parameter is currently unused and should be <code>null</code>.
+     * 
+     * @param name
+     *                the name of the new <code>AudioPermission</code>
+     * @param actions
+     *                (unused; should be <code>null</code>)
+     *
+     * @throws NullPointerException
+     *                                  if <code>name</code> is
+     *                                  <code>null</code>.
+     * @throws IllegalArgumentException
+     *                                  if <code>name</code> is empty.
+     */
+    public AudioPermission(String name, String actions) {
 
-		super(name, actions);
-	}
+        super(name, actions);
+    }
 }

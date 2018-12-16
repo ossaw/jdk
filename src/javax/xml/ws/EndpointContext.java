@@ -25,13 +25,13 @@ import java.util.Set;
  */
 public abstract class EndpointContext {
 
-	/**
-	 * This gives list of endpoints in an application. For e.g in servlet
-	 * container, a war file may contain multiple endpoints. In case of http,
-	 * these endpoints are hosted on the same http server.
-	 *
-	 * @return list of all endpoints in an application
-	 */
-	public abstract Set<Endpoint> getEndpoints();
+    /**
+     * This gives list of endpoints in an application. For e.g in servlet
+     * container, a war file may contain multiple endpoints. In case of http,
+     * these endpoints are hosted on the same http server.
+     *
+     * @return list of all endpoints in an application
+     */
+    public abstract Set<Endpoint> getEndpoints();
 
 }

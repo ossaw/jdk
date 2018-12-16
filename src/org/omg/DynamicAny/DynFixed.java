@@ -14,4 +14,4 @@ package org.omg.DynamicAny;
  * number of digits and arbitrary scale, the operations use the IDL string type.
  */
 public interface DynFixed extends DynFixedOperations, org.omg.DynamicAny.DynAny,
-		org.omg.CORBA.portable.IDLEntity {} // interface DynFixed
+        org.omg.CORBA.portable.IDLEntity {} // interface DynFixed

@@ -37,27 +37,27 @@ import com.sun.org.apache.xerces.internal.xni.XMLResourceIdentifier;
  */
 public interface XMLEntityResolver {
 
-	//
-	// XMLEntityResolver methods
-	//
+    //
+    // XMLEntityResolver methods
+    //
 
-	/**
-	 * Resolves an external parsed entity. If the entity cannot be resolved,
-	 * this method should return null.
-	 *
-	 * @param resourceIdentifier
-	 *                           location of the XML resource to resolve
-	 *
-	 * @throws XNIException
-	 *                      Thrown on general error.
-	 * @throws IOException
-	 *                      Thrown if resolved entity stream cannot be opened or
-	 *                      some
-	 *                      other i/o error occurs.
-	 * @see com.sun.org.apache.xerces.internal.xni.XMLResourceIdentifier
-	 */
-	public XMLInputSource resolveEntity(
-			XMLResourceIdentifier resourceIdentifier) throws XNIException,
-			IOException;
+    /**
+     * Resolves an external parsed entity. If the entity cannot be resolved,
+     * this method should return null.
+     *
+     * @param resourceIdentifier
+     *                           location of the XML resource to resolve
+     *
+     * @throws XNIException
+     *                      Thrown on general error.
+     * @throws IOException
+     *                      Thrown if resolved entity stream cannot be opened or
+     *                      some
+     *                      other i/o error occurs.
+     * @see com.sun.org.apache.xerces.internal.xni.XMLResourceIdentifier
+     */
+    public XMLInputSource resolveEntity(
+            XMLResourceIdentifier resourceIdentifier) throws XNIException,
+            IOException;
 
 } // interface XMLEntityResolver

@@ -16,11 +16,11 @@ package java.nio.channels;
 
 public class ReadPendingException extends IllegalStateException {
 
-	private static final long serialVersionUID = 1986315242191227217L;
+    private static final long serialVersionUID = 1986315242191227217L;
 
-	/**
-	 * Constructs an instance of this class.
-	 */
-	public ReadPendingException() {}
+    /**
+     * Constructs an instance of this class.
+     */
+    public ReadPendingException() {}
 
 }

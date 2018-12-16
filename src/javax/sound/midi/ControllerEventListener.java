@@ -24,22 +24,22 @@ import java.util.EventListener;
  */
 public interface ControllerEventListener extends EventListener {
 
-	/**
-	 * Invoked when a <code>Sequencer</code> has encountered and processed a
-	 * control-change event of interest to this listener. The event passed in is
-	 * a <code>ShortMessage</code> whose first data byte indicates the
-	 * controller number and whose second data byte is the value to which the
-	 * controller was set.
-	 *
-	 * @param event
-	 *              the control-change event that the sequencer encountered in
-	 *              the
-	 *              sequence it is processing
-	 *
-	 * @see Sequencer#addControllerEventListener(ControllerEventListener, int[])
-	 * @see MidiChannel#controlChange(int, int)
-	 * @see ShortMessage#getData1
-	 * @see ShortMessage#getData2
-	 */
-	public void controlChange(ShortMessage event);
+    /**
+     * Invoked when a <code>Sequencer</code> has encountered and processed a
+     * control-change event of interest to this listener. The event passed in is
+     * a <code>ShortMessage</code> whose first data byte indicates the
+     * controller number and whose second data byte is the value to which the
+     * controller was set.
+     *
+     * @param event
+     *              the control-change event that the sequencer encountered in
+     *              the
+     *              sequence it is processing
+     *
+     * @see Sequencer#addControllerEventListener(ControllerEventListener, int[])
+     * @see MidiChannel#controlChange(int, int)
+     * @see ShortMessage#getData1
+     * @see ShortMessage#getData2
+     */
+    public void controlChange(ShortMessage event);
 }

@@ -38,7 +38,7 @@ import javax.xml.crypto.XMLStructure;
  * <pre>
  * KeyInfoFactory factory = KeyInfoFactory.getInstance("DOM");
  * X509IssuerSerial issuer = factory.newX509IssuerSerial(cert
- * 		.getIssuerX500Principal().getName(), cert.getSerialNumber());
+ *         .getIssuerX500Principal().getName(), cert.getSerialNumber());
  * </pre>
  *
  * @author Sean Mullan
@@ -49,20 +49,20 @@ import javax.xml.crypto.XMLStructure;
  */
 public interface X509IssuerSerial extends XMLStructure {
 
-	/**
-	 * Returns the X.500 distinguished name of this
-	 * <code>X509IssuerSerial</code> in
-	 * <a href="http://www.ietf.org/rfc/rfc2253.txt">RFC 2253</a> String format.
-	 *
-	 * @return the X.500 distinguished name in RFC 2253 String format (never
-	 *         <code>null</code>)
-	 */
-	String getIssuerName();
+    /**
+     * Returns the X.500 distinguished name of this
+     * <code>X509IssuerSerial</code> in
+     * <a href="http://www.ietf.org/rfc/rfc2253.txt">RFC 2253</a> String format.
+     *
+     * @return the X.500 distinguished name in RFC 2253 String format (never
+     *         <code>null</code>)
+     */
+    String getIssuerName();
 
-	/**
-	 * Returns the serial number of this <code>X509IssuerSerial</code>.
-	 *
-	 * @return the serial number (never <code>null</code>)
-	 */
-	BigInteger getSerialNumber();
+    /**
+     * Returns the serial number of this <code>X509IssuerSerial</code>.
+     *
+     * @return the serial number (never <code>null</code>)
+     */
+    BigInteger getSerialNumber();
 }

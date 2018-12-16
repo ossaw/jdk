@@ -18,11 +18,11 @@ package java.security.cert;
  */
 public interface CertPathParameters extends Cloneable {
 
-	/**
-	 * Makes a copy of this {@code CertPathParameters}. Changes to the copy will
-	 * not affect the original and vice versa.
-	 *
-	 * @return a copy of this {@code CertPathParameters}
-	 */
-	Object clone();
+    /**
+     * Makes a copy of this {@code CertPathParameters}. Changes to the copy will
+     * not affect the original and vice versa.
+     *
+     * @return a copy of this {@code CertPathParameters}
+     */
+    Object clone();
 }

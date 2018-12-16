@@ -35,134 +35,134 @@ import org.w3c.dom.NodeList;
  * Model (DOM) Level 2 Specification</a>.
  */
 public interface HTMLDocument extends Document {
-	/**
-	 * The title of a document as specified by the <code>TITLE</code> element in
-	 * the head of the document.
-	 */
-	public String getTitle();
+    /**
+     * The title of a document as specified by the <code>TITLE</code> element in
+     * the head of the document.
+     */
+    public String getTitle();
 
-	public void setTitle(String title);
+    public void setTitle(String title);
 
-	/**
-	 * Returns the URI of the page that linked to this page. The value is an
-	 * empty string if the user navigated to the page directly (not through a
-	 * link, but, for example, via a bookmark).
-	 */
-	public String getReferrer();
+    /**
+     * Returns the URI of the page that linked to this page. The value is an
+     * empty string if the user navigated to the page directly (not through a
+     * link, but, for example, via a bookmark).
+     */
+    public String getReferrer();
 
-	/**
-	 * The domain name of the server that served the document, or
-	 * <code>null</code> if the server cannot be identified by a domain name.
-	 */
-	public String getDomain();
+    /**
+     * The domain name of the server that served the document, or
+     * <code>null</code> if the server cannot be identified by a domain name.
+     */
+    public String getDomain();
 
-	/**
-	 * The complete URI of the document.
-	 */
-	public String getURL();
+    /**
+     * The complete URI of the document.
+     */
+    public String getURL();
 
-	/**
-	 * The element that contains the content for the document. In documents with
-	 * <code>BODY</code> contents, returns the <code>BODY</code> element. In
-	 * frameset documents, this returns the outermost <code>FRAMESET</code>
-	 * element.
-	 */
-	public HTMLElement getBody();
+    /**
+     * The element that contains the content for the document. In documents with
+     * <code>BODY</code> contents, returns the <code>BODY</code> element. In
+     * frameset documents, this returns the outermost <code>FRAMESET</code>
+     * element.
+     */
+    public HTMLElement getBody();
 
-	public void setBody(HTMLElement body);
+    public void setBody(HTMLElement body);
 
-	/**
-	 * A collection of all the <code>IMG</code> elements in a document. The
-	 * behavior is limited to <code>IMG</code> elements for backwards
-	 * compatibility.
-	 */
-	public HTMLCollection getImages();
+    /**
+     * A collection of all the <code>IMG</code> elements in a document. The
+     * behavior is limited to <code>IMG</code> elements for backwards
+     * compatibility.
+     */
+    public HTMLCollection getImages();
 
-	/**
-	 * A collection of all the <code>OBJECT</code> elements that include applets
-	 * and <code>APPLET</code> ( deprecated ) elements in a document.
-	 */
-	public HTMLCollection getApplets();
+    /**
+     * A collection of all the <code>OBJECT</code> elements that include applets
+     * and <code>APPLET</code> ( deprecated ) elements in a document.
+     */
+    public HTMLCollection getApplets();
 
-	/**
-	 * A collection of all <code>AREA</code> elements and anchor (
-	 * <code>A</code> ) elements in a document with a value for the
-	 * <code>href</code> attribute.
-	 */
-	public HTMLCollection getLinks();
+    /**
+     * A collection of all <code>AREA</code> elements and anchor (
+     * <code>A</code> ) elements in a document with a value for the
+     * <code>href</code> attribute.
+     */
+    public HTMLCollection getLinks();
 
-	/**
-	 * A collection of all the forms of a document.
-	 */
-	public HTMLCollection getForms();
+    /**
+     * A collection of all the forms of a document.
+     */
+    public HTMLCollection getForms();
 
-	/**
-	 * A collection of all the anchor (<code>A</code> ) elements in a document
-	 * with a value for the <code>name</code> attribute. Note. For reasons of
-	 * backwards compatibility, the returned set of anchors only contains those
-	 * anchors created with the <code>name</code> attribute, not those created
-	 * with the <code>id</code> attribute.
-	 */
-	public HTMLCollection getAnchors();
+    /**
+     * A collection of all the anchor (<code>A</code> ) elements in a document
+     * with a value for the <code>name</code> attribute. Note. For reasons of
+     * backwards compatibility, the returned set of anchors only contains those
+     * anchors created with the <code>name</code> attribute, not those created
+     * with the <code>id</code> attribute.
+     */
+    public HTMLCollection getAnchors();
 
-	/**
-	 * The cookies associated with this document. If there are none, the value
-	 * is an empty string. Otherwise, the value is a string: a
-	 * semicolon-delimited list of "name, value" pairs for all the cookies
-	 * associated with the page. For example,
-	 * <code>name=value;expires=date</code> .
-	 */
-	public String getCookie();
+    /**
+     * The cookies associated with this document. If there are none, the value
+     * is an empty string. Otherwise, the value is a string: a
+     * semicolon-delimited list of "name, value" pairs for all the cookies
+     * associated with the page. For example,
+     * <code>name=value;expires=date</code> .
+     */
+    public String getCookie();
 
-	public void setCookie(String cookie);
+    public void setCookie(String cookie);
 
-	/**
-	 * Note. This method and the ones following allow a user to add to or
-	 * replace the structure model of a document using strings of unparsed HTML.
-	 * At the time of writing alternate methods for providing similar
-	 * functionality for both HTML and XML documents were being considered. The
-	 * following methods may be deprecated at some point in the future in favor
-	 * of a more general-purpose mechanism. <br>
-	 * Open a document stream for writing. If a document exists in the target,
-	 * this method clears it.
-	 */
-	public void open();
+    /**
+     * Note. This method and the ones following allow a user to add to or
+     * replace the structure model of a document using strings of unparsed HTML.
+     * At the time of writing alternate methods for providing similar
+     * functionality for both HTML and XML documents were being considered. The
+     * following methods may be deprecated at some point in the future in favor
+     * of a more general-purpose mechanism. <br>
+     * Open a document stream for writing. If a document exists in the target,
+     * this method clears it.
+     */
+    public void open();
 
-	/**
-	 * Closes a document stream opened by <code>open()</code> and forces
-	 * rendering.
-	 */
-	public void close();
+    /**
+     * Closes a document stream opened by <code>open()</code> and forces
+     * rendering.
+     */
+    public void close();
 
-	/**
-	 * Write a string of text to a document stream opened by <code>open()</code>
-	 * . The text is parsed into the document's structure model.
-	 * 
-	 * @param text
-	 *             The string to be parsed into some structure in the document
-	 *             structure model.
-	 */
-	public void write(String text);
+    /**
+     * Write a string of text to a document stream opened by <code>open()</code>
+     * . The text is parsed into the document's structure model.
+     * 
+     * @param text
+     *             The string to be parsed into some structure in the document
+     *             structure model.
+     */
+    public void write(String text);
 
-	/**
-	 * Write a string of text followed by a newline character to a document
-	 * stream opened by <code>open()</code> . The text is parsed into the
-	 * document's structure model.
-	 * 
-	 * @param text
-	 *             The string to be parsed into some structure in the document
-	 *             structure model.
-	 */
-	public void writeln(String text);
+    /**
+     * Write a string of text followed by a newline character to a document
+     * stream opened by <code>open()</code> . The text is parsed into the
+     * document's structure model.
+     * 
+     * @param text
+     *             The string to be parsed into some structure in the document
+     *             structure model.
+     */
+    public void writeln(String text);
 
-	/**
-	 * Returns the (possibly empty) collection of elements whose
-	 * <code>name</code> value is given by <code>elementName</code> .
-	 * 
-	 * @param elementName
-	 *                    The <code>name</code> attribute value for an element.
-	 * @return The matching elements.
-	 */
-	public NodeList getElementsByName(String elementName);
+    /**
+     * Returns the (possibly empty) collection of elements whose
+     * <code>name</code> value is given by <code>elementName</code> .
+     * 
+     * @param elementName
+     *                    The <code>name</code> attribute value for an element.
+     * @return The matching elements.
+     */
+    public NodeList getElementsByName(String elementName);
 
 }

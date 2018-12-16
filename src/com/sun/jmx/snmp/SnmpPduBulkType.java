@@ -16,33 +16,33 @@ package com.sun.jmx.snmp;
 
 public interface SnmpPduBulkType extends SnmpAckPdu {
 
-	/**
-	 * The <CODE>max-repetitions</CODE> setter.
-	 * 
-	 * @param max
-	 *            Maximum repetition.
-	 */
-	public void setMaxRepetitions(int max);
+    /**
+     * The <CODE>max-repetitions</CODE> setter.
+     * 
+     * @param max
+     *            Maximum repetition.
+     */
+    public void setMaxRepetitions(int max);
 
-	/**
-	 * The <CODE>non-repeaters</CODE> setter.
-	 * 
-	 * @param nr
-	 *           Non repeaters.
-	 */
-	public void setNonRepeaters(int nr);
+    /**
+     * The <CODE>non-repeaters</CODE> setter.
+     * 
+     * @param nr
+     *           Non repeaters.
+     */
+    public void setNonRepeaters(int nr);
 
-	/**
-	 * The <CODE>max-repetitions</CODE> getter.
-	 * 
-	 * @return Maximum repetition.
-	 */
-	public int getMaxRepetitions();
+    /**
+     * The <CODE>max-repetitions</CODE> getter.
+     * 
+     * @return Maximum repetition.
+     */
+    public int getMaxRepetitions();
 
-	/**
-	 * The <CODE>non-repeaters</CODE> getter.
-	 * 
-	 * @return Non repeaters.
-	 */
-	public int getNonRepeaters();
+    /**
+     * The <CODE>non-repeaters</CODE> getter.
+     * 
+     * @return Non repeaters.
+     */
+    public int getNonRepeaters();
 }

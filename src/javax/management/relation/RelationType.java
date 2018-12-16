@@ -18,39 +18,39 @@ import java.io.Serializable;
  */
 public interface RelationType extends Serializable {
 
-	//
-	// Accessors
-	//
+    //
+    // Accessors
+    //
 
-	/**
-	 * Returns the relation type name.
-	 *
-	 * @return the relation type name.
-	 */
-	public String getRelationTypeName();
+    /**
+     * Returns the relation type name.
+     *
+     * @return the relation type name.
+     */
+    public String getRelationTypeName();
 
-	/**
-	 * Returns the list of role definitions (ArrayList of RoleInfo objects).
-	 *
-	 * @return an {@link ArrayList} of {@link RoleInfo}.
-	 */
-	public List<RoleInfo> getRoleInfos();
+    /**
+     * Returns the list of role definitions (ArrayList of RoleInfo objects).
+     *
+     * @return an {@link ArrayList} of {@link RoleInfo}.
+     */
+    public List<RoleInfo> getRoleInfos();
 
-	/**
-	 * Returns the role info (RoleInfo object) for the given role info name
-	 * (null if not found).
-	 *
-	 * @param roleInfoName
-	 *                     role info name
-	 *
-	 * @return RoleInfo object providing role definition does not exist
-	 *
-	 * @exception IllegalArgumentException
-	 *                                      if null parameter
-	 * @exception RoleInfoNotFoundException
-	 *                                      if no role info with that name in
-	 *                                      relation type.
-	 */
-	public RoleInfo getRoleInfo(String roleInfoName)
-			throws IllegalArgumentException, RoleInfoNotFoundException;
+    /**
+     * Returns the role info (RoleInfo object) for the given role info name
+     * (null if not found).
+     *
+     * @param roleInfoName
+     *                     role info name
+     *
+     * @return RoleInfo object providing role definition does not exist
+     *
+     * @exception IllegalArgumentException
+     *                                      if null parameter
+     * @exception RoleInfoNotFoundException
+     *                                      if no role info with that name in
+     *                                      relation type.
+     */
+    public RoleInfo getRoleInfo(String roleInfoName)
+            throws IllegalArgumentException, RoleInfoNotFoundException;
 }

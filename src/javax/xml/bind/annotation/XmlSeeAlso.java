@@ -59,5 +59,5 @@ import java.lang.annotation.Target;
 @Target({ ElementType.TYPE })
 @Retention(RUNTIME)
 public @interface XmlSeeAlso {
-	Class[] value();
+    Class[] value();
 }

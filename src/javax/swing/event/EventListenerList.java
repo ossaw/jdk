@@ -31,11 +31,11 @@ import sun.reflect.misc.ReflectUtil;
  * FooEvent fooEvent = null;
  *
  * public void addFooListener(FooListener l) {
- * 	listenerList.add(FooListener.class, l);
+ *     listenerList.add(FooListener.class, l);
  * }
  *
  * public void removeFooListener(FooListener l) {
- * 	listenerList.remove(FooListener.class, l);
+ *     listenerList.remove(FooListener.class, l);
  * }
  *
  * // Notify all listeners that have registered interest for
@@ -44,18 +44,18 @@ import sun.reflect.misc.ReflectUtil;
  * // the fire method.
  *
  * protected void fireFooXXX() {
- * 	// Guaranteed to return a non-null array
- * 	Object[] listeners = listenerList.getListenerList();
- * 	// Process the listeners last to first, notifying
- * 	// those that are interested in this event
- * 	for (int i = listeners.length - 2; i &gt;= 0; i -= 2) {
- * 		if (listeners[i] == FooListener.class) {
- * 			// Lazily create the event:
- * 			if (fooEvent == null)
- * 				fooEvent = new FooEvent(this);
- * 			((FooListener) listeners[i + 1]).fooXXX(fooEvent);
- * 		}
- * 	}
+ *     // Guaranteed to return a non-null array
+ *     Object[] listeners = listenerList.getListenerList();
+ *     // Process the listeners last to first, notifying
+ *     // those that are interested in this event
+ *     for (int i = listeners.length - 2; i &gt;= 0; i -= 2) {
+ *         if (listeners[i] == FooListener.class) {
+ *             // Lazily create the event:
+ *             if (fooEvent == null)
+ *                 fooEvent = new FooEvent(this);
+ *             ((FooListener) listeners[i + 1]).fooXXX(fooEvent);
+ *         }
+ *     }
  * }
  * </pre>
  * 
@@ -76,200 +76,200 @@ import sun.reflect.misc.ReflectUtil;
  */
 @SuppressWarnings("serial")
 public class EventListenerList implements Serializable {
-	/* A null array to be shared by all empty listener lists */
-	private final static Object[] NULL_ARRAY = new Object[0];
-	/* The list of ListenerType - Listener pairs */
-	protected transient Object[] listenerList = NULL_ARRAY;
+    /* A null array to be shared by all empty listener lists */
+    private final static Object[] NULL_ARRAY = new Object[0];
+    /* The list of ListenerType - Listener pairs */
+    protected transient Object[] listenerList = NULL_ARRAY;
 
-	/**
-	 * Passes back the event listener list as an array of ListenerType-listener
-	 * pairs. Note that for performance reasons, this implementation passes back
-	 * the actual data structure in which the listener data is stored
-	 * internally! This method is guaranteed to pass back a non-null array, so
-	 * that no null-checking is required in fire methods. A zero-length array of
-	 * Object should be returned if there are currently no listeners.
-	 *
-	 * WARNING!!! Absolutely NO modification of the data contained in this array
-	 * should be made -- if any such manipulation is necessary, it should be
-	 * done on a copy of the array returned rather than the array itself.
-	 */
-	public Object[] getListenerList() {
-		return listenerList;
-	}
+    /**
+     * Passes back the event listener list as an array of ListenerType-listener
+     * pairs. Note that for performance reasons, this implementation passes back
+     * the actual data structure in which the listener data is stored
+     * internally! This method is guaranteed to pass back a non-null array, so
+     * that no null-checking is required in fire methods. A zero-length array of
+     * Object should be returned if there are currently no listeners.
+     *
+     * WARNING!!! Absolutely NO modification of the data contained in this array
+     * should be made -- if any such manipulation is necessary, it should be
+     * done on a copy of the array returned rather than the array itself.
+     */
+    public Object[] getListenerList() {
+        return listenerList;
+    }
 
-	/**
-	 * Return an array of all the listeners of the given type.
-	 * 
-	 * @return all of the listeners of the specified type.
-	 * @exception ClassCastException
-	 *                               if the supplied class is not assignable to
-	 *                               EventListener
-	 *
-	 * @since 1.3
-	 */
-	public <T extends EventListener> T[] getListeners(Class<T> t) {
-		Object[] lList = listenerList;
-		int n = getListenerCount(lList, t);
-		T[] result = (T[]) Array.newInstance(t, n);
-		int j = 0;
-		for (int i = lList.length - 2; i >= 0; i -= 2) {
-			if (lList[i] == t) {
-				result[j++] = (T) lList[i + 1];
-			}
-		}
-		return result;
-	}
+    /**
+     * Return an array of all the listeners of the given type.
+     * 
+     * @return all of the listeners of the specified type.
+     * @exception ClassCastException
+     *                               if the supplied class is not assignable to
+     *                               EventListener
+     *
+     * @since 1.3
+     */
+    public <T extends EventListener> T[] getListeners(Class<T> t) {
+        Object[] lList = listenerList;
+        int n = getListenerCount(lList, t);
+        T[] result = (T[]) Array.newInstance(t, n);
+        int j = 0;
+        for (int i = lList.length - 2; i >= 0; i -= 2) {
+            if (lList[i] == t) {
+                result[j++] = (T) lList[i + 1];
+            }
+        }
+        return result;
+    }
 
-	/**
-	 * Returns the total number of listeners for this listener list.
-	 */
-	public int getListenerCount() {
-		return listenerList.length / 2;
-	}
+    /**
+     * Returns the total number of listeners for this listener list.
+     */
+    public int getListenerCount() {
+        return listenerList.length / 2;
+    }
 
-	/**
-	 * Returns the total number of listeners of the supplied type for this
-	 * listener list.
-	 */
-	public int getListenerCount(Class<?> t) {
-		Object[] lList = listenerList;
-		return getListenerCount(lList, t);
-	}
+    /**
+     * Returns the total number of listeners of the supplied type for this
+     * listener list.
+     */
+    public int getListenerCount(Class<?> t) {
+        Object[] lList = listenerList;
+        return getListenerCount(lList, t);
+    }
 
-	private int getListenerCount(Object[] list, Class t) {
-		int count = 0;
-		for (int i = 0; i < list.length; i += 2) {
-			if (t == (Class) list[i])
-				count++;
-		}
-		return count;
-	}
+    private int getListenerCount(Object[] list, Class t) {
+        int count = 0;
+        for (int i = 0; i < list.length; i += 2) {
+            if (t == (Class) list[i])
+                count++;
+        }
+        return count;
+    }
 
-	/**
-	 * Adds the listener as a listener of the specified type.
-	 * 
-	 * @param t
-	 *          the type of the listener to be added
-	 * @param l
-	 *          the listener to be added
-	 */
-	public synchronized <T extends EventListener> void add(Class<T> t, T l) {
-		if (l == null) {
-			// In an ideal world, we would do an assertion here
-			// to help developers know they are probably doing
-			// something wrong
-			return;
-		}
-		if (!t.isInstance(l)) {
-			throw new IllegalArgumentException("Listener " + l
-					+ " is not of type " + t);
-		}
-		if (listenerList == NULL_ARRAY) {
-			// if this is the first listener added,
-			// initialize the lists
-			listenerList = new Object[] { t, l };
-		} else {
-			// Otherwise copy the array and add the new listener
-			int i = listenerList.length;
-			Object[] tmp = new Object[i + 2];
-			System.arraycopy(listenerList, 0, tmp, 0, i);
+    /**
+     * Adds the listener as a listener of the specified type.
+     * 
+     * @param t
+     *          the type of the listener to be added
+     * @param l
+     *          the listener to be added
+     */
+    public synchronized <T extends EventListener> void add(Class<T> t, T l) {
+        if (l == null) {
+            // In an ideal world, we would do an assertion here
+            // to help developers know they are probably doing
+            // something wrong
+            return;
+        }
+        if (!t.isInstance(l)) {
+            throw new IllegalArgumentException("Listener " + l
+                    + " is not of type " + t);
+        }
+        if (listenerList == NULL_ARRAY) {
+            // if this is the first listener added,
+            // initialize the lists
+            listenerList = new Object[] { t, l };
+        } else {
+            // Otherwise copy the array and add the new listener
+            int i = listenerList.length;
+            Object[] tmp = new Object[i + 2];
+            System.arraycopy(listenerList, 0, tmp, 0, i);
 
-			tmp[i] = t;
-			tmp[i + 1] = l;
+            tmp[i] = t;
+            tmp[i + 1] = l;
 
-			listenerList = tmp;
-		}
-	}
+            listenerList = tmp;
+        }
+    }
 
-	/**
-	 * Removes the listener as a listener of the specified type.
-	 * 
-	 * @param t
-	 *          the type of the listener to be removed
-	 * @param l
-	 *          the listener to be removed
-	 */
-	public synchronized <T extends EventListener> void remove(Class<T> t, T l) {
-		if (l == null) {
-			// In an ideal world, we would do an assertion here
-			// to help developers know they are probably doing
-			// something wrong
-			return;
-		}
-		if (!t.isInstance(l)) {
-			throw new IllegalArgumentException("Listener " + l
-					+ " is not of type " + t);
-		}
-		// Is l on the list?
-		int index = -1;
-		for (int i = listenerList.length - 2; i >= 0; i -= 2) {
-			if ((listenerList[i] == t) && (listenerList[i + 1].equals(
-					l) == true)) {
-				index = i;
-				break;
-			}
-		}
+    /**
+     * Removes the listener as a listener of the specified type.
+     * 
+     * @param t
+     *          the type of the listener to be removed
+     * @param l
+     *          the listener to be removed
+     */
+    public synchronized <T extends EventListener> void remove(Class<T> t, T l) {
+        if (l == null) {
+            // In an ideal world, we would do an assertion here
+            // to help developers know they are probably doing
+            // something wrong
+            return;
+        }
+        if (!t.isInstance(l)) {
+            throw new IllegalArgumentException("Listener " + l
+                    + " is not of type " + t);
+        }
+        // Is l on the list?
+        int index = -1;
+        for (int i = listenerList.length - 2; i >= 0; i -= 2) {
+            if ((listenerList[i] == t) && (listenerList[i + 1].equals(
+                    l) == true)) {
+                index = i;
+                break;
+            }
+        }
 
-		// If so, remove it
-		if (index != -1) {
-			Object[] tmp = new Object[listenerList.length - 2];
-			// Copy the list up to index
-			System.arraycopy(listenerList, 0, tmp, 0, index);
-			// Copy from two past the index, up to
-			// the end of tmp (which is two elements
-			// shorter than the old list)
-			if (index < tmp.length)
-				System.arraycopy(listenerList, index + 2, tmp, index, tmp.length
-						- index);
-			// set the listener array to the new array or null
-			listenerList = (tmp.length == 0) ? NULL_ARRAY : tmp;
-		}
-	}
+        // If so, remove it
+        if (index != -1) {
+            Object[] tmp = new Object[listenerList.length - 2];
+            // Copy the list up to index
+            System.arraycopy(listenerList, 0, tmp, 0, index);
+            // Copy from two past the index, up to
+            // the end of tmp (which is two elements
+            // shorter than the old list)
+            if (index < tmp.length)
+                System.arraycopy(listenerList, index + 2, tmp, index, tmp.length
+                        - index);
+            // set the listener array to the new array or null
+            listenerList = (tmp.length == 0) ? NULL_ARRAY : tmp;
+        }
+    }
 
-	// Serialization support.
-	private void writeObject(ObjectOutputStream s) throws IOException {
-		Object[] lList = listenerList;
-		s.defaultWriteObject();
+    // Serialization support.
+    private void writeObject(ObjectOutputStream s) throws IOException {
+        Object[] lList = listenerList;
+        s.defaultWriteObject();
 
-		// Save the non-null event listeners:
-		for (int i = 0; i < lList.length; i += 2) {
-			Class<?> t = (Class) lList[i];
-			EventListener l = (EventListener) lList[i + 1];
-			if ((l != null) && (l instanceof Serializable)) {
-				s.writeObject(t.getName());
-				s.writeObject(l);
-			}
-		}
+        // Save the non-null event listeners:
+        for (int i = 0; i < lList.length; i += 2) {
+            Class<?> t = (Class) lList[i];
+            EventListener l = (EventListener) lList[i + 1];
+            if ((l != null) && (l instanceof Serializable)) {
+                s.writeObject(t.getName());
+                s.writeObject(l);
+            }
+        }
 
-		s.writeObject(null);
-	}
+        s.writeObject(null);
+    }
 
-	private void readObject(ObjectInputStream s) throws IOException,
-			ClassNotFoundException {
-		listenerList = NULL_ARRAY;
-		s.defaultReadObject();
-		Object listenerTypeOrNull;
+    private void readObject(ObjectInputStream s) throws IOException,
+            ClassNotFoundException {
+        listenerList = NULL_ARRAY;
+        s.defaultReadObject();
+        Object listenerTypeOrNull;
 
-		while (null != (listenerTypeOrNull = s.readObject())) {
-			ClassLoader cl = Thread.currentThread().getContextClassLoader();
-			EventListener l = (EventListener) s.readObject();
-			String name = (String) listenerTypeOrNull;
-			ReflectUtil.checkPackageAccess(name);
-			add((Class<EventListener>) Class.forName(name, true, cl), l);
-		}
-	}
+        while (null != (listenerTypeOrNull = s.readObject())) {
+            ClassLoader cl = Thread.currentThread().getContextClassLoader();
+            EventListener l = (EventListener) s.readObject();
+            String name = (String) listenerTypeOrNull;
+            ReflectUtil.checkPackageAccess(name);
+            add((Class<EventListener>) Class.forName(name, true, cl), l);
+        }
+    }
 
-	/**
-	 * Returns a string representation of the EventListenerList.
-	 */
-	public String toString() {
-		Object[] lList = listenerList;
-		String s = "EventListenerList: ";
-		s += lList.length / 2 + " listeners: ";
-		for (int i = 0; i <= lList.length - 2; i += 2) {
-			s += " type " + ((Class) lList[i]).getName();
-			s += " listener " + lList[i + 1];
-		}
-		return s;
-	}
+    /**
+     * Returns a string representation of the EventListenerList.
+     */
+    public String toString() {
+        Object[] lList = listenerList;
+        String s = "EventListenerList: ";
+        s += lList.length / 2 + " listeners: ";
+        for (int i = 0; i <= lList.length - 2; i += 2) {
+            s += " type " + ((Class) lList[i]).getName();
+            s += " listener " + lList[i + 1];
+        }
+        return s;
+    }
 }

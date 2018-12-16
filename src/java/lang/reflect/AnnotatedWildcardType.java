@@ -14,17 +14,17 @@ package java.lang.reflect;
  */
 public interface AnnotatedWildcardType extends AnnotatedType {
 
-	/**
-	 * Returns the potentially annotated lower bounds of this wildcard type.
-	 *
-	 * @return the potentially annotated lower bounds of this wildcard type
-	 */
-	AnnotatedType[] getAnnotatedLowerBounds();
+    /**
+     * Returns the potentially annotated lower bounds of this wildcard type.
+     *
+     * @return the potentially annotated lower bounds of this wildcard type
+     */
+    AnnotatedType[] getAnnotatedLowerBounds();
 
-	/**
-	 * Returns the potentially annotated upper bounds of this wildcard type.
-	 *
-	 * @return the potentially annotated upper bounds of this wildcard type
-	 */
-	AnnotatedType[] getAnnotatedUpperBounds();
+    /**
+     * Returns the potentially annotated upper bounds of this wildcard type.
+     *
+     * @return the potentially annotated upper bounds of this wildcard type
+     */
+    AnnotatedType[] getAnnotatedUpperBounds();
 }

@@ -31,63 +31,63 @@ import org.omg.CORBA.portable.OutputStream;
  */
 public final class TypeCodeHolder implements Streamable {
 
-	/**
-	 * The <code>TypeCode</code> value held by this <code>TypeCodeHolder</code>
-	 * object.
-	 */
-	public TypeCode value;
+    /**
+     * The <code>TypeCode</code> value held by this <code>TypeCodeHolder</code>
+     * object.
+     */
+    public TypeCode value;
 
-	/**
-	 * Constructs a new <code>TypeCodeHolder</code> object with its
-	 * <code>value</code> field initialized to <code>null</code>.
-	 */
-	public TypeCodeHolder() {}
+    /**
+     * Constructs a new <code>TypeCodeHolder</code> object with its
+     * <code>value</code> field initialized to <code>null</code>.
+     */
+    public TypeCodeHolder() {}
 
-	/**
-	 * Constructs a new <code>TypeCodeHolder</code> object with its
-	 * <code>value</code> field initialized to the given <code>TypeCode</code>
-	 * object.
-	 * 
-	 * @param initial
-	 *                the <code>TypeCode</code> object with which to initialize
-	 *                the
-	 *                <code>value</code> field of the newly-created
-	 *                <code>TypeCodeHolder</code> object
-	 */
-	public TypeCodeHolder(TypeCode initial) {
-		value = initial;
-	}
+    /**
+     * Constructs a new <code>TypeCodeHolder</code> object with its
+     * <code>value</code> field initialized to the given <code>TypeCode</code>
+     * object.
+     * 
+     * @param initial
+     *                the <code>TypeCode</code> object with which to initialize
+     *                the
+     *                <code>value</code> field of the newly-created
+     *                <code>TypeCodeHolder</code> object
+     */
+    public TypeCodeHolder(TypeCode initial) {
+        value = initial;
+    }
 
-	/**
-	 * Reads from <code>input</code> and initalizes the value in this
-	 * <code>TypeCodeHolder</code> object with the unmarshalled data.
-	 *
-	 * @param input
-	 *              the InputStream containing CDR formatted data from the wire
-	 */
-	public void _read(InputStream input) {
-		value = input.read_TypeCode();
-	}
+    /**
+     * Reads from <code>input</code> and initalizes the value in this
+     * <code>TypeCodeHolder</code> object with the unmarshalled data.
+     *
+     * @param input
+     *              the InputStream containing CDR formatted data from the wire
+     */
+    public void _read(InputStream input) {
+        value = input.read_TypeCode();
+    }
 
-	/**
-	 * Marshals to <code>output</code> the value in this
-	 * <code>TypeCodeHolder</code> object.
-	 *
-	 * @param output
-	 *               the OutputStream which will contain the CDR formatted data
-	 */
-	public void _write(OutputStream output) {
-		output.write_TypeCode(value);
-	}
+    /**
+     * Marshals to <code>output</code> the value in this
+     * <code>TypeCodeHolder</code> object.
+     *
+     * @param output
+     *               the OutputStream which will contain the CDR formatted data
+     */
+    public void _write(OutputStream output) {
+        output.write_TypeCode(value);
+    }
 
-	/**
-	 * Returns the TypeCode corresponding to the value held in this
-	 * <code>TypeCodeHolder</code> object.
-	 *
-	 * @return the TypeCode of the value held in this
-	 *         <code>TypeCodeHolder</code> object
-	 */
-	public org.omg.CORBA.TypeCode _type() {
-		return ORB.init().get_primitive_tc(TCKind.tk_TypeCode);
-	}
+    /**
+     * Returns the TypeCode corresponding to the value held in this
+     * <code>TypeCodeHolder</code> object.
+     *
+     * @return the TypeCode of the value held in this
+     *         <code>TypeCodeHolder</code> object
+     */
+    public org.omg.CORBA.TypeCode _type() {
+        return ORB.init().get_primitive_tc(TCKind.tk_TypeCode);
+    }
 }

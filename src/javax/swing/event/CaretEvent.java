@@ -21,28 +21,28 @@ import java.util.EventObject;
  */
 public abstract class CaretEvent extends EventObject {
 
-	/**
-	 * Creates a new CaretEvent object.
-	 *
-	 * @param source
-	 *               the object responsible for the event
-	 */
-	public CaretEvent(Object source) {
-		super(source);
-	}
+    /**
+     * Creates a new CaretEvent object.
+     *
+     * @param source
+     *               the object responsible for the event
+     */
+    public CaretEvent(Object source) {
+        super(source);
+    }
 
-	/**
-	 * Fetches the location of the caret.
-	 *
-	 * @return the dot &gt;= 0
-	 */
-	public abstract int getDot();
+    /**
+     * Fetches the location of the caret.
+     *
+     * @return the dot &gt;= 0
+     */
+    public abstract int getDot();
 
-	/**
-	 * Fetches the location of other end of a logical selection. If there is no
-	 * selection, this will be the same as dot.
-	 *
-	 * @return the mark &gt;= 0
-	 */
-	public abstract int getMark();
+    /**
+     * Fetches the location of other end of a logical selection. If there is no
+     * selection, this will be the same as dot.
+     *
+     * @return the mark &gt;= 0
+     */
+    public abstract int getMark();
 }

@@ -28,28 +28,28 @@ import com.sun.org.apache.xpath.internal.functions.FuncExtFunction;
  *
  */
 public interface ExtensionsProvider {
-	/**
-	 * Is the extension function available?
-	 */
+    /**
+     * Is the extension function available?
+     */
 
-	public boolean functionAvailable(String ns, String funcName)
-			throws javax.xml.transform.TransformerException;
+    public boolean functionAvailable(String ns, String funcName)
+            throws javax.xml.transform.TransformerException;
 
-	/**
-	 * Is the extension element available?
-	 */
-	public boolean elementAvailable(String ns, String elemName)
-			throws javax.xml.transform.TransformerException;
+    /**
+     * Is the extension element available?
+     */
+    public boolean elementAvailable(String ns, String elemName)
+            throws javax.xml.transform.TransformerException;
 
-	/**
-	 * Execute the extension function.
-	 */
-	public Object extFunction(String ns, String funcName, Vector argVec,
-			Object methodKey) throws javax.xml.transform.TransformerException;
+    /**
+     * Execute the extension function.
+     */
+    public Object extFunction(String ns, String funcName, Vector argVec,
+            Object methodKey) throws javax.xml.transform.TransformerException;
 
-	/**
-	 * Execute the extension function.
-	 */
-	public Object extFunction(FuncExtFunction extFunction, Vector argVec)
-			throws javax.xml.transform.TransformerException;
+    /**
+     * Execute the extension function.
+     */
+    public Object extFunction(FuncExtFunction extFunction, Vector argVec)
+            throws javax.xml.transform.TransformerException;
 }

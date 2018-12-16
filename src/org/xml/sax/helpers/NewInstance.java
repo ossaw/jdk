@@ -38,31 +38,31 @@ import java.lang.reflect.InvocationTargetException;
  * @version 2.0.1 (sax2r2)
  */
 class NewInstance {
-	private static final String DEFAULT_PACKAGE = "com.sun.org.apache.xerces.internal";
+    private static final String DEFAULT_PACKAGE = "com.sun.org.apache.xerces.internal";
 
-	/**
-	 * Creates a new instance of the specified class name
-	 *
-	 * Package private so this code is not exposed at the API level.
-	 */
-	static Object newInstance(ClassLoader classLoader, String className)
-			throws ClassNotFoundException, IllegalAccessException,
-			InstantiationException {
-		// make sure we have access to restricted packages
-		boolean internal = false;
-		if (System.getSecurityManager() != null) {
-			if (className != null && className.startsWith(DEFAULT_PACKAGE)) {
-				internal = true;
-			}
-		}
+    /**
+     * Creates a new instance of the specified class name
+     *
+     * Package private so this code is not exposed at the API level.
+     */
+    static Object newInstance(ClassLoader classLoader, String className)
+            throws ClassNotFoundException, IllegalAccessException,
+            InstantiationException {
+        // make sure we have access to restricted packages
+        boolean internal = false;
+        if (System.getSecurityManager() != null) {
+            if (className != null && className.startsWith(DEFAULT_PACKAGE)) {
+                internal = true;
+            }
+        }
 
-		Class driverClass;
-		if (classLoader == null || internal) {
-			driverClass = Class.forName(className);
-		} else {
-			driverClass = classLoader.loadClass(className);
-		}
-		return driverClass.newInstance();
-	}
+        Class driverClass;
+        if (classLoader == null || internal) {
+            driverClass = Class.forName(className);
+        } else {
+            driverClass = classLoader.loadClass(className);
+        }
+        return driverClass.newInstance();
+    }
 
 }

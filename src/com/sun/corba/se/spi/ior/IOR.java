@@ -20,51 +20,51 @@ import com.sun.corba.se.spi.orb.ORB;
  * are contained in the list.
  */
 public interface IOR extends List, Writeable, MakeImmutable {
-	ORB getORB();
+    ORB getORB();
 
-	/**
-	 * Return the type id string from the IOR.
-	 */
-	String getTypeId();
+    /**
+     * Return the type id string from the IOR.
+     */
+    String getTypeId();
 
-	/**
-	 * Return an iterator that iterates over tagged profiles with identifier id.
-	 * It is not possible to modify the list through this iterator.
-	 */
-	Iterator iteratorById(int id);
+    /**
+     * Return an iterator that iterates over tagged profiles with identifier id.
+     * It is not possible to modify the list through this iterator.
+     */
+    Iterator iteratorById(int id);
 
-	/**
-	 * Return a representation of this IOR in the standard GIOP stringified
-	 * format that begins with "IOR:".
-	 */
-	String stringify();
+    /**
+     * Return a representation of this IOR in the standard GIOP stringified
+     * format that begins with "IOR:".
+     */
+    String stringify();
 
-	/**
-	 * Return a representation of this IOR in the standard GIOP marshalled form.
-	 */
-	org.omg.IOP.IOR getIOPIOR();
+    /**
+     * Return a representation of this IOR in the standard GIOP marshalled form.
+     */
+    org.omg.IOP.IOR getIOPIOR();
 
-	/**
-	 * Return true if this IOR has no profiles.
-	 */
-	boolean isNil();
+    /**
+     * Return true if this IOR has no profiles.
+     */
+    boolean isNil();
 
-	/**
-	 * Return true if this IOR is equivalent to ior. Here equivalent means that
-	 * the typeids are the same, they have the same number of profiles, and each
-	 * profile is equivalent to the corresponding profile.
-	 */
-	boolean isEquivalent(IOR ior);
+    /**
+     * Return true if this IOR is equivalent to ior. Here equivalent means that
+     * the typeids are the same, they have the same number of profiles, and each
+     * profile is equivalent to the corresponding profile.
+     */
+    boolean isEquivalent(IOR ior);
 
-	/**
-	 * Return the IORTemplate for this IOR. This is simply a list of all
-	 * TaggedProfileTemplates derived from the TaggedProfiles of the IOR.
-	 */
-	IORTemplateList getIORTemplates();
+    /**
+     * Return the IORTemplate for this IOR. This is simply a list of all
+     * TaggedProfileTemplates derived from the TaggedProfiles of the IOR.
+     */
+    IORTemplateList getIORTemplates();
 
-	/**
-	 * Return the first IIOPProfile in this IOR. XXX THIS IS TEMPORARY FOR
-	 * BACKWARDS COMPATIBILITY AND WILL BE REMOVED SOON!
-	 */
-	IIOPProfile getProfile();
+    /**
+     * Return the first IIOPProfile in this IOR. XXX THIS IS TEMPORARY FOR
+     * BACKWARDS COMPATIBILITY AND WILL BE REMOVED SOON!
+     */
+    IIOPProfile getProfile();
 }

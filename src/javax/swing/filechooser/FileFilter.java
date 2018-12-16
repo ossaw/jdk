@@ -28,15 +28,15 @@ import java.io.File;
  * @author Jeff Dinkins
  */
 public abstract class FileFilter {
-	/**
-	 * Whether the given file is accepted by this filter.
-	 */
-	public abstract boolean accept(File f);
+    /**
+     * Whether the given file is accepted by this filter.
+     */
+    public abstract boolean accept(File f);
 
-	/**
-	 * The description of this filter. For example: "JPG and GIF Images"
-	 * 
-	 * @see FileView#getName
-	 */
-	public abstract String getDescription();
+    /**
+     * The description of this filter. For example: "JPG and GIF Images"
+     * 
+     * @see FileView#getName
+     */
+    public abstract String getDescription();
 }

@@ -21,17 +21,17 @@ import java.util.Iterator;
  */
 public interface NodeSetData extends Data {
 
-	/**
-	 * Returns a read-only iterator over the nodes contained in this
-	 * <code>NodeSetData</code> in
-	 * <a href="http://www.w3.org/TR/1999/REC-xpath-19991116#dt-document-order">
-	 * document order</a>. Attempts to modify the returned iterator via the
-	 * <code>remove</code> method throw
-	 * <code>UnsupportedOperationException</code>.
-	 *
-	 * @return an <code>Iterator</code> over the nodes in this
-	 *         <code>NodeSetData</code> in document order
-	 */
-	@SuppressWarnings("rawtypes")
-	Iterator iterator();
+    /**
+     * Returns a read-only iterator over the nodes contained in this
+     * <code>NodeSetData</code> in
+     * <a href="http://www.w3.org/TR/1999/REC-xpath-19991116#dt-document-order">
+     * document order</a>. Attempts to modify the returned iterator via the
+     * <code>remove</code> method throw
+     * <code>UnsupportedOperationException</code>.
+     *
+     * @return an <code>Iterator</code> over the nodes in this
+     *         <code>NodeSetData</code> in document order
+     */
+    @SuppressWarnings("rawtypes")
+    Iterator iterator();
 }

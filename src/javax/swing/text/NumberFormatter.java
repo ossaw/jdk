@@ -65,367 +65,367 @@ import sun.swing.SwingUtilities2;
  * @since 1.4
  */
 public class NumberFormatter extends InternationalFormatter {
-	/** The special characters from the Format instance. */
-	private String specialChars;
+    /** The special characters from the Format instance. */
+    private String specialChars;
 
-	/**
-	 * Creates a <code>NumberFormatter</code> with the a default
-	 * <code>NumberFormat</code> instance obtained from
-	 * <code>NumberFormat.getNumberInstance()</code>.
-	 */
-	public NumberFormatter() {
-		this(NumberFormat.getNumberInstance());
-	}
+    /**
+     * Creates a <code>NumberFormatter</code> with the a default
+     * <code>NumberFormat</code> instance obtained from
+     * <code>NumberFormat.getNumberInstance()</code>.
+     */
+    public NumberFormatter() {
+        this(NumberFormat.getNumberInstance());
+    }
 
-	/**
-	 * Creates a NumberFormatter with the specified Format instance.
-	 *
-	 * @param format
-	 *               Format used to dictate legal values
-	 */
-	public NumberFormatter(NumberFormat format) {
-		super(format);
-		setFormat(format);
-		setAllowsInvalid(true);
-		setCommitsOnValidEdit(false);
-		setOverwriteMode(false);
-	}
+    /**
+     * Creates a NumberFormatter with the specified Format instance.
+     *
+     * @param format
+     *               Format used to dictate legal values
+     */
+    public NumberFormatter(NumberFormat format) {
+        super(format);
+        setFormat(format);
+        setAllowsInvalid(true);
+        setCommitsOnValidEdit(false);
+        setOverwriteMode(false);
+    }
 
-	/**
-	 * Sets the format that dictates the legal values that can be edited and
-	 * displayed.
-	 * <p>
-	 * If you have used the nullary constructor the value of this property will
-	 * be determined for the current locale by way of the
-	 * <code>NumberFormat.getNumberInstance()</code> method.
-	 *
-	 * @param format
-	 *               NumberFormat instance used to dictate legal values
-	 */
-	public void setFormat(Format format) {
-		super.setFormat(format);
+    /**
+     * Sets the format that dictates the legal values that can be edited and
+     * displayed.
+     * <p>
+     * If you have used the nullary constructor the value of this property will
+     * be determined for the current locale by way of the
+     * <code>NumberFormat.getNumberInstance()</code> method.
+     *
+     * @param format
+     *               NumberFormat instance used to dictate legal values
+     */
+    public void setFormat(Format format) {
+        super.setFormat(format);
 
-		DecimalFormatSymbols dfs = getDecimalFormatSymbols();
+        DecimalFormatSymbols dfs = getDecimalFormatSymbols();
 
-		if (dfs != null) {
-			StringBuilder sb = new StringBuilder();
+        if (dfs != null) {
+            StringBuilder sb = new StringBuilder();
 
-			sb.append(dfs.getCurrencySymbol());
-			sb.append(dfs.getDecimalSeparator());
-			sb.append(dfs.getGroupingSeparator());
-			sb.append(dfs.getInfinity());
-			sb.append(dfs.getInternationalCurrencySymbol());
-			sb.append(dfs.getMinusSign());
-			sb.append(dfs.getMonetaryDecimalSeparator());
-			sb.append(dfs.getNaN());
-			sb.append(dfs.getPercent());
-			sb.append('+');
-			specialChars = sb.toString();
-		} else {
-			specialChars = "";
-		}
-	}
+            sb.append(dfs.getCurrencySymbol());
+            sb.append(dfs.getDecimalSeparator());
+            sb.append(dfs.getGroupingSeparator());
+            sb.append(dfs.getInfinity());
+            sb.append(dfs.getInternationalCurrencySymbol());
+            sb.append(dfs.getMinusSign());
+            sb.append(dfs.getMonetaryDecimalSeparator());
+            sb.append(dfs.getNaN());
+            sb.append(dfs.getPercent());
+            sb.append('+');
+            specialChars = sb.toString();
+        } else {
+            specialChars = "";
+        }
+    }
 
-	/**
-	 * Invokes <code>parseObject</code> on <code>f</code>, returning its value.
-	 */
-	Object stringToValue(String text, Format f) throws ParseException {
-		if (f == null) {
-			return text;
-		}
-		Object value = f.parseObject(text);
+    /**
+     * Invokes <code>parseObject</code> on <code>f</code>, returning its value.
+     */
+    Object stringToValue(String text, Format f) throws ParseException {
+        if (f == null) {
+            return text;
+        }
+        Object value = f.parseObject(text);
 
-		return convertValueToValueClass(value, getValueClass());
-	}
+        return convertValueToValueClass(value, getValueClass());
+    }
 
-	/**
-	 * Converts the passed in value to the passed in class. This only works if
-	 * <code>valueClass</code> is one of <code>Integer</code>, <code>Long</code>
-	 * , <code>Float</code>, <code>Double</code>, <code>Byte</code> or
-	 * <code>Short</code> and <code>value</code> is an instanceof
-	 * <code>Number</code>.
-	 */
-	private Object convertValueToValueClass(Object value, Class valueClass) {
-		if (valueClass != null && (value instanceof Number)) {
-			Number numberValue = (Number) value;
-			if (valueClass == Integer.class) {
-				return Integer.valueOf(numberValue.intValue());
-			} else if (valueClass == Long.class) {
-				return Long.valueOf(numberValue.longValue());
-			} else if (valueClass == Float.class) {
-				return Float.valueOf(numberValue.floatValue());
-			} else if (valueClass == Double.class) {
-				return Double.valueOf(numberValue.doubleValue());
-			} else if (valueClass == Byte.class) {
-				return Byte.valueOf(numberValue.byteValue());
-			} else if (valueClass == Short.class) {
-				return Short.valueOf(numberValue.shortValue());
-			}
-		}
-		return value;
-	}
+    /**
+     * Converts the passed in value to the passed in class. This only works if
+     * <code>valueClass</code> is one of <code>Integer</code>, <code>Long</code>
+     * , <code>Float</code>, <code>Double</code>, <code>Byte</code> or
+     * <code>Short</code> and <code>value</code> is an instanceof
+     * <code>Number</code>.
+     */
+    private Object convertValueToValueClass(Object value, Class valueClass) {
+        if (valueClass != null && (value instanceof Number)) {
+            Number numberValue = (Number) value;
+            if (valueClass == Integer.class) {
+                return Integer.valueOf(numberValue.intValue());
+            } else if (valueClass == Long.class) {
+                return Long.valueOf(numberValue.longValue());
+            } else if (valueClass == Float.class) {
+                return Float.valueOf(numberValue.floatValue());
+            } else if (valueClass == Double.class) {
+                return Double.valueOf(numberValue.doubleValue());
+            } else if (valueClass == Byte.class) {
+                return Byte.valueOf(numberValue.byteValue());
+            } else if (valueClass == Short.class) {
+                return Short.valueOf(numberValue.shortValue());
+            }
+        }
+        return value;
+    }
 
-	/**
-	 * Returns the character that is used to toggle to positive values.
-	 */
-	private char getPositiveSign() {
-		return '+';
-	}
+    /**
+     * Returns the character that is used to toggle to positive values.
+     */
+    private char getPositiveSign() {
+        return '+';
+    }
 
-	/**
-	 * Returns the character that is used to toggle to negative values.
-	 */
-	private char getMinusSign() {
-		DecimalFormatSymbols dfs = getDecimalFormatSymbols();
+    /**
+     * Returns the character that is used to toggle to negative values.
+     */
+    private char getMinusSign() {
+        DecimalFormatSymbols dfs = getDecimalFormatSymbols();
 
-		if (dfs != null) {
-			return dfs.getMinusSign();
-		}
-		return '-';
-	}
+        if (dfs != null) {
+            return dfs.getMinusSign();
+        }
+        return '-';
+    }
 
-	/**
-	 * Returns the character that is used to toggle to negative values.
-	 */
-	private char getDecimalSeparator() {
-		DecimalFormatSymbols dfs = getDecimalFormatSymbols();
+    /**
+     * Returns the character that is used to toggle to negative values.
+     */
+    private char getDecimalSeparator() {
+        DecimalFormatSymbols dfs = getDecimalFormatSymbols();
 
-		if (dfs != null) {
-			return dfs.getDecimalSeparator();
-		}
-		return '.';
-	}
+        if (dfs != null) {
+            return dfs.getDecimalSeparator();
+        }
+        return '.';
+    }
 
-	/**
-	 * Returns the DecimalFormatSymbols from the Format instance.
-	 */
-	private DecimalFormatSymbols getDecimalFormatSymbols() {
-		Format f = getFormat();
+    /**
+     * Returns the DecimalFormatSymbols from the Format instance.
+     */
+    private DecimalFormatSymbols getDecimalFormatSymbols() {
+        Format f = getFormat();
 
-		if (f instanceof DecimalFormat) {
-			return ((DecimalFormat) f).getDecimalFormatSymbols();
-		}
-		return null;
-	}
+        if (f instanceof DecimalFormat) {
+            return ((DecimalFormat) f).getDecimalFormatSymbols();
+        }
+        return null;
+    }
 
-	/**
-	 * Subclassed to return false if <code>text</code> contains in an invalid
-	 * character to insert, that is, it is not a digit (
-	 * <code>Character.isDigit()</code>) and not one of the characters defined
-	 * by the DecimalFormatSymbols.
-	 */
-	boolean isLegalInsertText(String text) {
-		if (getAllowsInvalid()) {
-			return true;
-		}
-		for (int counter = text.length() - 1; counter >= 0; counter--) {
-			char aChar = text.charAt(counter);
+    /**
+     * Subclassed to return false if <code>text</code> contains in an invalid
+     * character to insert, that is, it is not a digit (
+     * <code>Character.isDigit()</code>) and not one of the characters defined
+     * by the DecimalFormatSymbols.
+     */
+    boolean isLegalInsertText(String text) {
+        if (getAllowsInvalid()) {
+            return true;
+        }
+        for (int counter = text.length() - 1; counter >= 0; counter--) {
+            char aChar = text.charAt(counter);
 
-			if (!Character.isDigit(aChar) && specialChars.indexOf(
-					aChar) == -1) {
-				return false;
-			}
-		}
-		return true;
-	}
+            if (!Character.isDigit(aChar) && specialChars.indexOf(
+                    aChar) == -1) {
+                return false;
+            }
+        }
+        return true;
+    }
 
-	/**
-	 * Subclassed to treat the decimal separator, grouping separator, exponent
-	 * symbol, percent, permille, currency and sign as literals.
-	 */
-	boolean isLiteral(Map attrs) {
-		if (!super.isLiteral(attrs)) {
-			if (attrs == null) {
-				return false;
-			}
-			int size = attrs.size();
+    /**
+     * Subclassed to treat the decimal separator, grouping separator, exponent
+     * symbol, percent, permille, currency and sign as literals.
+     */
+    boolean isLiteral(Map attrs) {
+        if (!super.isLiteral(attrs)) {
+            if (attrs == null) {
+                return false;
+            }
+            int size = attrs.size();
 
-			if (attrs.get(NumberFormat.Field.GROUPING_SEPARATOR) != null) {
-				size--;
-				if (attrs.get(NumberFormat.Field.INTEGER) != null) {
-					size--;
-				}
-			}
-			if (attrs.get(NumberFormat.Field.EXPONENT_SYMBOL) != null) {
-				size--;
-			}
-			if (attrs.get(NumberFormat.Field.PERCENT) != null) {
-				size--;
-			}
-			if (attrs.get(NumberFormat.Field.PERMILLE) != null) {
-				size--;
-			}
-			if (attrs.get(NumberFormat.Field.CURRENCY) != null) {
-				size--;
-			}
-			if (attrs.get(NumberFormat.Field.SIGN) != null) {
-				size--;
-			}
-			return size == 0;
-		}
-		return true;
-	}
+            if (attrs.get(NumberFormat.Field.GROUPING_SEPARATOR) != null) {
+                size--;
+                if (attrs.get(NumberFormat.Field.INTEGER) != null) {
+                    size--;
+                }
+            }
+            if (attrs.get(NumberFormat.Field.EXPONENT_SYMBOL) != null) {
+                size--;
+            }
+            if (attrs.get(NumberFormat.Field.PERCENT) != null) {
+                size--;
+            }
+            if (attrs.get(NumberFormat.Field.PERMILLE) != null) {
+                size--;
+            }
+            if (attrs.get(NumberFormat.Field.CURRENCY) != null) {
+                size--;
+            }
+            if (attrs.get(NumberFormat.Field.SIGN) != null) {
+                size--;
+            }
+            return size == 0;
+        }
+        return true;
+    }
 
-	/**
-	 * Subclassed to make the decimal separator navigable, as well as making the
-	 * character between the integer field and the next field navigable.
-	 */
-	boolean isNavigatable(int index) {
-		if (!super.isNavigatable(index)) {
-			// Don't skip the decimal, it causes wierd behavior
-			return getBufferedChar(index) == getDecimalSeparator();
-		}
-		return true;
-	}
+    /**
+     * Subclassed to make the decimal separator navigable, as well as making the
+     * character between the integer field and the next field navigable.
+     */
+    boolean isNavigatable(int index) {
+        if (!super.isNavigatable(index)) {
+            // Don't skip the decimal, it causes wierd behavior
+            return getBufferedChar(index) == getDecimalSeparator();
+        }
+        return true;
+    }
 
-	/**
-	 * Returns the first <code>NumberFormat.Field</code> starting
-	 * <code>index</code> incrementing by <code>direction</code>.
-	 */
-	private NumberFormat.Field getFieldFrom(int index, int direction) {
-		if (isValidMask()) {
-			int max = getFormattedTextField().getDocument().getLength();
-			AttributedCharacterIterator iterator = getIterator();
+    /**
+     * Returns the first <code>NumberFormat.Field</code> starting
+     * <code>index</code> incrementing by <code>direction</code>.
+     */
+    private NumberFormat.Field getFieldFrom(int index, int direction) {
+        if (isValidMask()) {
+            int max = getFormattedTextField().getDocument().getLength();
+            AttributedCharacterIterator iterator = getIterator();
 
-			if (index >= max) {
-				index += direction;
-			}
-			while (index >= 0 && index < max) {
-				iterator.setIndex(index);
+            if (index >= max) {
+                index += direction;
+            }
+            while (index >= 0 && index < max) {
+                iterator.setIndex(index);
 
-				Map attrs = iterator.getAttributes();
+                Map attrs = iterator.getAttributes();
 
-				if (attrs != null && attrs.size() > 0) {
-					for (Object key : attrs.keySet()) {
-						if (key instanceof NumberFormat.Field) {
-							return (NumberFormat.Field) key;
-						}
-					}
-				}
-				index += direction;
-			}
-		}
-		return null;
-	}
+                if (attrs != null && attrs.size() > 0) {
+                    for (Object key : attrs.keySet()) {
+                        if (key instanceof NumberFormat.Field) {
+                            return (NumberFormat.Field) key;
+                        }
+                    }
+                }
+                index += direction;
+            }
+        }
+        return null;
+    }
 
-	/**
-	 * Overriden to toggle the value if the positive/minus sign is inserted.
-	 */
-	void replace(DocumentFilter.FilterBypass fb, int offset, int length,
-			String string, AttributeSet attr) throws BadLocationException {
-		if (!getAllowsInvalid() && length == 0 && string != null && string
-				.length() == 1 && toggleSignIfNecessary(fb, offset, string
-						.charAt(0))) {
-			return;
-		}
-		super.replace(fb, offset, length, string, attr);
-	}
+    /**
+     * Overriden to toggle the value if the positive/minus sign is inserted.
+     */
+    void replace(DocumentFilter.FilterBypass fb, int offset, int length,
+            String string, AttributeSet attr) throws BadLocationException {
+        if (!getAllowsInvalid() && length == 0 && string != null && string
+                .length() == 1 && toggleSignIfNecessary(fb, offset, string
+                        .charAt(0))) {
+            return;
+        }
+        super.replace(fb, offset, length, string, attr);
+    }
 
-	/**
-	 * Will change the sign of the integer or exponent field if
-	 * <code>aChar</code> is the positive or minus sign. Returns true if a sign
-	 * change was attempted.
-	 */
-	private boolean toggleSignIfNecessary(DocumentFilter.FilterBypass fb,
-			int offset, char aChar) throws BadLocationException {
-		if (aChar == getMinusSign() || aChar == getPositiveSign()) {
-			NumberFormat.Field field = getFieldFrom(offset, -1);
-			Object newValue;
+    /**
+     * Will change the sign of the integer or exponent field if
+     * <code>aChar</code> is the positive or minus sign. Returns true if a sign
+     * change was attempted.
+     */
+    private boolean toggleSignIfNecessary(DocumentFilter.FilterBypass fb,
+            int offset, char aChar) throws BadLocationException {
+        if (aChar == getMinusSign() || aChar == getPositiveSign()) {
+            NumberFormat.Field field = getFieldFrom(offset, -1);
+            Object newValue;
 
-			try {
-				if (field == null || (field != NumberFormat.Field.EXPONENT
-						&& field != NumberFormat.Field.EXPONENT_SYMBOL
-						&& field != NumberFormat.Field.EXPONENT_SIGN)) {
-					newValue = toggleSign((aChar == getPositiveSign()));
-				} else {
-					// exponent
-					newValue = toggleExponentSign(offset, aChar);
-				}
-				if (newValue != null && isValidValue(newValue, false)) {
-					int lc = getLiteralCountTo(offset);
-					String string = valueToString(newValue);
+            try {
+                if (field == null || (field != NumberFormat.Field.EXPONENT
+                        && field != NumberFormat.Field.EXPONENT_SYMBOL
+                        && field != NumberFormat.Field.EXPONENT_SIGN)) {
+                    newValue = toggleSign((aChar == getPositiveSign()));
+                } else {
+                    // exponent
+                    newValue = toggleExponentSign(offset, aChar);
+                }
+                if (newValue != null && isValidValue(newValue, false)) {
+                    int lc = getLiteralCountTo(offset);
+                    String string = valueToString(newValue);
 
-					fb.remove(0, fb.getDocument().getLength());
-					fb.insertString(0, string, null);
-					updateValue(newValue);
-					repositionCursor(getLiteralCountTo(offset) - lc + offset,
-							1);
-					return true;
-				}
-			} catch (ParseException pe) {
-				invalidEdit();
-			}
-		}
-		return false;
-	}
+                    fb.remove(0, fb.getDocument().getLength());
+                    fb.insertString(0, string, null);
+                    updateValue(newValue);
+                    repositionCursor(getLiteralCountTo(offset) - lc + offset,
+                            1);
+                    return true;
+                }
+            } catch (ParseException pe) {
+                invalidEdit();
+            }
+        }
+        return false;
+    }
 
-	/**
-	 * Invoked to toggle the sign. For this to work the value class must have a
-	 * single arg constructor that takes a String.
-	 */
-	private Object toggleSign(boolean positive) throws ParseException {
-		Object value = stringToValue(getFormattedTextField().getText());
+    /**
+     * Invoked to toggle the sign. For this to work the value class must have a
+     * single arg constructor that takes a String.
+     */
+    private Object toggleSign(boolean positive) throws ParseException {
+        Object value = stringToValue(getFormattedTextField().getText());
 
-		if (value != null) {
-			// toString isn't localized, so that using +/- should work
-			// correctly.
-			String string = value.toString();
+        if (value != null) {
+            // toString isn't localized, so that using +/- should work
+            // correctly.
+            String string = value.toString();
 
-			if (string != null && string.length() > 0) {
-				if (positive) {
-					if (string.charAt(0) == '-') {
-						string = string.substring(1);
-					}
-				} else {
-					if (string.charAt(0) == '+') {
-						string = string.substring(1);
-					}
-					if (string.length() > 0 && string.charAt(0) != '-') {
-						string = "-" + string;
-					}
-				}
-				if (string != null) {
-					Class<?> valueClass = getValueClass();
+            if (string != null && string.length() > 0) {
+                if (positive) {
+                    if (string.charAt(0) == '-') {
+                        string = string.substring(1);
+                    }
+                } else {
+                    if (string.charAt(0) == '+') {
+                        string = string.substring(1);
+                    }
+                    if (string.length() > 0 && string.charAt(0) != '-') {
+                        string = "-" + string;
+                    }
+                }
+                if (string != null) {
+                    Class<?> valueClass = getValueClass();
 
-					if (valueClass == null) {
-						valueClass = value.getClass();
-					}
-					try {
-						ReflectUtil.checkPackageAccess(valueClass);
-						SwingUtilities2.checkAccess(valueClass.getModifiers());
-						Constructor cons = valueClass.getConstructor(
-								new Class[] { String.class });
-						if (cons != null) {
-							SwingUtilities2.checkAccess(cons.getModifiers());
-							return cons.newInstance(new Object[] { string });
-						}
-					} catch (Throwable ex) {
-					}
-				}
-			}
-		}
-		return null;
-	}
+                    if (valueClass == null) {
+                        valueClass = value.getClass();
+                    }
+                    try {
+                        ReflectUtil.checkPackageAccess(valueClass);
+                        SwingUtilities2.checkAccess(valueClass.getModifiers());
+                        Constructor cons = valueClass.getConstructor(
+                                new Class[] { String.class });
+                        if (cons != null) {
+                            SwingUtilities2.checkAccess(cons.getModifiers());
+                            return cons.newInstance(new Object[] { string });
+                        }
+                    } catch (Throwable ex) {
+                    }
+                }
+            }
+        }
+        return null;
+    }
 
-	/**
-	 * Invoked to toggle the sign of the exponent (for scientific numbers).
-	 */
-	private Object toggleExponentSign(int offset, char aChar)
-			throws BadLocationException, ParseException {
-		String string = getFormattedTextField().getText();
-		int replaceLength = 0;
-		int loc = getAttributeStart(NumberFormat.Field.EXPONENT_SIGN);
+    /**
+     * Invoked to toggle the sign of the exponent (for scientific numbers).
+     */
+    private Object toggleExponentSign(int offset, char aChar)
+            throws BadLocationException, ParseException {
+        String string = getFormattedTextField().getText();
+        int replaceLength = 0;
+        int loc = getAttributeStart(NumberFormat.Field.EXPONENT_SIGN);
 
-		if (loc >= 0) {
-			replaceLength = 1;
-			offset = loc;
-		}
-		if (aChar == getPositiveSign()) {
-			string = getReplaceString(offset, replaceLength, null);
-		} else {
-			string = getReplaceString(offset, replaceLength, new String(
-					new char[] { aChar }));
-		}
-		return stringToValue(string);
-	}
+        if (loc >= 0) {
+            replaceLength = 1;
+            offset = loc;
+        }
+        if (aChar == getPositiveSign()) {
+            string = getReplaceString(offset, replaceLength, null);
+        } else {
+            string = getReplaceString(offset, replaceLength, new String(
+                    new char[] { aChar }));
+        }
+        return stringToValue(string);
+    }
 }

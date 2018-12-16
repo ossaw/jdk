@@ -44,7 +44,7 @@ import java.util.List;
  * <pre>
  * XMLSignatureFactory factory = XMLSignatureFactory.getInstance("DOM");
  * Reference ref = factory.newReference("http://www.ietf.org/rfc/rfc3275.txt",
- * 		factory.newDigestMethod(DigestMethod.SHA1, null));
+ *         factory.newDigestMethod(DigestMethod.SHA1, null));
  * </pre>
  *
  * @author Sean Mullan
@@ -57,99 +57,99 @@ import java.util.List;
  */
 public interface Reference extends URIReference, XMLStructure {
 
-	/**
-	 * Returns an {@link java.util.Collections#unmodifiableList unmodifiable
-	 * list} of {@link Transform}s that are contained in this
-	 * <code>Reference</code>.
-	 *
-	 * @return an unmodifiable list of <code>Transform</code>s (may be empty but
-	 *         never <code>null</code>)
-	 */
-	@SuppressWarnings("rawtypes")
-	List getTransforms();
+    /**
+     * Returns an {@link java.util.Collections#unmodifiableList unmodifiable
+     * list} of {@link Transform}s that are contained in this
+     * <code>Reference</code>.
+     *
+     * @return an unmodifiable list of <code>Transform</code>s (may be empty but
+     *         never <code>null</code>)
+     */
+    @SuppressWarnings("rawtypes")
+    List getTransforms();
 
-	/**
-	 * Returns the digest method of this <code>Reference</code>.
-	 *
-	 * @return the digest method
-	 */
-	DigestMethod getDigestMethod();
+    /**
+     * Returns the digest method of this <code>Reference</code>.
+     *
+     * @return the digest method
+     */
+    DigestMethod getDigestMethod();
 
-	/**
-	 * Returns the optional <code>Id</code> attribute of this
-	 * <code>Reference</code>, which permits this reference to be referenced
-	 * from elsewhere.
-	 *
-	 * @return the <code>Id</code> attribute (may be <code>null</code> if not
-	 *         specified)
-	 */
-	String getId();
+    /**
+     * Returns the optional <code>Id</code> attribute of this
+     * <code>Reference</code>, which permits this reference to be referenced
+     * from elsewhere.
+     *
+     * @return the <code>Id</code> attribute (may be <code>null</code> if not
+     *         specified)
+     */
+    String getId();
 
-	/**
-	 * Returns the digest value of this <code>Reference</code>.
-	 *
-	 * @return the raw digest value, or <code>null</code> if this reference has
-	 *         not been digested yet. Each invocation of this method returns a
-	 *         new clone to protect against subsequent modification.
-	 */
-	byte[] getDigestValue();
+    /**
+     * Returns the digest value of this <code>Reference</code>.
+     *
+     * @return the raw digest value, or <code>null</code> if this reference has
+     *         not been digested yet. Each invocation of this method returns a
+     *         new clone to protect against subsequent modification.
+     */
+    byte[] getDigestValue();
 
-	/**
-	 * Returns the calculated digest value of this <code>Reference</code> after
-	 * a validation operation. This method is useful for debugging if the
-	 * reference fails to validate.
-	 *
-	 * @return the calculated digest value, or <code>null</code> if this
-	 *         reference has not been validated yet. Each invocation of this
-	 *         method returns a new clone to protect against subsequent
-	 *         modification.
-	 */
-	byte[] getCalculatedDigestValue();
+    /**
+     * Returns the calculated digest value of this <code>Reference</code> after
+     * a validation operation. This method is useful for debugging if the
+     * reference fails to validate.
+     *
+     * @return the calculated digest value, or <code>null</code> if this
+     *         reference has not been validated yet. Each invocation of this
+     *         method returns a new clone to protect against subsequent
+     *         modification.
+     */
+    byte[] getCalculatedDigestValue();
 
-	/**
-	 * Validates this reference. This method verifies the digest of this
-	 * reference.
-	 *
-	 * <p>
-	 * This method only validates the reference the first time it is invoked. On
-	 * subsequent invocations, it returns a cached result.
-	 *
-	 * @return <code>true</code> if this reference was validated successfully;
-	 *         <code>false</code> otherwise
-	 * @param validateContext
-	 *                        the validating context
-	 * @throws NullPointerException
-	 *                               if <code>validateContext</code> is
-	 *                               <code>null</code>
-	 * @throws XMLSignatureException
-	 *                               if an unexpected exception occurs while
-	 *                               validating the
-	 *                               reference
-	 */
-	boolean validate(XMLValidateContext validateContext)
-			throws XMLSignatureException;
+    /**
+     * Validates this reference. This method verifies the digest of this
+     * reference.
+     *
+     * <p>
+     * This method only validates the reference the first time it is invoked. On
+     * subsequent invocations, it returns a cached result.
+     *
+     * @return <code>true</code> if this reference was validated successfully;
+     *         <code>false</code> otherwise
+     * @param validateContext
+     *                        the validating context
+     * @throws NullPointerException
+     *                               if <code>validateContext</code> is
+     *                               <code>null</code>
+     * @throws XMLSignatureException
+     *                               if an unexpected exception occurs while
+     *                               validating the
+     *                               reference
+     */
+    boolean validate(XMLValidateContext validateContext)
+            throws XMLSignatureException;
 
-	/**
-	 * Returns the dereferenced data, if <a href=
-	 * "XMLSignContext.html#Supported Properties">reference caching</a> is
-	 * enabled. This is the result of dereferencing the URI of this reference
-	 * during a validation or generation operation.
-	 *
-	 * @return the dereferenced data, or <code>null</code> if reference caching
-	 *         is not enabled or this reference has not been generated or
-	 *         validated
-	 */
-	Data getDereferencedData();
+    /**
+     * Returns the dereferenced data, if <a href=
+     * "XMLSignContext.html#Supported Properties">reference caching</a> is
+     * enabled. This is the result of dereferencing the URI of this reference
+     * during a validation or generation operation.
+     *
+     * @return the dereferenced data, or <code>null</code> if reference caching
+     *         is not enabled or this reference has not been generated or
+     *         validated
+     */
+    Data getDereferencedData();
 
-	/**
-	 * Returns the pre-digested input stream, if <a href=
-	 * "XMLSignContext.html#Supported Properties">reference caching</a> is
-	 * enabled. This is the input to the digest operation during a validation or
-	 * signing operation.
-	 *
-	 * @return an input stream containing the pre-digested input, or
-	 *         <code>null</code> if reference caching is not enabled or this
-	 *         reference has not been generated or validated
-	 */
-	InputStream getDigestInputStream();
+    /**
+     * Returns the pre-digested input stream, if <a href=
+     * "XMLSignContext.html#Supported Properties">reference caching</a> is
+     * enabled. This is the input to the digest operation during a validation or
+     * signing operation.
+     *
+     * @return an input stream containing the pre-digested input, or
+     *         <code>null</code> if reference caching is not enabled or this
+     *         reference has not been generated or validated
+     */
+    InputStream getDigestInputStream();
 }

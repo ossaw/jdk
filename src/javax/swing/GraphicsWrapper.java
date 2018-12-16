@@ -13,15 +13,15 @@ package javax.swing;
 import java.awt.*;
 
 interface GraphicsWrapper {
-	Graphics subGraphics();
+    Graphics subGraphics();
 
-	boolean isClipIntersecting(Rectangle r);
+    boolean isClipIntersecting(Rectangle r);
 
-	int getClipX();
+    int getClipX();
 
-	int getClipY();
+    int getClipY();
 
-	int getClipWidth();
+    int getClipWidth();
 
-	int getClipHeight();
+    int getClipHeight();
 }

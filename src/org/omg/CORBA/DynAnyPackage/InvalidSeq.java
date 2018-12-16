@@ -11,21 +11,21 @@ package org.omg.CORBA.DynAnyPackage;
  */
 public final class InvalidSeq extends org.omg.CORBA.UserException {
 
-	/**
-	 * Constructs an <code>InvalidSeq</code> object.
-	 */
-	public InvalidSeq() {
-		super();
-	}
+    /**
+     * Constructs an <code>InvalidSeq</code> object.
+     */
+    public InvalidSeq() {
+        super();
+    }
 
-	/**
-	 * Constructs an <code>InvalidSeq</code> object.
-	 * 
-	 * @param reason
-	 *               a <code>String</code> giving more information regarding the
-	 *               exception.
-	 */
-	public InvalidSeq(String reason) {
-		super(reason);
-	}
+    /**
+     * Constructs an <code>InvalidSeq</code> object.
+     * 
+     * @param reason
+     *               a <code>String</code> giving more information regarding the
+     *               exception.
+     */
+    public InvalidSeq(String reason) {
+        super(reason);
+    }
 }

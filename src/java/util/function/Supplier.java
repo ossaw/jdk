@@ -23,10 +23,10 @@ package java.util.function;
 @FunctionalInterface
 public interface Supplier<T> {
 
-	/**
-	 * Gets a result.
-	 *
-	 * @return a result
-	 */
-	T get();
+    /**
+     * Gets a result.
+     *
+     * @return a result
+     */
+    T get();
 }

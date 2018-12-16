@@ -21,20 +21,20 @@ import java.io.IOException;
  */
 public abstract class CacheRequest {
 
-	/**
-	 * Returns an OutputStream to which the response body can be written.
-	 *
-	 * @return an OutputStream to which the response body can be written
-	 * @throws IOException
-	 *                     if an I/O error occurs while writing the response
-	 *                     body
-	 */
-	public abstract OutputStream getBody() throws IOException;
+    /**
+     * Returns an OutputStream to which the response body can be written.
+     *
+     * @return an OutputStream to which the response body can be written
+     * @throws IOException
+     *                     if an I/O error occurs while writing the response
+     *                     body
+     */
+    public abstract OutputStream getBody() throws IOException;
 
-	/**
-	 * Aborts the attempt to cache the response. If an IOException is
-	 * encountered while reading the response or writing to the cache, the
-	 * current cache store operation will be abandoned.
-	 */
-	public abstract void abort();
+    /**
+     * Aborts the attempt to cache the response. If an IOException is
+     * encountered while reading the response or writing to the cache, the
+     * current cache store operation will be abandoned.
+     */
+    public abstract void abort();
 }

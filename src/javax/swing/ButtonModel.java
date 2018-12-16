@@ -49,180 +49,180 @@ import javax.swing.event.*;
  */
 public interface ButtonModel extends ItemSelectable {
 
-	/**
-	 * Indicates partial commitment towards triggering the button.
-	 *
-	 * @return <code>true</code> if the button is armed, and ready to be
-	 *         triggered
-	 * @see #setArmed
-	 */
-	boolean isArmed();
+    /**
+     * Indicates partial commitment towards triggering the button.
+     *
+     * @return <code>true</code> if the button is armed, and ready to be
+     *         triggered
+     * @see #setArmed
+     */
+    boolean isArmed();
 
-	/**
-	 * Indicates if the button has been selected. Only needed for certain types
-	 * of buttons - such as radio buttons and check boxes.
-	 *
-	 * @return <code>true</code> if the button is selected
-	 */
-	boolean isSelected();
+    /**
+     * Indicates if the button has been selected. Only needed for certain types
+     * of buttons - such as radio buttons and check boxes.
+     *
+     * @return <code>true</code> if the button is selected
+     */
+    boolean isSelected();
 
-	/**
-	 * Indicates if the button can be selected or triggered by an input device,
-	 * such as a mouse pointer.
-	 *
-	 * @return <code>true</code> if the button is enabled
-	 */
-	boolean isEnabled();
+    /**
+     * Indicates if the button can be selected or triggered by an input device,
+     * such as a mouse pointer.
+     *
+     * @return <code>true</code> if the button is enabled
+     */
+    boolean isEnabled();
 
-	/**
-	 * Indicates if the button is pressed.
-	 *
-	 * @return <code>true</code> if the button is pressed
-	 */
-	boolean isPressed();
+    /**
+     * Indicates if the button is pressed.
+     *
+     * @return <code>true</code> if the button is pressed
+     */
+    boolean isPressed();
 
-	/**
-	 * Indicates that the mouse is over the button.
-	 *
-	 * @return <code>true</code> if the mouse is over the button
-	 */
-	boolean isRollover();
+    /**
+     * Indicates that the mouse is over the button.
+     *
+     * @return <code>true</code> if the mouse is over the button
+     */
+    boolean isRollover();
 
-	/**
-	 * Marks the button as armed or unarmed.
-	 *
-	 * @param b
-	 *          whether or not the button should be armed
-	 */
-	public void setArmed(boolean b);
+    /**
+     * Marks the button as armed or unarmed.
+     *
+     * @param b
+     *          whether or not the button should be armed
+     */
+    public void setArmed(boolean b);
 
-	/**
-	 * Selects or deselects the button.
-	 *
-	 * @param b
-	 *          <code>true</code> selects the button, <code>false</code>
-	 *          deselects the button
-	 */
-	public void setSelected(boolean b);
+    /**
+     * Selects or deselects the button.
+     *
+     * @param b
+     *          <code>true</code> selects the button, <code>false</code>
+     *          deselects the button
+     */
+    public void setSelected(boolean b);
 
-	/**
-	 * Enables or disables the button.
-	 *
-	 * @param b
-	 *          whether or not the button should be enabled
-	 * @see #isEnabled
-	 */
-	public void setEnabled(boolean b);
+    /**
+     * Enables or disables the button.
+     *
+     * @param b
+     *          whether or not the button should be enabled
+     * @see #isEnabled
+     */
+    public void setEnabled(boolean b);
 
-	/**
-	 * Sets the button to pressed or unpressed.
-	 *
-	 * @param b
-	 *          whether or not the button should be pressed
-	 * @see #isPressed
-	 */
-	public void setPressed(boolean b);
+    /**
+     * Sets the button to pressed or unpressed.
+     *
+     * @param b
+     *          whether or not the button should be pressed
+     * @see #isPressed
+     */
+    public void setPressed(boolean b);
 
-	/**
-	 * Sets or clears the button's rollover state
-	 *
-	 * @param b
-	 *          whether or not the button is in the rollover state
-	 * @see #isRollover
-	 */
-	public void setRollover(boolean b);
+    /**
+     * Sets or clears the button's rollover state
+     *
+     * @param b
+     *          whether or not the button is in the rollover state
+     * @see #isRollover
+     */
+    public void setRollover(boolean b);
 
-	/**
-	 * Sets the keyboard mnemonic (shortcut key or accelerator key) for the
-	 * button.
-	 *
-	 * @param key
-	 *            an int specifying the accelerator key
-	 */
-	public void setMnemonic(int key);
+    /**
+     * Sets the keyboard mnemonic (shortcut key or accelerator key) for the
+     * button.
+     *
+     * @param key
+     *            an int specifying the accelerator key
+     */
+    public void setMnemonic(int key);
 
-	/**
-	 * Gets the keyboard mnemonic for the button.
-	 *
-	 * @return an int specifying the accelerator key
-	 * @see #setMnemonic
-	 */
-	public int getMnemonic();
+    /**
+     * Gets the keyboard mnemonic for the button.
+     *
+     * @return an int specifying the accelerator key
+     * @see #setMnemonic
+     */
+    public int getMnemonic();
 
-	/**
-	 * Sets the action command string that gets sent as part of the
-	 * <code>ActionEvent</code> when the button is triggered.
-	 *
-	 * @param s
-	 *          the <code>String</code> that identifies the generated event
-	 * @see #getActionCommand
-	 * @see java.awt.event.ActionEvent#getActionCommand
-	 */
-	public void setActionCommand(String s);
+    /**
+     * Sets the action command string that gets sent as part of the
+     * <code>ActionEvent</code> when the button is triggered.
+     *
+     * @param s
+     *          the <code>String</code> that identifies the generated event
+     * @see #getActionCommand
+     * @see java.awt.event.ActionEvent#getActionCommand
+     */
+    public void setActionCommand(String s);
 
-	/**
-	 * Returns the action command string for the button.
-	 *
-	 * @return the <code>String</code> that identifies the generated event
-	 * @see #setActionCommand
-	 */
-	public String getActionCommand();
+    /**
+     * Returns the action command string for the button.
+     *
+     * @return the <code>String</code> that identifies the generated event
+     * @see #setActionCommand
+     */
+    public String getActionCommand();
 
-	/**
-	 * Identifies the group the button belongs to -- needed for radio buttons,
-	 * which are mutually exclusive within their group.
-	 *
-	 * @param group
-	 *              the <code>ButtonGroup</code> the button belongs to
-	 */
-	public void setGroup(ButtonGroup group);
+    /**
+     * Identifies the group the button belongs to -- needed for radio buttons,
+     * which are mutually exclusive within their group.
+     *
+     * @param group
+     *              the <code>ButtonGroup</code> the button belongs to
+     */
+    public void setGroup(ButtonGroup group);
 
-	/**
-	 * Adds an <code>ActionListener</code> to the model.
-	 *
-	 * @param l
-	 *          the listener to add
-	 */
-	void addActionListener(ActionListener l);
+    /**
+     * Adds an <code>ActionListener</code> to the model.
+     *
+     * @param l
+     *          the listener to add
+     */
+    void addActionListener(ActionListener l);
 
-	/**
-	 * Removes an <code>ActionListener</code> from the model.
-	 *
-	 * @param l
-	 *          the listener to remove
-	 */
-	void removeActionListener(ActionListener l);
+    /**
+     * Removes an <code>ActionListener</code> from the model.
+     *
+     * @param l
+     *          the listener to remove
+     */
+    void removeActionListener(ActionListener l);
 
-	/**
-	 * Adds an <code>ItemListener</code> to the model.
-	 *
-	 * @param l
-	 *          the listener to add
-	 */
-	void addItemListener(ItemListener l);
+    /**
+     * Adds an <code>ItemListener</code> to the model.
+     *
+     * @param l
+     *          the listener to add
+     */
+    void addItemListener(ItemListener l);
 
-	/**
-	 * Removes an <code>ItemListener</code> from the model.
-	 *
-	 * @param l
-	 *          the listener to remove
-	 */
-	void removeItemListener(ItemListener l);
+    /**
+     * Removes an <code>ItemListener</code> from the model.
+     *
+     * @param l
+     *          the listener to remove
+     */
+    void removeItemListener(ItemListener l);
 
-	/**
-	 * Adds a <code>ChangeListener</code> to the model.
-	 *
-	 * @param l
-	 *          the listener to add
-	 */
-	void addChangeListener(ChangeListener l);
+    /**
+     * Adds a <code>ChangeListener</code> to the model.
+     *
+     * @param l
+     *          the listener to add
+     */
+    void addChangeListener(ChangeListener l);
 
-	/**
-	 * Removes a <code>ChangeListener</code> from the model.
-	 *
-	 * @param l
-	 *          the listener to remove
-	 */
-	void removeChangeListener(ChangeListener l);
+    /**
+     * Removes a <code>ChangeListener</code> from the model.
+     *
+     * @param l
+     *          the listener to remove
+     */
+    void removeChangeListener(ChangeListener l);
 
 }

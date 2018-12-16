@@ -35,83 +35,83 @@ import sun.security.util.SecurityConstants;
 
 public final class AllPermission extends Permission {
 
-	private static final long serialVersionUID = -2916474571451318075L;
+    private static final long serialVersionUID = -2916474571451318075L;
 
-	/**
-	 * Creates a new AllPermission object.
-	 */
-	public AllPermission() {
-		super("<all permissions>");
-	}
+    /**
+     * Creates a new AllPermission object.
+     */
+    public AllPermission() {
+        super("<all permissions>");
+    }
 
-	/**
-	 * Creates a new AllPermission object. This constructor exists for use by
-	 * the {@code Policy} object to instantiate new Permission objects.
-	 *
-	 * @param name
-	 *                ignored
-	 * @param actions
-	 *                ignored.
-	 */
-	public AllPermission(String name, String actions) {
-		this();
-	}
+    /**
+     * Creates a new AllPermission object. This constructor exists for use by
+     * the {@code Policy} object to instantiate new Permission objects.
+     *
+     * @param name
+     *                ignored
+     * @param actions
+     *                ignored.
+     */
+    public AllPermission(String name, String actions) {
+        this();
+    }
 
-	/**
-	 * Checks if the specified permission is "implied" by this object. This
-	 * method always returns true.
-	 *
-	 * @param p
-	 *          the permission to check against.
-	 *
-	 * @return return
-	 */
-	public boolean implies(Permission p) {
-		return true;
-	}
+    /**
+     * Checks if the specified permission is "implied" by this object. This
+     * method always returns true.
+     *
+     * @param p
+     *          the permission to check against.
+     *
+     * @return return
+     */
+    public boolean implies(Permission p) {
+        return true;
+    }
 
-	/**
-	 * Checks two AllPermission objects for equality. Two AllPermission objects
-	 * are always equal.
-	 *
-	 * @param obj
-	 *            the object we are testing for equality with this object.
-	 * @return true if <i>obj</i> is an AllPermission, false otherwise.
-	 */
-	public boolean equals(Object obj) {
-		return (obj instanceof AllPermission);
-	}
+    /**
+     * Checks two AllPermission objects for equality. Two AllPermission objects
+     * are always equal.
+     *
+     * @param obj
+     *            the object we are testing for equality with this object.
+     * @return true if <i>obj</i> is an AllPermission, false otherwise.
+     */
+    public boolean equals(Object obj) {
+        return (obj instanceof AllPermission);
+    }
 
-	/**
-	 * Returns the hash code value for this object.
-	 *
-	 * @return a hash code value for this object.
-	 */
+    /**
+     * Returns the hash code value for this object.
+     *
+     * @return a hash code value for this object.
+     */
 
-	public int hashCode() {
-		return 1;
-	}
+    public int hashCode() {
+        return 1;
+    }
 
-	/**
-	 * Returns the canonical string representation of the actions.
-	 *
-	 * @return the actions.
-	 */
-	public String getActions() {
-		return "<all actions>";
-	}
+    /**
+     * Returns the canonical string representation of the actions.
+     *
+     * @return the actions.
+     */
+    public String getActions() {
+        return "<all actions>";
+    }
 
-	/**
-	 * Returns a new PermissionCollection object for storing AllPermission
-	 * objects.
-	 * <p>
-	 *
-	 * @return a new PermissionCollection object suitable for storing
-	 *         AllPermissions.
-	 */
-	public PermissionCollection newPermissionCollection() {
-		return new AllPermissionCollection();
-	}
+    /**
+     * Returns a new PermissionCollection object for storing AllPermission
+     * objects.
+     * <p>
+     *
+     * @return a new PermissionCollection object suitable for storing
+     *         AllPermissions.
+     */
+    public PermissionCollection newPermissionCollection() {
+        return new AllPermissionCollection();
+    }
 
 }
 
@@ -131,81 +131,81 @@ public final class AllPermission extends Permission {
  */
 
 final class AllPermissionCollection extends PermissionCollection implements
-		java.io.Serializable {
+        java.io.Serializable {
 
-	// use serialVersionUID from JDK 1.2.2 for interoperability
-	private static final long serialVersionUID = -4023755556366636806L;
+    // use serialVersionUID from JDK 1.2.2 for interoperability
+    private static final long serialVersionUID = -4023755556366636806L;
 
-	private boolean all_allowed; // true if any all permissions have been added
+    private boolean all_allowed; // true if any all permissions have been added
 
-	/**
-	 * Create an empty AllPermissions object.
-	 *
-	 */
+    /**
+     * Create an empty AllPermissions object.
+     *
+     */
 
-	public AllPermissionCollection() {
-		all_allowed = false;
-	}
+    public AllPermissionCollection() {
+        all_allowed = false;
+    }
 
-	/**
-	 * Adds a permission to the AllPermissions. The key for the hash is
-	 * permission.path.
-	 *
-	 * @param permission
-	 *                   the Permission object to add.
-	 *
-	 * @exception IllegalArgumentException
-	 *                                     - if the permission is not a
-	 *                                     AllPermission
-	 *
-	 * @exception SecurityException
-	 *                                     - if this AllPermissionCollection
-	 *                                     object has been marked
-	 *                                     readonly
-	 */
+    /**
+     * Adds a permission to the AllPermissions. The key for the hash is
+     * permission.path.
+     *
+     * @param permission
+     *                   the Permission object to add.
+     *
+     * @exception IllegalArgumentException
+     *                                     - if the permission is not a
+     *                                     AllPermission
+     *
+     * @exception SecurityException
+     *                                     - if this AllPermissionCollection
+     *                                     object has been marked
+     *                                     readonly
+     */
 
-	public void add(Permission permission) {
-		if (!(permission instanceof AllPermission))
-			throw new IllegalArgumentException("invalid permission: "
-					+ permission);
-		if (isReadOnly())
-			throw new SecurityException(
-					"attempt to add a Permission to a readonly PermissionCollection");
+    public void add(Permission permission) {
+        if (!(permission instanceof AllPermission))
+            throw new IllegalArgumentException("invalid permission: "
+                    + permission);
+        if (isReadOnly())
+            throw new SecurityException(
+                    "attempt to add a Permission to a readonly PermissionCollection");
 
-		all_allowed = true; // No sync; staleness OK
-	}
+        all_allowed = true; // No sync; staleness OK
+    }
 
-	/**
-	 * Check and see if this set of permissions implies the permissions
-	 * expressed in "permission".
-	 *
-	 * @param permission
-	 *                   the Permission object to compare
-	 *
-	 * @return always returns true.
-	 */
+    /**
+     * Check and see if this set of permissions implies the permissions
+     * expressed in "permission".
+     *
+     * @param permission
+     *                   the Permission object to compare
+     *
+     * @return always returns true.
+     */
 
-	public boolean implies(Permission permission) {
-		return all_allowed; // No sync; staleness OK
-	}
+    public boolean implies(Permission permission) {
+        return all_allowed; // No sync; staleness OK
+    }
 
-	/**
-	 * Returns an enumeration of all the AllPermission objects in the container.
-	 *
-	 * @return an enumeration of all the AllPermission objects.
-	 */
-	public Enumeration<Permission> elements() {
-		return new Enumeration<Permission>() {
-			private boolean hasMore = all_allowed;
+    /**
+     * Returns an enumeration of all the AllPermission objects in the container.
+     *
+     * @return an enumeration of all the AllPermission objects.
+     */
+    public Enumeration<Permission> elements() {
+        return new Enumeration<Permission>() {
+            private boolean hasMore = all_allowed;
 
-			public boolean hasMoreElements() {
-				return hasMore;
-			}
+            public boolean hasMoreElements() {
+                return hasMore;
+            }
 
-			public Permission nextElement() {
-				hasMore = false;
-				return SecurityConstants.ALL_PERMISSION;
-			}
-		};
-	}
+            public Permission nextElement() {
+                hasMore = false;
+                return SecurityConstants.ALL_PERMISSION;
+            }
+        };
+    }
 }

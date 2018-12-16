@@ -22,40 +22,40 @@ import java.awt.image.ColorModel;
  */
 
 public interface PaintContext {
-	/**
-	 * Releases the resources allocated for the operation.
-	 */
-	public void dispose();
+    /**
+     * Releases the resources allocated for the operation.
+     */
+    public void dispose();
 
-	/**
-	 * Returns the <code>ColorModel</code> of the output. Note that this
-	 * <code>ColorModel</code> might be different from the hint specified in the
-	 * {@link Paint#createContext(ColorModel, Rectangle, Rectangle2D, AffineTransform, RenderingHints)
-	 * createContext} method of <code>Paint</code>. Not all
-	 * <code>PaintContext</code> objects are capable of generating color
-	 * patterns in an arbitrary <code>ColorModel</code>.
-	 * 
-	 * @return the <code>ColorModel</code> of the output.
-	 */
-	ColorModel getColorModel();
+    /**
+     * Returns the <code>ColorModel</code> of the output. Note that this
+     * <code>ColorModel</code> might be different from the hint specified in the
+     * {@link Paint#createContext(ColorModel, Rectangle, Rectangle2D, AffineTransform, RenderingHints)
+     * createContext} method of <code>Paint</code>. Not all
+     * <code>PaintContext</code> objects are capable of generating color
+     * patterns in an arbitrary <code>ColorModel</code>.
+     * 
+     * @return the <code>ColorModel</code> of the output.
+     */
+    ColorModel getColorModel();
 
-	/**
-	 * Returns a <code>Raster</code> containing the colors generated for the
-	 * graphics operation.
-	 * 
-	 * @param x
-	 *          the x coordinate of the area in device space for which colors
-	 *          are generated.
-	 * @param y
-	 *          the y coordinate of the area in device space for which colors
-	 *          are generated.
-	 * @param w
-	 *          the width of the area in device space
-	 * @param h
-	 *          the height of the area in device space
-	 * @return a <code>Raster</code> representing the specified rectangular area
-	 *         and containing the colors generated for the graphics operation.
-	 */
-	Raster getRaster(int x, int y, int w, int h);
+    /**
+     * Returns a <code>Raster</code> containing the colors generated for the
+     * graphics operation.
+     * 
+     * @param x
+     *          the x coordinate of the area in device space for which colors
+     *          are generated.
+     * @param y
+     *          the y coordinate of the area in device space for which colors
+     *          are generated.
+     * @param w
+     *          the width of the area in device space
+     * @param h
+     *          the height of the area in device space
+     * @return a <code>Raster</code> representing the specified rectangular area
+     *         and containing the colors generated for the graphics operation.
+     */
+    Raster getRaster(int x, int y, int w, int h);
 
 }

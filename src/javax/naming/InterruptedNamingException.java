@@ -28,29 +28,29 @@ package javax.naming;
  */
 
 public class InterruptedNamingException extends NamingException {
-	/**
-	 * Constructs an instance of InterruptedNamingException using an explanation
-	 * of the problem. All name resolution-related fields are initialized to
-	 * null.
-	 * 
-	 * @param explanation
-	 *                    A possibly null message explaining the problem.
-	 * @see java.lang.Throwable#getMessage
-	 */
-	public InterruptedNamingException(String explanation) {
-		super(explanation);
-	}
+    /**
+     * Constructs an instance of InterruptedNamingException using an explanation
+     * of the problem. All name resolution-related fields are initialized to
+     * null.
+     * 
+     * @param explanation
+     *                    A possibly null message explaining the problem.
+     * @see java.lang.Throwable#getMessage
+     */
+    public InterruptedNamingException(String explanation) {
+        super(explanation);
+    }
 
-	/**
-	 * Constructs an instance of InterruptedNamingException with all name
-	 * resolution fields and explanation initialized to null.
-	 */
-	public InterruptedNamingException() {
-		super();
-	}
+    /**
+     * Constructs an instance of InterruptedNamingException with all name
+     * resolution fields and explanation initialized to null.
+     */
+    public InterruptedNamingException() {
+        super();
+    }
 
-	/**
-	 * Use serialVersionUID from JNDI 1.1.1 for interoperability
-	 */
-	private static final long serialVersionUID = 6404516648893194728L;
+    /**
+     * Use serialVersionUID from JNDI 1.1.1 for interoperability
+     */
+    private static final long serialVersionUID = 6404516648893194728L;
 }

@@ -14,49 +14,49 @@ package javax.xml.validation;
  */
 public final class SchemaFactoryConfigurationError extends Error {
 
-	static final long serialVersionUID = 3531438703147750126L;
+    static final long serialVersionUID = 3531438703147750126L;
 
-	/**
-	 * Create a new <code>SchemaFactoryConfigurationError</code> with no detail
-	 * message.
-	 */
-	public SchemaFactoryConfigurationError() {}
+    /**
+     * Create a new <code>SchemaFactoryConfigurationError</code> with no detail
+     * message.
+     */
+    public SchemaFactoryConfigurationError() {}
 
-	/**
-	 * Create a new <code>SchemaFactoryConfigurationError</code> with the
-	 * <code>String</code> specified as an error message.
-	 *
-	 * @param message
-	 *                The error message for the exception.
-	 */
-	public SchemaFactoryConfigurationError(String message) {
-		super(message);
-	}
+    /**
+     * Create a new <code>SchemaFactoryConfigurationError</code> with the
+     * <code>String</code> specified as an error message.
+     *
+     * @param message
+     *                The error message for the exception.
+     */
+    public SchemaFactoryConfigurationError(String message) {
+        super(message);
+    }
 
-	/**
-	 * Create a new <code>SchemaFactoryConfigurationError</code> with the given
-	 * <code>Throwable</code> base cause.
-	 *
-	 * @param cause
-	 *              The exception or error to be encapsulated in a
-	 *              SchemaFactoryConfigurationError.
-	 */
-	public SchemaFactoryConfigurationError(Throwable cause) {
-		super(cause);
-	}
+    /**
+     * Create a new <code>SchemaFactoryConfigurationError</code> with the given
+     * <code>Throwable</code> base cause.
+     *
+     * @param cause
+     *              The exception or error to be encapsulated in a
+     *              SchemaFactoryConfigurationError.
+     */
+    public SchemaFactoryConfigurationError(Throwable cause) {
+        super(cause);
+    }
 
-	/**
-	 * Create a new <code>SchemaFactoryConfigurationError</code> with the given
-	 * <code>Throwable</code> base cause and detail message.
-	 *
-	 * @param cause
-	 *                The exception or error to be encapsulated in a
-	 *                SchemaFactoryConfigurationError.
-	 * @param message
-	 *                The detail message.
-	 */
-	public SchemaFactoryConfigurationError(String message, Throwable cause) {
-		super(message, cause);
-	}
+    /**
+     * Create a new <code>SchemaFactoryConfigurationError</code> with the given
+     * <code>Throwable</code> base cause and detail message.
+     *
+     * @param cause
+     *                The exception or error to be encapsulated in a
+     *                SchemaFactoryConfigurationError.
+     * @param message
+     *                The detail message.
+     */
+    public SchemaFactoryConfigurationError(String message, Throwable cause) {
+        super(message, cause);
+    }
 
 }

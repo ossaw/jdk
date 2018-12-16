@@ -48,42 +48,42 @@ package javax.xml.validation;
  */
 public abstract class Schema {
 
-	/**
-	 * Constructor for the derived class.
-	 *
-	 * <p>
-	 * The constructor does nothing.
-	 */
-	protected Schema() {}
+    /**
+     * Constructor for the derived class.
+     *
+     * <p>
+     * The constructor does nothing.
+     */
+    protected Schema() {}
 
-	/**
-	 * Creates a new {@link Validator} for this {@link Schema}.
-	 *
-	 * <p>
-	 * A validator enforces/checks the set of constraints this object
-	 * represents.
-	 * </p>
-	 *
-	 * <p>
-	 * Implementors should assure that the properties set on the
-	 * {@link SchemaFactory} that created this {@link Schema} are also set on
-	 * the {@link Validator} constructed.
-	 * </p>
-	 *
-	 * @return Always return a non-null valid object.
-	 */
-	public abstract Validator newValidator();
+    /**
+     * Creates a new {@link Validator} for this {@link Schema}.
+     *
+     * <p>
+     * A validator enforces/checks the set of constraints this object
+     * represents.
+     * </p>
+     *
+     * <p>
+     * Implementors should assure that the properties set on the
+     * {@link SchemaFactory} that created this {@link Schema} are also set on
+     * the {@link Validator} constructed.
+     * </p>
+     *
+     * @return Always return a non-null valid object.
+     */
+    public abstract Validator newValidator();
 
-	/**
-	 * Creates a new {@link ValidatorHandler} for this {@link Schema}.
-	 *
-	 * <p>
-	 * Implementors should assure that the properties set on the
-	 * {@link SchemaFactory} that created this {@link Schema} are also set on
-	 * the {@link ValidatorHandler} constructed.
-	 * </p>
-	 *
-	 * @return Always return a non-null valid object.
-	 */
-	public abstract ValidatorHandler newValidatorHandler();
+    /**
+     * Creates a new {@link ValidatorHandler} for this {@link Schema}.
+     *
+     * <p>
+     * Implementors should assure that the properties set on the
+     * {@link SchemaFactory} that created this {@link Schema} are also set on
+     * the {@link ValidatorHandler} constructed.
+     * </p>
+     *
+     * @return Always return a non-null valid object.
+     */
+    public abstract ValidatorHandler newValidatorHandler();
 }

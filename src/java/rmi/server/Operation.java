@@ -17,41 +17,41 @@ package java.rmi.server;
  */
 @Deprecated
 public class Operation {
-	private String operation;
+    private String operation;
 
-	/**
-	 * Creates a new Operation object.
-	 * 
-	 * @param op
-	 *           method name
-	 * @deprecated no replacement
-	 * @since JDK1.1
-	 */
-	@Deprecated
-	public Operation(String op) {
-		operation = op;
-	}
+    /**
+     * Creates a new Operation object.
+     * 
+     * @param op
+     *           method name
+     * @deprecated no replacement
+     * @since JDK1.1
+     */
+    @Deprecated
+    public Operation(String op) {
+        operation = op;
+    }
 
-	/**
-	 * Returns the name of the method.
-	 * 
-	 * @return method name
-	 * @deprecated no replacement
-	 * @since JDK1.1
-	 */
-	@Deprecated
-	public String getOperation() {
-		return operation;
-	}
+    /**
+     * Returns the name of the method.
+     * 
+     * @return method name
+     * @deprecated no replacement
+     * @since JDK1.1
+     */
+    @Deprecated
+    public String getOperation() {
+        return operation;
+    }
 
-	/**
-	 * Returns the string representation of the operation.
-	 * 
-	 * @deprecated no replacement
-	 * @since JDK1.1
-	 */
-	@Deprecated
-	public String toString() {
-		return operation;
-	}
+    /**
+     * Returns the string representation of the operation.
+     * 
+     * @deprecated no replacement
+     * @since JDK1.1
+     */
+    @Deprecated
+    public String toString() {
+        return operation;
+    }
 }

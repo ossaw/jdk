@@ -22,10 +22,10 @@ package java.util.function;
 @FunctionalInterface
 public interface DoubleSupplier {
 
-	/**
-	 * Gets a result.
-	 *
-	 * @return a result
-	 */
-	double getAsDouble();
+    /**
+     * Gets a result.
+     *
+     * @return a result
+     */
+    double getAsDouble();
 }

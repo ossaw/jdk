@@ -42,63 +42,63 @@ package com.sun.org.apache.xerces.internal.dom;
  * @since PR-DOM-Level-1-19980818.
  */
 public class DeferredCDATASectionImpl extends CDATASectionImpl implements
-		DeferredNode {
+        DeferredNode {
 
-	//
-	// Constants
-	//
+    //
+    // Constants
+    //
 
-	/** Serialization version. */
-	static final long serialVersionUID = 1983580632355645726L;
+    /** Serialization version. */
+    static final long serialVersionUID = 1983580632355645726L;
 
-	//
-	// Data
-	//
+    //
+    // Data
+    //
 
-	/** Node index. */
-	protected transient int fNodeIndex;
+    /** Node index. */
+    protected transient int fNodeIndex;
 
-	//
-	// Constructors
-	//
+    //
+    // Constructors
+    //
 
-	/**
-	 * This is the deferred constructor. Only the fNodeIndex is given here. All
-	 * other data, can be requested from the ownerDocument via the index.
-	 */
-	DeferredCDATASectionImpl(DeferredDocumentImpl ownerDocument,
-			int nodeIndex) {
-		super(ownerDocument, null);
+    /**
+     * This is the deferred constructor. Only the fNodeIndex is given here. All
+     * other data, can be requested from the ownerDocument via the index.
+     */
+    DeferredCDATASectionImpl(DeferredDocumentImpl ownerDocument,
+            int nodeIndex) {
+        super(ownerDocument, null);
 
-		fNodeIndex = nodeIndex;
-		needsSyncData(true);
+        fNodeIndex = nodeIndex;
+        needsSyncData(true);
 
-	} // <init>(DeferredDocumentImpl,int)
+    } // <init>(DeferredDocumentImpl,int)
 
-	//
-	// DeferredNode methods
-	//
+    //
+    // DeferredNode methods
+    //
 
-	/** Returns the node index. */
-	public int getNodeIndex() {
-		return fNodeIndex;
-	}
+    /** Returns the node index. */
+    public int getNodeIndex() {
+        return fNodeIndex;
+    }
 
-	//
-	// Protected methods
-	//
+    //
+    // Protected methods
+    //
 
-	/** Synchronizes the data (name and value) for fast nodes. */
-	protected void synchronizeData() {
+    /** Synchronizes the data (name and value) for fast nodes. */
+    protected void synchronizeData() {
 
-		// no need to sync in the future
-		needsSyncData(false);
+        // no need to sync in the future
+        needsSyncData(false);
 
-		// fluff data
-		DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) this
-				.ownerDocument();
-		data = ownerDocument.getNodeValueString(fNodeIndex);
+        // fluff data
+        DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) this
+                .ownerDocument();
+        data = ownerDocument.getNodeValueString(fNodeIndex);
 
-	} // synchronizeData()
+    } // synchronizeData()
 
 } // class DeferredCDATASectionImpl

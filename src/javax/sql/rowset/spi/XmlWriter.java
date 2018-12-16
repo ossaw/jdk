@@ -26,31 +26,31 @@ import javax.sql.rowset.*;
  */
 public interface XmlWriter extends RowSetWriter {
 
-	/**
-	 * Writes the given <code>WebRowSet</code> object to the specified
-	 * <code>java.io.Writer</code> output stream as an XML document. This
-	 * document includes the rowset's data, metadata, and properties plus the
-	 * appropriate XML tags.
-	 * <P>
-	 * The <code>caller</code> parameter must be a <code>WebRowSet</code> object
-	 * whose <code>XmlWriter</code> field contains a reference to this
-	 * <code>XmlWriter</code> object.
-	 *
-	 * @param caller
-	 *               the <code>WebRowSet</code> instance to be written, for
-	 *               which
-	 *               this <code>XmlWriter</code> object is the writer
-	 * @param writer
-	 *               the <code>java.io.Writer</code> object that serves as the
-	 *               output stream for writing <code>caller</code> as an XML
-	 *               document
-	 * @throws SQLException
-	 *                      if a database access error occurs or this
-	 *                      <code>XmlWriter</code> object is not the writer for
-	 *                      the given
-	 *                      <code>WebRowSet</code> object
-	 */
-	public void writeXML(WebRowSet caller, java.io.Writer writer)
-			throws SQLException;
+    /**
+     * Writes the given <code>WebRowSet</code> object to the specified
+     * <code>java.io.Writer</code> output stream as an XML document. This
+     * document includes the rowset's data, metadata, and properties plus the
+     * appropriate XML tags.
+     * <P>
+     * The <code>caller</code> parameter must be a <code>WebRowSet</code> object
+     * whose <code>XmlWriter</code> field contains a reference to this
+     * <code>XmlWriter</code> object.
+     *
+     * @param caller
+     *               the <code>WebRowSet</code> instance to be written, for
+     *               which
+     *               this <code>XmlWriter</code> object is the writer
+     * @param writer
+     *               the <code>java.io.Writer</code> object that serves as the
+     *               output stream for writing <code>caller</code> as an XML
+     *               document
+     * @throws SQLException
+     *                      if a database access error occurs or this
+     *                      <code>XmlWriter</code> object is not the writer for
+     *                      the given
+     *                      <code>WebRowSet</code> object
+     */
+    public void writeXML(WebRowSet caller, java.io.Writer writer)
+            throws SQLException;
 
 }

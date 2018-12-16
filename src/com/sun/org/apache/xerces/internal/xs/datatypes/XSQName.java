@@ -24,13 +24,13 @@ package com.sun.org.apache.xerces.internal.xs.datatypes;
  */
 public interface XSQName {
 
-	/**
-	 * @return com.sun.org.apache.xerces.internal.xni.QName class instance
-	 */
-	public com.sun.org.apache.xerces.internal.xni.QName getXNIQName();
+    /**
+     * @return com.sun.org.apache.xerces.internal.xni.QName class instance
+     */
+    public com.sun.org.apache.xerces.internal.xni.QName getXNIQName();
 
-	/**
-	 * @return javax.xml.namespace.QName class instance
-	 */
-	public javax.xml.namespace.QName getJAXPQName();
+    /**
+     * @return javax.xml.namespace.QName class instance
+     */
+    public javax.xml.namespace.QName getJAXPQName();
 }

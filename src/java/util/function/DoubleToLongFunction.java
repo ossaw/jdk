@@ -19,12 +19,12 @@ package java.util.function;
 @FunctionalInterface
 public interface DoubleToLongFunction {
 
-	/**
-	 * Applies this function to the given argument.
-	 *
-	 * @param value
-	 *              the function argument
-	 * @return the function result
-	 */
-	long applyAsLong(double value);
+    /**
+     * Applies this function to the given argument.
+     *
+     * @param value
+     *              the function argument
+     * @return the function result
+     */
+    long applyAsLong(double value);
 }

@@ -26,10 +26,10 @@ import static java.lang.annotation.ElementType.*;
 @Target(TYPE)
 @Retention(RUNTIME)
 public @interface SupportedAnnotationTypes {
-	/**
-	 * Returns the names of the supported annotation types.
-	 * 
-	 * @return the names of the supported annotation types
-	 */
-	String[] value();
+    /**
+     * Returns the names of the supported annotation types.
+     * 
+     * @return the names of the supported annotation types
+     */
+    String[] value();
 }

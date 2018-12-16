@@ -34,36 +34,36 @@ package java.lang.ref;
 
 public class PhantomReference<T> extends Reference<T> {
 
-	/**
-	 * Returns this reference object's referent. Because the referent of a
-	 * phantom reference is always inaccessible, this method always returns
-	 * <code>null</code>.
-	 *
-	 * @return <code>null</code>
-	 */
-	public T get() {
-		return null;
-	}
+    /**
+     * Returns this reference object's referent. Because the referent of a
+     * phantom reference is always inaccessible, this method always returns
+     * <code>null</code>.
+     *
+     * @return <code>null</code>
+     */
+    public T get() {
+        return null;
+    }
 
-	/**
-	 * Creates a new phantom reference that refers to the given object and is
-	 * registered with the given queue.
-	 *
-	 * <p>
-	 * It is possible to create a phantom reference with a <tt>null</tt> queue,
-	 * but such a reference is completely useless: Its <tt>get</tt> method will
-	 * always return null and, since it does not have a queue, it will never be
-	 * enqueued.
-	 *
-	 * @param referent
-	 *                 the object the new phantom reference will refer to
-	 * @param q
-	 *                 the queue with which the reference is to be registered,
-	 *                 or
-	 *                 <tt>null</tt> if registration is not required
-	 */
-	public PhantomReference(T referent, ReferenceQueue<? super T> q) {
-		super(referent, q);
-	}
+    /**
+     * Creates a new phantom reference that refers to the given object and is
+     * registered with the given queue.
+     *
+     * <p>
+     * It is possible to create a phantom reference with a <tt>null</tt> queue,
+     * but such a reference is completely useless: Its <tt>get</tt> method will
+     * always return null and, since it does not have a queue, it will never be
+     * enqueued.
+     *
+     * @param referent
+     *                 the object the new phantom reference will refer to
+     * @param q
+     *                 the queue with which the reference is to be registered,
+     *                 or
+     *                 <tt>null</tt> if registration is not required
+     */
+    public PhantomReference(T referent, ReferenceQueue<? super T> q) {
+        super(referent, q);
+    }
 
 }

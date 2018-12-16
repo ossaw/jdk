@@ -16,25 +16,25 @@ package javax.xml.ws.http;
  **/
 public class HTTPException extends javax.xml.ws.ProtocolException {
 
-	private int statusCode;
+    private int statusCode;
 
-	/**
-	 * Constructor for the HTTPException
-	 * 
-	 * @param statusCode
-	 *                   <code>int</code> for the HTTP status code
-	 **/
-	public HTTPException(int statusCode) {
-		super();
-		this.statusCode = statusCode;
-	}
+    /**
+     * Constructor for the HTTPException
+     * 
+     * @param statusCode
+     *                   <code>int</code> for the HTTP status code
+     **/
+    public HTTPException(int statusCode) {
+        super();
+        this.statusCode = statusCode;
+    }
 
-	/**
-	 * Gets the HTTP status code.
-	 *
-	 * @return HTTP status code
-	 **/
-	public int getStatusCode() {
-		return statusCode;
-	}
+    /**
+     * Gets the HTTP status code.
+     *
+     * @return HTTP status code
+     **/
+    public int getStatusCode() {
+        return statusCode;
+    }
 }

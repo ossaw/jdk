@@ -22,10 +22,10 @@ package java.util.function;
 @FunctionalInterface
 public interface BooleanSupplier {
 
-	/**
-	 * Gets a result.
-	 *
-	 * @return a result
-	 */
-	boolean getAsBoolean();
+    /**
+     * Gets a result.
+     *
+     * @return a result
+     */
+    boolean getAsBoolean();
 }

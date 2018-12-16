@@ -29,78 +29,78 @@ import javax.print.attribute.PrintServiceAttribute;
  * @author Alan Kaminsky
  */
 public final class PrinterIsAcceptingJobs extends EnumSyntax implements
-		PrintServiceAttribute {
+        PrintServiceAttribute {
 
-	private static final long serialVersionUID = -5052010680537678061L;
+    private static final long serialVersionUID = -5052010680537678061L;
 
-	/**
-	 * The printer is currently rejecting any jobs sent to it.
-	 */
-	public static final PrinterIsAcceptingJobs NOT_ACCEPTING_JOBS = new PrinterIsAcceptingJobs(
-			0);
+    /**
+     * The printer is currently rejecting any jobs sent to it.
+     */
+    public static final PrinterIsAcceptingJobs NOT_ACCEPTING_JOBS = new PrinterIsAcceptingJobs(
+            0);
 
-	/**
-	 * The printer is currently accepting jobs.
-	 */
-	public static final PrinterIsAcceptingJobs ACCEPTING_JOBS = new PrinterIsAcceptingJobs(
-			1);
+    /**
+     * The printer is currently accepting jobs.
+     */
+    public static final PrinterIsAcceptingJobs ACCEPTING_JOBS = new PrinterIsAcceptingJobs(
+            1);
 
-	/**
-	 * Construct a new printer is accepting jobs enumeration value with the
-	 * given integer value.
-	 *
-	 * @param value
-	 *              Integer value.
-	 */
-	protected PrinterIsAcceptingJobs(int value) {
-		super(value);
-	}
+    /**
+     * Construct a new printer is accepting jobs enumeration value with the
+     * given integer value.
+     *
+     * @param value
+     *              Integer value.
+     */
+    protected PrinterIsAcceptingJobs(int value) {
+        super(value);
+    }
 
-	private static final String[] myStringTable = { "not-accepting-jobs",
-			"accepting-jobs" };
+    private static final String[] myStringTable = { "not-accepting-jobs",
+            "accepting-jobs" };
 
-	private static final PrinterIsAcceptingJobs[] myEnumValueTable = {
-			NOT_ACCEPTING_JOBS, ACCEPTING_JOBS };
+    private static final PrinterIsAcceptingJobs[] myEnumValueTable = {
+            NOT_ACCEPTING_JOBS, ACCEPTING_JOBS };
 
-	/**
-	 * Returns the string table for class PrinterIsAcceptingJobs.
-	 */
-	protected String[] getStringTable() {
-		return myStringTable;
-	}
+    /**
+     * Returns the string table for class PrinterIsAcceptingJobs.
+     */
+    protected String[] getStringTable() {
+        return myStringTable;
+    }
 
-	/**
-	 * Returns the enumeration value table for class PrinterIsAcceptingJobs.
-	 */
-	protected EnumSyntax[] getEnumValueTable() {
-		return myEnumValueTable;
-	}
+    /**
+     * Returns the enumeration value table for class PrinterIsAcceptingJobs.
+     */
+    protected EnumSyntax[] getEnumValueTable() {
+        return myEnumValueTable;
+    }
 
-	/**
-	 * Get the printing attribute class which is to be used as the "category"
-	 * for this printing attribute value.
-	 * <P>
-	 * For class PrinterIsAcceptingJobs, the category is class
-	 * PrinterIsAcceptingJobs itself.
-	 *
-	 * @return Printing attribute class (category), an instance of class
-	 *         {@link java.lang.Class java.lang.Class}.
-	 */
-	public final Class<? extends Attribute> getCategory() {
-		return PrinterIsAcceptingJobs.class;
-	}
+    /**
+     * Get the printing attribute class which is to be used as the "category"
+     * for this printing attribute value.
+     * <P>
+     * For class PrinterIsAcceptingJobs, the category is class
+     * PrinterIsAcceptingJobs itself.
+     *
+     * @return Printing attribute class (category), an instance of class
+     *         {@link java.lang.Class java.lang.Class}.
+     */
+    public final Class<? extends Attribute> getCategory() {
+        return PrinterIsAcceptingJobs.class;
+    }
 
-	/**
-	 * Get the name of the category of which this attribute value is an
-	 * instance.
-	 * <P>
-	 * For class PrinterIsAcceptingJobs, the category name is
-	 * <CODE>"printer-is-accepting-jobs"</CODE>.
-	 *
-	 * @return Attribute category name.
-	 */
-	public final String getName() {
-		return "printer-is-accepting-jobs";
-	}
+    /**
+     * Get the name of the category of which this attribute value is an
+     * instance.
+     * <P>
+     * For class PrinterIsAcceptingJobs, the category name is
+     * <CODE>"printer-is-accepting-jobs"</CODE>.
+     *
+     * @return Attribute category name.
+     */
+    public final String getName() {
+        return "printer-is-accepting-jobs";
+    }
 
 }

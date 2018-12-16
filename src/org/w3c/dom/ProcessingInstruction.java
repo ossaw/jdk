@@ -31,29 +31,29 @@ package org.w3c.dom;
  * Object Model (DOM) Level 3 Core Specification</a>.
  */
 public interface ProcessingInstruction extends Node {
-	/**
-	 * The target of this processing instruction. XML defines this as being the
-	 * first token following the markup that begins the processing instruction.
-	 */
-	public String getTarget();
+    /**
+     * The target of this processing instruction. XML defines this as being the
+     * first token following the markup that begins the processing instruction.
+     */
+    public String getTarget();
 
-	/**
-	 * The content of this processing instruction. This is from the first non
-	 * white space character after the target to the character immediately
-	 * preceding the <code>?&gt;</code>.
-	 */
-	public String getData();
+    /**
+     * The content of this processing instruction. This is from the first non
+     * white space character after the target to the character immediately
+     * preceding the <code>?&gt;</code>.
+     */
+    public String getData();
 
-	/**
-	 * The content of this processing instruction. This is from the first non
-	 * white space character after the target to the character immediately
-	 * preceding the <code>?&gt;</code>.
-	 * 
-	 * @exception DOMException
-	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised when the node
-	 *                         is
-	 *                         readonly.
-	 */
-	public void setData(String data) throws DOMException;
+    /**
+     * The content of this processing instruction. This is from the first non
+     * white space character after the target to the character immediately
+     * preceding the <code>?&gt;</code>.
+     * 
+     * @exception DOMException
+     *                         NO_MODIFICATION_ALLOWED_ERR: Raised when the node
+     *                         is
+     *                         readonly.
+     */
+    public void setData(String data) throws DOMException;
 
 }

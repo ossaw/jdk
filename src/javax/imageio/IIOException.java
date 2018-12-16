@@ -21,37 +21,37 @@ import java.io.IOException;
  */
 public class IIOException extends IOException {
 
-	/**
-	 * Constructs an <code>IIOException</code> with a given message
-	 * <code>String</code>. No underlying cause is set; <code>getCause</code>
-	 * will return <code>null</code>.
-	 *
-	 * @param message
-	 *                the error message.
-	 *
-	 * @see #getMessage
-	 */
-	public IIOException(String message) {
-		super(message);
-	}
+    /**
+     * Constructs an <code>IIOException</code> with a given message
+     * <code>String</code>. No underlying cause is set; <code>getCause</code>
+     * will return <code>null</code>.
+     *
+     * @param message
+     *                the error message.
+     *
+     * @see #getMessage
+     */
+    public IIOException(String message) {
+        super(message);
+    }
 
-	/**
-	 * Constructs an <code>IIOException</code> with a given message
-	 * <code>String</code> and a <code>Throwable</code> that was its underlying
-	 * cause.
-	 *
-	 * @param message
-	 *                the error message.
-	 * @param cause
-	 *                the <code>Throwable</code> (<code>Error</code> or
-	 *                <code>Exception</code>) that caused this exception to
-	 *                occur.
-	 *
-	 * @see #getCause
-	 * @see #getMessage
-	 */
-	public IIOException(String message, Throwable cause) {
-		super(message);
-		initCause(cause);
-	}
+    /**
+     * Constructs an <code>IIOException</code> with a given message
+     * <code>String</code> and a <code>Throwable</code> that was its underlying
+     * cause.
+     *
+     * @param message
+     *                the error message.
+     * @param cause
+     *                the <code>Throwable</code> (<code>Error</code> or
+     *                <code>Exception</code>) that caused this exception to
+     *                occur.
+     *
+     * @see #getCause
+     * @see #getMessage
+     */
+    public IIOException(String message, Throwable cause) {
+        super(message);
+        initCause(cause);
+    }
 }

@@ -37,10 +37,10 @@ import javax.xml.crypto.XMLStructure;
  */
 public interface KeyName extends XMLStructure {
 
-	/**
-	 * Returns the name of this <code>KeyName</code>.
-	 *
-	 * @return the name of this <code>KeyName</code> (never <code>null</code>)
-	 */
-	String getName();
+    /**
+     * Returns the name of this <code>KeyName</code>.
+     *
+     * @return the name of this <code>KeyName</code> (never <code>null</code>)
+     */
+    String getName();
 }

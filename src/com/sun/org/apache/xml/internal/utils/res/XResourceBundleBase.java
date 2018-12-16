@@ -30,23 +30,23 @@ import java.util.ListResourceBundle;
  */
 abstract public class XResourceBundleBase extends ListResourceBundle {
 
-	/**
-	 * Get the error string associated with the error code
-	 *
-	 * @param errorCode
-	 *                  Error code
-	 *
-	 * @return error string associated with the given error code
-	 */
-	abstract public String getMessageKey(int errorCode);
+    /**
+     * Get the error string associated with the error code
+     *
+     * @param errorCode
+     *                  Error code
+     *
+     * @return error string associated with the given error code
+     */
+    abstract public String getMessageKey(int errorCode);
 
-	/**
-	 * Get the warning string associated with the error code
-	 *
-	 * @param errorCode
-	 *                  Error code
-	 *
-	 * @return warning string associated with the given error code
-	 */
-	abstract public String getWarningKey(int errorCode);
+    /**
+     * Get the warning string associated with the error code
+     *
+     * @param errorCode
+     *                  Error code
+     *
+     * @return warning string associated with the given error code
+     */
+    abstract public String getWarningKey(int errorCode);
 }

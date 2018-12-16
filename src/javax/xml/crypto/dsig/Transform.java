@@ -45,92 +45,92 @@ import javax.xml.crypto.dsig.spec.TransformParameterSpec;
  */
 public interface Transform extends XMLStructure, AlgorithmMethod {
 
-	/**
-	 * The <a href="http://www.w3.org/2000/09/xmldsig#base64">Base64</a>
-	 * transform algorithm URI.
-	 */
-	final static String BASE64 = "http://www.w3.org/2000/09/xmldsig#base64";
+    /**
+     * The <a href="http://www.w3.org/2000/09/xmldsig#base64">Base64</a>
+     * transform algorithm URI.
+     */
+    final static String BASE64 = "http://www.w3.org/2000/09/xmldsig#base64";
 
-	/**
-	 * The <a href="http://www.w3.org/2000/09/xmldsig#enveloped-signature">
-	 * Enveloped Signature</a> transform algorithm URI.
-	 */
-	final static String ENVELOPED = "http://www.w3.org/2000/09/xmldsig#enveloped-signature";
+    /**
+     * The <a href="http://www.w3.org/2000/09/xmldsig#enveloped-signature">
+     * Enveloped Signature</a> transform algorithm URI.
+     */
+    final static String ENVELOPED = "http://www.w3.org/2000/09/xmldsig#enveloped-signature";
 
-	/**
-	 * The <a href="http://www.w3.org/TR/1999/REC-xpath-19991116">XPath</a>
-	 * transform algorithm URI.
-	 */
-	final static String XPATH = "http://www.w3.org/TR/1999/REC-xpath-19991116";
+    /**
+     * The <a href="http://www.w3.org/TR/1999/REC-xpath-19991116">XPath</a>
+     * transform algorithm URI.
+     */
+    final static String XPATH = "http://www.w3.org/TR/1999/REC-xpath-19991116";
 
-	/**
-	 * The <a href="http://www.w3.org/2002/06/xmldsig-filter2"> XPath Filter
-	 * 2</a> transform algorithm URI.
-	 */
-	final static String XPATH2 = "http://www.w3.org/2002/06/xmldsig-filter2";
+    /**
+     * The <a href="http://www.w3.org/2002/06/xmldsig-filter2"> XPath Filter
+     * 2</a> transform algorithm URI.
+     */
+    final static String XPATH2 = "http://www.w3.org/2002/06/xmldsig-filter2";
 
-	/**
-	 * The <a href="http://www.w3.org/TR/1999/REC-xslt-19991116">XSLT</a>
-	 * transform algorithm URI.
-	 */
-	final static String XSLT = "http://www.w3.org/TR/1999/REC-xslt-19991116";
+    /**
+     * The <a href="http://www.w3.org/TR/1999/REC-xslt-19991116">XSLT</a>
+     * transform algorithm URI.
+     */
+    final static String XSLT = "http://www.w3.org/TR/1999/REC-xslt-19991116";
 
-	/**
-	 * Returns the algorithm-specific input parameters associated with this
-	 * <code>Transform</code>.
-	 * <p>
-	 * The returned parameters can be typecast to a
-	 * {@link TransformParameterSpec} object.
-	 *
-	 * @return the algorithm-specific input parameters (may be <code>null</code>
-	 *         if not specified)
-	 */
-	AlgorithmParameterSpec getParameterSpec();
+    /**
+     * Returns the algorithm-specific input parameters associated with this
+     * <code>Transform</code>.
+     * <p>
+     * The returned parameters can be typecast to a
+     * {@link TransformParameterSpec} object.
+     *
+     * @return the algorithm-specific input parameters (may be <code>null</code>
+     *         if not specified)
+     */
+    AlgorithmParameterSpec getParameterSpec();
 
-	/**
-	 * Transforms the specified data using the underlying transform algorithm.
-	 *
-	 * @param data
-	 *                the data to be transformed
-	 * @param context
-	 *                the <code>XMLCryptoContext</code> containing additional
-	 *                context (may be <code>null</code> if not applicable)
-	 * @return the transformed data
-	 * @throws NullPointerException
-	 *                              if <code>data</code> is <code>null</code>
-	 * @throws TransformException
-	 *                              if an error occurs while executing the
-	 *                              transform
-	 */
-	public abstract Data transform(Data data, XMLCryptoContext context)
-			throws TransformException;
+    /**
+     * Transforms the specified data using the underlying transform algorithm.
+     *
+     * @param data
+     *                the data to be transformed
+     * @param context
+     *                the <code>XMLCryptoContext</code> containing additional
+     *                context (may be <code>null</code> if not applicable)
+     * @return the transformed data
+     * @throws NullPointerException
+     *                              if <code>data</code> is <code>null</code>
+     * @throws TransformException
+     *                              if an error occurs while executing the
+     *                              transform
+     */
+    public abstract Data transform(Data data, XMLCryptoContext context)
+            throws TransformException;
 
-	/**
-	 * Transforms the specified data using the underlying transform algorithm.
-	 * If the output of this transform is an <code>OctetStreamData</code>, then
-	 * this method returns <code>null</code> and the bytes are written to the
-	 * specified <code>OutputStream</code>. Otherwise, the
-	 * <code>OutputStream</code> is ignored and the method behaves as if
-	 * {@link #transform(Data, XMLCryptoContext)} were invoked.
-	 *
-	 * @param data
-	 *                the data to be transformed
-	 * @param context
-	 *                the <code>XMLCryptoContext</code> containing additional
-	 *                context (may be <code>null</code> if not applicable)
-	 * @param os
-	 *                the <code>OutputStream</code> that should be used to write
-	 *                the
-	 *                transformed data to
-	 * @return the transformed data (or <code>null</code> if the data was
-	 *         written to the <code>OutputStream</code> parameter)
-	 * @throws NullPointerException
-	 *                              if <code>data</code> or <code>os</code> is
-	 *                              <code>null</code>
-	 * @throws TransformException
-	 *                              if an error occurs while executing the
-	 *                              transform
-	 */
-	public abstract Data transform(Data data, XMLCryptoContext context,
-			OutputStream os) throws TransformException;
+    /**
+     * Transforms the specified data using the underlying transform algorithm.
+     * If the output of this transform is an <code>OctetStreamData</code>, then
+     * this method returns <code>null</code> and the bytes are written to the
+     * specified <code>OutputStream</code>. Otherwise, the
+     * <code>OutputStream</code> is ignored and the method behaves as if
+     * {@link #transform(Data, XMLCryptoContext)} were invoked.
+     *
+     * @param data
+     *                the data to be transformed
+     * @param context
+     *                the <code>XMLCryptoContext</code> containing additional
+     *                context (may be <code>null</code> if not applicable)
+     * @param os
+     *                the <code>OutputStream</code> that should be used to write
+     *                the
+     *                transformed data to
+     * @return the transformed data (or <code>null</code> if the data was
+     *         written to the <code>OutputStream</code> parameter)
+     * @throws NullPointerException
+     *                              if <code>data</code> or <code>os</code> is
+     *                              <code>null</code>
+     * @throws TransformException
+     *                              if an error occurs while executing the
+     *                              transform
+     */
+    public abstract Data transform(Data data, XMLCryptoContext context,
+            OutputStream os) throws TransformException;
 }

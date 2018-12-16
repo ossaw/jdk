@@ -26,19 +26,19 @@ import org.w3c.dom.Attr;
 
 public class ResourceResolverContext {
 
-	public ResourceResolverContext(Attr attr, String baseUri,
-			boolean secureValidation) {
-		this.attr = attr;
-		this.baseUri = baseUri;
-		this.secureValidation = secureValidation;
-		this.uriToResolve = attr != null ? attr.getValue() : null;
-	}
+    public ResourceResolverContext(Attr attr, String baseUri,
+            boolean secureValidation) {
+        this.attr = attr;
+        this.baseUri = baseUri;
+        this.secureValidation = secureValidation;
+        this.uriToResolve = attr != null ? attr.getValue() : null;
+    }
 
-	public final String uriToResolve;
+    public final String uriToResolve;
 
-	public final boolean secureValidation;
+    public final boolean secureValidation;
 
-	public final String baseUri;
+    public final String baseUri;
 
-	public final Attr attr;
+    public final Attr attr;
 }

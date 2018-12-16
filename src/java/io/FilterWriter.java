@@ -18,80 +18,80 @@ package java.io;
 
 public abstract class FilterWriter extends Writer {
 
-	/**
-	 * The underlying character-output stream.
-	 */
-	protected Writer out;
+    /**
+     * The underlying character-output stream.
+     */
+    protected Writer out;
 
-	/**
-	 * Create a new filtered writer.
-	 *
-	 * @param out
-	 *            a Writer object to provide the underlying stream.
-	 * @throws NullPointerException
-	 *                              if <code>out</code> is <code>null</code>
-	 */
-	protected FilterWriter(Writer out) {
-		super(out);
-		this.out = out;
-	}
+    /**
+     * Create a new filtered writer.
+     *
+     * @param out
+     *            a Writer object to provide the underlying stream.
+     * @throws NullPointerException
+     *                              if <code>out</code> is <code>null</code>
+     */
+    protected FilterWriter(Writer out) {
+        super(out);
+        this.out = out;
+    }
 
-	/**
-	 * Writes a single character.
-	 *
-	 * @exception IOException
-	 *                        If an I/O error occurs
-	 */
-	public void write(int c) throws IOException {
-		out.write(c);
-	}
+    /**
+     * Writes a single character.
+     *
+     * @exception IOException
+     *                        If an I/O error occurs
+     */
+    public void write(int c) throws IOException {
+        out.write(c);
+    }
 
-	/**
-	 * Writes a portion of an array of characters.
-	 *
-	 * @param cbuf
-	 *             Buffer of characters to be written
-	 * @param off
-	 *             Offset from which to start reading characters
-	 * @param len
-	 *             Number of characters to be written
-	 *
-	 * @exception IOException
-	 *                        If an I/O error occurs
-	 */
-	public void write(char cbuf[], int off, int len) throws IOException {
-		out.write(cbuf, off, len);
-	}
+    /**
+     * Writes a portion of an array of characters.
+     *
+     * @param cbuf
+     *             Buffer of characters to be written
+     * @param off
+     *             Offset from which to start reading characters
+     * @param len
+     *             Number of characters to be written
+     *
+     * @exception IOException
+     *                        If an I/O error occurs
+     */
+    public void write(char cbuf[], int off, int len) throws IOException {
+        out.write(cbuf, off, len);
+    }
 
-	/**
-	 * Writes a portion of a string.
-	 *
-	 * @param str
-	 *            String to be written
-	 * @param off
-	 *            Offset from which to start reading characters
-	 * @param len
-	 *            Number of characters to be written
-	 *
-	 * @exception IOException
-	 *                        If an I/O error occurs
-	 */
-	public void write(String str, int off, int len) throws IOException {
-		out.write(str, off, len);
-	}
+    /**
+     * Writes a portion of a string.
+     *
+     * @param str
+     *            String to be written
+     * @param off
+     *            Offset from which to start reading characters
+     * @param len
+     *            Number of characters to be written
+     *
+     * @exception IOException
+     *                        If an I/O error occurs
+     */
+    public void write(String str, int off, int len) throws IOException {
+        out.write(str, off, len);
+    }
 
-	/**
-	 * Flushes the stream.
-	 *
-	 * @exception IOException
-	 *                        If an I/O error occurs
-	 */
-	public void flush() throws IOException {
-		out.flush();
-	}
+    /**
+     * Flushes the stream.
+     *
+     * @exception IOException
+     *                        If an I/O error occurs
+     */
+    public void flush() throws IOException {
+        out.flush();
+    }
 
-	public void close() throws IOException {
-		out.close();
-	}
+    public void close() throws IOException {
+        out.close();
+    }
 
 }

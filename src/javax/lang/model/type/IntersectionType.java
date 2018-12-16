@@ -27,10 +27,10 @@ import java.util.List;
  */
 public interface IntersectionType extends TypeMirror {
 
-	/**
-	 * Return the bounds comprising this intersection type.
-	 *
-	 * @return the bounds of this intersection types.
-	 */
-	List<? extends TypeMirror> getBounds();
+    /**
+     * Return the bounds comprising this intersection type.
+     *
+     * @return the bounds of this intersection types.
+     */
+    List<? extends TypeMirror> getBounds();
 }

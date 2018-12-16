@@ -27,43 +27,43 @@ import java.net.URL;
 
 public abstract class Instrument extends SoundbankResource {
 
-	/**
-	 * Instrument patch
-	 */
-	private final Patch patch;
+    /**
+     * Instrument patch
+     */
+    private final Patch patch;
 
-	/**
-	 * Constructs a new MIDI instrument from the specified <code>Patch</code>.
-	 * When a subsequent request is made to load the instrument, the sound bank
-	 * will search its contents for this instrument's <code>Patch</code>, and
-	 * the instrument will be loaded into the synthesizer at the bank and
-	 * program location indicated by the <code>Patch</code> object.
-	 * 
-	 * @param soundbank
-	 *                  sound bank containing the instrument
-	 * @param patch
-	 *                  the patch of this instrument
-	 * @param name
-	 *                  the name of this instrument
-	 * @param dataClass
-	 *                  the class used to represent the sample's data.
-	 *
-	 * @see Synthesizer#loadInstrument(Instrument)
-	 */
-	protected Instrument(Soundbank soundbank, Patch patch, String name,
-			Class<?> dataClass) {
+    /**
+     * Constructs a new MIDI instrument from the specified <code>Patch</code>.
+     * When a subsequent request is made to load the instrument, the sound bank
+     * will search its contents for this instrument's <code>Patch</code>, and
+     * the instrument will be loaded into the synthesizer at the bank and
+     * program location indicated by the <code>Patch</code> object.
+     * 
+     * @param soundbank
+     *                  sound bank containing the instrument
+     * @param patch
+     *                  the patch of this instrument
+     * @param name
+     *                  the name of this instrument
+     * @param dataClass
+     *                  the class used to represent the sample's data.
+     *
+     * @see Synthesizer#loadInstrument(Instrument)
+     */
+    protected Instrument(Soundbank soundbank, Patch patch, String name,
+            Class<?> dataClass) {
 
-		super(soundbank, name, dataClass);
-		this.patch = patch;
-	}
+        super(soundbank, name, dataClass);
+        this.patch = patch;
+    }
 
-	/**
-	 * Obtains the <code>Patch</code> object that indicates the bank and program
-	 * numbers where this instrument is to be stored in the synthesizer.
-	 * 
-	 * @return this instrument's patch
-	 */
-	public Patch getPatch() {
-		return patch;
-	}
+    /**
+     * Obtains the <code>Patch</code> object that indicates the bank and program
+     * numbers where this instrument is to be stored in the synthesizer.
+     * 
+     * @return this instrument's patch
+     */
+    public Patch getPatch() {
+        return patch;
+    }
 }

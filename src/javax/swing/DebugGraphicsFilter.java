@@ -14,14 +14,14 @@ import java.awt.image.*;
  * @author Dave Karlton
  */
 class DebugGraphicsFilter extends RGBImageFilter {
-	Color color;
+    Color color;
 
-	DebugGraphicsFilter(Color c) {
-		canFilterIndexColorModel = true;
-		color = c;
-	}
+    DebugGraphicsFilter(Color c) {
+        canFilterIndexColorModel = true;
+        color = c;
+    }
 
-	public int filterRGB(int x, int y, int rgb) {
-		return color.getRGB() | (rgb & 0xFF000000);
-	}
+    public int filterRGB(int x, int y, int rgb) {
+        return color.getRGB() | (rgb & 0xFF000000);
+    }
 }

@@ -21,10 +21,10 @@ package org.omg.CORBA.portable;
  * mapped to java.io.Serializable.)
  */
 public interface ValueBase extends IDLEntity {
-	/**
-	 * Provides truncatable repository ids.
-	 * 
-	 * @return a String array--list of truncatable repository ids.
-	 */
-	String[] _truncatable_ids();
+    /**
+     * Provides truncatable repository ids.
+     * 
+     * @return a String array--list of truncatable repository ids.
+     */
+    String[] _truncatable_ids();
 }

@@ -14,10 +14,10 @@ package javax.sound.midi;
  * @since 1.7
  */
 public interface MidiDeviceReceiver extends Receiver {
-	/**
-	 * Obtains a MidiDevice object which is an owner of this Receiver.
-	 * 
-	 * @return a MidiDevice object which is an owner of this Receiver
-	 */
-	public MidiDevice getMidiDevice();
+    /**
+     * Obtains a MidiDevice object which is an owner of this Receiver.
+     * 
+     * @return a MidiDevice object which is an owner of this Receiver
+     */
+    public MidiDevice getMidiDevice();
 }

@@ -12,7 +12,7 @@ import com.sun.corba.se.spi.ior.Writeable;
  * for an IIOP request.
  */
 public interface IIOPAddress extends Writeable {
-	public String getHost();
+    public String getHost();
 
-	public int getPort();
+    public int getPort();
 }

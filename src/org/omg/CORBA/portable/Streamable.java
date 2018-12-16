@@ -15,30 +15,30 @@ import org.omg.CORBA.TypeCode;
  */
 
 public interface Streamable {
-	/**
-	 * Reads data from <code>istream</code> and initalizes the
-	 * <code>value</code> field of the Holder with the unmarshalled data.
-	 *
-	 * @param istream
-	 *                the InputStream that represents the CDR data from the
-	 *                wire.
-	 */
-	void _read(InputStream istream);
+    /**
+     * Reads data from <code>istream</code> and initalizes the
+     * <code>value</code> field of the Holder with the unmarshalled data.
+     *
+     * @param istream
+     *                the InputStream that represents the CDR data from the
+     *                wire.
+     */
+    void _read(InputStream istream);
 
-	/**
-	 * Marshals to <code>ostream</code> the value in the <code>value</code>
-	 * field of the Holder.
-	 *
-	 * @param ostream
-	 *                the CDR OutputStream
-	 */
-	void _write(OutputStream ostream);
+    /**
+     * Marshals to <code>ostream</code> the value in the <code>value</code>
+     * field of the Holder.
+     *
+     * @param ostream
+     *                the CDR OutputStream
+     */
+    void _write(OutputStream ostream);
 
-	/**
-	 * Retrieves the <code>TypeCode</code> object corresponding to the value in
-	 * the <code>value</code> field of the Holder.
-	 *
-	 * @return the <code>TypeCode</code> object for the value held in the holder
-	 */
-	TypeCode _type();
+    /**
+     * Retrieves the <code>TypeCode</code> object corresponding to the value in
+     * the <code>value</code> field of the Holder.
+     *
+     * @return the <code>TypeCode</code> object for the value held in the holder
+     */
+    TypeCode _type();
 }

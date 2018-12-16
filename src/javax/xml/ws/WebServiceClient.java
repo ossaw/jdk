@@ -26,18 +26,18 @@ import java.lang.annotation.RetentionPolicy;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface WebServiceClient {
-	/**
-	 * The local name of the Web service.
-	 **/
-	String name() default "";
+    /**
+     * The local name of the Web service.
+     **/
+    String name() default "";
 
-	/**
-	 * The namespace for the Web service.
-	 **/
-	String targetNamespace() default "";
+    /**
+     * The namespace for the Web service.
+     **/
+    String targetNamespace() default "";
 
-	/**
-	 * The location of the WSDL document for the service (a URL).
-	 **/
-	String wsdlLocation() default "";
+    /**
+     * The location of the WSDL document for the service (a URL).
+     **/
+    String wsdlLocation() default "";
 }

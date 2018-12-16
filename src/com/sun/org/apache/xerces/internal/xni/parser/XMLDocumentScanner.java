@@ -35,40 +35,40 @@ import com.sun.org.apache.xerces.internal.xni.XNIException;
  */
 public interface XMLDocumentScanner extends XMLDocumentSource {
 
-	//
-	// XMLDocumentScanner methods
-	//
+    //
+    // XMLDocumentScanner methods
+    //
 
-	/**
-	 * Sets the input source.
-	 *
-	 * @param inputSource
-	 *                    The input source.
-	 *
-	 * @throws IOException
-	 *                     Thrown on i/o error.
-	 */
-	public void setInputSource(XMLInputSource inputSource) throws IOException;
+    /**
+     * Sets the input source.
+     *
+     * @param inputSource
+     *                    The input source.
+     *
+     * @throws IOException
+     *                     Thrown on i/o error.
+     */
+    public void setInputSource(XMLInputSource inputSource) throws IOException;
 
-	/**
-	 * Scans a document.
-	 *
-	 * @param complete
-	 *                 True if the scanner should scan the document completely,
-	 *                 pushing all events to the registered document handler. A
-	 *                 value
-	 *                 of false indicates that that the scanner should only scan
-	 *                 the
-	 *                 next portion of the document and return. A scanner
-	 *                 instance is
-	 *                 permitted to completely scan a document if it does not
-	 *                 support
-	 *                 this "pull" scanning model.
-	 *
-	 * @return True if there is more to scan, false otherwise.
-	 */
-	public boolean scanDocument(boolean complete) throws IOException,
-			XNIException;
+    /**
+     * Scans a document.
+     *
+     * @param complete
+     *                 True if the scanner should scan the document completely,
+     *                 pushing all events to the registered document handler. A
+     *                 value
+     *                 of false indicates that that the scanner should only scan
+     *                 the
+     *                 next portion of the document and return. A scanner
+     *                 instance is
+     *                 permitted to completely scan a document if it does not
+     *                 support
+     *                 this "pull" scanning model.
+     *
+     * @return True if there is more to scan, false otherwise.
+     */
+    public boolean scanDocument(boolean complete) throws IOException,
+            XNIException;
 
-	public int next() throws XNIException, IOException;
+    public int next() throws XNIException, IOException;
 } // interface XMLDocumentScanner

@@ -29,28 +29,28 @@ package javax.naming;
  * @since 1.3
  */
 public class NoInitialContextException extends NamingException {
-	/**
-	 * Constructs an instance of NoInitialContextException. All fields are
-	 * initialized to null.
-	 */
-	public NoInitialContextException() {
-		super();
-	}
+    /**
+     * Constructs an instance of NoInitialContextException. All fields are
+     * initialized to null.
+     */
+    public NoInitialContextException() {
+        super();
+    }
 
-	/**
-	 * Constructs an instance of NoInitialContextException with an explanation.
-	 * All other fields are initialized to null.
-	 * 
-	 * @param explanation
-	 *                    Possibly null additional detail about this exception.
-	 * @see java.lang.Throwable#getMessage
-	 */
-	public NoInitialContextException(String explanation) {
-		super(explanation);
-	}
+    /**
+     * Constructs an instance of NoInitialContextException with an explanation.
+     * All other fields are initialized to null.
+     * 
+     * @param explanation
+     *                    Possibly null additional detail about this exception.
+     * @see java.lang.Throwable#getMessage
+     */
+    public NoInitialContextException(String explanation) {
+        super(explanation);
+    }
 
-	/**
-	 * Use serialVersionUID from JNDI 1.1.1 for interoperability
-	 */
-	private static final long serialVersionUID = -3413733186901258623L;
+    /**
+     * Use serialVersionUID from JNDI 1.1.1 for interoperability
+     */
+    private static final long serialVersionUID = -3413733186901258623L;
 }

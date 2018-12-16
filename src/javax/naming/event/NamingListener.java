@@ -35,12 +35,12 @@ package javax.naming.event;
  * @since 1.3
  */
 public interface NamingListener extends java.util.EventListener {
-	/**
-	 * Called when a naming exception is thrown while attempting to fire a
-	 * <tt>NamingEvent</tt>.
-	 *
-	 * @param evt
-	 *            The nonnull event.
-	 */
-	void namingExceptionThrown(NamingExceptionEvent evt);
+    /**
+     * Called when a naming exception is thrown while attempting to fire a
+     * <tt>NamingEvent</tt>.
+     *
+     * @param evt
+     *            The nonnull event.
+     */
+    void namingExceptionThrown(NamingExceptionEvent evt);
 }

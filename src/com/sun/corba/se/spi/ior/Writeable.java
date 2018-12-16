@@ -13,8 +13,8 @@ import org.omg.CORBA_2_3.portable.OutputStream;
  * @author Ken Cavanaugh
  */
 public interface Writeable {
-	/**
-	 * Write this object directly to the output stream.
-	 */
-	void write(OutputStream arg0);
+    /**
+     * Write this object directly to the output stream.
+     */
+    void write(OutputStream arg0);
 }

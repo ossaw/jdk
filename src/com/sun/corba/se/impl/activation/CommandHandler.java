@@ -14,15 +14,15 @@ import java.io.PrintStream;
  */
 
 public interface CommandHandler {
-	String getCommandName();
+    String getCommandName();
 
-	public final static boolean shortHelp = true;
-	public final static boolean longHelp = false;
+    public final static boolean shortHelp = true;
+    public final static boolean longHelp = false;
 
-	void printCommandHelp(PrintStream out, boolean helpType);
+    void printCommandHelp(PrintStream out, boolean helpType);
 
-	public final static boolean parseError = true;
-	public final static boolean commandDone = false;
+    public final static boolean parseError = true;
+    public final static boolean commandDone = false;
 
-	boolean processCommand(String[] cmd, ORB orb, PrintStream out);
+    boolean processCommand(String[] cmd, ORB orb, PrintStream out);
 }

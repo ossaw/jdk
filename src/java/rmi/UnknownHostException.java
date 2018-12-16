@@ -14,32 +14,32 @@ package java.rmi;
  */
 public class UnknownHostException extends RemoteException {
 
-	/* indicate compatibility with JDK 1.1.x version of class */
-	private static final long serialVersionUID = -8152710247442114228L;
+    /* indicate compatibility with JDK 1.1.x version of class */
+    private static final long serialVersionUID = -8152710247442114228L;
 
-	/**
-	 * Constructs an <code>UnknownHostException</code> with the specified detail
-	 * message.
-	 *
-	 * @param s
-	 *          the detail message
-	 * @since JDK1.1
-	 */
-	public UnknownHostException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs an <code>UnknownHostException</code> with the specified detail
+     * message.
+     *
+     * @param s
+     *          the detail message
+     * @since JDK1.1
+     */
+    public UnknownHostException(String s) {
+        super(s);
+    }
 
-	/**
-	 * Constructs an <code>UnknownHostException</code> with the specified detail
-	 * message and nested exception.
-	 *
-	 * @param s
-	 *           the detail message
-	 * @param ex
-	 *           the nested exception
-	 * @since JDK1.1
-	 */
-	public UnknownHostException(String s, Exception ex) {
-		super(s, ex);
-	}
+    /**
+     * Constructs an <code>UnknownHostException</code> with the specified detail
+     * message and nested exception.
+     *
+     * @param s
+     *           the detail message
+     * @param ex
+     *           the nested exception
+     * @since JDK1.1
+     */
+    public UnknownHostException(String s, Exception ex) {
+        super(s, ex);
+    }
 }

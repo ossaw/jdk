@@ -11,22 +11,22 @@ package org.omg.CORBA.ORBPackage;
  * <code>DynAny</code>.
  */
 public final class InconsistentTypeCode extends org.omg.CORBA.UserException {
-	/**
-	 * Constructs an <code>InconsistentTypeCode</code> user exception with no
-	 * reason message.
-	 */
-	public InconsistentTypeCode() {
-		super();
-	}
+    /**
+     * Constructs an <code>InconsistentTypeCode</code> user exception with no
+     * reason message.
+     */
+    public InconsistentTypeCode() {
+        super();
+    }
 
-	/**
-	 * Constructs an <code>InconsistentTypeCode</code> user exception with the
-	 * specified reason message.
-	 * 
-	 * @param reason
-	 *               The String containing a reason message
-	 */
-	public InconsistentTypeCode(String reason) {
-		super(reason);
-	}
+    /**
+     * Constructs an <code>InconsistentTypeCode</code> user exception with the
+     * specified reason message.
+     * 
+     * @param reason
+     *               The String containing a reason message
+     */
+    public InconsistentTypeCode(String reason) {
+        super(reason);
+    }
 }

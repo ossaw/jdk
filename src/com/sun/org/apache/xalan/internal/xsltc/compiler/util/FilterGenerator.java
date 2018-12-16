@@ -33,30 +33,30 @@ import com.sun.org.apache.xalan.internal.xsltc.compiler.Stylesheet;
  * @author Santiago Pericas-Geertsen
  */
 public final class FilterGenerator extends ClassGenerator {
-	private static int TRANSLET_INDEX = 5; // translet
-	private final Instruction _aloadTranslet;
+    private static int TRANSLET_INDEX = 5; // translet
+    private final Instruction _aloadTranslet;
 
-	public FilterGenerator(String className, String superClassName,
-			String fileName, int accessFlags, String[] interfaces,
-			Stylesheet stylesheet) {
-		super(className, superClassName, fileName, accessFlags, interfaces,
-				stylesheet);
+    public FilterGenerator(String className, String superClassName,
+            String fileName, int accessFlags, String[] interfaces,
+            Stylesheet stylesheet) {
+        super(className, superClassName, fileName, accessFlags, interfaces,
+                stylesheet);
 
-		_aloadTranslet = new ALOAD(TRANSLET_INDEX);
-	}
+        _aloadTranslet = new ALOAD(TRANSLET_INDEX);
+    }
 
-	/**
-	 * The index of the translet pointer within the execution of the test
-	 * method.
-	 */
-	public final Instruction loadTranslet() {
-		return _aloadTranslet;
-	}
+    /**
+     * The index of the translet pointer within the execution of the test
+     * method.
+     */
+    public final Instruction loadTranslet() {
+        return _aloadTranslet;
+    }
 
-	/**
-	 * Returns <tt>true</tt> since this class is external to the translet.
-	 */
-	public boolean isExternal() {
-		return true;
-	}
+    /**
+     * Returns <tt>true</tt> since this class is external to the translet.
+     */
+    public boolean isExternal() {
+        return true;
+    }
 }

@@ -28,13 +28,13 @@ import java.util.EventListener;
  */
 public interface FocusListener extends EventListener {
 
-	/**
-	 * Invoked when a component gains the keyboard focus.
-	 */
-	public void focusGained(FocusEvent e);
+    /**
+     * Invoked when a component gains the keyboard focus.
+     */
+    public void focusGained(FocusEvent e);
 
-	/**
-	 * Invoked when a component loses the keyboard focus.
-	 */
-	public void focusLost(FocusEvent e);
+    /**
+     * Invoked when a component loses the keyboard focus.
+     */
+    public void focusLost(FocusEvent e);
 }

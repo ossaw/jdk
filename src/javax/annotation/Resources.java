@@ -20,8 +20,8 @@ import static java.lang.annotation.RetentionPolicy.*;
 @Retention(RUNTIME)
 @Target(TYPE)
 public @interface Resources {
-	/**
-	 * Array used for multiple resource declarations.
-	 */
-	Resource[] value();
+    /**
+     * Array used for multiple resource declarations.
+     */
+    Resource[] value();
 }

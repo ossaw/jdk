@@ -25,60 +25,60 @@ import java.awt.Component;
  */
 @SuppressWarnings("serial")
 public class MenuKeyEvent extends KeyEvent {
-	private MenuElement path[];
-	private MenuSelectionManager manager;
+    private MenuElement path[];
+    private MenuSelectionManager manager;
 
-	/**
-	 * Constructs a MenuKeyEvent object.
-	 *
-	 * @param source
-	 *                  the Component that originated the event (typically
-	 *                  <code>this</code>)
-	 * @param id
-	 *                  an int specifying the type of event, as defined in
-	 *                  {@link java.awt.event.KeyEvent}
-	 * @param when
-	 *                  a long identifying the time the event occurred
-	 * @param modifiers
-	 *                  an int specifying any modifier keys held down, as
-	 *                  specified in
-	 *                  {@link java.awt.event.InputEvent}
-	 * @param keyCode
-	 *                  an int specifying the specific key that was pressed
-	 * @param keyChar
-	 *                  a char specifying the key's character value, if any --
-	 *                  null if
-	 *                  the key has no character value
-	 * @param p
-	 *                  an array of MenuElement objects specifying a path to a
-	 *                  menu
-	 *                  item affected by the drag
-	 * @param m
-	 *                  a MenuSelectionManager object that handles selections
-	 */
-	public MenuKeyEvent(Component source, int id, long when, int modifiers,
-			int keyCode, char keyChar, MenuElement p[],
-			MenuSelectionManager m) {
-		super(source, id, when, modifiers, keyCode, keyChar);
-		path = p;
-		manager = m;
-	}
+    /**
+     * Constructs a MenuKeyEvent object.
+     *
+     * @param source
+     *                  the Component that originated the event (typically
+     *                  <code>this</code>)
+     * @param id
+     *                  an int specifying the type of event, as defined in
+     *                  {@link java.awt.event.KeyEvent}
+     * @param when
+     *                  a long identifying the time the event occurred
+     * @param modifiers
+     *                  an int specifying any modifier keys held down, as
+     *                  specified in
+     *                  {@link java.awt.event.InputEvent}
+     * @param keyCode
+     *                  an int specifying the specific key that was pressed
+     * @param keyChar
+     *                  a char specifying the key's character value, if any --
+     *                  null if
+     *                  the key has no character value
+     * @param p
+     *                  an array of MenuElement objects specifying a path to a
+     *                  menu
+     *                  item affected by the drag
+     * @param m
+     *                  a MenuSelectionManager object that handles selections
+     */
+    public MenuKeyEvent(Component source, int id, long when, int modifiers,
+            int keyCode, char keyChar, MenuElement p[],
+            MenuSelectionManager m) {
+        super(source, id, when, modifiers, keyCode, keyChar);
+        path = p;
+        manager = m;
+    }
 
-	/**
-	 * Returns the path to the menu item referenced by this event.
-	 *
-	 * @return an array of MenuElement objects representing the path value
-	 */
-	public MenuElement[] getPath() {
-		return path;
-	}
+    /**
+     * Returns the path to the menu item referenced by this event.
+     *
+     * @return an array of MenuElement objects representing the path value
+     */
+    public MenuElement[] getPath() {
+        return path;
+    }
 
-	/**
-	 * Returns the current menu selection manager.
-	 *
-	 * @return a MenuSelectionManager object
-	 */
-	public MenuSelectionManager getMenuSelectionManager() {
-		return manager;
-	}
+    /**
+     * Returns the current menu selection manager.
+     *
+     * @return a MenuSelectionManager object
+     */
+    public MenuSelectionManager getMenuSelectionManager() {
+        return manager;
+    }
 }

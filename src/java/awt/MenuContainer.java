@@ -11,13 +11,13 @@ package java.awt;
  */
 
 public interface MenuContainer {
-	Font getFont();
+    Font getFont();
 
-	void remove(MenuComponent comp);
+    void remove(MenuComponent comp);
 
-	/**
-	 * @deprecated As of JDK version 1.1 replaced by dispatchEvent(AWTEvent).
-	 */
-	@Deprecated
-	boolean postEvent(Event evt);
+    /**
+     * @deprecated As of JDK version 1.1 replaced by dispatchEvent(AWTEvent).
+     */
+    @Deprecated
+    boolean postEvent(Event evt);
 }

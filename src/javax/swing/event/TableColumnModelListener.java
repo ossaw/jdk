@@ -18,20 +18,20 @@ import java.util.EventListener;
  */
 
 public interface TableColumnModelListener extends java.util.EventListener {
-	/** Tells listeners that a column was added to the model. */
-	public void columnAdded(TableColumnModelEvent e);
+    /** Tells listeners that a column was added to the model. */
+    public void columnAdded(TableColumnModelEvent e);
 
-	/** Tells listeners that a column was removed from the model. */
-	public void columnRemoved(TableColumnModelEvent e);
+    /** Tells listeners that a column was removed from the model. */
+    public void columnRemoved(TableColumnModelEvent e);
 
-	/** Tells listeners that a column was repositioned. */
-	public void columnMoved(TableColumnModelEvent e);
+    /** Tells listeners that a column was repositioned. */
+    public void columnMoved(TableColumnModelEvent e);
 
-	/** Tells listeners that a column was moved due to a margin change. */
-	public void columnMarginChanged(ChangeEvent e);
+    /** Tells listeners that a column was moved due to a margin change. */
+    public void columnMarginChanged(ChangeEvent e);
 
-	/**
-	 * Tells listeners that the selection model of the TableColumnModel changed.
-	 */
-	public void columnSelectionChanged(ListSelectionEvent e);
+    /**
+     * Tells listeners that the selection model of the TableColumnModel changed.
+     */
+    public void columnSelectionChanged(ListSelectionEvent e);
 }

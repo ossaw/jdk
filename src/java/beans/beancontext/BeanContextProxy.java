@@ -50,12 +50,12 @@ package java.beans.beancontext;
 
 public interface BeanContextProxy {
 
-	/**
-	 * Gets the <code>BeanContextChild</code> (or subinterface) associated with
-	 * this object.
-	 * 
-	 * @return the <code>BeanContextChild</code> (or subinterface) associated
-	 *         with this object
-	 */
-	BeanContextChild getBeanContextProxy();
+    /**
+     * Gets the <code>BeanContextChild</code> (or subinterface) associated with
+     * this object.
+     * 
+     * @return the <code>BeanContextChild</code> (or subinterface) associated
+     *         with this object
+     */
+    BeanContextChild getBeanContextProxy();
 }

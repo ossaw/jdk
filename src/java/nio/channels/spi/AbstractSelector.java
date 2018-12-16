@@ -55,181 +55,181 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class AbstractSelector extends Selector {
 
-	private AtomicBoolean selectorOpen = new AtomicBoolean(true);
+    private AtomicBoolean selectorOpen = new AtomicBoolean(true);
 
-	// The provider that created this selector
-	private final SelectorProvider provider;
+    // The provider that created this selector
+    private final SelectorProvider provider;
 
-	/**
-	 * Initializes a new instance of this class.
-	 *
-	 * @param provider
-	 *                 The provider that created this selector
-	 */
-	protected AbstractSelector(SelectorProvider provider) {
-		this.provider = provider;
-	}
+    /**
+     * Initializes a new instance of this class.
+     *
+     * @param provider
+     *                 The provider that created this selector
+     */
+    protected AbstractSelector(SelectorProvider provider) {
+        this.provider = provider;
+    }
 
-	private final Set<SelectionKey> cancelledKeys = new HashSet<SelectionKey>();
+    private final Set<SelectionKey> cancelledKeys = new HashSet<SelectionKey>();
 
-	void cancel(SelectionKey k) { // package-private
-		synchronized (cancelledKeys) {
-			cancelledKeys.add(k);
-		}
-	}
+    void cancel(SelectionKey k) { // package-private
+        synchronized (cancelledKeys) {
+            cancelledKeys.add(k);
+        }
+    }
 
-	/**
-	 * Closes this selector.
-	 *
-	 * <p>
-	 * If the selector has already been closed then this method returns
-	 * immediately. Otherwise it marks the selector as closed and then invokes
-	 * the {@link #implCloseSelector implCloseSelector} method in order to
-	 * complete the close operation.
-	 * </p>
-	 *
-	 * @throws IOException
-	 *                     If an I/O error occurs
-	 */
-	public final void close() throws IOException {
-		boolean open = selectorOpen.getAndSet(false);
-		if (!open)
-			return;
-		implCloseSelector();
-	}
+    /**
+     * Closes this selector.
+     *
+     * <p>
+     * If the selector has already been closed then this method returns
+     * immediately. Otherwise it marks the selector as closed and then invokes
+     * the {@link #implCloseSelector implCloseSelector} method in order to
+     * complete the close operation.
+     * </p>
+     *
+     * @throws IOException
+     *                     If an I/O error occurs
+     */
+    public final void close() throws IOException {
+        boolean open = selectorOpen.getAndSet(false);
+        if (!open)
+            return;
+        implCloseSelector();
+    }
 
-	/**
-	 * Closes this selector.
-	 *
-	 * <p>
-	 * This method is invoked by the {@link #close close} method in order to
-	 * perform the actual work of closing the selector. This method is only
-	 * invoked if the selector has not yet been closed, and it is never invoked
-	 * more than once.
-	 *
-	 * <p>
-	 * An implementation of this method must arrange for any other thread that
-	 * is blocked in a selection operation upon this selector to return
-	 * immediately as if by invoking the
-	 * {@link java.nio.channels.Selector#wakeup wakeup} method.
-	 * </p>
-	 *
-	 * @throws IOException
-	 *                     If an I/O error occurs while closing the selector
-	 */
-	protected abstract void implCloseSelector() throws IOException;
+    /**
+     * Closes this selector.
+     *
+     * <p>
+     * This method is invoked by the {@link #close close} method in order to
+     * perform the actual work of closing the selector. This method is only
+     * invoked if the selector has not yet been closed, and it is never invoked
+     * more than once.
+     *
+     * <p>
+     * An implementation of this method must arrange for any other thread that
+     * is blocked in a selection operation upon this selector to return
+     * immediately as if by invoking the
+     * {@link java.nio.channels.Selector#wakeup wakeup} method.
+     * </p>
+     *
+     * @throws IOException
+     *                     If an I/O error occurs while closing the selector
+     */
+    protected abstract void implCloseSelector() throws IOException;
 
-	public final boolean isOpen() {
-		return selectorOpen.get();
-	}
+    public final boolean isOpen() {
+        return selectorOpen.get();
+    }
 
-	/**
-	 * Returns the provider that created this channel.
-	 *
-	 * @return The provider that created this channel
-	 */
-	public final SelectorProvider provider() {
-		return provider;
-	}
+    /**
+     * Returns the provider that created this channel.
+     *
+     * @return The provider that created this channel
+     */
+    public final SelectorProvider provider() {
+        return provider;
+    }
 
-	/**
-	 * Retrieves this selector's cancelled-key set.
-	 *
-	 * <p>
-	 * This set should only be used while synchronized upon it.
-	 * </p>
-	 *
-	 * @return The cancelled-key set
-	 */
-	protected final Set<SelectionKey> cancelledKeys() {
-		return cancelledKeys;
-	}
+    /**
+     * Retrieves this selector's cancelled-key set.
+     *
+     * <p>
+     * This set should only be used while synchronized upon it.
+     * </p>
+     *
+     * @return The cancelled-key set
+     */
+    protected final Set<SelectionKey> cancelledKeys() {
+        return cancelledKeys;
+    }
 
-	/**
-	 * Registers the given channel with this selector.
-	 *
-	 * <p>
-	 * This method is invoked by a channel's
-	 * {@link AbstractSelectableChannel#register register} method in order to
-	 * perform the actual work of registering the channel with this selector.
-	 * </p>
-	 *
-	 * @param ch
-	 *            The channel to be registered
-	 *
-	 * @param ops
-	 *            The initial interest set, which must be valid
-	 *
-	 * @param att
-	 *            The initial attachment for the resulting key
-	 *
-	 * @return A new key representing the registration of the given channel with
-	 *         this selector
-	 */
-	protected abstract SelectionKey register(AbstractSelectableChannel ch,
-			int ops, Object att);
+    /**
+     * Registers the given channel with this selector.
+     *
+     * <p>
+     * This method is invoked by a channel's
+     * {@link AbstractSelectableChannel#register register} method in order to
+     * perform the actual work of registering the channel with this selector.
+     * </p>
+     *
+     * @param ch
+     *            The channel to be registered
+     *
+     * @param ops
+     *            The initial interest set, which must be valid
+     *
+     * @param att
+     *            The initial attachment for the resulting key
+     *
+     * @return A new key representing the registration of the given channel with
+     *         this selector
+     */
+    protected abstract SelectionKey register(AbstractSelectableChannel ch,
+            int ops, Object att);
 
-	/**
-	 * Removes the given key from its channel's key set.
-	 *
-	 * <p>
-	 * This method must be invoked by the selector for each channel that it
-	 * deregisters.
-	 * </p>
-	 *
-	 * @param key
-	 *            The selection key to be removed
-	 */
-	protected final void deregister(AbstractSelectionKey key) {
-		((AbstractSelectableChannel) key.channel()).removeKey(key);
-	}
+    /**
+     * Removes the given key from its channel's key set.
+     *
+     * <p>
+     * This method must be invoked by the selector for each channel that it
+     * deregisters.
+     * </p>
+     *
+     * @param key
+     *            The selection key to be removed
+     */
+    protected final void deregister(AbstractSelectionKey key) {
+        ((AbstractSelectableChannel) key.channel()).removeKey(key);
+    }
 
-	// -- Interruption machinery --
+    // -- Interruption machinery --
 
-	private Interruptible interruptor = null;
+    private Interruptible interruptor = null;
 
-	/**
-	 * Marks the beginning of an I/O operation that might block indefinitely.
-	 *
-	 * <p>
-	 * This method should be invoked in tandem with the {@link #end end} method,
-	 * using a <tt>try</tt>&nbsp;...&nbsp;<tt>finally</tt> block as shown
-	 * <a href="#be">above</a>, in order to implement interruption for this
-	 * selector.
-	 *
-	 * <p>
-	 * Invoking this method arranges for the selector's {@link Selector#wakeup
-	 * wakeup} method to be invoked if a thread's {@link Thread#interrupt
-	 * interrupt} method is invoked while the thread is blocked in an I/O
-	 * operation upon the selector.
-	 * </p>
-	 */
-	protected final void begin() {
-		if (interruptor == null) {
-			interruptor = new Interruptible() {
-				public void interrupt(Thread ignore) {
-					AbstractSelector.this.wakeup();
-				}
-			};
-		}
-		AbstractInterruptibleChannel.blockedOn(interruptor);
-		Thread me = Thread.currentThread();
-		if (me.isInterrupted())
-			interruptor.interrupt(me);
-	}
+    /**
+     * Marks the beginning of an I/O operation that might block indefinitely.
+     *
+     * <p>
+     * This method should be invoked in tandem with the {@link #end end} method,
+     * using a <tt>try</tt>&nbsp;...&nbsp;<tt>finally</tt> block as shown
+     * <a href="#be">above</a>, in order to implement interruption for this
+     * selector.
+     *
+     * <p>
+     * Invoking this method arranges for the selector's {@link Selector#wakeup
+     * wakeup} method to be invoked if a thread's {@link Thread#interrupt
+     * interrupt} method is invoked while the thread is blocked in an I/O
+     * operation upon the selector.
+     * </p>
+     */
+    protected final void begin() {
+        if (interruptor == null) {
+            interruptor = new Interruptible() {
+                public void interrupt(Thread ignore) {
+                    AbstractSelector.this.wakeup();
+                }
+            };
+        }
+        AbstractInterruptibleChannel.blockedOn(interruptor);
+        Thread me = Thread.currentThread();
+        if (me.isInterrupted())
+            interruptor.interrupt(me);
+    }
 
-	/**
-	 * Marks the end of an I/O operation that might block indefinitely.
-	 *
-	 * <p>
-	 * This method should be invoked in tandem with the {@link #begin begin}
-	 * method, using a <tt>try</tt>&nbsp;...&nbsp;<tt>finally</tt> block as
-	 * shown <a href="#be">above</a>, in order to implement interruption for
-	 * this selector.
-	 * </p>
-	 */
-	protected final void end() {
-		AbstractInterruptibleChannel.blockedOn(null);
-	}
+    /**
+     * Marks the end of an I/O operation that might block indefinitely.
+     *
+     * <p>
+     * This method should be invoked in tandem with the {@link #begin begin}
+     * method, using a <tt>try</tt>&nbsp;...&nbsp;<tt>finally</tt> block as
+     * shown <a href="#be">above</a>, in order to implement interruption for
+     * this selector.
+     * </p>
+     */
+    protected final void end() {
+        AbstractInterruptibleChannel.blockedOn(null);
+    }
 
 }

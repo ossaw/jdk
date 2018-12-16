@@ -42,33 +42,33 @@ import java.time.DateTimeException;
  */
 public class UnsupportedTemporalTypeException extends DateTimeException {
 
-	/**
-	 * Serialization version.
-	 */
-	private static final long serialVersionUID = -6158898438688206006L;
+    /**
+     * Serialization version.
+     */
+    private static final long serialVersionUID = -6158898438688206006L;
 
-	/**
-	 * Constructs a new UnsupportedTemporalTypeException with the specified
-	 * message.
-	 *
-	 * @param message
-	 *                the message to use for this exception, may be null
-	 */
-	public UnsupportedTemporalTypeException(String message) {
-		super(message);
-	}
+    /**
+     * Constructs a new UnsupportedTemporalTypeException with the specified
+     * message.
+     *
+     * @param message
+     *                the message to use for this exception, may be null
+     */
+    public UnsupportedTemporalTypeException(String message) {
+        super(message);
+    }
 
-	/**
-	 * Constructs a new UnsupportedTemporalTypeException with the specified
-	 * message and cause.
-	 *
-	 * @param message
-	 *                the message to use for this exception, may be null
-	 * @param cause
-	 *                the cause of the exception, may be null
-	 */
-	public UnsupportedTemporalTypeException(String message, Throwable cause) {
-		super(message, cause);
-	}
+    /**
+     * Constructs a new UnsupportedTemporalTypeException with the specified
+     * message and cause.
+     *
+     * @param message
+     *                the message to use for this exception, may be null
+     * @param cause
+     *                the cause of the exception, may be null
+     */
+    public UnsupportedTemporalTypeException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
 }

@@ -14,25 +14,25 @@ package java.security;
 
 public class InvalidParameterException extends IllegalArgumentException {
 
-	private static final long serialVersionUID = -857968536935667808L;
+    private static final long serialVersionUID = -857968536935667808L;
 
-	/**
-	 * Constructs an InvalidParameterException with no detail message. A detail
-	 * message is a String that describes this particular exception.
-	 */
-	public InvalidParameterException() {
-		super();
-	}
+    /**
+     * Constructs an InvalidParameterException with no detail message. A detail
+     * message is a String that describes this particular exception.
+     */
+    public InvalidParameterException() {
+        super();
+    }
 
-	/**
-	 * Constructs an InvalidParameterException with the specified detail
-	 * message. A detail message is a String that describes this particular
-	 * exception.
-	 *
-	 * @param msg
-	 *            the detail message.
-	 */
-	public InvalidParameterException(String msg) {
-		super(msg);
-	}
+    /**
+     * Constructs an InvalidParameterException with the specified detail
+     * message. A detail message is a String that describes this particular
+     * exception.
+     *
+     * @param msg
+     *            the detail message.
+     */
+    public InvalidParameterException(String msg) {
+        super(msg);
+    }
 }

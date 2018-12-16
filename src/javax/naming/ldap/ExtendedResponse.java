@@ -43,7 +43,7 @@ package javax.naming.ldap;
  * 
  * <pre>
  * GetTimeResponse resp = (GetTimeResponse) ectx.extendedOperation(
- * 		new GetTimeRequest());
+ *         new GetTimeRequest());
  * java.util.Date now = resp.getDate();
  * </pre>
  * 
@@ -59,27 +59,27 @@ package javax.naming.ldap;
 
 public interface ExtendedResponse extends java.io.Serializable {
 
-	/**
-	 * Retrieves the object identifier of the response. The LDAP protocol
-	 * specifies that the response object identifier is optional. If the server
-	 * does not send it, the response will contain no ID (i.e. null).
-	 *
-	 * @return A possibly null object identifier string representing the LDAP
-	 *         <tt>ExtendedResponse.responseName</tt> component.
-	 */
-	public String getID();
+    /**
+     * Retrieves the object identifier of the response. The LDAP protocol
+     * specifies that the response object identifier is optional. If the server
+     * does not send it, the response will contain no ID (i.e. null).
+     *
+     * @return A possibly null object identifier string representing the LDAP
+     *         <tt>ExtendedResponse.responseName</tt> component.
+     */
+    public String getID();
 
-	/**
-	 * Retrieves the ASN.1 BER encoded value of the LDAP extended operation
-	 * response. Null is returned if the value is absent from the response sent
-	 * by the LDAP server. The result is the raw BER bytes including the tag and
-	 * length of the response value. It does not include the response OID.
-	 *
-	 * @return A possibly null byte array representing the ASN.1 BER encoded
-	 *         contents of the LDAP <tt>ExtendedResponse.response</tt>
-	 *         component.
-	 */
-	public byte[] getEncodedValue();
+    /**
+     * Retrieves the ASN.1 BER encoded value of the LDAP extended operation
+     * response. Null is returned if the value is absent from the response sent
+     * by the LDAP server. The result is the raw BER bytes including the tag and
+     * length of the response value. It does not include the response OID.
+     *
+     * @return A possibly null byte array representing the ASN.1 BER encoded
+     *         contents of the LDAP <tt>ExtendedResponse.response</tt>
+     *         component.
+     */
+    public byte[] getEncodedValue();
 
-	// static final long serialVersionUID = -3320509678029180273L;
+    // static final long serialVersionUID = -3320509678029180273L;
 }

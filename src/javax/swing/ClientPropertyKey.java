@@ -40,64 +40,64 @@ import sun.awt.AWTAccessor;
  */
 enum ClientPropertyKey {
 
-	/**
-	 * Key used by JComponent for storing InputVerifier.
-	 */
-	JComponent_INPUT_VERIFIER(true),
+    /**
+     * Key used by JComponent for storing InputVerifier.
+     */
+    JComponent_INPUT_VERIFIER(true),
 
-	/**
-	 * Key used by JComponent for storing TransferHandler.
-	 */
-	JComponent_TRANSFER_HANDLER(true),
+    /**
+     * Key used by JComponent for storing TransferHandler.
+     */
+    JComponent_TRANSFER_HANDLER(true),
 
-	/**
-	 * Key used by JComponent for storing AncestorNotifier.
-	 */
-	JComponent_ANCESTOR_NOTIFIER(true),
+    /**
+     * Key used by JComponent for storing AncestorNotifier.
+     */
+    JComponent_ANCESTOR_NOTIFIER(true),
 
-	/**
-	 * Key used by PopupFactory to force heavy weight popups for a component.
-	 */
-	PopupFactory_FORCE_HEAVYWEIGHT_POPUP(true);
+    /**
+     * Key used by PopupFactory to force heavy weight popups for a component.
+     */
+    PopupFactory_FORCE_HEAVYWEIGHT_POPUP(true);
 
-	/**
-	 * Whether or not a {@code NotSerializableException} should be thrown during
-	 * serialization, when the value associated with this key does not implement
-	 * {@code Serializable}.
-	 */
-	private final boolean reportValueNotSerializable;
+    /**
+     * Whether or not a {@code NotSerializableException} should be thrown during
+     * serialization, when the value associated with this key does not implement
+     * {@code Serializable}.
+     */
+    private final boolean reportValueNotSerializable;
 
-	static {
-		AWTAccessor.setClientPropertyKeyAccessor(
-				new AWTAccessor.ClientPropertyKeyAccessor() {
-					public Object getJComponent_TRANSFER_HANDLER() {
-						return JComponent_TRANSFER_HANDLER;
-					}
-				});
-	}
+    static {
+        AWTAccessor.setClientPropertyKeyAccessor(
+                new AWTAccessor.ClientPropertyKeyAccessor() {
+                    public Object getJComponent_TRANSFER_HANDLER() {
+                        return JComponent_TRANSFER_HANDLER;
+                    }
+                });
+    }
 
-	/**
-	 * Constructs a key with the {@code reportValueNotSerializable} property set
-	 * to {@code false}.
-	 */
-	private ClientPropertyKey() {
-		this(false);
-	}
+    /**
+     * Constructs a key with the {@code reportValueNotSerializable} property set
+     * to {@code false}.
+     */
+    private ClientPropertyKey() {
+        this(false);
+    }
 
-	/**
-	 * Constructs a key with the {@code reportValueNotSerializable} property set
-	 * to the given value.
-	 */
-	private ClientPropertyKey(boolean reportValueNotSerializable) {
-		this.reportValueNotSerializable = reportValueNotSerializable;
-	}
+    /**
+     * Constructs a key with the {@code reportValueNotSerializable} property set
+     * to the given value.
+     */
+    private ClientPropertyKey(boolean reportValueNotSerializable) {
+        this.reportValueNotSerializable = reportValueNotSerializable;
+    }
 
-	/**
-	 * Returns whether or not a {@code NotSerializableException} should be
-	 * thrown during serialization, when the value associated with this key does
-	 * not implement {@code Serializable}.
-	 */
-	public boolean getReportValueNotSerializable() {
-		return reportValueNotSerializable;
-	}
+    /**
+     * Returns whether or not a {@code NotSerializableException} should be
+     * thrown during serialization, when the value associated with this key does
+     * not implement {@code Serializable}.
+     */
+    public boolean getReportValueNotSerializable() {
+        return reportValueNotSerializable;
+    }
 }

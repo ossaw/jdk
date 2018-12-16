@@ -18,42 +18,42 @@ package javax.sql;
 
 public interface RowSetListener extends java.util.EventListener {
 
-	/**
-	 * Notifies registered listeners that a <code>RowSet</code> object in the
-	 * given <code>RowSetEvent</code> object has changed its entire contents.
-	 * <P>
-	 * The source of the event can be retrieved with the method
-	 * <code>event.getSource</code>.
-	 *
-	 * @param event
-	 *              a <code>RowSetEvent</code> object that contains the
-	 *              <code>RowSet</code> object that is the source of the event
-	 */
-	void rowSetChanged(RowSetEvent event);
+    /**
+     * Notifies registered listeners that a <code>RowSet</code> object in the
+     * given <code>RowSetEvent</code> object has changed its entire contents.
+     * <P>
+     * The source of the event can be retrieved with the method
+     * <code>event.getSource</code>.
+     *
+     * @param event
+     *              a <code>RowSetEvent</code> object that contains the
+     *              <code>RowSet</code> object that is the source of the event
+     */
+    void rowSetChanged(RowSetEvent event);
 
-	/**
-	 * Notifies registered listeners that a <code>RowSet</code> object has had a
-	 * change in one of its rows.
-	 * <P>
-	 * The source of the event can be retrieved with the method
-	 * <code>event.getSource</code>.
-	 *
-	 * @param event
-	 *              a <code>RowSetEvent</code> object that contains the
-	 *              <code>RowSet</code> object that is the source of the event
-	 */
-	void rowChanged(RowSetEvent event);
+    /**
+     * Notifies registered listeners that a <code>RowSet</code> object has had a
+     * change in one of its rows.
+     * <P>
+     * The source of the event can be retrieved with the method
+     * <code>event.getSource</code>.
+     *
+     * @param event
+     *              a <code>RowSetEvent</code> object that contains the
+     *              <code>RowSet</code> object that is the source of the event
+     */
+    void rowChanged(RowSetEvent event);
 
-	/**
-	 * Notifies registered listeners that a <code>RowSet</code> object's cursor
-	 * has moved.
-	 * <P>
-	 * The source of the event can be retrieved with the method
-	 * <code>event.getSource</code>.
-	 *
-	 * @param event
-	 *              a <code>RowSetEvent</code> object that contains the
-	 *              <code>RowSet</code> object that is the source of the event
-	 */
-	void cursorMoved(RowSetEvent event);
+    /**
+     * Notifies registered listeners that a <code>RowSet</code> object's cursor
+     * has moved.
+     * <P>
+     * The source of the event can be retrieved with the method
+     * <code>event.getSource</code>.
+     *
+     * @param event
+     *              a <code>RowSetEvent</code> object that contains the
+     *              <code>RowSet</code> object that is the source of the event
+     */
+    void cursorMoved(RowSetEvent event);
 }

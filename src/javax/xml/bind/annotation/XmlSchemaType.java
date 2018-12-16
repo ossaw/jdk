@@ -74,22 +74,22 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Retention(RUNTIME)
 @Target({ FIELD, METHOD, PACKAGE })
 public @interface XmlSchemaType {
-	String name();
+    String name();
 
-	String namespace() default "http://www.w3.org/2001/XMLSchema";
+    String namespace() default "http://www.w3.org/2001/XMLSchema";
 
-	/**
-	 * If this annotation is used at the package level, then value of the type()
-	 * must be specified.
-	 */
+    /**
+     * If this annotation is used at the package level, then value of the type()
+     * must be specified.
+     */
 
-	Class type() default DEFAULT.class;
+    Class type() default DEFAULT.class;
 
-	/**
-	 * Used in {@link XmlSchemaType#type()} to signal that the type be inferred
-	 * from the signature of the property.
-	 */
+    /**
+     * Used in {@link XmlSchemaType#type()} to signal that the type be inferred
+     * from the signature of the property.
+     */
 
-	static final class DEFAULT {}
+    static final class DEFAULT {}
 
 }

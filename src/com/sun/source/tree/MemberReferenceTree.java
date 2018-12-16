@@ -23,23 +23,23 @@ import javax.lang.model.element.Name;
 @jdk.Exported
 public interface MemberReferenceTree extends ExpressionTree {
 
-	/**
-	 * There are two kinds of member references: (i) method references and (ii)
-	 * constructor references
-	 */
-	@jdk.Exported
-	public enum ReferenceMode {
-	/** enum constant for method references */
-	INVOKE,
-	/** enum constant for constructor references */
-	NEW
-	}
+    /**
+     * There are two kinds of member references: (i) method references and (ii)
+     * constructor references
+     */
+    @jdk.Exported
+    public enum ReferenceMode {
+    /** enum constant for method references */
+    INVOKE,
+    /** enum constant for constructor references */
+    NEW
+    }
 
-	ReferenceMode getMode();
+    ReferenceMode getMode();
 
-	ExpressionTree getQualifierExpression();
+    ExpressionTree getQualifierExpression();
 
-	Name getName();
+    Name getName();
 
-	List<? extends ExpressionTree> getTypeArguments();
+    List<? extends ExpressionTree> getTypeArguments();
 }

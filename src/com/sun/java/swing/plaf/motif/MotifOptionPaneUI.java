@@ -28,65 +28,65 @@ import java.awt.Rectangle;
  * @author Scott Violet
  */
 public class MotifOptionPaneUI extends BasicOptionPaneUI {
-	/**
-	 * Creates a new MotifOptionPaneUI instance.
-	 */
-	public static ComponentUI createUI(JComponent x) {
-		return new MotifOptionPaneUI();
-	}
+    /**
+     * Creates a new MotifOptionPaneUI instance.
+     */
+    public static ComponentUI createUI(JComponent x) {
+        return new MotifOptionPaneUI();
+    }
 
-	/**
-	 * Creates and returns a Container containin the buttons. The buttons are
-	 * created by calling <code>getButtons</code>.
-	 */
-	protected Container createButtonArea() {
-		Container b = super.createButtonArea();
+    /**
+     * Creates and returns a Container containin the buttons. The buttons are
+     * created by calling <code>getButtons</code>.
+     */
+    protected Container createButtonArea() {
+        Container b = super.createButtonArea();
 
-		if (b != null && b.getLayout() instanceof ButtonAreaLayout) {
-			((ButtonAreaLayout) b.getLayout()).setCentersChildren(false);
-		}
-		return b;
-	}
+        if (b != null && b.getLayout() instanceof ButtonAreaLayout) {
+            ((ButtonAreaLayout) b.getLayout()).setCentersChildren(false);
+        }
+        return b;
+    }
 
-	/**
-	 * Returns null, CDE/Motif does not impose a minimum size.
-	 */
-	public Dimension getMinimumOptionPaneSize() {
-		return null;
-	}
+    /**
+     * Returns null, CDE/Motif does not impose a minimum size.
+     */
+    public Dimension getMinimumOptionPaneSize() {
+        return null;
+    }
 
-	protected Container createSeparator() {
-		return new JPanel() {
+    protected Container createSeparator() {
+        return new JPanel() {
 
-			public Dimension getPreferredSize() {
-				return new Dimension(10, 2);
-			}
+            public Dimension getPreferredSize() {
+                return new Dimension(10, 2);
+            }
 
-			public void paint(Graphics g) {
-				int width = getWidth();
-				g.setColor(Color.darkGray);
-				g.drawLine(0, 0, width, 0);
-				g.setColor(Color.white);
-				g.drawLine(0, 1, width, 1);
-			}
-		};
-	}
+            public void paint(Graphics g) {
+                int width = getWidth();
+                g.setColor(Color.darkGray);
+                g.drawLine(0, 0, width, 0);
+                g.setColor(Color.white);
+                g.drawLine(0, 1, width, 1);
+            }
+        };
+    }
 
-	/**
-	 * Creates and adds a JLabel representing the icon returned from
-	 * <code>getIcon</code> to <code>top</code>. This is messaged from
-	 * <code>createMessageArea</code>
-	 */
-	protected void addIcon(Container top) {
-		/* Create the icon. */
-		Icon sideIcon = getIcon();
+    /**
+     * Creates and adds a JLabel representing the icon returned from
+     * <code>getIcon</code> to <code>top</code>. This is messaged from
+     * <code>createMessageArea</code>
+     */
+    protected void addIcon(Container top) {
+        /* Create the icon. */
+        Icon sideIcon = getIcon();
 
-		if (sideIcon != null) {
-			JLabel iconLabel = new JLabel(sideIcon);
+        if (sideIcon != null) {
+            JLabel iconLabel = new JLabel(sideIcon);
 
-			iconLabel.setVerticalAlignment(SwingConstants.CENTER);
-			top.add(iconLabel, "West");
-		}
-	}
+            iconLabel.setVerticalAlignment(SwingConstants.CENTER);
+            top.add(iconLabel, "West");
+        }
+    }
 
 }

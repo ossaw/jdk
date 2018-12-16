@@ -30,25 +30,25 @@ package javax.xml.validation;
  */
 public abstract class SchemaFactoryLoader {
 
-	/**
-	 * A do-nothing constructor.
-	 */
-	protected SchemaFactoryLoader() {}
+    /**
+     * A do-nothing constructor.
+     */
+    protected SchemaFactoryLoader() {}
 
-	/**
-	 * Creates a new {@link SchemaFactory} object for the specified schema
-	 * language.
-	 *
-	 * @param schemaLanguage
-	 *                       See <a href="SchemaFactory.html#schemaLanguage">
-	 *                       the list of
-	 *                       available schema languages</a>.
-	 *
-	 * @throws NullPointerException
-	 *                              If the <tt>schemaLanguage</tt> parameter is
-	 *                              null.
-	 *
-	 * @return <code>null</code> if the callee fails to create one.
-	 */
-	public abstract SchemaFactory newFactory(String schemaLanguage);
+    /**
+     * Creates a new {@link SchemaFactory} object for the specified schema
+     * language.
+     *
+     * @param schemaLanguage
+     *                       See <a href="SchemaFactory.html#schemaLanguage">
+     *                       the list of
+     *                       available schema languages</a>.
+     *
+     * @throws NullPointerException
+     *                              If the <tt>schemaLanguage</tt> parameter is
+     *                              null.
+     *
+     * @return <code>null</code> if the callee fails to create one.
+     */
+    public abstract SchemaFactory newFactory(String schemaLanguage);
 }

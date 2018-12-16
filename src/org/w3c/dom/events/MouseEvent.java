@@ -42,136 +42,136 @@ import org.w3c.dom.views.AbstractView;
  * @since DOM Level 2
  */
 public interface MouseEvent extends UIEvent {
-	/**
-	 * The horizontal coordinate at which the event occurred relative to the
-	 * origin of the screen coordinate system.
-	 */
-	public int getScreenX();
+    /**
+     * The horizontal coordinate at which the event occurred relative to the
+     * origin of the screen coordinate system.
+     */
+    public int getScreenX();
 
-	/**
-	 * The vertical coordinate at which the event occurred relative to the
-	 * origin of the screen coordinate system.
-	 */
-	public int getScreenY();
+    /**
+     * The vertical coordinate at which the event occurred relative to the
+     * origin of the screen coordinate system.
+     */
+    public int getScreenY();
 
-	/**
-	 * The horizontal coordinate at which the event occurred relative to the DOM
-	 * implementation's client area.
-	 */
-	public int getClientX();
+    /**
+     * The horizontal coordinate at which the event occurred relative to the DOM
+     * implementation's client area.
+     */
+    public int getClientX();
 
-	/**
-	 * The vertical coordinate at which the event occurred relative to the DOM
-	 * implementation's client area.
-	 */
-	public int getClientY();
+    /**
+     * The vertical coordinate at which the event occurred relative to the DOM
+     * implementation's client area.
+     */
+    public int getClientY();
 
-	/**
-	 * Used to indicate whether the 'ctrl' key was depressed during the firing
-	 * of the event.
-	 */
-	public boolean getCtrlKey();
+    /**
+     * Used to indicate whether the 'ctrl' key was depressed during the firing
+     * of the event.
+     */
+    public boolean getCtrlKey();
 
-	/**
-	 * Used to indicate whether the 'shift' key was depressed during the firing
-	 * of the event.
-	 */
-	public boolean getShiftKey();
+    /**
+     * Used to indicate whether the 'shift' key was depressed during the firing
+     * of the event.
+     */
+    public boolean getShiftKey();
 
-	/**
-	 * Used to indicate whether the 'alt' key was depressed during the firing of
-	 * the event. On some platforms this key may map to an alternative key name.
-	 */
-	public boolean getAltKey();
+    /**
+     * Used to indicate whether the 'alt' key was depressed during the firing of
+     * the event. On some platforms this key may map to an alternative key name.
+     */
+    public boolean getAltKey();
 
-	/**
-	 * Used to indicate whether the 'meta' key was depressed during the firing
-	 * of the event. On some platforms this key may map to an alternative key
-	 * name.
-	 */
-	public boolean getMetaKey();
+    /**
+     * Used to indicate whether the 'meta' key was depressed during the firing
+     * of the event. On some platforms this key may map to an alternative key
+     * name.
+     */
+    public boolean getMetaKey();
 
-	/**
-	 * During mouse events caused by the depression or release of a mouse
-	 * button, <code>button</code> is used to indicate which mouse button
-	 * changed state. The values for <code>button</code> range from zero to
-	 * indicate the left button of the mouse, one to indicate the middle button
-	 * if present, and two to indicate the right button. For mice configured for
-	 * left handed use in which the button actions are reversed the values are
-	 * instead read from right to left.
-	 */
-	public short getButton();
+    /**
+     * During mouse events caused by the depression or release of a mouse
+     * button, <code>button</code> is used to indicate which mouse button
+     * changed state. The values for <code>button</code> range from zero to
+     * indicate the left button of the mouse, one to indicate the middle button
+     * if present, and two to indicate the right button. For mice configured for
+     * left handed use in which the button actions are reversed the values are
+     * instead read from right to left.
+     */
+    public short getButton();
 
-	/**
-	 * Used to identify a secondary <code>EventTarget</code> related to a UI
-	 * event. Currently this attribute is used with the mouseover event to
-	 * indicate the <code>EventTarget</code> which the pointing device exited
-	 * and with the mouseout event to indicate the <code>EventTarget</code>
-	 * which the pointing device entered.
-	 */
-	public EventTarget getRelatedTarget();
+    /**
+     * Used to identify a secondary <code>EventTarget</code> related to a UI
+     * event. Currently this attribute is used with the mouseover event to
+     * indicate the <code>EventTarget</code> which the pointing device exited
+     * and with the mouseout event to indicate the <code>EventTarget</code>
+     * which the pointing device entered.
+     */
+    public EventTarget getRelatedTarget();
 
-	/**
-	 * The <code>initMouseEvent</code> method is used to initialize the value of
-	 * a <code>MouseEvent</code> created through the <code>DocumentEvent</code>
-	 * interface. This method may only be called before the
-	 * <code>MouseEvent</code> has been dispatched via the
-	 * <code>dispatchEvent</code> method, though it may be called multiple times
-	 * during that phase if necessary. If called multiple times, the final
-	 * invocation takes precedence.
-	 * 
-	 * @param typeArg
-	 *                         Specifies the event type.
-	 * @param canBubbleArg
-	 *                         Specifies whether or not the event can bubble.
-	 * @param cancelableArg
-	 *                         Specifies whether or not the event's default
-	 *                         action can be
-	 *                         prevented.
-	 * @param viewArg
-	 *                         Specifies the <code>Event</code>'s
-	 *                         <code>AbstractView</code>.
-	 * @param detailArg
-	 *                         Specifies the <code>Event</code>'s mouse click
-	 *                         count.
-	 * @param screenXArg
-	 *                         Specifies the <code>Event</code>'s screen x
-	 *                         coordinate
-	 * @param screenYArg
-	 *                         Specifies the <code>Event</code>'s screen y
-	 *                         coordinate
-	 * @param clientXArg
-	 *                         Specifies the <code>Event</code>'s client x
-	 *                         coordinate
-	 * @param clientYArg
-	 *                         Specifies the <code>Event</code>'s client y
-	 *                         coordinate
-	 * @param ctrlKeyArg
-	 *                         Specifies whether or not control key was
-	 *                         depressed during the
-	 *                         <code>Event</code>.
-	 * @param altKeyArg
-	 *                         Specifies whether or not alt key was depressed
-	 *                         during the
-	 *                         <code>Event</code>.
-	 * @param shiftKeyArg
-	 *                         Specifies whether or not shift key was depressed
-	 *                         during the
-	 *                         <code>Event</code>.
-	 * @param metaKeyArg
-	 *                         Specifies whether or not meta key was depressed
-	 *                         during the
-	 *                         <code>Event</code>.
-	 * @param buttonArg
-	 *                         Specifies the <code>Event</code>'s mouse button.
-	 * @param relatedTargetArg
-	 *                         Specifies the <code>Event</code>'s related
-	 *                         <code>EventTarget</code>.
-	 */
-	public void initMouseEvent(String typeArg, boolean canBubbleArg,
-			boolean cancelableArg, AbstractView viewArg, int detailArg,
-			int screenXArg, int screenYArg, int clientXArg, int clientYArg,
-			boolean ctrlKeyArg, boolean altKeyArg, boolean shiftKeyArg,
-			boolean metaKeyArg, short buttonArg, EventTarget relatedTargetArg);
+    /**
+     * The <code>initMouseEvent</code> method is used to initialize the value of
+     * a <code>MouseEvent</code> created through the <code>DocumentEvent</code>
+     * interface. This method may only be called before the
+     * <code>MouseEvent</code> has been dispatched via the
+     * <code>dispatchEvent</code> method, though it may be called multiple times
+     * during that phase if necessary. If called multiple times, the final
+     * invocation takes precedence.
+     * 
+     * @param typeArg
+     *                         Specifies the event type.
+     * @param canBubbleArg
+     *                         Specifies whether or not the event can bubble.
+     * @param cancelableArg
+     *                         Specifies whether or not the event's default
+     *                         action can be
+     *                         prevented.
+     * @param viewArg
+     *                         Specifies the <code>Event</code>'s
+     *                         <code>AbstractView</code>.
+     * @param detailArg
+     *                         Specifies the <code>Event</code>'s mouse click
+     *                         count.
+     * @param screenXArg
+     *                         Specifies the <code>Event</code>'s screen x
+     *                         coordinate
+     * @param screenYArg
+     *                         Specifies the <code>Event</code>'s screen y
+     *                         coordinate
+     * @param clientXArg
+     *                         Specifies the <code>Event</code>'s client x
+     *                         coordinate
+     * @param clientYArg
+     *                         Specifies the <code>Event</code>'s client y
+     *                         coordinate
+     * @param ctrlKeyArg
+     *                         Specifies whether or not control key was
+     *                         depressed during the
+     *                         <code>Event</code>.
+     * @param altKeyArg
+     *                         Specifies whether or not alt key was depressed
+     *                         during the
+     *                         <code>Event</code>.
+     * @param shiftKeyArg
+     *                         Specifies whether or not shift key was depressed
+     *                         during the
+     *                         <code>Event</code>.
+     * @param metaKeyArg
+     *                         Specifies whether or not meta key was depressed
+     *                         during the
+     *                         <code>Event</code>.
+     * @param buttonArg
+     *                         Specifies the <code>Event</code>'s mouse button.
+     * @param relatedTargetArg
+     *                         Specifies the <code>Event</code>'s related
+     *                         <code>EventTarget</code>.
+     */
+    public void initMouseEvent(String typeArg, boolean canBubbleArg,
+            boolean cancelableArg, AbstractView viewArg, int detailArg,
+            int screenXArg, int screenYArg, int clientXArg, int clientYArg,
+            boolean ctrlKeyArg, boolean altKeyArg, boolean shiftKeyArg,
+            boolean metaKeyArg, short buttonArg, EventTarget relatedTargetArg);
 
 }

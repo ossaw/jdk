@@ -28,19 +28,19 @@ package org.w3c.dom.css;
  * @since DOM Level 2
  */
 public interface Counter {
-	/**
-	 * This attribute is used for the identifier of the counter.
-	 */
-	public String getIdentifier();
+    /**
+     * This attribute is used for the identifier of the counter.
+     */
+    public String getIdentifier();
 
-	/**
-	 * This attribute is used for the style of the list.
-	 */
-	public String getListStyle();
+    /**
+     * This attribute is used for the style of the list.
+     */
+    public String getListStyle();
 
-	/**
-	 * This attribute is used for the separator of the nested counters.
-	 */
-	public String getSeparator();
+    /**
+     * This attribute is used for the separator of the nested counters.
+     */
+    public String getSeparator();
 
 }

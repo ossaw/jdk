@@ -19,10 +19,10 @@ import org.w3c.dom.Node;
  */
 public interface DOMLocator extends SourceLocator {
 
-	/**
-	 * Return the node where the event occurred.
-	 *
-	 * @return The node that is the location for the event.
-	 */
-	public Node getOriginatingNode();
+    /**
+     * Return the node where the event occurred.
+     *
+     * @return The node that is the location for the event.
+     */
+    public Node getOriginatingNode();
 }

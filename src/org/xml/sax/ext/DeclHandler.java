@@ -55,115 +55,115 @@ import org.xml.sax.SAXException;
  */
 public interface DeclHandler {
 
-	/**
-	 * Report an element type declaration.
-	 *
-	 * <p>
-	 * The content model will consist of the string "EMPTY", the string "ANY",
-	 * or a parenthesised group, optionally followed by an occurrence indicator.
-	 * The model will be normalized so that all parameter entities are fully
-	 * resolved and all whitespace is removed,and will include the enclosing
-	 * parentheses. Other normalization (such as removing redundant parentheses
-	 * or simplifying occurrence indicators) is at the discretion of the parser.
-	 * </p>
-	 *
-	 * @param name
-	 *              The element type name.
-	 * @param model
-	 *              The content model as a normalized string.
-	 * @exception SAXException
-	 *                         The application may raise an exception.
-	 */
-	public abstract void elementDecl(String name, String model)
-			throws SAXException;
+    /**
+     * Report an element type declaration.
+     *
+     * <p>
+     * The content model will consist of the string "EMPTY", the string "ANY",
+     * or a parenthesised group, optionally followed by an occurrence indicator.
+     * The model will be normalized so that all parameter entities are fully
+     * resolved and all whitespace is removed,and will include the enclosing
+     * parentheses. Other normalization (such as removing redundant parentheses
+     * or simplifying occurrence indicators) is at the discretion of the parser.
+     * </p>
+     *
+     * @param name
+     *              The element type name.
+     * @param model
+     *              The content model as a normalized string.
+     * @exception SAXException
+     *                         The application may raise an exception.
+     */
+    public abstract void elementDecl(String name, String model)
+            throws SAXException;
 
-	/**
-	 * Report an attribute type declaration.
-	 *
-	 * <p>
-	 * Only the effective (first) declaration for an attribute will be reported.
-	 * The type will be one of the strings "CDATA", "ID", "IDREF", "IDREFS",
-	 * "NMTOKEN", "NMTOKENS", "ENTITY", "ENTITIES", a parenthesized token group
-	 * with the separator "|" and all whitespace removed, or the word "NOTATION"
-	 * followed by a space followed by a parenthesized token group with all
-	 * whitespace removed.
-	 * </p>
-	 *
-	 * <p>
-	 * The value will be the value as reported to applications, appropriately
-	 * normalized and with entity and character references expanded.
-	 * </p>
-	 *
-	 * @param eName
-	 *              The name of the associated element.
-	 * @param aName
-	 *              The name of the attribute.
-	 * @param type
-	 *              A string representing the attribute type.
-	 * @param mode
-	 *              A string representing the attribute defaulting mode
-	 *              ("#IMPLIED", "#REQUIRED", or "#FIXED") or null if none of
-	 *              these applies.
-	 * @param value
-	 *              A string representing the attribute's default value, or null
-	 *              if there is none.
-	 * @exception SAXException
-	 *                         The application may raise an exception.
-	 */
-	public abstract void attributeDecl(String eName, String aName, String type,
-			String mode, String value) throws SAXException;
+    /**
+     * Report an attribute type declaration.
+     *
+     * <p>
+     * Only the effective (first) declaration for an attribute will be reported.
+     * The type will be one of the strings "CDATA", "ID", "IDREF", "IDREFS",
+     * "NMTOKEN", "NMTOKENS", "ENTITY", "ENTITIES", a parenthesized token group
+     * with the separator "|" and all whitespace removed, or the word "NOTATION"
+     * followed by a space followed by a parenthesized token group with all
+     * whitespace removed.
+     * </p>
+     *
+     * <p>
+     * The value will be the value as reported to applications, appropriately
+     * normalized and with entity and character references expanded.
+     * </p>
+     *
+     * @param eName
+     *              The name of the associated element.
+     * @param aName
+     *              The name of the attribute.
+     * @param type
+     *              A string representing the attribute type.
+     * @param mode
+     *              A string representing the attribute defaulting mode
+     *              ("#IMPLIED", "#REQUIRED", or "#FIXED") or null if none of
+     *              these applies.
+     * @param value
+     *              A string representing the attribute's default value, or null
+     *              if there is none.
+     * @exception SAXException
+     *                         The application may raise an exception.
+     */
+    public abstract void attributeDecl(String eName, String aName, String type,
+            String mode, String value) throws SAXException;
 
-	/**
-	 * Report an internal entity declaration.
-	 *
-	 * <p>
-	 * Only the effective (first) declaration for each entity will be reported.
-	 * All parameter entities in the value will be expanded, but general
-	 * entities will not.
-	 * </p>
-	 *
-	 * @param name
-	 *              The name of the entity. If it is a parameter entity, the
-	 *              name
-	 *              will begin with '%'.
-	 * @param value
-	 *              The replacement text of the entity.
-	 * @exception SAXException
-	 *                         The application may raise an exception.
-	 * @see #externalEntityDecl
-	 * @see org.xml.sax.DTDHandler#unparsedEntityDecl
-	 */
-	public abstract void internalEntityDecl(String name, String value)
-			throws SAXException;
+    /**
+     * Report an internal entity declaration.
+     *
+     * <p>
+     * Only the effective (first) declaration for each entity will be reported.
+     * All parameter entities in the value will be expanded, but general
+     * entities will not.
+     * </p>
+     *
+     * @param name
+     *              The name of the entity. If it is a parameter entity, the
+     *              name
+     *              will begin with '%'.
+     * @param value
+     *              The replacement text of the entity.
+     * @exception SAXException
+     *                         The application may raise an exception.
+     * @see #externalEntityDecl
+     * @see org.xml.sax.DTDHandler#unparsedEntityDecl
+     */
+    public abstract void internalEntityDecl(String name, String value)
+            throws SAXException;
 
-	/**
-	 * Report a parsed external entity declaration.
-	 *
-	 * <p>
-	 * Only the effective (first) declaration for each entity will be reported.
-	 * </p>
-	 *
-	 * <p>
-	 * If the system identifier is a URL, the parser must resolve it fully
-	 * before passing it to the application.
-	 * </p>
-	 *
-	 * @param name
-	 *                 The name of the entity. If it is a parameter entity, the
-	 *                 name
-	 *                 will begin with '%'.
-	 * @param publicId
-	 *                 The entity's public identifier, or null if none was
-	 *                 given.
-	 * @param systemId
-	 *                 The entity's system identifier.
-	 * @exception SAXException
-	 *                         The application may raise an exception.
-	 * @see #internalEntityDecl
-	 * @see org.xml.sax.DTDHandler#unparsedEntityDecl
-	 */
-	public abstract void externalEntityDecl(String name, String publicId,
-			String systemId) throws SAXException;
+    /**
+     * Report a parsed external entity declaration.
+     *
+     * <p>
+     * Only the effective (first) declaration for each entity will be reported.
+     * </p>
+     *
+     * <p>
+     * If the system identifier is a URL, the parser must resolve it fully
+     * before passing it to the application.
+     * </p>
+     *
+     * @param name
+     *                 The name of the entity. If it is a parameter entity, the
+     *                 name
+     *                 will begin with '%'.
+     * @param publicId
+     *                 The entity's public identifier, or null if none was
+     *                 given.
+     * @param systemId
+     *                 The entity's system identifier.
+     * @exception SAXException
+     *                         The application may raise an exception.
+     * @see #internalEntityDecl
+     * @see org.xml.sax.DTDHandler#unparsedEntityDecl
+     */
+    public abstract void externalEntityDecl(String name, String publicId,
+            String systemId) throws SAXException;
 
 }
 

@@ -50,22 +50,22 @@ import javax.lang.model.type.*;
  * @since 1.7
  */
 public abstract class AbstractTypeVisitor7<R, P> extends
-		AbstractTypeVisitor6<R, P> {
-	/**
-	 * Constructor for concrete subclasses to call.
-	 */
-	protected AbstractTypeVisitor7() {
-		super();
-	}
+        AbstractTypeVisitor6<R, P> {
+    /**
+     * Constructor for concrete subclasses to call.
+     */
+    protected AbstractTypeVisitor7() {
+        super();
+    }
 
-	/**
-	 * Visits a {@code UnionType} in a manner defined by a subclass.
-	 *
-	 * @param t
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of the visit as defined by a subclass
-	 */
-	public abstract R visitUnion(UnionType t, P p);
+    /**
+     * Visits a {@code UnionType} in a manner defined by a subclass.
+     *
+     * @param t
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of the visit as defined by a subclass
+     */
+    public abstract R visitUnion(UnionType t, P p);
 }

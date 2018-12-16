@@ -9,9 +9,9 @@
  *
  * <pre>
  * {
- * 	&#64;code
- * 	int sum = widgets.stream().filter(b -> b.getColor() == RED).mapToInt(
- * 			b -> b.getWeight()).sum();
+ *     &#64;code
+ *     int sum = widgets.stream().filter(b -> b.getColor() == RED).mapToInt(
+ *             b -> b.getWeight()).sum();
  * }
  * </pre>
  *
@@ -235,11 +235,11 @@
  *
  * <pre>
  * {
- * 	&#64;code
- * 	List<String> l = new ArrayList(Arrays.asList("one", "two"));
- * 	Stream<String> sl = l.stream();
- * 	l.add("three");
- * 	String s = sl.collect(joining(" "));
+ *     &#64;code
+ *     List<String> l = new ArrayList(Arrays.asList("one", "two"));
+ *     Stream<String> sl = l.stream();
+ *     l.add("three");
+ *     String s = sl.collect(joining(" "));
  * }
  * </pre>
  *
@@ -322,13 +322,13 @@
  *
  * <pre>
  * {
- * 	&#64;code
- * 	ArrayList<String> results = new ArrayList<>();
- * 	stream.filter(s -> pattern.matcher(s).matches()).forEach(s -> results
- * 			.add(s)); // Unnecessary
- * 																							// use
- * 																							// of
- * 																							// side-effects!
+ *     &#64;code
+ *     ArrayList<String> results = new ArrayList<>();
+ *     stream.filter(s -> pattern.matcher(s).matches()).forEach(s -> results
+ *             .add(s)); // Unnecessary
+ *                                                                                            // use
+ *                                                                                            // of
+ *                                                                                            // side-effects!
  * }
  * </pre>
  *
@@ -342,9 +342,9 @@
  *
  * <pre>
  * {
- * 	&#64;code
- * 	List<String> results = stream.filter(s -> pattern.matcher(s).matches())
- * 			.collect(Collectors.toList()); // No side-effects!
+ *     &#64;code
+ *     List<String> results = stream.filter(s -> pattern.matcher(s).matches())
+ *             .collect(Collectors.toList()); // No side-effects!
  * }
  * </pre>
  *
@@ -412,11 +412,11 @@
  * 
  * <pre>
  * {
- * 	&#64;code
- * 	int sum = 0;
- * 	for (int x : numbers) {
- * 		sum += x;
- * 	}
+ *     &#64;code
+ *     int sum = 0;
+ *     for (int x : numbers) {
+ *         sum += x;
+ *     }
  * }
  * </pre>
  * 
@@ -431,8 +431,8 @@
  * 
  * <pre>
  * {
- * 	&#64;code
- * 	int sum = numbers.stream().reduce(0, (x, y) -> x + y);
+ *     &#64;code
+ *     int sum = numbers.stream().reduce(0, (x, y) -> x + y);
  * }
  * </pre>
  * 
@@ -440,8 +440,8 @@
  * 
  * <pre>
  * {
- * 	&#64;code
- * 	int sum = numbers.stream().reduce(0, Integer::sum);
+ *     &#64;code
+ *     int sum = numbers.stream().reduce(0, Integer::sum);
  * }
  * </pre>
  *
@@ -451,8 +451,8 @@
  * 
  * <pre>
  * {
- * 	&#64;code
- * 	int sum = numbers.parallelStream().reduce(0, Integer::sum);
+ *     &#64;code
+ *     int sum = numbers.parallelStream().reduce(0, Integer::sum);
  * }
  * </pre>
  *
@@ -476,9 +476,9 @@
  * 
  * <pre>
  * {
- * 	&#64;code
- * 	OptionalInt heaviest = widgets.parallelStream().mapToInt(
- * 			Widget::getWeight).max();
+ *     &#64;code
+ *     OptionalInt heaviest = widgets.parallelStream().mapToInt(
+ *             Widget::getWeight).max();
  * }
  * </pre>
  *
@@ -586,11 +586,11 @@
  * 
  * <pre>
  * {
- * 	&#64;code
- * 	ArrayList<String> strings = new ArrayList<>();
- * 	for (T element : stream) {
- * 		strings.add(element.toString());
- * 	}
+ *     &#64;code
+ *     ArrayList<String> strings = new ArrayList<>();
+ *     for (T element : stream) {
+ *         strings.add(element.toString());
+ *     }
  * }
  * </pre>
  * 
@@ -598,9 +598,9 @@
  * 
  * <pre>
  * {
- * 	&#64;code
- * 	ArrayList<String> strings = stream.collect(() -> new ArrayList<>(), (c,
- * 			e) -> c.add(e.toString()), (c1, c2) -> c1.addAll(c2));
+ *     &#64;code
+ *     ArrayList<String> strings = stream.collect(() -> new ArrayList<>(), (c,
+ *             e) -> c.add(e.toString()), (c1, c2) -> c1.addAll(c2));
  * }
  * </pre>
  * 
@@ -609,9 +609,9 @@
  * 
  * <pre>
  * {
- * 	&#64;code
- * 	List<String> strings = stream.map(Object::toString).collect(
- * 			ArrayList::new, ArrayList::add, ArrayList::addAll);
+ *     &#64;code
+ *     List<String> strings = stream.map(Object::toString).collect(
+ *             ArrayList::new, ArrayList::add, ArrayList::addAll);
  * }
  * </pre>
  * 
@@ -630,9 +630,9 @@
  * 
  * <pre>
  * {
- * 	&#64;code
- * 	List<String> strings = stream.map(Object::toString).collect(Collectors
- * 			.toList());
+ *     &#64;code
+ *     List<String> strings = stream.map(Object::toString).collect(Collectors
+ *             .toList());
  * }
  * </pre>
  *
@@ -646,9 +646,9 @@
  *
  * <pre>
  * {
- * 	&#64;code
- * 	Collector<Employee, ?, Integer> summingSalaries = Collectors.summingInt(
- * 			Employee::getSalary);
+ *     &#64;code
+ *     Collector<Employee, ?, Integer> summingSalaries = Collectors.summingInt(
+ *             Employee::getSalary);
  * }
  * </pre>
  *
@@ -661,9 +661,9 @@
  *
  * <pre>
  * {
- * 	&#64;code
- * 	Map<Department, Integer> salariesByDept = employees.stream().collect(
- * 			Collectors.groupingBy(Employee::getDepartment, summingSalaries));
+ *     &#64;code
+ *     Map<Department, Integer> salariesByDept = employees.stream().collect(
+ *             Collectors.groupingBy(Employee::getDepartment, summingSalaries));
  * }
  * </pre>
  *
@@ -682,17 +682,17 @@
  * 
  * <pre>
  * {
- * 	&#64;code
- * 	A a1 = supplier.get();
- * 	accumulator.accept(a1, t1);
- * 	accumulator.accept(a1, t2);
- * 	R r1 = finisher.apply(a1); // result without splitting
+ *     &#64;code
+ *     A a1 = supplier.get();
+ *     accumulator.accept(a1, t1);
+ *     accumulator.accept(a1, t2);
+ *     R r1 = finisher.apply(a1); // result without splitting
  *
- * 	A a2 = supplier.get();
- * 	accumulator.accept(a2, t1);
- * 	A a3 = supplier.get();
- * 	accumulator.accept(a3, t2);
- * 	R r2 = finisher.apply(combiner.apply(a2, a3)); // result with splitting
+ *     A a2 = supplier.get();
+ *     accumulator.accept(a2, t1);
+ *     A a3 = supplier.get();
+ *     accumulator.accept(a3, t2);
+ *     R r2 = finisher.apply(combiner.apply(a2, a3)); // result with splitting
  * }
  * </pre>
  *
@@ -709,9 +709,9 @@
  * 
  * <pre>
  * {
- * 	&#64;code
- * 	Map<Buyer, List<Transaction>> salesByBuyer = txns.parallelStream()
- * 			.collect(Collectors.groupingBy(Transaction::getBuyer));
+ *     &#64;code
+ *     Map<Buyer, List<Transaction>> salesByBuyer = txns.parallelStream()
+ *             .collect(Collectors.groupingBy(Transaction::getBuyer));
  * }
  * </pre>
  * 
@@ -752,10 +752,10 @@
  * 
  * <pre>
  * {
- * 	&#64;code
- * 	Map<Buyer, List<Transaction>> salesByBuyer = txns.parallelStream()
- * 			.unordered().collect(groupingByConcurrent(
- * 					Transaction::getBuyer));
+ *     &#64;code
+ *     Map<Buyer, List<Transaction>> salesByBuyer = txns.parallelStream()
+ *             .unordered().collect(groupingByConcurrent(
+ *                     Transaction::getBuyer));
  * }
  * </pre>
  * 

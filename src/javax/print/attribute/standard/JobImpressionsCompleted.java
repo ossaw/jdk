@@ -37,73 +37,73 @@ import javax.print.attribute.PrintJobAttribute;
  * @author Alan Kaminsky
  */
 public final class JobImpressionsCompleted extends IntegerSyntax implements
-		PrintJobAttribute {
+        PrintJobAttribute {
 
-	private static final long serialVersionUID = 6722648442432393294L;
+    private static final long serialVersionUID = 6722648442432393294L;
 
-	/**
-	 * Construct a new job impressions completed attribute with the given
-	 * integer value.
-	 *
-	 * @param value
-	 *              Integer value.
-	 *
-	 * @exception IllegalArgumentException
-	 *                                     (Unchecked exception) Thrown if
-	 *                                     <CODE>value</CODE> is less
-	 *                                     than 0.
-	 */
-	public JobImpressionsCompleted(int value) {
-		super(value, 0, Integer.MAX_VALUE);
-	}
+    /**
+     * Construct a new job impressions completed attribute with the given
+     * integer value.
+     *
+     * @param value
+     *              Integer value.
+     *
+     * @exception IllegalArgumentException
+     *                                     (Unchecked exception) Thrown if
+     *                                     <CODE>value</CODE> is less
+     *                                     than 0.
+     */
+    public JobImpressionsCompleted(int value) {
+        super(value, 0, Integer.MAX_VALUE);
+    }
 
-	/**
-	 * Returns whether this job impressions completed attribute is equivalent tp
-	 * the passed in object. To be equivalent, all of the following conditions
-	 * must be true:
-	 * <OL TYPE=1>
-	 * <LI><CODE>object</CODE> is not null.
-	 * <LI><CODE>object</CODE> is an instance of class JobImpressionsCompleted.
-	 * <LI>This job impressions completed attribute's value and
-	 * <CODE>object</CODE>'s value are equal.
-	 * </OL>
-	 *
-	 * @param object
-	 *               Object to compare to.
-	 *
-	 * @return True if <CODE>object</CODE> is equivalent to this job impressions
-	 *         completed attribute, false otherwise.
-	 */
-	public boolean equals(Object object) {
-		return (super.equals(object)
-				&& object instanceof JobImpressionsCompleted);
-	}
+    /**
+     * Returns whether this job impressions completed attribute is equivalent tp
+     * the passed in object. To be equivalent, all of the following conditions
+     * must be true:
+     * <OL TYPE=1>
+     * <LI><CODE>object</CODE> is not null.
+     * <LI><CODE>object</CODE> is an instance of class JobImpressionsCompleted.
+     * <LI>This job impressions completed attribute's value and
+     * <CODE>object</CODE>'s value are equal.
+     * </OL>
+     *
+     * @param object
+     *               Object to compare to.
+     *
+     * @return True if <CODE>object</CODE> is equivalent to this job impressions
+     *         completed attribute, false otherwise.
+     */
+    public boolean equals(Object object) {
+        return (super.equals(object)
+                && object instanceof JobImpressionsCompleted);
+    }
 
-	/**
-	 * Get the printing attribute class which is to be used as the "category"
-	 * for this printing attribute value.
-	 * <P>
-	 * For class JobImpressionsCompleted, the category is class
-	 * JobImpressionsCompleted itself.
-	 *
-	 * @return Printing attribute class (category), an instance of class
-	 *         {@link java.lang.Class java.lang.Class}.
-	 */
-	public final Class<? extends Attribute> getCategory() {
-		return JobImpressionsCompleted.class;
-	}
+    /**
+     * Get the printing attribute class which is to be used as the "category"
+     * for this printing attribute value.
+     * <P>
+     * For class JobImpressionsCompleted, the category is class
+     * JobImpressionsCompleted itself.
+     *
+     * @return Printing attribute class (category), an instance of class
+     *         {@link java.lang.Class java.lang.Class}.
+     */
+    public final Class<? extends Attribute> getCategory() {
+        return JobImpressionsCompleted.class;
+    }
 
-	/**
-	 * Get the name of the category of which this attribute value is an
-	 * instance.
-	 * <P>
-	 * For class JobImpressionsCompleted, the category name is
-	 * <CODE>"job-impressions-completed"</CODE>.
-	 *
-	 * @return Attribute category name.
-	 */
-	public final String getName() {
-		return "job-impressions-completed";
-	}
+    /**
+     * Get the name of the category of which this attribute value is an
+     * instance.
+     * <P>
+     * For class JobImpressionsCompleted, the category name is
+     * <CODE>"job-impressions-completed"</CODE>.
+     *
+     * @return Attribute category name.
+     */
+    public final String getName() {
+        return "job-impressions-completed";
+    }
 
 }

@@ -25,61 +25,61 @@ import javax.print.attribute.EnumSyntax;
  */
 public class MediaName extends Media implements Attribute {
 
-	private static final long serialVersionUID = 4653117714524155448L;
+    private static final long serialVersionUID = 4653117714524155448L;
 
-	/**
-	 * white letter paper.
-	 */
-	public static final MediaName NA_LETTER_WHITE = new MediaName(0);
+    /**
+     * white letter paper.
+     */
+    public static final MediaName NA_LETTER_WHITE = new MediaName(0);
 
-	/**
-	 * letter transparency.
-	 */
-	public static final MediaName NA_LETTER_TRANSPARENT = new MediaName(1);
+    /**
+     * letter transparency.
+     */
+    public static final MediaName NA_LETTER_TRANSPARENT = new MediaName(1);
 
-	/**
-	 * white A4 paper.
-	 */
-	public static final MediaName ISO_A4_WHITE = new MediaName(2);
+    /**
+     * white A4 paper.
+     */
+    public static final MediaName ISO_A4_WHITE = new MediaName(2);
 
-	/**
-	 * A4 transparency.
-	 */
-	public static final MediaName ISO_A4_TRANSPARENT = new MediaName(3);
+    /**
+     * A4 transparency.
+     */
+    public static final MediaName ISO_A4_TRANSPARENT = new MediaName(3);
 
-	/**
-	 * Constructs a new media name enumeration value with the given integer
-	 * value.
-	 *
-	 * @param value
-	 *              Integer value.
-	 */
-	protected MediaName(int value) {
-		super(value);
-	}
+    /**
+     * Constructs a new media name enumeration value with the given integer
+     * value.
+     *
+     * @param value
+     *              Integer value.
+     */
+    protected MediaName(int value) {
+        super(value);
+    }
 
-	private static final String[] myStringTable = { "na-letter-white",
-			"na-letter-transparent", "iso-a4-white", "iso-a4-transparent" };
+    private static final String[] myStringTable = { "na-letter-white",
+            "na-letter-transparent", "iso-a4-white", "iso-a4-transparent" };
 
-	private static final MediaName[] myEnumValueTable = { NA_LETTER_WHITE,
-			NA_LETTER_TRANSPARENT, ISO_A4_WHITE, ISO_A4_TRANSPARENT };
+    private static final MediaName[] myEnumValueTable = { NA_LETTER_WHITE,
+            NA_LETTER_TRANSPARENT, ISO_A4_WHITE, ISO_A4_TRANSPARENT };
 
-	/**
-	 * Returns the string table for class MediaTray.
-	 * 
-	 * @return the String table.
-	 */
-	protected String[] getStringTable() {
-		return (String[]) myStringTable.clone();
-	}
+    /**
+     * Returns the string table for class MediaTray.
+     * 
+     * @return the String table.
+     */
+    protected String[] getStringTable() {
+        return (String[]) myStringTable.clone();
+    }
 
-	/**
-	 * Returns the enumeration value table for class MediaTray.
-	 * 
-	 * @return the enumeration value table.
-	 */
-	protected EnumSyntax[] getEnumValueTable() {
-		return (EnumSyntax[]) myEnumValueTable.clone();
-	}
+    /**
+     * Returns the enumeration value table for class MediaTray.
+     * 
+     * @return the enumeration value table.
+     */
+    protected EnumSyntax[] getEnumValueTable() {
+        return (EnumSyntax[]) myEnumValueTable.clone();
+    }
 
 }

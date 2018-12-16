@@ -29,34 +29,34 @@ import com.sun.org.apache.xml.internal.serializer.SerializationHandler;
  */
 public interface Translet {
 
-	public void transform(DOM document, SerializationHandler handler)
-			throws TransletException;
+    public void transform(DOM document, SerializationHandler handler)
+            throws TransletException;
 
-	public void transform(DOM document, SerializationHandler[] handlers)
-			throws TransletException;
+    public void transform(DOM document, SerializationHandler[] handlers)
+            throws TransletException;
 
-	public void transform(DOM document, DTMAxisIterator iterator,
-			SerializationHandler handler) throws TransletException;
+    public void transform(DOM document, DTMAxisIterator iterator,
+            SerializationHandler handler) throws TransletException;
 
-	public Object addParameter(String name, Object value);
+    public Object addParameter(String name, Object value);
 
-	public void buildKeys(DOM document, DTMAxisIterator iterator,
-			SerializationHandler handler, int root) throws TransletException;
+    public void buildKeys(DOM document, DTMAxisIterator iterator,
+            SerializationHandler handler, int root) throws TransletException;
 
-	public void addAuxiliaryClass(Class auxClass);
+    public void addAuxiliaryClass(Class auxClass);
 
-	public Class getAuxiliaryClass(String className);
+    public Class getAuxiliaryClass(String className);
 
-	public String[] getNamesArray();
+    public String[] getNamesArray();
 
-	public String[] getUrisArray();
+    public String[] getUrisArray();
 
-	public int[] getTypesArray();
+    public int[] getTypesArray();
 
-	public String[] getNamespaceArray();
+    public String[] getNamespaceArray();
 
-	public boolean useServicesMechnism();
+    public boolean useServicesMechnism();
 
-	public void setServicesMechnism(boolean flag);
+    public void setServicesMechnism(boolean flag);
 
 }

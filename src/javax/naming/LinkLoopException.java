@@ -20,30 +20,30 @@ package javax.naming;
  */
 
 public class LinkLoopException extends LinkException {
-	/**
-	 * Constructs a new instance of LinkLoopException with an explanation All
-	 * the other fields are initialized to null.
-	 * 
-	 * @param explanation
-	 *                    A possibly null string containing additional detail
-	 *                    about this
-	 *                    exception.
-	 * @see java.lang.Throwable#getMessage
-	 */
-	public LinkLoopException(String explanation) {
-		super(explanation);
-	}
+    /**
+     * Constructs a new instance of LinkLoopException with an explanation All
+     * the other fields are initialized to null.
+     * 
+     * @param explanation
+     *                    A possibly null string containing additional detail
+     *                    about this
+     *                    exception.
+     * @see java.lang.Throwable#getMessage
+     */
+    public LinkLoopException(String explanation) {
+        super(explanation);
+    }
 
-	/**
-	 * Constructs a new instance of LinkLoopException. All the non-link-related
-	 * and link-related fields are initialized to null.
-	 */
-	public LinkLoopException() {
-		super();
-	}
+    /**
+     * Constructs a new instance of LinkLoopException. All the non-link-related
+     * and link-related fields are initialized to null.
+     */
+    public LinkLoopException() {
+        super();
+    }
 
-	/**
-	 * Use serialVersionUID from JNDI 1.1.1 for interoperability
-	 */
-	private static final long serialVersionUID = -3119189944325198009L;
+    /**
+     * Use serialVersionUID from JNDI 1.1.1 for interoperability
+     */
+    private static final long serialVersionUID = -3119189944325198009L;
 }

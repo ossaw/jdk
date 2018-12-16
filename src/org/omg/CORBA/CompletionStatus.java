@@ -30,100 +30,100 @@ package org.omg.CORBA;
  */
 
 public final class CompletionStatus implements
-		org.omg.CORBA.portable.IDLEntity {
-	/**
-	 * The constant indicating that a method completed running before a
-	 * <code>SystemException</code> was thrown.
-	 */
-	public static final int _COMPLETED_YES = 0,
+        org.omg.CORBA.portable.IDLEntity {
+    /**
+     * The constant indicating that a method completed running before a
+     * <code>SystemException</code> was thrown.
+     */
+    public static final int _COMPLETED_YES = 0,
 
-			/**
-			 * The constant indicating that a method had not completed running
-			 * when a <code>SystemException</code> was thrown.
-			 */
-			_COMPLETED_NO = 1,
+            /**
+             * The constant indicating that a method had not completed running
+             * when a <code>SystemException</code> was thrown.
+             */
+            _COMPLETED_NO = 1,
 
-			/**
-			 * The constant indicating that it is unknown whether a method had
-			 * completed running when a <code>SystemException</code> was thrown.
-			 */
-			_COMPLETED_MAYBE = 2;
+            /**
+             * The constant indicating that it is unknown whether a method had
+             * completed running when a <code>SystemException</code> was thrown.
+             */
+            _COMPLETED_MAYBE = 2;
 
-	/**
-	 * An instance of <code>CompletionStatus</code> initialized with the
-	 * constant <code>_COMPLETED_YES</code>.
-	 */
-	public static final CompletionStatus COMPLETED_YES = new CompletionStatus(
-			_COMPLETED_YES);
+    /**
+     * An instance of <code>CompletionStatus</code> initialized with the
+     * constant <code>_COMPLETED_YES</code>.
+     */
+    public static final CompletionStatus COMPLETED_YES = new CompletionStatus(
+            _COMPLETED_YES);
 
-	/**
-	 * An instance of <code>CompletionStatus</code> initialized with the
-	 * constant <code>_COMPLETED_NO</code>.
-	 */
-	public static final CompletionStatus COMPLETED_NO = new CompletionStatus(
-			_COMPLETED_NO);
+    /**
+     * An instance of <code>CompletionStatus</code> initialized with the
+     * constant <code>_COMPLETED_NO</code>.
+     */
+    public static final CompletionStatus COMPLETED_NO = new CompletionStatus(
+            _COMPLETED_NO);
 
-	/**
-	 * An instance of <code>CompletionStatus</code> initialized with the
-	 * constant <code>_COMPLETED_MAYBE</code>.
-	 */
-	public static final CompletionStatus COMPLETED_MAYBE = new CompletionStatus(
-			_COMPLETED_MAYBE);
+    /**
+     * An instance of <code>CompletionStatus</code> initialized with the
+     * constant <code>_COMPLETED_MAYBE</code>.
+     */
+    public static final CompletionStatus COMPLETED_MAYBE = new CompletionStatus(
+            _COMPLETED_MAYBE);
 
-	/**
-	 * Retrieves the value of this <code>CompletionStatus</code> object.
-	 *
-	 * @return one of the possible <code>CompletionStatus</code> values:
-	 *         <code>_COMPLETED_YES</code>, <code>_COMPLETED_NO</code>, or
-	 *         <code>_COMPLETED_MAYBE</code>
-	 *
-	 */
-	public int value() {
-		return _value;
-	}
+    /**
+     * Retrieves the value of this <code>CompletionStatus</code> object.
+     *
+     * @return one of the possible <code>CompletionStatus</code> values:
+     *         <code>_COMPLETED_YES</code>, <code>_COMPLETED_NO</code>, or
+     *         <code>_COMPLETED_MAYBE</code>
+     *
+     */
+    public int value() {
+        return _value;
+    }
 
-	/**
-	 * Creates a <code>CompletionStatus</code> object from the given
-	 * <code>int</code>.
-	 *
-	 * @param i
-	 *          one of <code>_COMPLETED_YES</code>, <code>_COMPLETED_NO</code>
-	 *          , or <code>_COMPLETED_MAYBE</code>
-	 *
-	 * @return one of the possible <code>CompletionStatus</code> objects with
-	 *         values: <code>_COMPLETED_YES</code>, <code>_COMPLETED_NO</code>,
-	 *         or <code>_COMPLETED_MAYBE</code>
-	 *
-	 * @exception org.omg.CORBA.BAD_PARAM
-	 *            if the argument given is not one of the <code>int</code>
-	 *            constants defined in <code>CompletionStatus</code>
-	 */
-	public static CompletionStatus from_int(int i) {
-		switch (i) {
-			case _COMPLETED_YES:
-				return COMPLETED_YES;
-			case _COMPLETED_NO:
-				return COMPLETED_NO;
-			case _COMPLETED_MAYBE:
-				return COMPLETED_MAYBE;
-			default:
-				throw new org.omg.CORBA.BAD_PARAM();
-		}
-	}
+    /**
+     * Creates a <code>CompletionStatus</code> object from the given
+     * <code>int</code>.
+     *
+     * @param i
+     *          one of <code>_COMPLETED_YES</code>, <code>_COMPLETED_NO</code>
+     *          , or <code>_COMPLETED_MAYBE</code>
+     *
+     * @return one of the possible <code>CompletionStatus</code> objects with
+     *         values: <code>_COMPLETED_YES</code>, <code>_COMPLETED_NO</code>,
+     *         or <code>_COMPLETED_MAYBE</code>
+     *
+     * @exception org.omg.CORBA.BAD_PARAM
+     *            if the argument given is not one of the <code>int</code>
+     *            constants defined in <code>CompletionStatus</code>
+     */
+    public static CompletionStatus from_int(int i) {
+        switch (i) {
+            case _COMPLETED_YES:
+                return COMPLETED_YES;
+            case _COMPLETED_NO:
+                return COMPLETED_NO;
+            case _COMPLETED_MAYBE:
+                return COMPLETED_MAYBE;
+            default:
+                throw new org.omg.CORBA.BAD_PARAM();
+        }
+    }
 
-	/**
-	 * Creates a <code>CompletionStatus</code> object from the given
-	 * <code>int</code>.
-	 *
-	 * @param _value
-	 *               one of <code>_COMPLETED_YES</code>,
-	 *               <code>_COMPLETED_NO</code>
-	 *               , or <code>_COMPLETED_MAYBE</code>
-	 *
-	 */
-	private CompletionStatus(int _value) {
-		this._value = _value;
-	}
+    /**
+     * Creates a <code>CompletionStatus</code> object from the given
+     * <code>int</code>.
+     *
+     * @param _value
+     *               one of <code>_COMPLETED_YES</code>,
+     *               <code>_COMPLETED_NO</code>
+     *               , or <code>_COMPLETED_MAYBE</code>
+     *
+     */
+    private CompletionStatus(int _value) {
+        this._value = _value;
+    }
 
-	private int _value;
+    private int _value;
 }

@@ -25,34 +25,34 @@ import javax.lang.model.SourceVersion;
  */
 public interface Tool {
 
-	/**
-	 * Run the tool with the given I/O channels and arguments. By convention a
-	 * tool returns 0 for success and nonzero for errors. Any diagnostics
-	 * generated will be written to either {@code out} or {@code err} in some
-	 * unspecified format.
-	 *
-	 * @param in
-	 *                  "standard" input; use System.in if null
-	 * @param out
-	 *                  "standard" output; use System.out if null
-	 * @param err
-	 *                  "standard" error; use System.err if null
-	 * @param arguments
-	 *                  arguments to pass to the tool
-	 * @return 0 for success; nonzero otherwise
-	 * @throws NullPointerException
-	 *                              if the array of arguments contains any
-	 *                              {@code null} elements.
-	 */
-	int run(InputStream in, OutputStream out, OutputStream err,
-			String... arguments);
+    /**
+     * Run the tool with the given I/O channels and arguments. By convention a
+     * tool returns 0 for success and nonzero for errors. Any diagnostics
+     * generated will be written to either {@code out} or {@code err} in some
+     * unspecified format.
+     *
+     * @param in
+     *                  "standard" input; use System.in if null
+     * @param out
+     *                  "standard" output; use System.out if null
+     * @param err
+     *                  "standard" error; use System.err if null
+     * @param arguments
+     *                  arguments to pass to the tool
+     * @return 0 for success; nonzero otherwise
+     * @throws NullPointerException
+     *                              if the array of arguments contains any
+     *                              {@code null} elements.
+     */
+    int run(InputStream in, OutputStream out, OutputStream err,
+            String... arguments);
 
-	/**
-	 * Gets the source versions of the Java&trade; programming language
-	 * supported by this tool.
-	 * 
-	 * @return a set of supported source versions
-	 */
-	Set<SourceVersion> getSourceVersions();
+    /**
+     * Gets the source versions of the Java&trade; programming language
+     * supported by this tool.
+     * 
+     * @return a set of supported source versions
+     */
+    Set<SourceVersion> getSourceVersions();
 
 }

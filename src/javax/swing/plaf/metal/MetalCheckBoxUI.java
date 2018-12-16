@@ -30,48 +30,48 @@ import java.io.Serializable;
  */
 public class MetalCheckBoxUI extends MetalRadioButtonUI {
 
-	// NOTE: MetalCheckBoxUI inherts from MetalRadioButtonUI instead
-	// of BasicCheckBoxUI because we want to pick up all the
-	// painting changes made in MetalRadioButtonUI.
+    // NOTE: MetalCheckBoxUI inherts from MetalRadioButtonUI instead
+    // of BasicCheckBoxUI because we want to pick up all the
+    // painting changes made in MetalRadioButtonUI.
 
-	private static final Object METAL_CHECK_BOX_UI_KEY = new Object();
+    private static final Object METAL_CHECK_BOX_UI_KEY = new Object();
 
-	private final static String propertyPrefix = "CheckBox" + ".";
+    private final static String propertyPrefix = "CheckBox" + ".";
 
-	private boolean defaults_initialized = false;
+    private boolean defaults_initialized = false;
 
-	// ********************************
-	// Create PlAF
-	// ********************************
-	public static ComponentUI createUI(JComponent b) {
-		AppContext appContext = AppContext.getAppContext();
-		MetalCheckBoxUI checkboxUI = (MetalCheckBoxUI) appContext.get(
-				METAL_CHECK_BOX_UI_KEY);
-		if (checkboxUI == null) {
-			checkboxUI = new MetalCheckBoxUI();
-			appContext.put(METAL_CHECK_BOX_UI_KEY, checkboxUI);
-		}
-		return checkboxUI;
-	}
+    // ********************************
+    // Create PlAF
+    // ********************************
+    public static ComponentUI createUI(JComponent b) {
+        AppContext appContext = AppContext.getAppContext();
+        MetalCheckBoxUI checkboxUI = (MetalCheckBoxUI) appContext.get(
+                METAL_CHECK_BOX_UI_KEY);
+        if (checkboxUI == null) {
+            checkboxUI = new MetalCheckBoxUI();
+            appContext.put(METAL_CHECK_BOX_UI_KEY, checkboxUI);
+        }
+        return checkboxUI;
+    }
 
-	public String getPropertyPrefix() {
-		return propertyPrefix;
-	}
+    public String getPropertyPrefix() {
+        return propertyPrefix;
+    }
 
-	// ********************************
-	// Defaults
-	// ********************************
-	public void installDefaults(AbstractButton b) {
-		super.installDefaults(b);
-		if (!defaults_initialized) {
-			icon = UIManager.getIcon(getPropertyPrefix() + "icon");
-			defaults_initialized = true;
-		}
-	}
+    // ********************************
+    // Defaults
+    // ********************************
+    public void installDefaults(AbstractButton b) {
+        super.installDefaults(b);
+        if (!defaults_initialized) {
+            icon = UIManager.getIcon(getPropertyPrefix() + "icon");
+            defaults_initialized = true;
+        }
+    }
 
-	protected void uninstallDefaults(AbstractButton b) {
-		super.uninstallDefaults(b);
-		defaults_initialized = false;
-	}
+    protected void uninstallDefaults(AbstractButton b) {
+        super.uninstallDefaults(b);
+        defaults_initialized = false;
+    }
 
 }

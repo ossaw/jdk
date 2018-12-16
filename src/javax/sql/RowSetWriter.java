@@ -28,21 +28,21 @@ import java.sql.*;
 
 public interface RowSetWriter {
 
-	/**
-	 * Writes the changes in this <code>RowSetWriter</code> object's rowset back
-	 * to the data source from which it got its data.
-	 *
-	 * @param caller
-	 *               the <code>RowSet</code> object (1) that has implemented the
-	 *               <code>RowSetInternal</code> interface, (2) with which this
-	 *               writer is registered, and (3) that called this method
-	 *               internally
-	 * @return <code>true</code> if the modified data was written;
-	 *         <code>false</code> if not, which will be the case if there is a
-	 *         conflict
-	 * @exception SQLException
-	 *                         if a database access error occurs
-	 */
-	boolean writeData(RowSetInternal caller) throws SQLException;
+    /**
+     * Writes the changes in this <code>RowSetWriter</code> object's rowset back
+     * to the data source from which it got its data.
+     *
+     * @param caller
+     *               the <code>RowSet</code> object (1) that has implemented the
+     *               <code>RowSetInternal</code> interface, (2) with which this
+     *               writer is registered, and (3) that called this method
+     *               internally
+     * @return <code>true</code> if the modified data was written;
+     *         <code>false</code> if not, which will be the case if there is a
+     *         conflict
+     * @exception SQLException
+     *                         if a database access error occurs
+     */
+    boolean writeData(RowSetInternal caller) throws SQLException;
 
 }

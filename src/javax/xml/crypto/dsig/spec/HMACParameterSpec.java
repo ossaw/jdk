@@ -35,25 +35,25 @@ import javax.xml.crypto.dsig.SignatureMethod;
  */
 public final class HMACParameterSpec implements SignatureMethodParameterSpec {
 
-	private int outputLength;
+    private int outputLength;
 
-	/**
-	 * Creates an <code>HMACParameterSpec</code> with the specified truncation
-	 * length.
-	 *
-	 * @param outputLength
-	 *                     the truncation length in number of bits
-	 */
-	public HMACParameterSpec(int outputLength) {
-		this.outputLength = outputLength;
-	}
+    /**
+     * Creates an <code>HMACParameterSpec</code> with the specified truncation
+     * length.
+     *
+     * @param outputLength
+     *                     the truncation length in number of bits
+     */
+    public HMACParameterSpec(int outputLength) {
+        this.outputLength = outputLength;
+    }
 
-	/**
-	 * Returns the truncation length.
-	 *
-	 * @return the truncation length in number of bits
-	 */
-	public int getOutputLength() {
-		return outputLength;
-	}
+    /**
+     * Returns the truncation length.
+     *
+     * @return the truncation length in number of bits
+     */
+    public int getOutputLength() {
+        return outputLength;
+    }
 }

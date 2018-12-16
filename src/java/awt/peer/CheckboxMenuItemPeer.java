@@ -16,14 +16,14 @@ import java.awt.CheckboxMenuItem;
  */
 public interface CheckboxMenuItemPeer extends MenuItemPeer {
 
-	/**
-	 * Sets the state of the checkbox to be checked {@code true} or unchecked
-	 * {@code false}.
-	 *
-	 * @param state
-	 *              the state to set on the checkbox
-	 *
-	 * @see CheckboxMenuItem#setState(boolean)
-	 */
-	void setState(boolean state);
+    /**
+     * Sets the state of the checkbox to be checked {@code true} or unchecked
+     * {@code false}.
+     *
+     * @param state
+     *              the state to set on the checkbox
+     *
+     * @see CheckboxMenuItem#setState(boolean)
+     */
+    void setState(boolean state);
 }

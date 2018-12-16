@@ -24,32 +24,32 @@ package java.rmi;
  */
 public class MarshalException extends RemoteException {
 
-	/* indicate compatibility with JDK 1.1.x version of class */
-	private static final long serialVersionUID = 6223554758134037936L;
+    /* indicate compatibility with JDK 1.1.x version of class */
+    private static final long serialVersionUID = 6223554758134037936L;
 
-	/**
-	 * Constructs a <code>MarshalException</code> with the specified detail
-	 * message.
-	 *
-	 * @param s
-	 *          the detail message
-	 * @since JDK1.1
-	 */
-	public MarshalException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs a <code>MarshalException</code> with the specified detail
+     * message.
+     *
+     * @param s
+     *          the detail message
+     * @since JDK1.1
+     */
+    public MarshalException(String s) {
+        super(s);
+    }
 
-	/**
-	 * Constructs a <code>MarshalException</code> with the specified detail
-	 * message and nested exception.
-	 *
-	 * @param s
-	 *           the detail message
-	 * @param ex
-	 *           the nested exception
-	 * @since JDK1.1
-	 */
-	public MarshalException(String s, Exception ex) {
-		super(s, ex);
-	}
+    /**
+     * Constructs a <code>MarshalException</code> with the specified detail
+     * message and nested exception.
+     *
+     * @param s
+     *           the detail message
+     * @param ex
+     *           the nested exception
+     * @since JDK1.1
+     */
+    public MarshalException(String s, Exception ex) {
+        super(s, ex);
+    }
 }

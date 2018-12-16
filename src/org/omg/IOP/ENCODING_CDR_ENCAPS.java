@@ -10,10 +10,10 @@ package org.omg.IOP;
 
 public interface ENCODING_CDR_ENCAPS {
 
-	/**
-	 * The CDR Encapsulation encoding.
-	 * 
-	 * @see CodecFactory
-	 */
-	public static final short value = (short) (0);
+    /**
+     * The CDR Encapsulation encoding.
+     * 
+     * @see CodecFactory
+     */
+    public static final short value = (short) (0);
 }

@@ -17,15 +17,15 @@ import com.sun.jmx.snmp.SnmpUnknownModelException;
  * @since 1.5
  */
 public class SnmpUnknownSecModelException extends SnmpUnknownModelException {
-	private static final long serialVersionUID = -2173491650805292799L;
+    private static final long serialVersionUID = -2173491650805292799L;
 
-	/**
-	 * Constructor.
-	 * 
-	 * @param msg
-	 *            The exception msg to display.
-	 */
-	public SnmpUnknownSecModelException(String msg) {
-		super(msg);
-	}
+    /**
+     * Constructor.
+     * 
+     * @param msg
+     *            The exception msg to display.
+     */
+    public SnmpUnknownSecModelException(String msg) {
+        super(msg);
+    }
 }

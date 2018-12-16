@@ -20,10 +20,10 @@ import com.sun.corba.se.spi.orb.ORB;
  * support more than one IOR in the case of GIOP with Location Forward messages.
  */
 public interface CorbaContactInfoListFactory {
-	/**
-	 * This will be called after the no-arg constructor before create is called.
-	 */
-	public void setORB(ORB orb);
+    /**
+     * This will be called after the no-arg constructor before create is called.
+     */
+    public void setORB(ORB orb);
 
-	public CorbaContactInfoList create(IOR ior);
+    public CorbaContactInfoList create(IOR ior);
 }

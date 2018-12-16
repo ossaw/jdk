@@ -62,31 +62,31 @@ package com.sun.org.apache.bcel.internal.generic;
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public class DCMPL extends Instruction implements TypedInstruction,
-		StackProducer, StackConsumer {
-	public DCMPL() {
-		super(com.sun.org.apache.bcel.internal.Constants.DCMPL, (short) 1);
-	}
+        StackProducer, StackConsumer {
+    public DCMPL() {
+        super(com.sun.org.apache.bcel.internal.Constants.DCMPL, (short) 1);
+    }
 
-	/**
-	 * @return Type.DOUBLE
-	 */
-	public Type getType(ConstantPoolGen cp) {
-		return Type.DOUBLE;
-	}
+    /**
+     * @return Type.DOUBLE
+     */
+    public Type getType(ConstantPoolGen cp) {
+        return Type.DOUBLE;
+    }
 
-	/**
-	 * Call corresponding visitor method(s). The order is: Call visitor methods
-	 * of implemented interfaces first, then call methods according to the class
-	 * hierarchy in descending order, i.e., the most specific visitXXX() call
-	 * comes last.
-	 *
-	 * @param v
-	 *          Visitor object
-	 */
-	public void accept(Visitor v) {
-		v.visitTypedInstruction(this);
-		v.visitStackProducer(this);
-		v.visitStackConsumer(this);
-		v.visitDCMPL(this);
-	}
+    /**
+     * Call corresponding visitor method(s). The order is: Call visitor methods
+     * of implemented interfaces first, then call methods according to the class
+     * hierarchy in descending order, i.e., the most specific visitXXX() call
+     * comes last.
+     *
+     * @param v
+     *          Visitor object
+     */
+    public void accept(Visitor v) {
+        v.visitTypedInstruction(this);
+        v.visitStackProducer(this);
+        v.visitStackConsumer(this);
+        v.visitDCMPL(this);
+    }
 }

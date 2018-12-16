@@ -28,78 +28,78 @@ import javax.swing.*;
  * @see ListSelectionModel
  */
 public class ListSelectionEvent extends EventObject {
-	private int firstIndex;
-	private int lastIndex;
-	private boolean isAdjusting;
+    private int firstIndex;
+    private int lastIndex;
+    private boolean isAdjusting;
 
-	/**
-	 * Represents a change in selection status between {@code firstIndex} and
-	 * {@code lastIndex}, inclusive. {@code firstIndex} is less than or equal to
-	 * {@code lastIndex}. The selection of at least one index within the range
-	 * will have changed.
-	 *
-	 * @param firstIndex
-	 *                    the first index in the range, &lt;= lastIndex
-	 * @param lastIndex
-	 *                    the last index in the range, &gt;= firstIndex
-	 * @param isAdjusting
-	 *                    whether or not this is one in a series of multiple
-	 *                    events,
-	 *                    where changes are still being made
-	 */
-	public ListSelectionEvent(Object source, int firstIndex, int lastIndex,
-			boolean isAdjusting) {
-		super(source);
-		this.firstIndex = firstIndex;
-		this.lastIndex = lastIndex;
-		this.isAdjusting = isAdjusting;
-	}
+    /**
+     * Represents a change in selection status between {@code firstIndex} and
+     * {@code lastIndex}, inclusive. {@code firstIndex} is less than or equal to
+     * {@code lastIndex}. The selection of at least one index within the range
+     * will have changed.
+     *
+     * @param firstIndex
+     *                    the first index in the range, &lt;= lastIndex
+     * @param lastIndex
+     *                    the last index in the range, &gt;= firstIndex
+     * @param isAdjusting
+     *                    whether or not this is one in a series of multiple
+     *                    events,
+     *                    where changes are still being made
+     */
+    public ListSelectionEvent(Object source, int firstIndex, int lastIndex,
+            boolean isAdjusting) {
+        super(source);
+        this.firstIndex = firstIndex;
+        this.lastIndex = lastIndex;
+        this.isAdjusting = isAdjusting;
+    }
 
-	/**
-	 * Returns the index of the first row whose selection may have changed.
-	 * {@code getFirstIndex() <= getLastIndex()}
-	 *
-	 * @return the first row whose selection value may have changed, where zero
-	 *         is the first row
-	 */
-	public int getFirstIndex() {
-		return firstIndex;
-	}
+    /**
+     * Returns the index of the first row whose selection may have changed.
+     * {@code getFirstIndex() <= getLastIndex()}
+     *
+     * @return the first row whose selection value may have changed, where zero
+     *         is the first row
+     */
+    public int getFirstIndex() {
+        return firstIndex;
+    }
 
-	/**
-	 * Returns the index of the last row whose selection may have changed.
-	 * {@code getLastIndex() >= getFirstIndex()}
-	 *
-	 * @return the last row whose selection value may have changed, where zero
-	 *         is the first row
-	 */
-	public int getLastIndex() {
-		return lastIndex;
-	}
+    /**
+     * Returns the index of the last row whose selection may have changed.
+     * {@code getLastIndex() >= getFirstIndex()}
+     *
+     * @return the last row whose selection value may have changed, where zero
+     *         is the first row
+     */
+    public int getLastIndex() {
+        return lastIndex;
+    }
 
-	/**
-	 * Returns whether or not this is one in a series of multiple events, where
-	 * changes are still being made. See the documentation for
-	 * {@link javax.swing.ListSelectionModel#setValueIsAdjusting} for more
-	 * details on how this is used.
-	 *
-	 * @return {@code true} if this is one in a series of multiple events, where
-	 *         changes are still being made
-	 */
-	public boolean getValueIsAdjusting() {
-		return isAdjusting;
-	}
+    /**
+     * Returns whether or not this is one in a series of multiple events, where
+     * changes are still being made. See the documentation for
+     * {@link javax.swing.ListSelectionModel#setValueIsAdjusting} for more
+     * details on how this is used.
+     *
+     * @return {@code true} if this is one in a series of multiple events, where
+     *         changes are still being made
+     */
+    public boolean getValueIsAdjusting() {
+        return isAdjusting;
+    }
 
-	/**
-	 * Returns a {@code String} that displays and identifies this object's
-	 * properties.
-	 *
-	 * @return a String representation of this object
-	 */
-	public String toString() {
-		String properties = " source=" + getSource() + " firstIndex= "
-				+ firstIndex + " lastIndex= " + lastIndex + " isAdjusting= "
-				+ isAdjusting + " ";
-		return getClass().getName() + "[" + properties + "]";
-	}
+    /**
+     * Returns a {@code String} that displays and identifies this object's
+     * properties.
+     *
+     * @return a String representation of this object
+     */
+    public String toString() {
+        String properties = " source=" + getSource() + " firstIndex= "
+                + firstIndex + " lastIndex= " + lastIndex + " isAdjusting= "
+                + isAdjusting + " ";
+        return getClass().getName() + "[" + properties + "]";
+    }
 }

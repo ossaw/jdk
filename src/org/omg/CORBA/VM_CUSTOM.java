@@ -13,8 +13,8 @@ package org.omg.CORBA;
  * @see org.omg.CORBA.TypeCode
  */
 public interface VM_CUSTOM {
-	/**
-	 * The value representing a custom marshalled value type in a typecode.
-	 */
-	final short value = (short) (1L);
+    /**
+     * The value representing a custom marshalled value type in a typecode.
+     */
+    final short value = (short) (1L);
 }

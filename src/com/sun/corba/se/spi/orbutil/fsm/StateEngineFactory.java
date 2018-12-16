@@ -13,9 +13,9 @@ import com.sun.corba.se.impl.orbutil.fsm.StateEngineImpl;
  * @author Ken Cavanaugh
  */
 public class StateEngineFactory {
-	private StateEngineFactory() {}
+    private StateEngineFactory() {}
 
-	public static StateEngine create() {
-		return new StateEngineImpl();
-	}
+    public static StateEngine create() {
+        return new StateEngineImpl();
+    }
 }

@@ -13,22 +13,22 @@ package java.net;
  * @since JDK1.1
  */
 public class ConnectException extends SocketException {
-	private static final long serialVersionUID = 3831404271622369215L;
+    private static final long serialVersionUID = 3831404271622369215L;
 
-	/**
-	 * Constructs a new ConnectException with the specified detail message as to
-	 * why the connect error occurred. A detail message is a String that gives a
-	 * specific description of this error.
-	 * 
-	 * @param msg
-	 *            the detail message
-	 */
-	public ConnectException(String msg) {
-		super(msg);
-	}
+    /**
+     * Constructs a new ConnectException with the specified detail message as to
+     * why the connect error occurred. A detail message is a String that gives a
+     * specific description of this error.
+     * 
+     * @param msg
+     *            the detail message
+     */
+    public ConnectException(String msg) {
+        super(msg);
+    }
 
-	/**
-	 * Construct a new ConnectException with no detailed message.
-	 */
-	public ConnectException() {}
+    /**
+     * Construct a new ConnectException with no detailed message.
+     */
+    public ConnectException() {}
 }

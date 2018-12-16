@@ -32,50 +32,50 @@ import java.util.Vector;
  */
 public class ValidationManager {
 
-	protected final Vector fVSs = new Vector();
-	protected boolean fGrammarFound = false;
+    protected final Vector fVSs = new Vector();
+    protected boolean fGrammarFound = false;
 
-	// used by the DTD validator to tell other components that it has a
-	// cached DTD in hand so there's no reason to
-	// scan external subset or entity decls.
-	protected boolean fCachedDTD = false;
+    // used by the DTD validator to tell other components that it has a
+    // cached DTD in hand so there's no reason to
+    // scan external subset or entity decls.
+    protected boolean fCachedDTD = false;
 
-	/**
-	 * Each validator should call this method to add its ValidationState into
-	 * the validation manager.
-	 */
-	public final void addValidationState(ValidationState vs) {
-		fVSs.addElement(vs);
-	}
+    /**
+     * Each validator should call this method to add its ValidationState into
+     * the validation manager.
+     */
+    public final void addValidationState(ValidationState vs) {
+        fVSs.addElement(vs);
+    }
 
-	/**
-	 * Set the information required to validate entity values.
-	 */
-	public final void setEntityState(EntityState state) {
-		for (int i = fVSs.size() - 1; i >= 0; i--) {
-			((ValidationState) fVSs.elementAt(i)).setEntityState(state);
-		}
-	}
+    /**
+     * Set the information required to validate entity values.
+     */
+    public final void setEntityState(EntityState state) {
+        for (int i = fVSs.size() - 1; i >= 0; i--) {
+            ((ValidationState) fVSs.elementAt(i)).setEntityState(state);
+        }
+    }
 
-	public final void setGrammarFound(boolean grammar) {
-		fGrammarFound = grammar;
-	}
+    public final void setGrammarFound(boolean grammar) {
+        fGrammarFound = grammar;
+    }
 
-	public final boolean isGrammarFound() {
-		return fGrammarFound;
-	}
+    public final boolean isGrammarFound() {
+        return fGrammarFound;
+    }
 
-	public final void setCachedDTD(boolean cachedDTD) {
-		fCachedDTD = cachedDTD;
-	} // setCachedDTD(boolean)
+    public final void setCachedDTD(boolean cachedDTD) {
+        fCachedDTD = cachedDTD;
+    } // setCachedDTD(boolean)
 
-	public final boolean isCachedDTD() {
-		return fCachedDTD;
-	} // isCachedDTD(): boolean
+    public final boolean isCachedDTD() {
+        return fCachedDTD;
+    } // isCachedDTD(): boolean
 
-	public final void reset() {
-		fVSs.removeAllElements();
-		fGrammarFound = false;
-		fCachedDTD = false;
-	}
+    public final void reset() {
+        fVSs.removeAllElements();
+        fGrammarFound = false;
+        fCachedDTD = false;
+    }
 }

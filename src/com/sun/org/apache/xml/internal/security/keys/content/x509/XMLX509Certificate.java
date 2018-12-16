@@ -36,134 +36,134 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 public class XMLX509Certificate extends SignatureElementProxy implements
-		XMLX509DataContent {
+        XMLX509DataContent {
 
-	/** Field JCA_CERT_ID */
-	public static final String JCA_CERT_ID = "X.509";
+    /** Field JCA_CERT_ID */
+    public static final String JCA_CERT_ID = "X.509";
 
-	/**
-	 * Constructor X509Certificate
-	 *
-	 * @param element
-	 * @param BaseURI
-	 * @throws XMLSecurityException
-	 */
-	public XMLX509Certificate(Element element, String BaseURI)
-			throws XMLSecurityException {
-		super(element, BaseURI);
-	}
+    /**
+     * Constructor X509Certificate
+     *
+     * @param element
+     * @param BaseURI
+     * @throws XMLSecurityException
+     */
+    public XMLX509Certificate(Element element, String BaseURI)
+            throws XMLSecurityException {
+        super(element, BaseURI);
+    }
 
-	/**
-	 * Constructor X509Certificate
-	 *
-	 * @param doc
-	 * @param certificateBytes
-	 */
-	public XMLX509Certificate(Document doc, byte[] certificateBytes) {
-		super(doc);
+    /**
+     * Constructor X509Certificate
+     *
+     * @param doc
+     * @param certificateBytes
+     */
+    public XMLX509Certificate(Document doc, byte[] certificateBytes) {
+        super(doc);
 
-		this.addBase64Text(certificateBytes);
-	}
+        this.addBase64Text(certificateBytes);
+    }
 
-	/**
-	 * Constructor XMLX509Certificate
-	 *
-	 * @param doc
-	 * @param x509certificate
-	 * @throws XMLSecurityException
-	 */
-	public XMLX509Certificate(Document doc, X509Certificate x509certificate)
-			throws XMLSecurityException {
-		super(doc);
+    /**
+     * Constructor XMLX509Certificate
+     *
+     * @param doc
+     * @param x509certificate
+     * @throws XMLSecurityException
+     */
+    public XMLX509Certificate(Document doc, X509Certificate x509certificate)
+            throws XMLSecurityException {
+        super(doc);
 
-		try {
-			this.addBase64Text(x509certificate.getEncoded());
-		} catch (java.security.cert.CertificateEncodingException ex) {
-			throw new XMLSecurityException("empty", ex);
-		}
-	}
+        try {
+            this.addBase64Text(x509certificate.getEncoded());
+        } catch (java.security.cert.CertificateEncodingException ex) {
+            throw new XMLSecurityException("empty", ex);
+        }
+    }
 
-	/**
-	 * Method getCertificateBytes
-	 *
-	 * @return the certificate bytes
-	 * @throws XMLSecurityException
-	 */
-	public byte[] getCertificateBytes() throws XMLSecurityException {
-		return this.getBytesFromTextChild();
-	}
+    /**
+     * Method getCertificateBytes
+     *
+     * @return the certificate bytes
+     * @throws XMLSecurityException
+     */
+    public byte[] getCertificateBytes() throws XMLSecurityException {
+        return this.getBytesFromTextChild();
+    }
 
-	/**
-	 * Method getX509Certificate
-	 *
-	 * @return the x509 certificate
-	 * @throws XMLSecurityException
-	 */
-	public X509Certificate getX509Certificate() throws XMLSecurityException {
-		try {
-			byte certbytes[] = this.getCertificateBytes();
-			CertificateFactory certFact = CertificateFactory.getInstance(
-					XMLX509Certificate.JCA_CERT_ID);
-			X509Certificate cert = (X509Certificate) certFact
-					.generateCertificate(new ByteArrayInputStream(certbytes));
+    /**
+     * Method getX509Certificate
+     *
+     * @return the x509 certificate
+     * @throws XMLSecurityException
+     */
+    public X509Certificate getX509Certificate() throws XMLSecurityException {
+        try {
+            byte certbytes[] = this.getCertificateBytes();
+            CertificateFactory certFact = CertificateFactory.getInstance(
+                    XMLX509Certificate.JCA_CERT_ID);
+            X509Certificate cert = (X509Certificate) certFact
+                    .generateCertificate(new ByteArrayInputStream(certbytes));
 
-			if (cert != null) {
-				return cert;
-			}
+            if (cert != null) {
+                return cert;
+            }
 
-			return null;
-		} catch (CertificateException ex) {
-			throw new XMLSecurityException("empty", ex);
-		}
-	}
+            return null;
+        } catch (CertificateException ex) {
+            throw new XMLSecurityException("empty", ex);
+        }
+    }
 
-	/**
-	 * Method getPublicKey
-	 *
-	 * @return the publickey
-	 * @throws XMLSecurityException
-	 */
-	public PublicKey getPublicKey() throws XMLSecurityException {
-		X509Certificate cert = this.getX509Certificate();
+    /**
+     * Method getPublicKey
+     *
+     * @return the publickey
+     * @throws XMLSecurityException
+     */
+    public PublicKey getPublicKey() throws XMLSecurityException {
+        X509Certificate cert = this.getX509Certificate();
 
-		if (cert != null) {
-			return cert.getPublicKey();
-		}
+        if (cert != null) {
+            return cert.getPublicKey();
+        }
 
-		return null;
-	}
+        return null;
+    }
 
-	/** @inheritDoc */
-	public boolean equals(Object obj) {
-		if (!(obj instanceof XMLX509Certificate)) {
-			return false;
-		}
-		XMLX509Certificate other = (XMLX509Certificate) obj;
-		try {
-			return Arrays.equals(other.getCertificateBytes(), this
-					.getCertificateBytes());
-		} catch (XMLSecurityException ex) {
-			return false;
-		}
-	}
+    /** @inheritDoc */
+    public boolean equals(Object obj) {
+        if (!(obj instanceof XMLX509Certificate)) {
+            return false;
+        }
+        XMLX509Certificate other = (XMLX509Certificate) obj;
+        try {
+            return Arrays.equals(other.getCertificateBytes(), this
+                    .getCertificateBytes());
+        } catch (XMLSecurityException ex) {
+            return false;
+        }
+    }
 
-	public int hashCode() {
-		int result = 17;
-		try {
-			byte[] bytes = getCertificateBytes();
-			for (int i = 0; i < bytes.length; i++) {
-				result = 31 * result + bytes[i];
-			}
-		} catch (XMLSecurityException e) {
-			if (log.isLoggable(java.util.logging.Level.FINE)) {
-				log.log(java.util.logging.Level.FINE, e.getMessage(), e);
-			}
-		}
-		return result;
-	}
+    public int hashCode() {
+        int result = 17;
+        try {
+            byte[] bytes = getCertificateBytes();
+            for (int i = 0; i < bytes.length; i++) {
+                result = 31 * result + bytes[i];
+            }
+        } catch (XMLSecurityException e) {
+            if (log.isLoggable(java.util.logging.Level.FINE)) {
+                log.log(java.util.logging.Level.FINE, e.getMessage(), e);
+            }
+        }
+        return result;
+    }
 
-	/** @inheritDoc */
-	public String getBaseLocalName() {
-		return Constants._TAG_X509CERTIFICATE;
-	}
+    /** @inheritDoc */
+    public String getBaseLocalName() {
+        return Constants._TAG_X509CERTIFICATE;
+    }
 }

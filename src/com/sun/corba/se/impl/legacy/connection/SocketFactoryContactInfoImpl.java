@@ -20,56 +20,56 @@ import com.sun.corba.se.impl.transport.SocketOrChannelContactInfoImpl;
  * @author Harold Carr
  */
 public class SocketFactoryContactInfoImpl extends
-		SocketOrChannelContactInfoImpl {
-	protected ORBUtilSystemException wrapper;
-	protected SocketInfo socketInfo;
+        SocketOrChannelContactInfoImpl {
+    protected ORBUtilSystemException wrapper;
+    protected SocketInfo socketInfo;
 
-	// XREVISIT
-	// See SocketOrChannelAcceptorImpl.createMessageMediator
-	// See SocketFactoryContactInfoImpl.constructor()
-	// See SocketOrChannelContactInfoImpl.constructor()
-	public SocketFactoryContactInfoImpl() {}
+    // XREVISIT
+    // See SocketOrChannelAcceptorImpl.createMessageMediator
+    // See SocketFactoryContactInfoImpl.constructor()
+    // See SocketOrChannelContactInfoImpl.constructor()
+    public SocketFactoryContactInfoImpl() {}
 
-	public SocketFactoryContactInfoImpl(ORB orb,
-			CorbaContactInfoList contactInfoList, IOR effectiveTargetIOR,
-			short addressingDisposition, SocketInfo cookie) {
-		super(orb, contactInfoList);
-		this.effectiveTargetIOR = effectiveTargetIOR;
-		this.addressingDisposition = addressingDisposition;
+    public SocketFactoryContactInfoImpl(ORB orb,
+            CorbaContactInfoList contactInfoList, IOR effectiveTargetIOR,
+            short addressingDisposition, SocketInfo cookie) {
+        super(orb, contactInfoList);
+        this.effectiveTargetIOR = effectiveTargetIOR;
+        this.addressingDisposition = addressingDisposition;
 
-		wrapper = ORBUtilSystemException.get(orb,
-				CORBALogDomains.RPC_TRANSPORT);
+        wrapper = ORBUtilSystemException.get(orb,
+                CORBALogDomains.RPC_TRANSPORT);
 
-		socketInfo = orb.getORBData().getLegacySocketFactory().getEndPointInfo(
-				orb, effectiveTargetIOR, cookie);
+        socketInfo = orb.getORBData().getLegacySocketFactory().getEndPointInfo(
+                orb, effectiveTargetIOR, cookie);
 
-		socketType = socketInfo.getType();
-		hostname = socketInfo.getHost();
-		port = socketInfo.getPort();
-	}
+        socketType = socketInfo.getType();
+        hostname = socketInfo.getHost();
+        port = socketInfo.getPort();
+    }
 
-	////////////////////////////////////////////////////
-	//
-	// pept.transport.ContactInfo
-	//
+    ////////////////////////////////////////////////////
+    //
+    // pept.transport.ContactInfo
+    //
 
-	public Connection createConnection() {
-		Connection connection = new SocketFactoryConnectionImpl(orb, this, orb
-				.getORBData().connectionSocketUseSelectThreadToWait(), orb
-						.getORBData()
-						.connectionSocketUseWorkerThreadForEvent());
-		return connection;
-	}
+    public Connection createConnection() {
+        Connection connection = new SocketFactoryConnectionImpl(orb, this, orb
+                .getORBData().connectionSocketUseSelectThreadToWait(), orb
+                        .getORBData()
+                        .connectionSocketUseWorkerThreadForEvent());
+        return connection;
+    }
 
-	////////////////////////////////////////////////////
-	//
-	// java.lang.Object
-	//
+    ////////////////////////////////////////////////////
+    //
+    // java.lang.Object
+    //
 
-	public String toString() {
-		return "SocketFactoryContactInfoImpl[" + socketType + " " + hostname
-				+ " " + port + "]";
-	}
+    public String toString() {
+        return "SocketFactoryContactInfoImpl[" + socketType + " " + hostname
+                + " " + port + "]";
+    }
 }
 
 // End of file.

@@ -24,14 +24,14 @@ import java.util.EventListener;
 
 public interface InputMethodListener extends EventListener {
 
-	/**
-	 * Invoked when the text entered through an input method has changed.
-	 */
-	void inputMethodTextChanged(InputMethodEvent event);
+    /**
+     * Invoked when the text entered through an input method has changed.
+     */
+    void inputMethodTextChanged(InputMethodEvent event);
 
-	/**
-	 * Invoked when the caret within composed text has changed.
-	 */
-	void caretPositionChanged(InputMethodEvent event);
+    /**
+     * Invoked when the caret within composed text has changed.
+     */
+    void caretPositionChanged(InputMethodEvent event);
 
 }

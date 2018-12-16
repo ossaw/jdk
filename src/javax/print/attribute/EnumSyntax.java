@@ -17,27 +17,27 @@ import java.io.Serializable;
  * 
  * <PRE>
  * public class Bach extends EnumSyntax {
- * 	public static final Bach JOHANN_SEBASTIAN = new Bach(0);
- * 	public static final Bach WILHELM_FRIEDEMANN = new Bach(1);
- * 	public static final Bach CARL_PHILIP_EMMANUEL = new Bach(2);
- * 	public static final Bach JOHANN_CHRISTIAN = new Bach(3);
- * 	public static final Bach P_D_Q = new Bach(4);
+ *     public static final Bach JOHANN_SEBASTIAN = new Bach(0);
+ *     public static final Bach WILHELM_FRIEDEMANN = new Bach(1);
+ *     public static final Bach CARL_PHILIP_EMMANUEL = new Bach(2);
+ *     public static final Bach JOHANN_CHRISTIAN = new Bach(3);
+ *     public static final Bach P_D_Q = new Bach(4);
  *
- * 	private static final String[] stringTable = { "Johann Sebastian Bach",
- * 			"Wilhelm Friedemann Bach", "Carl Philip Emmanuel Bach",
- * 			"Johann Christian Bach", "P.D.Q. Bach" };
+ *     private static final String[] stringTable = { "Johann Sebastian Bach",
+ *             "Wilhelm Friedemann Bach", "Carl Philip Emmanuel Bach",
+ *             "Johann Christian Bach", "P.D.Q. Bach" };
  *
- * 	protected String[] getStringTable() {
- * 		return stringTable;
- * 	}
+ *     protected String[] getStringTable() {
+ *         return stringTable;
+ *     }
  *
- * 	private static final Bach[] enumValueTable = { JOHANN_SEBASTIAN,
- * 			WILHELM_FRIEDEMANN, CARL_PHILIP_EMMANUEL, JOHANN_CHRISTIAN,
- * 			P_D_Q };
+ *     private static final Bach[] enumValueTable = { JOHANN_SEBASTIAN,
+ *             WILHELM_FRIEDEMANN, CARL_PHILIP_EMMANUEL, JOHANN_CHRISTIAN,
+ *             P_D_Q };
  *
- * 	protected EnumSyntax[] getEnumValueTable() {
- * 		return enumValueTable;
- * 	}
+ *     protected EnumSyntax[] getEnumValueTable() {
+ *         return enumValueTable;
+ *     }
  * }
  * </PRE>
  * 
@@ -83,184 +83,184 @@ import java.io.Serializable;
  */
 public abstract class EnumSyntax implements Serializable, Cloneable {
 
-	private static final long serialVersionUID = -2739521845085831642L;
+    private static final long serialVersionUID = -2739521845085831642L;
 
-	/**
-	 * This enumeration value's integer value.
-	 * 
-	 * @serial
-	 */
-	private int value;
+    /**
+     * This enumeration value's integer value.
+     * 
+     * @serial
+     */
+    private int value;
 
-	/**
-	 * Construct a new enumeration value with the given integer value.
-	 *
-	 * @param value
-	 *              Integer value.
-	 */
-	protected EnumSyntax(int value) {
-		this.value = value;
-	}
+    /**
+     * Construct a new enumeration value with the given integer value.
+     *
+     * @param value
+     *              Integer value.
+     */
+    protected EnumSyntax(int value) {
+        this.value = value;
+    }
 
-	/**
-	 * Returns this enumeration value's integer value.
-	 * 
-	 * @return the value
-	 */
-	public int getValue() {
-		return value;
-	}
+    /**
+     * Returns this enumeration value's integer value.
+     * 
+     * @return the value
+     */
+    public int getValue() {
+        return value;
+    }
 
-	/**
-	 * Returns a clone of this enumeration value, which to preserve the
-	 * semantics of enumeration values is the same object as this enumeration
-	 * value.
-	 */
-	public Object clone() {
-		return this;
-	}
+    /**
+     * Returns a clone of this enumeration value, which to preserve the
+     * semantics of enumeration values is the same object as this enumeration
+     * value.
+     */
+    public Object clone() {
+        return this;
+    }
 
-	/**
-	 * Returns a hash code value for this enumeration value. The hash code is
-	 * just this enumeration value's integer value.
-	 */
-	public int hashCode() {
-		return value;
-	}
+    /**
+     * Returns a hash code value for this enumeration value. The hash code is
+     * just this enumeration value's integer value.
+     */
+    public int hashCode() {
+        return value;
+    }
 
-	/**
-	 * Returns a string value corresponding to this enumeration value.
-	 */
-	public String toString() {
+    /**
+     * Returns a string value corresponding to this enumeration value.
+     */
+    public String toString() {
 
-		String[] theTable = getStringTable();
-		int theIndex = value - getOffset();
-		return theTable != null && theIndex >= 0 && theIndex < theTable.length
-				? theTable[theIndex]
-				: Integer.toString(value);
-	}
+        String[] theTable = getStringTable();
+        int theIndex = value - getOffset();
+        return theTable != null && theIndex >= 0 && theIndex < theTable.length
+                ? theTable[theIndex]
+                : Integer.toString(value);
+    }
 
-	/**
-	 * During object input, convert this deserialized enumeration instance to
-	 * the proper enumeration value defined in the enumeration attribute class.
-	 *
-	 * @return The enumeration singleton value stored at index <I>i</I>-<I>L</I>
-	 *         in the enumeration value table returned by
-	 *         {@link #getEnumValueTable() getEnumValueTable()}, where <I>i</I>
-	 *         is this enumeration value's integer value and <I>L</I> is the
-	 *         value returned by {@link #getOffset() getOffset()}.
-	 *
-	 * @throws ObjectStreamException
-	 *                                if the stream can't be deserialised
-	 * @throws InvalidObjectException
-	 *                                Thrown if the enumeration value table is
-	 *                                null, this
-	 *                                enumeration value's integer value does not
-	 *                                correspond to an
-	 *                                element in the enumeration value table, or
-	 *                                the corresponding
-	 *                                element in the enumeration value table is
-	 *                                null. (Note:
-	 *                                {@link java.io.InvalidObjectException
-	 *                                InvalidObjectException}
-	 *                                is a subclass of
-	 *                                {@link java.io.ObjectStreamException
-	 *                                ObjectStreamException}, which
-	 *                                <CODE>readResolve()</CODE> is
-	 *                                declared to throw.)
-	 */
-	protected Object readResolve() throws ObjectStreamException {
+    /**
+     * During object input, convert this deserialized enumeration instance to
+     * the proper enumeration value defined in the enumeration attribute class.
+     *
+     * @return The enumeration singleton value stored at index <I>i</I>-<I>L</I>
+     *         in the enumeration value table returned by
+     *         {@link #getEnumValueTable() getEnumValueTable()}, where <I>i</I>
+     *         is this enumeration value's integer value and <I>L</I> is the
+     *         value returned by {@link #getOffset() getOffset()}.
+     *
+     * @throws ObjectStreamException
+     *                                if the stream can't be deserialised
+     * @throws InvalidObjectException
+     *                                Thrown if the enumeration value table is
+     *                                null, this
+     *                                enumeration value's integer value does not
+     *                                correspond to an
+     *                                element in the enumeration value table, or
+     *                                the corresponding
+     *                                element in the enumeration value table is
+     *                                null. (Note:
+     *                                {@link java.io.InvalidObjectException
+     *                                InvalidObjectException}
+     *                                is a subclass of
+     *                                {@link java.io.ObjectStreamException
+     *                                ObjectStreamException}, which
+     *                                <CODE>readResolve()</CODE> is
+     *                                declared to throw.)
+     */
+    protected Object readResolve() throws ObjectStreamException {
 
-		EnumSyntax[] theTable = getEnumValueTable();
+        EnumSyntax[] theTable = getEnumValueTable();
 
-		if (theTable == null) {
-			throw new InvalidObjectException(
-					"Null enumeration value table for class " + getClass());
-		}
+        if (theTable == null) {
+            throw new InvalidObjectException(
+                    "Null enumeration value table for class " + getClass());
+        }
 
-		int theOffset = getOffset();
-		int theIndex = value - theOffset;
+        int theOffset = getOffset();
+        int theIndex = value - theOffset;
 
-		if (0 > theIndex || theIndex >= theTable.length) {
-			throw new InvalidObjectException("Integer value = " + value
-					+ " not in valid range " + theOffset + ".." + (theOffset
-							+ theTable.length - 1) + "for class " + getClass());
-		}
+        if (0 > theIndex || theIndex >= theTable.length) {
+            throw new InvalidObjectException("Integer value = " + value
+                    + " not in valid range " + theOffset + ".." + (theOffset
+                            + theTable.length - 1) + "for class " + getClass());
+        }
 
-		EnumSyntax result = theTable[theIndex];
-		if (result == null) {
-			throw new InvalidObjectException(
-					"No enumeration value for integer value = " + value
-							+ "for class " + getClass());
-		}
-		return result;
-	}
+        EnumSyntax result = theTable[theIndex];
+        if (result == null) {
+            throw new InvalidObjectException(
+                    "No enumeration value for integer value = " + value
+                            + "for class " + getClass());
+        }
+        return result;
+    }
 
-	// Hidden operations to be implemented in a subclass.
+    // Hidden operations to be implemented in a subclass.
 
-	/**
-	 * Returns the string table for this enumeration value's enumeration class.
-	 * The enumeration class's integer values are assumed to lie in the range
-	 * <I>L</I>..<I>L</I>+<I>N</I>-1, where <I>L</I> is the value returned by
-	 * {@link #getOffset() getOffset()} and <I>N</I> is the length of the string
-	 * table. The element in the string table at index <I>i</I>-<I>L</I> is the
-	 * value returned by {@link #toString() toString()} for the enumeration
-	 * value whose integer value is <I>i</I>. If an integer within the above
-	 * range is not used by any enumeration value, leave the corresponding table
-	 * element null.
-	 * <P>
-	 * The default implementation returns null. If the enumeration class (a
-	 * subclass of class EnumSyntax) does not override this method to return a
-	 * non-null string table, and the subclass does not override the
-	 * {@link #toString() toString()} method, the base class {@link #toString()
-	 * toString()} method will return just a string representation of this
-	 * enumeration value's integer value.
-	 * 
-	 * @return the string table
-	 */
-	protected String[] getStringTable() {
-		return null;
-	}
+    /**
+     * Returns the string table for this enumeration value's enumeration class.
+     * The enumeration class's integer values are assumed to lie in the range
+     * <I>L</I>..<I>L</I>+<I>N</I>-1, where <I>L</I> is the value returned by
+     * {@link #getOffset() getOffset()} and <I>N</I> is the length of the string
+     * table. The element in the string table at index <I>i</I>-<I>L</I> is the
+     * value returned by {@link #toString() toString()} for the enumeration
+     * value whose integer value is <I>i</I>. If an integer within the above
+     * range is not used by any enumeration value, leave the corresponding table
+     * element null.
+     * <P>
+     * The default implementation returns null. If the enumeration class (a
+     * subclass of class EnumSyntax) does not override this method to return a
+     * non-null string table, and the subclass does not override the
+     * {@link #toString() toString()} method, the base class {@link #toString()
+     * toString()} method will return just a string representation of this
+     * enumeration value's integer value.
+     * 
+     * @return the string table
+     */
+    protected String[] getStringTable() {
+        return null;
+    }
 
-	/**
-	 * Returns the enumeration value table for this enumeration value's
-	 * enumeration class. The enumeration class's integer values are assumed to
-	 * lie in the range <I>L</I>..<I>L</I>+<I>N</I>-1, where <I>L</I> is the
-	 * value returned by {@link #getOffset() getOffset()} and <I>N</I> is the
-	 * length of the enumeration value table. The element in the enumeration
-	 * value table at index <I>i</I>-<I>L</I> is the enumeration value object
-	 * whose integer value is <I>i</I>; the {@link #readResolve() readResolve()}
-	 * method needs this to preserve singleton semantics during deserialization
-	 * of an enumeration instance. If an integer within the above range is not
-	 * used by any enumeration value, leave the corresponding table element
-	 * null.
-	 * <P>
-	 * The default implementation returns null. If the enumeration class (a
-	 * subclass of class EnumSyntax) does not override this method to return a
-	 * non-null enumeration value table, and the subclass does not override the
-	 * {@link #readResolve() readResolve()} method, the base class
-	 * {@link #readResolve() readResolve()} method will throw an exception
-	 * whenever an enumeration instance is deserialized from an object input
-	 * stream.
-	 * 
-	 * @return the value table
-	 */
-	protected EnumSyntax[] getEnumValueTable() {
-		return null;
-	}
+    /**
+     * Returns the enumeration value table for this enumeration value's
+     * enumeration class. The enumeration class's integer values are assumed to
+     * lie in the range <I>L</I>..<I>L</I>+<I>N</I>-1, where <I>L</I> is the
+     * value returned by {@link #getOffset() getOffset()} and <I>N</I> is the
+     * length of the enumeration value table. The element in the enumeration
+     * value table at index <I>i</I>-<I>L</I> is the enumeration value object
+     * whose integer value is <I>i</I>; the {@link #readResolve() readResolve()}
+     * method needs this to preserve singleton semantics during deserialization
+     * of an enumeration instance. If an integer within the above range is not
+     * used by any enumeration value, leave the corresponding table element
+     * null.
+     * <P>
+     * The default implementation returns null. If the enumeration class (a
+     * subclass of class EnumSyntax) does not override this method to return a
+     * non-null enumeration value table, and the subclass does not override the
+     * {@link #readResolve() readResolve()} method, the base class
+     * {@link #readResolve() readResolve()} method will throw an exception
+     * whenever an enumeration instance is deserialized from an object input
+     * stream.
+     * 
+     * @return the value table
+     */
+    protected EnumSyntax[] getEnumValueTable() {
+        return null;
+    }
 
-	/**
-	 * Returns the lowest integer value used by this enumeration value's
-	 * enumeration class.
-	 * <P>
-	 * The default implementation returns 0. If the enumeration class (a
-	 * subclass of class EnumSyntax) uses integer values starting at other than
-	 * 0, override this method in the subclass.
-	 * 
-	 * @return the offset of the lowest enumeration value.
-	 */
-	protected int getOffset() {
-		return 0;
-	}
+    /**
+     * Returns the lowest integer value used by this enumeration value's
+     * enumeration class.
+     * <P>
+     * The default implementation returns 0. If the enumeration class (a
+     * subclass of class EnumSyntax) uses integer values starting at other than
+     * 0, override this method in the subclass.
+     * 
+     * @return the offset of the lowest enumeration value.
+     */
+    protected int getOffset() {
+        return 0;
+    }
 
 }

@@ -14,7 +14,7 @@ package java.util;
  * 
  * <pre>
  * for (Enumeration&lt;E&gt; e = v.elements(); e.hasMoreElements();)
- * 	System.out.println(e.nextElement());
+ *     System.out.println(e.nextElement());
  * </pre>
  * <p>
  * Methods are provided to enumerate through the elements of a vector, the keys
@@ -39,22 +39,22 @@ package java.util;
  * @since JDK1.0
  */
 public interface Enumeration<E> {
-	/**
-	 * Tests if this enumeration contains more elements.
-	 *
-	 * @return <code>true</code> if and only if this enumeration object contains
-	 *         at least one more element to provide; <code>false</code>
-	 *         otherwise.
-	 */
-	boolean hasMoreElements();
+    /**
+     * Tests if this enumeration contains more elements.
+     *
+     * @return <code>true</code> if and only if this enumeration object contains
+     *         at least one more element to provide; <code>false</code>
+     *         otherwise.
+     */
+    boolean hasMoreElements();
 
-	/**
-	 * Returns the next element of this enumeration if this enumeration object
-	 * has at least one more element to provide.
-	 *
-	 * @return the next element of this enumeration.
-	 * @exception NoSuchElementException
-	 *                                   if no more elements exist.
-	 */
-	E nextElement();
+    /**
+     * Returns the next element of this enumeration if this enumeration object
+     * has at least one more element to provide.
+     *
+     * @return the next element of this enumeration.
+     * @exception NoSuchElementException
+     *                                   if no more elements exist.
+     */
+    E nextElement();
 }

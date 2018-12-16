@@ -35,73 +35,73 @@ import org.w3c.dom.Element;
  * @author $Author: coheigea $
  */
 public class XMLX509SubjectName extends SignatureElementProxy implements
-		XMLX509DataContent {
+        XMLX509DataContent {
 
-	/**
-	 * Constructor X509SubjectName
-	 *
-	 * @param element
-	 * @param BaseURI
-	 * @throws XMLSecurityException
-	 */
-	public XMLX509SubjectName(Element element, String BaseURI)
-			throws XMLSecurityException {
-		super(element, BaseURI);
-	}
+    /**
+     * Constructor X509SubjectName
+     *
+     * @param element
+     * @param BaseURI
+     * @throws XMLSecurityException
+     */
+    public XMLX509SubjectName(Element element, String BaseURI)
+            throws XMLSecurityException {
+        super(element, BaseURI);
+    }
 
-	/**
-	 * Constructor X509SubjectName
-	 *
-	 * @param doc
-	 * @param X509SubjectNameString
-	 */
-	public XMLX509SubjectName(Document doc, String X509SubjectNameString) {
-		super(doc);
+    /**
+     * Constructor X509SubjectName
+     *
+     * @param doc
+     * @param X509SubjectNameString
+     */
+    public XMLX509SubjectName(Document doc, String X509SubjectNameString) {
+        super(doc);
 
-		this.addText(X509SubjectNameString);
-	}
+        this.addText(X509SubjectNameString);
+    }
 
-	/**
-	 * Constructor XMLX509SubjectName
-	 *
-	 * @param doc
-	 * @param x509certificate
-	 */
-	public XMLX509SubjectName(Document doc, X509Certificate x509certificate) {
-		this(doc, x509certificate.getSubjectX500Principal().getName());
-	}
+    /**
+     * Constructor XMLX509SubjectName
+     *
+     * @param doc
+     * @param x509certificate
+     */
+    public XMLX509SubjectName(Document doc, X509Certificate x509certificate) {
+        this(doc, x509certificate.getSubjectX500Principal().getName());
+    }
 
-	/**
-	 * Method getSubjectName
-	 *
-	 *
-	 * @return the subject name
-	 */
-	public String getSubjectName() {
-		return RFC2253Parser.normalize(this.getTextFromTextChild());
-	}
+    /**
+     * Method getSubjectName
+     *
+     *
+     * @return the subject name
+     */
+    public String getSubjectName() {
+        return RFC2253Parser.normalize(this.getTextFromTextChild());
+    }
 
-	/** @inheritDoc */
-	public boolean equals(Object obj) {
-		if (!(obj instanceof XMLX509SubjectName)) {
-			return false;
-		}
+    /** @inheritDoc */
+    public boolean equals(Object obj) {
+        if (!(obj instanceof XMLX509SubjectName)) {
+            return false;
+        }
 
-		XMLX509SubjectName other = (XMLX509SubjectName) obj;
-		String otherSubject = other.getSubjectName();
-		String thisSubject = this.getSubjectName();
+        XMLX509SubjectName other = (XMLX509SubjectName) obj;
+        String otherSubject = other.getSubjectName();
+        String thisSubject = this.getSubjectName();
 
-		return thisSubject.equals(otherSubject);
-	}
+        return thisSubject.equals(otherSubject);
+    }
 
-	public int hashCode() {
-		int result = 17;
-		result = 31 * result + this.getSubjectName().hashCode();
-		return result;
-	}
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.getSubjectName().hashCode();
+        return result;
+    }
 
-	/** @inheritDoc */
-	public String getBaseLocalName() {
-		return Constants._TAG_X509SUBJECTNAME;
-	}
+    /** @inheritDoc */
+    public String getBaseLocalName() {
+        return Constants._TAG_X509SUBJECTNAME;
+    }
 }

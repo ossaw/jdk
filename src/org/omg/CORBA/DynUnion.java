@@ -18,73 +18,73 @@ package org.omg.CORBA;
  */
 @Deprecated
 public interface DynUnion extends org.omg.CORBA.Object, org.omg.CORBA.DynAny {
-	/**
-	 * Determines whether the discriminator associated with this union has been
-	 * assigned a valid default value.
-	 * 
-	 * @return <code>true</code> if the discriminator has a default value;
-	 *         <code>false</code> otherwise
-	 */
-	public boolean set_as_default();
+    /**
+     * Determines whether the discriminator associated with this union has been
+     * assigned a valid default value.
+     * 
+     * @return <code>true</code> if the discriminator has a default value;
+     *         <code>false</code> otherwise
+     */
+    public boolean set_as_default();
 
-	/**
-	 * Determines whether the discriminator associated with this union gets
-	 * assigned a valid default value.
-	 * 
-	 * @param arg
-	 *            <code>true</code> if the discriminator gets assigned a default
-	 *            value
-	 */
-	public void set_as_default(boolean arg);
+    /**
+     * Determines whether the discriminator associated with this union gets
+     * assigned a valid default value.
+     * 
+     * @param arg
+     *            <code>true</code> if the discriminator gets assigned a default
+     *            value
+     */
+    public void set_as_default(boolean arg);
 
-	/**
-	 * Returns a DynAny object reference that must be narrowed to the type of
-	 * the discriminator in order to insert/get the discriminator value.
-	 * 
-	 * @return a <code>DynAny</code> object reference representing the
-	 *         discriminator value
-	 */
-	public org.omg.CORBA.DynAny discriminator();
+    /**
+     * Returns a DynAny object reference that must be narrowed to the type of
+     * the discriminator in order to insert/get the discriminator value.
+     * 
+     * @return a <code>DynAny</code> object reference representing the
+     *         discriminator value
+     */
+    public org.omg.CORBA.DynAny discriminator();
 
-	/**
-	 * Returns the TCKind object associated with the discriminator of this
-	 * union.
-	 * 
-	 * @return the <code>TCKind</code> object associated with the discriminator
-	 *         of this union
-	 */
-	public org.omg.CORBA.TCKind discriminator_kind();
+    /**
+     * Returns the TCKind object associated with the discriminator of this
+     * union.
+     * 
+     * @return the <code>TCKind</code> object associated with the discriminator
+     *         of this union
+     */
+    public org.omg.CORBA.TCKind discriminator_kind();
 
-	/**
-	 * Returns a DynAny object reference that is used in order to insert/get a
-	 * member of this union.
-	 * 
-	 * @return the <code>DynAny</code> object representing a member of this
-	 *         union
-	 */
-	public org.omg.CORBA.DynAny member();
+    /**
+     * Returns a DynAny object reference that is used in order to insert/get a
+     * member of this union.
+     * 
+     * @return the <code>DynAny</code> object representing a member of this
+     *         union
+     */
+    public org.omg.CORBA.DynAny member();
 
-	/**
-	 * Allows for the inspection of the name of this union member without
-	 * checking the value of the discriminator.
-	 * 
-	 * @return the name of this union member
-	 */
-	public String member_name();
+    /**
+     * Allows for the inspection of the name of this union member without
+     * checking the value of the discriminator.
+     * 
+     * @return the name of this union member
+     */
+    public String member_name();
 
-	/**
-	 * Allows for the assignment of the name of this union member.
-	 * 
-	 * @param arg
-	 *            the new name of this union member
-	 */
-	public void member_name(String arg);
+    /**
+     * Allows for the assignment of the name of this union member.
+     * 
+     * @param arg
+     *            the new name of this union member
+     */
+    public void member_name(String arg);
 
-	/**
-	 * Returns the TCKind associated with the member of this union.
-	 * 
-	 * @return the <code>TCKind</code> object associated with the member of this
-	 *         union
-	 */
-	public org.omg.CORBA.TCKind member_kind();
+    /**
+     * Returns the TCKind associated with the member of this union.
+     * 
+     * @return the <code>TCKind</code> object associated with the member of this
+     *         union
+     */
+    public org.omg.CORBA.TCKind member_kind();
 }

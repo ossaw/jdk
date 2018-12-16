@@ -68,22 +68,22 @@ import javax.lang.model.SourceVersion;
  */
 @SupportedSourceVersion(RELEASE_8)
 public class ElementKindVisitor8<R, P> extends ElementKindVisitor7<R, P> {
-	/**
-	 * Constructor for concrete subclasses; uses {@code null} for the default
-	 * value.
-	 */
-	protected ElementKindVisitor8() {
-		super(null);
-	}
+    /**
+     * Constructor for concrete subclasses; uses {@code null} for the default
+     * value.
+     */
+    protected ElementKindVisitor8() {
+        super(null);
+    }
 
-	/**
-	 * Constructor for concrete subclasses; uses the argument for the default
-	 * value.
-	 *
-	 * @param defaultValue
-	 *                     the value to assign to {@link #DEFAULT_VALUE}
-	 */
-	protected ElementKindVisitor8(R defaultValue) {
-		super(defaultValue);
-	}
+    /**
+     * Constructor for concrete subclasses; uses the argument for the default
+     * value.
+     *
+     * @param defaultValue
+     *                     the value to assign to {@link #DEFAULT_VALUE}
+     */
+    protected ElementKindVisitor8(R defaultValue) {
+        super(defaultValue);
+    }
 }

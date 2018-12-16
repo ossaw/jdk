@@ -17,4 +17,4 @@ package org.omg.PortableServer;
  * containing the POA objects it is registered with.
  */
 public interface ServantManager extends ServantManagerOperations,
-		org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity {} // interface ServantManager
+        org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity {} // interface ServantManager

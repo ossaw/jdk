@@ -17,20 +17,20 @@ package com.sun.jmx.snmp.internal;
  */
 
 public class SnmpDecryptedPdu {
-	/**
-	 * Decrypted pdu data.
-	 */
-	public byte[] data = null;
-	/**
-	 * Decrypted pdu data length.
-	 */
-	public int dataLength = 0;
-	/**
-	 * Decrypted context name.
-	 */
-	public byte[] contextName = null;
-	/**
-	 * Decrypted context engine Id.
-	 */
-	public byte[] contextEngineId = null;
+    /**
+     * Decrypted pdu data.
+     */
+    public byte[] data = null;
+    /**
+     * Decrypted pdu data length.
+     */
+    public int dataLength = 0;
+    /**
+     * Decrypted context name.
+     */
+    public byte[] contextName = null;
+    /**
+     * Decrypted context engine Id.
+     */
+    public byte[] contextEngineId = null;
 }

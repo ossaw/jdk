@@ -20,28 +20,28 @@ package javax.naming;
  */
 
 public class OperationNotSupportedException extends NamingException {
-	/**
-	 * Constructs a new instance of OperationNotSupportedException. All fields
-	 * default to null.
-	 */
-	public OperationNotSupportedException() {
-		super();
-	}
+    /**
+     * Constructs a new instance of OperationNotSupportedException. All fields
+     * default to null.
+     */
+    public OperationNotSupportedException() {
+        super();
+    }
 
-	/**
-	 * Constructs a new instance of OperationNotSupportedException using an
-	 * explanation. All other fields default to null.
-	 *
-	 * @param explanation
-	 *                    Possibly null additional detail about this exception
-	 * @see java.lang.Throwable#getMessage
-	 */
-	public OperationNotSupportedException(String explanation) {
-		super(explanation);
-	}
+    /**
+     * Constructs a new instance of OperationNotSupportedException using an
+     * explanation. All other fields default to null.
+     *
+     * @param explanation
+     *                    Possibly null additional detail about this exception
+     * @see java.lang.Throwable#getMessage
+     */
+    public OperationNotSupportedException(String explanation) {
+        super(explanation);
+    }
 
-	/**
-	 * Use serialVersionUID from JNDI 1.1.1 for interoperability
-	 */
-	private static final long serialVersionUID = 5493232822427682064L;
+    /**
+     * Use serialVersionUID from JNDI 1.1.1 for interoperability
+     */
+    private static final long serialVersionUID = 5493232822427682064L;
 }

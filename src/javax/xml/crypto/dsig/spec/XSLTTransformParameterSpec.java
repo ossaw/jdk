@@ -34,32 +34,32 @@ import javax.xml.crypto.XMLStructure;
  * @see Transform
  */
 public final class XSLTTransformParameterSpec implements
-		TransformParameterSpec {
-	private XMLStructure stylesheet;
+        TransformParameterSpec {
+    private XMLStructure stylesheet;
 
-	/**
-	 * Creates an <code>XSLTTransformParameterSpec</code> with the specified
-	 * stylesheet.
-	 *
-	 * @param stylesheet
-	 *                   the XSLT stylesheet to be used
-	 * @throws NullPointerException
-	 *                              if <code>stylesheet</code> is
-	 *                              <code>null</code>
-	 */
-	public XSLTTransformParameterSpec(XMLStructure stylesheet) {
-		if (stylesheet == null) {
-			throw new NullPointerException();
-		}
-		this.stylesheet = stylesheet;
-	}
+    /**
+     * Creates an <code>XSLTTransformParameterSpec</code> with the specified
+     * stylesheet.
+     *
+     * @param stylesheet
+     *                   the XSLT stylesheet to be used
+     * @throws NullPointerException
+     *                              if <code>stylesheet</code> is
+     *                              <code>null</code>
+     */
+    public XSLTTransformParameterSpec(XMLStructure stylesheet) {
+        if (stylesheet == null) {
+            throw new NullPointerException();
+        }
+        this.stylesheet = stylesheet;
+    }
 
-	/**
-	 * Returns the stylesheet.
-	 *
-	 * @return the stylesheet
-	 */
-	public XMLStructure getStylesheet() {
-		return stylesheet;
-	}
+    /**
+     * Returns the stylesheet.
+     *
+     * @return the stylesheet
+     */
+    public XMLStructure getStylesheet() {
+        return stylesheet;
+    }
 }

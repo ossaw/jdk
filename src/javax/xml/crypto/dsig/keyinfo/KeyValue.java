@@ -68,7 +68,7 @@ import javax.xml.crypto.XMLStructure;
  * <pre>
  * KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
  * PublicKey dsaPublicKey = keyStore.getCertificate("myDSASigningCert")
- * 		.getPublicKey();
+ *         .getPublicKey();
  * KeyInfoFactory factory = KeyInfoFactory.getInstance("DOM");
  * KeyValue keyValue = factory.newKeyValue(dsaPublicKey);
  * </pre>
@@ -85,32 +85,32 @@ import javax.xml.crypto.XMLStructure;
  */
 public interface KeyValue extends XMLStructure {
 
-	/**
-	 * URI identifying the DSA KeyValue KeyInfo type:
-	 * http://www.w3.org/2000/09/xmldsig#DSAKeyValue. This can be specified as
-	 * the value of the <code>type</code> parameter of the
-	 * {@link RetrievalMethod} class to describe a remote
-	 * <code>DSAKeyValue</code> structure.
-	 */
-	final static String DSA_TYPE = "http://www.w3.org/2000/09/xmldsig#DSAKeyValue";
+    /**
+     * URI identifying the DSA KeyValue KeyInfo type:
+     * http://www.w3.org/2000/09/xmldsig#DSAKeyValue. This can be specified as
+     * the value of the <code>type</code> parameter of the
+     * {@link RetrievalMethod} class to describe a remote
+     * <code>DSAKeyValue</code> structure.
+     */
+    final static String DSA_TYPE = "http://www.w3.org/2000/09/xmldsig#DSAKeyValue";
 
-	/**
-	 * URI identifying the RSA KeyValue KeyInfo type:
-	 * http://www.w3.org/2000/09/xmldsig#RSAKeyValue. This can be specified as
-	 * the value of the <code>type</code> parameter of the
-	 * {@link RetrievalMethod} class to describe a remote
-	 * <code>RSAKeyValue</code> structure.
-	 */
-	final static String RSA_TYPE = "http://www.w3.org/2000/09/xmldsig#RSAKeyValue";
+    /**
+     * URI identifying the RSA KeyValue KeyInfo type:
+     * http://www.w3.org/2000/09/xmldsig#RSAKeyValue. This can be specified as
+     * the value of the <code>type</code> parameter of the
+     * {@link RetrievalMethod} class to describe a remote
+     * <code>RSAKeyValue</code> structure.
+     */
+    final static String RSA_TYPE = "http://www.w3.org/2000/09/xmldsig#RSAKeyValue";
 
-	/**
-	 * Returns the public key of this <code>KeyValue</code>.
-	 *
-	 * @return the public key of this <code>KeyValue</code>
-	 * @throws KeyException
-	 *                      if this <code>KeyValue</code> cannot be converted to
-	 *                      a
-	 *                      <code>PublicKey</code>
-	 */
-	PublicKey getPublicKey() throws KeyException;
+    /**
+     * Returns the public key of this <code>KeyValue</code>.
+     *
+     * @return the public key of this <code>KeyValue</code>
+     * @throws KeyException
+     *                      if this <code>KeyValue</code> cannot be converted to
+     *                      a
+     *                      <code>PublicKey</code>
+     */
+    PublicKey getPublicKey() throws KeyException;
 }

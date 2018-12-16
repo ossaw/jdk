@@ -28,46 +28,46 @@ import com.sun.corba.se.pept.transport.ContactInfo;
  * @author Harold Carr
  */
 public interface IIOPPrimaryToContactInfo {
-	/**
-	 * @param primary
-	 *                - clear any state relating to primary.
-	 */
-	public void reset(ContactInfo primary);
+    /**
+     * @param primary
+     *                - clear any state relating to primary.
+     */
+    public void reset(ContactInfo primary);
 
-	/**
-	 * @param primary
-	 *                     - the key.
-	 * @param previous
-	 *                     - if null return true. Otherwise, find previous in
-	 *                     <code>contactInfos</code> and if another
-	 *                     <code>ContactInfo</code> follows it in the list then
-	 *                     return
-	 *                     true. Otherwise false.
-	 * @param contactInfos
-	 *                     - the list of replicas associated with the primary.
-	 */
-	public boolean hasNext(ContactInfo primary, ContactInfo previous,
-			List contactInfos);
+    /**
+     * @param primary
+     *                     - the key.
+     * @param previous
+     *                     - if null return true. Otherwise, find previous in
+     *                     <code>contactInfos</code> and if another
+     *                     <code>ContactInfo</code> follows it in the list then
+     *                     return
+     *                     true. Otherwise false.
+     * @param contactInfos
+     *                     - the list of replicas associated with the primary.
+     */
+    public boolean hasNext(ContactInfo primary, ContactInfo previous,
+            List contactInfos);
 
-	/**
-	 * @param primary
-	 *                 - the key.
-	 * @param previous
-	 *                 - if null then map primary to failover. If failover is
-	 *                 empty
-	 *                 then map primary to primary and return primary. If
-	 *                 failover is
-	 *                 non-empty then return failover. If previous is non-null
-	 *                 that
-	 *                 indicates that the previous failed. Therefore, find
-	 *                 previous
-	 *                 in contactInfos. Map the <code>ContactInfo</code>
-	 *                 following
-	 *                 previous to primary and return that
-	 *                 <code>ContactInfo</code>.
-	 */
-	public ContactInfo next(ContactInfo primary, ContactInfo previous,
-			List contactInfos);
+    /**
+     * @param primary
+     *                 - the key.
+     * @param previous
+     *                 - if null then map primary to failover. If failover is
+     *                 empty
+     *                 then map primary to primary and return primary. If
+     *                 failover is
+     *                 non-empty then return failover. If previous is non-null
+     *                 that
+     *                 indicates that the previous failed. Therefore, find
+     *                 previous
+     *                 in contactInfos. Map the <code>ContactInfo</code>
+     *                 following
+     *                 previous to primary and return that
+     *                 <code>ContactInfo</code>.
+     */
+    public ContactInfo next(ContactInfo primary, ContactInfo previous,
+            List contactInfos);
 
 }
 

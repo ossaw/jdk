@@ -24,7 +24,7 @@ package com.sun.source.tree;
  */
 @jdk.Exported
 public interface AssertTree extends StatementTree {
-	ExpressionTree getCondition();
+    ExpressionTree getCondition();
 
-	ExpressionTree getDetail();
+    ExpressionTree getDetail();
 }

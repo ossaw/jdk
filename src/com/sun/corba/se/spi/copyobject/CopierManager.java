@@ -12,24 +12,24 @@ package com.sun.corba.se.spi.copyobject;
  * supported, for use in contexts where no specific copier id is available.
  */
 public interface CopierManager {
-	/**
-	 * Set the Id of the copier to use if no other copier has been set.
-	 */
-	void setDefaultId(int id);
+    /**
+     * Set the Id of the copier to use if no other copier has been set.
+     */
+    void setDefaultId(int id);
 
-	/**
-	 * Return the copier for the default copier id. Throws a BAD_PARAM exception
-	 * if no default copier id has been set.
-	 */
-	int getDefaultId();
+    /**
+     * Return the copier for the default copier id. Throws a BAD_PARAM exception
+     * if no default copier id has been set.
+     */
+    int getDefaultId();
 
-	ObjectCopierFactory getObjectCopierFactory(int id);
+    ObjectCopierFactory getObjectCopierFactory(int id);
 
-	ObjectCopierFactory getDefaultObjectCopierFactory();
+    ObjectCopierFactory getDefaultObjectCopierFactory();
 
-	/**
-	 * Register an ObjectCopierFactory under a particular id. This can be
-	 * retrieved later by getObjectCopierFactory.
-	 */
-	void registerObjectCopierFactory(ObjectCopierFactory factory, int id);
+    /**
+     * Register an ObjectCopierFactory under a particular id. This can be
+     * retrieved later by getObjectCopierFactory.
+     */
+    void registerObjectCopierFactory(ObjectCopierFactory factory, int id);
 }

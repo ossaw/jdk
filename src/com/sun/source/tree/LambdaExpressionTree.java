@@ -23,21 +23,21 @@ import java.util.List;
 @jdk.Exported
 public interface LambdaExpressionTree extends ExpressionTree {
 
-	/**
-	 * Lambda expressions come in two forms: (i) expression lambdas, whose body
-	 * is an expression, and (ii) statement lambdas, whose body is a block
-	 */
-	@jdk.Exported
-	public enum BodyKind {
-	/** enum constant for expression lambdas */
-	EXPRESSION,
-	/** enum constant for statement lambdas */
-	STATEMENT;
-	}
+    /**
+     * Lambda expressions come in two forms: (i) expression lambdas, whose body
+     * is an expression, and (ii) statement lambdas, whose body is a block
+     */
+    @jdk.Exported
+    public enum BodyKind {
+    /** enum constant for expression lambdas */
+    EXPRESSION,
+    /** enum constant for statement lambdas */
+    STATEMENT;
+    }
 
-	List<? extends VariableTree> getParameters();
+    List<? extends VariableTree> getParameters();
 
-	Tree getBody();
+    Tree getBody();
 
-	BodyKind getBodyKind();
+    BodyKind getBodyKind();
 }

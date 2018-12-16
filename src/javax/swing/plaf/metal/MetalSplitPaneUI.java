@@ -23,17 +23,17 @@ import javax.swing.plaf.basic.*;
  */
 public class MetalSplitPaneUI extends BasicSplitPaneUI {
 
-	/**
-	 * Creates a new MetalSplitPaneUI instance
-	 */
-	public static ComponentUI createUI(JComponent x) {
-		return new MetalSplitPaneUI();
-	}
+    /**
+     * Creates a new MetalSplitPaneUI instance
+     */
+    public static ComponentUI createUI(JComponent x) {
+        return new MetalSplitPaneUI();
+    }
 
-	/**
-	 * Creates the default divider.
-	 */
-	public BasicSplitPaneDivider createDefaultDivider() {
-		return new MetalSplitPaneDivider(this);
-	}
+    /**
+     * Creates the default divider.
+     */
+    public BasicSplitPaneDivider createDefaultDivider() {
+        return new MetalSplitPaneDivider(this);
+    }
 }

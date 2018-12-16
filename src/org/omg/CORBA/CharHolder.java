@@ -31,61 +31,61 @@ import org.omg.CORBA.portable.OutputStream;
  */
 public final class CharHolder implements Streamable {
 
-	/**
-	 * The <code>char</code> value held by this <code>CharHolder</code> object.
-	 */
-	public char value;
+    /**
+     * The <code>char</code> value held by this <code>CharHolder</code> object.
+     */
+    public char value;
 
-	/**
-	 * Constructs a new <code>CharHolder</code> object with its
-	 * <code>value</code> field initialized to <code>0</code>.
-	 */
-	public CharHolder() {}
+    /**
+     * Constructs a new <code>CharHolder</code> object with its
+     * <code>value</code> field initialized to <code>0</code>.
+     */
+    public CharHolder() {}
 
-	/**
-	 * Constructs a new <code>CharHolder</code> object for the given
-	 * <code>char</code>.
-	 * 
-	 * @param initial
-	 *                the <code>char</code> with which to initialize the
-	 *                <code>value</code> field of the new
-	 *                <code>CharHolder</code>
-	 *                object
-	 */
-	public CharHolder(char initial) {
-		value = initial;
-	}
+    /**
+     * Constructs a new <code>CharHolder</code> object for the given
+     * <code>char</code>.
+     * 
+     * @param initial
+     *                the <code>char</code> with which to initialize the
+     *                <code>value</code> field of the new
+     *                <code>CharHolder</code>
+     *                object
+     */
+    public CharHolder(char initial) {
+        value = initial;
+    }
 
-	/**
-	 * Reads from <code>input</code> and initalizes the value in this
-	 * <code>CharHolder</code> object with the unmarshalled data.
-	 *
-	 * @param input
-	 *              the InputStream containing CDR formatted data from the wire
-	 */
-	public void _read(InputStream input) {
-		value = input.read_char();
-	}
+    /**
+     * Reads from <code>input</code> and initalizes the value in this
+     * <code>CharHolder</code> object with the unmarshalled data.
+     *
+     * @param input
+     *              the InputStream containing CDR formatted data from the wire
+     */
+    public void _read(InputStream input) {
+        value = input.read_char();
+    }
 
-	/**
-	 * Marshals to <code>output</code> the value in this <code>CharHolder</code>
-	 * object.
-	 *
-	 * @param output
-	 *               the OutputStream which will contain the CDR formatted data
-	 */
-	public void _write(OutputStream output) {
-		output.write_char(value);
-	}
+    /**
+     * Marshals to <code>output</code> the value in this <code>CharHolder</code>
+     * object.
+     *
+     * @param output
+     *               the OutputStream which will contain the CDR formatted data
+     */
+    public void _write(OutputStream output) {
+        output.write_char(value);
+    }
 
-	/**
-	 * Returns the <code>TypeCode</code> object corresponding to the value held
-	 * in this <code>CharHolder</code> object.
-	 *
-	 * @return the TypeCode of the value held in this <code>CharHolder</code>
-	 *         object
-	 */
-	public org.omg.CORBA.TypeCode _type() {
-		return ORB.init().get_primitive_tc(TCKind.tk_char);
-	}
+    /**
+     * Returns the <code>TypeCode</code> object corresponding to the value held
+     * in this <code>CharHolder</code> object.
+     *
+     * @return the TypeCode of the value held in this <code>CharHolder</code>
+     *         object
+     */
+    public org.omg.CORBA.TypeCode _type() {
+        return ORB.init().get_primitive_tc(TCKind.tk_char);
+    }
 }

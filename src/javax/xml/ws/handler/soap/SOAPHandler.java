@@ -18,12 +18,12 @@ import java.util.Set;
  **/
 public interface SOAPHandler<T extends SOAPMessageContext> extends Handler<T> {
 
-	/**
-	 * Gets the header blocks that can be processed by this Handler instance.
-	 *
-	 * @return Set of <code>QNames</code> of header blocks processed by this
-	 *         handler instance. <code>QName</code> is the qualified name of the
-	 *         outermost element of the Header block.
-	 **/
-	Set<QName> getHeaders();
+    /**
+     * Gets the header blocks that can be processed by this Handler instance.
+     *
+     * @return Set of <code>QNames</code> of header blocks processed by this
+     *         handler instance. <code>QName</code> is the qualified name of the
+     *         outermost element of the Header block.
+     **/
+    Set<QName> getHeaders();
 }

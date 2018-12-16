@@ -27,12 +27,12 @@ import java.io.IOException;
  * <PRE>
  * void processMultiDoc(MultiDoc theMultiDoc) {
  *
- * 	MultiDoc current = theMultiDoc;
+ *     MultiDoc current = theMultiDoc;
  * 
- * 	while (current != null) {
- * 		processDoc(current.getDoc());
- * 		current = current.next();
- * 	}
+ *     while (current != null) {
+ *         processDoc(current.getDoc());
+ *         current = current.next();
+ *     }
  * }
  * </PRE>
  * <P>
@@ -89,27 +89,27 @@ import java.io.IOException;
 
 public interface MultiDoc {
 
-	/**
-	 * Obtain the current doc object.
-	 *
-	 * @return Current doc object.
-	 *
-	 * @exception IOException
-	 *                        Thrown if a error occurred reading the document.
-	 */
-	public Doc getDoc() throws IOException;
+    /**
+     * Obtain the current doc object.
+     *
+     * @return Current doc object.
+     *
+     * @exception IOException
+     *                        Thrown if a error occurred reading the document.
+     */
+    public Doc getDoc() throws IOException;
 
-	/**
-	 * Go to the multidoc object that contains the next doc object in the
-	 * sequence of doc objects.
-	 *
-	 * @return Multidoc object containing the next doc object, or null if there
-	 *         are no further doc objects.
-	 *
-	 * @exception IOException
-	 *                        Thrown if an error occurred locating the next
-	 *                        document
-	 */
-	public MultiDoc next() throws IOException;
+    /**
+     * Go to the multidoc object that contains the next doc object in the
+     * sequence of doc objects.
+     *
+     * @return Multidoc object containing the next doc object, or null if there
+     *         are no further doc objects.
+     *
+     * @exception IOException
+     *                        Thrown if an error occurred locating the next
+     *                        document
+     */
+    public MultiDoc next() throws IOException;
 
 }

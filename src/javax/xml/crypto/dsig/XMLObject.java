@@ -60,51 +60,51 @@ import javax.xml.crypto.XMLStructure;
  */
 public interface XMLObject extends XMLStructure {
 
-	/**
-	 * URI that identifies the <code>Object</code> element (this can be
-	 * specified as the value of the <code>type</code> parameter of the
-	 * {@link Reference} class to identify the referent's type).
-	 */
-	final static String TYPE = "http://www.w3.org/2000/09/xmldsig#Object";
+    /**
+     * URI that identifies the <code>Object</code> element (this can be
+     * specified as the value of the <code>type</code> parameter of the
+     * {@link Reference} class to identify the referent's type).
+     */
+    final static String TYPE = "http://www.w3.org/2000/09/xmldsig#Object";
 
-	/**
-	 * Returns an {@link java.util.Collections#unmodifiableList unmodifiable
-	 * list} of {@link XMLStructure}s contained in this <code>XMLObject</code>,
-	 * which represent elements from any namespace.
-	 *
-	 * <p>
-	 * If there is a public subclass representing the type of
-	 * <code>XMLStructure</code>, it is returned as an instance of that class
-	 * (ex: a <code>SignatureProperties</code> element would be returned as an
-	 * instance of {@link javax.xml.crypto.dsig.SignatureProperties}).
-	 *
-	 * @return an unmodifiable list of <code>XMLStructure</code>s (may be empty
-	 *         but never <code>null</code>)
-	 */
-	@SuppressWarnings("rawtypes")
-	List getContent();
+    /**
+     * Returns an {@link java.util.Collections#unmodifiableList unmodifiable
+     * list} of {@link XMLStructure}s contained in this <code>XMLObject</code>,
+     * which represent elements from any namespace.
+     *
+     * <p>
+     * If there is a public subclass representing the type of
+     * <code>XMLStructure</code>, it is returned as an instance of that class
+     * (ex: a <code>SignatureProperties</code> element would be returned as an
+     * instance of {@link javax.xml.crypto.dsig.SignatureProperties}).
+     *
+     * @return an unmodifiable list of <code>XMLStructure</code>s (may be empty
+     *         but never <code>null</code>)
+     */
+    @SuppressWarnings("rawtypes")
+    List getContent();
 
-	/**
-	 * Returns the Id of this <code>XMLObject</code>.
-	 *
-	 * @return the Id (or <code>null</code> if not specified)
-	 */
-	String getId();
+    /**
+     * Returns the Id of this <code>XMLObject</code>.
+     *
+     * @return the Id (or <code>null</code> if not specified)
+     */
+    String getId();
 
-	/**
-	 * Returns the mime type of this <code>XMLObject</code>. The mime type is an
-	 * optional attribute which describes the data within this
-	 * <code>XMLObject</code> (independent of its encoding).
-	 *
-	 * @return the mime type (or <code>null</code> if not specified)
-	 */
-	String getMimeType();
+    /**
+     * Returns the mime type of this <code>XMLObject</code>. The mime type is an
+     * optional attribute which describes the data within this
+     * <code>XMLObject</code> (independent of its encoding).
+     *
+     * @return the mime type (or <code>null</code> if not specified)
+     */
+    String getMimeType();
 
-	/**
-	 * Returns the encoding URI of this <code>XMLObject</code>. The encoding URI
-	 * identifies the method by which the object is encoded.
-	 *
-	 * @return the encoding URI (or <code>null</code> if not specified)
-	 */
-	String getEncoding();
+    /**
+     * Returns the encoding URI of this <code>XMLObject</code>. The encoding URI
+     * identifies the method by which the object is encoded.
+     *
+     * @return the encoding URI (or <code>null</code> if not specified)
+     */
+    String getEncoding();
 }

@@ -53,300 +53,300 @@ import org.w3c.dom.DOMException;
  */
 public class EntityImpl extends ParentNode implements Entity {
 
-	//
-	// Constants
-	//
+    //
+    // Constants
+    //
 
-	/** Serialization version. */
-	static final long serialVersionUID = -3575760943444303423L;
+    /** Serialization version. */
+    static final long serialVersionUID = -3575760943444303423L;
 
-	//
-	// Data
-	//
+    //
+    // Data
+    //
 
-	/** Entity name. */
-	protected String name;
+    /** Entity name. */
+    protected String name;
 
-	/** Public identifier. */
-	protected String publicId;
+    /** Public identifier. */
+    protected String publicId;
 
-	/** System identifier. */
-	protected String systemId;
+    /** System identifier. */
+    protected String systemId;
 
-	/** Encoding */
-	protected String encoding;
+    /** Encoding */
+    protected String encoding;
 
-	/** Input Encoding */
-	protected String inputEncoding;
+    /** Input Encoding */
+    protected String inputEncoding;
 
-	/** Version */
-	protected String version;
+    /** Version */
+    protected String version;
 
-	/** Notation name. */
-	protected String notationName;
+    /** Notation name. */
+    protected String notationName;
 
-	/** base uri */
-	protected String baseURI;
+    /** base uri */
+    protected String baseURI;
 
-	//
-	// Constructors
-	//
+    //
+    // Constructors
+    //
 
-	/** Factory constructor. */
-	public EntityImpl(CoreDocumentImpl ownerDoc, String name) {
-		super(ownerDoc);
-		this.name = name;
-		isReadOnly(true);
-	}
+    /** Factory constructor. */
+    public EntityImpl(CoreDocumentImpl ownerDoc, String name) {
+        super(ownerDoc);
+        this.name = name;
+        isReadOnly(true);
+    }
 
-	//
-	// Node methods
-	//
+    //
+    // Node methods
+    //
 
-	/**
-	 * A short integer indicating what type of node this is. The named constants
-	 * for this value are defined in the org.w3c.dom.Node interface.
-	 */
-	public short getNodeType() {
-		return Node.ENTITY_NODE;
-	}
+    /**
+     * A short integer indicating what type of node this is. The named constants
+     * for this value are defined in the org.w3c.dom.Node interface.
+     */
+    public short getNodeType() {
+        return Node.ENTITY_NODE;
+    }
 
-	/**
-	 * Returns the entity name
-	 */
-	public String getNodeName() {
-		if (needsSyncData()) {
-			synchronizeData();
-		}
-		return name;
-	}
+    /**
+     * Returns the entity name
+     */
+    public String getNodeName() {
+        if (needsSyncData()) {
+            synchronizeData();
+        }
+        return name;
+    }
 
-	/**
-	 * Sets the node value.
-	 * 
-	 * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR)
-	 */
-	public void setNodeValue(String x) throws DOMException {
-		if (ownerDocument.errorChecking && isReadOnly()) {
-			String msg = DOMMessageFormatter.formatMessage(
-					DOMMessageFormatter.DOM_DOMAIN,
-					"NO_MODIFICATION_ALLOWED_ERR", null);
-			throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
-					msg);
-		}
-	}
+    /**
+     * Sets the node value.
+     * 
+     * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR)
+     */
+    public void setNodeValue(String x) throws DOMException {
+        if (ownerDocument.errorChecking && isReadOnly()) {
+            String msg = DOMMessageFormatter.formatMessage(
+                    DOMMessageFormatter.DOM_DOMAIN,
+                    "NO_MODIFICATION_ALLOWED_ERR", null);
+            throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
+                    msg);
+        }
+    }
 
-	/**
-	 * The namespace prefix of this node
-	 * 
-	 * @exception DOMException
-	 *                         <br>
-	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this node
-	 *                         is
-	 *                         readonly.
-	 */
-	public void setPrefix(String prefix) throws DOMException {
-		if (ownerDocument.errorChecking && isReadOnly()) {
-			throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
-					DOMMessageFormatter.formatMessage(
-							DOMMessageFormatter.DOM_DOMAIN,
-							"NO_MODIFICATION_ALLOWED_ERR", null));
-		}
-	}
+    /**
+     * The namespace prefix of this node
+     * 
+     * @exception DOMException
+     *                         <br>
+     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this node
+     *                         is
+     *                         readonly.
+     */
+    public void setPrefix(String prefix) throws DOMException {
+        if (ownerDocument.errorChecking && isReadOnly()) {
+            throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
+                    DOMMessageFormatter.formatMessage(
+                            DOMMessageFormatter.DOM_DOMAIN,
+                            "NO_MODIFICATION_ALLOWED_ERR", null));
+        }
+    }
 
-	/** Clone node. */
-	public Node cloneNode(boolean deep) {
-		EntityImpl newentity = (EntityImpl) super.cloneNode(deep);
-		newentity.setReadOnly(true, deep);
-		return newentity;
-	}
+    /** Clone node. */
+    public Node cloneNode(boolean deep) {
+        EntityImpl newentity = (EntityImpl) super.cloneNode(deep);
+        newentity.setReadOnly(true, deep);
+        return newentity;
+    }
 
-	//
-	// Entity methods
-	//
+    //
+    // Entity methods
+    //
 
-	/**
-	 * The public identifier associated with the entity. If not specified, this
-	 * will be null.
-	 */
-	public String getPublicId() {
+    /**
+     * The public identifier associated with the entity. If not specified, this
+     * will be null.
+     */
+    public String getPublicId() {
 
-		if (needsSyncData()) {
-			synchronizeData();
-		}
-		return publicId;
+        if (needsSyncData()) {
+            synchronizeData();
+        }
+        return publicId;
 
-	} // getPublicId():String
+    } // getPublicId():String
 
-	/**
-	 * The system identifier associated with the entity. If not specified, this
-	 * will be null.
-	 */
-	public String getSystemId() {
+    /**
+     * The system identifier associated with the entity. If not specified, this
+     * will be null.
+     */
+    public String getSystemId() {
 
-		if (needsSyncData()) {
-			synchronizeData();
-		}
-		return systemId;
+        if (needsSyncData()) {
+            synchronizeData();
+        }
+        return systemId;
 
-	} // getSystemId():String
+    } // getSystemId():String
 
-	/**
-	 * DOM Level 3 WD - experimental the version number of this entity, when it
-	 * is an external parsed entity.
-	 */
-	public String getXmlVersion() {
+    /**
+     * DOM Level 3 WD - experimental the version number of this entity, when it
+     * is an external parsed entity.
+     */
+    public String getXmlVersion() {
 
-		if (needsSyncData()) {
-			synchronizeData();
-		}
-		return version;
+        if (needsSyncData()) {
+            synchronizeData();
+        }
+        return version;
 
-	} // getVersion():String
+    } // getVersion():String
 
-	/**
-	 * DOM Level 3 WD - experimental the encoding of this entity, when it is an
-	 * external parsed entity.
-	 */
-	public String getXmlEncoding() {
+    /**
+     * DOM Level 3 WD - experimental the encoding of this entity, when it is an
+     * external parsed entity.
+     */
+    public String getXmlEncoding() {
 
-		if (needsSyncData()) {
-			synchronizeData();
-		}
+        if (needsSyncData()) {
+            synchronizeData();
+        }
 
-		return encoding;
+        return encoding;
 
-	} // getVersion():String
+    } // getVersion():String
 
-	/**
-	 * Unparsed entities -- which contain non-XML data -- have a "notation name"
-	 * which tells applications how to deal with them. Parsed entities, which
-	 * <em>are</em> in XML format, don't need this and set it to null.
-	 */
-	public String getNotationName() {
+    /**
+     * Unparsed entities -- which contain non-XML data -- have a "notation name"
+     * which tells applications how to deal with them. Parsed entities, which
+     * <em>are</em> in XML format, don't need this and set it to null.
+     */
+    public String getNotationName() {
 
-		if (needsSyncData()) {
-			synchronizeData();
-		}
-		return notationName;
+        if (needsSyncData()) {
+            synchronizeData();
+        }
+        return notationName;
 
-	} // getNotationName():String
+    } // getNotationName():String
 
-	//
-	// Public methods
-	//
+    //
+    // Public methods
+    //
 
-	/**
-	 * DOM Level 2: The public identifier associated with the entity. If not
-	 * specified, this will be null.
-	 */
-	public void setPublicId(String id) {
+    /**
+     * DOM Level 2: The public identifier associated with the entity. If not
+     * specified, this will be null.
+     */
+    public void setPublicId(String id) {
 
-		if (needsSyncData()) {
-			synchronizeData();
-		}
-		publicId = id;
+        if (needsSyncData()) {
+            synchronizeData();
+        }
+        publicId = id;
 
-	} // setPublicId(String)
+    } // setPublicId(String)
 
-	/**
-	 * NON-DOM encoding - An attribute specifying, as part of the text
-	 * declaration, the encoding of this entity, when it is an external parsed
-	 * entity. This is null otherwise
-	 *
-	 */
-	public void setXmlEncoding(String value) {
-		if (needsSyncData()) {
-			synchronizeData();
-		}
-		encoding = value;
-	} // setEncoding (String)
+    /**
+     * NON-DOM encoding - An attribute specifying, as part of the text
+     * declaration, the encoding of this entity, when it is an external parsed
+     * entity. This is null otherwise
+     *
+     */
+    public void setXmlEncoding(String value) {
+        if (needsSyncData()) {
+            synchronizeData();
+        }
+        encoding = value;
+    } // setEncoding (String)
 
-	/**
-	 * An attribute specifying the encoding used for this entity at the tiome of
-	 * parsing, when it is an external parsed entity. This is <code>null</code>
-	 * if it an entity from the internal subset or if it is not known..
-	 * 
-	 * @since DOM Level 3
-	 */
-	public String getInputEncoding() {
-		if (needsSyncData()) {
-			synchronizeData();
-		}
-		return inputEncoding;
-	}
+    /**
+     * An attribute specifying the encoding used for this entity at the tiome of
+     * parsing, when it is an external parsed entity. This is <code>null</code>
+     * if it an entity from the internal subset or if it is not known..
+     * 
+     * @since DOM Level 3
+     */
+    public String getInputEncoding() {
+        if (needsSyncData()) {
+            synchronizeData();
+        }
+        return inputEncoding;
+    }
 
-	/**
-	 * NON-DOM, used to set the input encoding.
-	 */
-	public void setInputEncoding(String inputEncoding) {
-		if (needsSyncData()) {
-			synchronizeData();
-		}
-		this.inputEncoding = inputEncoding;
-	}
+    /**
+     * NON-DOM, used to set the input encoding.
+     */
+    public void setInputEncoding(String inputEncoding) {
+        if (needsSyncData()) {
+            synchronizeData();
+        }
+        this.inputEncoding = inputEncoding;
+    }
 
-	/**
-	 * NON-DOM version - An attribute specifying, as part of the text
-	 * declaration, the version number of this entity, when it is an external
-	 * parsed entity. This is null otherwise
-	 */
-	public void setXmlVersion(String value) {
-		if (needsSyncData()) {
-			synchronizeData();
-		}
-		version = value;
-	} // setVersion (String)
+    /**
+     * NON-DOM version - An attribute specifying, as part of the text
+     * declaration, the version number of this entity, when it is an external
+     * parsed entity. This is null otherwise
+     */
+    public void setXmlVersion(String value) {
+        if (needsSyncData()) {
+            synchronizeData();
+        }
+        version = value;
+    } // setVersion (String)
 
-	/**
-	 * DOM Level 2: The system identifier associated with the entity. If not
-	 * specified, this will be null.
-	 */
-	public void setSystemId(String id) {
-		if (needsSyncData()) {
-			synchronizeData();
-		}
-		systemId = id;
+    /**
+     * DOM Level 2: The system identifier associated with the entity. If not
+     * specified, this will be null.
+     */
+    public void setSystemId(String id) {
+        if (needsSyncData()) {
+            synchronizeData();
+        }
+        systemId = id;
 
-	} // setSystemId(String)
+    } // setSystemId(String)
 
-	/**
-	 * DOM Level 2: Unparsed entities -- which contain non-XML data -- have a
-	 * "notation name" which tells applications how to deal with them. Parsed
-	 * entities, which <em>are</em> in XML format, don't need this and set it to
-	 * null.
-	 */
-	public void setNotationName(String name) {
-		if (needsSyncData()) {
-			synchronizeData();
-		}
-		notationName = name;
+    /**
+     * DOM Level 2: Unparsed entities -- which contain non-XML data -- have a
+     * "notation name" which tells applications how to deal with them. Parsed
+     * entities, which <em>are</em> in XML format, don't need this and set it to
+     * null.
+     */
+    public void setNotationName(String name) {
+        if (needsSyncData()) {
+            synchronizeData();
+        }
+        notationName = name;
 
-	} // setNotationName(String)
+    } // setNotationName(String)
 
-	/**
-	 * Returns the absolute base URI of this node or null if the implementation
-	 * wasn't able to obtain an absolute URI. Note: If the URI is malformed, a
-	 * null is returned.
-	 *
-	 * @return The absolute base URI of this node or null.
-	 * @since DOM Level 3
-	 */
-	public String getBaseURI() {
+    /**
+     * Returns the absolute base URI of this node or null if the implementation
+     * wasn't able to obtain an absolute URI. Note: If the URI is malformed, a
+     * null is returned.
+     *
+     * @return The absolute base URI of this node or null.
+     * @since DOM Level 3
+     */
+    public String getBaseURI() {
 
-		if (needsSyncData()) {
-			synchronizeData();
-		}
-		return (baseURI != null) ? baseURI
-				: ((CoreDocumentImpl) getOwnerDocument()).getBaseURI();
-	}
+        if (needsSyncData()) {
+            synchronizeData();
+        }
+        return (baseURI != null) ? baseURI
+                : ((CoreDocumentImpl) getOwnerDocument()).getBaseURI();
+    }
 
-	/** NON-DOM: set base uri */
-	public void setBaseURI(String uri) {
-		if (needsSyncData()) {
-			synchronizeData();
-		}
-		baseURI = uri;
-	}
+    /** NON-DOM: set base uri */
+    public void setBaseURI(String uri) {
+        if (needsSyncData()) {
+            synchronizeData();
+        }
+        baseURI = uri;
+    }
 
 } // class EntityImpl

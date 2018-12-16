@@ -23,28 +23,28 @@ package org.omg.PortableInterceptor;
  * @see IORInfo
  */
 public interface IORInterceptorOperations extends
-		org.omg.PortableInterceptor.InterceptorOperations {
+        org.omg.PortableInterceptor.InterceptorOperations {
 
-	/**
-	 * A server side ORB calls the <code>establish_components</code> operation
-	 * on all registered <code>IORInterceptor</code> instances when it is
-	 * assembling the list of components that will be included in the profile or
-	 * profiles of an object reference. This operation is not necessarily called
-	 * for each individual object reference. In the case of the POA, this
-	 * operation is called each time POA::create_POA is called. In any case,
-	 * <code>establish_components</code> is guaranteed to be called at least
-	 * once for each distinct set of server policies.
-	 * <p>
-	 * An implementation of <code>establish_components</code> must not throw
-	 * exceptions. If it does, the ORB shall ignore the exception and proceed to
-	 * call the next IOR Interceptor's <code>establish_components</code>
-	 * operation.
-	 *
-	 * @param info
-	 *             The <code>IORInfo</code> instance used by the ORB service to
-	 *             query applicable policies and add components to be included
-	 *             in
-	 *             the generated IORs.
-	 */
-	void establish_components(org.omg.PortableInterceptor.IORInfo info);
+    /**
+     * A server side ORB calls the <code>establish_components</code> operation
+     * on all registered <code>IORInterceptor</code> instances when it is
+     * assembling the list of components that will be included in the profile or
+     * profiles of an object reference. This operation is not necessarily called
+     * for each individual object reference. In the case of the POA, this
+     * operation is called each time POA::create_POA is called. In any case,
+     * <code>establish_components</code> is guaranteed to be called at least
+     * once for each distinct set of server policies.
+     * <p>
+     * An implementation of <code>establish_components</code> must not throw
+     * exceptions. If it does, the ORB shall ignore the exception and proceed to
+     * call the next IOR Interceptor's <code>establish_components</code>
+     * operation.
+     *
+     * @param info
+     *             The <code>IORInfo</code> instance used by the ORB service to
+     *             query applicable policies and add components to be included
+     *             in
+     *             the generated IORs.
+     */
+    void establish_components(org.omg.PortableInterceptor.IORInfo info);
 } // interface IORInterceptorOperations

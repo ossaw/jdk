@@ -32,24 +32,24 @@ package com.sun.org.apache.xerces.internal.xs;
  */
 public class XSException extends RuntimeException {
 
-	/** Serialization version. */
-	static final long serialVersionUID = 3111893084677917742L;
+    /** Serialization version. */
+    static final long serialVersionUID = 3111893084677917742L;
 
-	public XSException(short code, String message) {
-		super(message);
-		this.code = code;
-	}
+    public XSException(short code, String message) {
+        super(message);
+        this.code = code;
+    }
 
-	public short code;
-	// ExceptionCode
-	/**
-	 * If the implementation does not support the requested type of object or
-	 * operation.
-	 */
-	public static final short NOT_SUPPORTED_ERR = 1;
-	/**
-	 * If index or size is negative, or greater than the allowed value
-	 */
-	public static final short INDEX_SIZE_ERR = 2;
+    public short code;
+    // ExceptionCode
+    /**
+     * If the implementation does not support the requested type of object or
+     * operation.
+     */
+    public static final short NOT_SUPPORTED_ERR = 1;
+    /**
+     * If index or size is negative, or greater than the allowed value
+     */
+    public static final short INDEX_SIZE_ERR = 2;
 
 }

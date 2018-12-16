@@ -40,54 +40,54 @@ import javax.lang.model.util.Types;
  */
 public interface TypeMirror extends javax.lang.model.AnnotatedConstruct {
 
-	/**
-	 * Returns the {@code kind} of this type.
-	 *
-	 * @return the kind of this type
-	 */
-	TypeKind getKind();
+    /**
+     * Returns the {@code kind} of this type.
+     *
+     * @return the kind of this type
+     */
+    TypeKind getKind();
 
-	/**
-	 * Obeys the general contract of {@link Object#equals Object.equals}. This
-	 * method does not, however, indicate whether two types represent the same
-	 * type. Semantic comparisons of type equality should instead use
-	 * {@link Types#isSameType(TypeMirror, TypeMirror)}. The results of
-	 * {@code t1.equals(t2)} and {@code Types.isSameType(t1, t2)} may differ.
-	 *
-	 * @param obj
-	 *            the object to be compared with this type
-	 * @return {@code true} if the specified object is equal to this one
-	 */
-	boolean equals(Object obj);
+    /**
+     * Obeys the general contract of {@link Object#equals Object.equals}. This
+     * method does not, however, indicate whether two types represent the same
+     * type. Semantic comparisons of type equality should instead use
+     * {@link Types#isSameType(TypeMirror, TypeMirror)}. The results of
+     * {@code t1.equals(t2)} and {@code Types.isSameType(t1, t2)} may differ.
+     *
+     * @param obj
+     *            the object to be compared with this type
+     * @return {@code true} if the specified object is equal to this one
+     */
+    boolean equals(Object obj);
 
-	/**
-	 * Obeys the general contract of {@link Object#hashCode Object.hashCode}.
-	 *
-	 * @see #equals
-	 */
-	int hashCode();
+    /**
+     * Obeys the general contract of {@link Object#hashCode Object.hashCode}.
+     *
+     * @see #equals
+     */
+    int hashCode();
 
-	/**
-	 * Returns an informative string representation of this type. If possible,
-	 * the string should be of a form suitable for representing this type in
-	 * source code. Any names embedded in the result are qualified if possible.
-	 *
-	 * @return a string representation of this type
-	 */
-	String toString();
+    /**
+     * Returns an informative string representation of this type. If possible,
+     * the string should be of a form suitable for representing this type in
+     * source code. Any names embedded in the result are qualified if possible.
+     *
+     * @return a string representation of this type
+     */
+    String toString();
 
-	/**
-	 * Applies a visitor to this type.
-	 *
-	 * @param   <R>
-	 *          the return type of the visitor's methods
-	 * @param   <P>
-	 *          the type of the additional parameter to the visitor's methods
-	 * @param v
-	 *          the visitor operating on this type
-	 * @param p
-	 *          additional parameter to the visitor
-	 * @return a visitor-specified result
-	 */
-	<R, P> R accept(TypeVisitor<R, P> v, P p);
+    /**
+     * Applies a visitor to this type.
+     *
+     * @param   <R>
+     *          the return type of the visitor's methods
+     * @param   <P>
+     *          the type of the additional parameter to the visitor's methods
+     * @param v
+     *          the visitor operating on this type
+     * @param p
+     *          additional parameter to the visitor
+     * @return a visitor-specified result
+     */
+    <R, P> R accept(TypeVisitor<R, P> v, P p);
 }

@@ -26,11 +26,11 @@ import java.util.EventListener;
  * @since 1.3
  */
 public interface HierarchyListener extends EventListener {
-	/**
-	 * Called when the hierarchy has been changed. To discern the actual type of
-	 * change, call <code>HierarchyEvent.getChangeFlags()</code>.
-	 *
-	 * @see HierarchyEvent#getChangeFlags()
-	 */
-	public void hierarchyChanged(HierarchyEvent e);
+    /**
+     * Called when the hierarchy has been changed. To discern the actual type of
+     * change, call <code>HierarchyEvent.getChangeFlags()</code>.
+     *
+     * @see HierarchyEvent#getChangeFlags()
+     */
+    public void hierarchyChanged(HierarchyEvent e);
 }

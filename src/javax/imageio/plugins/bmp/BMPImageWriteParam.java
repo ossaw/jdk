@@ -68,55 +68,55 @@ import com.sun.imageio.plugins.bmp.BMPCompressionTypes;
  */
 public class BMPImageWriteParam extends ImageWriteParam {
 
-	private boolean topDown = false;
+    private boolean topDown = false;
 
-	/**
-	 * Constructs a <code>BMPImageWriteParam</code> set to use a given
-	 * <code>Locale</code> and with default values for all parameters.
-	 *
-	 * @param locale
-	 *               a <code>Locale</code> to be used to localize compression
-	 *               type
-	 *               names and quality descriptions, or <code>null</code>.
-	 */
-	public BMPImageWriteParam(Locale locale) {
-		super(locale);
+    /**
+     * Constructs a <code>BMPImageWriteParam</code> set to use a given
+     * <code>Locale</code> and with default values for all parameters.
+     *
+     * @param locale
+     *               a <code>Locale</code> to be used to localize compression
+     *               type
+     *               names and quality descriptions, or <code>null</code>.
+     */
+    public BMPImageWriteParam(Locale locale) {
+        super(locale);
 
-		// Set compression types ("BI_RGB" denotes uncompressed).
-		compressionTypes = BMPCompressionTypes.getCompressionTypes();
+        // Set compression types ("BI_RGB" denotes uncompressed).
+        compressionTypes = BMPCompressionTypes.getCompressionTypes();
 
-		// Set compression flag.
-		canWriteCompressed = true;
-		compressionMode = MODE_COPY_FROM_METADATA;
-		compressionType = compressionTypes[BMPConstants.BI_RGB];
-	}
+        // Set compression flag.
+        canWriteCompressed = true;
+        compressionMode = MODE_COPY_FROM_METADATA;
+        compressionType = compressionTypes[BMPConstants.BI_RGB];
+    }
 
-	/**
-	 * Constructs an <code>BMPImageWriteParam</code> object with default values
-	 * for all parameters and a <code>null</code> <code>Locale</code>.
-	 */
-	public BMPImageWriteParam() {
-		this(null);
-	}
+    /**
+     * Constructs an <code>BMPImageWriteParam</code> object with default values
+     * for all parameters and a <code>null</code> <code>Locale</code>.
+     */
+    public BMPImageWriteParam() {
+        this(null);
+    }
 
-	/**
-	 * If set, the data will be written out in a top-down manner, the first
-	 * scanline being written first.
-	 *
-	 * @param topDown
-	 *                whether the data are written in top-down order.
-	 */
-	public void setTopDown(boolean topDown) {
-		this.topDown = topDown;
-	}
+    /**
+     * If set, the data will be written out in a top-down manner, the first
+     * scanline being written first.
+     *
+     * @param topDown
+     *                whether the data are written in top-down order.
+     */
+    public void setTopDown(boolean topDown) {
+        this.topDown = topDown;
+    }
 
-	/**
-	 * Returns the value of the <code>topDown</code> parameter. The default is
-	 * <code>false</code>.
-	 *
-	 * @return whether the data are written in top-down order.
-	 */
-	public boolean isTopDown() {
-		return topDown;
-	}
+    /**
+     * Returns the value of the <code>topDown</code> parameter. The default is
+     * <code>false</code>.
+     *
+     * @return whether the data are written in top-down order.
+     */
+    public boolean isTopDown() {
+        return topDown;
+    }
 }

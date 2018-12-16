@@ -46,148 +46,148 @@ import java.awt.ItemSelectable;
  */
 public class ItemEvent extends AWTEvent {
 
-	/**
-	 * The first number in the range of ids used for item events.
-	 */
-	public static final int ITEM_FIRST = 701;
+    /**
+     * The first number in the range of ids used for item events.
+     */
+    public static final int ITEM_FIRST = 701;
 
-	/**
-	 * The last number in the range of ids used for item events.
-	 */
-	public static final int ITEM_LAST = 701;
+    /**
+     * The last number in the range of ids used for item events.
+     */
+    public static final int ITEM_LAST = 701;
 
-	/**
-	 * This event id indicates that an item's state changed.
-	 */
-	public static final int ITEM_STATE_CHANGED = ITEM_FIRST; // Event.LIST_SELECT
+    /**
+     * This event id indicates that an item's state changed.
+     */
+    public static final int ITEM_STATE_CHANGED = ITEM_FIRST; // Event.LIST_SELECT
 
-	/**
-	 * This state-change value indicates that an item was selected.
-	 */
-	public static final int SELECTED = 1;
+    /**
+     * This state-change value indicates that an item was selected.
+     */
+    public static final int SELECTED = 1;
 
-	/**
-	 * This state-change-value indicates that a selected item was deselected.
-	 */
-	public static final int DESELECTED = 2;
+    /**
+     * This state-change-value indicates that a selected item was deselected.
+     */
+    public static final int DESELECTED = 2;
 
-	/**
-	 * The item whose selection state has changed.
-	 *
-	 * @serial
-	 * @see #getItem()
-	 */
-	Object item;
+    /**
+     * The item whose selection state has changed.
+     *
+     * @serial
+     * @see #getItem()
+     */
+    Object item;
 
-	/**
-	 * <code>stateChange</code> indicates whether the <code>item</code> was
-	 * selected or deselected.
-	 *
-	 * @serial
-	 * @see #getStateChange()
-	 */
-	int stateChange;
+    /**
+     * <code>stateChange</code> indicates whether the <code>item</code> was
+     * selected or deselected.
+     *
+     * @serial
+     * @see #getStateChange()
+     */
+    int stateChange;
 
-	/*
-	 * JDK 1.1 serialVersionUID
-	 */
-	private static final long serialVersionUID = -608708132447206933L;
+    /*
+     * JDK 1.1 serialVersionUID
+     */
+    private static final long serialVersionUID = -608708132447206933L;
 
-	/**
-	 * Constructs an <code>ItemEvent</code> object.
-	 * <p>
-	 * This method throws an <code>IllegalArgumentException</code> if
-	 * <code>source</code> is <code>null</code>.
-	 *
-	 * @param source
-	 *                    The <code>ItemSelectable</code> object that originated
-	 *                    the
-	 *                    event
-	 * @param id
-	 *                    The integer that identifies the event type. For
-	 *                    information on
-	 *                    allowable values, see the class description for
-	 *                    {@link ItemEvent}
-	 * @param item
-	 *                    An object -- the item affected by the event
-	 * @param stateChange
-	 *                    An integer that indicates whether the item was
-	 *                    selected or
-	 *                    deselected. For information on allowable values, see
-	 *                    the class
-	 *                    description for {@link ItemEvent}
-	 * @throws IllegalArgumentException
-	 *                                  if <code>source</code> is null
-	 * @see #getItemSelectable()
-	 * @see #getID()
-	 * @see #getStateChange()
-	 */
-	public ItemEvent(ItemSelectable source, int id, Object item,
-			int stateChange) {
-		super(source, id);
-		this.item = item;
-		this.stateChange = stateChange;
-	}
+    /**
+     * Constructs an <code>ItemEvent</code> object.
+     * <p>
+     * This method throws an <code>IllegalArgumentException</code> if
+     * <code>source</code> is <code>null</code>.
+     *
+     * @param source
+     *                    The <code>ItemSelectable</code> object that originated
+     *                    the
+     *                    event
+     * @param id
+     *                    The integer that identifies the event type. For
+     *                    information on
+     *                    allowable values, see the class description for
+     *                    {@link ItemEvent}
+     * @param item
+     *                    An object -- the item affected by the event
+     * @param stateChange
+     *                    An integer that indicates whether the item was
+     *                    selected or
+     *                    deselected. For information on allowable values, see
+     *                    the class
+     *                    description for {@link ItemEvent}
+     * @throws IllegalArgumentException
+     *                                  if <code>source</code> is null
+     * @see #getItemSelectable()
+     * @see #getID()
+     * @see #getStateChange()
+     */
+    public ItemEvent(ItemSelectable source, int id, Object item,
+            int stateChange) {
+        super(source, id);
+        this.item = item;
+        this.stateChange = stateChange;
+    }
 
-	/**
-	 * Returns the originator of the event.
-	 *
-	 * @return the ItemSelectable object that originated the event.
-	 */
-	public ItemSelectable getItemSelectable() {
-		return (ItemSelectable) source;
-	}
+    /**
+     * Returns the originator of the event.
+     *
+     * @return the ItemSelectable object that originated the event.
+     */
+    public ItemSelectable getItemSelectable() {
+        return (ItemSelectable) source;
+    }
 
-	/**
-	 * Returns the item affected by the event.
-	 *
-	 * @return the item (object) that was affected by the event
-	 */
-	public Object getItem() {
-		return item;
-	}
+    /**
+     * Returns the item affected by the event.
+     *
+     * @return the item (object) that was affected by the event
+     */
+    public Object getItem() {
+        return item;
+    }
 
-	/**
-	 * Returns the type of state change (selected or deselected).
-	 *
-	 * @return an integer that indicates whether the item was selected or
-	 *         deselected
-	 *
-	 * @see #SELECTED
-	 * @see #DESELECTED
-	 */
-	public int getStateChange() {
-		return stateChange;
-	}
+    /**
+     * Returns the type of state change (selected or deselected).
+     *
+     * @return an integer that indicates whether the item was selected or
+     *         deselected
+     *
+     * @see #SELECTED
+     * @see #DESELECTED
+     */
+    public int getStateChange() {
+        return stateChange;
+    }
 
-	/**
-	 * Returns a parameter string identifying this item event. This method is
-	 * useful for event-logging and for debugging.
-	 *
-	 * @return a string identifying the event and its attributes
-	 */
-	public String paramString() {
-		String typeStr;
-		switch (id) {
-			case ITEM_STATE_CHANGED:
-				typeStr = "ITEM_STATE_CHANGED";
-				break;
-			default:
-				typeStr = "unknown type";
-		}
+    /**
+     * Returns a parameter string identifying this item event. This method is
+     * useful for event-logging and for debugging.
+     *
+     * @return a string identifying the event and its attributes
+     */
+    public String paramString() {
+        String typeStr;
+        switch (id) {
+            case ITEM_STATE_CHANGED:
+                typeStr = "ITEM_STATE_CHANGED";
+                break;
+            default:
+                typeStr = "unknown type";
+        }
 
-		String stateStr;
-		switch (stateChange) {
-			case SELECTED:
-				stateStr = "SELECTED";
-				break;
-			case DESELECTED:
-				stateStr = "DESELECTED";
-				break;
-			default:
-				stateStr = "unknown type";
-		}
-		return typeStr + ",item=" + item + ",stateChange=" + stateStr;
-	}
+        String stateStr;
+        switch (stateChange) {
+            case SELECTED:
+                stateStr = "SELECTED";
+                break;
+            case DESELECTED:
+                stateStr = "DESELECTED";
+                break;
+            default:
+                stateStr = "unknown type";
+        }
+        return typeStr + ",item=" + item + ",stateChange=" + stateStr;
+    }
 
 }

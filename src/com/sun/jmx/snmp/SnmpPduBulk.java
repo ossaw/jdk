@@ -23,86 +23,86 @@ package com.sun.jmx.snmp;
  */
 
 public class SnmpPduBulk extends SnmpPduPacket implements SnmpPduBulkType {
-	private static final long serialVersionUID = -7431306775883371046L;
+    private static final long serialVersionUID = -7431306775883371046L;
 
-	/**
-	 * The <CODE>non-repeaters</CODE> value.
-	 * 
-	 * @serial
-	 */
-	public int nonRepeaters;
+    /**
+     * The <CODE>non-repeaters</CODE> value.
+     * 
+     * @serial
+     */
+    public int nonRepeaters;
 
-	/**
-	 * The <CODE>max-repetitions</CODE> value.
-	 * 
-	 * @serial
-	 */
-	public int maxRepetitions;
+    /**
+     * The <CODE>max-repetitions</CODE> value.
+     * 
+     * @serial
+     */
+    public int maxRepetitions;
 
-	/**
-	 * Builds a new <CODE>get-bulk</CODE> PDU. <BR>
-	 * <CODE>type</CODE> and <CODE>version</CODE> fields are initialized with
-	 * {@link com.sun.jmx.snmp.SnmpDefinitions#pduGetBulkRequestPdu
-	 * pduGetBulkRequestPdu} and
-	 * {@link com.sun.jmx.snmp.SnmpDefinitions#snmpVersionTwo snmpVersionTwo}.
-	 */
-	public SnmpPduBulk() {
-		type = pduGetBulkRequestPdu;
-		version = snmpVersionTwo;
-	}
+    /**
+     * Builds a new <CODE>get-bulk</CODE> PDU. <BR>
+     * <CODE>type</CODE> and <CODE>version</CODE> fields are initialized with
+     * {@link com.sun.jmx.snmp.SnmpDefinitions#pduGetBulkRequestPdu
+     * pduGetBulkRequestPdu} and
+     * {@link com.sun.jmx.snmp.SnmpDefinitions#snmpVersionTwo snmpVersionTwo}.
+     */
+    public SnmpPduBulk() {
+        type = pduGetBulkRequestPdu;
+        version = snmpVersionTwo;
+    }
 
-	/**
-	 * Implements the <CODE>SnmpPduBulkType</CODE> interface.
-	 *
-	 * @since 1.5
-	 */
-	public void setMaxRepetitions(int i) {
-		maxRepetitions = i;
-	}
+    /**
+     * Implements the <CODE>SnmpPduBulkType</CODE> interface.
+     *
+     * @since 1.5
+     */
+    public void setMaxRepetitions(int i) {
+        maxRepetitions = i;
+    }
 
-	/**
-	 * Implements the <CODE>SnmpPduBulkType</CODE> interface.
-	 *
-	 * @since 1.5
-	 */
-	public void setNonRepeaters(int i) {
-		nonRepeaters = i;
-	}
+    /**
+     * Implements the <CODE>SnmpPduBulkType</CODE> interface.
+     *
+     * @since 1.5
+     */
+    public void setNonRepeaters(int i) {
+        nonRepeaters = i;
+    }
 
-	/**
-	 * Implements the <CODE>SnmpPduBulkType</CODE> interface.
-	 *
-	 * @since 1.5
-	 */
-	public int getMaxRepetitions() {
-		return maxRepetitions;
-	}
+    /**
+     * Implements the <CODE>SnmpPduBulkType</CODE> interface.
+     *
+     * @since 1.5
+     */
+    public int getMaxRepetitions() {
+        return maxRepetitions;
+    }
 
-	/**
-	 * Implements the <CODE>SnmpPduBulkType</CODE> interface.
-	 *
-	 * @since 1.5
-	 */
-	public int getNonRepeaters() {
-		return nonRepeaters;
-	}
+    /**
+     * Implements the <CODE>SnmpPduBulkType</CODE> interface.
+     *
+     * @since 1.5
+     */
+    public int getNonRepeaters() {
+        return nonRepeaters;
+    }
 
-	/**
-	 * Implements the <CODE>SnmpAckPdu</CODE> interface.
-	 *
-	 * @since 1.5
-	 */
-	public SnmpPdu getResponsePdu() {
-		SnmpPduRequest result = new SnmpPduRequest();
-		result.address = address;
-		result.port = port;
-		result.version = version;
-		result.community = community;
-		result.type = SnmpDefinitions.pduGetResponsePdu;
-		result.requestId = requestId;
-		result.errorStatus = SnmpDefinitions.snmpRspNoError;
-		result.errorIndex = 0;
+    /**
+     * Implements the <CODE>SnmpAckPdu</CODE> interface.
+     *
+     * @since 1.5
+     */
+    public SnmpPdu getResponsePdu() {
+        SnmpPduRequest result = new SnmpPduRequest();
+        result.address = address;
+        result.port = port;
+        result.version = version;
+        result.community = community;
+        result.type = SnmpDefinitions.pduGetResponsePdu;
+        result.requestId = requestId;
+        result.errorStatus = SnmpDefinitions.snmpRspNoError;
+        result.errorIndex = 0;
 
-		return result;
-	}
+        return result;
+    }
 }

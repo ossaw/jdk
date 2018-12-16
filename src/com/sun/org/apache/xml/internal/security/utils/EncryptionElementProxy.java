@@ -34,29 +34,29 @@ import org.w3c.dom.Element;
  */
 public abstract class EncryptionElementProxy extends ElementProxy {
 
-	/**
-	 * Constructor EncryptionElementProxy
-	 *
-	 * @param doc
-	 */
-	public EncryptionElementProxy(Document doc) {
-		super(doc);
-	}
+    /**
+     * Constructor EncryptionElementProxy
+     *
+     * @param doc
+     */
+    public EncryptionElementProxy(Document doc) {
+        super(doc);
+    }
 
-	/**
-	 * Constructor EncryptionElementProxy
-	 *
-	 * @param element
-	 * @param BaseURI
-	 * @throws XMLSecurityException
-	 */
-	public EncryptionElementProxy(Element element, String BaseURI)
-			throws XMLSecurityException {
-		super(element, BaseURI);
-	}
+    /**
+     * Constructor EncryptionElementProxy
+     *
+     * @param element
+     * @param BaseURI
+     * @throws XMLSecurityException
+     */
+    public EncryptionElementProxy(Element element, String BaseURI)
+            throws XMLSecurityException {
+        super(element, BaseURI);
+    }
 
-	/** @inheritDoc */
-	public final String getBaseNamespace() {
-		return EncryptionConstants.EncryptionSpecNS;
-	}
+    /** @inheritDoc */
+    public final String getBaseNamespace() {
+        return EncryptionConstants.EncryptionSpecNS;
+    }
 }

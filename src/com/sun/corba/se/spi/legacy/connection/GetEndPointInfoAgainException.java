@@ -16,13 +16,13 @@ import com.sun.corba.se.spi.transport.SocketInfo;
  */
 
 public class GetEndPointInfoAgainException extends Exception {
-	private SocketInfo socketInfo;
+    private SocketInfo socketInfo;
 
-	public GetEndPointInfoAgainException(SocketInfo socketInfo) {
-		this.socketInfo = socketInfo;
-	}
+    public GetEndPointInfoAgainException(SocketInfo socketInfo) {
+        this.socketInfo = socketInfo;
+    }
 
-	public SocketInfo getEndPointInfo() {
-		return socketInfo;
-	}
+    public SocketInfo getEndPointInfo() {
+        return socketInfo;
+    }
 }

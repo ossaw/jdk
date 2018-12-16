@@ -40,96 +40,96 @@ import com.sun.org.apache.xml.internal.dtm.ref.DTMAxisIteratorBase;
  */
 public class StepIterator extends DTMAxisIteratorBase {
 
-	/**
-	 * A reference to the "outer" iterator.
-	 */
-	protected DTMAxisIterator _source;
+    /**
+     * A reference to the "outer" iterator.
+     */
+    protected DTMAxisIterator _source;
 
-	/**
-	 * A reference to the "inner" iterator.
-	 */
-	protected DTMAxisIterator _iterator;
+    /**
+     * A reference to the "inner" iterator.
+     */
+    protected DTMAxisIterator _iterator;
 
-	/**
-	 * Temp variable to store a marked position.
-	 */
-	private int _pos = -1;
+    /**
+     * Temp variable to store a marked position.
+     */
+    private int _pos = -1;
 
-	public StepIterator(DTMAxisIterator source, DTMAxisIterator iterator) {
-		_source = source;
-		_iterator = iterator;
-		// System.out.println("SI source = " + source + " this = " + this);
-		// System.out.println("SI iterator = " + iterator + " this = " + this);
-	}
+    public StepIterator(DTMAxisIterator source, DTMAxisIterator iterator) {
+        _source = source;
+        _iterator = iterator;
+        // System.out.println("SI source = " + source + " this = " + this);
+        // System.out.println("SI iterator = " + iterator + " this = " + this);
+    }
 
-	public void setRestartable(boolean isRestartable) {
-		_isRestartable = isRestartable;
-		_source.setRestartable(isRestartable);
-		_iterator.setRestartable(true); // must be restartable
-	}
+    public void setRestartable(boolean isRestartable) {
+        _isRestartable = isRestartable;
+        _source.setRestartable(isRestartable);
+        _iterator.setRestartable(true); // must be restartable
+    }
 
-	public DTMAxisIterator cloneIterator() {
-		_isRestartable = false;
-		try {
-			final StepIterator clone = (StepIterator) super.clone();
-			clone._source = _source.cloneIterator();
-			clone._iterator = _iterator.cloneIterator();
-			clone._iterator.setRestartable(true); // must be restartable
-			clone._isRestartable = false;
-			return clone.reset();
-		} catch (CloneNotSupportedException e) {
-			BasisLibrary.runTimeError(BasisLibrary.ITERATOR_CLONE_ERR, e
-					.toString());
-			return null;
-		}
-	}
+    public DTMAxisIterator cloneIterator() {
+        _isRestartable = false;
+        try {
+            final StepIterator clone = (StepIterator) super.clone();
+            clone._source = _source.cloneIterator();
+            clone._iterator = _iterator.cloneIterator();
+            clone._iterator.setRestartable(true); // must be restartable
+            clone._isRestartable = false;
+            return clone.reset();
+        } catch (CloneNotSupportedException e) {
+            BasisLibrary.runTimeError(BasisLibrary.ITERATOR_CLONE_ERR, e
+                    .toString());
+            return null;
+        }
+    }
 
-	public DTMAxisIterator setStartNode(int node) {
-		if (_isRestartable) {
-			// Set start node for left-hand iterator...
-			_source.setStartNode(_startNode = node);
+    public DTMAxisIterator setStartNode(int node) {
+        if (_isRestartable) {
+            // Set start node for left-hand iterator...
+            _source.setStartNode(_startNode = node);
 
-			// ... and get start node for right-hand iterator from left-hand,
-			// with special case for //* path - see ParentLocationPath
-			_iterator.setStartNode(_includeSelf ? _startNode : _source.next());
-			return resetPosition();
-		}
-		return this;
-	}
+            // ... and get start node for right-hand iterator from left-hand,
+            // with special case for //* path - see ParentLocationPath
+            _iterator.setStartNode(_includeSelf ? _startNode : _source.next());
+            return resetPosition();
+        }
+        return this;
+    }
 
-	public DTMAxisIterator reset() {
-		_source.reset();
-		// Special case for //* path - see ParentLocationPath
-		_iterator.setStartNode(_includeSelf ? _startNode : _source.next());
-		return resetPosition();
-	}
+    public DTMAxisIterator reset() {
+        _source.reset();
+        // Special case for //* path - see ParentLocationPath
+        _iterator.setStartNode(_includeSelf ? _startNode : _source.next());
+        return resetPosition();
+    }
 
-	public int next() {
-		for (int node;;) {
-			// Try to get another node from the right-hand iterator
-			if ((node = _iterator.next()) != END) {
-				return returnNode(node);
-			}
-			// If not, get the next starting point from left-hand iterator...
-			else if ((node = _source.next()) == END) {
-				return END;
-			}
-			// ...and pass it on to the right-hand iterator
-			else {
-				_iterator.setStartNode(node);
-			}
-		}
-	}
+    public int next() {
+        for (int node;;) {
+            // Try to get another node from the right-hand iterator
+            if ((node = _iterator.next()) != END) {
+                return returnNode(node);
+            }
+            // If not, get the next starting point from left-hand iterator...
+            else if ((node = _source.next()) == END) {
+                return END;
+            }
+            // ...and pass it on to the right-hand iterator
+            else {
+                _iterator.setStartNode(node);
+            }
+        }
+    }
 
-	public void setMark() {
-		_source.setMark();
-		_iterator.setMark();
-		// _pos = _position;
-	}
+    public void setMark() {
+        _source.setMark();
+        _iterator.setMark();
+        // _pos = _position;
+    }
 
-	public void gotoMark() {
-		_source.gotoMark();
-		_iterator.gotoMark();
-		// _position = _pos;
-	}
+    public void gotoMark() {
+        _source.gotoMark();
+        _iterator.gotoMark();
+        // _position = _pos;
+    }
 }

@@ -30,9 +30,9 @@ package java.awt;
  */
 public interface ActiveEvent {
 
-	/**
-	 * Dispatch the event to its target, listeners of the events source, or do
-	 * whatever it is this event is supposed to do.
-	 */
-	public void dispatch();
+    /**
+     * Dispatch the event to its target, listeners of the events source, or do
+     * whatever it is this event is supposed to do.
+     */
+    public void dispatch();
 }

@@ -12,16 +12,16 @@ package org.omg.CORBA.portable;
  */
 public interface ValueInputStream {
 
-	/**
-	 * The start_value method reads a valuetype header for a nested custom
-	 * valuetype and increments the valuetype nesting depth.
-	 */
-	void start_value();
+    /**
+     * The start_value method reads a valuetype header for a nested custom
+     * valuetype and increments the valuetype nesting depth.
+     */
+    void start_value();
 
-	/**
-	 * The end_value method reads the end tag for the nested custom valuetype
-	 * (after skipping any data that precedes the end tag) and decrements the
-	 * valuetype nesting depth.
-	 */
-	void end_value();
+    /**
+     * The end_value method reads the end tag for the nested custom valuetype
+     * (after skipping any data that precedes the end tag) and decrements the
+     * valuetype nesting depth.
+     */
+    void end_value();
 }

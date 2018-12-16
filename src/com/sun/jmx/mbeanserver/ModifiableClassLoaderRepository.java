@@ -18,29 +18,29 @@ import javax.management.loading.ClassLoaderRepository;
  */
 public interface ModifiableClassLoaderRepository extends ClassLoaderRepository {
 
-	/**
-	 * Add an anonymous ClassLoader to the repository.
-	 **/
-	public void addClassLoader(ClassLoader loader);
+    /**
+     * Add an anonymous ClassLoader to the repository.
+     **/
+    public void addClassLoader(ClassLoader loader);
 
-	/**
-	 * Remove the specified ClassLoader to the repository. The class loader may
-	 * or may not be anonymous.
-	 **/
-	public void removeClassLoader(ClassLoader loader);
+    /**
+     * Remove the specified ClassLoader to the repository. The class loader may
+     * or may not be anonymous.
+     **/
+    public void removeClassLoader(ClassLoader loader);
 
-	/**
-	 * Add a named ClassLoader to the repository.
-	 **/
-	public void addClassLoader(ObjectName name, ClassLoader loader);
+    /**
+     * Add a named ClassLoader to the repository.
+     **/
+    public void addClassLoader(ObjectName name, ClassLoader loader);
 
-	/**
-	 * Remove a named ClassLoader from the repository.
-	 **/
-	public void removeClassLoader(ObjectName name);
+    /**
+     * Remove a named ClassLoader from the repository.
+     **/
+    public void removeClassLoader(ObjectName name);
 
-	/**
-	 * Get a named ClassLoader from the repository.
-	 **/
-	public ClassLoader getClassLoader(ObjectName name);
+    /**
+     * Get a named ClassLoader from the repository.
+     **/
+    public ClassLoader getClassLoader(ObjectName name);
 }

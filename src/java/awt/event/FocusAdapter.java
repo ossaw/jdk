@@ -31,13 +31,13 @@ package java.awt.event;
  * @since 1.1
  */
 public abstract class FocusAdapter implements FocusListener {
-	/**
-	 * Invoked when a component gains the keyboard focus.
-	 */
-	public void focusGained(FocusEvent e) {}
+    /**
+     * Invoked when a component gains the keyboard focus.
+     */
+    public void focusGained(FocusEvent e) {}
 
-	/**
-	 * Invoked when a component loses the keyboard focus.
-	 */
-	public void focusLost(FocusEvent e) {}
+    /**
+     * Invoked when a component loses the keyboard focus.
+     */
+    public void focusLost(FocusEvent e) {}
 }

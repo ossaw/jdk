@@ -27,85 +27,85 @@ import javax.print.attribute.PrintServiceAttribute;
  * @author Alan Kaminsky
  */
 public final class PrinterState extends EnumSyntax implements
-		PrintServiceAttribute {
+        PrintServiceAttribute {
 
-	private static final long serialVersionUID = -649578618346507718L;
+    private static final long serialVersionUID = -649578618346507718L;
 
-	/**
-	 * The printer state is unknown.
-	 */
-	public static final PrinterState UNKNOWN = new PrinterState(0);
+    /**
+     * The printer state is unknown.
+     */
+    public static final PrinterState UNKNOWN = new PrinterState(0);
 
-	/**
-	 * Indicates that new jobs can start processing without waiting.
-	 */
-	public static final PrinterState IDLE = new PrinterState(3);
+    /**
+     * Indicates that new jobs can start processing without waiting.
+     */
+    public static final PrinterState IDLE = new PrinterState(3);
 
-	/**
-	 * Indicates that jobs are processing; new jobs will wait before processing.
-	 */
-	public static final PrinterState PROCESSING = new PrinterState(4);
+    /**
+     * Indicates that jobs are processing; new jobs will wait before processing.
+     */
+    public static final PrinterState PROCESSING = new PrinterState(4);
 
-	/**
-	 * Indicates that no jobs can be processed and intervention is required.
-	 */
-	public static final PrinterState STOPPED = new PrinterState(5);
+    /**
+     * Indicates that no jobs can be processed and intervention is required.
+     */
+    public static final PrinterState STOPPED = new PrinterState(5);
 
-	/**
-	 * Construct a new printer state enumeration value with the given integer
-	 * value.
-	 *
-	 * @param value
-	 *              Integer value.
-	 */
-	protected PrinterState(int value) {
-		super(value);
-	}
+    /**
+     * Construct a new printer state enumeration value with the given integer
+     * value.
+     *
+     * @param value
+     *              Integer value.
+     */
+    protected PrinterState(int value) {
+        super(value);
+    }
 
-	private static final String[] myStringTable = { "unknown", null, null,
-			"idle", "processing", "stopped" };
+    private static final String[] myStringTable = { "unknown", null, null,
+            "idle", "processing", "stopped" };
 
-	private static final PrinterState[] myEnumValueTable = { UNKNOWN, null,
-			null, IDLE, PROCESSING, STOPPED };
+    private static final PrinterState[] myEnumValueTable = { UNKNOWN, null,
+            null, IDLE, PROCESSING, STOPPED };
 
-	/**
-	 * Returns the string table for class PrinterState.
-	 */
-	protected String[] getStringTable() {
-		return myStringTable;
-	}
+    /**
+     * Returns the string table for class PrinterState.
+     */
+    protected String[] getStringTable() {
+        return myStringTable;
+    }
 
-	/**
-	 * Returns the enumeration value table for class PrinterState.
-	 */
-	protected EnumSyntax[] getEnumValueTable() {
-		return myEnumValueTable;
-	}
+    /**
+     * Returns the enumeration value table for class PrinterState.
+     */
+    protected EnumSyntax[] getEnumValueTable() {
+        return myEnumValueTable;
+    }
 
-	/**
-	 * Get the printing attribute class which is to be used as the "category"
-	 * for this printing attribute value.
-	 * <P>
-	 * For class PrinterState, the category is class PrinterState itself.
-	 *
-	 * @return Printing attribute class (category), an instance of class
-	 *         {@link java.lang.Class java.lang.Class}.
-	 */
-	public final Class<? extends Attribute> getCategory() {
-		return PrinterState.class;
-	}
+    /**
+     * Get the printing attribute class which is to be used as the "category"
+     * for this printing attribute value.
+     * <P>
+     * For class PrinterState, the category is class PrinterState itself.
+     *
+     * @return Printing attribute class (category), an instance of class
+     *         {@link java.lang.Class java.lang.Class}.
+     */
+    public final Class<? extends Attribute> getCategory() {
+        return PrinterState.class;
+    }
 
-	/**
-	 * Get the name of the category of which this attribute value is an
-	 * instance.
-	 * <P>
-	 * For class PrinterState, the category name is <CODE>"printer-state"</CODE>
-	 * .
-	 *
-	 * @return Attribute category name.
-	 */
-	public final String getName() {
-		return "printer-state";
-	}
+    /**
+     * Get the name of the category of which this attribute value is an
+     * instance.
+     * <P>
+     * For class PrinterState, the category name is <CODE>"printer-state"</CODE>
+     * .
+     *
+     * @return Attribute category name.
+     */
+    public final String getName() {
+        return "printer-state";
+    }
 
 }

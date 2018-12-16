@@ -19,23 +19,23 @@ import javax.management.JMException;
  */
 public class OpenDataException extends JMException {
 
-	private static final long serialVersionUID = 8346311255433349870L;
+    private static final long serialVersionUID = 8346311255433349870L;
 
-	/**
-	 * An OpenDataException with no detail message.
-	 */
-	public OpenDataException() {
-		super();
-	}
+    /**
+     * An OpenDataException with no detail message.
+     */
+    public OpenDataException() {
+        super();
+    }
 
-	/**
-	 * An OpenDataException with a detail message.
-	 *
-	 * @param msg
-	 *            the detail message.
-	 */
-	public OpenDataException(String msg) {
-		super(msg);
-	}
+    /**
+     * An OpenDataException with a detail message.
+     *
+     * @param msg
+     *            the detail message.
+     */
+    public OpenDataException(String msg) {
+        super(msg);
+    }
 
 }

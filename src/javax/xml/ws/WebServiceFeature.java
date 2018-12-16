@@ -25,32 +25,32 @@ package javax.xml.ws;
  * @since 2.1
  */
 public abstract class WebServiceFeature {
-	/**
-	 * Each Feature definition MUST define a public static final String ID that
-	 * can be used in the Feature annotation to refer to the feature.
-	 */
-	// public static final String ID = "some unique feature Identifier";
+    /**
+     * Each Feature definition MUST define a public static final String ID that
+     * can be used in the Feature annotation to refer to the feature.
+     */
+    // public static final String ID = "some unique feature Identifier";
 
-	/**
-	 * Get the unique identifier for this WebServiceFeature.
-	 *
-	 * @return the unique identifier for this feature.
-	 */
-	public abstract String getID();
+    /**
+     * Get the unique identifier for this WebServiceFeature.
+     *
+     * @return the unique identifier for this feature.
+     */
+    public abstract String getID();
 
-	/**
-	 * Specifies if the feature is enabled or disabled
-	 */
-	protected boolean enabled = false;
+    /**
+     * Specifies if the feature is enabled or disabled
+     */
+    protected boolean enabled = false;
 
-	protected WebServiceFeature() {}
+    protected WebServiceFeature() {}
 
-	/**
-	 * Returns <code>true</code> if this feature is enabled.
-	 *
-	 * @return <code>true</code> if and only if the feature is enabled .
-	 */
-	public boolean isEnabled() {
-		return enabled;
-	}
+    /**
+     * Returns <code>true</code> if this feature is enabled.
+     *
+     * @return <code>true</code> if and only if the feature is enabled .
+     */
+    public boolean isEnabled() {
+        return enabled;
+    }
 }

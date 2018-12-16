@@ -56,161 +56,161 @@ import javax.lang.model.element.*;
  * @since 1.6
  */
 public interface TypeVisitor<R, P> {
-	/**
-	 * Visits a type.
-	 * 
-	 * @param t
-	 *          the type to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return a visitor-specified result
-	 */
-	R visit(TypeMirror t, P p);
+    /**
+     * Visits a type.
+     * 
+     * @param t
+     *          the type to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return a visitor-specified result
+     */
+    R visit(TypeMirror t, P p);
 
-	/**
-	 * A convenience method equivalent to {@code v.visit(t, null)}.
-	 * 
-	 * @param t
-	 *          the element to visit
-	 * @return a visitor-specified result
-	 */
-	R visit(TypeMirror t);
+    /**
+     * A convenience method equivalent to {@code v.visit(t, null)}.
+     * 
+     * @param t
+     *          the element to visit
+     * @return a visitor-specified result
+     */
+    R visit(TypeMirror t);
 
-	/**
-	 * Visits a primitive type.
-	 * 
-	 * @param t
-	 *          the type to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return a visitor-specified result
-	 */
-	R visitPrimitive(PrimitiveType t, P p);
+    /**
+     * Visits a primitive type.
+     * 
+     * @param t
+     *          the type to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return a visitor-specified result
+     */
+    R visitPrimitive(PrimitiveType t, P p);
 
-	/**
-	 * Visits the null type.
-	 * 
-	 * @param t
-	 *          the type to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return a visitor-specified result
-	 */
-	R visitNull(NullType t, P p);
+    /**
+     * Visits the null type.
+     * 
+     * @param t
+     *          the type to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return a visitor-specified result
+     */
+    R visitNull(NullType t, P p);
 
-	/**
-	 * Visits an array type.
-	 * 
-	 * @param t
-	 *          the type to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return a visitor-specified result
-	 */
-	R visitArray(ArrayType t, P p);
+    /**
+     * Visits an array type.
+     * 
+     * @param t
+     *          the type to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return a visitor-specified result
+     */
+    R visitArray(ArrayType t, P p);
 
-	/**
-	 * Visits a declared type.
-	 * 
-	 * @param t
-	 *          the type to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return a visitor-specified result
-	 */
-	R visitDeclared(DeclaredType t, P p);
+    /**
+     * Visits a declared type.
+     * 
+     * @param t
+     *          the type to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return a visitor-specified result
+     */
+    R visitDeclared(DeclaredType t, P p);
 
-	/**
-	 * Visits an error type.
-	 * 
-	 * @param t
-	 *          the type to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return a visitor-specified result
-	 */
-	R visitError(ErrorType t, P p);
+    /**
+     * Visits an error type.
+     * 
+     * @param t
+     *          the type to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return a visitor-specified result
+     */
+    R visitError(ErrorType t, P p);
 
-	/**
-	 * Visits a type variable.
-	 * 
-	 * @param t
-	 *          the type to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return a visitor-specified result
-	 */
-	R visitTypeVariable(TypeVariable t, P p);
+    /**
+     * Visits a type variable.
+     * 
+     * @param t
+     *          the type to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return a visitor-specified result
+     */
+    R visitTypeVariable(TypeVariable t, P p);
 
-	/**
-	 * Visits a wildcard type.
-	 * 
-	 * @param t
-	 *          the type to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return a visitor-specified result
-	 */
-	R visitWildcard(WildcardType t, P p);
+    /**
+     * Visits a wildcard type.
+     * 
+     * @param t
+     *          the type to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return a visitor-specified result
+     */
+    R visitWildcard(WildcardType t, P p);
 
-	/**
-	 * Visits an executable type.
-	 * 
-	 * @param t
-	 *          the type to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return a visitor-specified result
-	 */
-	R visitExecutable(ExecutableType t, P p);
+    /**
+     * Visits an executable type.
+     * 
+     * @param t
+     *          the type to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return a visitor-specified result
+     */
+    R visitExecutable(ExecutableType t, P p);
 
-	/**
-	 * Visits a {@link NoType} instance.
-	 * 
-	 * @param t
-	 *          the type to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return a visitor-specified result
-	 */
-	R visitNoType(NoType t, P p);
+    /**
+     * Visits a {@link NoType} instance.
+     * 
+     * @param t
+     *          the type to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return a visitor-specified result
+     */
+    R visitNoType(NoType t, P p);
 
-	/**
-	 * Visits an unknown kind of type. This can occur if the language evolves
-	 * and new kinds of types are added to the {@code TypeMirror} hierarchy.
-	 * 
-	 * @param t
-	 *          the type to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return a visitor-specified result
-	 * @throws UnknownTypeException
-	 *                              a visitor implementation may optionally
-	 *                              throw this exception
-	 */
-	R visitUnknown(TypeMirror t, P p);
+    /**
+     * Visits an unknown kind of type. This can occur if the language evolves
+     * and new kinds of types are added to the {@code TypeMirror} hierarchy.
+     * 
+     * @param t
+     *          the type to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return a visitor-specified result
+     * @throws UnknownTypeException
+     *                              a visitor implementation may optionally
+     *                              throw this exception
+     */
+    R visitUnknown(TypeMirror t, P p);
 
-	/**
-	 * Visits a union type.
-	 *
-	 * @param t
-	 *          the type to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return a visitor-specified result
-	 * @since 1.7
-	 */
-	R visitUnion(UnionType t, P p);
+    /**
+     * Visits a union type.
+     *
+     * @param t
+     *          the type to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return a visitor-specified result
+     * @since 1.7
+     */
+    R visitUnion(UnionType t, P p);
 
-	/**
-	 * Visits an intersection type.
-	 *
-	 * @param t
-	 *          the type to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return a visitor-specified result
-	 * @since 1.8
-	 */
-	R visitIntersection(IntersectionType t, P p);
+    /**
+     * Visits an intersection type.
+     *
+     * @param t
+     *          the type to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return a visitor-specified result
+     * @since 1.8
+     */
+    R visitIntersection(IntersectionType t, P p);
 }

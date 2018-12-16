@@ -22,15 +22,15 @@ package org.omg.CORBA_2_3.portable;
 
 public abstract class Delegate extends org.omg.CORBA.portable.Delegate {
 
-	/**
-	 * Returns the codebase for object reference provided.
-	 * 
-	 * @param self
-	 *             the object reference whose codebase needs to be returned.
-	 * @return the codebase as a space delimited list of url strings or null if
-	 *         none.
-	 */
-	public java.lang.String get_codebase(org.omg.CORBA.Object self) {
-		return null;
-	}
+    /**
+     * Returns the codebase for object reference provided.
+     * 
+     * @param self
+     *             the object reference whose codebase needs to be returned.
+     * @return the codebase as a space delimited list of url strings or null if
+     *         none.
+     */
+    public java.lang.String get_codebase(org.omg.CORBA.Object self) {
+        return null;
+    }
 }

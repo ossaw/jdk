@@ -16,11 +16,11 @@ package java.nio;
 
 public class InvalidMarkException extends IllegalStateException {
 
-	private static final long serialVersionUID = 1698329710438510774L;
+    private static final long serialVersionUID = 1698329710438510774L;
 
-	/**
-	 * Constructs an instance of this class.
-	 */
-	public InvalidMarkException() {}
+    /**
+     * Constructs an instance of this class.
+     */
+    public InvalidMarkException() {}
 
 }

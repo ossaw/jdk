@@ -103,38 +103,38 @@ import java.math.*;
 
 public interface FilteredRowSet extends WebRowSet {
 
-	/**
-	 * Applies the given <code>Predicate</code> object to this
-	 * <code>FilteredRowSet</code> object. The filter applies controls both to
-	 * inbound and outbound views, constraining which rows are visible and which
-	 * rows can be manipulated.
-	 * <p>
-	 * A new <code>Predicate</code> object may be set at any time. This has the
-	 * effect of changing constraints on the <code>RowSet</code> object's data.
-	 * In addition, modifying the filter at runtime presents issues whereby
-	 * multiple components may be operating on one <code>FilteredRowSet</code>
-	 * object. Application developers must take responsibility for managing
-	 * multiple handles to <code>FilteredRowSet</code> objects when their
-	 * underling <code>Predicate</code> objects change.
-	 *
-	 * @param p
-	 *          a <code>Predicate</code> object defining the filter for this
-	 *          <code>FilteredRowSet</code> object. Setting a <b>null</b>
-	 *          value will clear the predicate, allowing all rows to become
-	 *          visible.
-	 *
-	 * @throws SQLException
-	 *                      if an error occurs when setting the
-	 *                      <code>Predicate</code>
-	 *                      object
-	 */
-	public void setFilter(Predicate p) throws SQLException;
+    /**
+     * Applies the given <code>Predicate</code> object to this
+     * <code>FilteredRowSet</code> object. The filter applies controls both to
+     * inbound and outbound views, constraining which rows are visible and which
+     * rows can be manipulated.
+     * <p>
+     * A new <code>Predicate</code> object may be set at any time. This has the
+     * effect of changing constraints on the <code>RowSet</code> object's data.
+     * In addition, modifying the filter at runtime presents issues whereby
+     * multiple components may be operating on one <code>FilteredRowSet</code>
+     * object. Application developers must take responsibility for managing
+     * multiple handles to <code>FilteredRowSet</code> objects when their
+     * underling <code>Predicate</code> objects change.
+     *
+     * @param p
+     *          a <code>Predicate</code> object defining the filter for this
+     *          <code>FilteredRowSet</code> object. Setting a <b>null</b>
+     *          value will clear the predicate, allowing all rows to become
+     *          visible.
+     *
+     * @throws SQLException
+     *                      if an error occurs when setting the
+     *                      <code>Predicate</code>
+     *                      object
+     */
+    public void setFilter(Predicate p) throws SQLException;
 
-	/**
-	 * Retrieves the active filter for this <code>FilteredRowSet</code> object.
-	 *
-	 * @return p the <code>Predicate</code> for this <code>FilteredRowSet</code>
-	 *         object; <code>null</code> if no filter has been set.
-	 */
-	public Predicate getFilter();
+    /**
+     * Retrieves the active filter for this <code>FilteredRowSet</code> object.
+     *
+     * @return p the <code>Predicate</code> for this <code>FilteredRowSet</code>
+     *         object; <code>null</code> if no filter has been set.
+     */
+    public Predicate getFilter();
 }

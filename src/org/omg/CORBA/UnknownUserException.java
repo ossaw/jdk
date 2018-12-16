@@ -20,31 +20,31 @@ package org.omg.CORBA;
 
 public final class UnknownUserException extends UserException {
 
-	/**
-	 * The <code>Any</code> instance that contains the actual user exception
-	 * thrown by the server.
-	 * 
-	 * @serial
-	 */
-	public Any except;
+    /**
+     * The <code>Any</code> instance that contains the actual user exception
+     * thrown by the server.
+     * 
+     * @serial
+     */
+    public Any except;
 
-	/**
-	 * Constructs an <code>UnknownUserException</code> object.
-	 */
-	public UnknownUserException() {
-		super();
-	}
+    /**
+     * Constructs an <code>UnknownUserException</code> object.
+     */
+    public UnknownUserException() {
+        super();
+    }
 
-	/**
-	 * Constructs an <code>UnknownUserException</code> object that contains the
-	 * given <code>Any</code> object.
-	 *
-	 * @param a
-	 *          an <code>Any</code> object that contains a user exception
-	 *          returned by the server
-	 */
-	public UnknownUserException(Any a) {
-		super();
-		except = a;
-	}
+    /**
+     * Constructs an <code>UnknownUserException</code> object that contains the
+     * given <code>Any</code> object.
+     *
+     * @param a
+     *          an <code>Any</code> object that contains a user exception
+     *          returned by the server
+     */
+    public UnknownUserException(Any a) {
+        super();
+        except = a;
+    }
 }

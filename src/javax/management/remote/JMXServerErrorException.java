@@ -21,31 +21,31 @@ import javax.management.MBeanServer;
  */
 public class JMXServerErrorException extends IOException {
 
-	private static final long serialVersionUID = 3996732239558744666L;
+    private static final long serialVersionUID = 3996732239558744666L;
 
-	/**
-	 * Constructs a <code>JMXServerErrorException</code> with the specified
-	 * detail message and nested error.
-	 *
-	 * @param s
-	 *            the detail message.
-	 * @param err
-	 *            the nested error. An instance of this class can be constructed
-	 *            where this parameter is null, but the standard connectors will
-	 *            never do so.
-	 */
-	public JMXServerErrorException(String s, Error err) {
-		super(s);
-		cause = err;
-	}
+    /**
+     * Constructs a <code>JMXServerErrorException</code> with the specified
+     * detail message and nested error.
+     *
+     * @param s
+     *            the detail message.
+     * @param err
+     *            the nested error. An instance of this class can be constructed
+     *            where this parameter is null, but the standard connectors will
+     *            never do so.
+     */
+    public JMXServerErrorException(String s, Error err) {
+        super(s);
+        cause = err;
+    }
 
-	public Throwable getCause() {
-		return cause;
-	}
+    public Throwable getCause() {
+        return cause;
+    }
 
-	/**
-	 * @serial An {@link Error} that caused this exception to be thrown.
-	 * @see #getCause()
-	 **/
-	private final Error cause;
+    /**
+     * @serial An {@link Error} that caused this exception to be thrown.
+     * @see #getCause()
+     **/
+    private final Error cause;
 }

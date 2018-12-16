@@ -71,22 +71,22 @@ import static javax.lang.model.SourceVersion.*;
  */
 @SupportedSourceVersion(RELEASE_8)
 public class ElementScanner8<R, P> extends ElementScanner7<R, P> {
-	/**
-	 * Constructor for concrete subclasses; uses {@code null} for the default
-	 * value.
-	 */
-	protected ElementScanner8() {
-		super(null);
-	}
+    /**
+     * Constructor for concrete subclasses; uses {@code null} for the default
+     * value.
+     */
+    protected ElementScanner8() {
+        super(null);
+    }
 
-	/**
-	 * Constructor for concrete subclasses; uses the argument for the default
-	 * value.
-	 *
-	 * @param defaultValue
-	 *                     the default value
-	 */
-	protected ElementScanner8(R defaultValue) {
-		super(defaultValue);
-	}
+    /**
+     * Constructor for concrete subclasses; uses the argument for the default
+     * value.
+     *
+     * @param defaultValue
+     *                     the default value
+     */
+    protected ElementScanner8(R defaultValue) {
+        super(defaultValue);
+    }
 }

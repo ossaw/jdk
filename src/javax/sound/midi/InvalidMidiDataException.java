@@ -19,24 +19,24 @@ package javax.sound.midi;
  */
 public class InvalidMidiDataException extends Exception {
 
-	/**
-	 * Constructs an <code>InvalidMidiDataException</code> with
-	 * <code>null</code> for its error detail message.
-	 */
-	public InvalidMidiDataException() {
+    /**
+     * Constructs an <code>InvalidMidiDataException</code> with
+     * <code>null</code> for its error detail message.
+     */
+    public InvalidMidiDataException() {
 
-		super();
-	}
+        super();
+    }
 
-	/**
-	 * Constructs an <code>InvalidMidiDataException</code> with the specified
-	 * detail message.
-	 *
-	 * @param message
-	 *                the string to display as an error detail message
-	 */
-	public InvalidMidiDataException(String message) {
+    /**
+     * Constructs an <code>InvalidMidiDataException</code> with the specified
+     * detail message.
+     *
+     * @param message
+     *                the string to display as an error detail message
+     */
+    public InvalidMidiDataException(String message) {
 
-		super(message);
-	}
+        super(message);
+    }
 }

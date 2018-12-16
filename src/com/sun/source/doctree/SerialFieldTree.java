@@ -17,9 +17,9 @@ import java.util.List;
  */
 @jdk.Exported
 public interface SerialFieldTree extends BlockTagTree {
-	IdentifierTree getName();
+    IdentifierTree getName();
 
-	ReferenceTree getType();
+    ReferenceTree getType();
 
-	List<? extends DocTree> getDescription();
+    List<? extends DocTree> getDescription();
 }

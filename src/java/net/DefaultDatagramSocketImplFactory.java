@@ -26,101 +26,101 @@ import java.security.PrivilegedAction;
  */
 
 class DefaultDatagramSocketImplFactory {
-	private final static Class<?> prefixImplClass;
+    private final static Class<?> prefixImplClass;
 
-	/* the windows version. */
-	private static float version;
+    /* the windows version. */
+    private static float version;
 
-	/* java.net.preferIPv4Stack */
-	private static boolean preferIPv4Stack = false;
+    /* java.net.preferIPv4Stack */
+    private static boolean preferIPv4Stack = false;
 
-	/* If the version supports a dual stack TCP implementation */
-	private final static boolean useDualStackImpl;
+    /* If the version supports a dual stack TCP implementation */
+    private final static boolean useDualStackImpl;
 
-	/* sun.net.useExclusiveBind */
-	private static String exclBindProp;
+    /* sun.net.useExclusiveBind */
+    private static String exclBindProp;
 
-	/* True if exclusive binding is on for Windows */
-	private final static boolean exclusiveBind;
+    /* True if exclusive binding is on for Windows */
+    private final static boolean exclusiveBind;
 
-	static {
-		Class<?> prefixImplClassLocal = null;
-		boolean useDualStackImplLocal = false;
-		boolean exclusiveBindLocal = true;
+    static {
+        Class<?> prefixImplClassLocal = null;
+        boolean useDualStackImplLocal = false;
+        boolean exclusiveBindLocal = true;
 
-		// Determine Windows Version.
-		java.security.AccessController.doPrivileged(
-				new PrivilegedAction<Object>() {
-					public Object run() {
-						version = 0;
-						try {
-							version = Float.parseFloat(System.getProperties()
-									.getProperty("os.version"));
-							preferIPv4Stack = Boolean.parseBoolean(System
-									.getProperties().getProperty(
-											"java.net.preferIPv4Stack"));
-							exclBindProp = System.getProperty(
-									"sun.net.useExclusiveBind");
-						} catch (NumberFormatException e) {
-							assert false : e;
-						}
-						return null; // nothing to return
-					}
-				});
+        // Determine Windows Version.
+        java.security.AccessController.doPrivileged(
+                new PrivilegedAction<Object>() {
+                    public Object run() {
+                        version = 0;
+                        try {
+                            version = Float.parseFloat(System.getProperties()
+                                    .getProperty("os.version"));
+                            preferIPv4Stack = Boolean.parseBoolean(System
+                                    .getProperties().getProperty(
+                                            "java.net.preferIPv4Stack"));
+                            exclBindProp = System.getProperty(
+                                    "sun.net.useExclusiveBind");
+                        } catch (NumberFormatException e) {
+                            assert false : e;
+                        }
+                        return null; // nothing to return
+                    }
+                });
 
-		// (version >= 6.0) implies Vista or greater.
-		if (version >= 6.0 && !preferIPv4Stack) {
-			useDualStackImplLocal = true;
-		}
-		if (exclBindProp != null) {
-			// sun.net.useExclusiveBind is true
-			exclusiveBindLocal = exclBindProp.length() == 0 ? true
-					: Boolean.parseBoolean(exclBindProp);
-		} else if (version < 6.0) {
-			exclusiveBindLocal = false;
-		}
+        // (version >= 6.0) implies Vista or greater.
+        if (version >= 6.0 && !preferIPv4Stack) {
+            useDualStackImplLocal = true;
+        }
+        if (exclBindProp != null) {
+            // sun.net.useExclusiveBind is true
+            exclusiveBindLocal = exclBindProp.length() == 0 ? true
+                    : Boolean.parseBoolean(exclBindProp);
+        } else if (version < 6.0) {
+            exclusiveBindLocal = false;
+        }
 
-		// impl.prefix
-		String prefix = null;
-		try {
-			prefix = AccessController.doPrivileged(
-					new sun.security.action.GetPropertyAction("impl.prefix",
-							null));
-			if (prefix != null)
-				prefixImplClassLocal = Class.forName("java.net." + prefix
-						+ "DatagramSocketImpl");
-		} catch (Exception e) {
-			System.err.println("Can't find class: java.net." + prefix
-					+ "DatagramSocketImpl: check impl.prefix property");
-		}
+        // impl.prefix
+        String prefix = null;
+        try {
+            prefix = AccessController.doPrivileged(
+                    new sun.security.action.GetPropertyAction("impl.prefix",
+                            null));
+            if (prefix != null)
+                prefixImplClassLocal = Class.forName("java.net." + prefix
+                        + "DatagramSocketImpl");
+        } catch (Exception e) {
+            System.err.println("Can't find class: java.net." + prefix
+                    + "DatagramSocketImpl: check impl.prefix property");
+        }
 
-		prefixImplClass = prefixImplClassLocal;
-		useDualStackImpl = useDualStackImplLocal;
-		exclusiveBind = exclusiveBindLocal;
-	}
+        prefixImplClass = prefixImplClassLocal;
+        useDualStackImpl = useDualStackImplLocal;
+        exclusiveBind = exclusiveBindLocal;
+    }
 
-	/**
-	 * Creates a new <code>DatagramSocketImpl</code> instance.
-	 *
-	 * @param isMulticast
-	 *                    true if this impl is to be used for a MutlicastSocket
-	 * @return a new instance of <code>PlainDatagramSocketImpl</code>.
-	 */
-	static DatagramSocketImpl createDatagramSocketImpl(boolean isMulticast)
-			throws SocketException {
-		if (prefixImplClass != null) {
-			try {
-				return (DatagramSocketImpl) prefixImplClass.newInstance();
-			} catch (Exception e) {
-				throw new SocketException(
-						"can't instantiate DatagramSocketImpl");
-			}
-		} else {
-			if (useDualStackImpl && !isMulticast)
-				return new DualStackPlainDatagramSocketImpl(exclusiveBind);
-			else
-				return new TwoStacksPlainDatagramSocketImpl(exclusiveBind
-						&& !isMulticast);
-		}
-	}
+    /**
+     * Creates a new <code>DatagramSocketImpl</code> instance.
+     *
+     * @param isMulticast
+     *                    true if this impl is to be used for a MutlicastSocket
+     * @return a new instance of <code>PlainDatagramSocketImpl</code>.
+     */
+    static DatagramSocketImpl createDatagramSocketImpl(boolean isMulticast)
+            throws SocketException {
+        if (prefixImplClass != null) {
+            try {
+                return (DatagramSocketImpl) prefixImplClass.newInstance();
+            } catch (Exception e) {
+                throw new SocketException(
+                        "can't instantiate DatagramSocketImpl");
+            }
+        } else {
+            if (useDualStackImpl && !isMulticast)
+                return new DualStackPlainDatagramSocketImpl(exclusiveBind);
+            else
+                return new TwoStacksPlainDatagramSocketImpl(exclusiveBind
+                        && !isMulticast);
+        }
+    }
 }

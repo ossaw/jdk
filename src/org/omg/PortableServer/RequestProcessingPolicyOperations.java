@@ -13,10 +13,10 @@ package org.omg.PortableServer;
  * default is USE_ACTIVE_OBJECT_MAP_ONLY.
  */
 public interface RequestProcessingPolicyOperations extends
-		org.omg.CORBA.PolicyOperations {
+        org.omg.CORBA.PolicyOperations {
 
-	/**
-	 * specifies the policy value
-	 */
-	org.omg.PortableServer.RequestProcessingPolicyValue value();
+    /**
+     * specifies the policy value
+     */
+    org.omg.PortableServer.RequestProcessingPolicyValue value();
 } // interface RequestProcessingPolicyOperations

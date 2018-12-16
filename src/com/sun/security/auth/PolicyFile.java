@@ -198,93 +198,93 @@ import javax.security.auth.Subject;
 @Deprecated
 public class PolicyFile extends javax.security.auth.Policy {
 
-	private final sun.security.provider.AuthPolicyFile apf;
+    private final sun.security.provider.AuthPolicyFile apf;
 
-	/**
-	 * Initializes the Policy object and reads the default policy configuration
-	 * file(s) into the Policy object.
-	 */
-	public PolicyFile() {
-		apf = new sun.security.provider.AuthPolicyFile();
-	}
+    /**
+     * Initializes the Policy object and reads the default policy configuration
+     * file(s) into the Policy object.
+     */
+    public PolicyFile() {
+        apf = new sun.security.provider.AuthPolicyFile();
+    }
 
-	/**
-	 * Refreshes the policy object by re-reading all the policy files.
-	 *
-	 * <p>
-	 *
-	 * @exception SecurityException
-	 *                              if the caller doesn't have permission to
-	 *                              refresh the
-	 *                              <code>Policy</code>.
-	 */
-	@Override
-	public void refresh() {
-		apf.refresh();
-	}
+    /**
+     * Refreshes the policy object by re-reading all the policy files.
+     *
+     * <p>
+     *
+     * @exception SecurityException
+     *                              if the caller doesn't have permission to
+     *                              refresh the
+     *                              <code>Policy</code>.
+     */
+    @Override
+    public void refresh() {
+        apf.refresh();
+    }
 
-	/**
-	 * Examines this <code>Policy</code> and returns the Permissions granted to
-	 * the specified <code>Subject</code> and <code>CodeSource</code>.
-	 *
-	 * <p>
-	 * Permissions for a particular <i>grant</i> entry are returned if the
-	 * <code>CodeSource</code> constructed using the codebase and signedby
-	 * values specified in the entry <code>implies</code> the
-	 * <code>CodeSource</code> provided to this method, and if the
-	 * <code>Subject</code> provided to this method contains all of the
-	 * Principals specified in the entry.
-	 *
-	 * <p>
-	 * The <code>Subject</code> provided to this method contains all of the
-	 * Principals specified in the entry if, for each <code>Principal</code>,
-	 * "P1", specified in the <i>grant</i> entry one of the following two
-	 * conditions is met:
-	 *
-	 * <p>
-	 * <ol>
-	 * <li>the <code>Subject</code> has a <code>Principal</code>, "P2", where
-	 * <code>P2.getClass().getName()</code> equals the P1's class name, and
-	 * where <code>P2.getName()</code> equals the P1's name.
-	 *
-	 * <li>P1 implements <code>com.sun.security.auth.PrincipalComparator</code>,
-	 * and <code>P1.implies</code> the provided <code>Subject</code>.
-	 * </ol>
-	 *
-	 * <p>
-	 * Note that this <code>Policy</code> implementation has special handling
-	 * for PrivateCredentialPermissions. When this method encounters a
-	 * <code>PrivateCredentialPermission</code> which specifies "self" as the
-	 * <code>Principal</code> class and name, it does not add that
-	 * <code>Permission</code> to the returned <code>PermissionCollection</code>
-	 * . Instead, it builds a new <code>PrivateCredentialPermission</code> for
-	 * each <code>Principal</code> associated with the provided
-	 * <code>Subject</code>. Each new <code>PrivateCredentialPermission</code>
-	 * contains the same Credential class as specified in the originally granted
-	 * permission, as well as the Class and name for the respective
-	 * <code>Principal</code>.
-	 *
-	 * <p>
-	 *
-	 * @param subject
-	 *                   the Permissions granted to this <code>Subject</code>
-	 *                   and the
-	 *                   additionally provided <code>CodeSource</code> are
-	 *                   returned.
-	 *                   <p>
-	 *
-	 * @param codesource
-	 *                   the Permissions granted to this <code>CodeSource</code>
-	 *                   and
-	 *                   the additionally provided <code>Subject</code> are
-	 *                   returned.
-	 *
-	 * @return the Permissions granted to the provided <code>Subject</code>
-	 *         <code>CodeSource</code>.
-	 */
-	@Override
-	public PermissionCollection getPermissions(final Subject subject,
-			final CodeSource codesource) {
-		return apf.getPermissions(subject, codesource);
-	}
+    /**
+     * Examines this <code>Policy</code> and returns the Permissions granted to
+     * the specified <code>Subject</code> and <code>CodeSource</code>.
+     *
+     * <p>
+     * Permissions for a particular <i>grant</i> entry are returned if the
+     * <code>CodeSource</code> constructed using the codebase and signedby
+     * values specified in the entry <code>implies</code> the
+     * <code>CodeSource</code> provided to this method, and if the
+     * <code>Subject</code> provided to this method contains all of the
+     * Principals specified in the entry.
+     *
+     * <p>
+     * The <code>Subject</code> provided to this method contains all of the
+     * Principals specified in the entry if, for each <code>Principal</code>,
+     * "P1", specified in the <i>grant</i> entry one of the following two
+     * conditions is met:
+     *
+     * <p>
+     * <ol>
+     * <li>the <code>Subject</code> has a <code>Principal</code>, "P2", where
+     * <code>P2.getClass().getName()</code> equals the P1's class name, and
+     * where <code>P2.getName()</code> equals the P1's name.
+     *
+     * <li>P1 implements <code>com.sun.security.auth.PrincipalComparator</code>,
+     * and <code>P1.implies</code> the provided <code>Subject</code>.
+     * </ol>
+     *
+     * <p>
+     * Note that this <code>Policy</code> implementation has special handling
+     * for PrivateCredentialPermissions. When this method encounters a
+     * <code>PrivateCredentialPermission</code> which specifies "self" as the
+     * <code>Principal</code> class and name, it does not add that
+     * <code>Permission</code> to the returned <code>PermissionCollection</code>
+     * . Instead, it builds a new <code>PrivateCredentialPermission</code> for
+     * each <code>Principal</code> associated with the provided
+     * <code>Subject</code>. Each new <code>PrivateCredentialPermission</code>
+     * contains the same Credential class as specified in the originally granted
+     * permission, as well as the Class and name for the respective
+     * <code>Principal</code>.
+     *
+     * <p>
+     *
+     * @param subject
+     *                   the Permissions granted to this <code>Subject</code>
+     *                   and the
+     *                   additionally provided <code>CodeSource</code> are
+     *                   returned.
+     *                   <p>
+     *
+     * @param codesource
+     *                   the Permissions granted to this <code>CodeSource</code>
+     *                   and
+     *                   the additionally provided <code>Subject</code> are
+     *                   returned.
+     *
+     * @return the Permissions granted to the provided <code>Subject</code>
+     *         <code>CodeSource</code>.
+     */
+    @Override
+    public PermissionCollection getPermissions(final Subject subject,
+            final CodeSource codesource) {
+        return apf.getPermissions(subject, codesource);
+    }
 }

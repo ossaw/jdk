@@ -43,143 +43,143 @@ import javax.swing.event.*;
  * @author Ray Ryan
  */
 public interface UndoableEdit {
-	/**
-	 * Undo the edit.
-	 *
-	 * @throws CannotUndoException
-	 *                             if this edit can not be undone
-	 */
-	public void undo() throws CannotUndoException;
+    /**
+     * Undo the edit.
+     *
+     * @throws CannotUndoException
+     *                             if this edit can not be undone
+     */
+    public void undo() throws CannotUndoException;
 
-	/**
-	 * Returns true if this edit may be undone.
-	 *
-	 * @return true if this edit may be undone
-	 */
-	public boolean canUndo();
+    /**
+     * Returns true if this edit may be undone.
+     *
+     * @return true if this edit may be undone
+     */
+    public boolean canUndo();
 
-	/**
-	 * Re-applies the edit.
-	 *
-	 * @throws CannotRedoException
-	 *                             if this edit can not be redone
-	 */
-	public void redo() throws CannotRedoException;
+    /**
+     * Re-applies the edit.
+     *
+     * @throws CannotRedoException
+     *                             if this edit can not be redone
+     */
+    public void redo() throws CannotRedoException;
 
-	/**
-	 * Returns true if this edit may be redone.
-	 *
-	 * @return true if this edit may be redone
-	 */
-	public boolean canRedo();
+    /**
+     * Returns true if this edit may be redone.
+     *
+     * @return true if this edit may be redone
+     */
+    public boolean canRedo();
 
-	/**
-	 * Informs the edit that it should no longer be used. Once an
-	 * <code>UndoableEdit</code> has been marked as dead it can no longer be
-	 * undone or redone.
-	 * <p>
-	 * This is a useful hook for cleaning up state no longer needed once undoing
-	 * or redoing is impossible--for example, deleting file resources used by
-	 * objects that can no longer be undeleted. <code>UndoManager</code> calls
-	 * this before it dequeues edits.
-	 * <p>
-	 * Note that this is a one-way operation. There is no "un-die" method.
-	 *
-	 * @see CompoundEdit#die
-	 */
-	public void die();
+    /**
+     * Informs the edit that it should no longer be used. Once an
+     * <code>UndoableEdit</code> has been marked as dead it can no longer be
+     * undone or redone.
+     * <p>
+     * This is a useful hook for cleaning up state no longer needed once undoing
+     * or redoing is impossible--for example, deleting file resources used by
+     * objects that can no longer be undeleted. <code>UndoManager</code> calls
+     * this before it dequeues edits.
+     * <p>
+     * Note that this is a one-way operation. There is no "un-die" method.
+     *
+     * @see CompoundEdit#die
+     */
+    public void die();
 
-	/**
-	 * Adds an <code>UndoableEdit</code> to this <code>UndoableEdit</code>. This
-	 * method can be used to coalesce smaller edits into a larger compound edit.
-	 * For example, text editors typically allow undo operations to apply to
-	 * words or sentences. The text editor may choose to generate edits on each
-	 * key event, but allow those edits to be coalesced into a more
-	 * user-friendly unit, such as a word. In this case, the
-	 * <code>UndoableEdit</code> would override <code>addEdit</code> to return
-	 * true when the edits may be coalesced.
-	 * <p>
-	 * A return value of true indicates <code>anEdit</code> was incorporated
-	 * into this edit. A return value of false indicates <code>anEdit</code> may
-	 * not be incorporated into this edit.
-	 * <p>
-	 * Typically the receiver is already in the queue of a
-	 * <code>UndoManager</code> (or other <code>UndoableEditListener</code>),
-	 * and is being given a chance to incorporate <code>anEdit</code> rather
-	 * than letting it be added to the queue in turn.
-	 * </p>
-	 *
-	 * <p>
-	 * If true is returned, from now on <code>anEdit</code> must return false
-	 * from <code>canUndo</code> and <code>canRedo</code>, and must throw the
-	 * appropriate exception on <code>undo</code> or <code>redo</code>.
-	 * </p>
-	 *
-	 * @param anEdit
-	 *               the edit to be added
-	 * @return true if <code>anEdit</code> may be incorporated into this edit
-	 */
-	public boolean addEdit(UndoableEdit anEdit);
+    /**
+     * Adds an <code>UndoableEdit</code> to this <code>UndoableEdit</code>. This
+     * method can be used to coalesce smaller edits into a larger compound edit.
+     * For example, text editors typically allow undo operations to apply to
+     * words or sentences. The text editor may choose to generate edits on each
+     * key event, but allow those edits to be coalesced into a more
+     * user-friendly unit, such as a word. In this case, the
+     * <code>UndoableEdit</code> would override <code>addEdit</code> to return
+     * true when the edits may be coalesced.
+     * <p>
+     * A return value of true indicates <code>anEdit</code> was incorporated
+     * into this edit. A return value of false indicates <code>anEdit</code> may
+     * not be incorporated into this edit.
+     * <p>
+     * Typically the receiver is already in the queue of a
+     * <code>UndoManager</code> (or other <code>UndoableEditListener</code>),
+     * and is being given a chance to incorporate <code>anEdit</code> rather
+     * than letting it be added to the queue in turn.
+     * </p>
+     *
+     * <p>
+     * If true is returned, from now on <code>anEdit</code> must return false
+     * from <code>canUndo</code> and <code>canRedo</code>, and must throw the
+     * appropriate exception on <code>undo</code> or <code>redo</code>.
+     * </p>
+     *
+     * @param anEdit
+     *               the edit to be added
+     * @return true if <code>anEdit</code> may be incorporated into this edit
+     */
+    public boolean addEdit(UndoableEdit anEdit);
 
-	/**
-	 * Returns true if this <code>UndoableEdit</code> should replace
-	 * <code>anEdit</code>. This method is used by <code>CompoundEdit</code> and
-	 * the <code>UndoManager</code>; it is called if <code>anEdit</code> could
-	 * not be added to the current edit (<code>addEdit</code> returns false).
-	 * <p>
-	 * This method provides a way for an edit to replace an existing edit.
-	 * <p>
-	 * This message is the opposite of addEdit--anEdit has typically already
-	 * been queued in an <code>UndoManager</code> (or other
-	 * UndoableEditListener), and the receiver is being given a chance to take
-	 * its place.
-	 * </p>
-	 *
-	 * <p>
-	 * If true is returned, from now on anEdit must return false from canUndo()
-	 * and canRedo(), and must throw the appropriate exception on undo() or
-	 * redo().
-	 * </p>
-	 *
-	 * @param anEdit
-	 *               the edit that replaces the current edit
-	 * @return true if this edit should replace <code>anEdit</code>
-	 */
-	public boolean replaceEdit(UndoableEdit anEdit);
+    /**
+     * Returns true if this <code>UndoableEdit</code> should replace
+     * <code>anEdit</code>. This method is used by <code>CompoundEdit</code> and
+     * the <code>UndoManager</code>; it is called if <code>anEdit</code> could
+     * not be added to the current edit (<code>addEdit</code> returns false).
+     * <p>
+     * This method provides a way for an edit to replace an existing edit.
+     * <p>
+     * This message is the opposite of addEdit--anEdit has typically already
+     * been queued in an <code>UndoManager</code> (or other
+     * UndoableEditListener), and the receiver is being given a chance to take
+     * its place.
+     * </p>
+     *
+     * <p>
+     * If true is returned, from now on anEdit must return false from canUndo()
+     * and canRedo(), and must throw the appropriate exception on undo() or
+     * redo().
+     * </p>
+     *
+     * @param anEdit
+     *               the edit that replaces the current edit
+     * @return true if this edit should replace <code>anEdit</code>
+     */
+    public boolean replaceEdit(UndoableEdit anEdit);
 
-	/**
-	 * Returns true if this edit is considered significant. A significant edit
-	 * is typically an edit that should be presented to the user, perhaps on a
-	 * menu item or tooltip. The <code>UndoManager</code> will undo, or redo,
-	 * all insignificant edits to the next significant edit.
-	 *
-	 * @return true if this edit is significant
-	 */
-	public boolean isSignificant();
+    /**
+     * Returns true if this edit is considered significant. A significant edit
+     * is typically an edit that should be presented to the user, perhaps on a
+     * menu item or tooltip. The <code>UndoManager</code> will undo, or redo,
+     * all insignificant edits to the next significant edit.
+     *
+     * @return true if this edit is significant
+     */
+    public boolean isSignificant();
 
-	/**
-	 * Returns a localized, human-readable description of this edit, suitable
-	 * for use in a change log, for example.
-	 *
-	 * @return description of this edit
-	 */
-	public String getPresentationName();
+    /**
+     * Returns a localized, human-readable description of this edit, suitable
+     * for use in a change log, for example.
+     *
+     * @return description of this edit
+     */
+    public String getPresentationName();
 
-	/**
-	 * Returns a localized, human-readable description of the undoable form of
-	 * this edit, suitable for use as an Undo menu item, for example. This is
-	 * typically derived from <code>getPresentationName</code>.
-	 *
-	 * @return a description of the undoable form of this edit
-	 */
-	public String getUndoPresentationName();
+    /**
+     * Returns a localized, human-readable description of the undoable form of
+     * this edit, suitable for use as an Undo menu item, for example. This is
+     * typically derived from <code>getPresentationName</code>.
+     *
+     * @return a description of the undoable form of this edit
+     */
+    public String getUndoPresentationName();
 
-	/**
-	 * Returns a localized, human-readable description of the redoable form of
-	 * this edit, suitable for use as a Redo menu item, for example. This is
-	 * typically derived from <code>getPresentationName</code>.
-	 *
-	 * @return a description of the redoable form of this edit
-	 */
-	public String getRedoPresentationName();
+    /**
+     * Returns a localized, human-readable description of the redoable form of
+     * this edit, suitable for use as a Redo menu item, for example. This is
+     * typically derived from <code>getPresentationName</code>.
+     *
+     * @return a description of the redoable form of this edit
+     */
+    public String getRedoPresentationName();
 }

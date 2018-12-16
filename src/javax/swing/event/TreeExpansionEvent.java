@@ -29,29 +29,29 @@ import javax.swing.tree.TreePath;
  * @author Scott Violet
  */
 public class TreeExpansionEvent extends EventObject {
-	/**
-	 * Path to the value this event represents.
-	 */
-	protected TreePath path;
+    /**
+     * Path to the value this event represents.
+     */
+    protected TreePath path;
 
-	/**
-	 * Constructs a TreeExpansionEvent object.
-	 *
-	 * @param source
-	 *               the Object that originated the event (typically
-	 *               <code>this</code>)
-	 * @param path
-	 *               a TreePath object identifying the newly expanded node
-	 */
-	public TreeExpansionEvent(Object source, TreePath path) {
-		super(source);
-		this.path = path;
-	}
+    /**
+     * Constructs a TreeExpansionEvent object.
+     *
+     * @param source
+     *               the Object that originated the event (typically
+     *               <code>this</code>)
+     * @param path
+     *               a TreePath object identifying the newly expanded node
+     */
+    public TreeExpansionEvent(Object source, TreePath path) {
+        super(source);
+        this.path = path;
+    }
 
-	/**
-	 * Returns the path to the value that has been expanded/collapsed.
-	 */
-	public TreePath getPath() {
-		return path;
-	}
+    /**
+     * Returns the path to the value that has been expanded/collapsed.
+     */
+    public TreePath getPath() {
+        return path;
+    }
 }

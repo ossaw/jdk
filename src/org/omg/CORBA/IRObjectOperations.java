@@ -36,34 +36,34 @@ package org.omg.CORBA;
  */
 public interface IRObjectOperations {
 
-	// read interface
-	/**
-	 * Returns the <code>DefinitionKind</code> corresponding to this Interface
-	 * Repository object.
-	 * 
-	 * @return the <code>DefinitionKind</code> corresponding to this Interface
-	 *         Repository object.
-	 */
-	org.omg.CORBA.DefinitionKind def_kind();
+    // read interface
+    /**
+     * Returns the <code>DefinitionKind</code> corresponding to this Interface
+     * Repository object.
+     * 
+     * @return the <code>DefinitionKind</code> corresponding to this Interface
+     *         Repository object.
+     */
+    org.omg.CORBA.DefinitionKind def_kind();
 
-	// write interface
-	/**
-	 * Destroys this object. If the object is a Container, this method is
-	 * applied to all its contents. If the object contains an IDLType attribute
-	 * for an anonymous type, that IDLType is destroyed. If the object is
-	 * currently contained in some other object, it is removed. If the method is
-	 * invoked on a <code>Repository</code> or on a <code>PrimitiveDef</code>
-	 * then the <code>BAD_INV_ORDER</code> exception is raised with minor value
-	 * 2. An attempt to destroy an object that would leave the repository in an
-	 * incoherent state causes <code>BAD_INV_ORDER</code> exception to be raised
-	 * with the minor code 1.
-	 * 
-	 * @exception BAD_INV_ORDER
-	 *                          if this method is invoked on a repository or
-	 *                          <code>PrimitiveDef</code>, or if an attempt to
-	 *                          destroy an
-	 *                          object would leave the repository in an
-	 *                          incoherent state
-	 */
-	void destroy();
+    // write interface
+    /**
+     * Destroys this object. If the object is a Container, this method is
+     * applied to all its contents. If the object contains an IDLType attribute
+     * for an anonymous type, that IDLType is destroyed. If the object is
+     * currently contained in some other object, it is removed. If the method is
+     * invoked on a <code>Repository</code> or on a <code>PrimitiveDef</code>
+     * then the <code>BAD_INV_ORDER</code> exception is raised with minor value
+     * 2. An attempt to destroy an object that would leave the repository in an
+     * incoherent state causes <code>BAD_INV_ORDER</code> exception to be raised
+     * with the minor code 1.
+     * 
+     * @exception BAD_INV_ORDER
+     *                          if this method is invoked on a repository or
+     *                          <code>PrimitiveDef</code>, or if an attempt to
+     *                          destroy an
+     *                          object would leave the repository in an
+     *                          incoherent state
+     */
+    void destroy();
 } // interface IRObjectOperations

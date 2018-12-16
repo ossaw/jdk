@@ -22,20 +22,20 @@ import java.sql.*;
 
 public interface XAConnection extends PooledConnection {
 
-	/**
-	 * Retrieves an <code>XAResource</code> object that the transaction manager
-	 * will use to manage this <code>XAConnection</code> object's participation
-	 * in a distributed transaction.
-	 *
-	 * @return the <code>XAResource</code> object
-	 * @exception SQLException
-	 *                                            if a database access error
-	 *                                            occurs
-	 * @exception SQLFeatureNotSupportedException
-	 *                                            if the JDBC driver does not
-	 *                                            support this method
-	 * @since 1.4
-	 */
-	javax.transaction.xa.XAResource getXAResource() throws SQLException;
+    /**
+     * Retrieves an <code>XAResource</code> object that the transaction manager
+     * will use to manage this <code>XAConnection</code> object's participation
+     * in a distributed transaction.
+     *
+     * @return the <code>XAResource</code> object
+     * @exception SQLException
+     *                                            if a database access error
+     *                                            occurs
+     * @exception SQLFeatureNotSupportedException
+     *                                            if the JDBC driver does not
+     *                                            support this method
+     * @since 1.4
+     */
+    javax.transaction.xa.XAResource getXAResource() throws SQLException;
 
 }

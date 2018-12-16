@@ -23,10 +23,10 @@ package java.security;
  */
 
 public interface PublicKey extends Key {
-	// Declare serialVersionUID to be compatible with JDK1.1
-	/**
-	 * The class fingerprint that is set to indicate serialization compatibility
-	 * with a previous version of the class.
-	 */
-	static final long serialVersionUID = 7187392471159151072L;
+    // Declare serialVersionUID to be compatible with JDK1.1
+    /**
+     * The class fingerprint that is set to indicate serialization compatibility
+     * with a previous version of the class.
+     */
+    static final long serialVersionUID = 7187392471159151072L;
 }

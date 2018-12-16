@@ -23,52 +23,52 @@ import com.sun.corba.se.impl.encoding.EncapsOutputStream;
  * @author
  */
 public class GenericTaggedProfile extends GenericIdentifiable implements
-		TaggedProfile {
-	private ORB orb;
+        TaggedProfile {
+    private ORB orb;
 
-	public GenericTaggedProfile(int id, InputStream is) {
-		super(id, is);
-		this.orb = (ORB) (is.orb());
-	}
+    public GenericTaggedProfile(int id, InputStream is) {
+        super(id, is);
+        this.orb = (ORB) (is.orb());
+    }
 
-	public GenericTaggedProfile(ORB orb, int id, byte[] data) {
-		super(id, data);
-		this.orb = orb;
-	}
+    public GenericTaggedProfile(ORB orb, int id, byte[] data) {
+        super(id, data);
+        this.orb = orb;
+    }
 
-	public TaggedProfileTemplate getTaggedProfileTemplate() {
-		return null;
-	}
+    public TaggedProfileTemplate getTaggedProfileTemplate() {
+        return null;
+    }
 
-	public ObjectId getObjectId() {
-		return null;
-	}
+    public ObjectId getObjectId() {
+        return null;
+    }
 
-	public ObjectKeyTemplate getObjectKeyTemplate() {
-		return null;
-	}
+    public ObjectKeyTemplate getObjectKeyTemplate() {
+        return null;
+    }
 
-	public ObjectKey getObjectKey() {
-		return null;
-	}
+    public ObjectKey getObjectKey() {
+        return null;
+    }
 
-	public boolean isEquivalent(TaggedProfile prof) {
-		return equals(prof);
-	}
+    public boolean isEquivalent(TaggedProfile prof) {
+        return equals(prof);
+    }
 
-	public void makeImmutable() {
-		// NO-OP
-	}
+    public void makeImmutable() {
+        // NO-OP
+    }
 
-	public boolean isLocal() {
-		return false;
-	}
+    public boolean isLocal() {
+        return false;
+    }
 
-	public org.omg.IOP.TaggedProfile getIOPProfile() {
-		EncapsOutputStream os = sun.corba.OutputStreamFactory
-				.newEncapsOutputStream(orb);
-		write(os);
-		InputStream is = (InputStream) (os.create_input_stream());
-		return org.omg.IOP.TaggedProfileHelper.read(is);
-	}
+    public org.omg.IOP.TaggedProfile getIOPProfile() {
+        EncapsOutputStream os = sun.corba.OutputStreamFactory
+                .newEncapsOutputStream(orb);
+        write(os);
+        InputStream is = (InputStream) (os.create_input_stream());
+        return org.omg.IOP.TaggedProfileHelper.read(is);
+    }
 }

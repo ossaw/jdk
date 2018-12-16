@@ -66,91 +66,91 @@ import sun.security.util.DerValue;
  */
 public class PolicyQualifierInfo {
 
-	private byte[] mEncoded;
-	private String mId;
-	private byte[] mData;
-	private String pqiString;
+    private byte[] mEncoded;
+    private String mId;
+    private byte[] mData;
+    private String pqiString;
 
-	/**
-	 * Creates an instance of {@code PolicyQualifierInfo} from the encoded
-	 * bytes. The encoded byte array is copied on construction.
-	 *
-	 * @param encoded
-	 *                a byte array containing the qualifier in DER encoding
-	 * @exception IOException
-	 *                        thrown if the byte array does not represent a
-	 *                        valid and
-	 *                        parsable policy qualifier
-	 */
-	public PolicyQualifierInfo(byte[] encoded) throws IOException {
-		mEncoded = encoded.clone();
+    /**
+     * Creates an instance of {@code PolicyQualifierInfo} from the encoded
+     * bytes. The encoded byte array is copied on construction.
+     *
+     * @param encoded
+     *                a byte array containing the qualifier in DER encoding
+     * @exception IOException
+     *                        thrown if the byte array does not represent a
+     *                        valid and
+     *                        parsable policy qualifier
+     */
+    public PolicyQualifierInfo(byte[] encoded) throws IOException {
+        mEncoded = encoded.clone();
 
-		DerValue val = new DerValue(mEncoded);
-		if (val.tag != DerValue.tag_Sequence)
-			throw new IOException("Invalid encoding for PolicyQualifierInfo");
+        DerValue val = new DerValue(mEncoded);
+        if (val.tag != DerValue.tag_Sequence)
+            throw new IOException("Invalid encoding for PolicyQualifierInfo");
 
-		mId = (val.data.getDerValue()).getOID().toString();
-		byte[] tmp = val.data.toByteArray();
-		if (tmp == null) {
-			mData = null;
-		} else {
-			mData = new byte[tmp.length];
-			System.arraycopy(tmp, 0, mData, 0, tmp.length);
-		}
-	}
+        mId = (val.data.getDerValue()).getOID().toString();
+        byte[] tmp = val.data.toByteArray();
+        if (tmp == null) {
+            mData = null;
+        } else {
+            mData = new byte[tmp.length];
+            System.arraycopy(tmp, 0, mData, 0, tmp.length);
+        }
+    }
 
-	/**
-	 * Returns the {@code policyQualifierId} field of this
-	 * {@code PolicyQualifierInfo}. The {@code policyQualifierId} is an Object
-	 * Identifier (OID) represented by a set of nonnegative integers separated
-	 * by periods.
-	 *
-	 * @return the OID (never {@code null})
-	 */
-	public final String getPolicyQualifierId() {
-		return mId;
-	}
+    /**
+     * Returns the {@code policyQualifierId} field of this
+     * {@code PolicyQualifierInfo}. The {@code policyQualifierId} is an Object
+     * Identifier (OID) represented by a set of nonnegative integers separated
+     * by periods.
+     *
+     * @return the OID (never {@code null})
+     */
+    public final String getPolicyQualifierId() {
+        return mId;
+    }
 
-	/**
-	 * Returns the ASN.1 DER encoded form of this {@code PolicyQualifierInfo}.
-	 *
-	 * @return the ASN.1 DER encoded bytes (never {@code null}). Note that a
-	 *         copy is returned, so the data is cloned each time this method is
-	 *         called.
-	 */
-	public final byte[] getEncoded() {
-		return mEncoded.clone();
-	}
+    /**
+     * Returns the ASN.1 DER encoded form of this {@code PolicyQualifierInfo}.
+     *
+     * @return the ASN.1 DER encoded bytes (never {@code null}). Note that a
+     *         copy is returned, so the data is cloned each time this method is
+     *         called.
+     */
+    public final byte[] getEncoded() {
+        return mEncoded.clone();
+    }
 
-	/**
-	 * Returns the ASN.1 DER encoded form of the {@code qualifier} field of this
-	 * {@code PolicyQualifierInfo}.
-	 *
-	 * @return the ASN.1 DER encoded bytes of the {@code qualifier} field. Note
-	 *         that a copy is returned, so the data is cloned each time this
-	 *         method is called.
-	 */
-	public final byte[] getPolicyQualifier() {
-		return (mData == null ? null : mData.clone());
-	}
+    /**
+     * Returns the ASN.1 DER encoded form of the {@code qualifier} field of this
+     * {@code PolicyQualifierInfo}.
+     *
+     * @return the ASN.1 DER encoded bytes of the {@code qualifier} field. Note
+     *         that a copy is returned, so the data is cloned each time this
+     *         method is called.
+     */
+    public final byte[] getPolicyQualifier() {
+        return (mData == null ? null : mData.clone());
+    }
 
-	/**
-	 * Return a printable representation of this {@code PolicyQualifierInfo}.
-	 *
-	 * @return a {@code String} describing the contents of this
-	 *         {@code PolicyQualifierInfo}
-	 */
-	public String toString() {
-		if (pqiString != null)
-			return pqiString;
-		HexDumpEncoder enc = new HexDumpEncoder();
-		StringBuffer sb = new StringBuffer();
-		sb.append("PolicyQualifierInfo: [\n");
-		sb.append("  qualifierID: " + mId + "\n");
-		sb.append("  qualifier: " + (mData == null ? "null"
-				: enc.encodeBuffer(mData)) + "\n");
-		sb.append("]");
-		pqiString = sb.toString();
-		return pqiString;
-	}
+    /**
+     * Return a printable representation of this {@code PolicyQualifierInfo}.
+     *
+     * @return a {@code String} describing the contents of this
+     *         {@code PolicyQualifierInfo}
+     */
+    public String toString() {
+        if (pqiString != null)
+            return pqiString;
+        HexDumpEncoder enc = new HexDumpEncoder();
+        StringBuffer sb = new StringBuffer();
+        sb.append("PolicyQualifierInfo: [\n");
+        sb.append("  qualifierID: " + mId + "\n");
+        sb.append("  qualifier: " + (mData == null ? "null"
+                : enc.encodeBuffer(mData)) + "\n");
+        sb.append("]");
+        pqiString = sb.toString();
+        return pqiString;
+    }
 }

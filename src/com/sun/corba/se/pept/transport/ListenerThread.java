@@ -9,9 +9,9 @@ package com.sun.corba.se.pept.transport;
  * @author Harold Carr
  */
 public interface ListenerThread {
-	public Acceptor getAcceptor();
+    public Acceptor getAcceptor();
 
-	public void close();
+    public void close();
 }
 
 // End of file.

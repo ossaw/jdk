@@ -8,13 +8,13 @@ import java.awt.*;
 import javax.swing.*;
 
 class InternalFrameWindowFocusedState extends State {
-	InternalFrameWindowFocusedState() {
-		super("WindowFocused");
-	}
+    InternalFrameWindowFocusedState() {
+        super("WindowFocused");
+    }
 
-	@Override
-	protected boolean isInState(JComponent c) {
+    @Override
+    protected boolean isInState(JComponent c) {
 
-		return c instanceof JInternalFrame && ((JInternalFrame) c).isSelected();
-	}
+        return c instanceof JInternalFrame && ((JInternalFrame) c).isSelected();
+    }
 }

@@ -11,17 +11,17 @@ package java.util.zip;
 
 class ZStreamRef {
 
-	private volatile long address;
+    private volatile long address;
 
-	ZStreamRef(long address) {
-		this.address = address;
-	}
+    ZStreamRef(long address) {
+        this.address = address;
+    }
 
-	long address() {
-		return address;
-	}
+    long address() {
+        return address;
+    }
 
-	void clear() {
-		address = 0;
-	}
+    void clear() {
+        address = 0;
+    }
 }

@@ -57,99 +57,99 @@ import com.sun.org.apache.xml.internal.resolver.CatalogException;
  */
 public class TR9401CatalogReader extends TextCatalogReader {
 
-	/**
-	 * Start parsing an OASIS TR9401 Open Catalog file. The file is actually
-	 * read and parsed as needed by <code>nextEntry</code>.
-	 *
-	 * <p>
-	 * In a TR9401 Catalog the 'DELEGATE' entry delegates public identifiers.
-	 * There is no delegate entry for system identifiers or URIs.
-	 * </p>
-	 *
-	 * @param catalog
-	 *                The Catalog to populate
-	 * @param is
-	 *                The input stream from which to read the TR9401 Catalog
-	 *
-	 * @throws MalformedURLException
-	 *                               Improper fileUrl
-	 * @throws IOException
-	 *                               Error reading catalog file
-	 */
-	public void readCatalog(Catalog catalog, InputStream is)
-			throws MalformedURLException, IOException {
+    /**
+     * Start parsing an OASIS TR9401 Open Catalog file. The file is actually
+     * read and parsed as needed by <code>nextEntry</code>.
+     *
+     * <p>
+     * In a TR9401 Catalog the 'DELEGATE' entry delegates public identifiers.
+     * There is no delegate entry for system identifiers or URIs.
+     * </p>
+     *
+     * @param catalog
+     *                The Catalog to populate
+     * @param is
+     *                The input stream from which to read the TR9401 Catalog
+     *
+     * @throws MalformedURLException
+     *                               Improper fileUrl
+     * @throws IOException
+     *                               Error reading catalog file
+     */
+    public void readCatalog(Catalog catalog, InputStream is)
+            throws MalformedURLException, IOException {
 
-		catfile = is;
+        catfile = is;
 
-		if (catfile == null) {
-			return;
-		}
+        if (catfile == null) {
+            return;
+        }
 
-		Vector unknownEntry = null;
+        Vector unknownEntry = null;
 
-		try {
-			while (true) {
-				String token = nextToken();
+        try {
+            while (true) {
+                String token = nextToken();
 
-				if (token == null) {
-					if (unknownEntry != null) {
-						catalog.unknownEntry(unknownEntry);
-						unknownEntry = null;
-					}
-					catfile.close();
-					catfile = null;
-					return;
-				}
+                if (token == null) {
+                    if (unknownEntry != null) {
+                        catalog.unknownEntry(unknownEntry);
+                        unknownEntry = null;
+                    }
+                    catfile.close();
+                    catfile = null;
+                    return;
+                }
 
-				String entryToken = null;
-				if (caseSensitive) {
-					entryToken = token;
-				} else {
-					entryToken = token.toUpperCase();
-				}
+                String entryToken = null;
+                if (caseSensitive) {
+                    entryToken = token;
+                } else {
+                    entryToken = token.toUpperCase();
+                }
 
-				if (entryToken.equals("DELEGATE")) {
-					entryToken = "DELEGATE_PUBLIC";
-				}
+                if (entryToken.equals("DELEGATE")) {
+                    entryToken = "DELEGATE_PUBLIC";
+                }
 
-				try {
-					int type = CatalogEntry.getEntryType(entryToken);
-					int numArgs = CatalogEntry.getEntryArgCount(type);
-					Vector args = new Vector();
+                try {
+                    int type = CatalogEntry.getEntryType(entryToken);
+                    int numArgs = CatalogEntry.getEntryArgCount(type);
+                    Vector args = new Vector();
 
-					if (unknownEntry != null) {
-						catalog.unknownEntry(unknownEntry);
-						unknownEntry = null;
-					}
+                    if (unknownEntry != null) {
+                        catalog.unknownEntry(unknownEntry);
+                        unknownEntry = null;
+                    }
 
-					for (int count = 0; count < numArgs; count++) {
-						args.addElement(nextToken());
-					}
+                    for (int count = 0; count < numArgs; count++) {
+                        args.addElement(nextToken());
+                    }
 
-					catalog.addEntry(new CatalogEntry(entryToken, args));
-				} catch (CatalogException cex) {
-					if (cex.getExceptionType() == CatalogException.INVALID_ENTRY_TYPE) {
-						if (unknownEntry == null) {
-							unknownEntry = new Vector();
-						}
-						unknownEntry.addElement(token);
-					} else if (cex
-							.getExceptionType() == CatalogException.INVALID_ENTRY) {
-						catalog.getCatalogManager().debug.message(1,
-								"Invalid catalog entry", token);
-						unknownEntry = null;
-					} else if (cex
-							.getExceptionType() == CatalogException.UNENDED_COMMENT) {
-						catalog.getCatalogManager().debug.message(1, cex
-								.getMessage());
-					}
-				}
-			}
-		} catch (CatalogException cex2) {
-			if (cex2.getExceptionType() == CatalogException.UNENDED_COMMENT) {
-				catalog.getCatalogManager().debug.message(1, cex2.getMessage());
-			}
-		}
+                    catalog.addEntry(new CatalogEntry(entryToken, args));
+                } catch (CatalogException cex) {
+                    if (cex.getExceptionType() == CatalogException.INVALID_ENTRY_TYPE) {
+                        if (unknownEntry == null) {
+                            unknownEntry = new Vector();
+                        }
+                        unknownEntry.addElement(token);
+                    } else if (cex
+                            .getExceptionType() == CatalogException.INVALID_ENTRY) {
+                        catalog.getCatalogManager().debug.message(1,
+                                "Invalid catalog entry", token);
+                        unknownEntry = null;
+                    } else if (cex
+                            .getExceptionType() == CatalogException.UNENDED_COMMENT) {
+                        catalog.getCatalogManager().debug.message(1, cex
+                                .getMessage());
+                    }
+                }
+            }
+        } catch (CatalogException cex2) {
+            if (cex2.getExceptionType() == CatalogException.UNENDED_COMMENT) {
+                catalog.getCatalogManager().debug.message(1, cex2.getMessage());
+            }
+        }
 
-	}
+    }
 }

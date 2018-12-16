@@ -61,45 +61,45 @@ import java.util.Objects;
  */
 public class ReturnaddressType extends Type {
 
-	public static final ReturnaddressType NO_TARGET = new ReturnaddressType();
-	private InstructionHandle returnTarget;
+    public static final ReturnaddressType NO_TARGET = new ReturnaddressType();
+    private InstructionHandle returnTarget;
 
-	/**
-	 * A Returnaddress [that doesn't know where to return to].
-	 */
-	private ReturnaddressType() {
-		super(Constants.T_ADDRESS, "<return address>");
-	}
+    /**
+     * A Returnaddress [that doesn't know where to return to].
+     */
+    private ReturnaddressType() {
+        super(Constants.T_ADDRESS, "<return address>");
+    }
 
-	/**
-	 * Creates a ReturnaddressType object with a target.
-	 */
-	public ReturnaddressType(InstructionHandle returnTarget) {
-		super(Constants.T_ADDRESS, "<return address targeting " + returnTarget
-				+ ">");
-		this.returnTarget = returnTarget;
-	}
+    /**
+     * Creates a ReturnaddressType object with a target.
+     */
+    public ReturnaddressType(InstructionHandle returnTarget) {
+        super(Constants.T_ADDRESS, "<return address targeting " + returnTarget
+                + ">");
+        this.returnTarget = returnTarget;
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hashCode(this.returnTarget);
-	}
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(this.returnTarget);
+    }
 
-	/**
-	 * Returns if the two Returnaddresses refer to the same target.
-	 */
-	@Override
-	public boolean equals(Object rat) {
-		if (!(rat instanceof ReturnaddressType))
-			return false;
+    /**
+     * Returns if the two Returnaddresses refer to the same target.
+     */
+    @Override
+    public boolean equals(Object rat) {
+        if (!(rat instanceof ReturnaddressType))
+            return false;
 
-		return ((ReturnaddressType) rat).returnTarget.equals(this.returnTarget);
-	}
+        return ((ReturnaddressType) rat).returnTarget.equals(this.returnTarget);
+    }
 
-	/**
-	 * @return the target of this ReturnaddressType
-	 */
-	public InstructionHandle getTarget() {
-		return returnTarget;
-	}
+    /**
+     * @return the target of this ReturnaddressType
+     */
+    public InstructionHandle getTarget() {
+        return returnTarget;
+    }
 }

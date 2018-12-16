@@ -37,11 +37,11 @@ import com.sun.corba.se.pept.protocol.MessageMediator;
  * @author Harold Carr
  */
 public interface InputObject {
-	public void setMessageMediator(MessageMediator messageMediator);
+    public void setMessageMediator(MessageMediator messageMediator);
 
-	public MessageMediator getMessageMediator();
+    public MessageMediator getMessageMediator();
 
-	public void close() throws IOException;
+    public void close() throws IOException;
 }
 
 // End of file.

@@ -316,289 +316,289 @@ package java.lang.management;
  * @since 1.5
  */
 public interface MemoryPoolMXBean extends PlatformManagedObject {
-	/**
-	 * Returns the name representing this memory pool.
-	 *
-	 * @return the name of this memory pool.
-	 */
-	public String getName();
+    /**
+     * Returns the name representing this memory pool.
+     *
+     * @return the name of this memory pool.
+     */
+    public String getName();
 
-	/**
-	 * Returns the type of this memory pool.
-	 *
-	 * <p>
-	 * <b>MBeanServer access</b>:<br>
-	 * The mapped type of <tt>MemoryType</tt> is <tt>String</tt> and the value
-	 * is the name of the <tt>MemoryType</tt>.
-	 *
-	 * @return the type of this memory pool.
-	 */
-	public MemoryType getType();
+    /**
+     * Returns the type of this memory pool.
+     *
+     * <p>
+     * <b>MBeanServer access</b>:<br>
+     * The mapped type of <tt>MemoryType</tt> is <tt>String</tt> and the value
+     * is the name of the <tt>MemoryType</tt>.
+     *
+     * @return the type of this memory pool.
+     */
+    public MemoryType getType();
 
-	/**
-	 * Returns an estimate of the memory usage of this memory pool. This method
-	 * returns <tt>null</tt> if this memory pool is not valid (i.e. no longer
-	 * exists).
-	 *
-	 * <p>
-	 * This method requests the Java virtual machine to make a best-effort
-	 * estimate of the current memory usage of this memory pool. For some memory
-	 * pools, this method may be an expensive operation that requires some
-	 * computation to determine the estimate. An implementation should document
-	 * when this is the case.
-	 *
-	 * <p>
-	 * This method is designed for use in monitoring system memory usage and
-	 * detecting low memory condition.
-	 *
-	 * <p>
-	 * <b>MBeanServer access</b>:<br>
-	 * The mapped type of <tt>MemoryUsage</tt> is <tt>CompositeData</tt> with
-	 * attributes as specified in {@link MemoryUsage#from MemoryUsage}.
-	 *
-	 * @return a {@link MemoryUsage} object; or <tt>null</tt> if this pool not
-	 *         valid.
-	 */
-	public MemoryUsage getUsage();
+    /**
+     * Returns an estimate of the memory usage of this memory pool. This method
+     * returns <tt>null</tt> if this memory pool is not valid (i.e. no longer
+     * exists).
+     *
+     * <p>
+     * This method requests the Java virtual machine to make a best-effort
+     * estimate of the current memory usage of this memory pool. For some memory
+     * pools, this method may be an expensive operation that requires some
+     * computation to determine the estimate. An implementation should document
+     * when this is the case.
+     *
+     * <p>
+     * This method is designed for use in monitoring system memory usage and
+     * detecting low memory condition.
+     *
+     * <p>
+     * <b>MBeanServer access</b>:<br>
+     * The mapped type of <tt>MemoryUsage</tt> is <tt>CompositeData</tt> with
+     * attributes as specified in {@link MemoryUsage#from MemoryUsage}.
+     *
+     * @return a {@link MemoryUsage} object; or <tt>null</tt> if this pool not
+     *         valid.
+     */
+    public MemoryUsage getUsage();
 
-	/**
-	 * Returns the peak memory usage of this memory pool since the Java virtual
-	 * machine was started or since the peak was reset. This method returns
-	 * <tt>null</tt> if this memory pool is not valid (i.e. no longer exists).
-	 *
-	 * <p>
-	 * <b>MBeanServer access</b>:<br>
-	 * The mapped type of <tt>MemoryUsage</tt> is <tt>CompositeData</tt> with
-	 * attributes as specified in {@link MemoryUsage#from MemoryUsage}.
-	 *
-	 * @return a {@link MemoryUsage} object representing the peak memory usage;
-	 *         or <tt>null</tt> if this pool is not valid.
-	 *
-	 */
-	public MemoryUsage getPeakUsage();
+    /**
+     * Returns the peak memory usage of this memory pool since the Java virtual
+     * machine was started or since the peak was reset. This method returns
+     * <tt>null</tt> if this memory pool is not valid (i.e. no longer exists).
+     *
+     * <p>
+     * <b>MBeanServer access</b>:<br>
+     * The mapped type of <tt>MemoryUsage</tt> is <tt>CompositeData</tt> with
+     * attributes as specified in {@link MemoryUsage#from MemoryUsage}.
+     *
+     * @return a {@link MemoryUsage} object representing the peak memory usage;
+     *         or <tt>null</tt> if this pool is not valid.
+     *
+     */
+    public MemoryUsage getPeakUsage();
 
-	/**
-	 * Resets the peak memory usage statistic of this memory pool to the current
-	 * memory usage.
-	 *
-	 * @throws java.lang.SecurityException
-	 *         if a security manager exists and the caller does not have
-	 *         ManagementPermission("control").
-	 */
-	public void resetPeakUsage();
+    /**
+     * Resets the peak memory usage statistic of this memory pool to the current
+     * memory usage.
+     *
+     * @throws java.lang.SecurityException
+     *         if a security manager exists and the caller does not have
+     *         ManagementPermission("control").
+     */
+    public void resetPeakUsage();
 
-	/**
-	 * Tests if this memory pool is valid in the Java virtual machine. A memory
-	 * pool becomes invalid once the Java virtual machine removes it from the
-	 * memory system.
-	 *
-	 * @return <tt>true</tt> if the memory pool is valid in the running Java
-	 *         virtual machine; <tt>false</tt> otherwise.
-	 */
-	public boolean isValid();
+    /**
+     * Tests if this memory pool is valid in the Java virtual machine. A memory
+     * pool becomes invalid once the Java virtual machine removes it from the
+     * memory system.
+     *
+     * @return <tt>true</tt> if the memory pool is valid in the running Java
+     *         virtual machine; <tt>false</tt> otherwise.
+     */
+    public boolean isValid();
 
-	/**
-	 * Returns the name of memory managers that manages this memory pool. Each
-	 * memory pool will be managed by at least one memory manager.
-	 *
-	 * @return an array of <tt>String</tt> objects, each is the name of a memory
-	 *         manager managing this memory pool.
-	 */
-	public String[] getMemoryManagerNames();
+    /**
+     * Returns the name of memory managers that manages this memory pool. Each
+     * memory pool will be managed by at least one memory manager.
+     *
+     * @return an array of <tt>String</tt> objects, each is the name of a memory
+     *         manager managing this memory pool.
+     */
+    public String[] getMemoryManagerNames();
 
-	/**
-	 * Returns the usage threshold value of this memory pool in bytes. Each
-	 * memory pool has a platform-dependent default threshold value. The current
-	 * usage threshold can be changed via the {@link #setUsageThreshold
-	 * setUsageThreshold} method.
-	 *
-	 * @return the usage threshold value of this memory pool in bytes.
-	 *
-	 * @throws UnsupportedOperationException
-	 *                                       if this memory pool does not
-	 *                                       support a usage threshold.
-	 *
-	 * @see #isUsageThresholdSupported
-	 */
-	public long getUsageThreshold();
+    /**
+     * Returns the usage threshold value of this memory pool in bytes. Each
+     * memory pool has a platform-dependent default threshold value. The current
+     * usage threshold can be changed via the {@link #setUsageThreshold
+     * setUsageThreshold} method.
+     *
+     * @return the usage threshold value of this memory pool in bytes.
+     *
+     * @throws UnsupportedOperationException
+     *                                       if this memory pool does not
+     *                                       support a usage threshold.
+     *
+     * @see #isUsageThresholdSupported
+     */
+    public long getUsageThreshold();
 
-	/**
-	 * Sets the threshold of this memory pool to the given <tt>threshold</tt>
-	 * value if this memory pool supports the usage threshold. The usage
-	 * threshold crossing checking is enabled in this memory pool if the
-	 * threshold is set to a positive value. The usage threshold crossing
-	 * checking is disabled if it is set to zero.
-	 *
-	 * @param threshold
-	 *                  the new threshold value in bytes. Must be non-negative.
-	 *
-	 * @throws IllegalArgumentException
-	 *                                       if <tt>threshold</tt> is negative
-	 *                                       or greater than the maximum
-	 *                                       amount of memory for this memory
-	 *                                       pool if defined.
-	 *
-	 * @throws UnsupportedOperationException
-	 *                                       if this memory pool does not
-	 *                                       support a usage threshold.
-	 *
-	 * @throws                               java.lang.SecurityException
-	 *                                       if a security manager exists and
-	 *                                       the caller does not have
-	 *                                       ManagementPermission("control").
-	 *
-	 * @see #isUsageThresholdSupported
-	 * @see <a href="#UsageThreshold">Usage threshold</a>
-	 */
-	public void setUsageThreshold(long threshold);
+    /**
+     * Sets the threshold of this memory pool to the given <tt>threshold</tt>
+     * value if this memory pool supports the usage threshold. The usage
+     * threshold crossing checking is enabled in this memory pool if the
+     * threshold is set to a positive value. The usage threshold crossing
+     * checking is disabled if it is set to zero.
+     *
+     * @param threshold
+     *                  the new threshold value in bytes. Must be non-negative.
+     *
+     * @throws IllegalArgumentException
+     *                                       if <tt>threshold</tt> is negative
+     *                                       or greater than the maximum
+     *                                       amount of memory for this memory
+     *                                       pool if defined.
+     *
+     * @throws UnsupportedOperationException
+     *                                       if this memory pool does not
+     *                                       support a usage threshold.
+     *
+     * @throws                               java.lang.SecurityException
+     *                                       if a security manager exists and
+     *                                       the caller does not have
+     *                                       ManagementPermission("control").
+     *
+     * @see #isUsageThresholdSupported
+     * @see <a href="#UsageThreshold">Usage threshold</a>
+     */
+    public void setUsageThreshold(long threshold);
 
-	/**
-	 * Tests if the memory usage of this memory pool reaches or exceeds its
-	 * usage threshold value.
-	 *
-	 * @return <tt>true</tt> if the memory usage of this memory pool reaches or
-	 *         exceeds the threshold value; <tt>false</tt> otherwise.
-	 *
-	 * @throws UnsupportedOperationException
-	 *                                       if this memory pool does not
-	 *                                       support a usage threshold.
-	 */
-	public boolean isUsageThresholdExceeded();
+    /**
+     * Tests if the memory usage of this memory pool reaches or exceeds its
+     * usage threshold value.
+     *
+     * @return <tt>true</tt> if the memory usage of this memory pool reaches or
+     *         exceeds the threshold value; <tt>false</tt> otherwise.
+     *
+     * @throws UnsupportedOperationException
+     *                                       if this memory pool does not
+     *                                       support a usage threshold.
+     */
+    public boolean isUsageThresholdExceeded();
 
-	/**
-	 * Returns the number of times that the memory usage has crossed the usage
-	 * threshold.
-	 *
-	 * @return the number of times that the memory usage has crossed its usage
-	 *         threshold value.
-	 *
-	 * @throws UnsupportedOperationException
-	 *                                       if this memory pool does not
-	 *                                       support a usage threshold.
-	 */
-	public long getUsageThresholdCount();
+    /**
+     * Returns the number of times that the memory usage has crossed the usage
+     * threshold.
+     *
+     * @return the number of times that the memory usage has crossed its usage
+     *         threshold value.
+     *
+     * @throws UnsupportedOperationException
+     *                                       if this memory pool does not
+     *                                       support a usage threshold.
+     */
+    public long getUsageThresholdCount();
 
-	/**
-	 * Tests if this memory pool supports usage threshold.
-	 *
-	 * @return <tt>true</tt> if this memory pool supports usage threshold;
-	 *         <tt>false</tt> otherwise.
-	 */
-	public boolean isUsageThresholdSupported();
+    /**
+     * Tests if this memory pool supports usage threshold.
+     *
+     * @return <tt>true</tt> if this memory pool supports usage threshold;
+     *         <tt>false</tt> otherwise.
+     */
+    public boolean isUsageThresholdSupported();
 
-	/**
-	 * Returns the collection usage threshold value of this memory pool in
-	 * bytes. The default value is zero. The collection usage threshold can be
-	 * changed via the {@link #setCollectionUsageThreshold
-	 * setCollectionUsageThreshold} method.
-	 *
-	 * @return the collection usage threshold of this memory pool in bytes.
-	 *
-	 * @throws UnsupportedOperationException
-	 *                                       if this memory pool does not
-	 *                                       support a collection usage
-	 *                                       threshold.
-	 *
-	 * @see #isCollectionUsageThresholdSupported
-	 */
-	public long getCollectionUsageThreshold();
+    /**
+     * Returns the collection usage threshold value of this memory pool in
+     * bytes. The default value is zero. The collection usage threshold can be
+     * changed via the {@link #setCollectionUsageThreshold
+     * setCollectionUsageThreshold} method.
+     *
+     * @return the collection usage threshold of this memory pool in bytes.
+     *
+     * @throws UnsupportedOperationException
+     *                                       if this memory pool does not
+     *                                       support a collection usage
+     *                                       threshold.
+     *
+     * @see #isCollectionUsageThresholdSupported
+     */
+    public long getCollectionUsageThreshold();
 
-	/**
-	 * Sets the collection usage threshold of this memory pool to the given
-	 * <tt>threshold</tt> value. When this threshold is set to positive, the
-	 * Java virtual machine will check the memory usage at its best appropriate
-	 * time after it has expended effort in recycling unused objects in this
-	 * memory pool.
-	 * <p>
-	 * The collection usage threshold crossing checking is enabled in this
-	 * memory pool if the threshold is set to a positive value. The collection
-	 * usage threshold crossing checking is disabled if it is set to zero.
-	 *
-	 * @param threshold
-	 *                  the new collection usage threshold value in bytes. Must
-	 *                  be
-	 *                  non-negative.
-	 *
-	 * @throws IllegalArgumentException
-	 *                                       if <tt>threshold</tt> is negative
-	 *                                       or greater than the maximum
-	 *                                       amount of memory for this memory
-	 *                                       pool if defined.
-	 *
-	 * @throws UnsupportedOperationException
-	 *                                       if this memory pool does not
-	 *                                       support a collection usage
-	 *                                       threshold.
-	 *
-	 * @throws                               java.lang.SecurityException
-	 *                                       if a security manager exists and
-	 *                                       the caller does not have
-	 *                                       ManagementPermission("control").
-	 *
-	 * @see #isCollectionUsageThresholdSupported
-	 * @see <a href="#CollectionThreshold">Collection usage threshold</a>
-	 */
-	public void setCollectionUsageThreshold(long threshold);
+    /**
+     * Sets the collection usage threshold of this memory pool to the given
+     * <tt>threshold</tt> value. When this threshold is set to positive, the
+     * Java virtual machine will check the memory usage at its best appropriate
+     * time after it has expended effort in recycling unused objects in this
+     * memory pool.
+     * <p>
+     * The collection usage threshold crossing checking is enabled in this
+     * memory pool if the threshold is set to a positive value. The collection
+     * usage threshold crossing checking is disabled if it is set to zero.
+     *
+     * @param threshold
+     *                  the new collection usage threshold value in bytes. Must
+     *                  be
+     *                  non-negative.
+     *
+     * @throws IllegalArgumentException
+     *                                       if <tt>threshold</tt> is negative
+     *                                       or greater than the maximum
+     *                                       amount of memory for this memory
+     *                                       pool if defined.
+     *
+     * @throws UnsupportedOperationException
+     *                                       if this memory pool does not
+     *                                       support a collection usage
+     *                                       threshold.
+     *
+     * @throws                               java.lang.SecurityException
+     *                                       if a security manager exists and
+     *                                       the caller does not have
+     *                                       ManagementPermission("control").
+     *
+     * @see #isCollectionUsageThresholdSupported
+     * @see <a href="#CollectionThreshold">Collection usage threshold</a>
+     */
+    public void setCollectionUsageThreshold(long threshold);
 
-	/**
-	 * Tests if the memory usage of this memory pool after the most recent
-	 * collection on which the Java virtual machine has expended effort has
-	 * reached or exceeded its collection usage threshold. This method does not
-	 * request the Java virtual machine to perform any garbage collection other
-	 * than its normal automatic memory management.
-	 *
-	 * @return <tt>true</tt> if the memory usage of this memory pool reaches or
-	 *         exceeds the collection usage threshold value in the most recent
-	 *         collection; <tt>false</tt> otherwise.
-	 *
-	 * @throws UnsupportedOperationException
-	 *                                       if this memory pool does not
-	 *                                       support a usage threshold.
-	 */
-	public boolean isCollectionUsageThresholdExceeded();
+    /**
+     * Tests if the memory usage of this memory pool after the most recent
+     * collection on which the Java virtual machine has expended effort has
+     * reached or exceeded its collection usage threshold. This method does not
+     * request the Java virtual machine to perform any garbage collection other
+     * than its normal automatic memory management.
+     *
+     * @return <tt>true</tt> if the memory usage of this memory pool reaches or
+     *         exceeds the collection usage threshold value in the most recent
+     *         collection; <tt>false</tt> otherwise.
+     *
+     * @throws UnsupportedOperationException
+     *                                       if this memory pool does not
+     *                                       support a usage threshold.
+     */
+    public boolean isCollectionUsageThresholdExceeded();
 
-	/**
-	 * Returns the number of times that the Java virtual machine has detected
-	 * that the memory usage has reached or exceeded the collection usage
-	 * threshold.
-	 *
-	 * @return the number of times that the memory usage has reached or exceeded
-	 *         the collection usage threshold.
-	 *
-	 * @throws UnsupportedOperationException
-	 *                                       if this memory pool does not
-	 *                                       support a collection usage
-	 *                                       threshold.
-	 *
-	 * @see #isCollectionUsageThresholdSupported
-	 */
-	public long getCollectionUsageThresholdCount();
+    /**
+     * Returns the number of times that the Java virtual machine has detected
+     * that the memory usage has reached or exceeded the collection usage
+     * threshold.
+     *
+     * @return the number of times that the memory usage has reached or exceeded
+     *         the collection usage threshold.
+     *
+     * @throws UnsupportedOperationException
+     *                                       if this memory pool does not
+     *                                       support a collection usage
+     *                                       threshold.
+     *
+     * @see #isCollectionUsageThresholdSupported
+     */
+    public long getCollectionUsageThresholdCount();
 
-	/**
-	 * Returns the memory usage after the Java virtual machine most recently
-	 * expended effort in recycling unused objects in this memory pool. This
-	 * method does not request the Java virtual machine to perform any garbage
-	 * collection other than its normal automatic memory management. This method
-	 * returns <tt>null</tt> if the Java virtual machine does not support this
-	 * method.
-	 *
-	 * <p>
-	 * <b>MBeanServer access</b>:<br>
-	 * The mapped type of <tt>MemoryUsage</tt> is <tt>CompositeData</tt> with
-	 * attributes as specified in {@link MemoryUsage#from MemoryUsage}.
-	 *
-	 * @return a {@link MemoryUsage} representing the memory usage of this
-	 *         memory pool after the Java virtual machine most recently expended
-	 *         effort in recycling unused objects; <tt>null</tt> if this method
-	 *         is not supported.
-	 */
-	public MemoryUsage getCollectionUsage();
+    /**
+     * Returns the memory usage after the Java virtual machine most recently
+     * expended effort in recycling unused objects in this memory pool. This
+     * method does not request the Java virtual machine to perform any garbage
+     * collection other than its normal automatic memory management. This method
+     * returns <tt>null</tt> if the Java virtual machine does not support this
+     * method.
+     *
+     * <p>
+     * <b>MBeanServer access</b>:<br>
+     * The mapped type of <tt>MemoryUsage</tt> is <tt>CompositeData</tt> with
+     * attributes as specified in {@link MemoryUsage#from MemoryUsage}.
+     *
+     * @return a {@link MemoryUsage} representing the memory usage of this
+     *         memory pool after the Java virtual machine most recently expended
+     *         effort in recycling unused objects; <tt>null</tt> if this method
+     *         is not supported.
+     */
+    public MemoryUsage getCollectionUsage();
 
-	/**
-	 * Tests if this memory pool supports a collection usage threshold.
-	 *
-	 * @return <tt>true</tt> if this memory pool supports the collection usage
-	 *         threshold; <tt>false</tt> otherwise.
-	 */
-	public boolean isCollectionUsageThresholdSupported();
+    /**
+     * Tests if this memory pool supports a collection usage threshold.
+     *
+     * @return <tt>true</tt> if this memory pool supports the collection usage
+     *         threshold; <tt>false</tt> otherwise.
+     */
+    public boolean isCollectionUsageThresholdSupported();
 }

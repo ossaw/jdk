@@ -38,161 +38,161 @@ package javax.swing.text;
  * @since 1.4
  */
 public class DocumentFilter {
-	/**
-	 * Invoked prior to removal of the specified region in the specified
-	 * Document. Subclasses that want to conditionally allow removal should
-	 * override this and only call supers implementation as necessary, or call
-	 * directly into the <code>FilterBypass</code> as necessary.
-	 *
-	 * @param fb
-	 *               FilterBypass that can be used to mutate Document
-	 * @param offset
-	 *               the offset from the beginning &gt;= 0
-	 * @param length
-	 *               the number of characters to remove &gt;= 0
-	 * @exception BadLocationException
-	 *                                 some portion of the removal range was not
-	 *                                 a valid part of
-	 *                                 the document. The location in the
-	 *                                 exception is the first
-	 *                                 bad position encountered.
-	 */
-	public void remove(FilterBypass fb, int offset, int length)
-			throws BadLocationException {
-		fb.remove(offset, length);
-	}
+    /**
+     * Invoked prior to removal of the specified region in the specified
+     * Document. Subclasses that want to conditionally allow removal should
+     * override this and only call supers implementation as necessary, or call
+     * directly into the <code>FilterBypass</code> as necessary.
+     *
+     * @param fb
+     *               FilterBypass that can be used to mutate Document
+     * @param offset
+     *               the offset from the beginning &gt;= 0
+     * @param length
+     *               the number of characters to remove &gt;= 0
+     * @exception BadLocationException
+     *                                 some portion of the removal range was not
+     *                                 a valid part of
+     *                                 the document. The location in the
+     *                                 exception is the first
+     *                                 bad position encountered.
+     */
+    public void remove(FilterBypass fb, int offset, int length)
+            throws BadLocationException {
+        fb.remove(offset, length);
+    }
 
-	/**
-	 * Invoked prior to insertion of text into the specified Document.
-	 * Subclasses that want to conditionally allow insertion should override
-	 * this and only call supers implementation as necessary, or call directly
-	 * into the FilterBypass.
-	 *
-	 * @param fb
-	 *               FilterBypass that can be used to mutate Document
-	 * @param offset
-	 *               the offset into the document to insert the content &gt;= 0.
-	 *               All positions that track change at or after the given
-	 *               location
-	 *               will move.
-	 * @param string
-	 *               the string to insert
-	 * @param attr
-	 *               the attributes to associate with the inserted content. This
-	 *               may be null if there are no attributes.
-	 * @exception BadLocationException
-	 *                                 the given insert position is not a valid
-	 *                                 position within
-	 *                                 the document
-	 */
-	public void insertString(FilterBypass fb, int offset, String string,
-			AttributeSet attr) throws BadLocationException {
-		fb.insertString(offset, string, attr);
-	}
+    /**
+     * Invoked prior to insertion of text into the specified Document.
+     * Subclasses that want to conditionally allow insertion should override
+     * this and only call supers implementation as necessary, or call directly
+     * into the FilterBypass.
+     *
+     * @param fb
+     *               FilterBypass that can be used to mutate Document
+     * @param offset
+     *               the offset into the document to insert the content &gt;= 0.
+     *               All positions that track change at or after the given
+     *               location
+     *               will move.
+     * @param string
+     *               the string to insert
+     * @param attr
+     *               the attributes to associate with the inserted content. This
+     *               may be null if there are no attributes.
+     * @exception BadLocationException
+     *                                 the given insert position is not a valid
+     *                                 position within
+     *                                 the document
+     */
+    public void insertString(FilterBypass fb, int offset, String string,
+            AttributeSet attr) throws BadLocationException {
+        fb.insertString(offset, string, attr);
+    }
 
-	/**
-	 * Invoked prior to replacing a region of text in the specified Document.
-	 * Subclasses that want to conditionally allow replace should override this
-	 * and only call supers implementation as necessary, or call directly into
-	 * the FilterBypass.
-	 *
-	 * @param fb
-	 *               FilterBypass that can be used to mutate Document
-	 * @param offset
-	 *               Location in Document
-	 * @param length
-	 *               Length of text to delete
-	 * @param text
-	 *               Text to insert, null indicates no text to insert
-	 * @param attrs
-	 *               AttributeSet indicating attributes of inserted text, null
-	 *               is
-	 *               legal.
-	 * @exception BadLocationException
-	 *                                 the given insert position is not a valid
-	 *                                 position within
-	 *                                 the document
-	 */
-	public void replace(FilterBypass fb, int offset, int length, String text,
-			AttributeSet attrs) throws BadLocationException {
-		fb.replace(offset, length, text, attrs);
-	}
+    /**
+     * Invoked prior to replacing a region of text in the specified Document.
+     * Subclasses that want to conditionally allow replace should override this
+     * and only call supers implementation as necessary, or call directly into
+     * the FilterBypass.
+     *
+     * @param fb
+     *               FilterBypass that can be used to mutate Document
+     * @param offset
+     *               Location in Document
+     * @param length
+     *               Length of text to delete
+     * @param text
+     *               Text to insert, null indicates no text to insert
+     * @param attrs
+     *               AttributeSet indicating attributes of inserted text, null
+     *               is
+     *               legal.
+     * @exception BadLocationException
+     *                                 the given insert position is not a valid
+     *                                 position within
+     *                                 the document
+     */
+    public void replace(FilterBypass fb, int offset, int length, String text,
+            AttributeSet attrs) throws BadLocationException {
+        fb.replace(offset, length, text, attrs);
+    }
 
-	/**
-	 * Used as a way to circumvent calling back into the Document to change it.
-	 * Document implementations that wish to support a DocumentFilter must
-	 * provide an implementation that will not callback into the DocumentFilter
-	 * when the following methods are invoked from the DocumentFilter.
-	 * 
-	 * @since 1.4
-	 */
-	public static abstract class FilterBypass {
-		/**
-		 * Returns the Document the mutation is occurring on.
-		 *
-		 * @return Document that remove/insertString will operate on
-		 */
-		public abstract Document getDocument();
+    /**
+     * Used as a way to circumvent calling back into the Document to change it.
+     * Document implementations that wish to support a DocumentFilter must
+     * provide an implementation that will not callback into the DocumentFilter
+     * when the following methods are invoked from the DocumentFilter.
+     * 
+     * @since 1.4
+     */
+    public static abstract class FilterBypass {
+        /**
+         * Returns the Document the mutation is occurring on.
+         *
+         * @return Document that remove/insertString will operate on
+         */
+        public abstract Document getDocument();
 
-		/**
-		 * Removes the specified region of text, bypassing the DocumentFilter.
-		 *
-		 * @param offset
-		 *               the offset from the beginning &gt;= 0
-		 * @param length
-		 *               the number of characters to remove &gt;= 0
-		 * @exception BadLocationException
-		 *                                 some portion of the removal range was
-		 *                                 not a valid part
-		 *                                 of the document. The location in the
-		 *                                 exception is the
-		 *                                 first bad position encountered.
-		 */
-		public abstract void remove(int offset, int length)
-				throws BadLocationException;
+        /**
+         * Removes the specified region of text, bypassing the DocumentFilter.
+         *
+         * @param offset
+         *               the offset from the beginning &gt;= 0
+         * @param length
+         *               the number of characters to remove &gt;= 0
+         * @exception BadLocationException
+         *                                 some portion of the removal range was
+         *                                 not a valid part
+         *                                 of the document. The location in the
+         *                                 exception is the
+         *                                 first bad position encountered.
+         */
+        public abstract void remove(int offset, int length)
+                throws BadLocationException;
 
-		/**
-		 * Inserts the specified text, bypassing the DocumentFilter.
-		 * 
-		 * @param offset
-		 *               the offset into the document to insert the content
-		 *               &gt;=
-		 *               0. All positions that track change at or after the
-		 *               given
-		 *               location will move.
-		 * @param string
-		 *               the string to insert
-		 * @param attr
-		 *               the attributes to associate with the inserted content.
-		 *               This may be null if there are no attributes.
-		 * @exception BadLocationException
-		 *                                 the given insert position is not a
-		 *                                 valid position
-		 *                                 within the document
-		 */
-		public abstract void insertString(int offset, String string,
-				AttributeSet attr) throws BadLocationException;
+        /**
+         * Inserts the specified text, bypassing the DocumentFilter.
+         * 
+         * @param offset
+         *               the offset into the document to insert the content
+         *               &gt;=
+         *               0. All positions that track change at or after the
+         *               given
+         *               location will move.
+         * @param string
+         *               the string to insert
+         * @param attr
+         *               the attributes to associate with the inserted content.
+         *               This may be null if there are no attributes.
+         * @exception BadLocationException
+         *                                 the given insert position is not a
+         *                                 valid position
+         *                                 within the document
+         */
+        public abstract void insertString(int offset, String string,
+                AttributeSet attr) throws BadLocationException;
 
-		/**
-		 * Deletes the region of text from <code>offset</code> to
-		 * <code>offset + length</code>, and replaces it with <code>text</code>.
-		 *
-		 * @param offset
-		 *               Location in Document
-		 * @param length
-		 *               Length of text to delete
-		 * @param string
-		 *               Text to insert, null indicates no text to insert
-		 * @param attrs
-		 *               AttributeSet indicating attributes of inserted text,
-		 *               null
-		 *               is legal.
-		 * @exception BadLocationException
-		 *                                 the given insert is not a valid
-		 *                                 position within the
-		 *                                 document
-		 */
-		public abstract void replace(int offset, int length, String string,
-				AttributeSet attrs) throws BadLocationException;
-	}
+        /**
+         * Deletes the region of text from <code>offset</code> to
+         * <code>offset + length</code>, and replaces it with <code>text</code>.
+         *
+         * @param offset
+         *               Location in Document
+         * @param length
+         *               Length of text to delete
+         * @param string
+         *               Text to insert, null indicates no text to insert
+         * @param attrs
+         *               AttributeSet indicating attributes of inserted text,
+         *               null
+         *               is legal.
+         * @exception BadLocationException
+         *                                 the given insert is not a valid
+         *                                 position within the
+         *                                 document
+         */
+        public abstract void replace(int offset, int length, String string,
+                AttributeSet attrs) throws BadLocationException;
+    }
 }

@@ -22,21 +22,21 @@ import java.rmi.RemoteException;
 @Deprecated
 public class SkeletonMismatchException extends RemoteException {
 
-	/* indicate compatibility with JDK 1.1.x version of class */
-	private static final long serialVersionUID = -7780460454818859281L;
+    /* indicate compatibility with JDK 1.1.x version of class */
+    private static final long serialVersionUID = -7780460454818859281L;
 
-	/**
-	 * Constructs a new <code>SkeletonMismatchException</code> with a specified
-	 * detail message.
-	 *
-	 * @param s
-	 *          the detail message
-	 * @since JDK1.1
-	 * @deprecated no replacement
-	 */
-	@Deprecated
-	public SkeletonMismatchException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs a new <code>SkeletonMismatchException</code> with a specified
+     * detail message.
+     *
+     * @param s
+     *          the detail message
+     * @since JDK1.1
+     * @deprecated no replacement
+     */
+    @Deprecated
+    public SkeletonMismatchException(String s) {
+        super(s);
+    }
 
 }

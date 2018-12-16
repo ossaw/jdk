@@ -18,126 +18,126 @@ import com.sun.source.tree.*;
  */
 @jdk.Exported
 public class TreePath implements Iterable<Tree> {
-	/**
-	 * Gets a tree path for a tree node within a compilation unit.
-	 * 
-	 * @return null if the node is not found
-	 */
-	public static TreePath getPath(CompilationUnitTree unit, Tree target) {
-		return getPath(new TreePath(unit), target);
-	}
+    /**
+     * Gets a tree path for a tree node within a compilation unit.
+     * 
+     * @return null if the node is not found
+     */
+    public static TreePath getPath(CompilationUnitTree unit, Tree target) {
+        return getPath(new TreePath(unit), target);
+    }
 
-	/**
-	 * Gets a tree path for a tree node within a subtree identified by a
-	 * TreePath object.
-	 * 
-	 * @return null if the node is not found
-	 */
-	public static TreePath getPath(TreePath path, Tree target) {
-		path.getClass();
-		target.getClass();
+    /**
+     * Gets a tree path for a tree node within a subtree identified by a
+     * TreePath object.
+     * 
+     * @return null if the node is not found
+     */
+    public static TreePath getPath(TreePath path, Tree target) {
+        path.getClass();
+        target.getClass();
 
-		class Result extends Error {
-			static final long serialVersionUID = -5942088234594905625L;
-			TreePath path;
+        class Result extends Error {
+            static final long serialVersionUID = -5942088234594905625L;
+            TreePath path;
 
-			Result(TreePath path) {
-				this.path = path;
-			}
-		}
+            Result(TreePath path) {
+                this.path = path;
+            }
+        }
 
-		class PathFinder extends TreePathScanner<TreePath, Tree> {
-			public TreePath scan(Tree tree, Tree target) {
-				if (tree == target) {
-					throw new Result(new TreePath(getCurrentPath(), target));
-				}
-				return super.scan(tree, target);
-			}
-		}
+        class PathFinder extends TreePathScanner<TreePath, Tree> {
+            public TreePath scan(Tree tree, Tree target) {
+                if (tree == target) {
+                    throw new Result(new TreePath(getCurrentPath(), target));
+                }
+                return super.scan(tree, target);
+            }
+        }
 
-		if (path.getLeaf() == target) {
-			return path;
-		}
+        if (path.getLeaf() == target) {
+            return path;
+        }
 
-		try {
-			new PathFinder().scan(path, target);
-		} catch (Result result) {
-			return result.path;
-		}
-		return null;
-	}
+        try {
+            new PathFinder().scan(path, target);
+        } catch (Result result) {
+            return result.path;
+        }
+        return null;
+    }
 
-	/**
-	 * Creates a TreePath for a root node.
-	 */
-	public TreePath(CompilationUnitTree t) {
-		this(null, t);
-	}
+    /**
+     * Creates a TreePath for a root node.
+     */
+    public TreePath(CompilationUnitTree t) {
+        this(null, t);
+    }
 
-	/**
-	 * Creates a TreePath for a child node.
-	 */
-	public TreePath(TreePath p, Tree t) {
-		if (t.getKind() == Tree.Kind.COMPILATION_UNIT) {
-			compilationUnit = (CompilationUnitTree) t;
-			parent = null;
-		} else {
-			compilationUnit = p.compilationUnit;
-			parent = p;
-		}
-		leaf = t;
-	}
+    /**
+     * Creates a TreePath for a child node.
+     */
+    public TreePath(TreePath p, Tree t) {
+        if (t.getKind() == Tree.Kind.COMPILATION_UNIT) {
+            compilationUnit = (CompilationUnitTree) t;
+            parent = null;
+        } else {
+            compilationUnit = p.compilationUnit;
+            parent = p;
+        }
+        leaf = t;
+    }
 
-	/**
-	 * Get the compilation unit associated with this path.
-	 */
-	public CompilationUnitTree getCompilationUnit() {
-		return compilationUnit;
-	}
+    /**
+     * Get the compilation unit associated with this path.
+     */
+    public CompilationUnitTree getCompilationUnit() {
+        return compilationUnit;
+    }
 
-	/**
-	 * Get the leaf node for this path.
-	 */
-	public Tree getLeaf() {
-		return leaf;
-	}
+    /**
+     * Get the leaf node for this path.
+     */
+    public Tree getLeaf() {
+        return leaf;
+    }
 
-	/**
-	 * Get the path for the enclosing node, or null if there is no enclosing
-	 * node.
-	 */
-	public TreePath getParentPath() {
-		return parent;
-	}
+    /**
+     * Get the path for the enclosing node, or null if there is no enclosing
+     * node.
+     */
+    public TreePath getParentPath() {
+        return parent;
+    }
 
-	/**
-	 * Iterates from leaves to root.
-	 */
-	@Override
-	public Iterator<Tree> iterator() {
-		return new Iterator<Tree>() {
-			@Override
-			public boolean hasNext() {
-				return next != null;
-			}
+    /**
+     * Iterates from leaves to root.
+     */
+    @Override
+    public Iterator<Tree> iterator() {
+        return new Iterator<Tree>() {
+            @Override
+            public boolean hasNext() {
+                return next != null;
+            }
 
-			@Override
-			public Tree next() {
-				Tree t = next.leaf;
-				next = next.parent;
-				return t;
-			}
+            @Override
+            public Tree next() {
+                Tree t = next.leaf;
+                next = next.parent;
+                return t;
+            }
 
-			@Override
-			public void remove() {
-				throw new UnsupportedOperationException();
-			}
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
 
-			private TreePath next = TreePath.this;
-		};
-	}
+            private TreePath next = TreePath.this;
+        };
+    }
 
-	private CompilationUnitTree compilationUnit;
-	private Tree leaf;
-	private TreePath parent;
+    private CompilationUnitTree compilationUnit;
+    private Tree leaf;
+    private TreePath parent;
 }

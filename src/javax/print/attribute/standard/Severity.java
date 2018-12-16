@@ -39,87 +39,87 @@ import javax.print.attribute.Attribute;
  */
 public final class Severity extends EnumSyntax implements Attribute {
 
-	private static final long serialVersionUID = 8781881462717925380L;
+    private static final long serialVersionUID = 8781881462717925380L;
 
-	/**
-	 * Indicates that the {@link PrinterStateReason PrinterStateReason} is a
-	 * "report" (least severe). An implementation may choose to omit some or all
-	 * reports. Some reports specify finer granularity about the printer state;
-	 * others serve as a precursor to a warning. A report must contain nothing
-	 * that could affect the printed output.
-	 */
-	public static final Severity REPORT = new Severity(0);
+    /**
+     * Indicates that the {@link PrinterStateReason PrinterStateReason} is a
+     * "report" (least severe). An implementation may choose to omit some or all
+     * reports. Some reports specify finer granularity about the printer state;
+     * others serve as a precursor to a warning. A report must contain nothing
+     * that could affect the printed output.
+     */
+    public static final Severity REPORT = new Severity(0);
 
-	/**
-	 * Indicates that the {@link PrinterStateReason PrinterStateReason} is a
-	 * "warning." An implementation may choose to omit some or all warnings.
-	 * Warnings serve as a precursor to an error. A warning must contain nothing
-	 * that prevents a job from completing, though in some cases the output may
-	 * be of lower quality.
-	 */
-	public static final Severity WARNING = new Severity(1);
+    /**
+     * Indicates that the {@link PrinterStateReason PrinterStateReason} is a
+     * "warning." An implementation may choose to omit some or all warnings.
+     * Warnings serve as a precursor to an error. A warning must contain nothing
+     * that prevents a job from completing, though in some cases the output may
+     * be of lower quality.
+     */
+    public static final Severity WARNING = new Severity(1);
 
-	/**
-	 * Indicates that the {@link PrinterStateReason PrinterStateReason} is an
-	 * "error" (most severe). An implementation must include all errors. If this
-	 * attribute contains one or more errors, the printer's {@link PrinterState
-	 * PrinterState} must be STOPPED.
-	 */
-	public static final Severity ERROR = new Severity(2);
+    /**
+     * Indicates that the {@link PrinterStateReason PrinterStateReason} is an
+     * "error" (most severe). An implementation must include all errors. If this
+     * attribute contains one or more errors, the printer's {@link PrinterState
+     * PrinterState} must be STOPPED.
+     */
+    public static final Severity ERROR = new Severity(2);
 
-	/**
-	 * Construct a new severity enumeration value with the given integer value.
-	 *
-	 * @param value
-	 *              Integer value.
-	 */
-	protected Severity(int value) {
-		super(value);
-	}
+    /**
+     * Construct a new severity enumeration value with the given integer value.
+     *
+     * @param value
+     *              Integer value.
+     */
+    protected Severity(int value) {
+        super(value);
+    }
 
-	private static final String[] myStringTable = { "report", "warning",
-			"error" };
+    private static final String[] myStringTable = { "report", "warning",
+            "error" };
 
-	private static final Severity[] myEnumValueTable = { REPORT, WARNING,
-			ERROR };
+    private static final Severity[] myEnumValueTable = { REPORT, WARNING,
+            ERROR };
 
-	/**
-	 * Returns the string table for class Severity.
-	 */
-	protected String[] getStringTable() {
-		return myStringTable;
-	}
+    /**
+     * Returns the string table for class Severity.
+     */
+    protected String[] getStringTable() {
+        return myStringTable;
+    }
 
-	/**
-	 * Returns the enumeration value table for class Severity.
-	 */
-	protected EnumSyntax[] getEnumValueTable() {
-		return myEnumValueTable;
-	}
+    /**
+     * Returns the enumeration value table for class Severity.
+     */
+    protected EnumSyntax[] getEnumValueTable() {
+        return myEnumValueTable;
+    }
 
-	/**
-	 * Get the printing attribute class which is to be used as the "category"
-	 * for this printing attribute value.
-	 * <P>
-	 * For class Severity, the category is class Severity itself.
-	 *
-	 * @return Printing attribute class (category), an instance of class
-	 *         {@link java.lang.Class java.lang.Class}.
-	 */
-	public final Class<? extends Attribute> getCategory() {
-		return Severity.class;
-	}
+    /**
+     * Get the printing attribute class which is to be used as the "category"
+     * for this printing attribute value.
+     * <P>
+     * For class Severity, the category is class Severity itself.
+     *
+     * @return Printing attribute class (category), an instance of class
+     *         {@link java.lang.Class java.lang.Class}.
+     */
+    public final Class<? extends Attribute> getCategory() {
+        return Severity.class;
+    }
 
-	/**
-	 * Get the name of the category of which this attribute value is an
-	 * instance.
-	 * <P>
-	 * For class Severit, the category name is <CODE>"severity"</CODE>.
-	 *
-	 * @return Attribute category name.
-	 */
-	public final String getName() {
-		return "severity";
-	}
+    /**
+     * Get the name of the category of which this attribute value is an
+     * instance.
+     * <P>
+     * For class Severit, the category name is <CODE>"severity"</CODE>.
+     *
+     * @return Attribute category name.
+     */
+    public final String getName() {
+        return "severity";
+    }
 
 }

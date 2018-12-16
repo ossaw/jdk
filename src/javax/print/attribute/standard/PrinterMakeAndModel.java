@@ -21,79 +21,79 @@ import javax.print.attribute.PrintServiceAttribute;
  * @author Alan Kaminsky
  */
 public final class PrinterMakeAndModel extends TextSyntax implements
-		PrintServiceAttribute {
+        PrintServiceAttribute {
 
-	private static final long serialVersionUID = 4580461489499351411L;
+    private static final long serialVersionUID = 4580461489499351411L;
 
-	/**
-	 * Constructs a new printer make and model attribute with the given make and
-	 * model string and locale.
-	 *
-	 * @param makeAndModel
-	 *                     Printer make and model string.
-	 * @param locale
-	 *                     Natural language of the text string. null is
-	 *                     interpreted to
-	 *                     mean the default locale as returned by
-	 *                     <code>Locale.getDefault()</code>
-	 *
-	 * @exception NullPointerException
-	 *                                 (unchecked exception) Thrown if
-	 *                                 <CODE>makeAndModel</CODE>
-	 *                                 is null.
-	 */
-	public PrinterMakeAndModel(String makeAndModel, Locale locale) {
-		super(makeAndModel, locale);
-	}
+    /**
+     * Constructs a new printer make and model attribute with the given make and
+     * model string and locale.
+     *
+     * @param makeAndModel
+     *                     Printer make and model string.
+     * @param locale
+     *                     Natural language of the text string. null is
+     *                     interpreted to
+     *                     mean the default locale as returned by
+     *                     <code>Locale.getDefault()</code>
+     *
+     * @exception NullPointerException
+     *                                 (unchecked exception) Thrown if
+     *                                 <CODE>makeAndModel</CODE>
+     *                                 is null.
+     */
+    public PrinterMakeAndModel(String makeAndModel, Locale locale) {
+        super(makeAndModel, locale);
+    }
 
-	/**
-	 * Returns whether this printer make and model attribute is equivalent to
-	 * the passed in object. To be equivalent, all of the following conditions
-	 * must be true:
-	 * <OL TYPE=1>
-	 * <LI><CODE>object</CODE> is not null.
-	 * <LI><CODE>object</CODE> is an instance of class PrinterMakeAndModel.
-	 * <LI>This printer make and model attribute's underlying string and
-	 * <CODE>object</CODE>'s underlying string are equal.
-	 * <LI>This printer make and model attribute's locale and
-	 * <CODE>object</CODE>'s locale are equal.
-	 * </OL>
-	 *
-	 * @param object
-	 *               Object to compare to.
-	 *
-	 * @return True if <CODE>object</CODE> is equivalent to this printer make
-	 *         and model attribute, false otherwise.
-	 */
-	public boolean equals(Object object) {
-		return (super.equals(object) && object instanceof PrinterMakeAndModel);
-	}
+    /**
+     * Returns whether this printer make and model attribute is equivalent to
+     * the passed in object. To be equivalent, all of the following conditions
+     * must be true:
+     * <OL TYPE=1>
+     * <LI><CODE>object</CODE> is not null.
+     * <LI><CODE>object</CODE> is an instance of class PrinterMakeAndModel.
+     * <LI>This printer make and model attribute's underlying string and
+     * <CODE>object</CODE>'s underlying string are equal.
+     * <LI>This printer make and model attribute's locale and
+     * <CODE>object</CODE>'s locale are equal.
+     * </OL>
+     *
+     * @param object
+     *               Object to compare to.
+     *
+     * @return True if <CODE>object</CODE> is equivalent to this printer make
+     *         and model attribute, false otherwise.
+     */
+    public boolean equals(Object object) {
+        return (super.equals(object) && object instanceof PrinterMakeAndModel);
+    }
 
-	/**
-	 * Get the printing attribute class which is to be used as the "category"
-	 * for this printing attribute value.
-	 * <P>
-	 * For class PrinterMakeAndModel, the category is class PrinterMakeAndModel
-	 * itself.
-	 *
-	 * @return Printing attribute class (category), an instance of class
-	 *         {@link java.lang.Class java.lang.Class}.
-	 */
-	public final Class<? extends Attribute> getCategory() {
-		return PrinterMakeAndModel.class;
-	}
+    /**
+     * Get the printing attribute class which is to be used as the "category"
+     * for this printing attribute value.
+     * <P>
+     * For class PrinterMakeAndModel, the category is class PrinterMakeAndModel
+     * itself.
+     *
+     * @return Printing attribute class (category), an instance of class
+     *         {@link java.lang.Class java.lang.Class}.
+     */
+    public final Class<? extends Attribute> getCategory() {
+        return PrinterMakeAndModel.class;
+    }
 
-	/**
-	 * Get the name of the category of which this attribute value is an
-	 * instance.
-	 * <P>
-	 * For class PrinterMakeAndModel, the category name is
-	 * <CODE>"printer-make-and-model"</CODE>.
-	 *
-	 * @return Attribute category name.
-	 */
-	public final String getName() {
-		return "printer-make-and-model";
-	}
+    /**
+     * Get the name of the category of which this attribute value is an
+     * instance.
+     * <P>
+     * For class PrinterMakeAndModel, the category name is
+     * <CODE>"printer-make-and-model"</CODE>.
+     *
+     * @return Attribute category name.
+     */
+    public final String getName() {
+        return "printer-make-and-model";
+    }
 
 }

@@ -32,22 +32,22 @@ package org.w3c.dom.ls;
  * Object Model (DOM) Level 3 Load and Save Specification</a>.
  */
 public class LSException extends RuntimeException {
-	public LSException(short code, String message) {
-		super(message);
-		this.code = code;
-	}
+    public LSException(short code, String message) {
+        super(message);
+        this.code = code;
+    }
 
-	public short code;
-	// LSExceptionCode
-	/**
-	 * If an attempt was made to load a document, or an XML Fragment, using
-	 * <code>LSParser</code> and the processing has been stopped.
-	 */
-	public static final short PARSE_ERR = 81;
-	/**
-	 * If an attempt was made to serialize a <code>Node</code> using
-	 * <code>LSSerializer</code> and the processing has been stopped.
-	 */
-	public static final short SERIALIZE_ERR = 82;
+    public short code;
+    // LSExceptionCode
+    /**
+     * If an attempt was made to load a document, or an XML Fragment, using
+     * <code>LSParser</code> and the processing has been stopped.
+     */
+    public static final short PARSE_ERR = 81;
+    /**
+     * If an attempt was made to serialize a <code>Node</code> using
+     * <code>LSSerializer</code> and the processing has been stopped.
+     */
+    public static final short SERIALIZE_ERR = 82;
 
 }

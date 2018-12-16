@@ -28,70 +28,70 @@ package java.rmi.server;
  */
 public class ServerCloneException extends CloneNotSupportedException {
 
-	/**
-	 * The cause of the exception.
-	 *
-	 * <p>
-	 * This field predates the general-purpose exception chaining facility. The
-	 * {@link Throwable#getCause()} method is now the preferred means of
-	 * obtaining this information.
-	 *
-	 * @serial
-	 */
-	public Exception detail;
+    /**
+     * The cause of the exception.
+     *
+     * <p>
+     * This field predates the general-purpose exception chaining facility. The
+     * {@link Throwable#getCause()} method is now the preferred means of
+     * obtaining this information.
+     *
+     * @serial
+     */
+    public Exception detail;
 
-	/* indicate compatibility with JDK 1.1.x version of class */
-	private static final long serialVersionUID = 6617456357664815945L;
+    /* indicate compatibility with JDK 1.1.x version of class */
+    private static final long serialVersionUID = 6617456357664815945L;
 
-	/**
-	 * Constructs a <code>ServerCloneException</code> with the specified detail
-	 * message.
-	 *
-	 * @param s
-	 *          the detail message.
-	 */
-	public ServerCloneException(String s) {
-		super(s);
-		initCause(null); // Disallow subsequent initCause
-	}
+    /**
+     * Constructs a <code>ServerCloneException</code> with the specified detail
+     * message.
+     *
+     * @param s
+     *          the detail message.
+     */
+    public ServerCloneException(String s) {
+        super(s);
+        initCause(null); // Disallow subsequent initCause
+    }
 
-	/**
-	 * Constructs a <code>ServerCloneException</code> with the specified detail
-	 * message and cause.
-	 *
-	 * @param s
-	 *              the detail message.
-	 * @param cause
-	 *              the cause
-	 */
-	public ServerCloneException(String s, Exception cause) {
-		super(s);
-		initCause(null); // Disallow subsequent initCause
-		detail = cause;
-	}
+    /**
+     * Constructs a <code>ServerCloneException</code> with the specified detail
+     * message and cause.
+     *
+     * @param s
+     *              the detail message.
+     * @param cause
+     *              the cause
+     */
+    public ServerCloneException(String s, Exception cause) {
+        super(s);
+        initCause(null); // Disallow subsequent initCause
+        detail = cause;
+    }
 
-	/**
-	 * Returns the detail message, including the message from the cause, if any,
-	 * of this exception.
-	 *
-	 * @return the detail message
-	 */
-	public String getMessage() {
-		if (detail == null)
-			return super.getMessage();
-		else
-			return super.getMessage() + "; nested exception is: \n\t" + detail
-					.toString();
-	}
+    /**
+     * Returns the detail message, including the message from the cause, if any,
+     * of this exception.
+     *
+     * @return the detail message
+     */
+    public String getMessage() {
+        if (detail == null)
+            return super.getMessage();
+        else
+            return super.getMessage() + "; nested exception is: \n\t" + detail
+                    .toString();
+    }
 
-	/**
-	 * Returns the cause of this exception. This method returns the value of the
-	 * {@link #detail} field.
-	 *
-	 * @return the cause, which may be <tt>null</tt>.
-	 * @since 1.4
-	 */
-	public Throwable getCause() {
-		return detail;
-	}
+    /**
+     * Returns the cause of this exception. This method returns the value of the
+     * {@link #detail} field.
+     *
+     * @return the cause, which may be <tt>null</tt>.
+     * @since 1.4
+     */
+    public Throwable getCause() {
+        return detail;
+    }
 }

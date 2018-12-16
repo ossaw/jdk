@@ -25,12 +25,12 @@ package org.w3c.dom.html;
  * Model (DOM) Level 2 Specification</a>.
  */
 public interface HTMLQuoteElement extends HTMLElement {
-	/**
-	 * A URI designating a source document or message. See the cite attribute
-	 * definition in HTML 4.0.
-	 */
-	public String getCite();
+    /**
+     * A URI designating a source document or message. See the cite attribute
+     * definition in HTML 4.0.
+     */
+    public String getCite();
 
-	public void setCite(String cite);
+    public void setCite(String cite);
 
 }

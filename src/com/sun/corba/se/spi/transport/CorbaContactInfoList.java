@@ -15,17 +15,17 @@ import com.sun.corba.se.pept.transport.ContactInfoList;
  * @author Harold Carr
  */
 public interface CorbaContactInfoList extends ContactInfoList {
-	public void setTargetIOR(IOR ior);
+    public void setTargetIOR(IOR ior);
 
-	public IOR getTargetIOR();
+    public IOR getTargetIOR();
 
-	public void setEffectiveTargetIOR(IOR locatedIor);
+    public void setEffectiveTargetIOR(IOR locatedIor);
 
-	public IOR getEffectiveTargetIOR();
+    public IOR getEffectiveTargetIOR();
 
-	public LocalClientRequestDispatcher getLocalClientRequestDispatcher();
+    public LocalClientRequestDispatcher getLocalClientRequestDispatcher();
 
-	public int hashCode();
+    public int hashCode();
 }
 
 // End of file.

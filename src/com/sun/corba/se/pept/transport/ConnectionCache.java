@@ -9,24 +9,24 @@ package com.sun.corba.se.pept.transport;
  * @author Harold Carr
  */
 public interface ConnectionCache {
-	public String getCacheType();
+    public String getCacheType();
 
-	public void stampTime(Connection connection);
+    public void stampTime(Connection connection);
 
-	public long numberOfConnections();
+    public long numberOfConnections();
 
-	public long numberOfIdleConnections();
+    public long numberOfIdleConnections();
 
-	public long numberOfBusyConnections();
+    public long numberOfBusyConnections();
 
-	public boolean reclaim();
+    public boolean reclaim();
 
-	/**
-	 * Close all connections in the connection cache. This is used as a final
-	 * cleanup, and will result in abrupt termination of any pending
-	 * communications.
-	 */
-	public void close();
+    /**
+     * Close all connections in the connection cache. This is used as a final
+     * cleanup, and will result in abrupt termination of any pending
+     * communications.
+     */
+    public void close();
 }
 
 // End of file.

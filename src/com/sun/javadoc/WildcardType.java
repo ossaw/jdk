@@ -22,21 +22,21 @@ package com.sun.javadoc;
  */
 public interface WildcardType extends Type {
 
-	/**
-	 * Return the upper bounds of this wildcard type argument as given by the
-	 * <i>extends</i> clause. Return an empty array if no such bounds are
-	 * explicitly given.
-	 *
-	 * @return the extends bounds of this wildcard type argument
-	 */
-	Type[] extendsBounds();
+    /**
+     * Return the upper bounds of this wildcard type argument as given by the
+     * <i>extends</i> clause. Return an empty array if no such bounds are
+     * explicitly given.
+     *
+     * @return the extends bounds of this wildcard type argument
+     */
+    Type[] extendsBounds();
 
-	/**
-	 * Return the lower bounds of this wildcard type argument as given by the
-	 * <i>super</i> clause. Return an empty array if no such bounds are
-	 * explicitly given.
-	 *
-	 * @return the super bounds of this wildcard type argument
-	 */
-	Type[] superBounds();
+    /**
+     * Return the lower bounds of this wildcard type argument as given by the
+     * <i>super</i> clause. Return an empty array if no such bounds are
+     * explicitly given.
+     *
+     * @return the super bounds of this wildcard type argument
+     */
+    Type[] superBounds();
 }

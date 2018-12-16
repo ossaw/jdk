@@ -14,20 +14,20 @@ import java.io.IOException;
  */
 public class ChangedCharSetException extends IOException {
 
-	String charSetSpec;
-	boolean charSetKey;
+    String charSetSpec;
+    boolean charSetKey;
 
-	public ChangedCharSetException(String charSetSpec, boolean charSetKey) {
-		this.charSetSpec = charSetSpec;
-		this.charSetKey = charSetKey;
-	}
+    public ChangedCharSetException(String charSetSpec, boolean charSetKey) {
+        this.charSetSpec = charSetSpec;
+        this.charSetKey = charSetKey;
+    }
 
-	public String getCharSetSpec() {
-		return charSetSpec;
-	}
+    public String getCharSetSpec() {
+        return charSetSpec;
+    }
 
-	public boolean keyEqualsCharSet() {
-		return charSetKey;
-	}
+    public boolean keyEqualsCharSet() {
+        return charSetKey;
+    }
 
 }

@@ -31,31 +31,31 @@ package javax.naming;
  */
 
 public class AuthenticationNotSupportedException extends
-		NamingSecurityException {
-	/**
-	 * Constructs a new instance of AuthenticationNotSupportedException using an
-	 * explanation. All other fields default to null.
-	 *
-	 * @param explanation
-	 *                    A possibly null string containing additional detail
-	 *                    about this
-	 *                    exception.
-	 * @see java.lang.Throwable#getMessage
-	 */
-	public AuthenticationNotSupportedException(String explanation) {
-		super(explanation);
-	}
+        NamingSecurityException {
+    /**
+     * Constructs a new instance of AuthenticationNotSupportedException using an
+     * explanation. All other fields default to null.
+     *
+     * @param explanation
+     *                    A possibly null string containing additional detail
+     *                    about this
+     *                    exception.
+     * @see java.lang.Throwable#getMessage
+     */
+    public AuthenticationNotSupportedException(String explanation) {
+        super(explanation);
+    }
 
-	/**
-	 * Constructs a new instance of AuthenticationNotSupportedException all name
-	 * resolution fields and explanation initialized to null.
-	 */
-	public AuthenticationNotSupportedException() {
-		super();
-	}
+    /**
+     * Constructs a new instance of AuthenticationNotSupportedException all name
+     * resolution fields and explanation initialized to null.
+     */
+    public AuthenticationNotSupportedException() {
+        super();
+    }
 
-	/**
-	 * Use serialVersionUID from JNDI 1.1.1 for interoperability
-	 */
-	private static final long serialVersionUID = -7149033933259492300L;
+    /**
+     * Use serialVersionUID from JNDI 1.1.1 for interoperability
+     */
+    private static final long serialVersionUID = -7149033933259492300L;
 }

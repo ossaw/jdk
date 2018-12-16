@@ -97,123 +97,123 @@ import java.util.*;
  */
 public interface StandardJavaFileManager extends JavaFileManager {
 
-	/**
-	 * Compares two file objects and return true if they represent the same
-	 * canonical file, zip file entry, or entry in any file system based
-	 * container.
-	 *
-	 * @param a
-	 *          a file object
-	 * @param b
-	 *          a file object
-	 * @return true if the given file objects represent the same canonical file
-	 *         or zip file entry; false otherwise
-	 *
-	 * @throws IllegalArgumentException
-	 *                                  if either of the arguments were created
-	 *                                  with another file
-	 *                                  manager implementation
-	 */
-	boolean isSameFile(FileObject a, FileObject b);
+    /**
+     * Compares two file objects and return true if they represent the same
+     * canonical file, zip file entry, or entry in any file system based
+     * container.
+     *
+     * @param a
+     *          a file object
+     * @param b
+     *          a file object
+     * @return true if the given file objects represent the same canonical file
+     *         or zip file entry; false otherwise
+     *
+     * @throws IllegalArgumentException
+     *                                  if either of the arguments were created
+     *                                  with another file
+     *                                  manager implementation
+     */
+    boolean isSameFile(FileObject a, FileObject b);
 
-	/**
-	 * Gets file objects representing the given files.
-	 *
-	 * @param files
-	 *              a list of files
-	 * @return a list of file objects
-	 * @throws IllegalArgumentException
-	 *                                  if the list of files includes a
-	 *                                  directory
-	 */
-	Iterable<? extends JavaFileObject> getJavaFileObjectsFromFiles(
-			Iterable<? extends File> files);
+    /**
+     * Gets file objects representing the given files.
+     *
+     * @param files
+     *              a list of files
+     * @return a list of file objects
+     * @throws IllegalArgumentException
+     *                                  if the list of files includes a
+     *                                  directory
+     */
+    Iterable<? extends JavaFileObject> getJavaFileObjectsFromFiles(
+            Iterable<? extends File> files);
 
-	/**
-	 * Gets file objects representing the given files. Convenience method
-	 * equivalent to:
-	 *
-	 * <pre>
-	 *     getJavaFileObjectsFromFiles({@linkplain java.util.Arrays#asList Arrays.asList}(files))
-	 * </pre>
-	 *
-	 * @param files
-	 *              an array of files
-	 * @return a list of file objects
-	 * @throws IllegalArgumentException
-	 *                                  if the array of files includes a
-	 *                                  directory
-	 * @throws NullPointerException
-	 *                                  if the given array contains null
-	 *                                  elements
-	 */
-	Iterable<? extends JavaFileObject> getJavaFileObjects(File... files);
+    /**
+     * Gets file objects representing the given files. Convenience method
+     * equivalent to:
+     *
+     * <pre>
+     *     getJavaFileObjectsFromFiles({@linkplain java.util.Arrays#asList Arrays.asList}(files))
+     * </pre>
+     *
+     * @param files
+     *              an array of files
+     * @return a list of file objects
+     * @throws IllegalArgumentException
+     *                                  if the array of files includes a
+     *                                  directory
+     * @throws NullPointerException
+     *                                  if the given array contains null
+     *                                  elements
+     */
+    Iterable<? extends JavaFileObject> getJavaFileObjects(File... files);
 
-	/**
-	 * Gets file objects representing the given file names.
-	 *
-	 * @param names
-	 *              a list of file names
-	 * @return a list of file objects
-	 * @throws IllegalArgumentException
-	 *                                  if the list of file names includes a
-	 *                                  directory
-	 */
-	Iterable<? extends JavaFileObject> getJavaFileObjectsFromStrings(
-			Iterable<String> names);
+    /**
+     * Gets file objects representing the given file names.
+     *
+     * @param names
+     *              a list of file names
+     * @return a list of file objects
+     * @throws IllegalArgumentException
+     *                                  if the list of file names includes a
+     *                                  directory
+     */
+    Iterable<? extends JavaFileObject> getJavaFileObjectsFromStrings(
+            Iterable<String> names);
 
-	/**
-	 * Gets file objects representing the given file names. Convenience method
-	 * equivalent to:
-	 *
-	 * <pre>
-	 *     getJavaFileObjectsFromStrings({@linkplain java.util.Arrays#asList Arrays.asList}(names))
-	 * </pre>
-	 *
-	 * @param names
-	 *              a list of file names
-	 * @return a list of file objects
-	 * @throws IllegalArgumentException
-	 *                                  if the array of file names includes a
-	 *                                  directory
-	 * @throws NullPointerException
-	 *                                  if the given array contains null
-	 *                                  elements
-	 */
-	Iterable<? extends JavaFileObject> getJavaFileObjects(String... names);
+    /**
+     * Gets file objects representing the given file names. Convenience method
+     * equivalent to:
+     *
+     * <pre>
+     *     getJavaFileObjectsFromStrings({@linkplain java.util.Arrays#asList Arrays.asList}(names))
+     * </pre>
+     *
+     * @param names
+     *              a list of file names
+     * @return a list of file objects
+     * @throws IllegalArgumentException
+     *                                  if the array of file names includes a
+     *                                  directory
+     * @throws NullPointerException
+     *                                  if the given array contains null
+     *                                  elements
+     */
+    Iterable<? extends JavaFileObject> getJavaFileObjects(String... names);
 
-	/**
-	 * Associates the given path with the given location. Any previous value
-	 * will be discarded.
-	 *
-	 * @param location
-	 *                 a location
-	 * @param path
-	 *                 a list of files, if {@code null} use the default path for
-	 *                 this
-	 *                 location
-	 * @see #getLocation
-	 * @throws IllegalArgumentException
-	 *                                  if location is an output location and
-	 *                                  path does not contain
-	 *                                  exactly one element
-	 * @throws IOException
-	 *                                  if location is an output location and
-	 *                                  path does not represent
-	 *                                  an existing directory
-	 */
-	void setLocation(Location location, Iterable<? extends File> path)
-			throws IOException;
+    /**
+     * Associates the given path with the given location. Any previous value
+     * will be discarded.
+     *
+     * @param location
+     *                 a location
+     * @param path
+     *                 a list of files, if {@code null} use the default path for
+     *                 this
+     *                 location
+     * @see #getLocation
+     * @throws IllegalArgumentException
+     *                                  if location is an output location and
+     *                                  path does not contain
+     *                                  exactly one element
+     * @throws IOException
+     *                                  if location is an output location and
+     *                                  path does not represent
+     *                                  an existing directory
+     */
+    void setLocation(Location location, Iterable<? extends File> path)
+            throws IOException;
 
-	/**
-	 * Gets the path associated with the given location.
-	 *
-	 * @param location
-	 *                 a location
-	 * @return a list of files or {@code null} if this location has no
-	 *         associated path
-	 * @see #setLocation
-	 */
-	Iterable<? extends File> getLocation(Location location);
+    /**
+     * Gets the path associated with the given location.
+     *
+     * @param location
+     *                 a location
+     * @return a list of files or {@code null} if this location has no
+     *         associated path
+     * @see #setLocation
+     */
+    Iterable<? extends File> getLocation(Location location);
 
 }

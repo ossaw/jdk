@@ -33,41 +33,41 @@ import javax.xml.crypto.dsig.XMLSignature;
  */
 public class DOMStructure implements XMLStructure {
 
-	private final Node node;
+    private final Node node;
 
-	/**
-	 * Creates a <code>DOMStructure</code> containing the specified node.
-	 *
-	 * @param node
-	 *             the node
-	 * @throws NullPointerException
-	 *                              if <code>node</code> is <code>null</code>
-	 */
-	public DOMStructure(Node node) {
-		if (node == null) {
-			throw new NullPointerException("node cannot be null");
-		}
-		this.node = node;
-	}
+    /**
+     * Creates a <code>DOMStructure</code> containing the specified node.
+     *
+     * @param node
+     *             the node
+     * @throws NullPointerException
+     *                              if <code>node</code> is <code>null</code>
+     */
+    public DOMStructure(Node node) {
+        if (node == null) {
+            throw new NullPointerException("node cannot be null");
+        }
+        this.node = node;
+    }
 
-	/**
-	 * Returns the node contained in this <code>DOMStructure</code>.
-	 *
-	 * @return the node
-	 */
-	public Node getNode() {
-		return node;
-	}
+    /**
+     * Returns the node contained in this <code>DOMStructure</code>.
+     *
+     * @return the node
+     */
+    public Node getNode() {
+        return node;
+    }
 
-	/**
-	 * @throws NullPointerException
-	 *                              {@inheritDoc}
-	 */
-	public boolean isFeatureSupported(String feature) {
-		if (feature == null) {
-			throw new NullPointerException();
-		} else {
-			return false;
-		}
-	}
+    /**
+     * @throws NullPointerException
+     *                              {@inheritDoc}
+     */
+    public boolean isFeatureSupported(String feature) {
+        if (feature == null) {
+            throw new NullPointerException();
+        } else {
+            return false;
+        }
+    }
 }

@@ -20,22 +20,22 @@ import java.awt.Dimension;
  */
 
 public class DefaultMenuLayout extends BoxLayout implements UIResource {
-	public DefaultMenuLayout(Container target, int axis) {
-		super(target, axis);
-	}
+    public DefaultMenuLayout(Container target, int axis) {
+        super(target, axis);
+    }
 
-	public Dimension preferredLayoutSize(Container target) {
-		if (target instanceof JPopupMenu) {
-			JPopupMenu popupMenu = (JPopupMenu) target;
-			sun.swing.MenuItemLayoutHelper.clearUsedClientProperties(popupMenu);
-			if (popupMenu.getComponentCount() == 0) {
-				return new Dimension(0, 0);
-			}
-		}
+    public Dimension preferredLayoutSize(Container target) {
+        if (target instanceof JPopupMenu) {
+            JPopupMenu popupMenu = (JPopupMenu) target;
+            sun.swing.MenuItemLayoutHelper.clearUsedClientProperties(popupMenu);
+            if (popupMenu.getComponentCount() == 0) {
+                return new Dimension(0, 0);
+            }
+        }
 
-		// Make BoxLayout recalculate cached preferred sizes
-		super.invalidateLayout(target);
+        // Make BoxLayout recalculate cached preferred sizes
+        super.invalidateLayout(target);
 
-		return super.preferredLayoutSize(target);
-	}
+        return super.preferredLayoutSize(target);
+    }
 }

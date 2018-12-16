@@ -19,27 +19,27 @@ package javax.swing.text;
  */
 @SuppressWarnings("serial")
 public class BadLocationException extends Exception {
-	/**
-	 * Creates a new BadLocationException object.
-	 *
-	 * @param s
-	 *             a string indicating what was wrong with the arguments
-	 * @param offs
-	 *             offset within the document that was requested &gt;= 0
-	 */
-	public BadLocationException(String s, int offs) {
-		super(s);
-		this.offs = offs;
-	}
+    /**
+     * Creates a new BadLocationException object.
+     *
+     * @param s
+     *             a string indicating what was wrong with the arguments
+     * @param offs
+     *             offset within the document that was requested &gt;= 0
+     */
+    public BadLocationException(String s, int offs) {
+        super(s);
+        this.offs = offs;
+    }
 
-	/**
-	 * Returns the offset into the document that was not legal.
-	 *
-	 * @return the offset &gt;= 0
-	 */
-	public int offsetRequested() {
-		return offs;
-	}
+    /**
+     * Returns the offset into the document that was not legal.
+     *
+     * @return the offset &gt;= 0
+     */
+    public int offsetRequested() {
+        return offs;
+    }
 
-	private int offs;
+    private int offs;
 }

@@ -20,27 +20,27 @@ package javax.naming;
  */
 
 public class NoPermissionException extends NamingSecurityException {
-	/**
-	 * Constructs a new instance of NoPermissionException using an explanation.
-	 * All other fields default to null.
-	 *
-	 * @param explanation
-	 *                    Possibly null additional detail about this exception.
-	 */
-	public NoPermissionException(String explanation) {
-		super(explanation);
-	}
+    /**
+     * Constructs a new instance of NoPermissionException using an explanation.
+     * All other fields default to null.
+     *
+     * @param explanation
+     *                    Possibly null additional detail about this exception.
+     */
+    public NoPermissionException(String explanation) {
+        super(explanation);
+    }
 
-	/**
-	 * Constructs a new instance of NoPermissionException. All fields are
-	 * initialized to null.
-	 */
-	public NoPermissionException() {
-		super();
-	}
+    /**
+     * Constructs a new instance of NoPermissionException. All fields are
+     * initialized to null.
+     */
+    public NoPermissionException() {
+        super();
+    }
 
-	/**
-	 * Use serialVersionUID from JNDI 1.1.1 for interoperability
-	 */
-	private static final long serialVersionUID = 8395332708699751775L;
+    /**
+     * Use serialVersionUID from JNDI 1.1.1 for interoperability
+     */
+    private static final long serialVersionUID = 8395332708699751775L;
 }

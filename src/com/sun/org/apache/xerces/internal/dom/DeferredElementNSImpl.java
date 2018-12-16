@@ -36,116 +36,116 @@ import org.w3c.dom.NamedNodeMap;
  * @see DeferredElementImpl
  */
 public class DeferredElementNSImpl extends ElementNSImpl implements
-		DeferredNode {
+        DeferredNode {
 
-	//
-	// Constants
-	//
+    //
+    // Constants
+    //
 
-	/** Serialization version. */
-	static final long serialVersionUID = -5001885145370927385L;
+    /** Serialization version. */
+    static final long serialVersionUID = -5001885145370927385L;
 
-	//
-	// Data
-	//
+    //
+    // Data
+    //
 
-	/** Node index. */
-	protected transient int fNodeIndex;
+    /** Node index. */
+    protected transient int fNodeIndex;
 
-	//
-	// Constructors
-	//
+    //
+    // Constructors
+    //
 
-	/**
-	 * This is the deferred constructor. Only the fNodeIndex is given here. All
-	 * other data, can be requested from the ownerDocument via the index.
-	 */
-	DeferredElementNSImpl(DeferredDocumentImpl ownerDoc, int nodeIndex) {
-		super(ownerDoc, null);
+    /**
+     * This is the deferred constructor. Only the fNodeIndex is given here. All
+     * other data, can be requested from the ownerDocument via the index.
+     */
+    DeferredElementNSImpl(DeferredDocumentImpl ownerDoc, int nodeIndex) {
+        super(ownerDoc, null);
 
-		fNodeIndex = nodeIndex;
-		needsSyncChildren(true);
+        fNodeIndex = nodeIndex;
+        needsSyncChildren(true);
 
-	} // <init>(DocumentImpl,int)
+    } // <init>(DocumentImpl,int)
 
-	//
-	// DeferredNode methods
-	//
+    //
+    // DeferredNode methods
+    //
 
-	/** Returns the node index. */
-	public final int getNodeIndex() {
-		return fNodeIndex;
-	}
+    /** Returns the node index. */
+    public final int getNodeIndex() {
+        return fNodeIndex;
+    }
 
-	//
-	// Protected methods
-	//
+    //
+    // Protected methods
+    //
 
-	/** Synchronizes the data (name and value) for fast nodes. */
-	protected final void synchronizeData() {
+    /** Synchronizes the data (name and value) for fast nodes. */
+    protected final void synchronizeData() {
 
-		// no need to sync in the future
-		needsSyncData(false);
+        // no need to sync in the future
+        needsSyncData(false);
 
-		// fluff data
-		DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) this.ownerDocument;
+        // fluff data
+        DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) this.ownerDocument;
 
-		// we don't want to generate any event for this so turn them off
-		boolean orig = ownerDocument.mutationEvents;
-		ownerDocument.mutationEvents = false;
+        // we don't want to generate any event for this so turn them off
+        boolean orig = ownerDocument.mutationEvents;
+        ownerDocument.mutationEvents = false;
 
-		name = ownerDocument.getNodeName(fNodeIndex);
+        name = ownerDocument.getNodeName(fNodeIndex);
 
-		// extract local part from QName
-		int index = name.indexOf(':');
-		if (index < 0) {
-			localName = name;
-		} else {
-			localName = name.substring(index + 1);
-		}
+        // extract local part from QName
+        int index = name.indexOf(':');
+        if (index < 0) {
+            localName = name;
+        } else {
+            localName = name.substring(index + 1);
+        }
 
-		namespaceURI = ownerDocument.getNodeURI(fNodeIndex);
-		type = (XSTypeDefinition) ownerDocument.getTypeInfo(fNodeIndex);
+        namespaceURI = ownerDocument.getNodeURI(fNodeIndex);
+        type = (XSTypeDefinition) ownerDocument.getTypeInfo(fNodeIndex);
 
-		// attributes
-		setupDefaultAttributes();
-		int attrIndex = ownerDocument.getNodeExtra(fNodeIndex);
-		if (attrIndex != -1) {
-			NamedNodeMap attrs = getAttributes();
-			boolean seenSchemaDefault = false;
-			do {
-				AttrImpl attr = (AttrImpl) ownerDocument.getNodeObject(
-						attrIndex);
-				// Take special care of schema defaulted attributes. Calling the
-				// non-namespace aware setAttributeNode() method could overwrite
-				// another attribute with the same local name.
-				if (!attr.getSpecified() && (seenSchemaDefault || (attr
-						.getNamespaceURI() != null && attr
-								.getNamespaceURI() != NamespaceContext.XMLNS_URI
-						&& attr.getName().indexOf(':') < 0))) {
-					seenSchemaDefault = true;
-					attrs.setNamedItemNS(attr);
-				} else {
-					attrs.setNamedItem(attr);
-				}
-				attrIndex = ownerDocument.getPrevSibling(attrIndex);
-			} while (attrIndex != -1);
-		}
+        // attributes
+        setupDefaultAttributes();
+        int attrIndex = ownerDocument.getNodeExtra(fNodeIndex);
+        if (attrIndex != -1) {
+            NamedNodeMap attrs = getAttributes();
+            boolean seenSchemaDefault = false;
+            do {
+                AttrImpl attr = (AttrImpl) ownerDocument.getNodeObject(
+                        attrIndex);
+                // Take special care of schema defaulted attributes. Calling the
+                // non-namespace aware setAttributeNode() method could overwrite
+                // another attribute with the same local name.
+                if (!attr.getSpecified() && (seenSchemaDefault || (attr
+                        .getNamespaceURI() != null && attr
+                                .getNamespaceURI() != NamespaceContext.XMLNS_URI
+                        && attr.getName().indexOf(':') < 0))) {
+                    seenSchemaDefault = true;
+                    attrs.setNamedItemNS(attr);
+                } else {
+                    attrs.setNamedItem(attr);
+                }
+                attrIndex = ownerDocument.getPrevSibling(attrIndex);
+            } while (attrIndex != -1);
+        }
 
-		// set mutation events flag back to its original value
-		ownerDocument.mutationEvents = orig;
+        // set mutation events flag back to its original value
+        ownerDocument.mutationEvents = orig;
 
-	} // synchronizeData()
+    } // synchronizeData()
 
-	/**
-	 * Synchronizes the node's children with the internal structure. Fluffing
-	 * the children at once solves a lot of work to keep the two structures in
-	 * sync. The problem gets worse when editing the tree -- this makes it a lot
-	 * easier.
-	 */
-	protected final void synchronizeChildren() {
-		DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) ownerDocument();
-		ownerDocument.synchronizeChildren(this, fNodeIndex);
-	} // synchronizeChildren()
+    /**
+     * Synchronizes the node's children with the internal structure. Fluffing
+     * the children at once solves a lot of work to keep the two structures in
+     * sync. The problem gets worse when editing the tree -- this makes it a lot
+     * easier.
+     */
+    protected final void synchronizeChildren() {
+        DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) ownerDocument();
+        ownerDocument.synchronizeChildren(this, fNodeIndex);
+    } // synchronizeChildren()
 
 } // class DeferredElementImpl

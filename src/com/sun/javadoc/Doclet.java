@@ -27,60 +27,60 @@ package com.sun.javadoc;
  */
 public abstract class Doclet {
 
-	/**
-	 * Generate documentation here. This method is required for all doclets.
-	 *
-	 * @return true on success.
-	 */
-	public static boolean start(RootDoc root) {
-		return true;
-	}
+    /**
+     * Generate documentation here. This method is required for all doclets.
+     *
+     * @return true on success.
+     */
+    public static boolean start(RootDoc root) {
+        return true;
+    }
 
-	/**
-	 * Check for doclet-added options. Returns the number of arguments you must
-	 * specify on the command line for the given option. For example, "-d docs"
-	 * would return 2.
-	 * <P>
-	 * This method is required if the doclet contains any options. If this
-	 * method is missing, Javadoc will print an invalid flag error for every
-	 * option.
-	 *
-	 * @return number of arguments on the command line for an option including
-	 *         the option name itself. Zero return means option not known.
-	 *         Negative value means error occurred.
-	 */
-	public static int optionLength(String option) {
-		return 0; // default is option unknown
-	}
+    /**
+     * Check for doclet-added options. Returns the number of arguments you must
+     * specify on the command line for the given option. For example, "-d docs"
+     * would return 2.
+     * <P>
+     * This method is required if the doclet contains any options. If this
+     * method is missing, Javadoc will print an invalid flag error for every
+     * option.
+     *
+     * @return number of arguments on the command line for an option including
+     *         the option name itself. Zero return means option not known.
+     *         Negative value means error occurred.
+     */
+    public static int optionLength(String option) {
+        return 0; // default is option unknown
+    }
 
-	/**
-	 * Check that options have the correct arguments.
-	 * <P>
-	 * This method is not required, but is recommended, as every option will be
-	 * considered valid if this method is not present. It will default
-	 * gracefully (to true) if absent.
-	 * <P>
-	 * Printing option related error messages (using the provided
-	 * DocErrorReporter) is the responsibility of this method.
-	 *
-	 * @return true if the options are valid.
-	 */
-	public static boolean validOptions(String options[][],
-			DocErrorReporter reporter) {
-		return true; // default is options are valid
-	}
+    /**
+     * Check that options have the correct arguments.
+     * <P>
+     * This method is not required, but is recommended, as every option will be
+     * considered valid if this method is not present. It will default
+     * gracefully (to true) if absent.
+     * <P>
+     * Printing option related error messages (using the provided
+     * DocErrorReporter) is the responsibility of this method.
+     *
+     * @return true if the options are valid.
+     */
+    public static boolean validOptions(String options[][],
+            DocErrorReporter reporter) {
+        return true; // default is options are valid
+    }
 
-	/**
-	 * Return the version of the Java Programming Language supported by this
-	 * doclet.
-	 * <p>
-	 * This method is required by any doclet supporting a language version newer
-	 * than 1.1.
-	 *
-	 * @return the language version supported by this doclet.
-	 * @since 1.5
-	 */
-	public static LanguageVersion languageVersion() {
-		return LanguageVersion.JAVA_1_1;
-	}
+    /**
+     * Return the version of the Java Programming Language supported by this
+     * doclet.
+     * <p>
+     * This method is required by any doclet supporting a language version newer
+     * than 1.1.
+     *
+     * @return the language version supported by this doclet.
+     * @since 1.5
+     */
+    public static LanguageVersion languageVersion() {
+        return LanguageVersion.JAVA_1_1;
+    }
 }

@@ -11,11 +11,11 @@ import java.nio.ByteBuffer;
  * @author Charlie Hunt
  */
 public interface ByteBufferPool {
-	public ByteBuffer getByteBuffer(int theSize);
+    public ByteBuffer getByteBuffer(int theSize);
 
-	public void releaseByteBuffer(ByteBuffer thebb);
+    public void releaseByteBuffer(ByteBuffer thebb);
 
-	public int activeCount();
+    public int activeCount();
 }
 
 // End of file.

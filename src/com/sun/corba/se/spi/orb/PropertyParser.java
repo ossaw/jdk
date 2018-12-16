@@ -15,47 +15,47 @@ import com.sun.corba.se.impl.orb.ParserAction;
 import com.sun.corba.se.impl.orb.ParserActionFactory;
 
 public class PropertyParser {
-	private List actions;
+    private List actions;
 
-	public PropertyParser() {
-		actions = new LinkedList();
-	}
+    public PropertyParser() {
+        actions = new LinkedList();
+    }
 
-	public PropertyParser add(String propName, Operation action,
-			String fieldName) {
-		actions.add(ParserActionFactory.makeNormalAction(propName, action,
-				fieldName));
-		return this;
-	}
+    public PropertyParser add(String propName, Operation action,
+            String fieldName) {
+        actions.add(ParserActionFactory.makeNormalAction(propName, action,
+                fieldName));
+        return this;
+    }
 
-	public PropertyParser addPrefix(String propName, Operation action,
-			String fieldName, Class componentType) {
-		actions.add(ParserActionFactory.makePrefixAction(propName, action,
-				fieldName, componentType));
-		return this;
-	}
+    public PropertyParser addPrefix(String propName, Operation action,
+            String fieldName, Class componentType) {
+        actions.add(ParserActionFactory.makePrefixAction(propName, action,
+                fieldName, componentType));
+        return this;
+    }
 
-	/**
-	 * Return a map from field name to value.
-	 */
-	public Map parse(Properties props) {
-		Map map = new HashMap();
-		Iterator iter = actions.iterator();
-		while (iter.hasNext()) {
-			ParserAction act = (ParserAction) (iter.next());
+    /**
+     * Return a map from field name to value.
+     */
+    public Map parse(Properties props) {
+        Map map = new HashMap();
+        Iterator iter = actions.iterator();
+        while (iter.hasNext()) {
+            ParserAction act = (ParserAction) (iter.next());
 
-			Object result = act.apply(props);
+            Object result = act.apply(props);
 
-			// A null result means that the property was not set for
-			// this action, so do not override the default value in this case.
-			if (result != null)
-				map.put(act.getFieldName(), result);
-		}
+            // A null result means that the property was not set for
+            // this action, so do not override the default value in this case.
+            if (result != null)
+                map.put(act.getFieldName(), result);
+        }
 
-		return map;
-	}
+        return map;
+    }
 
-	public Iterator iterator() {
-		return actions.iterator();
-	}
+    public Iterator iterator() {
+        return actions.iterator();
+    }
 }

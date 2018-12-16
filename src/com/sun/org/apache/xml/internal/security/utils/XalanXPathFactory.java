@@ -27,10 +27,10 @@ package com.sun.org.apache.xml.internal.security.utils;
  */
 public class XalanXPathFactory extends XPathFactory {
 
-	/**
-	 * Get a new XPathAPI instance
-	 */
-	public XPathAPI newXPathAPI() {
-		return new XalanXPathAPI();
-	}
+    /**
+     * Get a new XPathAPI instance
+     */
+    public XPathAPI newXPathAPI() {
+        return new XalanXPathAPI();
+    }
 }

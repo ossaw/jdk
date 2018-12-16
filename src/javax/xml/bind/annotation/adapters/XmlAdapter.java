@@ -94,15 +94,15 @@ package javax.xml.bind.annotation.adapters;
  *
  * <pre>
  * public class MyHashMapType {
- * 	List&lt;MyHashMapEntryType> entry;
+ *     List&lt;MyHashMapEntryType> entry;
  * }
  *
  * public class MyHashMapEntryType {
- * 	&#64;XmlAttribute
- * 	public Integer key;
+ *     &#64;XmlAttribute
+ *     public Integer key;
  *
- * 	&#64;XmlValue
- * 	public String value;
+ *     &#64;XmlValue
+ *     public String value;
  * }
  * </pre>
  *
@@ -154,34 +154,34 @@ package javax.xml.bind.annotation.adapters;
  */
 public abstract class XmlAdapter<ValueType, BoundType> {
 
-	/**
-	 * Do-nothing constructor for the derived classes.
-	 */
-	protected XmlAdapter() {}
+    /**
+     * Do-nothing constructor for the derived classes.
+     */
+    protected XmlAdapter() {}
 
-	/**
-	 * Convert a value type to a bound type.
-	 *
-	 * @param v
-	 *          The value to be converted. Can be null.
-	 * @throws Exception
-	 *                   if there's an error during the conversion. The caller
-	 *                   is
-	 *                   responsible for reporting the error to the user through
-	 *                   {@link javax.xml.bind.ValidationEventHandler}.
-	 */
-	public abstract BoundType unmarshal(ValueType v) throws Exception;
+    /**
+     * Convert a value type to a bound type.
+     *
+     * @param v
+     *          The value to be converted. Can be null.
+     * @throws Exception
+     *                   if there's an error during the conversion. The caller
+     *                   is
+     *                   responsible for reporting the error to the user through
+     *                   {@link javax.xml.bind.ValidationEventHandler}.
+     */
+    public abstract BoundType unmarshal(ValueType v) throws Exception;
 
-	/**
-	 * Convert a bound type to a value type.
-	 *
-	 * @param v
-	 *          The value to be convereted. Can be null.
-	 * @throws Exception
-	 *                   if there's an error during the conversion. The caller
-	 *                   is
-	 *                   responsible for reporting the error to the user through
-	 *                   {@link javax.xml.bind.ValidationEventHandler}.
-	 */
-	public abstract ValueType marshal(BoundType v) throws Exception;
+    /**
+     * Convert a bound type to a value type.
+     *
+     * @param v
+     *          The value to be convereted. Can be null.
+     * @throws Exception
+     *                   if there's an error during the conversion. The caller
+     *                   is
+     *                   responsible for reporting the error to the user through
+     *                   {@link javax.xml.bind.ValidationEventHandler}.
+     */
+    public abstract ValueType marshal(BoundType v) throws Exception;
 }

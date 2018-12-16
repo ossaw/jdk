@@ -33,89 +33,89 @@ package com.sun.org.apache.xerces.internal.dom;
  * @see DeferredAttrImpl
  */
 public final class DeferredAttrNSImpl extends AttrNSImpl implements
-		DeferredNode {
+        DeferredNode {
 
-	//
-	// Constants
-	//
+    //
+    // Constants
+    //
 
-	/** Serialization version. */
-	static final long serialVersionUID = 6074924934945957154L;
+    /** Serialization version. */
+    static final long serialVersionUID = 6074924934945957154L;
 
-	//
-	// Data
-	//
+    //
+    // Data
+    //
 
-	/** Node index. */
-	protected transient int fNodeIndex;
+    /** Node index. */
+    protected transient int fNodeIndex;
 
-	//
-	// Constructors
-	//
+    //
+    // Constructors
+    //
 
-	/**
-	 * This is the deferred constructor. Only the fNodeIndex is given here. All
-	 * other data, can be requested from the ownerDocument via the index.
-	 */
-	DeferredAttrNSImpl(DeferredDocumentImpl ownerDocument, int nodeIndex) {
-		super(ownerDocument, null);
+    /**
+     * This is the deferred constructor. Only the fNodeIndex is given here. All
+     * other data, can be requested from the ownerDocument via the index.
+     */
+    DeferredAttrNSImpl(DeferredDocumentImpl ownerDocument, int nodeIndex) {
+        super(ownerDocument, null);
 
-		fNodeIndex = nodeIndex;
-		needsSyncData(true);
-		needsSyncChildren(true);
+        fNodeIndex = nodeIndex;
+        needsSyncData(true);
+        needsSyncChildren(true);
 
-	} // <init>(DeferredDocumentImpl,int)
+    } // <init>(DeferredDocumentImpl,int)
 
-	//
-	// DeferredNode methods
-	//
+    //
+    // DeferredNode methods
+    //
 
-	/** Returns the node index. */
-	public int getNodeIndex() {
-		return fNodeIndex;
-	}
+    /** Returns the node index. */
+    public int getNodeIndex() {
+        return fNodeIndex;
+    }
 
-	//
-	// Protected methods
-	//
+    //
+    // Protected methods
+    //
 
-	/** Synchronizes the data (name and value) for fast nodes. */
-	protected void synchronizeData() {
+    /** Synchronizes the data (name and value) for fast nodes. */
+    protected void synchronizeData() {
 
-		// no need to sync in the future
-		needsSyncData(false);
+        // no need to sync in the future
+        needsSyncData(false);
 
-		// fluff data
-		DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) ownerDocument();
-		name = ownerDocument.getNodeName(fNodeIndex);
+        // fluff data
+        DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) ownerDocument();
+        name = ownerDocument.getNodeName(fNodeIndex);
 
-		// extract prefix and local part from QName
-		int index = name.indexOf(':');
-		if (index < 0) {
-			localName = name;
-		} else {
-			localName = name.substring(index + 1);
-		}
+        // extract prefix and local part from QName
+        int index = name.indexOf(':');
+        if (index < 0) {
+            localName = name;
+        } else {
+            localName = name.substring(index + 1);
+        }
 
-		int extra = ownerDocument.getNodeExtra(fNodeIndex);
-		isSpecified((extra & SPECIFIED) != 0);
-		isIdAttribute((extra & ID) != 0);
+        int extra = ownerDocument.getNodeExtra(fNodeIndex);
+        isSpecified((extra & SPECIFIED) != 0);
+        isIdAttribute((extra & ID) != 0);
 
-		namespaceURI = ownerDocument.getNodeURI(fNodeIndex);
+        namespaceURI = ownerDocument.getNodeURI(fNodeIndex);
 
-		int extraNode = ownerDocument.getLastChild(fNodeIndex);
-		type = ownerDocument.getTypeInfo(extraNode);
-	} // synchronizeData()
+        int extraNode = ownerDocument.getLastChild(fNodeIndex);
+        type = ownerDocument.getTypeInfo(extraNode);
+    } // synchronizeData()
 
-	/**
-	 * Synchronizes the node's children with the internal structure. Fluffing
-	 * the children at once solves a lot of work to keep the two structures in
-	 * sync. The problem gets worse when editing the tree -- this makes it a lot
-	 * easier.
-	 */
-	protected void synchronizeChildren() {
-		DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) ownerDocument();
-		ownerDocument.synchronizeChildren(this, fNodeIndex);
-	} // synchronizeChildren()
+    /**
+     * Synchronizes the node's children with the internal structure. Fluffing
+     * the children at once solves a lot of work to keep the two structures in
+     * sync. The problem gets worse when editing the tree -- this makes it a lot
+     * easier.
+     */
+    protected void synchronizeChildren() {
+        DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) ownerDocument();
+        ownerDocument.synchronizeChildren(this, fNodeIndex);
+    } // synchronizeChildren()
 
 } // class DeferredAttrImpl

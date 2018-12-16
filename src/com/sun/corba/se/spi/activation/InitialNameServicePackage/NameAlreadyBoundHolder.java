@@ -10,29 +10,29 @@ package com.sun.corba.se.spi.activation.InitialNameServicePackage;
  */
 
 public final class NameAlreadyBoundHolder implements
-		org.omg.CORBA.portable.Streamable {
-	public com.sun.corba.se.spi.activation.InitialNameServicePackage.NameAlreadyBound value = null;
+        org.omg.CORBA.portable.Streamable {
+    public com.sun.corba.se.spi.activation.InitialNameServicePackage.NameAlreadyBound value = null;
 
-	public NameAlreadyBoundHolder() {}
+    public NameAlreadyBoundHolder() {}
 
-	public NameAlreadyBoundHolder(
-			com.sun.corba.se.spi.activation.InitialNameServicePackage.NameAlreadyBound initialValue) {
-		value = initialValue;
-	}
+    public NameAlreadyBoundHolder(
+            com.sun.corba.se.spi.activation.InitialNameServicePackage.NameAlreadyBound initialValue) {
+        value = initialValue;
+    }
 
-	public void _read(org.omg.CORBA.portable.InputStream i) {
-		value = com.sun.corba.se.spi.activation.InitialNameServicePackage.NameAlreadyBoundHelper
-				.read(i);
-	}
+    public void _read(org.omg.CORBA.portable.InputStream i) {
+        value = com.sun.corba.se.spi.activation.InitialNameServicePackage.NameAlreadyBoundHelper
+                .read(i);
+    }
 
-	public void _write(org.omg.CORBA.portable.OutputStream o) {
-		com.sun.corba.se.spi.activation.InitialNameServicePackage.NameAlreadyBoundHelper
-				.write(o, value);
-	}
+    public void _write(org.omg.CORBA.portable.OutputStream o) {
+        com.sun.corba.se.spi.activation.InitialNameServicePackage.NameAlreadyBoundHelper
+                .write(o, value);
+    }
 
-	public org.omg.CORBA.TypeCode _type() {
-		return com.sun.corba.se.spi.activation.InitialNameServicePackage.NameAlreadyBoundHelper
-				.type();
-	}
+    public org.omg.CORBA.TypeCode _type() {
+        return com.sun.corba.se.spi.activation.InitialNameServicePackage.NameAlreadyBoundHelper
+                .type();
+    }
 
 }

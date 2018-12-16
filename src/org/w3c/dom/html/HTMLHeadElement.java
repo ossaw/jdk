@@ -24,12 +24,12 @@ package org.w3c.dom.html;
  * Model (DOM) Level 2 Specification</a>.
  */
 public interface HTMLHeadElement extends HTMLElement {
-	/**
-	 * URI designating a metadata profile. See the profile attribute definition
-	 * in HTML 4.0.
-	 */
-	public String getProfile();
+    /**
+     * URI designating a metadata profile. See the profile attribute definition
+     * in HTML 4.0.
+     */
+    public String getProfile();
 
-	public void setProfile(String profile);
+    public void setProfile(String profile);
 
 }

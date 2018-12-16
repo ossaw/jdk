@@ -48,50 +48,50 @@ package java.awt.event;
  * @since 1.1
  */
 public abstract class MouseAdapter implements MouseListener, MouseWheelListener,
-		MouseMotionListener {
-	/**
-	 * {@inheritDoc}
-	 */
-	public void mouseClicked(MouseEvent e) {}
+        MouseMotionListener {
+    /**
+     * {@inheritDoc}
+     */
+    public void mouseClicked(MouseEvent e) {}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public void mousePressed(MouseEvent e) {}
+    /**
+     * {@inheritDoc}
+     */
+    public void mousePressed(MouseEvent e) {}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public void mouseReleased(MouseEvent e) {}
+    /**
+     * {@inheritDoc}
+     */
+    public void mouseReleased(MouseEvent e) {}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public void mouseEntered(MouseEvent e) {}
+    /**
+     * {@inheritDoc}
+     */
+    public void mouseEntered(MouseEvent e) {}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public void mouseExited(MouseEvent e) {}
+    /**
+     * {@inheritDoc}
+     */
+    public void mouseExited(MouseEvent e) {}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @since 1.6
-	 */
-	public void mouseWheelMoved(MouseWheelEvent e) {}
+    /**
+     * {@inheritDoc}
+     * 
+     * @since 1.6
+     */
+    public void mouseWheelMoved(MouseWheelEvent e) {}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @since 1.6
-	 */
-	public void mouseDragged(MouseEvent e) {}
+    /**
+     * {@inheritDoc}
+     * 
+     * @since 1.6
+     */
+    public void mouseDragged(MouseEvent e) {}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @since 1.6
-	 */
-	public void mouseMoved(MouseEvent e) {}
+    /**
+     * {@inheritDoc}
+     * 
+     * @since 1.6
+     */
+    public void mouseMoved(MouseEvent e) {}
 }

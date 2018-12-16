@@ -63,32 +63,32 @@ package com.sun.org.apache.xerces.internal.impl;
  */
 public class XML11NamespaceBinder extends XMLNamespaceBinder {
 
-	//
-	// Constants
-	//
+    //
+    // Constants
+    //
 
-	//
-	// Data
-	//
+    //
+    // Data
+    //
 
-	//
-	// Constructors
-	//
+    //
+    // Constructors
+    //
 
-	/** Default constructor. */
-	public XML11NamespaceBinder() {} // <init>()
-										//
-										// Public methods
-										//
+    /** Default constructor. */
+    public XML11NamespaceBinder() {} // <init>()
+                                     //
+                                     // Public methods
+                                     //
 
-	//
-	// Protected methods
-	//
+    //
+    // Protected methods
+    //
 
-	// returns true iff the given prefix is bound to "" *and*
-	// this is disallowed by the version of XML namespaces in use.
-	protected boolean prefixBoundToNullURI(String uri, String localpart) {
-		return false;
-	} // prefixBoundToNullURI(String, String): boolean
+    // returns true iff the given prefix is bound to "" *and*
+    // this is disallowed by the version of XML namespaces in use.
+    protected boolean prefixBoundToNullURI(String uri, String localpart) {
+        return false;
+    } // prefixBoundToNullURI(String, String): boolean
 
 } // class XML11NamespaceBinder

@@ -24,67 +24,67 @@ package com.sun.security.auth;
 @jdk.Exported
 public class NTSidGroupPrincipal extends NTSid {
 
-	private static final long serialVersionUID = -1373347438636198229L;
+    private static final long serialVersionUID = -1373347438636198229L;
 
-	/**
-	 * Create an <code>NTSidGroupPrincipal</code> with a Windows NT group name.
-	 *
-	 * <p>
-	 *
-	 * @param name
-	 *             the Windows NT group SID for this user.
-	 *             <p>
-	 *
-	 * @exception NullPointerException
-	 *                                 if the <code>name</code> is
-	 *                                 <code>null</code>.
-	 */
-	public NTSidGroupPrincipal(String name) {
-		super(name);
-	}
+    /**
+     * Create an <code>NTSidGroupPrincipal</code> with a Windows NT group name.
+     *
+     * <p>
+     *
+     * @param name
+     *             the Windows NT group SID for this user.
+     *             <p>
+     *
+     * @exception NullPointerException
+     *                                 if the <code>name</code> is
+     *                                 <code>null</code>.
+     */
+    public NTSidGroupPrincipal(String name) {
+        super(name);
+    }
 
-	/**
-	 * Return a string representation of this <code>NTSidGroupPrincipal</code>.
-	 *
-	 * <p>
-	 *
-	 * @return a string representation of this <code>NTSidGroupPrincipal</code>.
-	 */
-	public String toString() {
-		java.text.MessageFormat form = new java.text.MessageFormat(
-				sun.security.util.ResourcesMgr.getString(
-						"NTSidGroupPrincipal.name",
-						"sun.security.util.AuthResources"));
-		Object[] source = { getName() };
-		return form.format(source);
-	}
+    /**
+     * Return a string representation of this <code>NTSidGroupPrincipal</code>.
+     *
+     * <p>
+     *
+     * @return a string representation of this <code>NTSidGroupPrincipal</code>.
+     */
+    public String toString() {
+        java.text.MessageFormat form = new java.text.MessageFormat(
+                sun.security.util.ResourcesMgr.getString(
+                        "NTSidGroupPrincipal.name",
+                        "sun.security.util.AuthResources"));
+        Object[] source = { getName() };
+        return form.format(source);
+    }
 
-	/**
-	 * Compares the specified Object with this <code>NTSidGroupPrincipal</code>
-	 * for equality. Returns true if the given object is also a
-	 * <code>NTSidGroupPrincipal</code> and the two NTSidGroupPrincipals have
-	 * the same SID.
-	 *
-	 * <p>
-	 *
-	 * @param o
-	 *          Object to be compared for equality with this
-	 *          <code>NTSidGroupPrincipal</code>.
-	 *
-	 * @return true if the specified Object is equal equal to this
-	 *         <code>NTSidGroupPrincipal</code>.
-	 */
-	public boolean equals(Object o) {
-		if (o == null)
-			return false;
+    /**
+     * Compares the specified Object with this <code>NTSidGroupPrincipal</code>
+     * for equality. Returns true if the given object is also a
+     * <code>NTSidGroupPrincipal</code> and the two NTSidGroupPrincipals have
+     * the same SID.
+     *
+     * <p>
+     *
+     * @param o
+     *          Object to be compared for equality with this
+     *          <code>NTSidGroupPrincipal</code>.
+     *
+     * @return true if the specified Object is equal equal to this
+     *         <code>NTSidGroupPrincipal</code>.
+     */
+    public boolean equals(Object o) {
+        if (o == null)
+            return false;
 
-		if (this == o)
-			return true;
+        if (this == o)
+            return true;
 
-		if (!(o instanceof NTSidGroupPrincipal))
-			return false;
+        if (!(o instanceof NTSidGroupPrincipal))
+            return false;
 
-		return super.equals(o);
-	}
+        return super.equals(o);
+    }
 
 }

@@ -26,18 +26,18 @@ package java.rmi.activation;
  */
 public class UnknownObjectException extends ActivationException {
 
-	/** indicate compatibility with the Java 2 SDK v1.2 version of class */
-	private static final long serialVersionUID = 3425547551622251430L;
+    /** indicate compatibility with the Java 2 SDK v1.2 version of class */
+    private static final long serialVersionUID = 3425547551622251430L;
 
-	/**
-	 * Constructs an <code>UnknownObjectException</code> with the specified
-	 * detail message.
-	 *
-	 * @param s
-	 *          the detail message
-	 * @since 1.2
-	 */
-	public UnknownObjectException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs an <code>UnknownObjectException</code> with the specified
+     * detail message.
+     *
+     * @param s
+     *          the detail message
+     * @since 1.2
+     */
+    public UnknownObjectException(String s) {
+        super(s);
+    }
 }

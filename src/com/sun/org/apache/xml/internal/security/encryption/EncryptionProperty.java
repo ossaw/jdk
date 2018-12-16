@@ -47,74 +47,74 @@ import org.w3c.dom.Element;
  */
 public interface EncryptionProperty {
 
-	/**
-	 * Returns the <code>EncryptedType</code> being described.
-	 *
-	 * @return the <code>EncryptedType</code> being described by this
-	 *         <code>EncryptionProperty</code>.
-	 */
-	String getTarget();
+    /**
+     * Returns the <code>EncryptedType</code> being described.
+     *
+     * @return the <code>EncryptedType</code> being described by this
+     *         <code>EncryptionProperty</code>.
+     */
+    String getTarget();
 
-	/**
-	 * Sets the target.
-	 *
-	 * @param target
-	 */
-	void setTarget(String target);
+    /**
+     * Sets the target.
+     *
+     * @param target
+     */
+    void setTarget(String target);
 
-	/**
-	 * Returns the id of the <CODE>EncryptionProperty</CODE>.
-	 *
-	 * @return the id.
-	 */
-	String getId();
+    /**
+     * Returns the id of the <CODE>EncryptionProperty</CODE>.
+     *
+     * @return the id.
+     */
+    String getId();
 
-	/**
-	 * Sets the id.
-	 *
-	 * @param id
-	 */
-	void setId(String id);
+    /**
+     * Sets the id.
+     *
+     * @param id
+     */
+    void setId(String id);
 
-	/**
-	 * Returns the attribute's value in the <code>xml</code> namespace.
-	 *
-	 * @param attribute
-	 * @return the attribute's value.
-	 */
-	String getAttribute(String attribute);
+    /**
+     * Returns the attribute's value in the <code>xml</code> namespace.
+     *
+     * @param attribute
+     * @return the attribute's value.
+     */
+    String getAttribute(String attribute);
 
-	/**
-	 * Set the attribute value.
-	 *
-	 * @param attribute
-	 *                  the attribute's name.
-	 * @param value
-	 *                  the attribute's value.
-	 */
-	void setAttribute(String attribute, String value);
+    /**
+     * Set the attribute value.
+     *
+     * @param attribute
+     *                  the attribute's name.
+     * @param value
+     *                  the attribute's value.
+     */
+    void setAttribute(String attribute, String value);
 
-	/**
-	 * Returns the properties of the <CODE>EncryptionProperty</CODE>.
-	 *
-	 * @return an <code>Iterator</code> over all the additional encryption
-	 *         information contained in this class.
-	 */
-	Iterator<Element> getEncryptionInformation();
+    /**
+     * Returns the properties of the <CODE>EncryptionProperty</CODE>.
+     *
+     * @return an <code>Iterator</code> over all the additional encryption
+     *         information contained in this class.
+     */
+    Iterator<Element> getEncryptionInformation();
 
-	/**
-	 * Adds encryption information.
-	 *
-	 * @param information
-	 *                    the additional encryption information.
-	 */
-	void addEncryptionInformation(Element information);
+    /**
+     * Adds encryption information.
+     *
+     * @param information
+     *                    the additional encryption information.
+     */
+    void addEncryptionInformation(Element information);
 
-	/**
-	 * Removes encryption information.
-	 *
-	 * @param information
-	 *                    the information to remove.
-	 */
-	void removeEncryptionInformation(Element information);
+    /**
+     * Removes encryption information.
+     *
+     * @param information
+     *                    the information to remove.
+     */
+    void removeEncryptionInformation(Element information);
 }

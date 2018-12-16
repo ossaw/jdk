@@ -14,8 +14,8 @@ package org.omg.PortableServer;
  */
 public interface ThreadPolicyOperations extends org.omg.CORBA.PolicyOperations {
 
-	/**
-	 * specifies the policy value
-	 */
-	org.omg.PortableServer.ThreadPolicyValue value();
+    /**
+     * specifies the policy value
+     */
+    org.omg.PortableServer.ThreadPolicyValue value();
 } // interface ThreadPolicyOperations

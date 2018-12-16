@@ -47,71 +47,71 @@ package com.sun.org.apache.xerces.internal.xni.grammars;
 
 public interface XMLGrammarPool {
 
-	// <p>we are trying to make this XMLGrammarPool work for all kinds of
-	// grammars, so we have a parameter "grammarType" for each of the
-	// methods. </p>
+    // <p>we are trying to make this XMLGrammarPool work for all kinds of
+    // grammars, so we have a parameter "grammarType" for each of the
+    // methods. </p>
 
-	/**
-	 * <p>
-	 * retrieve the initial known set of grammars. this method is called by a
-	 * validator before the validation starts. the application can provide an
-	 * initial set of grammars available to the current validation attempt.
-	 * </p>
-	 * 
-	 * @param grammarType
-	 *                    the type of the grammar, from the
-	 *                    <code>com.sun.org.apache.xerces.internal.xni.grammars.Grammar</code>
-	 *                    interface.
-	 * @return the set of grammars the validator may put in its "bucket"
-	 */
-	public Grammar[] retrieveInitialGrammarSet(String grammarType);
+    /**
+     * <p>
+     * retrieve the initial known set of grammars. this method is called by a
+     * validator before the validation starts. the application can provide an
+     * initial set of grammars available to the current validation attempt.
+     * </p>
+     * 
+     * @param grammarType
+     *                    the type of the grammar, from the
+     *                    <code>com.sun.org.apache.xerces.internal.xni.grammars.Grammar</code>
+     *                    interface.
+     * @return the set of grammars the validator may put in its "bucket"
+     */
+    public Grammar[] retrieveInitialGrammarSet(String grammarType);
 
-	/**
-	 * <p>
-	 * return the final set of grammars that the validator ended up with. This
-	 * method is called after the validation finishes. The application may then
-	 * choose to cache some of the returned grammars.
-	 * </p>
-	 * 
-	 * @param grammarType
-	 *                    the type of the grammars being returned;
-	 * @param grammars
-	 *                    an array containing the set of grammars being
-	 *                    returned; order
-	 *                    is not significant.
-	 */
-	public void cacheGrammars(String grammarType, Grammar[] grammars);
+    /**
+     * <p>
+     * return the final set of grammars that the validator ended up with. This
+     * method is called after the validation finishes. The application may then
+     * choose to cache some of the returned grammars.
+     * </p>
+     * 
+     * @param grammarType
+     *                    the type of the grammars being returned;
+     * @param grammars
+     *                    an array containing the set of grammars being
+     *                    returned; order
+     *                    is not significant.
+     */
+    public void cacheGrammars(String grammarType, Grammar[] grammars);
 
-	/**
-	 * <p>
-	 * This method requests that the application retrieve a grammar
-	 * corresponding to the given GrammarIdentifier from its cache. If it cannot
-	 * do so it must return null; the parser will then call the EntityResolver.
-	 * <strong>An application must not call its EntityResolver itself from this
-	 * method; this may result in infinite recursions.</strong>
-	 * 
-	 * @param desc
-	 *             The description of the Grammar being requested.
-	 * @return the Grammar corresponding to this description or null if no such
-	 *         Grammar is known.
-	 */
-	public Grammar retrieveGrammar(XMLGrammarDescription desc);
+    /**
+     * <p>
+     * This method requests that the application retrieve a grammar
+     * corresponding to the given GrammarIdentifier from its cache. If it cannot
+     * do so it must return null; the parser will then call the EntityResolver.
+     * <strong>An application must not call its EntityResolver itself from this
+     * method; this may result in infinite recursions.</strong>
+     * 
+     * @param desc
+     *             The description of the Grammar being requested.
+     * @return the Grammar corresponding to this description or null if no such
+     *         Grammar is known.
+     */
+    public Grammar retrieveGrammar(XMLGrammarDescription desc);
 
-	/**
-	 * Causes the XMLGrammarPool not to store any grammars when the
-	 * cacheGrammars(String, Grammar[[]) method is called.
-	 */
-	public void lockPool();
+    /**
+     * Causes the XMLGrammarPool not to store any grammars when the
+     * cacheGrammars(String, Grammar[[]) method is called.
+     */
+    public void lockPool();
 
-	/**
-	 * Allows the XMLGrammarPool to store grammars when its
-	 * cacheGrammars(String, Grammar[]) method is called. This is the default
-	 * state of the object.
-	 */
-	public void unlockPool();
+    /**
+     * Allows the XMLGrammarPool to store grammars when its
+     * cacheGrammars(String, Grammar[]) method is called. This is the default
+     * state of the object.
+     */
+    public void unlockPool();
 
-	/**
-	 * Removes all grammars from the pool.
-	 */
-	public void clear();
+    /**
+     * Removes all grammars from the pool.
+     */
+    public void clear();
 } // XMLGrammarPool

@@ -41,57 +41,57 @@ import java.security.spec.AlgorithmParameterSpec;
  */
 public class MGF1ParameterSpec implements AlgorithmParameterSpec {
 
-	/**
-	 * The MGF1ParameterSpec which uses "SHA-1" message digest.
-	 */
-	public static final MGF1ParameterSpec SHA1 = new MGF1ParameterSpec("SHA-1");
-	/**
-	 * The MGF1ParameterSpec which uses "SHA-224" message digest.
-	 */
-	public static final MGF1ParameterSpec SHA224 = new MGF1ParameterSpec(
-			"SHA-224");
-	/**
-	 * The MGF1ParameterSpec which uses "SHA-256" message digest.
-	 */
-	public static final MGF1ParameterSpec SHA256 = new MGF1ParameterSpec(
-			"SHA-256");
-	/**
-	 * The MGF1ParameterSpec which uses "SHA-384" message digest.
-	 */
-	public static final MGF1ParameterSpec SHA384 = new MGF1ParameterSpec(
-			"SHA-384");
-	/**
-	 * The MGF1ParameterSpec which uses SHA-512 message digest.
-	 */
-	public static final MGF1ParameterSpec SHA512 = new MGF1ParameterSpec(
-			"SHA-512");
+    /**
+     * The MGF1ParameterSpec which uses "SHA-1" message digest.
+     */
+    public static final MGF1ParameterSpec SHA1 = new MGF1ParameterSpec("SHA-1");
+    /**
+     * The MGF1ParameterSpec which uses "SHA-224" message digest.
+     */
+    public static final MGF1ParameterSpec SHA224 = new MGF1ParameterSpec(
+            "SHA-224");
+    /**
+     * The MGF1ParameterSpec which uses "SHA-256" message digest.
+     */
+    public static final MGF1ParameterSpec SHA256 = new MGF1ParameterSpec(
+            "SHA-256");
+    /**
+     * The MGF1ParameterSpec which uses "SHA-384" message digest.
+     */
+    public static final MGF1ParameterSpec SHA384 = new MGF1ParameterSpec(
+            "SHA-384");
+    /**
+     * The MGF1ParameterSpec which uses SHA-512 message digest.
+     */
+    public static final MGF1ParameterSpec SHA512 = new MGF1ParameterSpec(
+            "SHA-512");
 
-	private String mdName;
+    private String mdName;
 
-	/**
-	 * Constructs a parameter set for mask generation function MGF1 as defined
-	 * in the PKCS #1 standard.
-	 *
-	 * @param mdName
-	 *               the algorithm name for the message digest used in this mask
-	 *               generation function MGF1.
-	 * @exception NullPointerException
-	 *                                 if {@code mdName} is null.
-	 */
-	public MGF1ParameterSpec(String mdName) {
-		if (mdName == null) {
-			throw new NullPointerException("digest algorithm is null");
-		}
-		this.mdName = mdName;
-	}
+    /**
+     * Constructs a parameter set for mask generation function MGF1 as defined
+     * in the PKCS #1 standard.
+     *
+     * @param mdName
+     *               the algorithm name for the message digest used in this mask
+     *               generation function MGF1.
+     * @exception NullPointerException
+     *                                 if {@code mdName} is null.
+     */
+    public MGF1ParameterSpec(String mdName) {
+        if (mdName == null) {
+            throw new NullPointerException("digest algorithm is null");
+        }
+        this.mdName = mdName;
+    }
 
-	/**
-	 * Returns the algorithm name of the message digest used by the mask
-	 * generation function.
-	 *
-	 * @return the algorithm name of the message digest.
-	 */
-	public String getDigestAlgorithm() {
-		return mdName;
-	}
+    /**
+     * Returns the algorithm name of the message digest used by the mask
+     * generation function.
+     *
+     * @return the algorithm name of the message digest.
+     */
+    public String getDigestAlgorithm() {
+        return mdName;
+    }
 }

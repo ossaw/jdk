@@ -33,80 +33,80 @@ import org.w3c.dom.Node;
  * @since DOM Level 2
  */
 public interface StyleSheet {
-	/**
-	 * This specifies the style sheet language for this style sheet. The style
-	 * sheet language is specified as a content type (e.g. "text/css"). The
-	 * content type is often specified in the <code>ownerNode</code>. Also see
-	 * the type attribute definition for the <code>LINK</code> element in HTML
-	 * 4.0, and the type pseudo-attribute for the XML style sheet processing
-	 * instruction.
-	 */
-	public String getType();
+    /**
+     * This specifies the style sheet language for this style sheet. The style
+     * sheet language is specified as a content type (e.g. "text/css"). The
+     * content type is often specified in the <code>ownerNode</code>. Also see
+     * the type attribute definition for the <code>LINK</code> element in HTML
+     * 4.0, and the type pseudo-attribute for the XML style sheet processing
+     * instruction.
+     */
+    public String getType();
 
-	/**
-	 * <code>false</code> if the style sheet is applied to the document.
-	 * <code>true</code> if it is not. Modifying this attribute may cause a new
-	 * resolution of style for the document. A stylesheet only applies if both
-	 * an appropriate medium definition is present and the disabled attribute is
-	 * false. So, if the media doesn't apply to the current user agent, the
-	 * <code>disabled</code> attribute is ignored.
-	 */
-	public boolean getDisabled();
+    /**
+     * <code>false</code> if the style sheet is applied to the document.
+     * <code>true</code> if it is not. Modifying this attribute may cause a new
+     * resolution of style for the document. A stylesheet only applies if both
+     * an appropriate medium definition is present and the disabled attribute is
+     * false. So, if the media doesn't apply to the current user agent, the
+     * <code>disabled</code> attribute is ignored.
+     */
+    public boolean getDisabled();
 
-	/**
-	 * <code>false</code> if the style sheet is applied to the document.
-	 * <code>true</code> if it is not. Modifying this attribute may cause a new
-	 * resolution of style for the document. A stylesheet only applies if both
-	 * an appropriate medium definition is present and the disabled attribute is
-	 * false. So, if the media doesn't apply to the current user agent, the
-	 * <code>disabled</code> attribute is ignored.
-	 */
-	public void setDisabled(boolean disabled);
+    /**
+     * <code>false</code> if the style sheet is applied to the document.
+     * <code>true</code> if it is not. Modifying this attribute may cause a new
+     * resolution of style for the document. A stylesheet only applies if both
+     * an appropriate medium definition is present and the disabled attribute is
+     * false. So, if the media doesn't apply to the current user agent, the
+     * <code>disabled</code> attribute is ignored.
+     */
+    public void setDisabled(boolean disabled);
 
-	/**
-	 * The node that associates this style sheet with the document. For HTML,
-	 * this may be the corresponding <code>LINK</code> or <code>STYLE</code>
-	 * element. For XML, it may be the linking processing instruction. For style
-	 * sheets that are included by other style sheets, the value of this
-	 * attribute is <code>null</code>.
-	 */
-	public Node getOwnerNode();
+    /**
+     * The node that associates this style sheet with the document. For HTML,
+     * this may be the corresponding <code>LINK</code> or <code>STYLE</code>
+     * element. For XML, it may be the linking processing instruction. For style
+     * sheets that are included by other style sheets, the value of this
+     * attribute is <code>null</code>.
+     */
+    public Node getOwnerNode();
 
-	/**
-	 * For style sheet languages that support the concept of style sheet
-	 * inclusion, this attribute represents the including style sheet, if one
-	 * exists. If the style sheet is a top-level style sheet, or the style sheet
-	 * language does not support inclusion, the value of this attribute is
-	 * <code>null</code>.
-	 */
-	public StyleSheet getParentStyleSheet();
+    /**
+     * For style sheet languages that support the concept of style sheet
+     * inclusion, this attribute represents the including style sheet, if one
+     * exists. If the style sheet is a top-level style sheet, or the style sheet
+     * language does not support inclusion, the value of this attribute is
+     * <code>null</code>.
+     */
+    public StyleSheet getParentStyleSheet();
 
-	/**
-	 * If the style sheet is a linked style sheet, the value of its attribute is
-	 * its location. For inline style sheets, the value of this attribute is
-	 * <code>null</code>. See the href attribute definition for the
-	 * <code>LINK</code> element in HTML 4.0, and the href pseudo-attribute for
-	 * the XML style sheet processing instruction.
-	 */
-	public String getHref();
+    /**
+     * If the style sheet is a linked style sheet, the value of its attribute is
+     * its location. For inline style sheets, the value of this attribute is
+     * <code>null</code>. See the href attribute definition for the
+     * <code>LINK</code> element in HTML 4.0, and the href pseudo-attribute for
+     * the XML style sheet processing instruction.
+     */
+    public String getHref();
 
-	/**
-	 * The advisory title. The title is often specified in the
-	 * <code>ownerNode</code>. See the title attribute definition for the
-	 * <code>LINK</code> element in HTML 4.0, and the title pseudo-attribute for
-	 * the XML style sheet processing instruction.
-	 */
-	public String getTitle();
+    /**
+     * The advisory title. The title is often specified in the
+     * <code>ownerNode</code>. See the title attribute definition for the
+     * <code>LINK</code> element in HTML 4.0, and the title pseudo-attribute for
+     * the XML style sheet processing instruction.
+     */
+    public String getTitle();
 
-	/**
-	 * The intended destination media for style information. The media is often
-	 * specified in the <code>ownerNode</code>. If no media has been specified,
-	 * the <code>MediaList</code> will be empty. See the media attribute
-	 * definition for the <code>LINK</code> element in HTML 4.0, and the media
-	 * pseudo-attribute for the XML style sheet processing instruction .
-	 * Modifying the media list may cause a change to the attribute
-	 * <code>disabled</code>.
-	 */
-	public MediaList getMedia();
+    /**
+     * The intended destination media for style information. The media is often
+     * specified in the <code>ownerNode</code>. If no media has been specified,
+     * the <code>MediaList</code> will be empty. See the media attribute
+     * definition for the <code>LINK</code> element in HTML 4.0, and the media
+     * pseudo-attribute for the XML style sheet processing instruction .
+     * Modifying the media list may cause a change to the attribute
+     * <code>disabled</code>.
+     */
+    public MediaList getMedia();
 
 }

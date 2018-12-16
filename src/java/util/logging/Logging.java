@@ -26,76 +26,76 @@ import java.util.ArrayList;
  */
 class Logging implements LoggingMXBean {
 
-	private static LogManager logManager = LogManager.getLogManager();
+    private static LogManager logManager = LogManager.getLogManager();
 
-	/**
-	 * Constructor of Logging which is the implementation class of
-	 * LoggingMXBean.
-	 */
-	Logging() {}
+    /**
+     * Constructor of Logging which is the implementation class of
+     * LoggingMXBean.
+     */
+    Logging() {}
 
-	public List<String> getLoggerNames() {
-		Enumeration<String> loggers = logManager.getLoggerNames();
-		ArrayList<String> array = new ArrayList<>();
+    public List<String> getLoggerNames() {
+        Enumeration<String> loggers = logManager.getLoggerNames();
+        ArrayList<String> array = new ArrayList<>();
 
-		for (; loggers.hasMoreElements();) {
-			array.add(loggers.nextElement());
-		}
-		return array;
-	}
+        for (; loggers.hasMoreElements();) {
+            array.add(loggers.nextElement());
+        }
+        return array;
+    }
 
-	private static String EMPTY_STRING = "";
+    private static String EMPTY_STRING = "";
 
-	public String getLoggerLevel(String loggerName) {
-		Logger l = logManager.getLogger(loggerName);
-		if (l == null) {
-			return null;
-		}
+    public String getLoggerLevel(String loggerName) {
+        Logger l = logManager.getLogger(loggerName);
+        if (l == null) {
+            return null;
+        }
 
-		Level level = l.getLevel();
-		if (level == null) {
-			return EMPTY_STRING;
-		} else {
-			return level.getLevelName();
-		}
-	}
+        Level level = l.getLevel();
+        if (level == null) {
+            return EMPTY_STRING;
+        } else {
+            return level.getLevelName();
+        }
+    }
 
-	public void setLoggerLevel(String loggerName, String levelName) {
-		if (loggerName == null) {
-			throw new NullPointerException("loggerName is null");
-		}
+    public void setLoggerLevel(String loggerName, String levelName) {
+        if (loggerName == null) {
+            throw new NullPointerException("loggerName is null");
+        }
 
-		Logger logger = logManager.getLogger(loggerName);
-		if (logger == null) {
-			throw new IllegalArgumentException("Logger " + loggerName
-					+ "does not exist");
-		}
+        Logger logger = logManager.getLogger(loggerName);
+        if (logger == null) {
+            throw new IllegalArgumentException("Logger " + loggerName
+                    + "does not exist");
+        }
 
-		Level level = null;
-		if (levelName != null) {
-			// parse will throw IAE if logLevel is invalid
-			level = Level.findLevel(levelName);
-			if (level == null) {
-				throw new IllegalArgumentException("Unknown level \""
-						+ levelName + "\"");
-			}
-		}
+        Level level = null;
+        if (levelName != null) {
+            // parse will throw IAE if logLevel is invalid
+            level = Level.findLevel(levelName);
+            if (level == null) {
+                throw new IllegalArgumentException("Unknown level \""
+                        + levelName + "\"");
+            }
+        }
 
-		logger.setLevel(level);
-	}
+        logger.setLevel(level);
+    }
 
-	public String getParentLoggerName(String loggerName) {
-		Logger l = logManager.getLogger(loggerName);
-		if (l == null) {
-			return null;
-		}
+    public String getParentLoggerName(String loggerName) {
+        Logger l = logManager.getLogger(loggerName);
+        if (l == null) {
+            return null;
+        }
 
-		Logger p = l.getParent();
-		if (p == null) {
-			// root logger
-			return EMPTY_STRING;
-		} else {
-			return p.getName();
-		}
-	}
+        Logger p = l.getParent();
+        if (p == null) {
+            // root logger
+            return EMPTY_STRING;
+        } else {
+            return p.getName();
+        }
+    }
 }

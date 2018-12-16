@@ -60,22 +60,22 @@ import org.xml.sax.SAXParseException;
  * @author Kohsuke Kawaguchi (kohsuke.kawaguchi@sun.com)
  */
 public class DraconianErrorHandler implements ErrorHandler {
-	/**
-	 * Use this singleton instance.
-	 */
-	public static final ErrorHandler theInstance = new DraconianErrorHandler();
+    /**
+     * Use this singleton instance.
+     */
+    public static final ErrorHandler theInstance = new DraconianErrorHandler();
 
-	private DraconianErrorHandler() {}
+    private DraconianErrorHandler() {}
 
-	public void error(SAXParseException e) throws SAXException {
-		throw e;
-	}
+    public void error(SAXParseException e) throws SAXException {
+        throw e;
+    }
 
-	public void fatalError(SAXParseException e) throws SAXException {
-		throw e;
-	}
+    public void fatalError(SAXParseException e) throws SAXException {
+        throw e;
+    }
 
-	public void warning(SAXParseException e) throws SAXException {
-		; // noop
-	}
+    public void warning(SAXParseException e) throws SAXException {
+        ; // noop
+    }
 }

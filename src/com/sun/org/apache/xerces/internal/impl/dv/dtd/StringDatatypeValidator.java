@@ -38,24 +38,24 @@ import com.sun.org.apache.xerces.internal.impl.dv.*;
  */
 public class StringDatatypeValidator implements DatatypeValidator {
 
-	// construct a string datatype validator
-	public StringDatatypeValidator() {}
+    // construct a string datatype validator
+    public StringDatatypeValidator() {}
 
-	/**
-	 * Checks that "content" string is valid string value. If invalid a Datatype
-	 * validation exception is thrown.
-	 *
-	 * @param content
-	 *                the string value that needs to be validated
-	 * @param context
-	 *                the validation context
-	 * @throws InvalidDatatypeException
-	 *                                  if the content is invalid according to
-	 *                                  the rules for the
-	 *                                  validators
-	 * @see InvalidDatatypeValueException
-	 */
-	public void validate(String content, ValidationContext context)
-			throws InvalidDatatypeValueException {}
+    /**
+     * Checks that "content" string is valid string value. If invalid a Datatype
+     * validation exception is thrown.
+     *
+     * @param content
+     *                the string value that needs to be validated
+     * @param context
+     *                the validation context
+     * @throws InvalidDatatypeException
+     *                                  if the content is invalid according to
+     *                                  the rules for the
+     *                                  validators
+     * @see InvalidDatatypeValueException
+     */
+    public void validate(String content, ValidationContext context)
+            throws InvalidDatatypeValueException {}
 
 }

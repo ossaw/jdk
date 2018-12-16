@@ -17,33 +17,33 @@ package java.util;
  */
 public class UnknownFormatConversionException extends IllegalFormatException {
 
-	private static final long serialVersionUID = 19060418L;
+    private static final long serialVersionUID = 19060418L;
 
-	private String s;
+    private String s;
 
-	/**
-	 * Constructs an instance of this class with the unknown conversion.
-	 *
-	 * @param s
-	 *          Unknown conversion
-	 */
-	public UnknownFormatConversionException(String s) {
-		if (s == null)
-			throw new NullPointerException();
-		this.s = s;
-	}
+    /**
+     * Constructs an instance of this class with the unknown conversion.
+     *
+     * @param s
+     *          Unknown conversion
+     */
+    public UnknownFormatConversionException(String s) {
+        if (s == null)
+            throw new NullPointerException();
+        this.s = s;
+    }
 
-	/**
-	 * Returns the unknown conversion.
-	 *
-	 * @return The unknown conversion.
-	 */
-	public String getConversion() {
-		return s;
-	}
+    /**
+     * Returns the unknown conversion.
+     *
+     * @return The unknown conversion.
+     */
+    public String getConversion() {
+        return s;
+    }
 
-	// javadoc inherited from Throwable.java
-	public String getMessage() {
-		return String.format("Conversion = '%s'", s);
-	}
+    // javadoc inherited from Throwable.java
+    public String getMessage() {
+        return String.format("Conversion = '%s'", s);
+    }
 }

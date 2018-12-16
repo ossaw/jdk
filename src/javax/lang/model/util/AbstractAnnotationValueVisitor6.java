@@ -56,56 +56,56 @@ import javax.annotation.processing.SupportedSourceVersion;
  */
 @SupportedSourceVersion(RELEASE_6)
 public abstract class AbstractAnnotationValueVisitor6<R, P> implements
-		AnnotationValueVisitor<R, P> {
+        AnnotationValueVisitor<R, P> {
 
-	/**
-	 * Constructor for concrete subclasses to call.
-	 */
-	protected AbstractAnnotationValueVisitor6() {}
+    /**
+     * Constructor for concrete subclasses to call.
+     */
+    protected AbstractAnnotationValueVisitor6() {}
 
-	/**
-	 * Visits an annotation value as if by passing itself to that value's
-	 * {@link AnnotationValue#accept accept}. The invocation {@code v.visit(av)}
-	 * is equivalent to {@code av.accept(v, p)}.
-	 * 
-	 * @param av
-	 *           {@inheritDoc}
-	 * @param p
-	 *           {@inheritDoc}
-	 */
-	public final R visit(AnnotationValue av, P p) {
-		return av.accept(this, p);
-	}
+    /**
+     * Visits an annotation value as if by passing itself to that value's
+     * {@link AnnotationValue#accept accept}. The invocation {@code v.visit(av)}
+     * is equivalent to {@code av.accept(v, p)}.
+     * 
+     * @param av
+     *           {@inheritDoc}
+     * @param p
+     *           {@inheritDoc}
+     */
+    public final R visit(AnnotationValue av, P p) {
+        return av.accept(this, p);
+    }
 
-	/**
-	 * Visits an annotation value as if by passing itself to that value's
-	 * {@link AnnotationValue#accept accept} method passing {@code null} for the
-	 * additional parameter. The invocation {@code v.visit(av)} is equivalent to
-	 * {@code av.accept(v,
-	 * null)}.
-	 * 
-	 * @param av
-	 *           {@inheritDoc}
-	 */
-	public final R visit(AnnotationValue av) {
-		return av.accept(this, null);
-	}
+    /**
+     * Visits an annotation value as if by passing itself to that value's
+     * {@link AnnotationValue#accept accept} method passing {@code null} for the
+     * additional parameter. The invocation {@code v.visit(av)} is equivalent to
+     * {@code av.accept(v,
+     * null)}.
+     * 
+     * @param av
+     *           {@inheritDoc}
+     */
+    public final R visit(AnnotationValue av) {
+        return av.accept(this, null);
+    }
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>
-	 * The default implementation of this method in {@code
-	 * AbstractAnnotationValueVisitor6} will always throw {@code
-	 * UnknownAnnotationValueException}. This behavior is not required of a
-	 * subclass.
-	 *
-	 * @param av
-	 *           {@inheritDoc}
-	 * @param p
-	 *           {@inheritDoc}
-	 */
-	public R visitUnknown(AnnotationValue av, P p) {
-		throw new UnknownAnnotationValueException(av, p);
-	}
+    /**
+     * {@inheritDoc}
+     *
+     * <p>
+     * The default implementation of this method in {@code
+     * AbstractAnnotationValueVisitor6} will always throw {@code
+     * UnknownAnnotationValueException}. This behavior is not required of a
+     * subclass.
+     *
+     * @param av
+     *           {@inheritDoc}
+     * @param p
+     *           {@inheritDoc}
+     */
+    public R visitUnknown(AnnotationValue av, P p) {
+        throw new UnknownAnnotationValueException(av, p);
+    }
 }

@@ -18,111 +18,111 @@ import javax.security.auth.Destroyable;
  *
  */
 public final class X500PrivateCredential implements Destroyable {
-	private X509Certificate cert;
-	private PrivateKey key;
-	private String alias;
+    private X509Certificate cert;
+    private PrivateKey key;
+    private String alias;
 
-	/**
-	 * Creates an X500PrivateCredential that associates an X.509 certificate, a
-	 * private key and the KeyStore alias.
-	 * <p>
-	 * 
-	 * @param cert
-	 *             X509Certificate
-	 * @param key
-	 *             PrivateKey for the certificate
-	 * @exception IllegalArgumentException
-	 *                                     if either {@code cert} or {@code key}
-	 *                                     is null
-	 *
-	 */
+    /**
+     * Creates an X500PrivateCredential that associates an X.509 certificate, a
+     * private key and the KeyStore alias.
+     * <p>
+     * 
+     * @param cert
+     *             X509Certificate
+     * @param key
+     *             PrivateKey for the certificate
+     * @exception IllegalArgumentException
+     *                                     if either {@code cert} or {@code key}
+     *                                     is null
+     *
+     */
 
-	public X500PrivateCredential(X509Certificate cert, PrivateKey key) {
-		if (cert == null || key == null)
-			throw new IllegalArgumentException();
-		this.cert = cert;
-		this.key = key;
-		this.alias = null;
-	}
+    public X500PrivateCredential(X509Certificate cert, PrivateKey key) {
+        if (cert == null || key == null)
+            throw new IllegalArgumentException();
+        this.cert = cert;
+        this.key = key;
+        this.alias = null;
+    }
 
-	/**
-	 * Creates an X500PrivateCredential that associates an X.509 certificate, a
-	 * private key and the KeyStore alias.
-	 * <p>
-	 * 
-	 * @param cert
-	 *              X509Certificate
-	 * @param key
-	 *              PrivateKey for the certificate
-	 * @param alias
-	 *              KeyStore alias
-	 * @exception IllegalArgumentException
-	 *                                     if either {@code cert}, {@code key}
-	 *                                     or {@code alias} is
-	 *                                     null
-	 *
-	 */
-	public X500PrivateCredential(X509Certificate cert, PrivateKey key,
-			String alias) {
-		if (cert == null || key == null || alias == null)
-			throw new IllegalArgumentException();
-		this.cert = cert;
-		this.key = key;
-		this.alias = alias;
-	}
+    /**
+     * Creates an X500PrivateCredential that associates an X.509 certificate, a
+     * private key and the KeyStore alias.
+     * <p>
+     * 
+     * @param cert
+     *              X509Certificate
+     * @param key
+     *              PrivateKey for the certificate
+     * @param alias
+     *              KeyStore alias
+     * @exception IllegalArgumentException
+     *                                     if either {@code cert}, {@code key}
+     *                                     or {@code alias} is
+     *                                     null
+     *
+     */
+    public X500PrivateCredential(X509Certificate cert, PrivateKey key,
+            String alias) {
+        if (cert == null || key == null || alias == null)
+            throw new IllegalArgumentException();
+        this.cert = cert;
+        this.key = key;
+        this.alias = alias;
+    }
 
-	/**
-	 * Returns the X.509 certificate.
-	 * <p>
-	 * 
-	 * @return the X509Certificate
-	 */
+    /**
+     * Returns the X.509 certificate.
+     * <p>
+     * 
+     * @return the X509Certificate
+     */
 
-	public X509Certificate getCertificate() {
-		return cert;
-	}
+    public X509Certificate getCertificate() {
+        return cert;
+    }
 
-	/**
-	 * Returns the PrivateKey.
-	 * <p>
-	 * 
-	 * @return the PrivateKey
-	 */
-	public PrivateKey getPrivateKey() {
-		return key;
-	}
+    /**
+     * Returns the PrivateKey.
+     * <p>
+     * 
+     * @return the PrivateKey
+     */
+    public PrivateKey getPrivateKey() {
+        return key;
+    }
 
-	/**
-	 * Returns the KeyStore alias.
-	 * <p>
-	 * 
-	 * @return the KeyStore alias
-	 */
+    /**
+     * Returns the KeyStore alias.
+     * <p>
+     * 
+     * @return the KeyStore alias
+     */
 
-	public String getAlias() {
-		return alias;
-	}
+    public String getAlias() {
+        return alias;
+    }
 
-	/**
-	 * Clears the references to the X.509 certificate, private key and the
-	 * KeyStore alias in this object.
-	 */
+    /**
+     * Clears the references to the X.509 certificate, private key and the
+     * KeyStore alias in this object.
+     */
 
-	public void destroy() {
-		cert = null;
-		key = null;
-		alias = null;
-	}
+    public void destroy() {
+        cert = null;
+        key = null;
+        alias = null;
+    }
 
-	/**
-	 * Determines if the references to the X.509 certificate and private key in
-	 * this object have been cleared.
-	 * <p>
-	 * 
-	 * @return true if X509Certificate and the PrivateKey are null
-	 * 
-	 */
-	public boolean isDestroyed() {
-		return cert == null && key == null && alias == null;
-	}
+    /**
+     * Determines if the references to the X.509 certificate and private key in
+     * this object have been cleared.
+     * <p>
+     * 
+     * @return true if X509Certificate and the PrivateKey are null
+     * 
+     */
+    public boolean isDestroyed() {
+        return cert == null && key == null && alias == null;
+    }
 }

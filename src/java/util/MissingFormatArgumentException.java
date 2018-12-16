@@ -19,32 +19,32 @@ package java.util;
  */
 public class MissingFormatArgumentException extends IllegalFormatException {
 
-	private static final long serialVersionUID = 19190115L;
+    private static final long serialVersionUID = 19190115L;
 
-	private String s;
+    private String s;
 
-	/**
-	 * Constructs an instance of this class with the unmatched format specifier.
-	 *
-	 * @param s
-	 *          Format specifier which does not have a corresponding argument
-	 */
-	public MissingFormatArgumentException(String s) {
-		if (s == null)
-			throw new NullPointerException();
-		this.s = s;
-	}
+    /**
+     * Constructs an instance of this class with the unmatched format specifier.
+     *
+     * @param s
+     *          Format specifier which does not have a corresponding argument
+     */
+    public MissingFormatArgumentException(String s) {
+        if (s == null)
+            throw new NullPointerException();
+        this.s = s;
+    }
 
-	/**
-	 * Returns the unmatched format specifier.
-	 *
-	 * @return The unmatched format specifier
-	 */
-	public String getFormatSpecifier() {
-		return s;
-	}
+    /**
+     * Returns the unmatched format specifier.
+     *
+     * @return The unmatched format specifier
+     */
+    public String getFormatSpecifier() {
+        return s;
+    }
 
-	public String getMessage() {
-		return "Format specifier '" + s + "'";
-	}
+    public String getMessage() {
+        return "Format specifier '" + s + "'";
+    }
 }

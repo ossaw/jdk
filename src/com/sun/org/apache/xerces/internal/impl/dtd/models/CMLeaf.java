@@ -62,101 +62,101 @@ import com.sun.org.apache.xerces.internal.xni.QName;
  */
 public class CMLeaf extends CMNode {
 
-	//
-	// Data
-	//
+    //
+    // Data
+    //
 
-	/** This is the element that this leaf represents. */
-	private QName fElement = new QName();
+    /** This is the element that this leaf represents. */
+    private QName fElement = new QName();
 
-	/**
-	 * Part of the algorithm to convert a regex directly to a DFA numbers each
-	 * leaf sequentially. If its -1, that means its an epsilon node. Zero and
-	 * greater are non-epsilon positions.
-	 */
-	private int fPosition = -1;
+    /**
+     * Part of the algorithm to convert a regex directly to a DFA numbers each
+     * leaf sequentially. If its -1, that means its an epsilon node. Zero and
+     * greater are non-epsilon positions.
+     */
+    private int fPosition = -1;
 
-	//
-	// Constructors
-	//
+    //
+    // Constructors
+    //
 
-	/** Constructs a content model leaf. */
-	public CMLeaf(QName element, int position) {
-		super(XMLContentSpec.CONTENTSPECNODE_LEAF);
+    /** Constructs a content model leaf. */
+    public CMLeaf(QName element, int position) {
+        super(XMLContentSpec.CONTENTSPECNODE_LEAF);
 
-		// Store the element index and position
-		fElement.setValues(element);
-		fPosition = position;
-	}
+        // Store the element index and position
+        fElement.setValues(element);
+        fPosition = position;
+    }
 
-	/** Constructs a content model leaf. */
-	public CMLeaf(QName element) {
-		super(XMLContentSpec.CONTENTSPECNODE_LEAF);
+    /** Constructs a content model leaf. */
+    public CMLeaf(QName element) {
+        super(XMLContentSpec.CONTENTSPECNODE_LEAF);
 
-		// Store the element index and position
-		fElement.setValues(element);
-	}
+        // Store the element index and position
+        fElement.setValues(element);
+    }
 
-	//
-	// Package methods
-	//
+    //
+    // Package methods
+    //
 
-	final QName getElement() {
-		return fElement;
-	}
+    final QName getElement() {
+        return fElement;
+    }
 
-	final int getPosition() {
-		return fPosition;
-	}
+    final int getPosition() {
+        return fPosition;
+    }
 
-	final void setPosition(int newPosition) {
-		fPosition = newPosition;
-	}
+    final void setPosition(int newPosition) {
+        fPosition = newPosition;
+    }
 
-	//
-	// CMNode methods
-	//
+    //
+    // CMNode methods
+    //
 
-	// package
+    // package
 
-	public boolean isNullable() {
-		// Leaf nodes are never nullable unless its an epsilon node
-		return (fPosition == -1);
-	}
+    public boolean isNullable() {
+        // Leaf nodes are never nullable unless its an epsilon node
+        return (fPosition == -1);
+    }
 
-	public String toString() {
-		StringBuffer strRet = new StringBuffer(fElement.toString());
-		strRet.append(" (");
-		strRet.append(fElement.uri);
-		strRet.append(',');
-		strRet.append(fElement.localpart);
-		strRet.append(')');
-		if (fPosition >= 0) {
-			strRet.append(" (Pos:" + new Integer(fPosition).toString() + ")");
-		}
-		return strRet.toString();
-	}
+    public String toString() {
+        StringBuffer strRet = new StringBuffer(fElement.toString());
+        strRet.append(" (");
+        strRet.append(fElement.uri);
+        strRet.append(',');
+        strRet.append(fElement.localpart);
+        strRet.append(')');
+        if (fPosition >= 0) {
+            strRet.append(" (Pos:" + new Integer(fPosition).toString() + ")");
+        }
+        return strRet.toString();
+    }
 
-	// protected
+    // protected
 
-	protected void calcFirstPos(CMStateSet toSet) {
-		// If we are an epsilon node, then the first pos is an empty set
-		if (fPosition == -1)
-			toSet.zeroBits();
+    protected void calcFirstPos(CMStateSet toSet) {
+        // If we are an epsilon node, then the first pos is an empty set
+        if (fPosition == -1)
+            toSet.zeroBits();
 
-		// Otherwise, its just the one bit of our position
-		else
-			toSet.setBit(fPosition);
-	}
+        // Otherwise, its just the one bit of our position
+        else
+            toSet.setBit(fPosition);
+    }
 
-	protected void calcLastPos(CMStateSet toSet) {
-		// If we are an epsilon node, then the last pos is an empty set
-		if (fPosition == -1)
-			toSet.zeroBits();
+    protected void calcLastPos(CMStateSet toSet) {
+        // If we are an epsilon node, then the last pos is an empty set
+        if (fPosition == -1)
+            toSet.zeroBits();
 
-		// Otherwise, its just the one bit of our position
-		else
-			toSet.setBit(fPosition);
-	}
+        // Otherwise, its just the one bit of our position
+        else
+            toSet.setBit(fPosition);
+    }
 
 } // class CMLeaf

@@ -16,7 +16,7 @@ package org.omg.CORBA;
  * 
  * <PRE>
  * NVList props = myContext.get_values("_USER", CTX_RESTRICT_SCOPE.value,
- * 		"id*");
+ *         "id*");
  * </PRE>
  *
  * @see org.omg.CORBA.Context#get_values(String, int, String)
@@ -24,9 +24,9 @@ package org.omg.CORBA;
  */
 public interface CTX_RESTRICT_SCOPE {
 
-	/**
-	 * The field containing the <code>int</code> value of a
-	 * <code>CTX_RESTRICT_SCOPE</code> flag.
-	 */
-	int value = 15;
+    /**
+     * The field containing the <code>int</code> value of a
+     * <code>CTX_RESTRICT_SCOPE</code> flag.
+     */
+    int value = 15;
 }

@@ -29,20 +29,20 @@ package javax.sound.sampled;
  */
 public interface LineListener extends java.util.EventListener {
 
-	/**
-	 * Informs the listener that a line's state has changed. The listener can
-	 * then invoke <code>LineEvent</code> methods to obtain information about
-	 * the event.
-	 * 
-	 * @param event
-	 *              a line event that describes the change
-	 */
-	/*
-	 * Informs the listener that a line's state has changed. The listener can
-	 * then invoke <code>LineEvent</code> methods to obtain information about
-	 * the event.
-	 * @param event a line event that describes the change
-	 */
-	public void update(LineEvent event);
+    /**
+     * Informs the listener that a line's state has changed. The listener can
+     * then invoke <code>LineEvent</code> methods to obtain information about
+     * the event.
+     * 
+     * @param event
+     *              a line event that describes the change
+     */
+    /*
+     * Informs the listener that a line's state has changed. The listener can
+     * then invoke <code>LineEvent</code> methods to obtain information about
+     * the event.
+     * @param event a line event that describes the change
+     */
+    public void update(LineEvent event);
 
 } // interface LineListener

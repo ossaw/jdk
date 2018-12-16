@@ -56,14 +56,14 @@ package com.sun.org.apache.bcel.internal.generic;
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public abstract class GotoInstruction extends BranchInstruction implements
-		UnconditionalBranch {
-	GotoInstruction(short opcode, InstructionHandle target) {
-		super(opcode, target);
-	}
+        UnconditionalBranch {
+    GotoInstruction(short opcode, InstructionHandle target) {
+        super(opcode, target);
+    }
 
-	/**
-	 * Empty constructor needed for the Class.newInstance() statement in
-	 * Instruction.readInstruction(). Not to be used otherwise.
-	 */
-	GotoInstruction() {}
+    /**
+     * Empty constructor needed for the Class.newInstance() statement in
+     * Instruction.readInstruction(). Not to be used otherwise.
+     */
+    GotoInstruction() {}
 }

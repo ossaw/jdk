@@ -19,12 +19,12 @@ import java.util.Arrays;
  * @since 1.5
  */
 public interface ECField {
-	/**
-	 * Returns the field size in bits. Note: For prime finite field ECFieldFp,
-	 * size of prime p in bits is returned. For characteristic 2 finite field
-	 * ECFieldF2m, m is returned.
-	 * 
-	 * @return the field size in bits.
-	 */
-	int getFieldSize();
+    /**
+     * Returns the field size in bits. Note: For prime finite field ECFieldFp,
+     * size of prime p in bits is returned. For characteristic 2 finite field
+     * ECFieldF2m, m is returned.
+     * 
+     * @return the field size in bits.
+     */
+    int getFieldSize();
 }

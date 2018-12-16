@@ -22,18 +22,18 @@ package javax.xml.stream.events;
  * @since 1.6
  */
 public interface NotationDeclaration extends XMLEvent {
-	/**
-	 * The notation name.
-	 */
-	String getName();
+    /**
+     * The notation name.
+     */
+    String getName();
 
-	/**
-	 * The notation's public identifier, or null if none was given.
-	 */
-	String getPublicId();
+    /**
+     * The notation's public identifier, or null if none was given.
+     */
+    String getPublicId();
 
-	/**
-	 * The notation's system identifier, or null if none was given.
-	 */
-	String getSystemId();
+    /**
+     * The notation's system identifier, or null if none was given.
+     */
+    String getSystemId();
 }

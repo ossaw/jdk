@@ -21,24 +21,24 @@ import javax.print.attribute.Attribute;
 
 public interface AttributeException {
 
-	/**
-	 * Returns the array of printing attribute classes for which the Print
-	 * Service instance does not support the attribute at all, or null if there
-	 * are no such attributes. The objects in the returned array are classes
-	 * that extend the base interface {@link javax.print.attribute.Attribute
-	 * Attribute}.
-	 *
-	 * @return unsupported attribute classes
-	 */
-	public Class[] getUnsupportedAttributes();
+    /**
+     * Returns the array of printing attribute classes for which the Print
+     * Service instance does not support the attribute at all, or null if there
+     * are no such attributes. The objects in the returned array are classes
+     * that extend the base interface {@link javax.print.attribute.Attribute
+     * Attribute}.
+     *
+     * @return unsupported attribute classes
+     */
+    public Class[] getUnsupportedAttributes();
 
-	/**
-	 * Returns the array of printing attributes for which the Print Service
-	 * instance supports the attribute but does not support that particular
-	 * value of the attribute, or null if there are no such attribute values.
-	 *
-	 * @return unsupported attribute values
-	 */
-	public Attribute[] getUnsupportedValues();
+    /**
+     * Returns the array of printing attributes for which the Print Service
+     * instance supports the attribute but does not support that particular
+     * value of the attribute, or null if there are no such attribute values.
+     *
+     * @return unsupported attribute values
+     */
+    public Attribute[] getUnsupportedValues();
 
 }

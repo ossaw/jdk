@@ -37,57 +37,57 @@ import com.sun.org.apache.xerces.internal.util.PropertyState;
  */
 public interface XMLComponentManager {
 
-	//
-	// XMLComponentManager methods
-	//
+    //
+    // XMLComponentManager methods
+    //
 
-	/**
-	 * Returns the state of a feature.
-	 *
-	 * @param featureId
-	 *                  The feature identifier.
-	 *
-	 * @throws XMLConfigurationException
-	 *                                   Thrown on configuration error.
-	 */
-	public boolean getFeature(String featureId)
-			throws XMLConfigurationException;
+    /**
+     * Returns the state of a feature.
+     *
+     * @param featureId
+     *                  The feature identifier.
+     *
+     * @throws XMLConfigurationException
+     *                                   Thrown on configuration error.
+     */
+    public boolean getFeature(String featureId)
+            throws XMLConfigurationException;
 
-	/**
-	 * Returns the state of a feature. Does not throw exceptions.
-	 *
-	 * @param featureId
-	 *                     The feature identifier.
-	 * @param defaultValue
-	 *                     Default value if future is not available.
-	 */
-	public boolean getFeature(String featureId, boolean defaultValue);
+    /**
+     * Returns the state of a feature. Does not throw exceptions.
+     *
+     * @param featureId
+     *                     The feature identifier.
+     * @param defaultValue
+     *                     Default value if future is not available.
+     */
+    public boolean getFeature(String featureId, boolean defaultValue);
 
-	/**
-	 * Returns the value of a property.
-	 *
-	 * @param propertyId
-	 *                   The property identifier.
-	 *
-	 * @throws XMLConfigurationException
-	 *                                   Thrown on configuration error.
-	 */
-	public Object getProperty(String propertyId)
-			throws XMLConfigurationException;
+    /**
+     * Returns the value of a property.
+     *
+     * @param propertyId
+     *                   The property identifier.
+     *
+     * @throws XMLConfigurationException
+     *                                   Thrown on configuration error.
+     */
+    public Object getProperty(String propertyId)
+            throws XMLConfigurationException;
 
-	/**
-	 * Returns the value of a property. Does not throw exceptions.
-	 *
-	 * @param propertyId
-	 *                      The property identifier.
-	 * @param defaultObject
-	 *                      Return value if property is not available.
-	 *
-	 */
-	public Object getProperty(String propertyId, Object defaultObject);
+    /**
+     * Returns the value of a property. Does not throw exceptions.
+     *
+     * @param propertyId
+     *                      The property identifier.
+     * @param defaultObject
+     *                      Return value if property is not available.
+     *
+     */
+    public Object getProperty(String propertyId, Object defaultObject);
 
-	public FeatureState getFeatureState(String featureId);
+    public FeatureState getFeatureState(String featureId);
 
-	public PropertyState getPropertyState(String propertyId);
+    public PropertyState getPropertyState(String propertyId);
 
 } // interface XMLComponentManager

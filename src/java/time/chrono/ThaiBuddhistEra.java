@@ -86,53 +86,53 @@ import java.time.DateTimeException;
  */
 public enum ThaiBuddhistEra implements Era {
 
-	/**
-	 * The singleton instance for the era before the current one, 'Before
-	 * Buddhist Era', which has the numeric value 0.
-	 */
-	BEFORE_BE,
-	/**
-	 * The singleton instance for the current era, 'Buddhist Era', which has the
-	 * numeric value 1.
-	 */
-	BE;
+    /**
+     * The singleton instance for the era before the current one, 'Before
+     * Buddhist Era', which has the numeric value 0.
+     */
+    BEFORE_BE,
+    /**
+     * The singleton instance for the current era, 'Buddhist Era', which has the
+     * numeric value 1.
+     */
+    BE;
 
-	// -----------------------------------------------------------------------
-	/**
-	 * Obtains an instance of {@code ThaiBuddhistEra} from an {@code int} value.
-	 * <p>
-	 * {@code ThaiBuddhistEra} is an enum representing the Thai Buddhist eras of
-	 * BEFORE_BE/BE. This factory allows the enum to be obtained from the
-	 * {@code int} value.
-	 *
-	 * @param thaiBuddhistEra
-	 *                        the era to represent, from 0 to 1
-	 * @return the BuddhistEra singleton, never null
-	 * @throws DateTimeException
-	 *                           if the era is invalid
-	 */
-	public static ThaiBuddhistEra of(int thaiBuddhistEra) {
-		switch (thaiBuddhistEra) {
-			case 0:
-				return BEFORE_BE;
-			case 1:
-				return BE;
-			default:
-				throw new DateTimeException("Invalid era: " + thaiBuddhistEra);
-		}
-	}
+    // -----------------------------------------------------------------------
+    /**
+     * Obtains an instance of {@code ThaiBuddhistEra} from an {@code int} value.
+     * <p>
+     * {@code ThaiBuddhistEra} is an enum representing the Thai Buddhist eras of
+     * BEFORE_BE/BE. This factory allows the enum to be obtained from the
+     * {@code int} value.
+     *
+     * @param thaiBuddhistEra
+     *                        the era to represent, from 0 to 1
+     * @return the BuddhistEra singleton, never null
+     * @throws DateTimeException
+     *                           if the era is invalid
+     */
+    public static ThaiBuddhistEra of(int thaiBuddhistEra) {
+        switch (thaiBuddhistEra) {
+            case 0:
+                return BEFORE_BE;
+            case 1:
+                return BE;
+            default:
+                throw new DateTimeException("Invalid era: " + thaiBuddhistEra);
+        }
+    }
 
-	// -----------------------------------------------------------------------
-	/**
-	 * Gets the numeric era {@code int} value.
-	 * <p>
-	 * The era BEFORE_BE has the value 0, while the era BE has the value 1.
-	 *
-	 * @return the era value, from 0 (BEFORE_BE) to 1 (BE)
-	 */
-	@Override
-	public int getValue() {
-		return ordinal();
-	}
+    // -----------------------------------------------------------------------
+    /**
+     * Gets the numeric era {@code int} value.
+     * <p>
+     * The era BEFORE_BE has the value 0, while the era BE has the value 1.
+     *
+     * @return the era value, from 0 (BEFORE_BE) to 1 (BE)
+     */
+    @Override
+    public int getValue() {
+        return ordinal();
+    }
 
 }

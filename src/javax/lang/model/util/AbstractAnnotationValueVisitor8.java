@@ -50,12 +50,12 @@ import javax.annotation.processing.SupportedSourceVersion;
  */
 @SupportedSourceVersion(RELEASE_8)
 public abstract class AbstractAnnotationValueVisitor8<R, P> extends
-		AbstractAnnotationValueVisitor7<R, P> {
+        AbstractAnnotationValueVisitor7<R, P> {
 
-	/**
-	 * Constructor for concrete subclasses to call.
-	 */
-	protected AbstractAnnotationValueVisitor8() {
-		super();
-	}
+    /**
+     * Constructor for concrete subclasses to call.
+     */
+    protected AbstractAnnotationValueVisitor8() {
+        super();
+    }
 }

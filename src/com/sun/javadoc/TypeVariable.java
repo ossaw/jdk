@@ -15,28 +15,28 @@ package com.sun.javadoc;
  */
 public interface TypeVariable extends Type {
 
-	/**
-	 * Return the bounds of this type variable. These are the types given by the
-	 * <i>extends</i> clause. Return an empty array if there are no explicit
-	 * bounds.
-	 *
-	 * @return the bounds of this type variable.
-	 */
-	Type[] bounds();
+    /**
+     * Return the bounds of this type variable. These are the types given by the
+     * <i>extends</i> clause. Return an empty array if there are no explicit
+     * bounds.
+     *
+     * @return the bounds of this type variable.
+     */
+    Type[] bounds();
 
-	/**
-	 * Return the class, interface, method, or constructor within which this
-	 * type variable is declared.
-	 *
-	 * @return the class, interface, method, or constructor within which this
-	 *         type variable is declared.
-	 */
-	ProgramElementDoc owner();
+    /**
+     * Return the class, interface, method, or constructor within which this
+     * type variable is declared.
+     *
+     * @return the class, interface, method, or constructor within which this
+     *         type variable is declared.
+     */
+    ProgramElementDoc owner();
 
-	/**
-	 * Get the annotations of this program element. Return an empty array if
-	 * there are none.
-	 */
-	public AnnotationDesc[] annotations();
+    /**
+     * Get the annotations of this program element. Return an empty array if
+     * there are none.
+     */
+    public AnnotationDesc[] annotations();
 
 }

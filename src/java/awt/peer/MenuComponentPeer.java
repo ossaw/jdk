@@ -18,20 +18,20 @@ import java.awt.MenuComponent;
  */
 public interface MenuComponentPeer {
 
-	/**
-	 * Disposes the menu component.
-	 *
-	 * @see MenuComponent#removeNotify()
-	 */
-	void dispose();
+    /**
+     * Disposes the menu component.
+     *
+     * @see MenuComponent#removeNotify()
+     */
+    void dispose();
 
-	/**
-	 * Sets the font for the menu component.
-	 *
-	 * @param f
-	 *          the font to use for the menu component
-	 *
-	 * @see MenuComponent#setFont(Font)
-	 */
-	void setFont(Font f);
+    /**
+     * Sets the font for the menu component.
+     *
+     * @param f
+     *          the font to use for the menu component
+     *
+     * @see MenuComponent#setFont(Font)
+     */
+    void setFont(Font f);
 }

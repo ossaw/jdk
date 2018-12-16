@@ -62,23 +62,23 @@ import com.sun.org.apache.bcel.internal.util.ByteSequence;
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public class LDC_W extends LDC {
-	/**
-	 * Empty constructor needed for the Class.newInstance() statement in
-	 * Instruction.readInstruction(). Not to be used otherwise.
-	 */
-	LDC_W() {}
+    /**
+     * Empty constructor needed for the Class.newInstance() statement in
+     * Instruction.readInstruction(). Not to be used otherwise.
+     */
+    LDC_W() {}
 
-	public LDC_W(int index) {
-		super(index);
-	}
+    public LDC_W(int index) {
+        super(index);
+    }
 
-	/**
-	 * Read needed data (i.e., index) from file.
-	 */
-	protected void initFromFile(ByteSequence bytes, boolean wide)
-			throws IOException {
-		setIndex(bytes.readUnsignedShort());
-		// Override just in case it has been changed
-		opcode = com.sun.org.apache.bcel.internal.Constants.LDC_W;
-	}
+    /**
+     * Read needed data (i.e., index) from file.
+     */
+    protected void initFromFile(ByteSequence bytes, boolean wide)
+            throws IOException {
+        setIndex(bytes.readUnsignedShort());
+        // Override just in case it has been changed
+        opcode = com.sun.org.apache.bcel.internal.Constants.LDC_W;
+    }
 }

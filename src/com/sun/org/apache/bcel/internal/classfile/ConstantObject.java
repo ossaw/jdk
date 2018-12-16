@@ -58,8 +58,8 @@ package com.sun.org.apache.bcel.internal.classfile;
  * @see Constant
  */
 public interface ConstantObject {
-	/**
-	 * @return object representing the constant, e.g., Long for ConstantLong
-	 */
-	public abstract Object getConstantValue(ConstantPool cp);
+    /**
+     * @return object representing the constant, e.g., Long for ConstantLong
+     */
+    public abstract Object getConstantValue(ConstantPool cp);
 }

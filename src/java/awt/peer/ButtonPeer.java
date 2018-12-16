@@ -17,14 +17,14 @@ import java.awt.Button;
  */
 public interface ButtonPeer extends ComponentPeer {
 
-	/**
-	 * Sets the label that is displayed on the button. Can be {@code null} when
-	 * the button should not display a label.
-	 *
-	 * @param label
-	 *              the label string to set
-	 *
-	 * @see Button#setLabel
-	 */
-	void setLabel(String label);
+    /**
+     * Sets the label that is displayed on the button. Can be {@code null} when
+     * the button should not display a label.
+     *
+     * @param label
+     *              the label string to set
+     *
+     * @see Button#setLabel
+     */
+    void setLabel(String label);
 }

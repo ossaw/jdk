@@ -14,14 +14,14 @@ import com.sun.corba.se.pept.protocol.MessageMediator;
  * @author Harold Carr
  */
 public interface ServerRequestDispatcher {
-	/**
-	 * This method coordinates the processing of a message received on the
-	 * server side.
-	 *
-	 * For example, this may involve finding an "object adapter" which would
-	 * return Ties/Servants to handle the request.
-	 */
-	public void dispatch(MessageMediator messageMediator);
+    /**
+     * This method coordinates the processing of a message received on the
+     * server side.
+     *
+     * For example, this may involve finding an "object adapter" which would
+     * return Ties/Servants to handle the request.
+     */
+    public void dispatch(MessageMediator messageMediator);
 }
 
 // End of file.

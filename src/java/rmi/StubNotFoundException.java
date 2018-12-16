@@ -19,32 +19,32 @@ package java.rmi;
  */
 public class StubNotFoundException extends RemoteException {
 
-	/* indicate compatibility with JDK 1.1.x version of class */
-	private static final long serialVersionUID = -7088199405468872373L;
+    /* indicate compatibility with JDK 1.1.x version of class */
+    private static final long serialVersionUID = -7088199405468872373L;
 
-	/**
-	 * Constructs a <code>StubNotFoundException</code> with the specified detail
-	 * message.
-	 *
-	 * @param s
-	 *          the detail message
-	 * @since JDK1.1
-	 */
-	public StubNotFoundException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs a <code>StubNotFoundException</code> with the specified detail
+     * message.
+     *
+     * @param s
+     *          the detail message
+     * @since JDK1.1
+     */
+    public StubNotFoundException(String s) {
+        super(s);
+    }
 
-	/**
-	 * Constructs a <code>StubNotFoundException</code> with the specified detail
-	 * message and nested exception.
-	 *
-	 * @param s
-	 *           the detail message
-	 * @param ex
-	 *           the nested exception
-	 * @since JDK1.1
-	 */
-	public StubNotFoundException(String s, Exception ex) {
-		super(s, ex);
-	}
+    /**
+     * Constructs a <code>StubNotFoundException</code> with the specified detail
+     * message and nested exception.
+     *
+     * @param s
+     *           the detail message
+     * @param ex
+     *           the nested exception
+     * @since JDK1.1
+     */
+    public StubNotFoundException(String s, Exception ex) {
+        super(s, ex);
+    }
 }

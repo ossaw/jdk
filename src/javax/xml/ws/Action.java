@@ -110,25 +110,25 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface Action {
-	/**
-	 * Explicit value of the WS-Addressing <code>Action</code> message
-	 * addressing property for the <code>input</code> message of the operation.
-	 */
-	String input() default "";
+    /**
+     * Explicit value of the WS-Addressing <code>Action</code> message
+     * addressing property for the <code>input</code> message of the operation.
+     */
+    String input() default "";
 
-	/**
-	 * Explicit value of the WS-Addressing <code>Action</code> message
-	 * addressing property for the <code>output</code> message of the operation.
-	 */
-	String output() default "";
+    /**
+     * Explicit value of the WS-Addressing <code>Action</code> message
+     * addressing property for the <code>output</code> message of the operation.
+     */
+    String output() default "";
 
-	/**
-	 * Explicit value of the WS-Addressing <code>Action</code> message
-	 * addressing property for the <code>fault</code> message(s) of the
-	 * operation. Each exception that is mapped to a fault and requires an
-	 * explicit WS-Addressing <code>Action</code> message addressing property,
-	 * needs to be specified as a value in this property using
-	 * {@link FaultAction} annotation.
-	 */
-	FaultAction[] fault() default {};
+    /**
+     * Explicit value of the WS-Addressing <code>Action</code> message
+     * addressing property for the <code>fault</code> message(s) of the
+     * operation. Each exception that is mapped to a fault and requires an
+     * explicit WS-Addressing <code>Action</code> message addressing property,
+     * needs to be specified as a value in this property using
+     * {@link FaultAction} annotation.
+     */
+    FaultAction[] fault() default {};
 }

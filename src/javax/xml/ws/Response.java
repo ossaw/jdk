@@ -23,12 +23,12 @@ import java.util.concurrent.Future;
  * @since JAX-WS 2.0
  **/
 public interface Response<T> extends Future<T> {
-	/**
-	 * Gets the contained response context.
-	 *
-	 * @return The contained response context. May be <code>null</code> if a
-	 *         response is not yet available.
-	 *
-	 **/
-	Map<String, Object> getContext();
+    /**
+     * Gets the contained response context.
+     *
+     * @return The contained response context. May be <code>null</code> if a
+     *         response is not yet available.
+     *
+     **/
+    Map<String, Object> getContext();
 }

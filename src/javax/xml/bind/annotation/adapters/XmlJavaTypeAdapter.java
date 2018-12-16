@@ -84,25 +84,25 @@ import static java.lang.annotation.ElementType.PACKAGE;
 @Retention(RUNTIME)
 @Target({ PACKAGE, FIELD, METHOD, TYPE, PARAMETER })
 public @interface XmlJavaTypeAdapter {
-	/**
-	 * Points to the class that converts a value type to a bound type or vice
-	 * versa. See {@link XmlAdapter} for more details.
-	 */
-	Class<? extends XmlAdapter> value();
+    /**
+     * Points to the class that converts a value type to a bound type or vice
+     * versa. See {@link XmlAdapter} for more details.
+     */
+    Class<? extends XmlAdapter> value();
 
-	/**
-	 * If this annotation is used at the package level, then value of the type()
-	 * must be specified.
-	 */
+    /**
+     * If this annotation is used at the package level, then value of the type()
+     * must be specified.
+     */
 
-	Class type() default DEFAULT.class;
+    Class type() default DEFAULT.class;
 
-	/**
-	 * Used in {@link XmlJavaTypeAdapter#type()} to signal that the type be
-	 * inferred from the signature of the field, property, parameter or the
-	 * class.
-	 */
+    /**
+     * Used in {@link XmlJavaTypeAdapter#type()} to signal that the type be
+     * inferred from the signature of the field, property, parameter or the
+     * class.
+     */
 
-	static final class DEFAULT {}
+    static final class DEFAULT {}
 
 }

@@ -18,11 +18,11 @@ import javax.print.DocFlavor;
  */
 public interface FlavorException {
 
-	/**
-	 * Returns the unsupported flavors.
-	 * 
-	 * @return the unsupported doc flavors.
-	 */
-	public DocFlavor[] getUnsupportedFlavors();
+    /**
+     * Returns the unsupported flavors.
+     * 
+     * @return the unsupported doc flavors.
+     */
+    public DocFlavor[] getUnsupportedFlavors();
 
 }

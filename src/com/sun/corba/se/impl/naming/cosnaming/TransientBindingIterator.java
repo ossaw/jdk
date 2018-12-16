@@ -35,85 +35,85 @@ import java.util.Enumeration;
  * @see TransientNamingContext
  */
 public class TransientBindingIterator extends BindingIteratorImpl {
-	// There is only one POA used for both TransientNamingContext and
-	// TransientBindingIteraor servants.
-	private POA nsPOA;
+    // There is only one POA used for both TransientNamingContext and
+    // TransientBindingIteraor servants.
+    private POA nsPOA;
 
-	/**
-	 * Constructs a new TransientBindingIterator object.
-	 * 
-	 * @param orb
-	 *               a org.omg.CORBA.ORB object.
-	 * @param aTable
-	 *               A hashtable containing InternalBindingValues which is the
-	 *               content of the TransientNamingContext.
-	 * @param        java.lang.Exception
-	 *               a Java exception.
-	 * @exception Exception
-	 *                      a Java exception thrown of the base class cannot
-	 *                      initialize.
-	 */
-	public TransientBindingIterator(ORB orb, Hashtable aTable, POA thePOA)
-			throws java.lang.Exception {
-		super(orb);
-		theHashtable = aTable;
-		theEnumeration = this.theHashtable.elements();
-		currentSize = this.theHashtable.size();
-		this.nsPOA = thePOA;
-	}
+    /**
+     * Constructs a new TransientBindingIterator object.
+     * 
+     * @param orb
+     *               a org.omg.CORBA.ORB object.
+     * @param aTable
+     *               A hashtable containing InternalBindingValues which is the
+     *               content of the TransientNamingContext.
+     * @param        java.lang.Exception
+     *               a Java exception.
+     * @exception Exception
+     *                      a Java exception thrown of the base class cannot
+     *                      initialize.
+     */
+    public TransientBindingIterator(ORB orb, Hashtable aTable, POA thePOA)
+            throws java.lang.Exception {
+        super(orb);
+        theHashtable = aTable;
+        theEnumeration = this.theHashtable.elements();
+        currentSize = this.theHashtable.size();
+        this.nsPOA = thePOA;
+    }
 
-	/**
-	 * Returns the next binding in the NamingContext. Uses the enumeration
-	 * object to determine if there are more bindings and if so, returns the
-	 * next binding from the InternalBindingValue.
-	 * 
-	 * @param b
-	 *          The Binding as an out parameter.
-	 * @return true if there were more bindings.
-	 */
-	final public boolean NextOne(org.omg.CosNaming.BindingHolder b) {
-		// If there are more elements get the next element
-		boolean hasMore = theEnumeration.hasMoreElements();
-		if (hasMore) {
-			b.value = ((InternalBindingValue) theEnumeration
-					.nextElement()).theBinding;
-			currentSize--;
-		} else {
-			// Return empty but marshalable binding
-			b.value = new Binding(new NameComponent[0], BindingType.nobject);
-		}
-		return hasMore;
-	}
+    /**
+     * Returns the next binding in the NamingContext. Uses the enumeration
+     * object to determine if there are more bindings and if so, returns the
+     * next binding from the InternalBindingValue.
+     * 
+     * @param b
+     *          The Binding as an out parameter.
+     * @return true if there were more bindings.
+     */
+    final public boolean NextOne(org.omg.CosNaming.BindingHolder b) {
+        // If there are more elements get the next element
+        boolean hasMore = theEnumeration.hasMoreElements();
+        if (hasMore) {
+            b.value = ((InternalBindingValue) theEnumeration
+                    .nextElement()).theBinding;
+            currentSize--;
+        } else {
+            // Return empty but marshalable binding
+            b.value = new Binding(new NameComponent[0], BindingType.nobject);
+        }
+        return hasMore;
+    }
 
-	/**
-	 * Destroys this BindingIterator by disconnecting from the ORB
-	 * 
-	 * @exception org.omg.CORBA.SystemException
-	 *            One of a fixed set of CORBA system exceptions.
-	 */
-	final public void Destroy() {
-		// Remove the object from the Active Object Map.
-		try {
-			byte[] objectId = nsPOA.servant_to_id(this);
-			if (objectId != null) {
-				nsPOA.deactivate_object(objectId);
-			}
-		} catch (Exception e) {
-			NamingUtils.errprint("BindingIterator.Destroy():caught exception:");
-			NamingUtils.printException(e);
-		}
-	}
+    /**
+     * Destroys this BindingIterator by disconnecting from the ORB
+     * 
+     * @exception org.omg.CORBA.SystemException
+     *            One of a fixed set of CORBA system exceptions.
+     */
+    final public void Destroy() {
+        // Remove the object from the Active Object Map.
+        try {
+            byte[] objectId = nsPOA.servant_to_id(this);
+            if (objectId != null) {
+                nsPOA.deactivate_object(objectId);
+            }
+        } catch (Exception e) {
+            NamingUtils.errprint("BindingIterator.Destroy():caught exception:");
+            NamingUtils.printException(e);
+        }
+    }
 
-	/**
-	 * Returns the remaining number of elements in the iterator.
-	 * 
-	 * @return the remaining number of elements in the iterator.
-	 */
-	public final int RemainingElements() {
-		return currentSize;
-	}
+    /**
+     * Returns the remaining number of elements in the iterator.
+     * 
+     * @return the remaining number of elements in the iterator.
+     */
+    public final int RemainingElements() {
+        return currentSize;
+    }
 
-	private int currentSize;
-	private Hashtable theHashtable;
-	private Enumeration theEnumeration;
+    private int currentSize;
+    private Hashtable theHashtable;
+    private Enumeration theEnumeration;
 }

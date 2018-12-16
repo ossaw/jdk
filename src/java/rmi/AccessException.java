@@ -22,32 +22,32 @@ package java.rmi;
  */
 public class AccessException extends java.rmi.RemoteException {
 
-	/* indicate compatibility with JDK 1.1.x version of class */
-	private static final long serialVersionUID = 6314925228044966088L;
+    /* indicate compatibility with JDK 1.1.x version of class */
+    private static final long serialVersionUID = 6314925228044966088L;
 
-	/**
-	 * Constructs an <code>AccessException</code> with the specified detail
-	 * message.
-	 *
-	 * @param s
-	 *          the detail message
-	 * @since JDK1.1
-	 */
-	public AccessException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs an <code>AccessException</code> with the specified detail
+     * message.
+     *
+     * @param s
+     *          the detail message
+     * @since JDK1.1
+     */
+    public AccessException(String s) {
+        super(s);
+    }
 
-	/**
-	 * Constructs an <code>AccessException</code> with the specified detail
-	 * message and nested exception.
-	 *
-	 * @param s
-	 *           the detail message
-	 * @param ex
-	 *           the nested exception
-	 * @since JDK1.1
-	 */
-	public AccessException(String s, Exception ex) {
-		super(s, ex);
-	}
+    /**
+     * Constructs an <code>AccessException</code> with the specified detail
+     * message and nested exception.
+     *
+     * @param s
+     *           the detail message
+     * @param ex
+     *           the nested exception
+     * @since JDK1.1
+     */
+    public AccessException(String s, Exception ex) {
+        super(s, ex);
+    }
 }

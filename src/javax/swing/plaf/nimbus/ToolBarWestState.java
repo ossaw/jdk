@@ -8,15 +8,15 @@ import java.awt.*;
 import javax.swing.*;
 
 class ToolBarWestState extends State {
-	ToolBarWestState() {
-		super("West");
-	}
+    ToolBarWestState() {
+        super("West");
+    }
 
-	@Override
-	protected boolean isInState(JComponent c) {
+    @Override
+    protected boolean isInState(JComponent c) {
 
-		return (c instanceof JToolBar) && NimbusLookAndFeel
-				.resolveToolbarConstraint((JToolBar) c) == BorderLayout.WEST;
+        return (c instanceof JToolBar) && NimbusLookAndFeel
+                .resolveToolbarConstraint((JToolBar) c) == BorderLayout.WEST;
 
-	}
+    }
 }

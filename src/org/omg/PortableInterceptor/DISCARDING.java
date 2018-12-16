@@ -10,8 +10,8 @@ package org.omg.PortableInterceptor;
 
 public interface DISCARDING {
 
-	/**
-	 * Object adapter state that causes all requests to be discarded.
-	 */
-	public static final short value = (short) (2);
+    /**
+     * Object adapter state that causes all requests to be discarded.
+     */
+    public static final short value = (short) (2);
 }

@@ -17,16 +17,16 @@ package java.net;
  * @since JDK1.0
  */
 public interface URLStreamHandlerFactory {
-	/**
-	 * Creates a new {@code URLStreamHandler} instance with the specified
-	 * protocol.
-	 *
-	 * @param protocol
-	 *                 the protocol ("{@code ftp}", "{@code http}",
-	 *                 "{@code nntp}",
-	 *                 etc.).
-	 * @return a {@code URLStreamHandler} for the specific protocol.
-	 * @see java.net.URLStreamHandler
-	 */
-	URLStreamHandler createURLStreamHandler(String protocol);
+    /**
+     * Creates a new {@code URLStreamHandler} instance with the specified
+     * protocol.
+     *
+     * @param protocol
+     *                 the protocol ("{@code ftp}", "{@code http}",
+     *                 "{@code nntp}",
+     *                 etc.).
+     * @return a {@code URLStreamHandler} for the specific protocol.
+     * @see java.net.URLStreamHandler
+     */
+    URLStreamHandler createURLStreamHandler(String protocol);
 }

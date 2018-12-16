@@ -21,70 +21,70 @@ import javax.print.attribute.PrintServiceAttribute;
  * @author Alan Kaminsky
  */
 public final class QueuedJobCount extends IntegerSyntax implements
-		PrintServiceAttribute {
+        PrintServiceAttribute {
 
-	private static final long serialVersionUID = 7499723077864047742L;
+    private static final long serialVersionUID = 7499723077864047742L;
 
-	/**
-	 * Construct a new queued job count attribute with the given integer value.
-	 *
-	 * @param value
-	 *              Integer value.
-	 *
-	 * @exception IllegalArgumentException
-	 *                                     (Unchecked exception) Thrown if
-	 *                                     <CODE>value</CODE> is less
-	 *                                     than 0.
-	 */
-	public QueuedJobCount(int value) {
-		super(value, 0, Integer.MAX_VALUE);
-	}
+    /**
+     * Construct a new queued job count attribute with the given integer value.
+     *
+     * @param value
+     *              Integer value.
+     *
+     * @exception IllegalArgumentException
+     *                                     (Unchecked exception) Thrown if
+     *                                     <CODE>value</CODE> is less
+     *                                     than 0.
+     */
+    public QueuedJobCount(int value) {
+        super(value, 0, Integer.MAX_VALUE);
+    }
 
-	/**
-	 * Returns whether this queued job count attribute is equivalent to the
-	 * passed in object. To be equivalent, all of the following conditions mus
-	 * be true:
-	 * <OL TYPE=1>
-	 * <LI><CODE>object</CODE> is not null.
-	 * <LI><CODE>object</CODE> is an instance of class QueuedJobCount.
-	 * <LI>This queued job count attribute's value and <CODE>object</CODE>'s
-	 * value are equal.
-	 * </OL>
-	 *
-	 * @param object
-	 *               Object to compare to.
-	 *
-	 * @return True if <CODE>object</CODE> is equivalent to this queued job
-	 *         count attribute, false otherwise.
-	 */
-	public boolean equals(Object object) {
-		return (super.equals(object) && object instanceof QueuedJobCount);
-	}
+    /**
+     * Returns whether this queued job count attribute is equivalent to the
+     * passed in object. To be equivalent, all of the following conditions mus
+     * be true:
+     * <OL TYPE=1>
+     * <LI><CODE>object</CODE> is not null.
+     * <LI><CODE>object</CODE> is an instance of class QueuedJobCount.
+     * <LI>This queued job count attribute's value and <CODE>object</CODE>'s
+     * value are equal.
+     * </OL>
+     *
+     * @param object
+     *               Object to compare to.
+     *
+     * @return True if <CODE>object</CODE> is equivalent to this queued job
+     *         count attribute, false otherwise.
+     */
+    public boolean equals(Object object) {
+        return (super.equals(object) && object instanceof QueuedJobCount);
+    }
 
-	/**
-	 * Get the printing attribute class which is to be used as the "category"
-	 * for this printing attribute value.
-	 * <P>
-	 * For class QueuedJobCount, the category is class QueuedJobCount itself.
-	 *
-	 * @return Printing attribute class (category), an instance of class
-	 *         {@link java.lang.Class java.lang.Class}.
-	 */
-	public final Class<? extends Attribute> getCategory() {
-		return QueuedJobCount.class;
-	}
+    /**
+     * Get the printing attribute class which is to be used as the "category"
+     * for this printing attribute value.
+     * <P>
+     * For class QueuedJobCount, the category is class QueuedJobCount itself.
+     *
+     * @return Printing attribute class (category), an instance of class
+     *         {@link java.lang.Class java.lang.Class}.
+     */
+    public final Class<? extends Attribute> getCategory() {
+        return QueuedJobCount.class;
+    }
 
-	/**
-	 * Get the name of the category of which this attribute value is an
-	 * instance.
-	 * <P>
-	 * For class QueuedJobCount, the category name is
-	 * <CODE>"queued-job-count"</CODE>.
-	 *
-	 * @return Attribute category name.
-	 */
-	public final String getName() {
-		return "queued-job-count";
-	}
+    /**
+     * Get the name of the category of which this attribute value is an
+     * instance.
+     * <P>
+     * For class QueuedJobCount, the category name is
+     * <CODE>"queued-job-count"</CODE>.
+     *
+     * @return Attribute category name.
+     */
+    public final String getName() {
+        return "queued-job-count";
+    }
 
 }

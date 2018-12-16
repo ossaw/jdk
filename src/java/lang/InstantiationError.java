@@ -17,23 +17,23 @@ package java.lang;
  */
 
 public class InstantiationError extends IncompatibleClassChangeError {
-	private static final long serialVersionUID = -4885810657349421204L;
+    private static final long serialVersionUID = -4885810657349421204L;
 
-	/**
-	 * Constructs an <code>InstantiationError</code> with no detail message.
-	 */
-	public InstantiationError() {
-		super();
-	}
+    /**
+     * Constructs an <code>InstantiationError</code> with no detail message.
+     */
+    public InstantiationError() {
+        super();
+    }
 
-	/**
-	 * Constructs an <code>InstantiationError</code> with the specified detail
-	 * message.
-	 *
-	 * @param s
-	 *          the detail message.
-	 */
-	public InstantiationError(String s) {
-		super(s);
-	}
+    /**
+     * Constructs an <code>InstantiationError</code> with the specified detail
+     * message.
+     *
+     * @param s
+     *          the detail message.
+     */
+    public InstantiationError(String s) {
+        super(s);
+    }
 }

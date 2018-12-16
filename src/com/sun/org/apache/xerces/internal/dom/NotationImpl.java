@@ -45,163 +45,163 @@ import org.w3c.dom.Notation;
  */
 public class NotationImpl extends NodeImpl implements Notation {
 
-	//
-	// Constants
-	//
+    //
+    // Constants
+    //
 
-	/** Serialization version. */
-	static final long serialVersionUID = -764632195890658402L;
+    /** Serialization version. */
+    static final long serialVersionUID = -764632195890658402L;
 
-	//
-	// Data
-	//
+    //
+    // Data
+    //
 
-	/** Notation name. */
-	protected String name;
+    /** Notation name. */
+    protected String name;
 
-	/** Public identifier. */
-	protected String publicId;
+    /** Public identifier. */
+    protected String publicId;
 
-	/** System identifier. */
-	protected String systemId;
+    /** System identifier. */
+    protected String systemId;
 
-	/** Base URI */
-	protected String baseURI;
+    /** Base URI */
+    protected String baseURI;
 
-	//
-	// Constructors
-	//
+    //
+    // Constructors
+    //
 
-	/** Factory constructor. */
-	public NotationImpl(CoreDocumentImpl ownerDoc, String name) {
-		super(ownerDoc);
-		this.name = name;
-	}
+    /** Factory constructor. */
+    public NotationImpl(CoreDocumentImpl ownerDoc, String name) {
+        super(ownerDoc);
+        this.name = name;
+    }
 
-	//
-	// Node methods
-	//
+    //
+    // Node methods
+    //
 
-	/**
-	 * A short integer indicating what type of node this is. The named constants
-	 * for this value are defined in the org.w3c.dom.Node interface.
-	 */
-	public short getNodeType() {
-		return Node.NOTATION_NODE;
-	}
+    /**
+     * A short integer indicating what type of node this is. The named constants
+     * for this value are defined in the org.w3c.dom.Node interface.
+     */
+    public short getNodeType() {
+        return Node.NOTATION_NODE;
+    }
 
-	/**
-	 * Returns the notation name
-	 */
-	public String getNodeName() {
-		if (needsSyncData()) {
-			synchronizeData();
-		}
-		return name;
-	}
+    /**
+     * Returns the notation name
+     */
+    public String getNodeName() {
+        if (needsSyncData()) {
+            synchronizeData();
+        }
+        return name;
+    }
 
-	//
-	// Notation methods
-	//
+    //
+    // Notation methods
+    //
 
-	/**
-	 * The Public Identifier for this Notation. If no public identifier was
-	 * specified, this will be null.
-	 */
-	public String getPublicId() {
+    /**
+     * The Public Identifier for this Notation. If no public identifier was
+     * specified, this will be null.
+     */
+    public String getPublicId() {
 
-		if (needsSyncData()) {
-			synchronizeData();
-		}
-		return publicId;
+        if (needsSyncData()) {
+            synchronizeData();
+        }
+        return publicId;
 
-	} // getPublicId():String
+    } // getPublicId():String
 
-	/**
-	 * The System Identifier for this Notation. If no system identifier was
-	 * specified, this will be null.
-	 */
-	public String getSystemId() {
+    /**
+     * The System Identifier for this Notation. If no system identifier was
+     * specified, this will be null.
+     */
+    public String getSystemId() {
 
-		if (needsSyncData()) {
-			synchronizeData();
-		}
-		return systemId;
+        if (needsSyncData()) {
+            synchronizeData();
+        }
+        return systemId;
 
-	} // getSystemId():String
+    } // getSystemId():String
 
-	//
-	// Public methods
-	//
+    //
+    // Public methods
+    //
 
-	/**
-	 * NON-DOM: The Public Identifier for this Notation. If no public identifier
-	 * was specified, this will be null.
-	 */
-	public void setPublicId(String id) {
+    /**
+     * NON-DOM: The Public Identifier for this Notation. If no public identifier
+     * was specified, this will be null.
+     */
+    public void setPublicId(String id) {
 
-		if (isReadOnly()) {
-			throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
-					DOMMessageFormatter.formatMessage(
-							DOMMessageFormatter.DOM_DOMAIN,
-							"NO_MODIFICATION_ALLOWED_ERR", null));
-		}
-		if (needsSyncData()) {
-			synchronizeData();
-		}
-		publicId = id;
+        if (isReadOnly()) {
+            throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
+                    DOMMessageFormatter.formatMessage(
+                            DOMMessageFormatter.DOM_DOMAIN,
+                            "NO_MODIFICATION_ALLOWED_ERR", null));
+        }
+        if (needsSyncData()) {
+            synchronizeData();
+        }
+        publicId = id;
 
-	} // setPublicId(String)
+    } // setPublicId(String)
 
-	/**
-	 * NON-DOM: The System Identifier for this Notation. If no system identifier
-	 * was specified, this will be null.
-	 */
-	public void setSystemId(String id) {
+    /**
+     * NON-DOM: The System Identifier for this Notation. If no system identifier
+     * was specified, this will be null.
+     */
+    public void setSystemId(String id) {
 
-		if (isReadOnly()) {
-			throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
-					DOMMessageFormatter.formatMessage(
-							DOMMessageFormatter.DOM_DOMAIN,
-							"NO_MODIFICATION_ALLOWED_ERR", null));
-		}
-		if (needsSyncData()) {
-			synchronizeData();
-		}
-		systemId = id;
+        if (isReadOnly()) {
+            throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
+                    DOMMessageFormatter.formatMessage(
+                            DOMMessageFormatter.DOM_DOMAIN,
+                            "NO_MODIFICATION_ALLOWED_ERR", null));
+        }
+        if (needsSyncData()) {
+            synchronizeData();
+        }
+        systemId = id;
 
-	} // setSystemId(String)
+    } // setSystemId(String)
 
-	/**
-	 * Returns the absolute base URI of this node or null if the implementation
-	 * wasn't able to obtain an absolute URI. Note: If the URI is malformed, a
-	 * null is returned.
-	 *
-	 * @return The absolute base URI of this node or null.
-	 * @since DOM Level 3
-	 */
-	public String getBaseURI() {
-		if (needsSyncData()) {
-			synchronizeData();
-		}
-		if (baseURI != null && baseURI.length() != 0) {// attribute value is
-														// always empty string
-			try {
-				return new URI(baseURI).toString();
-			} catch (com.sun.org.apache.xerces.internal.util.URI.MalformedURIException e) {
-				// REVISIT: what should happen in this case?
-				return null;
-			}
-		}
-		return baseURI;
-	}
+    /**
+     * Returns the absolute base URI of this node or null if the implementation
+     * wasn't able to obtain an absolute URI. Note: If the URI is malformed, a
+     * null is returned.
+     *
+     * @return The absolute base URI of this node or null.
+     * @since DOM Level 3
+     */
+    public String getBaseURI() {
+        if (needsSyncData()) {
+            synchronizeData();
+        }
+        if (baseURI != null && baseURI.length() != 0) {// attribute value is
+                                                       // always empty string
+            try {
+                return new URI(baseURI).toString();
+            } catch (com.sun.org.apache.xerces.internal.util.URI.MalformedURIException e) {
+                // REVISIT: what should happen in this case?
+                return null;
+            }
+        }
+        return baseURI;
+    }
 
-	/** NON-DOM: set base uri */
-	public void setBaseURI(String uri) {
-		if (needsSyncData()) {
-			synchronizeData();
-		}
-		baseURI = uri;
-	}
+    /** NON-DOM: set base uri */
+    public void setBaseURI(String uri) {
+        if (needsSyncData()) {
+            synchronizeData();
+        }
+        baseURI = uri;
+    }
 
 } // class NotationImpl

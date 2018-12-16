@@ -35,8 +35,8 @@ import java.net.InetAddress;
  */
 
 public abstract class SnmpPduPacket extends SnmpPdu implements Serializable {
-	/**
-	 * The pdu community string.
-	 */
-	public byte[] community;
+    /**
+     * The pdu community string.
+     */
+    public byte[] community;
 }

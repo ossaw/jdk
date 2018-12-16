@@ -35,55 +35,55 @@ package javax.sound.midi;
 
 public class Patch {
 
-	/**
-	 * Bank index
-	 */
-	private final int bank;
+    /**
+     * Bank index
+     */
+    private final int bank;
 
-	/**
-	 * Program change number
-	 */
-	private final int program;
+    /**
+     * Program change number
+     */
+    private final int program;
 
-	/**
-	 * Constructs a new patch object from the specified bank and program
-	 * numbers.
-	 * 
-	 * @param bank
-	 *                the bank index (in the range from 0 to 16383)
-	 * @param program
-	 *                the program index (in the range from 0 to 127)
-	 */
-	public Patch(int bank, int program) {
+    /**
+     * Constructs a new patch object from the specified bank and program
+     * numbers.
+     * 
+     * @param bank
+     *                the bank index (in the range from 0 to 16383)
+     * @param program
+     *                the program index (in the range from 0 to 127)
+     */
+    public Patch(int bank, int program) {
 
-		this.bank = bank;
-		this.program = program;
-	}
+        this.bank = bank;
+        this.program = program;
+    }
 
-	/**
-	 * Returns the number of the bank that contains the instrument whose
-	 * location this <code>Patch</code> specifies.
-	 * 
-	 * @return the bank number, whose range is from 0 to 16383
-	 * @see MidiChannel#programChange(int, int)
-	 */
-	public int getBank() {
+    /**
+     * Returns the number of the bank that contains the instrument whose
+     * location this <code>Patch</code> specifies.
+     * 
+     * @return the bank number, whose range is from 0 to 16383
+     * @see MidiChannel#programChange(int, int)
+     */
+    public int getBank() {
 
-		return bank;
-	}
+        return bank;
+    }
 
-	/**
-	 * Returns the index, within a bank, of the instrument whose location this
-	 * <code>Patch</code> specifies.
-	 * 
-	 * @return the instrument's program number, whose range is from 0 to 127
-	 *
-	 * @see MidiChannel#getProgram
-	 * @see MidiChannel#programChange(int)
-	 * @see MidiChannel#programChange(int, int)
-	 */
-	public int getProgram() {
+    /**
+     * Returns the index, within a bank, of the instrument whose location this
+     * <code>Patch</code> specifies.
+     * 
+     * @return the instrument's program number, whose range is from 0 to 127
+     *
+     * @see MidiChannel#getProgram
+     * @see MidiChannel#programChange(int)
+     * @see MidiChannel#programChange(int, int)
+     */
+    public int getProgram() {
 
-		return program;
-	}
+        return program;
+    }
 }

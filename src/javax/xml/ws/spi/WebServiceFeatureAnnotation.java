@@ -50,15 +50,15 @@ import javax.xml.ws.soap.MTOM;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface WebServiceFeatureAnnotation {
-	/**
-	 * Unique identifier for the WebServiceFeature. This identifier MUST be
-	 * unique across all implementations of JAX-WS.
-	 */
-	String id();
+    /**
+     * Unique identifier for the WebServiceFeature. This identifier MUST be
+     * unique across all implementations of JAX-WS.
+     */
+    String id();
 
-	/**
-	 * The <code>WebServiceFeature</code> bean that is associated with the
-	 * <code>WebServiceFeature</code> annotation
-	 */
-	Class<? extends WebServiceFeature> bean();
+    /**
+     * The <code>WebServiceFeature</code> bean that is associated with the
+     * <code>WebServiceFeature</code> annotation
+     */
+    Class<? extends WebServiceFeature> bean();
 }

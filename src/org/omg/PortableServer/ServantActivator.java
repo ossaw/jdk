@@ -13,5 +13,5 @@ package org.omg.PortableServer;
  * ServantActivators.
  */
 public interface ServantActivator extends ServantActivatorOperations,
-		org.omg.PortableServer.ServantManager,
-		org.omg.CORBA.portable.IDLEntity {} // interface ServantActivator
+        org.omg.PortableServer.ServantManager,
+        org.omg.CORBA.portable.IDLEntity {} // interface ServantActivator

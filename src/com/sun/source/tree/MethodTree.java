@@ -29,27 +29,27 @@ import javax.lang.model.element.Name;
  */
 @jdk.Exported
 public interface MethodTree extends Tree {
-	ModifiersTree getModifiers();
+    ModifiersTree getModifiers();
 
-	Name getName();
+    Name getName();
 
-	Tree getReturnType();
+    Tree getReturnType();
 
-	List<? extends TypeParameterTree> getTypeParameters();
+    List<? extends TypeParameterTree> getTypeParameters();
 
-	List<? extends VariableTree> getParameters();
+    List<? extends VariableTree> getParameters();
 
-	/**
-	 * Return an explicit receiver parameter ("this" parameter).
-	 *
-	 * @return an explicit receiver parameter ("this" parameter)
-	 * @since 1.8
-	 */
-	VariableTree getReceiverParameter();
+    /**
+     * Return an explicit receiver parameter ("this" parameter).
+     *
+     * @return an explicit receiver parameter ("this" parameter)
+     * @since 1.8
+     */
+    VariableTree getReceiverParameter();
 
-	List<? extends ExpressionTree> getThrows();
+    List<? extends ExpressionTree> getThrows();
 
-	BlockTree getBody();
+    BlockTree getBody();
 
-	Tree getDefaultValue(); // for annotation types
+    Tree getDefaultValue(); // for annotation types
 }

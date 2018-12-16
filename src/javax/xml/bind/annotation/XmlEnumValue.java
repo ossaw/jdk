@@ -114,5 +114,5 @@ import static java.lang.annotation.ElementType.FIELD;
 @Retention(RUNTIME)
 @Target({ FIELD })
 public @interface XmlEnumValue {
-	String value();
+    String value();
 }

@@ -54,9 +54,9 @@ import java.lang.annotation.Target;
 @Retention(RUNTIME)
 @Target({ TYPE })
 public @interface XmlEnum {
-	/**
-	 * Java type that is mapped to a XML simple type.
-	 *
-	 */
-	Class<?> value() default String.class;
+    /**
+     * Java type that is mapped to a XML simple type.
+     *
+     */
+    Class<?> value() default String.class;
 }

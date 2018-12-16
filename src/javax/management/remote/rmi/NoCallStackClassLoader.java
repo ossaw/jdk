@@ -53,110 +53,110 @@ import java.security.ProtectionDomain;
  */
 
 class NoCallStackClassLoader extends ClassLoader {
-	/** Simplified constructor when this loader only defines one class. */
-	public NoCallStackClassLoader(String className, byte[] byteCode,
-			String[] referencedClassNames, ClassLoader referencedClassLoader,
-			ProtectionDomain protectionDomain) {
-		this(new String[] { className }, new byte[][] { byteCode },
-				referencedClassNames, referencedClassLoader, protectionDomain);
-	}
+    /** Simplified constructor when this loader only defines one class. */
+    public NoCallStackClassLoader(String className, byte[] byteCode,
+            String[] referencedClassNames, ClassLoader referencedClassLoader,
+            ProtectionDomain protectionDomain) {
+        this(new String[] { className }, new byte[][] { byteCode },
+                referencedClassNames, referencedClassLoader, protectionDomain);
+    }
 
-	public NoCallStackClassLoader(String[] classNames, byte[][] byteCodes,
-			String[] referencedClassNames, ClassLoader referencedClassLoader,
-			ProtectionDomain protectionDomain) {
-		super(null);
+    public NoCallStackClassLoader(String[] classNames, byte[][] byteCodes,
+            String[] referencedClassNames, ClassLoader referencedClassLoader,
+            ProtectionDomain protectionDomain) {
+        super(null);
 
-		/* Validation. */
-		if (classNames == null || classNames.length == 0 || byteCodes == null
-				|| classNames.length != byteCodes.length
-				|| referencedClassNames == null || protectionDomain == null)
-			throw new IllegalArgumentException();
-		for (int i = 0; i < classNames.length; i++) {
-			if (classNames[i] == null || byteCodes[i] == null)
-				throw new IllegalArgumentException();
-		}
-		for (int i = 0; i < referencedClassNames.length; i++) {
-			if (referencedClassNames[i] == null)
-				throw new IllegalArgumentException();
-		}
+        /* Validation. */
+        if (classNames == null || classNames.length == 0 || byteCodes == null
+                || classNames.length != byteCodes.length
+                || referencedClassNames == null || protectionDomain == null)
+            throw new IllegalArgumentException();
+        for (int i = 0; i < classNames.length; i++) {
+            if (classNames[i] == null || byteCodes[i] == null)
+                throw new IllegalArgumentException();
+        }
+        for (int i = 0; i < referencedClassNames.length; i++) {
+            if (referencedClassNames[i] == null)
+                throw new IllegalArgumentException();
+        }
 
-		this.classNames = classNames;
-		this.byteCodes = byteCodes;
-		this.referencedClassNames = referencedClassNames;
-		this.referencedClassLoader = referencedClassLoader;
-		this.protectionDomain = protectionDomain;
-	}
+        this.classNames = classNames;
+        this.byteCodes = byteCodes;
+        this.referencedClassNames = referencedClassNames;
+        this.referencedClassLoader = referencedClassLoader;
+        this.protectionDomain = protectionDomain;
+    }
 
-	/*
-	 * This method is called at most once per name. Define the name if it is one
-	 * of the classes whose byte code we have, or delegate the load if it is one
-	 * of the referenced classes.
-	 */
-	@Override
-	protected Class<?> findClass(String name) throws ClassNotFoundException {
-		// Note: classNames is guaranteed by the constructor to be non-null.
-		for (int i = 0; i < classNames.length; i++) {
-			if (name.equals(classNames[i])) {
-				return defineClass(classNames[i], byteCodes[i], 0,
-						byteCodes[i].length, protectionDomain);
-			}
-		}
+    /*
+     * This method is called at most once per name. Define the name if it is one
+     * of the classes whose byte code we have, or delegate the load if it is one
+     * of the referenced classes.
+     */
+    @Override
+    protected Class<?> findClass(String name) throws ClassNotFoundException {
+        // Note: classNames is guaranteed by the constructor to be non-null.
+        for (int i = 0; i < classNames.length; i++) {
+            if (name.equals(classNames[i])) {
+                return defineClass(classNames[i], byteCodes[i], 0,
+                        byteCodes[i].length, protectionDomain);
+            }
+        }
 
-		/*
-		 * If the referencedClassLoader is null, it is the bootstrap class
-		 * loader, and there's no point in delegating to it because it's already
-		 * our parent class loader.
-		 */
-		if (referencedClassLoader != null) {
-			for (int i = 0; i < referencedClassNames.length; i++) {
-				if (name.equals(referencedClassNames[i]))
-					return referencedClassLoader.loadClass(name);
-			}
-		}
+        /*
+         * If the referencedClassLoader is null, it is the bootstrap class
+         * loader, and there's no point in delegating to it because it's already
+         * our parent class loader.
+         */
+        if (referencedClassLoader != null) {
+            for (int i = 0; i < referencedClassNames.length; i++) {
+                if (name.equals(referencedClassNames[i]))
+                    return referencedClassLoader.loadClass(name);
+            }
+        }
 
-		throw new ClassNotFoundException(name);
-	}
+        throw new ClassNotFoundException(name);
+    }
 
-	private final String[] classNames;
-	private final byte[][] byteCodes;
-	private final String[] referencedClassNames;
-	private final ClassLoader referencedClassLoader;
-	private final ProtectionDomain protectionDomain;
+    private final String[] classNames;
+    private final byte[][] byteCodes;
+    private final String[] referencedClassNames;
+    private final ClassLoader referencedClassLoader;
+    private final ProtectionDomain protectionDomain;
 
-	/**
-	 * <p>
-	 * Construct a <code>byte[]</code> using the characters of the given
-	 * <code>String</code>. Only the low-order byte of each character is used.
-	 * This method is useful to reduce the footprint of classes that include big
-	 * byte arrays (e.g. the byte code of other classes), because a string takes
-	 * up much less space in a class file than the byte code to initialize a
-	 * <code>byte[]</code> with the same number of bytes.
-	 * </p>
-	 *
-	 * <p>
-	 * We use just one byte per character even though characters contain two
-	 * bytes. The resultant output length is much the same: using one byte per
-	 * character is shorter because it has more characters in the optimal 1-127
-	 * range but longer because it has more zero bytes (which are frequent, and
-	 * are encoded as two bytes in classfile UTF-8). But one byte per character
-	 * has two key advantages: (1) you can see the string constants, which is
-	 * reassuring, (2) you don't need to know whether the class file length is
-	 * odd.
-	 * </p>
-	 *
-	 * <p>
-	 * This method differs from {@link String#getBytes()} in that it does not
-	 * use any encoding. So it is guaranteed that each byte of the result is
-	 * numerically identical (mod 256) to the corresponding character of the
-	 * input.
-	 */
-	public static byte[] stringToBytes(String s) {
-		final int slen = s.length();
-		byte[] bytes = new byte[slen];
-		for (int i = 0; i < slen; i++)
-			bytes[i] = (byte) s.charAt(i);
-		return bytes;
-	}
+    /**
+     * <p>
+     * Construct a <code>byte[]</code> using the characters of the given
+     * <code>String</code>. Only the low-order byte of each character is used.
+     * This method is useful to reduce the footprint of classes that include big
+     * byte arrays (e.g. the byte code of other classes), because a string takes
+     * up much less space in a class file than the byte code to initialize a
+     * <code>byte[]</code> with the same number of bytes.
+     * </p>
+     *
+     * <p>
+     * We use just one byte per character even though characters contain two
+     * bytes. The resultant output length is much the same: using one byte per
+     * character is shorter because it has more characters in the optimal 1-127
+     * range but longer because it has more zero bytes (which are frequent, and
+     * are encoded as two bytes in classfile UTF-8). But one byte per character
+     * has two key advantages: (1) you can see the string constants, which is
+     * reassuring, (2) you don't need to know whether the class file length is
+     * odd.
+     * </p>
+     *
+     * <p>
+     * This method differs from {@link String#getBytes()} in that it does not
+     * use any encoding. So it is guaranteed that each byte of the result is
+     * numerically identical (mod 256) to the corresponding character of the
+     * input.
+     */
+    public static byte[] stringToBytes(String s) {
+        final int slen = s.length();
+        byte[] bytes = new byte[slen];
+        for (int i = 0; i < slen; i++)
+            bytes[i] = (byte) s.charAt(i);
+        return bytes;
+    }
 }
 
 /*

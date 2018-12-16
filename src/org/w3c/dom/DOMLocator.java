@@ -25,41 +25,41 @@ package org.w3c.dom;
  * @since DOM Level 3
  */
 public interface DOMLocator {
-	/**
-	 * The line number this locator is pointing to, or <code>-1</code> if there
-	 * is no column number available.
-	 */
-	public int getLineNumber();
+    /**
+     * The line number this locator is pointing to, or <code>-1</code> if there
+     * is no column number available.
+     */
+    public int getLineNumber();
 
-	/**
-	 * The column number this locator is pointing to, or <code>-1</code> if
-	 * there is no column number available.
-	 */
-	public int getColumnNumber();
+    /**
+     * The column number this locator is pointing to, or <code>-1</code> if
+     * there is no column number available.
+     */
+    public int getColumnNumber();
 
-	/**
-	 * The byte offset into the input source this locator is pointing to or
-	 * <code>-1</code> if there is no byte offset available.
-	 */
-	public int getByteOffset();
+    /**
+     * The byte offset into the input source this locator is pointing to or
+     * <code>-1</code> if there is no byte offset available.
+     */
+    public int getByteOffset();
 
-	/**
-	 * The UTF-16, as defined in [Unicode] and Amendment 1 of [ISO/IEC 10646],
-	 * offset into the input source this locator is pointing to or
-	 * <code>-1</code> if there is no UTF-16 offset available.
-	 */
-	public int getUtf16Offset();
+    /**
+     * The UTF-16, as defined in [Unicode] and Amendment 1 of [ISO/IEC 10646],
+     * offset into the input source this locator is pointing to or
+     * <code>-1</code> if there is no UTF-16 offset available.
+     */
+    public int getUtf16Offset();
 
-	/**
-	 * The node this locator is pointing to, or <code>null</code> if no node is
-	 * available.
-	 */
-	public Node getRelatedNode();
+    /**
+     * The node this locator is pointing to, or <code>null</code> if no node is
+     * available.
+     */
+    public Node getRelatedNode();
 
-	/**
-	 * The URI this locator is pointing to, or <code>null</code> if no URI is
-	 * available.
-	 */
-	public String getUri();
+    /**
+     * The URI this locator is pointing to, or <code>null</code> if no URI is
+     * available.
+     */
+    public String getUri();
 
 }

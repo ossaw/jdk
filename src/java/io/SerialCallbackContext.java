@@ -17,45 +17,45 @@ package java.io;
  * the getObj method throws NotActiveException.
  */
 final class SerialCallbackContext {
-	private final Object obj;
-	private final ObjectStreamClass desc;
-	/**
-	 * Thread this context is in use by. As this only works in one thread, we do
-	 * not need to worry about thread-safety.
-	 */
-	private Thread thread;
+    private final Object obj;
+    private final ObjectStreamClass desc;
+    /**
+     * Thread this context is in use by. As this only works in one thread, we do
+     * not need to worry about thread-safety.
+     */
+    private Thread thread;
 
-	public SerialCallbackContext(Object obj, ObjectStreamClass desc) {
-		this.obj = obj;
-		this.desc = desc;
-		this.thread = Thread.currentThread();
-	}
+    public SerialCallbackContext(Object obj, ObjectStreamClass desc) {
+        this.obj = obj;
+        this.desc = desc;
+        this.thread = Thread.currentThread();
+    }
 
-	public Object getObj() throws NotActiveException {
-		checkAndSetUsed();
-		return obj;
-	}
+    public Object getObj() throws NotActiveException {
+        checkAndSetUsed();
+        return obj;
+    }
 
-	public ObjectStreamClass getDesc() {
-		return desc;
-	}
+    public ObjectStreamClass getDesc() {
+        return desc;
+    }
 
-	public void check() throws NotActiveException {
-		if (thread != null && thread != Thread.currentThread()) {
-			throw new NotActiveException("expected thread: " + thread
-					+ ", but got: " + Thread.currentThread());
-		}
-	}
+    public void check() throws NotActiveException {
+        if (thread != null && thread != Thread.currentThread()) {
+            throw new NotActiveException("expected thread: " + thread
+                    + ", but got: " + Thread.currentThread());
+        }
+    }
 
-	private void checkAndSetUsed() throws NotActiveException {
-		if (thread != Thread.currentThread()) {
-			throw new NotActiveException(
-					"not in readObject invocation or fields already read");
-		}
-		thread = null;
-	}
+    private void checkAndSetUsed() throws NotActiveException {
+        if (thread != Thread.currentThread()) {
+            throw new NotActiveException(
+                    "not in readObject invocation or fields already read");
+        }
+        thread = null;
+    }
 
-	public void setUsed() {
-		thread = null;
-	}
+    public void setUsed() {
+        thread = null;
+    }
 }

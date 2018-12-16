@@ -41,103 +41,103 @@ import java.awt.Component;
  */
 public class ContainerEvent extends ComponentEvent {
 
-	/**
-	 * The first number in the range of ids used for container events.
-	 */
-	public static final int CONTAINER_FIRST = 300;
+    /**
+     * The first number in the range of ids used for container events.
+     */
+    public static final int CONTAINER_FIRST = 300;
 
-	/**
-	 * The last number in the range of ids used for container events.
-	 */
-	public static final int CONTAINER_LAST = 301;
+    /**
+     * The last number in the range of ids used for container events.
+     */
+    public static final int CONTAINER_LAST = 301;
 
-	/**
-	 * This event indicates that a component was added to the container.
-	 */
-	public static final int COMPONENT_ADDED = CONTAINER_FIRST;
+    /**
+     * This event indicates that a component was added to the container.
+     */
+    public static final int COMPONENT_ADDED = CONTAINER_FIRST;
 
-	/**
-	 * This event indicates that a component was removed from the container.
-	 */
-	public static final int COMPONENT_REMOVED = 1 + CONTAINER_FIRST;
+    /**
+     * This event indicates that a component was removed from the container.
+     */
+    public static final int COMPONENT_REMOVED = 1 + CONTAINER_FIRST;
 
-	/**
-	 * The non-null component that is being added or removed from the Container.
-	 *
-	 * @serial
-	 * @see #getChild()
-	 */
-	Component child;
+    /**
+     * The non-null component that is being added or removed from the Container.
+     *
+     * @serial
+     * @see #getChild()
+     */
+    Component child;
 
-	/*
-	 * JDK 1.1 serialVersionUID
-	 */
-	private static final long serialVersionUID = -4114942250539772041L;
+    /*
+     * JDK 1.1 serialVersionUID
+     */
+    private static final long serialVersionUID = -4114942250539772041L;
 
-	/**
-	 * Constructs a <code>ContainerEvent</code> object.
-	 * <p>
-	 * This method throws an <code>IllegalArgumentException</code> if
-	 * <code>source</code> is <code>null</code>.
-	 *
-	 * @param source
-	 *               The <code>Component</code> object (container) that
-	 *               originated
-	 *               the event
-	 * @param id
-	 *               An integer indicating the type of event. For information on
-	 *               allowable values, see the class description for
-	 *               {@link ContainerEvent}
-	 * @param child
-	 *               the component that was added or removed
-	 * @throws IllegalArgumentException
-	 *                                  if <code>source</code> is null
-	 * @see #getContainer()
-	 * @see #getID()
-	 * @see #getChild()
-	 */
-	public ContainerEvent(Component source, int id, Component child) {
-		super(source, id);
-		this.child = child;
-	}
+    /**
+     * Constructs a <code>ContainerEvent</code> object.
+     * <p>
+     * This method throws an <code>IllegalArgumentException</code> if
+     * <code>source</code> is <code>null</code>.
+     *
+     * @param source
+     *               The <code>Component</code> object (container) that
+     *               originated
+     *               the event
+     * @param id
+     *               An integer indicating the type of event. For information on
+     *               allowable values, see the class description for
+     *               {@link ContainerEvent}
+     * @param child
+     *               the component that was added or removed
+     * @throws IllegalArgumentException
+     *                                  if <code>source</code> is null
+     * @see #getContainer()
+     * @see #getID()
+     * @see #getChild()
+     */
+    public ContainerEvent(Component source, int id, Component child) {
+        super(source, id);
+        this.child = child;
+    }
 
-	/**
-	 * Returns the originator of the event.
-	 *
-	 * @return the <code>Container</code> object that originated the event, or
-	 *         <code>null</code> if the object is not a <code>Container</code>.
-	 */
-	public Container getContainer() {
-		return (source instanceof Container) ? (Container) source : null;
-	}
+    /**
+     * Returns the originator of the event.
+     *
+     * @return the <code>Container</code> object that originated the event, or
+     *         <code>null</code> if the object is not a <code>Container</code>.
+     */
+    public Container getContainer() {
+        return (source instanceof Container) ? (Container) source : null;
+    }
 
-	/**
-	 * Returns the component that was affected by the event.
-	 *
-	 * @return the Component object that was added or removed
-	 */
-	public Component getChild() {
-		return child;
-	}
+    /**
+     * Returns the component that was affected by the event.
+     *
+     * @return the Component object that was added or removed
+     */
+    public Component getChild() {
+        return child;
+    }
 
-	/**
-	 * Returns a parameter string identifying this event. This method is useful
-	 * for event-logging and for debugging.
-	 *
-	 * @return a string identifying the event and its attributes
-	 */
-	public String paramString() {
-		String typeStr;
-		switch (id) {
-			case COMPONENT_ADDED:
-				typeStr = "COMPONENT_ADDED";
-				break;
-			case COMPONENT_REMOVED:
-				typeStr = "COMPONENT_REMOVED";
-				break;
-			default:
-				typeStr = "unknown type";
-		}
-		return typeStr + ",child=" + child.getName();
-	}
+    /**
+     * Returns a parameter string identifying this event. This method is useful
+     * for event-logging and for debugging.
+     *
+     * @return a string identifying the event and its attributes
+     */
+    public String paramString() {
+        String typeStr;
+        switch (id) {
+            case COMPONENT_ADDED:
+                typeStr = "COMPONENT_ADDED";
+                break;
+            case COMPONENT_REMOVED:
+                typeStr = "COMPONENT_REMOVED";
+                break;
+            default:
+                typeStr = "unknown type";
+        }
+        return typeStr + ",child=" + child.getName();
+    }
 }

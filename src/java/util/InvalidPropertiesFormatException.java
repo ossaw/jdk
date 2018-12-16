@@ -25,48 +25,48 @@ import java.io.IOException;
 
 public class InvalidPropertiesFormatException extends IOException {
 
-	private static final long serialVersionUID = 7763056076009360219L;
+    private static final long serialVersionUID = 7763056076009360219L;
 
-	/**
-	 * Constructs an InvalidPropertiesFormatException with the specified cause.
-	 *
-	 * @param cause
-	 *              the cause (which is saved for later retrieval by the
-	 *              {@link Throwable#getCause()} method).
-	 */
-	public InvalidPropertiesFormatException(Throwable cause) {
-		super(cause == null ? null : cause.toString());
-		this.initCause(cause);
-	}
+    /**
+     * Constructs an InvalidPropertiesFormatException with the specified cause.
+     *
+     * @param cause
+     *              the cause (which is saved for later retrieval by the
+     *              {@link Throwable#getCause()} method).
+     */
+    public InvalidPropertiesFormatException(Throwable cause) {
+        super(cause == null ? null : cause.toString());
+        this.initCause(cause);
+    }
 
-	/**
-	 * Constructs an InvalidPropertiesFormatException with the specified detail
-	 * message.
-	 *
-	 * @param message
-	 *                the detail message. The detail message is saved for later
-	 *                retrieval by the {@link Throwable#getMessage()} method.
-	 */
-	public InvalidPropertiesFormatException(String message) {
-		super(message);
-	}
+    /**
+     * Constructs an InvalidPropertiesFormatException with the specified detail
+     * message.
+     *
+     * @param message
+     *                the detail message. The detail message is saved for later
+     *                retrieval by the {@link Throwable#getMessage()} method.
+     */
+    public InvalidPropertiesFormatException(String message) {
+        super(message);
+    }
 
-	/**
-	 * Throws NotSerializableException, since InvalidPropertiesFormatException
-	 * objects are not intended to be serializable.
-	 */
-	private void writeObject(java.io.ObjectOutputStream out)
-			throws NotSerializableException {
-		throw new NotSerializableException("Not serializable.");
-	}
+    /**
+     * Throws NotSerializableException, since InvalidPropertiesFormatException
+     * objects are not intended to be serializable.
+     */
+    private void writeObject(java.io.ObjectOutputStream out)
+            throws NotSerializableException {
+        throw new NotSerializableException("Not serializable.");
+    }
 
-	/**
-	 * Throws NotSerializableException, since InvalidPropertiesFormatException
-	 * objects are not intended to be serializable.
-	 */
-	private void readObject(java.io.ObjectInputStream in)
-			throws NotSerializableException {
-		throw new NotSerializableException("Not serializable.");
-	}
+    /**
+     * Throws NotSerializableException, since InvalidPropertiesFormatException
+     * objects are not intended to be serializable.
+     */
+    private void readObject(java.io.ObjectInputStream in)
+            throws NotSerializableException {
+        throw new NotSerializableException("Not serializable.");
+    }
 
 }

@@ -89,10 +89,10 @@ import static java.lang.annotation.RetentionPolicy.*;
 @Target({ PACKAGE, TYPE })
 public @interface XmlAccessorType {
 
-	/**
-	 * Specifies whether fields or properties are serialized.
-	 *
-	 * @see XmlAccessType
-	 */
-	XmlAccessType value() default XmlAccessType.PUBLIC_MEMBER;
+    /**
+     * Specifies whether fields or properties are serialized.
+     *
+     * @see XmlAccessType
+     */
+    XmlAccessType value() default XmlAccessType.PUBLIC_MEMBER;
 }

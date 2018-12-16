@@ -11,19 +11,19 @@ import javax.imageio.stream.ImageInputStream;
 
 public class InputStreamAdapter extends InputStream {
 
-	ImageInputStream stream;
+    ImageInputStream stream;
 
-	public InputStreamAdapter(ImageInputStream stream) {
-		super();
+    public InputStreamAdapter(ImageInputStream stream) {
+        super();
 
-		this.stream = stream;
-	}
+        this.stream = stream;
+    }
 
-	public int read() throws IOException {
-		return stream.read();
-	}
+    public int read() throws IOException {
+        return stream.read();
+    }
 
-	public int read(byte b[], int off, int len) throws IOException {
-		return stream.read(b, off, len);
-	}
+    public int read(byte b[], int off, int len) throws IOException {
+        return stream.read(b, off, len);
+    }
 }

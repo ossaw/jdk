@@ -16,24 +16,24 @@ package java.lang;
  * @since JDK1.0
  */
 public class IllegalThreadStateException extends IllegalArgumentException {
-	private static final long serialVersionUID = -7626246362397460174L;
+    private static final long serialVersionUID = -7626246362397460174L;
 
-	/**
-	 * Constructs an <code>IllegalThreadStateException</code> with no detail
-	 * message.
-	 */
-	public IllegalThreadStateException() {
-		super();
-	}
+    /**
+     * Constructs an <code>IllegalThreadStateException</code> with no detail
+     * message.
+     */
+    public IllegalThreadStateException() {
+        super();
+    }
 
-	/**
-	 * Constructs an <code>IllegalThreadStateException</code> with the specified
-	 * detail message.
-	 *
-	 * @param s
-	 *          the detail message.
-	 */
-	public IllegalThreadStateException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs an <code>IllegalThreadStateException</code> with the specified
+     * detail message.
+     *
+     * @param s
+     *          the detail message.
+     */
+    public IllegalThreadStateException(String s) {
+        super(s);
+    }
 }

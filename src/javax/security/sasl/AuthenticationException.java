@@ -23,43 +23,43 @@ package javax.security.sasl;
  * @author Rob Weltman
  */
 public class AuthenticationException extends SaslException {
-	/**
-	 * Constructs a new instance of {@code AuthenticationException}. The root
-	 * exception and the detailed message are null.
-	 */
-	public AuthenticationException() {
-		super();
-	}
+    /**
+     * Constructs a new instance of {@code AuthenticationException}. The root
+     * exception and the detailed message are null.
+     */
+    public AuthenticationException() {
+        super();
+    }
 
-	/**
-	 * Constructs a new instance of {@code AuthenticationException} with a
-	 * detailed message. The root exception is null.
-	 * 
-	 * @param detail
-	 *               A possibly null string containing details of the exception.
-	 *
-	 * @see java.lang.Throwable#getMessage
-	 */
-	public AuthenticationException(String detail) {
-		super(detail);
-	}
+    /**
+     * Constructs a new instance of {@code AuthenticationException} with a
+     * detailed message. The root exception is null.
+     * 
+     * @param detail
+     *               A possibly null string containing details of the exception.
+     *
+     * @see java.lang.Throwable#getMessage
+     */
+    public AuthenticationException(String detail) {
+        super(detail);
+    }
 
-	/**
-	 * Constructs a new instance of {@code AuthenticationException} with a
-	 * detailed message and a root exception.
-	 *
-	 * @param detail
-	 *               A possibly null string containing details of the exception.
-	 * @param ex
-	 *               A possibly null root exception that caused this exception.
-	 *
-	 * @see java.lang.Throwable#getMessage
-	 * @see #getCause
-	 */
-	public AuthenticationException(String detail, Throwable ex) {
-		super(detail, ex);
-	}
+    /**
+     * Constructs a new instance of {@code AuthenticationException} with a
+     * detailed message and a root exception.
+     *
+     * @param detail
+     *               A possibly null string containing details of the exception.
+     * @param ex
+     *               A possibly null root exception that caused this exception.
+     *
+     * @see java.lang.Throwable#getMessage
+     * @see #getCause
+     */
+    public AuthenticationException(String detail, Throwable ex) {
+        super(detail, ex);
+    }
 
-	/** Use serialVersionUID from JSR 28 RI for interoperability */
-	private static final long serialVersionUID = -3579708765071815007L;
+    /** Use serialVersionUID from JSR 28 RI for interoperability */
+    private static final long serialVersionUID = -3579708765071815007L;
 }

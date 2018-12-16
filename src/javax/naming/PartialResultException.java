@@ -20,27 +20,27 @@ package javax.naming;
  */
 
 public class PartialResultException extends NamingException {
-	/**
-	 * Constructs a new instance of the exception using the explanation message
-	 * specified. All other fields default to null.
-	 *
-	 * @param explanation
-	 *                    Possibly null detail explaining the exception.
-	 */
-	public PartialResultException(String explanation) {
-		super(explanation);
-	}
+    /**
+     * Constructs a new instance of the exception using the explanation message
+     * specified. All other fields default to null.
+     *
+     * @param explanation
+     *                    Possibly null detail explaining the exception.
+     */
+    public PartialResultException(String explanation) {
+        super(explanation);
+    }
 
-	/**
-	 * Constructs a new instance of PartialResultException. All fields default
-	 * to null.
-	 */
-	public PartialResultException() {
-		super();
-	}
+    /**
+     * Constructs a new instance of PartialResultException. All fields default
+     * to null.
+     */
+    public PartialResultException() {
+        super();
+    }
 
-	/**
-	 * Use serialVersionUID from JNDI 1.1.1 for interoperability
-	 */
-	private static final long serialVersionUID = 2572144970049426786L;
+    /**
+     * Use serialVersionUID from JNDI 1.1.1 for interoperability
+     */
+    private static final long serialVersionUID = 2572144970049426786L;
 }

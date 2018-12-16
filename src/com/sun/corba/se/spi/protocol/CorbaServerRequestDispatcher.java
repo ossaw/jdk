@@ -21,10 +21,10 @@ import com.sun.corba.se.spi.ior.IOR;
  * in the subcontract Registry.
  */
 public interface CorbaServerRequestDispatcher extends ServerRequestDispatcher {
-	/**
-	 * Handle a locate request.
-	 */
-	public IOR locate(ObjectKey key);
+    /**
+     * Handle a locate request.
+     */
+    public IOR locate(ObjectKey key);
 }
 
 // End of file.

@@ -32,9 +32,9 @@ package org.w3c.dom.css;
  * @since DOM Level 2
  */
 public interface ElementCSSInlineStyle {
-	/**
-	 * The style attribute.
-	 */
-	public CSSStyleDeclaration getStyle();
+    /**
+     * The style attribute.
+     */
+    public CSSStyleDeclaration getStyle();
 
 }

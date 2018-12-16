@@ -22,26 +22,26 @@ import javax.swing.plaf.basic.BasicPasswordFieldUI;
  */
 public class MotifPasswordFieldUI extends BasicPasswordFieldUI {
 
-	/**
-	 * Creates a UI for a JPasswordField.
-	 *
-	 * @param c
-	 *          the JPasswordField
-	 * @return the UI
-	 */
-	public static ComponentUI createUI(JComponent c) {
-		return new MotifPasswordFieldUI();
-	}
+    /**
+     * Creates a UI for a JPasswordField.
+     *
+     * @param c
+     *          the JPasswordField
+     * @return the UI
+     */
+    public static ComponentUI createUI(JComponent c) {
+        return new MotifPasswordFieldUI();
+    }
 
-	/**
-	 * Creates the object to use for a caret. By default an instance of
-	 * MotifTextUI.MotifCaret is created. This method can be redefined to
-	 * provide something else that implements the Caret interface.
-	 *
-	 * @return the caret object
-	 */
-	protected Caret createCaret() {
-		return MotifTextUI.createCaret();
-	}
+    /**
+     * Creates the object to use for a caret. By default an instance of
+     * MotifTextUI.MotifCaret is created. This method can be redefined to
+     * provide something else that implements the Caret interface.
+     *
+     * @return the caret object
+     */
+    protected Caret createCaret() {
+        return MotifTextUI.createCaret();
+    }
 
 }

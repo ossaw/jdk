@@ -14,7 +14,7 @@ package java.lang;
  * 
  * <pre>
  * if (Thread.interrupted()) // Clears interrupted status!
- * 	throw new InterruptedException();
+ *     throw new InterruptedException();
  * </pre>
  *
  * @author Frank Yellin
@@ -27,23 +27,23 @@ package java.lang;
  * @since JDK1.0
  */
 public class InterruptedException extends Exception {
-	private static final long serialVersionUID = 6700697376100628473L;
+    private static final long serialVersionUID = 6700697376100628473L;
 
-	/**
-	 * Constructs an <code>InterruptedException</code> with no detail message.
-	 */
-	public InterruptedException() {
-		super();
-	}
+    /**
+     * Constructs an <code>InterruptedException</code> with no detail message.
+     */
+    public InterruptedException() {
+        super();
+    }
 
-	/**
-	 * Constructs an <code>InterruptedException</code> with the specified detail
-	 * message.
-	 *
-	 * @param s
-	 *          the detail message.
-	 */
-	public InterruptedException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs an <code>InterruptedException</code> with the specified detail
+     * message.
+     *
+     * @param s
+     *          the detail message.
+     */
+    public InterruptedException(String s) {
+        super(s);
+    }
 }

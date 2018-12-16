@@ -17,23 +17,23 @@ import com.sun.corba.se.spi.servicecontext.ServiceContexts;
 
 public interface RequestMessage extends Message {
 
-	byte RESPONSE_EXPECTED_BIT = 0x01;
+    byte RESPONSE_EXPECTED_BIT = 0x01;
 
-	ServiceContexts getServiceContexts();
+    ServiceContexts getServiceContexts();
 
-	int getRequestId();
+    int getRequestId();
 
-	boolean isResponseExpected();
+    boolean isResponseExpected();
 
-	byte[] getReserved();
+    byte[] getReserved();
 
-	ObjectKey getObjectKey();
+    ObjectKey getObjectKey();
 
-	String getOperation();
+    String getOperation();
 
-	Principal getPrincipal();
+    Principal getPrincipal();
 
-	// NOTE: This is a SUN PROPRIETARY EXTENSION
-	void setThreadPoolToUse(int poolToUse);
+    // NOTE: This is a SUN PROPRIETARY EXTENSION
+    void setThreadPoolToUse(int poolToUse);
 
 } // interface RequestMessage

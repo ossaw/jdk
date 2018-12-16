@@ -15,30 +15,30 @@ package javax.security.auth;
  */
 public interface Refreshable {
 
-	/**
-	 * Determine if this {@code Object} is current.
-	 *
-	 * <p>
-	 *
-	 * @return true if this {@code Object} is currently current, false
-	 *         otherwise.
-	 */
-	boolean isCurrent();
+    /**
+     * Determine if this {@code Object} is current.
+     *
+     * <p>
+     *
+     * @return true if this {@code Object} is currently current, false
+     *         otherwise.
+     */
+    boolean isCurrent();
 
-	/**
-	 * Update or extend the validity period for this {@code Object}.
-	 *
-	 * <p>
-	 *
-	 * @exception SecurityException
-	 *                                   if the caller does not have permission
-	 *                                   to update or extend
-	 *                                   the validity period for this
-	 *                                   {@code Object}.
-	 *                                   <p>
-	 *
-	 * @exception RefreshFailedException
-	 *                                   if the refresh attempt failed.
-	 */
-	void refresh() throws RefreshFailedException;
+    /**
+     * Update or extend the validity period for this {@code Object}.
+     *
+     * <p>
+     *
+     * @exception SecurityException
+     *                                   if the caller does not have permission
+     *                                   to update or extend
+     *                                   the validity period for this
+     *                                   {@code Object}.
+     *                                   <p>
+     *
+     * @exception RefreshFailedException
+     *                                   if the refresh attempt failed.
+     */
+    void refresh() throws RefreshFailedException;
 }

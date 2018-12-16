@@ -45,23 +45,23 @@ package javax.imageio.metadata;
  */
 public interface IIOMetadataController {
 
-	/**
-	 * Activates the controller. If <code>true</code> is returned, all settings
-	 * in the <code>IIOMetadata</code> object should be ready for use in a write
-	 * operation. If <code>false</code> is returned, no settings in the
-	 * <code>IIOMetadata</code> object will be disturbed (<i>i.e.</i>, the user
-	 * canceled the operation).
-	 *
-	 * @param metadata
-	 *                 the <code>IIOMetadata</code> object to be modified.
-	 *
-	 * @return <code>true</code> if the <code>IIOMetadata</code> has been
-	 *         modified, <code>false</code> otherwise.
-	 *
-	 * @exception IllegalArgumentException
-	 *                                     if <code>metadata</code> is
-	 *                                     <code>null</code> or is not an
-	 *                                     instance of the correct class.
-	 */
-	boolean activate(IIOMetadata metadata);
+    /**
+     * Activates the controller. If <code>true</code> is returned, all settings
+     * in the <code>IIOMetadata</code> object should be ready for use in a write
+     * operation. If <code>false</code> is returned, no settings in the
+     * <code>IIOMetadata</code> object will be disturbed (<i>i.e.</i>, the user
+     * canceled the operation).
+     *
+     * @param metadata
+     *                 the <code>IIOMetadata</code> object to be modified.
+     *
+     * @return <code>true</code> if the <code>IIOMetadata</code> has been
+     *         modified, <code>false</code> otherwise.
+     *
+     * @exception IllegalArgumentException
+     *                                     if <code>metadata</code> is
+     *                                     <code>null</code> or is not an
+     *                                     instance of the correct class.
+     */
+    boolean activate(IIOMetadata metadata);
 }

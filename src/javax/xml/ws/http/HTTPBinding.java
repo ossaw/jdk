@@ -15,8 +15,8 @@ import javax.xml.ws.Binding;
  **/
 public interface HTTPBinding extends Binding {
 
-	/**
-	 * A constant representing the identity of the XML/HTTP binding.
-	 */
-	public static final String HTTP_BINDING = "http://www.w3.org/2004/08/wsdl/http";
+    /**
+     * A constant representing the identity of the XML/HTTP binding.
+     */
+    public static final String HTTP_BINDING = "http://www.w3.org/2004/08/wsdl/http";
 }

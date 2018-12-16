@@ -36,34 +36,34 @@ package java.text;
 
 public class Annotation {
 
-	/**
-	 * Constructs an annotation record with the given value, which may be null.
-	 *
-	 * @param value
-	 *              the value of the attribute
-	 */
-	public Annotation(Object value) {
-		this.value = value;
-	}
+    /**
+     * Constructs an annotation record with the given value, which may be null.
+     *
+     * @param value
+     *              the value of the attribute
+     */
+    public Annotation(Object value) {
+        this.value = value;
+    }
 
-	/**
-	 * Returns the value of the attribute, which may be null.
-	 *
-	 * @return the value of the attribute
-	 */
-	public Object getValue() {
-		return value;
-	}
+    /**
+     * Returns the value of the attribute, which may be null.
+     *
+     * @return the value of the attribute
+     */
+    public Object getValue() {
+        return value;
+    }
 
-	/**
-	 * Returns the String representation of this Annotation.
-	 *
-	 * @return the {@code String} representation of this {@code Annotation}
-	 */
-	public String toString() {
-		return getClass().getName() + "[value=" + value + "]";
-	}
+    /**
+     * Returns the String representation of this Annotation.
+     *
+     * @return the {@code String} representation of this {@code Annotation}
+     */
+    public String toString() {
+        return getClass().getName() + "[value=" + value + "]";
+    }
 
-	private Object value;
+    private Object value;
 
 };

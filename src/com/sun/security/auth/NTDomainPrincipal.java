@@ -28,106 +28,106 @@ import java.security.Principal;
 @jdk.Exported
 public class NTDomainPrincipal implements Principal, java.io.Serializable {
 
-	private static final long serialVersionUID = -4408637351440771220L;
+    private static final long serialVersionUID = -4408637351440771220L;
 
-	/**
-	 * @serial
-	 */
-	private String name;
+    /**
+     * @serial
+     */
+    private String name;
 
-	/**
-	 * Create an <code>NTDomainPrincipal</code> with a Windows NT domain name.
-	 *
-	 * <p>
-	 *
-	 * @param name
-	 *             the Windows NT domain name for this user.
-	 *             <p>
-	 *
-	 * @exception NullPointerException
-	 *                                 if the <code>name</code> is
-	 *                                 <code>null</code>.
-	 */
-	public NTDomainPrincipal(String name) {
-		if (name == null) {
-			java.text.MessageFormat form = new java.text.MessageFormat(
-					sun.security.util.ResourcesMgr.getString(
-							"invalid.null.input.value",
-							"sun.security.util.AuthResources"));
-			Object[] source = { "name" };
-			throw new NullPointerException(form.format(source));
-		}
-		this.name = name;
-	}
+    /**
+     * Create an <code>NTDomainPrincipal</code> with a Windows NT domain name.
+     *
+     * <p>
+     *
+     * @param name
+     *             the Windows NT domain name for this user.
+     *             <p>
+     *
+     * @exception NullPointerException
+     *                                 if the <code>name</code> is
+     *                                 <code>null</code>.
+     */
+    public NTDomainPrincipal(String name) {
+        if (name == null) {
+            java.text.MessageFormat form = new java.text.MessageFormat(
+                    sun.security.util.ResourcesMgr.getString(
+                            "invalid.null.input.value",
+                            "sun.security.util.AuthResources"));
+            Object[] source = { "name" };
+            throw new NullPointerException(form.format(source));
+        }
+        this.name = name;
+    }
 
-	/**
-	 * Return the Windows NT domain name for this <code>NTDomainPrincipal</code>
-	 * .
-	 *
-	 * <p>
-	 *
-	 * @return the Windows NT domain name for this
-	 *         <code>NTDomainPrincipal</code>
-	 */
-	public String getName() {
-		return name;
-	}
+    /**
+     * Return the Windows NT domain name for this <code>NTDomainPrincipal</code>
+     * .
+     *
+     * <p>
+     *
+     * @return the Windows NT domain name for this
+     *         <code>NTDomainPrincipal</code>
+     */
+    public String getName() {
+        return name;
+    }
 
-	/**
-	 * Return a string representation of this <code>NTDomainPrincipal</code>.
-	 *
-	 * <p>
-	 *
-	 * @return a string representation of this <code>NTDomainPrincipal</code>.
-	 */
-	public String toString() {
-		java.text.MessageFormat form = new java.text.MessageFormat(
-				sun.security.util.ResourcesMgr.getString(
-						"NTDomainPrincipal.name",
-						"sun.security.util.AuthResources"));
-		Object[] source = { name };
-		return form.format(source);
-	}
+    /**
+     * Return a string representation of this <code>NTDomainPrincipal</code>.
+     *
+     * <p>
+     *
+     * @return a string representation of this <code>NTDomainPrincipal</code>.
+     */
+    public String toString() {
+        java.text.MessageFormat form = new java.text.MessageFormat(
+                sun.security.util.ResourcesMgr.getString(
+                        "NTDomainPrincipal.name",
+                        "sun.security.util.AuthResources"));
+        Object[] source = { name };
+        return form.format(source);
+    }
 
-	/**
-	 * Compares the specified Object with this <code>NTDomainPrincipal</code>
-	 * for equality. Returns true if the given object is also a
-	 * <code>NTDomainPrincipal</code> and the two NTDomainPrincipals have the
-	 * same name.
-	 *
-	 * <p>
-	 *
-	 * @param o
-	 *          Object to be compared for equality with this
-	 *          <code>NTDomainPrincipal</code>.
-	 *
-	 * @return true if the specified Object is equal equal to this
-	 *         <code>NTDomainPrincipal</code>.
-	 */
-	public boolean equals(Object o) {
-		if (o == null)
-			return false;
+    /**
+     * Compares the specified Object with this <code>NTDomainPrincipal</code>
+     * for equality. Returns true if the given object is also a
+     * <code>NTDomainPrincipal</code> and the two NTDomainPrincipals have the
+     * same name.
+     *
+     * <p>
+     *
+     * @param o
+     *          Object to be compared for equality with this
+     *          <code>NTDomainPrincipal</code>.
+     *
+     * @return true if the specified Object is equal equal to this
+     *         <code>NTDomainPrincipal</code>.
+     */
+    public boolean equals(Object o) {
+        if (o == null)
+            return false;
 
-		if (this == o)
-			return true;
+        if (this == o)
+            return true;
 
-		if (!(o instanceof NTDomainPrincipal))
-			return false;
-		NTDomainPrincipal that = (NTDomainPrincipal) o;
+        if (!(o instanceof NTDomainPrincipal))
+            return false;
+        NTDomainPrincipal that = (NTDomainPrincipal) o;
 
-		if (name.equals(that.getName()))
-			return true;
-		return false;
-	}
+        if (name.equals(that.getName()))
+            return true;
+        return false;
+    }
 
-	/**
-	 * Return a hash code for this <code>NTDomainPrincipal</code>.
-	 *
-	 * <p>
-	 *
-	 * @return a hash code for this <code>NTDomainPrincipal</code>.
-	 */
-	public int hashCode() {
-		return this.getName().hashCode();
-	}
+    /**
+     * Return a hash code for this <code>NTDomainPrincipal</code>.
+     *
+     * <p>
+     *
+     * @return a hash code for this <code>NTDomainPrincipal</code>.
+     */
+    public int hashCode() {
+        return this.getName().hashCode();
+    }
 }

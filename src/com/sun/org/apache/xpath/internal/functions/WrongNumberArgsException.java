@@ -27,18 +27,18 @@ package com.sun.org.apache.xpath.internal.functions;
  * @xsl.usage advanced
  */
 public class WrongNumberArgsException extends Exception {
-	static final long serialVersionUID = -4551577097576242432L;
+    static final long serialVersionUID = -4551577097576242432L;
 
-	/**
-	 * Constructor WrongNumberArgsException
-	 *
-	 * @param argsExpected
-	 *                     Error message that tells the number of arguments that
-	 *                     were
-	 *                     expected.
-	 */
-	public WrongNumberArgsException(String argsExpected) {
+    /**
+     * Constructor WrongNumberArgsException
+     *
+     * @param argsExpected
+     *                     Error message that tells the number of arguments that
+     *                     were
+     *                     expected.
+     */
+    public WrongNumberArgsException(String argsExpected) {
 
-		super(argsExpected);
-	}
+        super(argsExpected);
+    }
 }

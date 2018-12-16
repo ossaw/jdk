@@ -90,7 +90,7 @@ import javax.sql.*;
  * 
  * <PRE>
  * CachedRowSet crs = new CachedRowSet(
- * 		"com.fred.providers.HighAvailabilitySyncProvider");
+ *         "com.fred.providers.HighAvailabilitySyncProvider");
  * </PRE>
  * 
  * <LI>Using the <code>setSyncProvider</code> method
@@ -193,218 +193,218 @@ import javax.sql.*;
  */
 public abstract class SyncProvider {
 
-	/**
-	 * Creates a default <code>SyncProvider</code> object.
-	 */
-	public SyncProvider() {}
+    /**
+     * Creates a default <code>SyncProvider</code> object.
+     */
+    public SyncProvider() {}
 
-	/**
-	 * Returns the unique identifier for this <code>SyncProvider</code> object.
-	 *
-	 * @return a <code>String</code> object with the fully qualified class name
-	 *         of this <code>SyncProvider</code> object
-	 */
-	public abstract String getProviderID();
+    /**
+     * Returns the unique identifier for this <code>SyncProvider</code> object.
+     *
+     * @return a <code>String</code> object with the fully qualified class name
+     *         of this <code>SyncProvider</code> object
+     */
+    public abstract String getProviderID();
 
-	/**
-	 * Returns a <code>javax.sql.RowSetReader</code> object, which can be used
-	 * to populate a <code>RowSet</code> object with data.
-	 *
-	 * @return a <code>javax.sql.RowSetReader</code> object
-	 */
-	public abstract RowSetReader getRowSetReader();
+    /**
+     * Returns a <code>javax.sql.RowSetReader</code> object, which can be used
+     * to populate a <code>RowSet</code> object with data.
+     *
+     * @return a <code>javax.sql.RowSetReader</code> object
+     */
+    public abstract RowSetReader getRowSetReader();
 
-	/**
-	 * Returns a <code>javax.sql.RowSetWriter</code> object, which can be used
-	 * to write a <code>RowSet</code> object's data back to the underlying data
-	 * source.
-	 *
-	 * @return a <code>javax.sql.RowSetWriter</code> object
-	 */
-	public abstract RowSetWriter getRowSetWriter();
+    /**
+     * Returns a <code>javax.sql.RowSetWriter</code> object, which can be used
+     * to write a <code>RowSet</code> object's data back to the underlying data
+     * source.
+     *
+     * @return a <code>javax.sql.RowSetWriter</code> object
+     */
+    public abstract RowSetWriter getRowSetWriter();
 
-	/**
-	 * Returns a constant indicating the grade of synchronization a
-	 * <code>RowSet</code> object can expect from this <code>SyncProvider</code>
-	 * object.
-	 *
-	 * @return an int that is one of the following constants:
-	 *         SyncProvider.GRADE_NONE,
-	 *         SyncProvider.GRADE_CHECK_MODIFIED_AT_COMMIT,
-	 *         SyncProvider.GRADE_CHECK_ALL_AT_COMMIT,
-	 *         SyncProvider.GRADE_LOCK_WHEN_MODIFIED,
-	 *         SyncProvider.GRADE_LOCK_WHEN_LOADED
-	 */
-	public abstract int getProviderGrade();
+    /**
+     * Returns a constant indicating the grade of synchronization a
+     * <code>RowSet</code> object can expect from this <code>SyncProvider</code>
+     * object.
+     *
+     * @return an int that is one of the following constants:
+     *         SyncProvider.GRADE_NONE,
+     *         SyncProvider.GRADE_CHECK_MODIFIED_AT_COMMIT,
+     *         SyncProvider.GRADE_CHECK_ALL_AT_COMMIT,
+     *         SyncProvider.GRADE_LOCK_WHEN_MODIFIED,
+     *         SyncProvider.GRADE_LOCK_WHEN_LOADED
+     */
+    public abstract int getProviderGrade();
 
-	/**
-	 * Sets a lock on the underlying data source at the level indicated by
-	 * <i>datasource_lock</i>. This should cause the <code>SyncProvider</code>
-	 * to adjust its behavior by increasing or decreasing the level of optimism
-	 * it provides for a successful synchronization.
-	 *
-	 * @param datasource_lock
-	 *                        one of the following constants indicating the
-	 *                        severity level
-	 *                        of data source lock required:
-	 * 
-	 *                        <pre>
-	 *           SyncProvider.DATASOURCE_NO_LOCK,
-	 *           SyncProvider.DATASOURCE_ROW_LOCK,
-	 *           SyncProvider.DATASOURCE_TABLE_LOCK,
-	 *           SyncProvider.DATASOURCE_DB_LOCK,
-	 *                        </pre>
-	 * 
-	 * @throws SyncProviderException
-	 *                               if an unsupported data source locking level
-	 *                               is set.
-	 * @see #getDataSourceLock
-	 */
-	public abstract void setDataSourceLock(int datasource_lock)
-			throws SyncProviderException;
+    /**
+     * Sets a lock on the underlying data source at the level indicated by
+     * <i>datasource_lock</i>. This should cause the <code>SyncProvider</code>
+     * to adjust its behavior by increasing or decreasing the level of optimism
+     * it provides for a successful synchronization.
+     *
+     * @param datasource_lock
+     *                        one of the following constants indicating the
+     *                        severity level
+     *                        of data source lock required:
+     * 
+     *                        <pre>
+     *           SyncProvider.DATASOURCE_NO_LOCK,
+     *           SyncProvider.DATASOURCE_ROW_LOCK,
+     *           SyncProvider.DATASOURCE_TABLE_LOCK,
+     *           SyncProvider.DATASOURCE_DB_LOCK,
+     *                        </pre>
+     * 
+     * @throws SyncProviderException
+     *                               if an unsupported data source locking level
+     *                               is set.
+     * @see #getDataSourceLock
+     */
+    public abstract void setDataSourceLock(int datasource_lock)
+            throws SyncProviderException;
 
-	/**
-	 * Returns the current data source lock severity level active in this
-	 * <code>SyncProvider</code> implementation.
-	 *
-	 * @return a constant indicating the current level of data source lock
-	 *         active in this <code>SyncProvider</code> object; one of the
-	 *         following:
-	 * 
-	 *         <pre>
-	 *           SyncProvider.DATASOURCE_NO_LOCK,
-	 *           SyncProvider.DATASOURCE_ROW_LOCK,
-	 *           SyncProvider.DATASOURCE_TABLE_LOCK,
-	 *           SyncProvider.DATASOURCE_DB_LOCK
-	 *         </pre>
-	 * 
-	 * @throws SyncProviderException
-	 *                               if an error occurs determining the data
-	 *                               source locking level.
-	 * @see #setDataSourceLock
-	 * 
-	 */
-	public abstract int getDataSourceLock() throws SyncProviderException;
+    /**
+     * Returns the current data source lock severity level active in this
+     * <code>SyncProvider</code> implementation.
+     *
+     * @return a constant indicating the current level of data source lock
+     *         active in this <code>SyncProvider</code> object; one of the
+     *         following:
+     * 
+     *         <pre>
+     *           SyncProvider.DATASOURCE_NO_LOCK,
+     *           SyncProvider.DATASOURCE_ROW_LOCK,
+     *           SyncProvider.DATASOURCE_TABLE_LOCK,
+     *           SyncProvider.DATASOURCE_DB_LOCK
+     *         </pre>
+     * 
+     * @throws SyncProviderException
+     *                               if an error occurs determining the data
+     *                               source locking level.
+     * @see #setDataSourceLock
+     * 
+     */
+    public abstract int getDataSourceLock() throws SyncProviderException;
 
-	/**
-	 * Returns whether this <code>SyncProvider</code> implementation can perform
-	 * synchronization between a <code>RowSet</code> object and the SQL
-	 * <code>VIEW</code> in the data source from which the <code>RowSet</code>
-	 * object got its data.
-	 *
-	 * @return an <code>int</code> saying whether this <code>SyncProvider</code>
-	 *         object supports updating an SQL <code>VIEW</code>; one of the
-	 *         following: SyncProvider.UPDATABLE_VIEW_SYNC,
-	 *         SyncProvider.NONUPDATABLE_VIEW_SYNC
-	 */
-	public abstract int supportsUpdatableView();
+    /**
+     * Returns whether this <code>SyncProvider</code> implementation can perform
+     * synchronization between a <code>RowSet</code> object and the SQL
+     * <code>VIEW</code> in the data source from which the <code>RowSet</code>
+     * object got its data.
+     *
+     * @return an <code>int</code> saying whether this <code>SyncProvider</code>
+     *         object supports updating an SQL <code>VIEW</code>; one of the
+     *         following: SyncProvider.UPDATABLE_VIEW_SYNC,
+     *         SyncProvider.NONUPDATABLE_VIEW_SYNC
+     */
+    public abstract int supportsUpdatableView();
 
-	/**
-	 * Returns the release version of this <code>SyncProvider</code> instance.
-	 *
-	 * @return a <code>String</code> detailing the release version of the
-	 *         <code>SyncProvider</code> implementation
-	 */
-	public abstract String getVersion();
+    /**
+     * Returns the release version of this <code>SyncProvider</code> instance.
+     *
+     * @return a <code>String</code> detailing the release version of the
+     *         <code>SyncProvider</code> implementation
+     */
+    public abstract String getVersion();
 
-	/**
-	 * Returns the vendor name of this <code>SyncProvider</code> instance
-	 *
-	 * @return a <code>String</code> detailing the vendor name of this
-	 *         <code>SyncProvider</code> implementation
-	 */
-	public abstract String getVendor();
+    /**
+     * Returns the vendor name of this <code>SyncProvider</code> instance
+     *
+     * @return a <code>String</code> detailing the vendor name of this
+     *         <code>SyncProvider</code> implementation
+     */
+    public abstract String getVendor();
 
-	/*
-	 * Standard description of synchronization grades that a SyncProvider could
-	 * provide.
-	 */
+    /*
+     * Standard description of synchronization grades that a SyncProvider could
+     * provide.
+     */
 
-	/**
-	 * Indicates that no synchronization with the originating data source is
-	 * provided. A <code>SyncProvider</code> implementation returning this grade
-	 * will simply attempt to write updates in the <code>RowSet</code> object to
-	 * the underlying data source without checking the validity of any data.
-	 *
-	 */
-	public static final int GRADE_NONE = 1;
+    /**
+     * Indicates that no synchronization with the originating data source is
+     * provided. A <code>SyncProvider</code> implementation returning this grade
+     * will simply attempt to write updates in the <code>RowSet</code> object to
+     * the underlying data source without checking the validity of any data.
+     *
+     */
+    public static final int GRADE_NONE = 1;
 
-	/**
-	 * Indicates a low level optimistic synchronization grade with respect to
-	 * the originating data source.
-	 *
-	 * A <code>SyncProvider</code> implementation returning this grade will
-	 * check only rows that have changed.
-	 *
-	 */
-	public static final int GRADE_CHECK_MODIFIED_AT_COMMIT = 2;
+    /**
+     * Indicates a low level optimistic synchronization grade with respect to
+     * the originating data source.
+     *
+     * A <code>SyncProvider</code> implementation returning this grade will
+     * check only rows that have changed.
+     *
+     */
+    public static final int GRADE_CHECK_MODIFIED_AT_COMMIT = 2;
 
-	/**
-	 * Indicates a high level optimistic synchronization grade with respect to
-	 * the originating data source.
-	 *
-	 * A <code>SyncProvider</code> implementation returning this grade will
-	 * check all rows, including rows that have not changed.
-	 */
-	public static final int GRADE_CHECK_ALL_AT_COMMIT = 3;
+    /**
+     * Indicates a high level optimistic synchronization grade with respect to
+     * the originating data source.
+     *
+     * A <code>SyncProvider</code> implementation returning this grade will
+     * check all rows, including rows that have not changed.
+     */
+    public static final int GRADE_CHECK_ALL_AT_COMMIT = 3;
 
-	/**
-	 * Indicates a pessimistic synchronization grade with respect to the
-	 * originating data source.
-	 *
-	 * A <code>SyncProvider</code> implementation returning this grade will lock
-	 * the row in the originating data source.
-	 */
-	public static final int GRADE_LOCK_WHEN_MODIFIED = 4;
+    /**
+     * Indicates a pessimistic synchronization grade with respect to the
+     * originating data source.
+     *
+     * A <code>SyncProvider</code> implementation returning this grade will lock
+     * the row in the originating data source.
+     */
+    public static final int GRADE_LOCK_WHEN_MODIFIED = 4;
 
-	/**
-	 * Indicates the most pessimistic synchronization grade with respect to the
-	 * originating data source. A <code>SyncProvider</code> implementation
-	 * returning this grade will lock the entire view and/or table affected by
-	 * the original statement used to populate a <code>RowSet</code> object.
-	 */
-	public static final int GRADE_LOCK_WHEN_LOADED = 5;
+    /**
+     * Indicates the most pessimistic synchronization grade with respect to the
+     * originating data source. A <code>SyncProvider</code> implementation
+     * returning this grade will lock the entire view and/or table affected by
+     * the original statement used to populate a <code>RowSet</code> object.
+     */
+    public static final int GRADE_LOCK_WHEN_LOADED = 5;
 
-	/**
-	 * Indicates that no locks remain on the originating data source. This is
-	 * the default lock setting for all <code>SyncProvider</code>
-	 * implementations unless otherwise directed by a <code>RowSet</code>
-	 * object.
-	 */
-	public static final int DATASOURCE_NO_LOCK = 1;
+    /**
+     * Indicates that no locks remain on the originating data source. This is
+     * the default lock setting for all <code>SyncProvider</code>
+     * implementations unless otherwise directed by a <code>RowSet</code>
+     * object.
+     */
+    public static final int DATASOURCE_NO_LOCK = 1;
 
-	/**
-	 * Indicates that a lock is placed on the rows that are touched by the
-	 * original SQL statement used to populate the <code>RowSet</code> object
-	 * that is using this <code>SyncProvider</code> object.
-	 */
-	public static final int DATASOURCE_ROW_LOCK = 2;
+    /**
+     * Indicates that a lock is placed on the rows that are touched by the
+     * original SQL statement used to populate the <code>RowSet</code> object
+     * that is using this <code>SyncProvider</code> object.
+     */
+    public static final int DATASOURCE_ROW_LOCK = 2;
 
-	/**
-	 * Indicates that a lock is placed on all tables that are touched by the
-	 * original SQL statement used to populate the <code>RowSet</code> object
-	 * that is using this <code>SyncProvider</code> object.
-	 */
-	public static final int DATASOURCE_TABLE_LOCK = 3;
+    /**
+     * Indicates that a lock is placed on all tables that are touched by the
+     * original SQL statement used to populate the <code>RowSet</code> object
+     * that is using this <code>SyncProvider</code> object.
+     */
+    public static final int DATASOURCE_TABLE_LOCK = 3;
 
-	/**
-	 * Indicates that a lock is placed on the entire data source that is the
-	 * source of data for the <code>RowSet</code> object that is using this
-	 * <code>SyncProvider</code> object.
-	 */
-	public static final int DATASOURCE_DB_LOCK = 4;
+    /**
+     * Indicates that a lock is placed on the entire data source that is the
+     * source of data for the <code>RowSet</code> object that is using this
+     * <code>SyncProvider</code> object.
+     */
+    public static final int DATASOURCE_DB_LOCK = 4;
 
-	/**
-	 * Indicates that a <code>SyncProvider</code> implementation supports
-	 * synchronization between a <code>RowSet</code> object and the SQL
-	 * <code>VIEW</code> used to populate it.
-	 */
-	public static final int UPDATABLE_VIEW_SYNC = 5;
+    /**
+     * Indicates that a <code>SyncProvider</code> implementation supports
+     * synchronization between a <code>RowSet</code> object and the SQL
+     * <code>VIEW</code> used to populate it.
+     */
+    public static final int UPDATABLE_VIEW_SYNC = 5;
 
-	/**
-	 * Indicates that a <code>SyncProvider</code> implementation does <B>not</B>
-	 * support synchronization between a <code>RowSet</code> object and the SQL
-	 * <code>VIEW</code> used to populate it.
-	 */
-	public static final int NONUPDATABLE_VIEW_SYNC = 6;
+    /**
+     * Indicates that a <code>SyncProvider</code> implementation does <B>not</B>
+     * support synchronization between a <code>RowSet</code> object and the SQL
+     * <code>VIEW</code> used to populate it.
+     */
+    public static final int NONUPDATABLE_VIEW_SYNC = 6;
 }

@@ -24,16 +24,16 @@ package javax.lang.model;
  */
 public class UnknownEntityException extends RuntimeException {
 
-	private static final long serialVersionUID = 269L;
+    private static final long serialVersionUID = 269L;
 
-	/**
-	 * Creates a new {@code UnknownEntityException} with the specified detail
-	 * message.
-	 *
-	 * @param message
-	 *                the detail message
-	 */
-	protected UnknownEntityException(String message) {
-		super(message);
-	}
+    /**
+     * Creates a new {@code UnknownEntityException} with the specified detail
+     * message.
+     *
+     * @param message
+     *                the detail message
+     */
+    protected UnknownEntityException(String message) {
+        super(message);
+    }
 }

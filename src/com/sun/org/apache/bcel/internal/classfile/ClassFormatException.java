@@ -57,11 +57,11 @@ package com.sun.org.apache.bcel.internal.classfile;
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public class ClassFormatException extends RuntimeException {
-	public ClassFormatException() {
-		super();
-	}
+    public ClassFormatException() {
+        super();
+    }
 
-	public ClassFormatException(String s) {
-		super(s);
-	}
+    public ClassFormatException(String s) {
+        super(s);
+    }
 }

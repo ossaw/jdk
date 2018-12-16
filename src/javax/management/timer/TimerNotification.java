@@ -17,83 +17,83 @@ package javax.management.timer;
  */
 public class TimerNotification extends javax.management.Notification {
 
-	/* Serial version */
-	private static final long serialVersionUID = 1798492029603825750L;
+    /* Serial version */
+    private static final long serialVersionUID = 1798492029603825750L;
 
-	/*
-	 * ------------------------------------------ PRIVATE VARIABLES
-	 * ------------------------------------------
-	 */
+    /*
+     * ------------------------------------------ PRIVATE VARIABLES
+     * ------------------------------------------
+     */
 
-	/**
-	 * @serial Timer notification identifier. This identifier is used to
-	 *         retrieve a timer notification from the timer list of
-	 *         notifications.
-	 */
-	private Integer notificationID;
+    /**
+     * @serial Timer notification identifier. This identifier is used to
+     *         retrieve a timer notification from the timer list of
+     *         notifications.
+     */
+    private Integer notificationID;
 
-	/*
-	 * ------------------------------------------ CONSTRUCTORS
-	 * ------------------------------------------
-	 */
+    /*
+     * ------------------------------------------ CONSTRUCTORS
+     * ------------------------------------------
+     */
 
-	/**
-	 * Creates a timer notification object.
-	 *
-	 * @param type
-	 *                       The notification type.
-	 * @param source
-	 *                       The notification producer.
-	 * @param sequenceNumber
-	 *                       The notification sequence number within the source
-	 *                       object.
-	 * @param timeStamp
-	 *                       The notification emission date.
-	 * @param msg
-	 *                       The notification message.
-	 * @param id
-	 *                       The notification identifier.
-	 *
-	 */
-	public TimerNotification(String type, Object source, long sequenceNumber,
-			long timeStamp, String msg, Integer id) {
+    /**
+     * Creates a timer notification object.
+     *
+     * @param type
+     *                       The notification type.
+     * @param source
+     *                       The notification producer.
+     * @param sequenceNumber
+     *                       The notification sequence number within the source
+     *                       object.
+     * @param timeStamp
+     *                       The notification emission date.
+     * @param msg
+     *                       The notification message.
+     * @param id
+     *                       The notification identifier.
+     *
+     */
+    public TimerNotification(String type, Object source, long sequenceNumber,
+            long timeStamp, String msg, Integer id) {
 
-		super(type, source, sequenceNumber, timeStamp, msg);
-		this.notificationID = id;
-	}
+        super(type, source, sequenceNumber, timeStamp, msg);
+        this.notificationID = id;
+    }
 
-	/*
-	 * ------------------------------------------ PUBLIC METHODS
-	 * ------------------------------------------
-	 */
+    /*
+     * ------------------------------------------ PUBLIC METHODS
+     * ------------------------------------------
+     */
 
-	// GETTERS AND SETTERS
-	// --------------------
+    // GETTERS AND SETTERS
+    // --------------------
 
-	/**
-	 * Gets the identifier of this timer notification.
-	 *
-	 * @return The identifier.
-	 */
-	public Integer getNotificationID() {
-		return notificationID;
-	}
+    /**
+     * Gets the identifier of this timer notification.
+     *
+     * @return The identifier.
+     */
+    public Integer getNotificationID() {
+        return notificationID;
+    }
 
-	/*
-	 * ------------------------------------------ PACKAGE METHODS
-	 * ------------------------------------------
-	 */
+    /*
+     * ------------------------------------------ PACKAGE METHODS
+     * ------------------------------------------
+     */
 
-	/**
-	 * Creates and returns a copy of this object.
-	 *
-	 */
-	Object cloneTimerNotification() {
+    /**
+     * Creates and returns a copy of this object.
+     *
+     */
+    Object cloneTimerNotification() {
 
-		TimerNotification clone = new TimerNotification(this.getType(), this
-				.getSource(), this.getSequenceNumber(), this.getTimeStamp(),
-				this.getMessage(), notificationID);
-		clone.setUserData(this.getUserData());
-		return clone;
-	}
+        TimerNotification clone = new TimerNotification(this.getType(), this
+                .getSource(), this.getSequenceNumber(), this.getTimeStamp(),
+                this.getMessage(), notificationID);
+        clone.setUserData(this.getUserData());
+        return clone;
+    }
 }

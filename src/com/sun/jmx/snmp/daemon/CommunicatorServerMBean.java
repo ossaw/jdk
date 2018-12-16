@@ -71,111 +71,111 @@ package com.sun.jmx.snmp.daemon;
 
 public interface CommunicatorServerMBean {
 
-	/**
-	 * Starts this <CODE>CommunicatorServer</CODE>.
-	 * <p>
-	 * Has no effect if this <CODE>CommunicatorServer</CODE> is
-	 * <CODE>ONLINE</CODE> or <CODE>STOPPING</CODE>.
-	 */
-	public void start();
+    /**
+     * Starts this <CODE>CommunicatorServer</CODE>.
+     * <p>
+     * Has no effect if this <CODE>CommunicatorServer</CODE> is
+     * <CODE>ONLINE</CODE> or <CODE>STOPPING</CODE>.
+     */
+    public void start();
 
-	/**
-	 * Stops this <CODE>CommunicatorServer</CODE>.
-	 * <p>
-	 * Has no effect if this <CODE>CommunicatorServer</CODE> is
-	 * <CODE>OFFLINE</CODE> or <CODE>STOPPING</CODE>.
-	 */
-	public void stop();
+    /**
+     * Stops this <CODE>CommunicatorServer</CODE>.
+     * <p>
+     * Has no effect if this <CODE>CommunicatorServer</CODE> is
+     * <CODE>OFFLINE</CODE> or <CODE>STOPPING</CODE>.
+     */
+    public void stop();
 
-	/**
-	 * Tests if the <CODE>CommunicatorServer</CODE> is active.
-	 *
-	 * @return True if connector is <CODE>ONLINE</CODE>; false otherwise.
-	 */
-	public boolean isActive();
+    /**
+     * Tests if the <CODE>CommunicatorServer</CODE> is active.
+     *
+     * @return True if connector is <CODE>ONLINE</CODE>; false otherwise.
+     */
+    public boolean isActive();
 
-	/**
-	 * Waits untill either the State attribute of this MBean equals the
-	 * specified <VAR>state</VAR> parameter, or the specified <VAR>timeOut</VAR>
-	 * has elapsed. The method <CODE>waitState</CODE> returns with a boolean
-	 * value indicating whether the specified <VAR>state</VAR> parameter equals
-	 * the value of this MBean's State attribute at the time the method
-	 * terminates.
-	 *
-	 * Two special cases for the <VAR>timeOut</VAR> parameter value are:
-	 * <UL>
-	 * <LI>if <VAR>timeOut</VAR> is negative then <CODE>waitState</CODE> returns
-	 * immediately (i.e. does not wait at all),</LI>
-	 * <LI>if <VAR>timeOut</VAR> equals zero then <CODE>waitState</CODE> waits
-	 * untill the value of this MBean's State attribute is the same as the
-	 * <VAR>state</VAR> parameter (i.e. will wait indefinitely if this condition
-	 * is never met).</LI>
-	 * </UL>
-	 *
-	 * @param state
-	 *                The value of this MBean's State attribute to wait for.
-	 *                <VAR>state</VAR> can be one of:
-	 *                <ul>
-	 *                <li><CODE>CommunicatorServer.OFFLINE</CODE>,</li>
-	 *                <li><CODE>CommunicatorServer.ONLINE</CODE>,</li>
-	 *                <li><CODE>CommunicatorServer.STARTING</CODE>,</li>
-	 *                <li><CODE>CommunicatorServer.STOPPING</CODE>.</li>
-	 *                </ul>
-	 * @param timeOut
-	 *                The maximum time to wait for, in milliseconds, if
-	 *                positive.
-	 *                Infinite time out if 0, or no waiting at all if negative.
-	 *
-	 * @return true if the value of this MBean's State attribute is the same as
-	 *         the <VAR>state</VAR> parameter; false otherwise.
-	 */
-	public boolean waitState(int state, long timeOut);
+    /**
+     * Waits untill either the State attribute of this MBean equals the
+     * specified <VAR>state</VAR> parameter, or the specified <VAR>timeOut</VAR>
+     * has elapsed. The method <CODE>waitState</CODE> returns with a boolean
+     * value indicating whether the specified <VAR>state</VAR> parameter equals
+     * the value of this MBean's State attribute at the time the method
+     * terminates.
+     *
+     * Two special cases for the <VAR>timeOut</VAR> parameter value are:
+     * <UL>
+     * <LI>if <VAR>timeOut</VAR> is negative then <CODE>waitState</CODE> returns
+     * immediately (i.e. does not wait at all),</LI>
+     * <LI>if <VAR>timeOut</VAR> equals zero then <CODE>waitState</CODE> waits
+     * untill the value of this MBean's State attribute is the same as the
+     * <VAR>state</VAR> parameter (i.e. will wait indefinitely if this condition
+     * is never met).</LI>
+     * </UL>
+     *
+     * @param state
+     *                The value of this MBean's State attribute to wait for.
+     *                <VAR>state</VAR> can be one of:
+     *                <ul>
+     *                <li><CODE>CommunicatorServer.OFFLINE</CODE>,</li>
+     *                <li><CODE>CommunicatorServer.ONLINE</CODE>,</li>
+     *                <li><CODE>CommunicatorServer.STARTING</CODE>,</li>
+     *                <li><CODE>CommunicatorServer.STOPPING</CODE>.</li>
+     *                </ul>
+     * @param timeOut
+     *                The maximum time to wait for, in milliseconds, if
+     *                positive.
+     *                Infinite time out if 0, or no waiting at all if negative.
+     *
+     * @return true if the value of this MBean's State attribute is the same as
+     *         the <VAR>state</VAR> parameter; false otherwise.
+     */
+    public boolean waitState(int state, long timeOut);
 
-	/**
-	 * Gets the state of this <CODE>CommunicatorServer</CODE> as an integer.
-	 *
-	 * @return <CODE>ONLINE</CODE>, <CODE>OFFLINE</CODE>, <CODE>STARTING</CODE>
-	 *         or <CODE>STOPPING</CODE>.
-	 */
-	public int getState();
+    /**
+     * Gets the state of this <CODE>CommunicatorServer</CODE> as an integer.
+     *
+     * @return <CODE>ONLINE</CODE>, <CODE>OFFLINE</CODE>, <CODE>STARTING</CODE>
+     *         or <CODE>STOPPING</CODE>.
+     */
+    public int getState();
 
-	/**
-	 * Gets the state of this <CODE>CommunicatorServer</CODE> as a string.
-	 *
-	 * @return One of the strings "ONLINE", "OFFLINE", "STARTING" or "STOPPING".
-	 */
-	public String getStateString();
+    /**
+     * Gets the state of this <CODE>CommunicatorServer</CODE> as a string.
+     *
+     * @return One of the strings "ONLINE", "OFFLINE", "STARTING" or "STOPPING".
+     */
+    public String getStateString();
 
-	/**
-	 * Gets the host name used by this <CODE>CommunicatorServer</CODE>.
-	 *
-	 * @return The host name used by this <CODE>CommunicatorServer</CODE>.
-	 */
-	public String getHost();
+    /**
+     * Gets the host name used by this <CODE>CommunicatorServer</CODE>.
+     *
+     * @return The host name used by this <CODE>CommunicatorServer</CODE>.
+     */
+    public String getHost();
 
-	/**
-	 * Gets the port number used by this <CODE>CommunicatorServer</CODE>.
-	 *
-	 * @return The port number used by this <CODE>CommunicatorServer</CODE>.
-	 */
-	public int getPort();
+    /**
+     * Gets the port number used by this <CODE>CommunicatorServer</CODE>.
+     *
+     * @return The port number used by this <CODE>CommunicatorServer</CODE>.
+     */
+    public int getPort();
 
-	/**
-	 * Sets the port number used by this <CODE>CommunicatorServer</CODE>.
-	 *
-	 * @param port
-	 *             The port number used by this <CODE>CommunicatorServer</CODE>.
-	 *
-	 * @exception java.lang.IllegalStateException
-	 *            This method has been invoked while the communicator was
-	 *            ONLINE or STARTING.
-	 */
-	public void setPort(int port) throws java.lang.IllegalStateException;
+    /**
+     * Sets the port number used by this <CODE>CommunicatorServer</CODE>.
+     *
+     * @param port
+     *             The port number used by this <CODE>CommunicatorServer</CODE>.
+     *
+     * @exception java.lang.IllegalStateException
+     *            This method has been invoked while the communicator was
+     *            ONLINE or STARTING.
+     */
+    public void setPort(int port) throws java.lang.IllegalStateException;
 
-	/**
-	 * Gets the protocol being used by this <CODE>CommunicatorServer</CODE>.
-	 * 
-	 * @return The protocol as a string.
-	 */
-	public abstract String getProtocol();
+    /**
+     * Gets the protocol being used by this <CODE>CommunicatorServer</CODE>.
+     * 
+     * @return The protocol as a string.
+     */
+    public abstract String getProtocol();
 }

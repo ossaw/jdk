@@ -15,21 +15,21 @@ import java.io.IOException;
  * @since JDK1.0
  */
 public class ProtocolException extends IOException {
-	private static final long serialVersionUID = -6098449442062388080L;
+    private static final long serialVersionUID = -6098449442062388080L;
 
-	/**
-	 * Constructs a new {@code ProtocolException} with the specified detail
-	 * message.
-	 *
-	 * @param host
-	 *             the detail message.
-	 */
-	public ProtocolException(String host) {
-		super(host);
-	}
+    /**
+     * Constructs a new {@code ProtocolException} with the specified detail
+     * message.
+     *
+     * @param host
+     *             the detail message.
+     */
+    public ProtocolException(String host) {
+        super(host);
+    }
 
-	/**
-	 * Constructs a new {@code ProtocolException} with no detail message.
-	 */
-	public ProtocolException() {}
+    /**
+     * Constructs a new {@code ProtocolException} with no detail message.
+     */
+    public ProtocolException() {}
 }

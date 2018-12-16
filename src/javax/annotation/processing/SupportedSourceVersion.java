@@ -25,10 +25,10 @@ import javax.lang.model.SourceVersion;
 @Target(TYPE)
 @Retention(RUNTIME)
 public @interface SupportedSourceVersion {
-	/**
-	 * Returns the latest supported source version.
-	 * 
-	 * @return the latest supported source version
-	 */
-	SourceVersion value();
+    /**
+     * Returns the latest supported source version.
+     * 
+     * @return the latest supported source version
+     */
+    SourceVersion value();
 }

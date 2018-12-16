@@ -52,73 +52,73 @@ import javax.print.attribute.PrintJobAttribute;
  * @author Alan Kaminsky
  */
 public final class Chromaticity extends EnumSyntax implements DocAttribute,
-		PrintRequestAttribute, PrintJobAttribute {
+        PrintRequestAttribute, PrintJobAttribute {
 
-	private static final long serialVersionUID = 4660543931355214012L;
+    private static final long serialVersionUID = 4660543931355214012L;
 
-	/**
-	 * Monochrome printing.
-	 */
-	public static final Chromaticity MONOCHROME = new Chromaticity(0);
+    /**
+     * Monochrome printing.
+     */
+    public static final Chromaticity MONOCHROME = new Chromaticity(0);
 
-	/**
-	 * Color printing.
-	 */
-	public static final Chromaticity COLOR = new Chromaticity(1);
+    /**
+     * Color printing.
+     */
+    public static final Chromaticity COLOR = new Chromaticity(1);
 
-	/**
-	 * Construct a new chromaticity enumeration value with the given integer
-	 * value.
-	 *
-	 * @param value
-	 *              Integer value.
-	 */
-	protected Chromaticity(int value) {
-		super(value);
-	}
+    /**
+     * Construct a new chromaticity enumeration value with the given integer
+     * value.
+     *
+     * @param value
+     *              Integer value.
+     */
+    protected Chromaticity(int value) {
+        super(value);
+    }
 
-	private static final String[] myStringTable = { "monochrome", "color" };
+    private static final String[] myStringTable = { "monochrome", "color" };
 
-	private static final Chromaticity[] myEnumValueTable = { MONOCHROME,
-			COLOR };
+    private static final Chromaticity[] myEnumValueTable = { MONOCHROME,
+            COLOR };
 
-	/**
-	 * Returns the string table for class Chromaticity.
-	 */
-	protected String[] getStringTable() {
-		return myStringTable;
-	}
+    /**
+     * Returns the string table for class Chromaticity.
+     */
+    protected String[] getStringTable() {
+        return myStringTable;
+    }
 
-	/**
-	 * Returns the enumeration value table for class Chromaticity.
-	 */
-	protected EnumSyntax[] getEnumValueTable() {
-		return myEnumValueTable;
-	}
+    /**
+     * Returns the enumeration value table for class Chromaticity.
+     */
+    protected EnumSyntax[] getEnumValueTable() {
+        return myEnumValueTable;
+    }
 
-	/**
-	 * Get the printing attribute class which is to be used as the "category"
-	 * for this printing attribute value.
-	 * <P>
-	 * For class Chromaticity, the category is the class Chromaticity itself.
-	 *
-	 * @return Printing attribute class (category), an instance of class
-	 *         {@link java.lang.Class java.lang.Class}.
-	 */
-	public final Class<? extends Attribute> getCategory() {
-		return Chromaticity.class;
-	}
+    /**
+     * Get the printing attribute class which is to be used as the "category"
+     * for this printing attribute value.
+     * <P>
+     * For class Chromaticity, the category is the class Chromaticity itself.
+     *
+     * @return Printing attribute class (category), an instance of class
+     *         {@link java.lang.Class java.lang.Class}.
+     */
+    public final Class<? extends Attribute> getCategory() {
+        return Chromaticity.class;
+    }
 
-	/**
-	 * Get the name of the category of which this attribute value is an
-	 * instance.
-	 * <P>
-	 * For class Chromaticity, the category name is <CODE>"chromaticity"</CODE>.
-	 *
-	 * @return Attribute category name.
-	 */
-	public final String getName() {
-		return "chromaticity";
-	}
+    /**
+     * Get the name of the category of which this attribute value is an
+     * instance.
+     * <P>
+     * For class Chromaticity, the category name is <CODE>"chromaticity"</CODE>.
+     *
+     * @return Attribute category name.
+     */
+    public final String getName() {
+        return "chromaticity";
+    }
 
 }

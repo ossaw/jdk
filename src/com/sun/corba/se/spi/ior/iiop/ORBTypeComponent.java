@@ -11,5 +11,5 @@ import com.sun.corba.se.spi.ior.TaggedComponent;
  * @author Ken Cavanaugh
  */
 public interface ORBTypeComponent extends TaggedComponent {
-	public int getORBType();
+    public int getORBType();
 }

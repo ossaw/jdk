@@ -17,23 +17,23 @@ package java.lang;
  * @since JDK1.0
  */
 public class ArithmeticException extends RuntimeException {
-	private static final long serialVersionUID = 2256477558314496007L;
+    private static final long serialVersionUID = 2256477558314496007L;
 
-	/**
-	 * Constructs an {@code ArithmeticException} with no detail message.
-	 */
-	public ArithmeticException() {
-		super();
-	}
+    /**
+     * Constructs an {@code ArithmeticException} with no detail message.
+     */
+    public ArithmeticException() {
+        super();
+    }
 
-	/**
-	 * Constructs an {@code ArithmeticException} with the specified detail
-	 * message.
-	 *
-	 * @param s
-	 *          the detail message.
-	 */
-	public ArithmeticException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs an {@code ArithmeticException} with the specified detail
+     * message.
+     *
+     * @param s
+     *          the detail message.
+     */
+    public ArithmeticException(String s) {
+        super(s);
+    }
 }

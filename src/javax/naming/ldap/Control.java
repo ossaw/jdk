@@ -29,47 +29,47 @@ package javax.naming.ldap;
  * @since 1.3
  */
 public interface Control extends java.io.Serializable {
-	/**
-	 * Indicates a critical control. The value of this constant is <tt>true</tt>
-	 * .
-	 */
-	public static final boolean CRITICAL = true;
+    /**
+     * Indicates a critical control. The value of this constant is <tt>true</tt>
+     * .
+     */
+    public static final boolean CRITICAL = true;
 
-	/**
-	 * Indicates a non-critical control. The value of this constant is
-	 * <tt>false</tt>.
-	 */
-	public static final boolean NONCRITICAL = false;
+    /**
+     * Indicates a non-critical control. The value of this constant is
+     * <tt>false</tt>.
+     */
+    public static final boolean NONCRITICAL = false;
 
-	/**
-	 * Retrieves the object identifier assigned for the LDAP control.
-	 *
-	 * @return The non-null object identifier string.
-	 */
-	public String getID();
+    /**
+     * Retrieves the object identifier assigned for the LDAP control.
+     *
+     * @return The non-null object identifier string.
+     */
+    public String getID();
 
-	/**
-	 * Determines the criticality of the LDAP control. A critical control must
-	 * not be ignored by the server. In other words, if the server receives a
-	 * critical control that it does not support, regardless of whether the
-	 * control makes sense for the operation, the operation will not be
-	 * performed and an <tt>OperationNotSupportedException</tt> will be thrown.
-	 * 
-	 * @return true if this control is critical; false otherwise.
-	 */
-	public boolean isCritical();
+    /**
+     * Determines the criticality of the LDAP control. A critical control must
+     * not be ignored by the server. In other words, if the server receives a
+     * critical control that it does not support, regardless of whether the
+     * control makes sense for the operation, the operation will not be
+     * performed and an <tt>OperationNotSupportedException</tt> will be thrown.
+     * 
+     * @return true if this control is critical; false otherwise.
+     */
+    public boolean isCritical();
 
-	/**
-	 * Retrieves the ASN.1 BER encoded value of the LDAP control. The result is
-	 * the raw BER bytes including the tag and length of the control's value. It
-	 * does not include the controls OID or criticality.
-	 *
-	 * Null is returned if the value is absent.
-	 *
-	 * @return A possibly null byte array representing the ASN.1 BER encoded
-	 *         value of the LDAP control.
-	 */
-	public byte[] getEncodedValue();
+    /**
+     * Retrieves the ASN.1 BER encoded value of the LDAP control. The result is
+     * the raw BER bytes including the tag and length of the control's value. It
+     * does not include the controls OID or criticality.
+     *
+     * Null is returned if the value is absent.
+     *
+     * @return A possibly null byte array representing the ASN.1 BER encoded
+     *         value of the LDAP control.
+     */
+    public byte[] getEncodedValue();
 
-	// static final long serialVersionUID = -591027748900004825L;
+    // static final long serialVersionUID = -591027748900004825L;
 }

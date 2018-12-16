@@ -32,23 +32,23 @@ import org.w3c.dom.events.Event;
  * Object Model (DOM) Level 3 Load and Save Specification</a>.
  */
 public interface LSProgressEvent extends Event {
-	/**
-	 * The input source that is being parsed.
-	 */
-	public LSInput getInput();
+    /**
+     * The input source that is being parsed.
+     */
+    public LSInput getInput();
 
-	/**
-	 * The current position in the input source, including all external entities
-	 * and other resources that have been read.
-	 */
-	public int getPosition();
+    /**
+     * The current position in the input source, including all external entities
+     * and other resources that have been read.
+     */
+    public int getPosition();
 
-	/**
-	 * The total size of the document including all external resources, this
-	 * number might change as a document is being parsed if references to more
-	 * external resources are seen. A value of <code>0</code> is returned if the
-	 * total size cannot be determined or estimated.
-	 */
-	public int getTotalSize();
+    /**
+     * The total size of the document including all external resources, this
+     * number might change as a document is being parsed if references to more
+     * external resources are seen. A value of <code>0</code> is returned if the
+     * total size cannot be determined or estimated.
+     */
+    public int getTotalSize();
 
 }

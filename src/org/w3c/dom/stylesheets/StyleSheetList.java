@@ -30,24 +30,24 @@ package org.w3c.dom.stylesheets;
  * @since DOM Level 2
  */
 public interface StyleSheetList {
-	/**
-	 * The number of <code>StyleSheets</code> in the list. The range of valid
-	 * child stylesheet indices is <code>0</code> to <code>length-1</code>
-	 * inclusive.
-	 */
-	public int getLength();
+    /**
+     * The number of <code>StyleSheets</code> in the list. The range of valid
+     * child stylesheet indices is <code>0</code> to <code>length-1</code>
+     * inclusive.
+     */
+    public int getLength();
 
-	/**
-	 * Used to retrieve a style sheet by ordinal index. If index is greater than
-	 * or equal to the number of style sheets in the list, this returns
-	 * <code>null</code>.
-	 * 
-	 * @param index
-	 *              Index into the collection
-	 * @return The style sheet at the <code>index</code> position in the
-	 *         <code>StyleSheetList</code>, or <code>null</code> if that is not
-	 *         a valid index.
-	 */
-	public StyleSheet item(int index);
+    /**
+     * Used to retrieve a style sheet by ordinal index. If index is greater than
+     * or equal to the number of style sheets in the list, this returns
+     * <code>null</code>.
+     * 
+     * @param index
+     *              Index into the collection
+     * @return The style sheet at the <code>index</code> position in the
+     *         <code>StyleSheetList</code>, or <code>null</code> if that is not
+     *         a valid index.
+     */
+    public StyleSheet item(int index);
 
 }

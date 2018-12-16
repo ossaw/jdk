@@ -111,346 +111,346 @@ import java.util.Date;
  */
 public abstract class X509Certificate extends Certificate {
 
-	/*
-	 * Constant to lookup in the Security properties file. In the Security
-	 * properties file the default implementation for X.509 v3 is given as:
-	 * <pre>
-	 * cert.provider.x509v1=com.sun.security.cert.internal.x509.X509V1CertImpl
-	 * </pre>
-	 */
-	private static final String X509_PROVIDER = "cert.provider.x509v1";
-	private static String X509Provider;
+    /*
+     * Constant to lookup in the Security properties file. In the Security
+     * properties file the default implementation for X.509 v3 is given as:
+     * <pre>
+     * cert.provider.x509v1=com.sun.security.cert.internal.x509.X509V1CertImpl
+     * </pre>
+     */
+    private static final String X509_PROVIDER = "cert.provider.x509v1";
+    private static String X509Provider;
 
-	static {
-		X509Provider = AccessController.doPrivileged(
-				new PrivilegedAction<String>() {
-					public String run() {
-						return Security.getProperty(X509_PROVIDER);
-					}
-				});
-	}
+    static {
+        X509Provider = AccessController.doPrivileged(
+                new PrivilegedAction<String>() {
+                    public String run() {
+                        return Security.getProperty(X509_PROVIDER);
+                    }
+                });
+    }
 
-	/**
-	 * Instantiates an X509Certificate object, and initializes it with the data
-	 * read from the input stream {@code inStream}. The implementation
-	 * (X509Certificate is an abstract class) is provided by the class specified
-	 * as the value of the {@code cert.provider.x509v1} security property.
-	 *
-	 * <p>
-	 * Note: Only one DER-encoded certificate is expected to be in the input
-	 * stream. Also, all X509Certificate subclasses must provide a constructor
-	 * of the form:
-	 * 
-	 * <pre>
-	 * {@code
-	 * public <subClass>(InputStream inStream) ...
-	 * }
-	 * </pre>
-	 *
-	 * @param inStream
-	 *                 an input stream with the data to be read to initialize
-	 *                 the
-	 *                 certificate.
-	 * @return an X509Certificate object initialized with the data from the
-	 *         input stream.
-	 * @exception CertificateException
-	 *                                 if a class initialization or certificate
-	 *                                 parsing error
-	 *                                 occurs.
-	 */
-	public static final X509Certificate getInstance(InputStream inStream)
-			throws CertificateException {
-		return getInst((Object) inStream);
-	}
+    /**
+     * Instantiates an X509Certificate object, and initializes it with the data
+     * read from the input stream {@code inStream}. The implementation
+     * (X509Certificate is an abstract class) is provided by the class specified
+     * as the value of the {@code cert.provider.x509v1} security property.
+     *
+     * <p>
+     * Note: Only one DER-encoded certificate is expected to be in the input
+     * stream. Also, all X509Certificate subclasses must provide a constructor
+     * of the form:
+     * 
+     * <pre>
+     * {@code
+     * public <subClass>(InputStream inStream) ...
+     * }
+     * </pre>
+     *
+     * @param inStream
+     *                 an input stream with the data to be read to initialize
+     *                 the
+     *                 certificate.
+     * @return an X509Certificate object initialized with the data from the
+     *         input stream.
+     * @exception CertificateException
+     *                                 if a class initialization or certificate
+     *                                 parsing error
+     *                                 occurs.
+     */
+    public static final X509Certificate getInstance(InputStream inStream)
+            throws CertificateException {
+        return getInst((Object) inStream);
+    }
 
-	/**
-	 * Instantiates an X509Certificate object, and initializes it with the
-	 * specified byte array. The implementation (X509Certificate is an abstract
-	 * class) is provided by the class specified as the value of the
-	 * {@code cert.provider.x509v1} security property.
-	 *
-	 * <p>
-	 * Note: All X509Certificate subclasses must provide a constructor of the
-	 * form:
-	 * 
-	 * <pre>
-	 * {@code
-	 * public <subClass>(InputStream inStream) ...
-	 * }
-	 * </pre>
-	 *
-	 * @param certData
-	 *                 a byte array containing the DER-encoded certificate.
-	 * @return an X509Certificate object initialized with the data from
-	 *         {@code certData}.
-	 * @exception CertificateException
-	 *                                 if a class initialization or certificate
-	 *                                 parsing error
-	 *                                 occurs.
-	 */
-	public static final X509Certificate getInstance(byte[] certData)
-			throws CertificateException {
-		return getInst((Object) certData);
-	}
+    /**
+     * Instantiates an X509Certificate object, and initializes it with the
+     * specified byte array. The implementation (X509Certificate is an abstract
+     * class) is provided by the class specified as the value of the
+     * {@code cert.provider.x509v1} security property.
+     *
+     * <p>
+     * Note: All X509Certificate subclasses must provide a constructor of the
+     * form:
+     * 
+     * <pre>
+     * {@code
+     * public <subClass>(InputStream inStream) ...
+     * }
+     * </pre>
+     *
+     * @param certData
+     *                 a byte array containing the DER-encoded certificate.
+     * @return an X509Certificate object initialized with the data from
+     *         {@code certData}.
+     * @exception CertificateException
+     *                                 if a class initialization or certificate
+     *                                 parsing error
+     *                                 occurs.
+     */
+    public static final X509Certificate getInstance(byte[] certData)
+            throws CertificateException {
+        return getInst((Object) certData);
+    }
 
-	private static final X509Certificate getInst(Object value)
-			throws CertificateException {
-		/*
-		 * This turns out not to work for now. To run under JDK1.2 we would need
-		 * to call beginPrivileged() but we can't do that and run under JDK1.1.
-		 */
-		String className = X509Provider;
-		if (className == null || className.length() == 0) {
-			// shouldn't happen, but assume corrupted properties file
-			// provide access to sun implementation
-			className = "com.sun.security.cert.internal.x509.X509V1CertImpl";
-		}
-		try {
-			Class<?>[] params = null;
-			if (value instanceof InputStream) {
-				params = new Class<?>[] { InputStream.class };
-			} else if (value instanceof byte[]) {
-				params = new Class<?>[] { value.getClass() };
-			} else
-				throw new CertificateException("Unsupported argument type");
-			Class<?> certClass = Class.forName(className);
+    private static final X509Certificate getInst(Object value)
+            throws CertificateException {
+        /*
+         * This turns out not to work for now. To run under JDK1.2 we would need
+         * to call beginPrivileged() but we can't do that and run under JDK1.1.
+         */
+        String className = X509Provider;
+        if (className == null || className.length() == 0) {
+            // shouldn't happen, but assume corrupted properties file
+            // provide access to sun implementation
+            className = "com.sun.security.cert.internal.x509.X509V1CertImpl";
+        }
+        try {
+            Class<?>[] params = null;
+            if (value instanceof InputStream) {
+                params = new Class<?>[] { InputStream.class };
+            } else if (value instanceof byte[]) {
+                params = new Class<?>[] { value.getClass() };
+            } else
+                throw new CertificateException("Unsupported argument type");
+            Class<?> certClass = Class.forName(className);
 
-			// get the appropriate constructor and instantiate it
-			Constructor<?> cons = certClass.getConstructor(params);
+            // get the appropriate constructor and instantiate it
+            Constructor<?> cons = certClass.getConstructor(params);
 
-			// get a new instance
-			Object obj = cons.newInstance(new Object[] { value });
-			return (X509Certificate) obj;
+            // get a new instance
+            Object obj = cons.newInstance(new Object[] { value });
+            return (X509Certificate) obj;
 
-		} catch (ClassNotFoundException e) {
-			throw new CertificateException("Could not find class: " + e);
-		} catch (IllegalAccessException e) {
-			throw new CertificateException("Could not access class: " + e);
-		} catch (InstantiationException e) {
-			throw new CertificateException("Problems instantiating: " + e);
-		} catch (InvocationTargetException e) {
-			throw new CertificateException("InvocationTargetException: " + e
-					.getTargetException());
-		} catch (NoSuchMethodException e) {
-			throw new CertificateException("Could not find class method: " + e
-					.getMessage());
-		}
-	}
+        } catch (ClassNotFoundException e) {
+            throw new CertificateException("Could not find class: " + e);
+        } catch (IllegalAccessException e) {
+            throw new CertificateException("Could not access class: " + e);
+        } catch (InstantiationException e) {
+            throw new CertificateException("Problems instantiating: " + e);
+        } catch (InvocationTargetException e) {
+            throw new CertificateException("InvocationTargetException: " + e
+                    .getTargetException());
+        } catch (NoSuchMethodException e) {
+            throw new CertificateException("Could not find class method: " + e
+                    .getMessage());
+        }
+    }
 
-	/**
-	 * Checks that the certificate is currently valid. It is if the current date
-	 * and time are within the validity period given in the certificate.
-	 * <p>
-	 * The validity period consists of two date/time values: the first and last
-	 * dates (and times) on which the certificate is valid. It is defined in
-	 * ASN.1 as:
-	 * 
-	 * <pre>
-	 * validity             Validity
-	 *
-	 * Validity ::= SEQUENCE {
-	 *     notBefore      CertificateValidityDate,
-	 *     notAfter       CertificateValidityDate }
-	 *
-	 * CertificateValidityDate ::= CHOICE {
-	 *     utcTime        UTCTime,
-	 *     generalTime    GeneralizedTime }
-	 * </pre>
-	 *
-	 * @exception CertificateExpiredException
-	 *                                            if the certificate has
-	 *                                            expired.
-	 * @exception CertificateNotYetValidException
-	 *                                            if the certificate is not yet
-	 *                                            valid.
-	 */
-	public abstract void checkValidity() throws CertificateExpiredException,
-			CertificateNotYetValidException;
+    /**
+     * Checks that the certificate is currently valid. It is if the current date
+     * and time are within the validity period given in the certificate.
+     * <p>
+     * The validity period consists of two date/time values: the first and last
+     * dates (and times) on which the certificate is valid. It is defined in
+     * ASN.1 as:
+     * 
+     * <pre>
+     * validity             Validity
+     *
+     * Validity ::= SEQUENCE {
+     *     notBefore      CertificateValidityDate,
+     *     notAfter       CertificateValidityDate }
+     *
+     * CertificateValidityDate ::= CHOICE {
+     *     utcTime        UTCTime,
+     *     generalTime    GeneralizedTime }
+     * </pre>
+     *
+     * @exception CertificateExpiredException
+     *                                            if the certificate has
+     *                                            expired.
+     * @exception CertificateNotYetValidException
+     *                                            if the certificate is not yet
+     *                                            valid.
+     */
+    public abstract void checkValidity() throws CertificateExpiredException,
+            CertificateNotYetValidException;
 
-	/**
-	 * Checks that the specified date is within the certificate's validity
-	 * period. In other words, this determines whether the certificate would be
-	 * valid at the specified date/time.
-	 *
-	 * @param date
-	 *             the Date to check against to see if this certificate is valid
-	 *             at that date/time.
-	 * @exception CertificateExpiredException
-	 *                                            if the certificate has expired
-	 *                                            with respect to the
-	 *                                            {@code date} supplied.
-	 * @exception CertificateNotYetValidException
-	 *                                            if the certificate is not yet
-	 *                                            valid with respect to the
-	 *                                            {@code date} supplied.
-	 * @see #checkValidity()
-	 */
-	public abstract void checkValidity(Date date)
-			throws CertificateExpiredException, CertificateNotYetValidException;
+    /**
+     * Checks that the specified date is within the certificate's validity
+     * period. In other words, this determines whether the certificate would be
+     * valid at the specified date/time.
+     *
+     * @param date
+     *             the Date to check against to see if this certificate is valid
+     *             at that date/time.
+     * @exception CertificateExpiredException
+     *                                            if the certificate has expired
+     *                                            with respect to the
+     *                                            {@code date} supplied.
+     * @exception CertificateNotYetValidException
+     *                                            if the certificate is not yet
+     *                                            valid with respect to the
+     *                                            {@code date} supplied.
+     * @see #checkValidity()
+     */
+    public abstract void checkValidity(Date date)
+            throws CertificateExpiredException, CertificateNotYetValidException;
 
-	/**
-	 * Gets the {@code version} (version number) value from the certificate. The
-	 * ASN.1 definition for this is:
-	 * 
-	 * <pre>
-	 * version         [0]  EXPLICIT Version DEFAULT v1
-	 *
-	 * Version  ::=  INTEGER  {  v1(0), v2(1), v3(2)  }
-	 * </pre>
-	 *
-	 * @return the version number from the ASN.1 encoding, i.e. 0, 1 or 2.
-	 */
-	public abstract int getVersion();
+    /**
+     * Gets the {@code version} (version number) value from the certificate. The
+     * ASN.1 definition for this is:
+     * 
+     * <pre>
+     * version         [0]  EXPLICIT Version DEFAULT v1
+     *
+     * Version  ::=  INTEGER  {  v1(0), v2(1), v3(2)  }
+     * </pre>
+     *
+     * @return the version number from the ASN.1 encoding, i.e. 0, 1 or 2.
+     */
+    public abstract int getVersion();
 
-	/**
-	 * Gets the {@code serialNumber} value from the certificate. The serial
-	 * number is an integer assigned by the certification authority to each
-	 * certificate. It must be unique for each certificate issued by a given CA
-	 * (i.e., the issuer name and serial number identify a unique certificate).
-	 * The ASN.1 definition for this is:
-	 * 
-	 * <pre>
-	 * serialNumber     CertificateSerialNumber
-	 *
-	 * CertificateSerialNumber  ::=  INTEGER
-	 * </pre>
-	 *
-	 * @return the serial number.
-	 */
-	public abstract BigInteger getSerialNumber();
+    /**
+     * Gets the {@code serialNumber} value from the certificate. The serial
+     * number is an integer assigned by the certification authority to each
+     * certificate. It must be unique for each certificate issued by a given CA
+     * (i.e., the issuer name and serial number identify a unique certificate).
+     * The ASN.1 definition for this is:
+     * 
+     * <pre>
+     * serialNumber     CertificateSerialNumber
+     *
+     * CertificateSerialNumber  ::=  INTEGER
+     * </pre>
+     *
+     * @return the serial number.
+     */
+    public abstract BigInteger getSerialNumber();
 
-	/**
-	 * Gets the {@code issuer} (issuer distinguished name) value from the
-	 * certificate. The issuer name identifies the entity that signed (and
-	 * issued) the certificate.
-	 *
-	 * <p>
-	 * The issuer name field contains an X.500 distinguished name (DN). The
-	 * ASN.1 definition for this is:
-	 * 
-	 * <pre>
-	 * issuer    Name
-	 *
-	 * Name ::= CHOICE { RDNSequence }
-	 * RDNSequence ::= SEQUENCE OF RelativeDistinguishedName
-	 * RelativeDistinguishedName ::=
-	 *     SET OF AttributeValueAssertion
-	 *
-	 * AttributeValueAssertion ::= SEQUENCE {
-	 *                               AttributeType,
-	 *                               AttributeValue }
-	 * AttributeType ::= OBJECT IDENTIFIER
-	 * AttributeValue ::= ANY
-	 * </pre>
-	 * 
-	 * The {@code Name} describes a hierarchical name composed of attributes,
-	 * such as country name, and corresponding values, such as US. The type of
-	 * the {@code AttributeValue} component is determined by the
-	 * {@code AttributeType}; in general it will be a {@code directoryString}. A
-	 * {@code directoryString} is usually one of {@code PrintableString},
-	 * {@code TeletexString} or {@code UniversalString}.
-	 *
-	 * @return a Principal whose name is the issuer distinguished name.
-	 */
-	public abstract Principal getIssuerDN();
+    /**
+     * Gets the {@code issuer} (issuer distinguished name) value from the
+     * certificate. The issuer name identifies the entity that signed (and
+     * issued) the certificate.
+     *
+     * <p>
+     * The issuer name field contains an X.500 distinguished name (DN). The
+     * ASN.1 definition for this is:
+     * 
+     * <pre>
+     * issuer    Name
+     *
+     * Name ::= CHOICE { RDNSequence }
+     * RDNSequence ::= SEQUENCE OF RelativeDistinguishedName
+     * RelativeDistinguishedName ::=
+     *     SET OF AttributeValueAssertion
+     *
+     * AttributeValueAssertion ::= SEQUENCE {
+     *                               AttributeType,
+     *                               AttributeValue }
+     * AttributeType ::= OBJECT IDENTIFIER
+     * AttributeValue ::= ANY
+     * </pre>
+     * 
+     * The {@code Name} describes a hierarchical name composed of attributes,
+     * such as country name, and corresponding values, such as US. The type of
+     * the {@code AttributeValue} component is determined by the
+     * {@code AttributeType}; in general it will be a {@code directoryString}. A
+     * {@code directoryString} is usually one of {@code PrintableString},
+     * {@code TeletexString} or {@code UniversalString}.
+     *
+     * @return a Principal whose name is the issuer distinguished name.
+     */
+    public abstract Principal getIssuerDN();
 
-	/**
-	 * Gets the {@code subject} (subject distinguished name) value from the
-	 * certificate. The ASN.1 definition for this is:
-	 * 
-	 * <pre>
-	 * subject    Name
-	 * </pre>
-	 *
-	 * <p>
-	 * See {@link #getIssuerDN() getIssuerDN} for {@code Name} and other
-	 * relevant definitions.
-	 *
-	 * @return a Principal whose name is the subject name.
-	 * @see #getIssuerDN()
-	 */
-	public abstract Principal getSubjectDN();
+    /**
+     * Gets the {@code subject} (subject distinguished name) value from the
+     * certificate. The ASN.1 definition for this is:
+     * 
+     * <pre>
+     * subject    Name
+     * </pre>
+     *
+     * <p>
+     * See {@link #getIssuerDN() getIssuerDN} for {@code Name} and other
+     * relevant definitions.
+     *
+     * @return a Principal whose name is the subject name.
+     * @see #getIssuerDN()
+     */
+    public abstract Principal getSubjectDN();
 
-	/**
-	 * Gets the {@code notBefore} date from the validity period of the
-	 * certificate. The relevant ASN.1 definitions are:
-	 * 
-	 * <pre>
-	 * validity             Validity
-	 *
-	 * Validity ::= SEQUENCE {
-	 *     notBefore      CertificateValidityDate,
-	 *     notAfter       CertificateValidityDate }
-	 *
-	 * CertificateValidityDate ::= CHOICE {
-	 *     utcTime        UTCTime,
-	 *     generalTime    GeneralizedTime }
-	 * </pre>
-	 *
-	 * @return the start date of the validity period.
-	 * @see #checkValidity()
-	 */
-	public abstract Date getNotBefore();
+    /**
+     * Gets the {@code notBefore} date from the validity period of the
+     * certificate. The relevant ASN.1 definitions are:
+     * 
+     * <pre>
+     * validity             Validity
+     *
+     * Validity ::= SEQUENCE {
+     *     notBefore      CertificateValidityDate,
+     *     notAfter       CertificateValidityDate }
+     *
+     * CertificateValidityDate ::= CHOICE {
+     *     utcTime        UTCTime,
+     *     generalTime    GeneralizedTime }
+     * </pre>
+     *
+     * @return the start date of the validity period.
+     * @see #checkValidity()
+     */
+    public abstract Date getNotBefore();
 
-	/**
-	 * Gets the {@code notAfter} date from the validity period of the
-	 * certificate. See {@link #getNotBefore() getNotBefore} for relevant ASN.1
-	 * definitions.
-	 *
-	 * @return the end date of the validity period.
-	 * @see #checkValidity()
-	 */
-	public abstract Date getNotAfter();
+    /**
+     * Gets the {@code notAfter} date from the validity period of the
+     * certificate. See {@link #getNotBefore() getNotBefore} for relevant ASN.1
+     * definitions.
+     *
+     * @return the end date of the validity period.
+     * @see #checkValidity()
+     */
+    public abstract Date getNotAfter();
 
-	/**
-	 * Gets the signature algorithm name for the certificate signature
-	 * algorithm. An example is the string "SHA-1/DSA". The ASN.1 definition for
-	 * this is:
-	 * 
-	 * <pre>
-	 * signatureAlgorithm   AlgorithmIdentifier
-	 *
-	 * AlgorithmIdentifier  ::=  SEQUENCE  {
-	 *     algorithm               OBJECT IDENTIFIER,
-	 *     parameters              ANY DEFINED BY algorithm OPTIONAL  }
-	 *                             -- contains a value of the type
-	 *                             -- registered for use with the
-	 *                             -- algorithm object identifier value
-	 * </pre>
-	 *
-	 * <p>
-	 * The algorithm name is determined from the {@code algorithm} OID string.
-	 *
-	 * @return the signature algorithm name.
-	 */
-	public abstract String getSigAlgName();
+    /**
+     * Gets the signature algorithm name for the certificate signature
+     * algorithm. An example is the string "SHA-1/DSA". The ASN.1 definition for
+     * this is:
+     * 
+     * <pre>
+     * signatureAlgorithm   AlgorithmIdentifier
+     *
+     * AlgorithmIdentifier  ::=  SEQUENCE  {
+     *     algorithm               OBJECT IDENTIFIER,
+     *     parameters              ANY DEFINED BY algorithm OPTIONAL  }
+     *                             -- contains a value of the type
+     *                             -- registered for use with the
+     *                             -- algorithm object identifier value
+     * </pre>
+     *
+     * <p>
+     * The algorithm name is determined from the {@code algorithm} OID string.
+     *
+     * @return the signature algorithm name.
+     */
+    public abstract String getSigAlgName();
 
-	/**
-	 * Gets the signature algorithm OID string from the certificate. An OID is
-	 * represented by a set of positive whole numbers separated by periods. For
-	 * example, the string "1.2.840.10040.4.3" identifies the SHA-1 with DSA
-	 * signature algorithm, as per the PKIX part I.
-	 *
-	 * <p>
-	 * See {@link #getSigAlgName() getSigAlgName} for relevant ASN.1
-	 * definitions.
-	 *
-	 * @return the signature algorithm OID string.
-	 */
-	public abstract String getSigAlgOID();
+    /**
+     * Gets the signature algorithm OID string from the certificate. An OID is
+     * represented by a set of positive whole numbers separated by periods. For
+     * example, the string "1.2.840.10040.4.3" identifies the SHA-1 with DSA
+     * signature algorithm, as per the PKIX part I.
+     *
+     * <p>
+     * See {@link #getSigAlgName() getSigAlgName} for relevant ASN.1
+     * definitions.
+     *
+     * @return the signature algorithm OID string.
+     */
+    public abstract String getSigAlgOID();
 
-	/**
-	 * Gets the DER-encoded signature algorithm parameters from this
-	 * certificate's signature algorithm. In most cases, the signature algorithm
-	 * parameters are null; the parameters are usually supplied with the
-	 * certificate's public key.
-	 *
-	 * <p>
-	 * See {@link #getSigAlgName() getSigAlgName} for relevant ASN.1
-	 * definitions.
-	 *
-	 * @return the DER-encoded signature algorithm parameters, or null if no
-	 *         parameters are present.
-	 */
-	public abstract byte[] getSigAlgParams();
+    /**
+     * Gets the DER-encoded signature algorithm parameters from this
+     * certificate's signature algorithm. In most cases, the signature algorithm
+     * parameters are null; the parameters are usually supplied with the
+     * certificate's public key.
+     *
+     * <p>
+     * See {@link #getSigAlgName() getSigAlgName} for relevant ASN.1
+     * definitions.
+     *
+     * @return the DER-encoded signature algorithm parameters, or null if no
+     *         parameters are present.
+     */
+    public abstract byte[] getSigAlgParams();
 }

@@ -18,7 +18,7 @@ package com.sun.javadoc;
  */
 public interface AnnotatedType extends Type {
 
-	AnnotationDesc[] annotations();
+    AnnotationDesc[] annotations();
 
-	Type underlyingType();
+    Type underlyingType();
 }

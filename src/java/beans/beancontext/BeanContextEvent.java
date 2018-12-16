@@ -26,63 +26,63 @@ import java.beans.beancontext.BeanContext;
  */
 
 public abstract class BeanContextEvent extends EventObject {
-	private static final long serialVersionUID = 7267998073569045052L;
+    private static final long serialVersionUID = 7267998073569045052L;
 
-	/**
-	 * Contruct a BeanContextEvent
-	 *
-	 * @param bc
-	 *           The BeanContext source
-	 */
-	protected BeanContextEvent(BeanContext bc) {
-		super(bc);
-	}
+    /**
+     * Contruct a BeanContextEvent
+     *
+     * @param bc
+     *           The BeanContext source
+     */
+    protected BeanContextEvent(BeanContext bc) {
+        super(bc);
+    }
 
-	/**
-	 * Gets the <code>BeanContext</code> associated with this event.
-	 * 
-	 * @return the <code>BeanContext</code> associated with this event.
-	 */
-	public BeanContext getBeanContext() {
-		return (BeanContext) getSource();
-	}
+    /**
+     * Gets the <code>BeanContext</code> associated with this event.
+     * 
+     * @return the <code>BeanContext</code> associated with this event.
+     */
+    public BeanContext getBeanContext() {
+        return (BeanContext) getSource();
+    }
 
-	/**
-	 * Sets the <code>BeanContext</code> from which this event was propagated.
-	 * 
-	 * @param bc
-	 *           the <code>BeanContext</code> from which this event was
-	 *           propagated
-	 */
-	public synchronized void setPropagatedFrom(BeanContext bc) {
-		propagatedFrom = bc;
-	}
+    /**
+     * Sets the <code>BeanContext</code> from which this event was propagated.
+     * 
+     * @param bc
+     *           the <code>BeanContext</code> from which this event was
+     *           propagated
+     */
+    public synchronized void setPropagatedFrom(BeanContext bc) {
+        propagatedFrom = bc;
+    }
 
-	/**
-	 * Gets the <code>BeanContext</code> from which this event was propagated.
-	 * 
-	 * @return the <code>BeanContext</code> from which this event was propagated
-	 */
-	public synchronized BeanContext getPropagatedFrom() {
-		return propagatedFrom;
-	}
+    /**
+     * Gets the <code>BeanContext</code> from which this event was propagated.
+     * 
+     * @return the <code>BeanContext</code> from which this event was propagated
+     */
+    public synchronized BeanContext getPropagatedFrom() {
+        return propagatedFrom;
+    }
 
-	/**
-	 * Reports whether or not this event is propagated from some other
-	 * <code>BeanContext</code>.
-	 * 
-	 * @return <code>true</code> if propagated, <code>false</code> if not
-	 */
-	public synchronized boolean isPropagated() {
-		return propagatedFrom != null;
-	}
+    /**
+     * Reports whether or not this event is propagated from some other
+     * <code>BeanContext</code>.
+     * 
+     * @return <code>true</code> if propagated, <code>false</code> if not
+     */
+    public synchronized boolean isPropagated() {
+        return propagatedFrom != null;
+    }
 
-	/*
-	 * fields
-	 */
+    /*
+     * fields
+     */
 
-	/**
-	 * The <code>BeanContext</code> from which this event was propagated
-	 */
-	protected BeanContext propagatedFrom;
+    /**
+     * The <code>BeanContext</code> from which this event was propagated
+     */
+    protected BeanContext propagatedFrom;
 }

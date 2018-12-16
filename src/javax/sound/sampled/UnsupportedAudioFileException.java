@@ -22,24 +22,24 @@ package javax.sound.sampled;
 
 public class UnsupportedAudioFileException extends Exception {
 
-	/**
-	 * Constructs a <code>UnsupportedAudioFileException</code> that has
-	 * <code>null</code> as its error detail message.
-	 */
-	public UnsupportedAudioFileException() {
+    /**
+     * Constructs a <code>UnsupportedAudioFileException</code> that has
+     * <code>null</code> as its error detail message.
+     */
+    public UnsupportedAudioFileException() {
 
-		super();
-	}
+        super();
+    }
 
-	/**
-	 * Constructs a <code>UnsupportedAudioFileException</code> that has the
-	 * specified detail message.
-	 *
-	 * @param message
-	 *                a string containing the error detail message
-	 */
-	public UnsupportedAudioFileException(String message) {
+    /**
+     * Constructs a <code>UnsupportedAudioFileException</code> that has the
+     * specified detail message.
+     *
+     * @param message
+     *                a string containing the error detail message
+     */
+    public UnsupportedAudioFileException(String message) {
 
-		super(message);
-	}
+        super(message);
+    }
 }

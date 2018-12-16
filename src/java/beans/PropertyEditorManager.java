@@ -30,89 +30,89 @@ package java.beans;
 
 public class PropertyEditorManager {
 
-	/**
-	 * Registers an editor class to edit values of the given target class. If
-	 * the editor class is {@code null}, then any existing definition will be
-	 * removed. Thus this method can be used to cancel the registration. The
-	 * registration is canceled automatically if either the target or editor
-	 * class is unloaded.
-	 * <p>
-	 * If there is a security manager, its {@code checkPropertiesAccess} method
-	 * is called. This could result in a {@linkplain SecurityException}.
-	 *
-	 * @param targetType
-	 *                    the class object of the type to be edited
-	 * @param editorClass
-	 *                    the class object of the editor class
-	 * @throws SecurityException
-	 *                           if a security manager exists and its
-	 *                           {@code checkPropertiesAccess} method doesn't
-	 *                           allow setting of
-	 *                           system properties
-	 *
-	 * @see SecurityManager#checkPropertiesAccess
-	 */
-	public static void registerEditor(Class<?> targetType,
-			Class<?> editorClass) {
-		SecurityManager sm = System.getSecurityManager();
-		if (sm != null) {
-			sm.checkPropertiesAccess();
-		}
-		ThreadGroupContext.getContext().getPropertyEditorFinder().register(
-				targetType, editorClass);
-	}
+    /**
+     * Registers an editor class to edit values of the given target class. If
+     * the editor class is {@code null}, then any existing definition will be
+     * removed. Thus this method can be used to cancel the registration. The
+     * registration is canceled automatically if either the target or editor
+     * class is unloaded.
+     * <p>
+     * If there is a security manager, its {@code checkPropertiesAccess} method
+     * is called. This could result in a {@linkplain SecurityException}.
+     *
+     * @param targetType
+     *                    the class object of the type to be edited
+     * @param editorClass
+     *                    the class object of the editor class
+     * @throws SecurityException
+     *                           if a security manager exists and its
+     *                           {@code checkPropertiesAccess} method doesn't
+     *                           allow setting of
+     *                           system properties
+     *
+     * @see SecurityManager#checkPropertiesAccess
+     */
+    public static void registerEditor(Class<?> targetType,
+            Class<?> editorClass) {
+        SecurityManager sm = System.getSecurityManager();
+        if (sm != null) {
+            sm.checkPropertiesAccess();
+        }
+        ThreadGroupContext.getContext().getPropertyEditorFinder().register(
+                targetType, editorClass);
+    }
 
-	/**
-	 * Locate a value editor for a given target type.
-	 *
-	 * @param targetType
-	 *                   The Class object for the type to be edited
-	 * @return An editor object for the given target class. The result is null
-	 *         if no suitable editor can be found.
-	 */
-	public static PropertyEditor findEditor(Class<?> targetType) {
-		return ThreadGroupContext.getContext().getPropertyEditorFinder().find(
-				targetType);
-	}
+    /**
+     * Locate a value editor for a given target type.
+     *
+     * @param targetType
+     *                   The Class object for the type to be edited
+     * @return An editor object for the given target class. The result is null
+     *         if no suitable editor can be found.
+     */
+    public static PropertyEditor findEditor(Class<?> targetType) {
+        return ThreadGroupContext.getContext().getPropertyEditorFinder().find(
+                targetType);
+    }
 
-	/**
-	 * Gets the package names that will be searched for property editors.
-	 *
-	 * @return The array of package names that will be searched in order to find
-	 *         property editors.
-	 *         <p>
-	 *         The default value for this array is implementation-dependent,
-	 *         e.g. Sun implementation initially sets to {"sun.beans.editors"}.
-	 */
-	public static String[] getEditorSearchPath() {
-		return ThreadGroupContext.getContext().getPropertyEditorFinder()
-				.getPackages();
-	}
+    /**
+     * Gets the package names that will be searched for property editors.
+     *
+     * @return The array of package names that will be searched in order to find
+     *         property editors.
+     *         <p>
+     *         The default value for this array is implementation-dependent,
+     *         e.g. Sun implementation initially sets to {"sun.beans.editors"}.
+     */
+    public static String[] getEditorSearchPath() {
+        return ThreadGroupContext.getContext().getPropertyEditorFinder()
+                .getPackages();
+    }
 
-	/**
-	 * Change the list of package names that will be used for finding property
-	 * editors.
-	 *
-	 * <p>
-	 * First, if there is a security manager, its
-	 * <code>checkPropertiesAccess</code> method is called. This could result in
-	 * a SecurityException.
-	 *
-	 * @param path
-	 *             Array of package names.
-	 * @exception SecurityException
-	 *                              if a security manager exists and its
-	 *                              <code>checkPropertiesAccess</code> method
-	 *                              doesn't allow
-	 *                              setting of system properties.
-	 * @see SecurityManager#checkPropertiesAccess
-	 */
-	public static void setEditorSearchPath(String[] path) {
-		SecurityManager sm = System.getSecurityManager();
-		if (sm != null) {
-			sm.checkPropertiesAccess();
-		}
-		ThreadGroupContext.getContext().getPropertyEditorFinder().setPackages(
-				path);
-	}
+    /**
+     * Change the list of package names that will be used for finding property
+     * editors.
+     *
+     * <p>
+     * First, if there is a security manager, its
+     * <code>checkPropertiesAccess</code> method is called. This could result in
+     * a SecurityException.
+     *
+     * @param path
+     *             Array of package names.
+     * @exception SecurityException
+     *                              if a security manager exists and its
+     *                              <code>checkPropertiesAccess</code> method
+     *                              doesn't allow
+     *                              setting of system properties.
+     * @see SecurityManager#checkPropertiesAccess
+     */
+    public static void setEditorSearchPath(String[] path) {
+        SecurityManager sm = System.getSecurityManager();
+        if (sm != null) {
+            sm.checkPropertiesAccess();
+        }
+        ThreadGroupContext.getContext().getPropertyEditorFinder().setPackages(
+                path);
+    }
 }

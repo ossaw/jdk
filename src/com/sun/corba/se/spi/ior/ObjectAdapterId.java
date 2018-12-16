@@ -13,19 +13,19 @@ import java.util.Iterator;
  * implementations are possible.
  */
 public interface ObjectAdapterId extends Writeable {
-	/**
-	 * Return the number of elements in the adapter ID.
-	 */
-	int getNumLevels();
+    /**
+     * Return the number of elements in the adapter ID.
+     */
+    int getNumLevels();
 
-	/**
-	 * Return an iterator that iterates over the components of this adapter ID.
-	 * Each element is returned as a String.
-	 */
-	Iterator iterator();
+    /**
+     * Return an iterator that iterates over the components of this adapter ID.
+     * Each element is returned as a String.
+     */
+    Iterator iterator();
 
-	/**
-	 * Get the adapter name simply as an array of strings.
-	 */
-	String[] getAdapterName();
+    /**
+     * Get the adapter name simply as an array of strings.
+     */
+    String[] getAdapterName();
 }

@@ -17,12 +17,12 @@ import org.omg.CORBA_2_3.portable.InputStream;
  * @author
  */
 public class TaggedProfileFactoryFinderImpl extends
-		IdentifiableFactoryFinderBase {
-	public TaggedProfileFactoryFinderImpl(ORB orb) {
-		super(orb);
-	}
+        IdentifiableFactoryFinderBase {
+    public TaggedProfileFactoryFinderImpl(ORB orb) {
+        super(orb);
+    }
 
-	public Identifiable handleMissingFactory(int id, InputStream is) {
-		return new GenericTaggedProfile(id, is);
-	}
+    public Identifiable handleMissingFactory(int id, InputStream is) {
+        return new GenericTaggedProfile(id, is);
+    }
 }

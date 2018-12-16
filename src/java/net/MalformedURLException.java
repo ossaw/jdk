@@ -16,21 +16,21 @@ import java.io.IOException;
  * @since JDK1.0
  */
 public class MalformedURLException extends IOException {
-	private static final long serialVersionUID = -182787522200415866L;
+    private static final long serialVersionUID = -182787522200415866L;
 
-	/**
-	 * Constructs a {@code MalformedURLException} with no detail message.
-	 */
-	public MalformedURLException() {}
+    /**
+     * Constructs a {@code MalformedURLException} with no detail message.
+     */
+    public MalformedURLException() {}
 
-	/**
-	 * Constructs a {@code MalformedURLException} with the specified detail
-	 * message.
-	 *
-	 * @param msg
-	 *            the detail message.
-	 */
-	public MalformedURLException(String msg) {
-		super(msg);
-	}
+    /**
+     * Constructs a {@code MalformedURLException} with the specified detail
+     * message.
+     *
+     * @param msg
+     *            the detail message.
+     */
+    public MalformedURLException(String msg) {
+        super(msg);
+    }
 }

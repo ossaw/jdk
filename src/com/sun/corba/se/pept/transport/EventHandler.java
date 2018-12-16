@@ -16,35 +16,35 @@ import com.sun.corba.se.spi.orbutil.threadpool.Work;
  *         This should only be registered with ONE selector.
  */
 public interface EventHandler {
-	public void setUseSelectThreadToWait(boolean x);
+    public void setUseSelectThreadToWait(boolean x);
 
-	public boolean shouldUseSelectThreadToWait();
+    public boolean shouldUseSelectThreadToWait();
 
-	public SelectableChannel getChannel();
+    public SelectableChannel getChannel();
 
-	public int getInterestOps();
+    public int getInterestOps();
 
-	public void setSelectionKey(SelectionKey selectionKey);
+    public void setSelectionKey(SelectionKey selectionKey);
 
-	public SelectionKey getSelectionKey();
+    public SelectionKey getSelectionKey();
 
-	public void handleEvent();
+    public void handleEvent();
 
-	// NOTE: if there is more than one interest op this does not
-	// allow discrimination between different ops and how threading
-	// is handled.
-	public void setUseWorkerThreadForEvent(boolean x);
+    // NOTE: if there is more than one interest op this does not
+    // allow discrimination between different ops and how threading
+    // is handled.
+    public void setUseWorkerThreadForEvent(boolean x);
 
-	public boolean shouldUseWorkerThreadForEvent();
+    public boolean shouldUseWorkerThreadForEvent();
 
-	public void setWork(Work work);
+    public void setWork(Work work);
 
-	public Work getWork();
+    public Work getWork();
 
-	// REVISIT: need base class with two derived.
-	public Acceptor getAcceptor();
+    // REVISIT: need base class with two derived.
+    public Acceptor getAcceptor();
 
-	public Connection getConnection();
+    public Connection getConnection();
 
 }
 

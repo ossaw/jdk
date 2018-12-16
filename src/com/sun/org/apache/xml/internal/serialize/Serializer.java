@@ -56,50 +56,50 @@ import org.xml.sax.DocumentHandler;
  */
 public interface Serializer {
 
-	/**
-	 * Specifies an output stream to which the document should be serialized.
-	 * This method should not be called while the serializer is in the process
-	 * of serializing a document.
-	 */
-	public void setOutputByteStream(OutputStream output);
+    /**
+     * Specifies an output stream to which the document should be serialized.
+     * This method should not be called while the serializer is in the process
+     * of serializing a document.
+     */
+    public void setOutputByteStream(OutputStream output);
 
-	/**
-	 * Specifies a writer to which the document should be serialized. This
-	 * method should not be called while the serializer is in the process of
-	 * serializing a document.
-	 */
-	public void setOutputCharStream(Writer output);
+    /**
+     * Specifies a writer to which the document should be serialized. This
+     * method should not be called while the serializer is in the process of
+     * serializing a document.
+     */
+    public void setOutputCharStream(Writer output);
 
-	/**
-	 * Specifies an output format for this serializer. It the serializer has
-	 * already been associated with an output format, it will switch to the new
-	 * format. This method should not be called while the serializer is in the
-	 * process of serializing a document.
-	 *
-	 * @param format
-	 *               The output format to use
-	 */
-	public void setOutputFormat(OutputFormat format);
+    /**
+     * Specifies an output format for this serializer. It the serializer has
+     * already been associated with an output format, it will switch to the new
+     * format. This method should not be called while the serializer is in the
+     * process of serializing a document.
+     *
+     * @param format
+     *               The output format to use
+     */
+    public void setOutputFormat(OutputFormat format);
 
-	/**
-	 * Return a {@link DocumentHandler} interface into this serializer. If the
-	 * serializer does not support the {@link DocumentHandler} interface, it
-	 * should return null.
-	 */
-	public DocumentHandler asDocumentHandler() throws IOException;
+    /**
+     * Return a {@link DocumentHandler} interface into this serializer. If the
+     * serializer does not support the {@link DocumentHandler} interface, it
+     * should return null.
+     */
+    public DocumentHandler asDocumentHandler() throws IOException;
 
-	/**
-	 * Return a {@link ContentHandler} interface into this serializer. If the
-	 * serializer does not support the {@link ContentHandler} interface, it
-	 * should return null.
-	 */
-	public ContentHandler asContentHandler() throws IOException;
+    /**
+     * Return a {@link ContentHandler} interface into this serializer. If the
+     * serializer does not support the {@link ContentHandler} interface, it
+     * should return null.
+     */
+    public ContentHandler asContentHandler() throws IOException;
 
-	/**
-	 * Return a {@link DOMSerializer} interface into this serializer. If the
-	 * serializer does not support the {@link DOMSerializer} interface, it
-	 * should return null.
-	 */
-	public DOMSerializer asDOMSerializer() throws IOException;
+    /**
+     * Return a {@link DOMSerializer} interface into this serializer. If the
+     * serializer does not support the {@link DOMSerializer} interface, it
+     * should return null.
+     */
+    public DOMSerializer asDOMSerializer() throws IOException;
 
 }

@@ -22,38 +22,38 @@ package javax.security.auth.login;
  */
 
 public abstract class ConfigurationSpi {
-	/**
-	 * Retrieve the AppConfigurationEntries for the specified <i>name</i>.
-	 *
-	 * <p>
-	 *
-	 * @param name
-	 *             the name used to index the Configuration.
-	 *
-	 * @return an array of AppConfigurationEntries for the specified <i>name</i>
-	 *         , or null if there are no entries.
-	 */
-	protected abstract AppConfigurationEntry[] engineGetAppConfigurationEntry(
-			String name);
+    /**
+     * Retrieve the AppConfigurationEntries for the specified <i>name</i>.
+     *
+     * <p>
+     *
+     * @param name
+     *             the name used to index the Configuration.
+     *
+     * @return an array of AppConfigurationEntries for the specified <i>name</i>
+     *         , or null if there are no entries.
+     */
+    protected abstract AppConfigurationEntry[] engineGetAppConfigurationEntry(
+            String name);
 
-	/**
-	 * Refresh and reload the Configuration.
-	 *
-	 * <p>
-	 * This method causes this Configuration object to refresh/reload its
-	 * contents in an implementation-dependent manner. For example, if this
-	 * Configuration object stores its entries in a file, calling
-	 * {@code refresh} may cause the file to be re-read.
-	 *
-	 * <p>
-	 * The default implementation of this method does nothing. This method
-	 * should be overridden if a refresh operation is supported by the
-	 * implementation.
-	 *
-	 * @exception SecurityException
-	 *                              if the caller does not have permission to
-	 *                              refresh its
-	 *                              Configuration.
-	 */
-	protected void engineRefresh() {}
+    /**
+     * Refresh and reload the Configuration.
+     *
+     * <p>
+     * This method causes this Configuration object to refresh/reload its
+     * contents in an implementation-dependent manner. For example, if this
+     * Configuration object stores its entries in a file, calling
+     * {@code refresh} may cause the file to be re-read.
+     *
+     * <p>
+     * The default implementation of this method does nothing. This method
+     * should be overridden if a refresh operation is supported by the
+     * implementation.
+     *
+     * @exception SecurityException
+     *                              if the caller does not have permission to
+     *                              refresh its
+     *                              Configuration.
+     */
+    protected void engineRefresh() {}
 }

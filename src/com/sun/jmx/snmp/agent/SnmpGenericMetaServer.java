@@ -35,94 +35,94 @@ import com.sun.jmx.snmp.SnmpStatusException;
  **/
 public interface SnmpGenericMetaServer {
 
-	/**
-	 * Construct an attribute value (as returned by Attribute::getValue()) from
-	 * an SnmpValue. The returned attribute value can be used to construct an
-	 * Attribute object.
-	 *
-	 * @param id
-	 *              The OID arc identifying the variable for which the value is
-	 *              constructed.
-	 * @param value
-	 *              The SnmpValue from which the Attribute::value will be
-	 *              constructed.
-	 * @return The attribute value built from the given <code>value</code>.
-	 * @exception SnmpStatusException
-	 *                                if the attribute value cannot be built
-	 *                                from the given
-	 *                                SnmpValue <code>value</code>.
-	 *
-	 */
-	Object buildAttributeValue(long id, SnmpValue value)
-			throws SnmpStatusException;
+    /**
+     * Construct an attribute value (as returned by Attribute::getValue()) from
+     * an SnmpValue. The returned attribute value can be used to construct an
+     * Attribute object.
+     *
+     * @param id
+     *              The OID arc identifying the variable for which the value is
+     *              constructed.
+     * @param value
+     *              The SnmpValue from which the Attribute::value will be
+     *              constructed.
+     * @return The attribute value built from the given <code>value</code>.
+     * @exception SnmpStatusException
+     *                                if the attribute value cannot be built
+     *                                from the given
+     *                                SnmpValue <code>value</code>.
+     *
+     */
+    Object buildAttributeValue(long id, SnmpValue value)
+            throws SnmpStatusException;
 
-	/**
-	 * Construct an SnmpValue from an Attribute value as returned by
-	 * Attribute::getValue().
-	 *
-	 * @param id
-	 *              The OID arc identifying the variable for which the value is
-	 *              constructed.
-	 * @param value
-	 *              The attribute value as returned by Attribute::getValue().
-	 *
-	 * @return The SnmpValue built from the given <code>value</code>.
-	 * @exception SnmpStatusException
-	 *                                if the SnmpValue cannot be built from the
-	 *                                given
-	 *                                <code>value</code>.
-	 **/
-	SnmpValue buildSnmpValue(long id, Object value) throws SnmpStatusException;
+    /**
+     * Construct an SnmpValue from an Attribute value as returned by
+     * Attribute::getValue().
+     *
+     * @param id
+     *              The OID arc identifying the variable for which the value is
+     *              constructed.
+     * @param value
+     *              The attribute value as returned by Attribute::getValue().
+     *
+     * @return The SnmpValue built from the given <code>value</code>.
+     * @exception SnmpStatusException
+     *                                if the SnmpValue cannot be built from the
+     *                                given
+     *                                <code>value</code>.
+     **/
+    SnmpValue buildSnmpValue(long id, Object value) throws SnmpStatusException;
 
-	/**
-	 * Return the name of the attribute corresponding to the SNMP variable
-	 * identified by the given <code>id</code>.
-	 *
-	 * @param id
-	 *           The OID arc identifying the variable.
-	 *
-	 * @return The name of the variable identified by the given <code>id</code>.
-	 *
-	 * @exception SnmpStatusException
-	 *                                if the given <code>id</code> does not
-	 *                                correspond to a
-	 *                                known variable.
-	 */
-	String getAttributeName(long id) throws SnmpStatusException;
+    /**
+     * Return the name of the attribute corresponding to the SNMP variable
+     * identified by the given <code>id</code>.
+     *
+     * @param id
+     *           The OID arc identifying the variable.
+     *
+     * @return The name of the variable identified by the given <code>id</code>.
+     *
+     * @exception SnmpStatusException
+     *                                if the given <code>id</code> does not
+     *                                correspond to a
+     *                                known variable.
+     */
+    String getAttributeName(long id) throws SnmpStatusException;
 
-	/**
-	 * Check the access rights for a SET operation.
-	 *
-	 * @param x
-	 *             The new requested value.
-	 * @param id
-	 *             The OID arc identifying the variable for which the SET is
-	 *             requested.
-	 * @param data
-	 *             A contextual object containing user-data. This object is
-	 *             allocated through the <code>
-	 *           {@link com.sun.jmx.snmp.agent.SnmpUserDataFactory}</code> for
-	 *             each incoming SNMP request.
-	 * @exception SnmpStatusException
-	 *                                if the SET operation must be rejected.
-	 */
-	void checkSetAccess(SnmpValue x, long id, Object data)
-			throws SnmpStatusException;
+    /**
+     * Check the access rights for a SET operation.
+     *
+     * @param x
+     *             The new requested value.
+     * @param id
+     *             The OID arc identifying the variable for which the SET is
+     *             requested.
+     * @param data
+     *             A contextual object containing user-data. This object is
+     *             allocated through the <code>
+     *           {@link com.sun.jmx.snmp.agent.SnmpUserDataFactory}</code> for
+     *             each incoming SNMP request.
+     * @exception SnmpStatusException
+     *                                if the SET operation must be rejected.
+     */
+    void checkSetAccess(SnmpValue x, long id, Object data)
+            throws SnmpStatusException;
 
-	/**
-	 * Check the access rights for a GET operation.
-	 *
-	 * @param id
-	 *             The OID arc identifying the variable for which the SET is
-	 *             requested.
-	 * @param data
-	 *             A contextual object containing user-data. This object is
-	 *             allocated through the <code>
-	 *           {@link com.sun.jmx.snmp.agent.SnmpUserDataFactory}</code> for
-	 *             each incoming SNMP request.
-	 * @exception SnmpStatusException
-	 *                                if the SET operation must be rejected.
-	 */
-	void checkGetAccess(long id, Object data) throws SnmpStatusException;
+    /**
+     * Check the access rights for a GET operation.
+     *
+     * @param id
+     *             The OID arc identifying the variable for which the SET is
+     *             requested.
+     * @param data
+     *             A contextual object containing user-data. This object is
+     *             allocated through the <code>
+     *           {@link com.sun.jmx.snmp.agent.SnmpUserDataFactory}</code> for
+     *             each incoming SNMP request.
+     * @exception SnmpStatusException
+     *                                if the SET operation must be rejected.
+     */
+    void checkGetAccess(long id, Object data) throws SnmpStatusException;
 
 }

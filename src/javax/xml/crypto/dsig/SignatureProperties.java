@@ -35,7 +35,7 @@ import java.util.List;
  * <pre>
  * XMLSignatureFactory factory = XMLSignatureFactory.getInstance("DOM");
  * SignatureProperties properties = factory.newSignatureProperties(props,
- * 		"signature-properties-1");
+ *         "signature-properties-1");
  * </pre>
  *
  * @author Sean Mullan
@@ -46,29 +46,29 @@ import java.util.List;
  */
 public interface SignatureProperties extends XMLStructure {
 
-	/**
-	 * URI that identifies the <code>SignatureProperties</code> element (this
-	 * can be specified as the value of the <code>type</code> parameter of the
-	 * {@link Reference} class to identify the referent's type).
-	 */
-	final static String TYPE = "http://www.w3.org/2000/09/xmldsig#SignatureProperties";
+    /**
+     * URI that identifies the <code>SignatureProperties</code> element (this
+     * can be specified as the value of the <code>type</code> parameter of the
+     * {@link Reference} class to identify the referent's type).
+     */
+    final static String TYPE = "http://www.w3.org/2000/09/xmldsig#SignatureProperties";
 
-	/**
-	 * Returns the Id of this <code>SignatureProperties</code>.
-	 *
-	 * @return the Id of this <code>SignatureProperties</code> (or
-	 *         <code>null</code> if not specified)
-	 */
-	String getId();
+    /**
+     * Returns the Id of this <code>SignatureProperties</code>.
+     *
+     * @return the Id of this <code>SignatureProperties</code> (or
+     *         <code>null</code> if not specified)
+     */
+    String getId();
 
-	/**
-	 * Returns an {@link java.util.Collections#unmodifiableList unmodifiable
-	 * list} of one or more {@link SignatureProperty}s that are contained in
-	 * this <code>SignatureProperties</code>.
-	 *
-	 * @return an unmodifiable list of one or more
-	 *         <code>SignatureProperty</code>s
-	 */
-	@SuppressWarnings("rawtypes")
-	List getProperties();
+    /**
+     * Returns an {@link java.util.Collections#unmodifiableList unmodifiable
+     * list} of one or more {@link SignatureProperty}s that are contained in
+     * this <code>SignatureProperties</code>.
+     *
+     * @return an unmodifiable list of one or more
+     *         <code>SignatureProperty</code>s
+     */
+    @SuppressWarnings("rawtypes")
+    List getProperties();
 }

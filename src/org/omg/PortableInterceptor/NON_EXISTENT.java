@@ -10,8 +10,8 @@ package org.omg.PortableInterceptor;
 
 public interface NON_EXISTENT {
 
-	/**
-	 * Object adapter state indicating that the adapter has been destroyed.
-	 */
-	public static final short value = (short) (4);
+    /**
+     * Object adapter state indicating that the adapter has been destroyed.
+     */
+    public static final short value = (short) (4);
 }

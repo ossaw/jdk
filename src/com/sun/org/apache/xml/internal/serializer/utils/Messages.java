@@ -81,164 +81,164 @@ import java.util.ResourceBundle;
  * @xsl.usage internal
  */
 public final class Messages {
-	/** The local object to use. */
-	private final Locale m_locale = Locale.getDefault();
+    /** The local object to use. */
+    private final Locale m_locale = Locale.getDefault();
 
-	/** The language specific resource object for messages. */
-	private ListResourceBundle m_resourceBundle;
+    /** The language specific resource object for messages. */
+    private ListResourceBundle m_resourceBundle;
 
-	/**
-	 * The class name of the error message string table with no language suffix.
-	 */
-	private String m_resourceBundleName;
+    /**
+     * The class name of the error message string table with no language suffix.
+     */
+    private String m_resourceBundleName;
 
-	/**
-	 * Constructor.
-	 * 
-	 * @param resourceBundle
-	 *                       the class name of the ListResourceBundle that the
-	 *                       instance of
-	 *                       this class is associated with and will use when
-	 *                       creating
-	 *                       messages. The class name is without a language
-	 *                       suffix. If the
-	 *                       value passed is null then
-	 *                       loadResourceBundle(errorResourceClass) needs to be
-	 *                       called
-	 *                       explicitly before any messages are created.
-	 *
-	 * @xsl.usage internal
-	 */
-	Messages(String resourceBundle) {
+    /**
+     * Constructor.
+     * 
+     * @param resourceBundle
+     *                       the class name of the ListResourceBundle that the
+     *                       instance of
+     *                       this class is associated with and will use when
+     *                       creating
+     *                       messages. The class name is without a language
+     *                       suffix. If the
+     *                       value passed is null then
+     *                       loadResourceBundle(errorResourceClass) needs to be
+     *                       called
+     *                       explicitly before any messages are created.
+     *
+     * @xsl.usage internal
+     */
+    Messages(String resourceBundle) {
 
-		m_resourceBundleName = resourceBundle;
-	}
+        m_resourceBundleName = resourceBundle;
+    }
 
-	/**
-	 * Get the Locale object that is being used.
-	 *
-	 * @return non-null reference to Locale object.
-	 * @xsl.usage internal
-	 */
-	private Locale getLocale() {
-		return m_locale;
-	}
+    /**
+     * Get the Locale object that is being used.
+     *
+     * @return non-null reference to Locale object.
+     * @xsl.usage internal
+     */
+    private Locale getLocale() {
+        return m_locale;
+    }
 
-	/**
-	 * Creates a message from the specified key and replacement arguments,
-	 * localized to the given locale.
-	 *
-	 * @param msgKey
-	 *               The key for the message text.
-	 * @param args
-	 *               The arguments to be used as replacement text in the message
-	 *               created.
-	 *
-	 * @return The formatted message string.
-	 * @xsl.usage internal
-	 */
-	public final String createMessage(String msgKey, Object args[]) {
-		if (m_resourceBundle == null)
-			m_resourceBundle = SecuritySupport.getResourceBundle(
-					m_resourceBundleName);
+    /**
+     * Creates a message from the specified key and replacement arguments,
+     * localized to the given locale.
+     *
+     * @param msgKey
+     *               The key for the message text.
+     * @param args
+     *               The arguments to be used as replacement text in the message
+     *               created.
+     *
+     * @return The formatted message string.
+     * @xsl.usage internal
+     */
+    public final String createMessage(String msgKey, Object args[]) {
+        if (m_resourceBundle == null)
+            m_resourceBundle = SecuritySupport.getResourceBundle(
+                    m_resourceBundleName);
 
-		if (m_resourceBundle != null) {
-			return createMsg(m_resourceBundle, msgKey, args);
-		} else
-			return "Could not load the resource bundles: "
-					+ m_resourceBundleName;
-	}
+        if (m_resourceBundle != null) {
+            return createMsg(m_resourceBundle, msgKey, args);
+        } else
+            return "Could not load the resource bundles: "
+                    + m_resourceBundleName;
+    }
 
-	/**
-	 * Creates a message from the specified key and replacement arguments,
-	 * localized to the given locale.
-	 *
-	 * @param errorCode
-	 *                        The key for the message text.
-	 *
-	 * @param fResourceBundle
-	 *                        The resource bundle to use.
-	 * @param msgKey
-	 *                        The message key to use.
-	 * @param args
-	 *                        The arguments to be used as replacement text in
-	 *                        the message
-	 *                        created.
-	 *
-	 * @return The formatted message string.
-	 * @xsl.usage internal
-	 */
-	private final String createMsg(ListResourceBundle fResourceBundle,
-			String msgKey, Object args[]) // throws
-																												// Exception
-	{
+    /**
+     * Creates a message from the specified key and replacement arguments,
+     * localized to the given locale.
+     *
+     * @param errorCode
+     *                        The key for the message text.
+     *
+     * @param fResourceBundle
+     *                        The resource bundle to use.
+     * @param msgKey
+     *                        The message key to use.
+     * @param args
+     *                        The arguments to be used as replacement text in
+     *                        the message
+     *                        created.
+     *
+     * @return The formatted message string.
+     * @xsl.usage internal
+     */
+    private final String createMsg(ListResourceBundle fResourceBundle,
+            String msgKey, Object args[]) // throws
+                                                                                                             // Exception
+    {
 
-		String fmsg = null;
-		boolean throwex = false;
-		String msg = null;
+        String fmsg = null;
+        boolean throwex = false;
+        String msg = null;
 
-		if (msgKey != null)
-			msg = fResourceBundle.getString(msgKey);
-		else
-			msgKey = "";
+        if (msgKey != null)
+            msg = fResourceBundle.getString(msgKey);
+        else
+            msgKey = "";
 
-		if (msg == null) {
-			throwex = true;
-			/*
-			 * The message is not in the bundle . . . this is bad, so try to get
-			 * the message that the message is not in the bundle
-			 */
-			try {
+        if (msg == null) {
+            throwex = true;
+            /*
+             * The message is not in the bundle . . . this is bad, so try to get
+             * the message that the message is not in the bundle
+             */
+            try {
 
-				msg = java.text.MessageFormat.format(MsgKey.BAD_MSGKEY,
-						new Object[] { msgKey, m_resourceBundleName });
-			} catch (Exception e) {
-				/*
-				 * even the message that the message is not in the bundle is not
-				 * there ... this is really bad
-				 */
-				msg = "The message key '" + msgKey
-						+ "' is not in the message class '"
-						+ m_resourceBundleName + "'";
-			}
-		} else if (args != null) {
-			try {
-				// Do this to keep format from crying.
-				// This is better than making a bunch of conditional
-				// code all over the place.
-				int n = args.length;
+                msg = java.text.MessageFormat.format(MsgKey.BAD_MSGKEY,
+                        new Object[] { msgKey, m_resourceBundleName });
+            } catch (Exception e) {
+                /*
+                 * even the message that the message is not in the bundle is not
+                 * there ... this is really bad
+                 */
+                msg = "The message key '" + msgKey
+                        + "' is not in the message class '"
+                        + m_resourceBundleName + "'";
+            }
+        } else if (args != null) {
+            try {
+                // Do this to keep format from crying.
+                // This is better than making a bunch of conditional
+                // code all over the place.
+                int n = args.length;
 
-				for (int i = 0; i < n; i++) {
-					if (null == args[i])
-						args[i] = "";
-				}
+                for (int i = 0; i < n; i++) {
+                    if (null == args[i])
+                        args[i] = "";
+                }
 
-				fmsg = java.text.MessageFormat.format(msg, args);
-				// if we get past the line above we have create the message ...
-				// hurray!
-			} catch (Exception e) {
-				throwex = true;
-				try {
-					// Get the message that the format failed.
-					fmsg = java.text.MessageFormat.format(MsgKey.BAD_MSGFORMAT,
-							new Object[] { msgKey, m_resourceBundleName });
-					fmsg += " " + msg;
-				} catch (Exception formatfailed) {
-					// We couldn't even get the message that the format of
-					// the message failed ... so fall back to English.
-					fmsg = "The format of message '" + msgKey
-							+ "' in message class '" + m_resourceBundleName
-							+ "' failed.";
-				}
-			}
-		} else
-			fmsg = msg;
+                fmsg = java.text.MessageFormat.format(msg, args);
+                // if we get past the line above we have create the message ...
+                // hurray!
+            } catch (Exception e) {
+                throwex = true;
+                try {
+                    // Get the message that the format failed.
+                    fmsg = java.text.MessageFormat.format(MsgKey.BAD_MSGFORMAT,
+                            new Object[] { msgKey, m_resourceBundleName });
+                    fmsg += " " + msg;
+                } catch (Exception formatfailed) {
+                    // We couldn't even get the message that the format of
+                    // the message failed ... so fall back to English.
+                    fmsg = "The format of message '" + msgKey
+                            + "' in message class '" + m_resourceBundleName
+                            + "' failed.";
+                }
+            }
+        } else
+            fmsg = msg;
 
-		if (throwex) {
-			throw new RuntimeException(fmsg);
-		}
+        if (throwex) {
+            throw new RuntimeException(fmsg);
+        }
 
-		return fmsg;
-	}
+        return fmsg;
+    }
 
 }

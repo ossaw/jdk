@@ -44,114 +44,114 @@ package javax.sound.midi;
 
 public abstract class SoundbankResource {
 
-	/**
-	 * The sound bank that contains the <code>SoundbankResources</code>
-	 */
-	private final Soundbank soundBank;
+    /**
+     * The sound bank that contains the <code>SoundbankResources</code>
+     */
+    private final Soundbank soundBank;
 
-	/**
-	 * The name of the <code>SoundbankResource</code>
-	 */
-	private final String name;
+    /**
+     * The name of the <code>SoundbankResource</code>
+     */
+    private final String name;
 
-	/**
-	 * The class used to represent the sample's data.
-	 */
-	private final Class dataClass;
+    /**
+     * The class used to represent the sample's data.
+     */
+    private final Class dataClass;
 
-	/**
-	 * The wavetable index.
-	 */
-	// private final int index;
+    /**
+     * The wavetable index.
+     */
+    // private final int index;
 
-	/**
-	 * Constructs a new <code>SoundbankResource</code> from the given sound bank
-	 * and wavetable index. (Setting the <code>SoundbankResource's</code> name,
-	 * sampled audio data, and instruments is a subclass responsibility.)
-	 * 
-	 * @param soundBank
-	 *                  the sound bank containing this
-	 *                  <code>SoundbankResource</code>
-	 * @param name
-	 *                  the name of the sample
-	 * @param dataClass
-	 *                  the class used to represent the sample's data
-	 *
-	 * @see #getSoundbank
-	 * @see #getName
-	 * @see #getDataClass
-	 * @see #getData
-	 */
-	protected SoundbankResource(Soundbank soundBank, String name,
-			Class<?> dataClass) {
+    /**
+     * Constructs a new <code>SoundbankResource</code> from the given sound bank
+     * and wavetable index. (Setting the <code>SoundbankResource's</code> name,
+     * sampled audio data, and instruments is a subclass responsibility.)
+     * 
+     * @param soundBank
+     *                  the sound bank containing this
+     *                  <code>SoundbankResource</code>
+     * @param name
+     *                  the name of the sample
+     * @param dataClass
+     *                  the class used to represent the sample's data
+     *
+     * @see #getSoundbank
+     * @see #getName
+     * @see #getDataClass
+     * @see #getData
+     */
+    protected SoundbankResource(Soundbank soundBank, String name,
+            Class<?> dataClass) {
 
-		this.soundBank = soundBank;
-		this.name = name;
-		this.dataClass = dataClass;
-	}
+        this.soundBank = soundBank;
+        this.name = name;
+        this.dataClass = dataClass;
+    }
 
-	/**
-	 * Obtains the sound bank that contains this <code>SoundbankResource</code>.
-	 * 
-	 * @return the sound bank in which this <code>SoundbankResource</code> is
-	 *         stored
-	 */
-	public Soundbank getSoundbank() {
-		return soundBank;
-	}
+    /**
+     * Obtains the sound bank that contains this <code>SoundbankResource</code>.
+     * 
+     * @return the sound bank in which this <code>SoundbankResource</code> is
+     *         stored
+     */
+    public Soundbank getSoundbank() {
+        return soundBank;
+    }
 
-	/**
-	 * Obtains the name of the resource. This should generally be a string
-	 * descriptive of the resource.
-	 * 
-	 * @return the instrument's name
-	 */
-	public String getName() {
-		return name;
-	}
+    /**
+     * Obtains the name of the resource. This should generally be a string
+     * descriptive of the resource.
+     * 
+     * @return the instrument's name
+     */
+    public String getName() {
+        return name;
+    }
 
-	/**
-	 * Obtains the class used by this sample to represent its data. The object
-	 * returned by <code>getData</code> will be of this class. If this
-	 * <code>SoundbankResource</code> object does not support direct access to
-	 * its data, returns <code>null</code>.
-	 * 
-	 * @return the class used to represent the sample's data, or null if the
-	 *         data is not accessible
-	 */
-	public Class<?> getDataClass() {
-		return dataClass;
-	}
+    /**
+     * Obtains the class used by this sample to represent its data. The object
+     * returned by <code>getData</code> will be of this class. If this
+     * <code>SoundbankResource</code> object does not support direct access to
+     * its data, returns <code>null</code>.
+     * 
+     * @return the class used to represent the sample's data, or null if the
+     *         data is not accessible
+     */
+    public Class<?> getDataClass() {
+        return dataClass;
+    }
 
-	/**
-	 * Obtains the sampled audio that is stored in this
-	 * <code>SoundbankResource</code>. The type of object returned depends on
-	 * the implementation of the concrete class, and may be queried using
-	 * <code>getDataClass</code>.
-	 * 
-	 * @return an object containing the sampled audio data
-	 * @see #getDataClass
-	 */
-	public abstract Object getData();
+    /**
+     * Obtains the sampled audio that is stored in this
+     * <code>SoundbankResource</code>. The type of object returned depends on
+     * the implementation of the concrete class, and may be queried using
+     * <code>getDataClass</code>.
+     * 
+     * @return an object containing the sampled audio data
+     * @see #getDataClass
+     */
+    public abstract Object getData();
 
-	/**
-	 * Obtains the index of this <code>SoundbankResource</code> into the
-	 * <code>Soundbank's</code> set of <code>SoundbankResources</code>.
-	 * 
-	 * @return the wavetable index
-	 */
-	// public int getIndex() {
-	// return index;
-	// }
+    /**
+     * Obtains the index of this <code>SoundbankResource</code> into the
+     * <code>Soundbank's</code> set of <code>SoundbankResources</code>.
+     * 
+     * @return the wavetable index
+     */
+    // public int getIndex() {
+    // return index;
+    // }
 
-	/**
-	 * Obtains a list of the instruments in the sound bank that use the
-	 * <code>SoundbankResource</code> for sound synthesis.
-	 * 
-	 * @return an array of <code>Instruments</code> that reference this
-	 *         <code>SoundbankResource</code>
-	 *
-	 * @see Instrument#getSamples
-	 */
-	// public abstract Instrument[] getInstruments();
+    /**
+     * Obtains a list of the instruments in the sound bank that use the
+     * <code>SoundbankResource</code> for sound synthesis.
+     * 
+     * @return an array of <code>Instruments</code> that reference this
+     *         <code>SoundbankResource</code>
+     *
+     * @see Instrument#getSamples
+     */
+    // public abstract Instrument[] getInstruments();
 }

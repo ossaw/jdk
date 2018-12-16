@@ -29,8 +29,8 @@ import javax.swing.plaf.basic.BasicSeparatorUI;
  */
 
 public class MotifSeparatorUI extends BasicSeparatorUI {
-	public static ComponentUI createUI(JComponent c) {
-		return new MotifSeparatorUI();
-	}
+    public static ComponentUI createUI(JComponent c) {
+        return new MotifSeparatorUI();
+    }
 
 }

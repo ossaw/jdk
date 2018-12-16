@@ -30,8 +30,8 @@ import java.lang.annotation.RetentionPolicy;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface WebEndpoint {
-	/**
-	 * The local name of the endpoint.
-	 **/
-	String name() default "";
+    /**
+     * The local name of the endpoint.
+     **/
+    String name() default "";
 }

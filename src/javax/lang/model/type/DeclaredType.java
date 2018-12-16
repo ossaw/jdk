@@ -35,30 +35,30 @@ import javax.lang.model.util.Types;
  */
 public interface DeclaredType extends ReferenceType {
 
-	/**
-	 * Returns the element corresponding to this type.
-	 *
-	 * @return the element corresponding to this type
-	 */
-	Element asElement();
+    /**
+     * Returns the element corresponding to this type.
+     *
+     * @return the element corresponding to this type
+     */
+    Element asElement();
 
-	/**
-	 * Returns the type of the innermost enclosing instance or a {@code NoType}
-	 * of kind {@code NONE} if there is no enclosing instance. Only types
-	 * corresponding to inner classes have an enclosing instance.
-	 *
-	 * @return a type mirror for the enclosing type
-	 * @jls 8.1.3 Inner Classes and Enclosing Instances
-	 * @jls 15.9.2 Determining Enclosing Instances
-	 */
-	TypeMirror getEnclosingType();
+    /**
+     * Returns the type of the innermost enclosing instance or a {@code NoType}
+     * of kind {@code NONE} if there is no enclosing instance. Only types
+     * corresponding to inner classes have an enclosing instance.
+     *
+     * @return a type mirror for the enclosing type
+     * @jls 8.1.3 Inner Classes and Enclosing Instances
+     * @jls 15.9.2 Determining Enclosing Instances
+     */
+    TypeMirror getEnclosingType();
 
-	/**
-	 * Returns the actual type arguments of this type. For a type nested within
-	 * a parameterized type (such as {@code Outer<String>.Inner<Number>}), only
-	 * the type arguments of the innermost type are included.
-	 *
-	 * @return the actual type arguments of this type, or an empty list if none
-	 */
-	List<? extends TypeMirror> getTypeArguments();
+    /**
+     * Returns the actual type arguments of this type. For a type nested within
+     * a parameterized type (such as {@code Outer<String>.Inner<Number>}), only
+     * the type arguments of the innermost type are included.
+     *
+     * @return the actual type arguments of this type, or an empty list if none
+     */
+    List<? extends TypeMirror> getTypeArguments();
 }

@@ -24,61 +24,61 @@ import org.w3c.dom.Node;
  */
 public class IIOInvalidTreeException extends IIOException {
 
-	/**
-	 * The <code>Node</code> that led to the parsing error, or <code>null</code>
-	 * .
-	 */
-	protected Node offendingNode = null;
+    /**
+     * The <code>Node</code> that led to the parsing error, or <code>null</code>
+     * .
+     */
+    protected Node offendingNode = null;
 
-	/**
-	 * Constructs an <code>IIOInvalidTreeException</code> with a message string
-	 * and a reference to the <code>Node</code> that caused the parsing error.
-	 *
-	 * @param message
-	 *                      a <code>String</code> containing the reason for the
-	 *                      parsing
-	 *                      failure.
-	 * @param offendingNode
-	 *                      the DOM <code>Node</code> that caused the exception,
-	 *                      or
-	 *                      <code>null</code>.
-	 */
-	public IIOInvalidTreeException(String message, Node offendingNode) {
-		super(message);
-		this.offendingNode = offendingNode;
-	}
+    /**
+     * Constructs an <code>IIOInvalidTreeException</code> with a message string
+     * and a reference to the <code>Node</code> that caused the parsing error.
+     *
+     * @param message
+     *                      a <code>String</code> containing the reason for the
+     *                      parsing
+     *                      failure.
+     * @param offendingNode
+     *                      the DOM <code>Node</code> that caused the exception,
+     *                      or
+     *                      <code>null</code>.
+     */
+    public IIOInvalidTreeException(String message, Node offendingNode) {
+        super(message);
+        this.offendingNode = offendingNode;
+    }
 
-	/**
-	 * Constructs an <code>IIOInvalidTreeException</code> with a message string,
-	 * a reference to an exception that caused this exception, and a reference
-	 * to the <code>Node</code> that caused the parsing error.
-	 *
-	 * @param message
-	 *                      a <code>String</code> containing the reason for the
-	 *                      parsing
-	 *                      failure.
-	 * @param cause
-	 *                      the <code>Throwable</code> (<code>Error</code> or
-	 *                      <code>Exception</code>) that caused this exception
-	 *                      to occur,
-	 *                      or <code>null</code>.
-	 * @param offendingNode
-	 *                      the DOM <code>Node</code> that caused the exception,
-	 *                      or
-	 *                      <code>null</code>.
-	 */
-	public IIOInvalidTreeException(String message, Throwable cause,
-			Node offendingNode) {
-		super(message, cause);
-		this.offendingNode = offendingNode;
-	}
+    /**
+     * Constructs an <code>IIOInvalidTreeException</code> with a message string,
+     * a reference to an exception that caused this exception, and a reference
+     * to the <code>Node</code> that caused the parsing error.
+     *
+     * @param message
+     *                      a <code>String</code> containing the reason for the
+     *                      parsing
+     *                      failure.
+     * @param cause
+     *                      the <code>Throwable</code> (<code>Error</code> or
+     *                      <code>Exception</code>) that caused this exception
+     *                      to occur,
+     *                      or <code>null</code>.
+     * @param offendingNode
+     *                      the DOM <code>Node</code> that caused the exception,
+     *                      or
+     *                      <code>null</code>.
+     */
+    public IIOInvalidTreeException(String message, Throwable cause,
+            Node offendingNode) {
+        super(message, cause);
+        this.offendingNode = offendingNode;
+    }
 
-	/**
-	 * Returns the <code>Node</code> that caused the error in parsing.
-	 *
-	 * @return the offending <code>Node</code>.
-	 */
-	public Node getOffendingNode() {
-		return offendingNode;
-	}
+    /**
+     * Returns the <code>Node</code> that caused the error in parsing.
+     *
+     * @return the offending <code>Node</code>.
+     */
+    public Node getOffendingNode() {
+        return offendingNode;
+    }
 }

@@ -75,144 +75,144 @@ import static javax.lang.model.SourceVersion.*;
  */
 @SupportedSourceVersion(RELEASE_6)
 public class ElementScanner6<R, P> extends AbstractElementVisitor6<R, P> {
-	/**
-	 * The specified default value.
-	 */
-	protected final R DEFAULT_VALUE;
+    /**
+     * The specified default value.
+     */
+    protected final R DEFAULT_VALUE;
 
-	/**
-	 * Constructor for concrete subclasses; uses {@code null} for the default
-	 * value.
-	 */
-	protected ElementScanner6() {
-		DEFAULT_VALUE = null;
-	}
+    /**
+     * Constructor for concrete subclasses; uses {@code null} for the default
+     * value.
+     */
+    protected ElementScanner6() {
+        DEFAULT_VALUE = null;
+    }
 
-	/**
-	 * Constructor for concrete subclasses; uses the argument for the default
-	 * value.
-	 *
-	 * @param defaultValue
-	 *                     the default value
-	 */
-	protected ElementScanner6(R defaultValue) {
-		DEFAULT_VALUE = defaultValue;
-	}
+    /**
+     * Constructor for concrete subclasses; uses the argument for the default
+     * value.
+     *
+     * @param defaultValue
+     *                     the default value
+     */
+    protected ElementScanner6(R defaultValue) {
+        DEFAULT_VALUE = defaultValue;
+    }
 
-	/**
-	 * Iterates over the given elements and calls {@link #scan(Element, Object)
-	 * scan(Element, P)} on each one. Returns the result of the last call to
-	 * {@code scan} or {@code
-	 * DEFAULT_VALUE} for an empty iterable.
-	 *
-	 * @param iterable
-	 *                 the elements to scan
-	 * @param p
-	 *                 additional parameter
-	 * @return the scan of the last element or {@code DEFAULT_VALUE} if no
-	 *         elements
-	 */
-	public final R scan(Iterable<? extends Element> iterable, P p) {
-		R result = DEFAULT_VALUE;
-		for (Element e : iterable)
-			result = scan(e, p);
-		return result;
-	}
+    /**
+     * Iterates over the given elements and calls {@link #scan(Element, Object)
+     * scan(Element, P)} on each one. Returns the result of the last call to
+     * {@code scan} or {@code
+     * DEFAULT_VALUE} for an empty iterable.
+     *
+     * @param iterable
+     *                 the elements to scan
+     * @param p
+     *                 additional parameter
+     * @return the scan of the last element or {@code DEFAULT_VALUE} if no
+     *         elements
+     */
+    public final R scan(Iterable<? extends Element> iterable, P p) {
+        R result = DEFAULT_VALUE;
+        for (Element e : iterable)
+            result = scan(e, p);
+        return result;
+    }
 
-	/**
-	 * Processes an element by calling {@code e.accept(this, p)}; this method
-	 * may be overridden by subclasses.
-	 *
-	 * @param e
-	 *          the element to scan
-	 * @param p
-	 *          a scanner-specified parameter
-	 * @return the result of visiting {@code e}.
-	 */
-	public R scan(Element e, P p) {
-		return e.accept(this, p);
-	}
+    /**
+     * Processes an element by calling {@code e.accept(this, p)}; this method
+     * may be overridden by subclasses.
+     *
+     * @param e
+     *          the element to scan
+     * @param p
+     *          a scanner-specified parameter
+     * @return the result of visiting {@code e}.
+     */
+    public R scan(Element e, P p) {
+        return e.accept(this, p);
+    }
 
-	/**
-	 * Convenience method equivalent to {@code v.scan(e, null)}.
-	 *
-	 * @param e
-	 *          the element to scan
-	 * @return the result of scanning {@code e}.
-	 */
-	public final R scan(Element e) {
-		return scan(e, null);
-	}
+    /**
+     * Convenience method equivalent to {@code v.scan(e, null)}.
+     *
+     * @param e
+     *          the element to scan
+     * @return the result of scanning {@code e}.
+     */
+    public final R scan(Element e) {
+        return scan(e, null);
+    }
 
-	/**
-	 * {@inheritDoc} This implementation scans the enclosed elements.
-	 *
-	 * @param e
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of scanning
-	 */
-	public R visitPackage(PackageElement e, P p) {
-		return scan(e.getEnclosedElements(), p);
-	}
+    /**
+     * {@inheritDoc} This implementation scans the enclosed elements.
+     *
+     * @param e
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of scanning
+     */
+    public R visitPackage(PackageElement e, P p) {
+        return scan(e.getEnclosedElements(), p);
+    }
 
-	/**
-	 * {@inheritDoc} This implementation scans the enclosed elements.
-	 *
-	 * @param e
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of scanning
-	 */
-	public R visitType(TypeElement e, P p) {
-		return scan(e.getEnclosedElements(), p);
-	}
+    /**
+     * {@inheritDoc} This implementation scans the enclosed elements.
+     *
+     * @param e
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of scanning
+     */
+    public R visitType(TypeElement e, P p) {
+        return scan(e.getEnclosedElements(), p);
+    }
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * This implementation scans the enclosed elements, unless the element is a
-	 * {@code RESOURCE_VARIABLE} in which case {@code
-	 * visitUnknown} is called.
-	 *
-	 * @param e
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of scanning
-	 */
-	public R visitVariable(VariableElement e, P p) {
-		if (e.getKind() != ElementKind.RESOURCE_VARIABLE)
-			return scan(e.getEnclosedElements(), p);
-		else
-			return visitUnknown(e, p);
-	}
+    /**
+     * {@inheritDoc}
+     *
+     * This implementation scans the enclosed elements, unless the element is a
+     * {@code RESOURCE_VARIABLE} in which case {@code
+     * visitUnknown} is called.
+     *
+     * @param e
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of scanning
+     */
+    public R visitVariable(VariableElement e, P p) {
+        if (e.getKind() != ElementKind.RESOURCE_VARIABLE)
+            return scan(e.getEnclosedElements(), p);
+        else
+            return visitUnknown(e, p);
+    }
 
-	/**
-	 * {@inheritDoc} This implementation scans the parameters.
-	 *
-	 * @param e
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of scanning
-	 */
-	public R visitExecutable(ExecutableElement e, P p) {
-		return scan(e.getParameters(), p);
-	}
+    /**
+     * {@inheritDoc} This implementation scans the parameters.
+     *
+     * @param e
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of scanning
+     */
+    public R visitExecutable(ExecutableElement e, P p) {
+        return scan(e.getParameters(), p);
+    }
 
-	/**
-	 * {@inheritDoc} This implementation scans the enclosed elements.
-	 *
-	 * @param e
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of scanning
-	 */
-	public R visitTypeParameter(TypeParameterElement e, P p) {
-		return scan(e.getEnclosedElements(), p);
-	}
+    /**
+     * {@inheritDoc} This implementation scans the enclosed elements.
+     *
+     * @param e
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of scanning
+     */
+    public R visitTypeParameter(TypeParameterElement e, P p) {
+        return scan(e.getEnclosedElements(), p);
+    }
 }

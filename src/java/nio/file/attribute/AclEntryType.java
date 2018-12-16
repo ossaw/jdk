@@ -12,25 +12,25 @@ package java.nio.file.attribute;
  */
 
 public enum AclEntryType {
-	/**
-	 * Explicitly grants access to a file or directory.
-	 */
-	ALLOW,
+    /**
+     * Explicitly grants access to a file or directory.
+     */
+    ALLOW,
 
-	/**
-	 * Explicitly denies access to a file or directory.
-	 */
-	DENY,
+    /**
+     * Explicitly denies access to a file or directory.
+     */
+    DENY,
 
-	/**
-	 * Log, in a system dependent way, the access specified in the permissions
-	 * component of the ACL entry.
-	 */
-	AUDIT,
+    /**
+     * Log, in a system dependent way, the access specified in the permissions
+     * component of the ACL entry.
+     */
+    AUDIT,
 
-	/**
-	 * Generate an alarm, in a system dependent way, the access specified in the
-	 * permissions component of the ACL entry.
-	 */
-	ALARM
+    /**
+     * Generate an alarm, in a system dependent way, the access specified in the
+     * permissions component of the ACL entry.
+     */
+    ALARM
 }

@@ -31,18 +31,18 @@ package java.security.cert;
  */
 public interface CertPathBuilderResult extends Cloneable {
 
-	/**
-	 * Returns the built certification path.
-	 *
-	 * @return the certification path (never {@code null})
-	 */
-	CertPath getCertPath();
+    /**
+     * Returns the built certification path.
+     *
+     * @return the certification path (never {@code null})
+     */
+    CertPath getCertPath();
 
-	/**
-	 * Makes a copy of this {@code CertPathBuilderResult}. Changes to the copy
-	 * will not affect the original and vice versa.
-	 *
-	 * @return a copy of this {@code CertPathBuilderResult}
-	 */
-	Object clone();
+    /**
+     * Makes a copy of this {@code CertPathBuilderResult}. Changes to the copy
+     * will not affect the original and vice versa.
+     *
+     * @return a copy of this {@code CertPathBuilderResult}
+     */
+    Object clone();
 }

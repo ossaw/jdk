@@ -24,19 +24,19 @@ package org.w3c.dom.html;
  * Model (DOM) Level 2 Specification</a>.
  */
 public interface HTMLBaseElement extends HTMLElement {
-	/**
-	 * The base URI. See the href attribute definition in HTML 4.0.
-	 */
-	public String getHref();
+    /**
+     * The base URI. See the href attribute definition in HTML 4.0.
+     */
+    public String getHref();
 
-	public void setHref(String href);
+    public void setHref(String href);
 
-	/**
-	 * The default target frame. See the target attribute definition in HTML
-	 * 4.0.
-	 */
-	public String getTarget();
+    /**
+     * The default target frame. See the target attribute definition in HTML
+     * 4.0.
+     */
+    public String getTarget();
 
-	public void setTarget(String target);
+    public void setTarget(String target);
 
 }

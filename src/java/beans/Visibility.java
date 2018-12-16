@@ -17,30 +17,30 @@ package java.beans;
 
 public interface Visibility {
 
-	/**
-	 * Determines whether this bean needs a GUI.
-	 *
-	 * @return True if the bean absolutely needs a GUI available in order to get
-	 *         its work done.
-	 */
-	boolean needsGui();
+    /**
+     * Determines whether this bean needs a GUI.
+     *
+     * @return True if the bean absolutely needs a GUI available in order to get
+     *         its work done.
+     */
+    boolean needsGui();
 
-	/**
-	 * This method instructs the bean that it should not use the Gui.
-	 */
-	void dontUseGui();
+    /**
+     * This method instructs the bean that it should not use the Gui.
+     */
+    void dontUseGui();
 
-	/**
-	 * This method instructs the bean that it is OK to use the Gui.
-	 */
-	void okToUseGui();
+    /**
+     * This method instructs the bean that it is OK to use the Gui.
+     */
+    void okToUseGui();
 
-	/**
-	 * Determines whether this bean is avoiding using a GUI.
-	 *
-	 * @return true if the bean is currently avoiding use of the Gui. e.g. due
-	 *         to a call on dontUseGui().
-	 */
-	boolean avoidingGui();
+    /**
+     * Determines whether this bean is avoiding using a GUI.
+     *
+     * @return true if the bean is currently avoiding use of the Gui. e.g. due
+     *         to a call on dontUseGui().
+     */
+    boolean avoidingGui();
 
 }

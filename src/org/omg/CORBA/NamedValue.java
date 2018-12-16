@@ -40,10 +40,10 @@ package org.omg.CORBA;
  * org.omg.CORBA.NamedValue nv = orb.create_named_value(s, myAny, in);
  * System.out.println("This nv name is " + nv.name());
  * try {
- * 	System.out.println("This nv value is " + nv.value().extract_long());
- * 	System.out.println("This nv flag is " + nv.flags());
+ *     System.out.println("This nv value is " + nv.value().extract_long());
+ *     System.out.println("This nv flag is " + nv.flags());
  * } catch (org.omg.CORBA.BAD_OPERATION b) {
- * 	System.out.println("extract failed");
+ *     System.out.println("extract failed");
  * }
  * </PRE>
  *
@@ -71,31 +71,31 @@ package org.omg.CORBA;
 
 public abstract class NamedValue {
 
-	/**
-	 * Retrieves the name for this <code>NamedValue</code> object.
-	 *
-	 * @return a <code>String</code> object representing the name of this
-	 *         <code>NamedValue</code> object
-	 */
+    /**
+     * Retrieves the name for this <code>NamedValue</code> object.
+     *
+     * @return a <code>String</code> object representing the name of this
+     *         <code>NamedValue</code> object
+     */
 
-	public abstract String name();
+    public abstract String name();
 
-	/**
-	 * Retrieves the value for this <code>NamedValue</code> object.
-	 *
-	 * @return an <code>Any</code> object containing the value of this
-	 *         <code>NamedValue</code> object
-	 */
+    /**
+     * Retrieves the value for this <code>NamedValue</code> object.
+     *
+     * @return an <code>Any</code> object containing the value of this
+     *         <code>NamedValue</code> object
+     */
 
-	public abstract Any value();
+    public abstract Any value();
 
-	/**
-	 * Retrieves the argument mode flag for this <code>NamedValue</code> object.
-	 *
-	 * @return an <code>int</code> representing the argument mode for this
-	 *         <code>NamedValue</code> object
-	 */
+    /**
+     * Retrieves the argument mode flag for this <code>NamedValue</code> object.
+     *
+     * @return an <code>int</code> representing the argument mode for this
+     *         <code>NamedValue</code> object
+     */
 
-	public abstract int flags();
+    public abstract int flags();
 
 }

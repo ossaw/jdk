@@ -12,23 +12,23 @@ package javax.management;
  */
 public class IntrospectionException extends OperationsException {
 
-	/* Serial version */
-	private static final long serialVersionUID = 1054516935875481725L;
+    /* Serial version */
+    private static final long serialVersionUID = 1054516935875481725L;
 
-	/**
-	 * Default constructor.
-	 */
-	public IntrospectionException() {
-		super();
-	}
+    /**
+     * Default constructor.
+     */
+    public IntrospectionException() {
+        super();
+    }
 
-	/**
-	 * Constructor that allows a specific error message to be specified.
-	 *
-	 * @param message
-	 *                the detail message.
-	 */
-	public IntrospectionException(String message) {
-		super(message);
-	}
+    /**
+     * Constructor that allows a specific error message to be specified.
+     *
+     * @param message
+     *                the detail message.
+     */
+    public IntrospectionException(String message) {
+        super(message);
+    }
 }

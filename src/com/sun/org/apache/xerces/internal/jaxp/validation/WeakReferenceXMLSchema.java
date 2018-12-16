@@ -32,29 +32,29 @@ import com.sun.org.apache.xerces.internal.xni.grammars.XMLGrammarPool;
  */
 final class WeakReferenceXMLSchema extends AbstractXMLSchema {
 
-	/** Weak reference to grammar pool. */
-	private WeakReference fGrammarPool = new WeakReference(null);
+    /** Weak reference to grammar pool. */
+    private WeakReference fGrammarPool = new WeakReference(null);
 
-	public WeakReferenceXMLSchema() {}
+    public WeakReferenceXMLSchema() {}
 
-	/*
-	 * XSGrammarPoolContainer methods
-	 */
+    /*
+     * XSGrammarPoolContainer methods
+     */
 
-	public synchronized XMLGrammarPool getGrammarPool() {
-		XMLGrammarPool grammarPool = (XMLGrammarPool) fGrammarPool.get();
-		// If there's no grammar pool then either we haven't created one
-		// yet or the garbage collector has already cleaned out the previous
-		// one.
-		if (grammarPool == null) {
-			grammarPool = new SoftReferenceGrammarPool();
-			fGrammarPool = new WeakReference(grammarPool);
-		}
-		return grammarPool;
-	}
+    public synchronized XMLGrammarPool getGrammarPool() {
+        XMLGrammarPool grammarPool = (XMLGrammarPool) fGrammarPool.get();
+        // If there's no grammar pool then either we haven't created one
+        // yet or the garbage collector has already cleaned out the previous
+        // one.
+        if (grammarPool == null) {
+            grammarPool = new SoftReferenceGrammarPool();
+            fGrammarPool = new WeakReference(grammarPool);
+        }
+        return grammarPool;
+    }
 
-	public boolean isFullyComposed() {
-		return false;
-	}
+    public boolean isFullyComposed() {
+        return false;
+    }
 
 } // WeakReferenceXMLSchema

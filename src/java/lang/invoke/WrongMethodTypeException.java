@@ -20,48 +20,48 @@ package java.lang.invoke;
  * @since 1.7
  */
 public class WrongMethodTypeException extends RuntimeException {
-	private static final long serialVersionUID = 292L;
+    private static final long serialVersionUID = 292L;
 
-	/**
-	 * Constructs a {@code WrongMethodTypeException} with no detail message.
-	 */
-	public WrongMethodTypeException() {
-		super();
-	}
+    /**
+     * Constructs a {@code WrongMethodTypeException} with no detail message.
+     */
+    public WrongMethodTypeException() {
+        super();
+    }
 
-	/**
-	 * Constructs a {@code WrongMethodTypeException} with the specified detail
-	 * message.
-	 *
-	 * @param s
-	 *          the detail message.
-	 */
-	public WrongMethodTypeException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs a {@code WrongMethodTypeException} with the specified detail
+     * message.
+     *
+     * @param s
+     *          the detail message.
+     */
+    public WrongMethodTypeException(String s) {
+        super(s);
+    }
 
-	/**
-	 * Constructs a {@code WrongMethodTypeException} with the specified detail
-	 * message and cause.
-	 *
-	 * @param s
-	 *              the detail message.
-	 * @param cause
-	 *              the cause of the exception, or null.
-	 */
-	// FIXME: make this public in MR1
-	/* non-public */ WrongMethodTypeException(String s, Throwable cause) {
-		super(s, cause);
-	}
+    /**
+     * Constructs a {@code WrongMethodTypeException} with the specified detail
+     * message and cause.
+     *
+     * @param s
+     *              the detail message.
+     * @param cause
+     *              the cause of the exception, or null.
+     */
+    // FIXME: make this public in MR1
+    /* non-public */ WrongMethodTypeException(String s, Throwable cause) {
+        super(s, cause);
+    }
 
-	/**
-	 * Constructs a {@code WrongMethodTypeException} with the specified cause.
-	 *
-	 * @param cause
-	 *              the cause of the exception, or null.
-	 */
-	// FIXME: make this public in MR1
-	/* non-public */ WrongMethodTypeException(Throwable cause) {
-		super(cause);
-	}
+    /**
+     * Constructs a {@code WrongMethodTypeException} with the specified cause.
+     *
+     * @param cause
+     *              the cause of the exception, or null.
+     */
+    // FIXME: make this public in MR1
+    /* non-public */ WrongMethodTypeException(Throwable cause) {
+        super(cause);
+    }
 }

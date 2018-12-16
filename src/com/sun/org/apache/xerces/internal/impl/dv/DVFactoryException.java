@@ -26,14 +26,14 @@ package com.sun.org.apache.xerces.internal.impl.dv;
  */
 public class DVFactoryException extends RuntimeException {
 
-	/** Serialization version. */
-	static final long serialVersionUID = -3738854697928682412L;
+    /** Serialization version. */
+    static final long serialVersionUID = -3738854697928682412L;
 
-	public DVFactoryException() {
-		super();
-	}
+    public DVFactoryException() {
+        super();
+    }
 
-	public DVFactoryException(String msg) {
-		super(msg);
-	}
+    public DVFactoryException(String msg) {
+        super(msg);
+    }
 }

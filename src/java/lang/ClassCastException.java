@@ -21,23 +21,23 @@ package java.lang;
  * @since JDK1.0
  */
 public class ClassCastException extends RuntimeException {
-	private static final long serialVersionUID = -9223365651070458532L;
+    private static final long serialVersionUID = -9223365651070458532L;
 
-	/**
-	 * Constructs a <code>ClassCastException</code> with no detail message.
-	 */
-	public ClassCastException() {
-		super();
-	}
+    /**
+     * Constructs a <code>ClassCastException</code> with no detail message.
+     */
+    public ClassCastException() {
+        super();
+    }
 
-	/**
-	 * Constructs a <code>ClassCastException</code> with the specified detail
-	 * message.
-	 *
-	 * @param s
-	 *          the detail message.
-	 */
-	public ClassCastException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs a <code>ClassCastException</code> with the specified detail
+     * message.
+     *
+     * @param s
+     *          the detail message.
+     */
+    public ClassCastException(String s) {
+        super(s);
+    }
 }

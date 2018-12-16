@@ -15,84 +15,84 @@ import sun.nio.ch.DirectBuffer;
 
 class DirectDoubleBufferRS
 
-		extends DirectDoubleBufferS
+        extends DirectDoubleBufferS
 
-		implements DirectBuffer {
+        implements DirectBuffer {
 
-	// For duplicates and slices
-	//
-	DirectDoubleBufferRS(DirectBuffer db, // package-private
-			int mark, int pos, int lim, int cap, int off) {
+    // For duplicates and slices
+    //
+    DirectDoubleBufferRS(DirectBuffer db, // package-private
+            int mark, int pos, int lim, int cap, int off) {
 
-		super(db, mark, pos, lim, cap, off);
+        super(db, mark, pos, lim, cap, off);
 
-	}
+    }
 
-	public DoubleBuffer slice() {
-		int pos = this.position();
-		int lim = this.limit();
-		assert (pos <= lim);
-		int rem = (pos <= lim ? lim - pos : 0);
-		int off = (pos << 3);
-		assert (off >= 0);
-		return new DirectDoubleBufferRS(this, -1, 0, rem, rem, off);
-	}
+    public DoubleBuffer slice() {
+        int pos = this.position();
+        int lim = this.limit();
+        assert (pos <= lim);
+        int rem = (pos <= lim ? lim - pos : 0);
+        int off = (pos << 3);
+        assert (off >= 0);
+        return new DirectDoubleBufferRS(this, -1, 0, rem, rem, off);
+    }
 
-	public DoubleBuffer duplicate() {
-		return new DirectDoubleBufferRS(this, this.markValue(), this.position(),
-				this.limit(), this.capacity(), 0);
-	}
+    public DoubleBuffer duplicate() {
+        return new DirectDoubleBufferRS(this, this.markValue(), this.position(),
+                this.limit(), this.capacity(), 0);
+    }
 
-	public DoubleBuffer asReadOnlyBuffer() {
+    public DoubleBuffer asReadOnlyBuffer() {
 
-		return duplicate();
+        return duplicate();
 
-	}
+    }
 
-	public DoubleBuffer put(double x) {
+    public DoubleBuffer put(double x) {
 
-		throw new ReadOnlyBufferException();
+        throw new ReadOnlyBufferException();
 
-	}
+    }
 
-	public DoubleBuffer put(int i, double x) {
+    public DoubleBuffer put(int i, double x) {
 
-		throw new ReadOnlyBufferException();
+        throw new ReadOnlyBufferException();
 
-	}
+    }
 
-	public DoubleBuffer put(DoubleBuffer src) {
+    public DoubleBuffer put(DoubleBuffer src) {
 
-		throw new ReadOnlyBufferException();
+        throw new ReadOnlyBufferException();
 
-	}
+    }
 
-	public DoubleBuffer put(double[] src, int offset, int length) {
+    public DoubleBuffer put(double[] src, int offset, int length) {
 
-		throw new ReadOnlyBufferException();
+        throw new ReadOnlyBufferException();
 
-	}
+    }
 
-	public DoubleBuffer compact() {
+    public DoubleBuffer compact() {
 
-		throw new ReadOnlyBufferException();
+        throw new ReadOnlyBufferException();
 
-	}
+    }
 
-	public boolean isDirect() {
-		return true;
-	}
+    public boolean isDirect() {
+        return true;
+    }
 
-	public boolean isReadOnly() {
-		return true;
-	}
+    public boolean isReadOnly() {
+        return true;
+    }
 
-	public ByteOrder order() {
+    public ByteOrder order() {
 
-		return ((ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN)
-				? ByteOrder.LITTLE_ENDIAN
-				: ByteOrder.BIG_ENDIAN);
+        return ((ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN)
+                ? ByteOrder.LITTLE_ENDIAN
+                : ByteOrder.BIG_ENDIAN);
 
-	}
+    }
 
 }

@@ -15,29 +15,29 @@ import java.security.*;
  */
 
 public final class DynamicAccessPermission extends BasicPermission {
-	// private static final long serialVersionUID = -8343910153355041693L;
+    // private static final long serialVersionUID = -8343910153355041693L;
 
-	/**
-	 * Creates a new DynamicAccessPermission with the specified name.
-	 * 
-	 * @param name
-	 *             the name of the DynamicAccessPermission.
-	 */
-	public DynamicAccessPermission(String name) {
-		super(name);
-	}
+    /**
+     * Creates a new DynamicAccessPermission with the specified name.
+     * 
+     * @param name
+     *             the name of the DynamicAccessPermission.
+     */
+    public DynamicAccessPermission(String name) {
+        super(name);
+    }
 
-	/**
-	 * Creates a new DynamicAccessPermission object with the specified name. The
-	 * name is the symbolic name of the DynamicAccessPermission, and the actions
-	 * String is currently unused and should be null.
-	 *
-	 * @param name
-	 *                the name of the DynamicAccessPermission.
-	 * @param actions
-	 *                should be null.
-	 */
-	public DynamicAccessPermission(String name, String actions) {
-		super(name, actions);
-	}
+    /**
+     * Creates a new DynamicAccessPermission object with the specified name. The
+     * name is the symbolic name of the DynamicAccessPermission, and the actions
+     * String is currently unused and should be null.
+     *
+     * @param name
+     *                the name of the DynamicAccessPermission.
+     * @param actions
+     *                should be null.
+     */
+    public DynamicAccessPermission(String name, String actions) {
+        super(name, actions);
+    }
 }

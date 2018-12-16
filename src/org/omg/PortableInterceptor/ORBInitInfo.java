@@ -21,4 +21,4 @@ package org.omg.PortableInterceptor;
  * @see ORBInitializer
  */
 public interface ORBInitInfo extends ORBInitInfoOperations,
-		org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity {} // interface ORBInitInfo
+        org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity {} // interface ORBInitInfo

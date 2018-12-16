@@ -39,16 +39,16 @@ package javax.naming.event;
  */
 public interface ObjectChangeListener extends NamingListener {
 
-	/**
-	 * Called when an object has been changed.
-	 * <p>
-	 * The binding of the changed object can be obtained using
-	 * <tt>evt.getNewBinding()</tt>. Its old binding (before the change) can be
-	 * obtained using <tt>evt.getOldBinding()</tt>.
-	 * 
-	 * @param evt
-	 *            The nonnull naming event.
-	 * @see NamingEvent#OBJECT_CHANGED
-	 */
-	void objectChanged(NamingEvent evt);
+    /**
+     * Called when an object has been changed.
+     * <p>
+     * The binding of the changed object can be obtained using
+     * <tt>evt.getNewBinding()</tt>. Its old binding (before the change) can be
+     * obtained using <tt>evt.getOldBinding()</tt>.
+     * 
+     * @param evt
+     *            The nonnull naming event.
+     * @see NamingEvent#OBJECT_CHANGED
+     */
+    void objectChanged(NamingEvent evt);
 }

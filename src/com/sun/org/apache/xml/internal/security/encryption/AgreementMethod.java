@@ -76,85 +76,85 @@ import org.w3c.dom.Element;
  */
 public interface AgreementMethod {
 
-	/**
-	 * Returns a <code>byte</code> array.
-	 * 
-	 * @return a <code>byte</code> array.
-	 */
-	byte[] getKANonce();
+    /**
+     * Returns a <code>byte</code> array.
+     * 
+     * @return a <code>byte</code> array.
+     */
+    byte[] getKANonce();
 
-	/**
-	 * Sets the KANonce.jj
-	 * 
-	 * @param kanonce
-	 */
-	void setKANonce(byte[] kanonce);
+    /**
+     * Sets the KANonce.jj
+     * 
+     * @param kanonce
+     */
+    void setKANonce(byte[] kanonce);
 
-	/**
-	 * Returns additional information regarding the <code>AgreementMethod</code>
-	 * .
-	 * 
-	 * @return additional information regarding the <code>AgreementMethod</code>
-	 *         .
-	 */
-	Iterator<Element> getAgreementMethodInformation();
+    /**
+     * Returns additional information regarding the <code>AgreementMethod</code>
+     * .
+     * 
+     * @return additional information regarding the <code>AgreementMethod</code>
+     *         .
+     */
+    Iterator<Element> getAgreementMethodInformation();
 
-	/**
-	 * Adds additional <code>AgreementMethod</code> information.
-	 *
-	 * @param info
-	 *             a <code>Element</code> that represents additional information
-	 *             specified by
-	 *             <xmp> <any namespace="##other" minOccurs="0" maxOccurs=
-	 *             "unbounded"/> </xmp>
-	 */
-	void addAgreementMethodInformation(Element info);
+    /**
+     * Adds additional <code>AgreementMethod</code> information.
+     *
+     * @param info
+     *             a <code>Element</code> that represents additional information
+     *             specified by
+     *             <xmp> <any namespace="##other" minOccurs="0" maxOccurs=
+     *             "unbounded"/> </xmp>
+     */
+    void addAgreementMethodInformation(Element info);
 
-	/**
-	 * Removes additional <code>AgreementMethod</code> information.
-	 *
-	 * @param info
-	 *             a <code>Element</code> that represents additional information
-	 *             specified by
-	 *             <xmp> <any namespace="##other" minOccurs="0" maxOccurs=
-	 *             "unbounded"/> </xmp>
-	 */
-	void revoveAgreementMethodInformation(Element info);
+    /**
+     * Removes additional <code>AgreementMethod</code> information.
+     *
+     * @param info
+     *             a <code>Element</code> that represents additional information
+     *             specified by
+     *             <xmp> <any namespace="##other" minOccurs="0" maxOccurs=
+     *             "unbounded"/> </xmp>
+     */
+    void revoveAgreementMethodInformation(Element info);
 
-	/**
-	 * Returns information relating to the originator's shared secret.
-	 *
-	 * @return information relating to the originator's shared secret.
-	 */
-	KeyInfo getOriginatorKeyInfo();
+    /**
+     * Returns information relating to the originator's shared secret.
+     *
+     * @return information relating to the originator's shared secret.
+     */
+    KeyInfo getOriginatorKeyInfo();
 
-	/**
-	 * Sets the information relating to the originator's shared secret.
-	 *
-	 * @param keyInfo
-	 *                information relating to the originator's shared secret.
-	 */
-	void setOriginatorKeyInfo(KeyInfo keyInfo);
+    /**
+     * Sets the information relating to the originator's shared secret.
+     *
+     * @param keyInfo
+     *                information relating to the originator's shared secret.
+     */
+    void setOriginatorKeyInfo(KeyInfo keyInfo);
 
-	/**
-	 * Returns information relating to the recipient's shared secret.
-	 *
-	 * @return information relating to the recipient's shared secret.
-	 */
-	KeyInfo getRecipientKeyInfo();
+    /**
+     * Returns information relating to the recipient's shared secret.
+     *
+     * @return information relating to the recipient's shared secret.
+     */
+    KeyInfo getRecipientKeyInfo();
 
-	/**
-	 * Sets the information relating to the recipient's shared secret.
-	 *
-	 * @param keyInfo
-	 *                information relating to the recipient's shared secret.
-	 */
-	void setRecipientKeyInfo(KeyInfo keyInfo);
+    /**
+     * Sets the information relating to the recipient's shared secret.
+     *
+     * @param keyInfo
+     *                information relating to the recipient's shared secret.
+     */
+    void setRecipientKeyInfo(KeyInfo keyInfo);
 
-	/**
-	 * Returns the algorithm URI of this <code>CryptographicMethod</code>.
-	 *
-	 * @return the algorithm URI of this <code>CryptographicMethod</code>
-	 */
-	String getAlgorithm();
+    /**
+     * Returns the algorithm URI of this <code>CryptographicMethod</code>.
+     *
+     * @return the algorithm URI of this <code>CryptographicMethod</code>
+     */
+    String getAlgorithm();
 }

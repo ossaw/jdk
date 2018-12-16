@@ -12,9 +12,9 @@ import com.sun.corba.se.spi.orbutil.closure.Closure;
  * object) bindings.
  */
 public interface LocalResolver extends Resolver {
-	/**
-	 * Register the Closure with the given name. The Closure must evaluate to an
-	 * org.omg.CORBA.Object.
-	 */
-	void register(String name, Closure closure);
+    /**
+     * Register the Closure with the given name. The Closure must evaluate to an
+     * org.omg.CORBA.Object.
+     */
+    void register(String name, Closure closure);
 }

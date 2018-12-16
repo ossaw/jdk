@@ -19,24 +19,24 @@ package javax.sound.midi;
  */
 public class MidiUnavailableException extends Exception {
 
-	/**
-	 * Constructs a <code>MidiUnavailableException</code> that has
-	 * <code>null</code> as its error detail message.
-	 */
-	public MidiUnavailableException() {
+    /**
+     * Constructs a <code>MidiUnavailableException</code> that has
+     * <code>null</code> as its error detail message.
+     */
+    public MidiUnavailableException() {
 
-		super();
-	}
+        super();
+    }
 
-	/**
-	 * Constructs a <code>MidiUnavailableException</code> with the specified
-	 * detail message.
-	 *
-	 * @param message
-	 *                the string to display as an error detail message
-	 */
-	public MidiUnavailableException(String message) {
+    /**
+     * Constructs a <code>MidiUnavailableException</code> with the specified
+     * detail message.
+     *
+     * @param message
+     *                the string to display as an error detail message
+     */
+    public MidiUnavailableException(String message) {
 
-		super(message);
-	}
+        super(message);
+    }
 }

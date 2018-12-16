@@ -21,37 +21,37 @@ import javax.swing.event.ListDataListener;
  * @see JList
  */
 public interface ListModel<E> {
-	/**
-	 * Returns the length of the list.
-	 * 
-	 * @return the length of the list
-	 */
-	int getSize();
+    /**
+     * Returns the length of the list.
+     * 
+     * @return the length of the list
+     */
+    int getSize();
 
-	/**
-	 * Returns the value at the specified index.
-	 * 
-	 * @param index
-	 *              the requested index
-	 * @return the value at <code>index</code>
-	 */
-	E getElementAt(int index);
+    /**
+     * Returns the value at the specified index.
+     * 
+     * @param index
+     *              the requested index
+     * @return the value at <code>index</code>
+     */
+    E getElementAt(int index);
 
-	/**
-	 * Adds a listener to the list that's notified each time a change to the
-	 * data model occurs.
-	 * 
-	 * @param l
-	 *          the <code>ListDataListener</code> to be added
-	 */
-	void addListDataListener(ListDataListener l);
+    /**
+     * Adds a listener to the list that's notified each time a change to the
+     * data model occurs.
+     * 
+     * @param l
+     *          the <code>ListDataListener</code> to be added
+     */
+    void addListDataListener(ListDataListener l);
 
-	/**
-	 * Removes a listener from the list that's notified each time a change to
-	 * the data model occurs.
-	 * 
-	 * @param l
-	 *          the <code>ListDataListener</code> to be removed
-	 */
-	void removeListDataListener(ListDataListener l);
+    /**
+     * Removes a listener from the list that's notified each time a change to
+     * the data model occurs.
+     * 
+     * @param l
+     *          the <code>ListDataListener</code> to be removed
+     */
+    void removeListDataListener(ListDataListener l);
 }

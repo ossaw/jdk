@@ -19,5 +19,5 @@ package com.sun.java_cup.internal.runtime;
  * method is typically called by lr_parser.scan().
  ***************************************************/
 public interface Scanner {
-	public Symbol next_token() throws java.lang.Exception;
+    public Symbol next_token() throws java.lang.Exception;
 }

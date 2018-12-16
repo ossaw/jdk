@@ -23,15 +23,15 @@ package javax.swing.plaf.synth;
  * 
  * <pre>
  * class MyStyle extends SynthStyle {
- * 	private Color disabledColor = new ColorUIResource(Color.RED);
- * 	private Color color = new ColorUIResource(Color.BLACK);
+ *     private Color disabledColor = new ColorUIResource(Color.RED);
+ *     private Color color = new ColorUIResource(Color.BLACK);
  * 
- * 	protected Color getColorForState(SynthContext context, ColorType type) {
- * 		if (context.getComponentState() == SynthConstants.DISABLED) {
- * 			return disabledColor;
- * 		}
- * 		return color;
- * 	}
+ *     protected Color getColorForState(SynthContext context, ColorType type) {
+ *         if (context.getComponentState() == SynthConstants.DISABLED) {
+ *             return disabledColor;
+ *         }
+ *         return color;
+ *     }
  * }
  * </pre>
  *
@@ -39,81 +39,81 @@ package javax.swing.plaf.synth;
  * @author Scott Violet
  */
 public class ColorType {
-	/**
-	 * ColorType for the foreground of a region.
-	 */
-	public static final ColorType FOREGROUND = new ColorType("Foreground");
+    /**
+     * ColorType for the foreground of a region.
+     */
+    public static final ColorType FOREGROUND = new ColorType("Foreground");
 
-	/**
-	 * ColorType for the background of a region.
-	 */
-	public static final ColorType BACKGROUND = new ColorType("Background");
+    /**
+     * ColorType for the background of a region.
+     */
+    public static final ColorType BACKGROUND = new ColorType("Background");
 
-	/**
-	 * ColorType for the foreground of a region.
-	 */
-	public static final ColorType TEXT_FOREGROUND = new ColorType(
-			"TextForeground");
+    /**
+     * ColorType for the foreground of a region.
+     */
+    public static final ColorType TEXT_FOREGROUND = new ColorType(
+            "TextForeground");
 
-	/**
-	 * ColorType for the background of a region.
-	 */
-	public static final ColorType TEXT_BACKGROUND = new ColorType(
-			"TextBackground");
+    /**
+     * ColorType for the background of a region.
+     */
+    public static final ColorType TEXT_BACKGROUND = new ColorType(
+            "TextBackground");
 
-	/**
-	 * ColorType for the focus.
-	 */
-	public static final ColorType FOCUS = new ColorType("Focus");
+    /**
+     * ColorType for the focus.
+     */
+    public static final ColorType FOCUS = new ColorType("Focus");
 
-	/**
-	 * Maximum number of <code>ColorType</code>s.
-	 */
-	public static final int MAX_COUNT;
+    /**
+     * Maximum number of <code>ColorType</code>s.
+     */
+    public static final int MAX_COUNT;
 
-	private static int nextID;
+    private static int nextID;
 
-	private String description;
-	private int index;
+    private String description;
+    private int index;
 
-	static {
-		MAX_COUNT = Math.max(FOREGROUND.getID(), Math.max(BACKGROUND.getID(),
-				FOCUS.getID())) + 1;
-	}
+    static {
+        MAX_COUNT = Math.max(FOREGROUND.getID(), Math.max(BACKGROUND.getID(),
+                FOCUS.getID())) + 1;
+    }
 
-	/**
-	 * Creates a new ColorType with the specified description.
-	 *
-	 * @param description
-	 *                    String description of the ColorType.
-	 */
-	protected ColorType(String description) {
-		if (description == null) {
-			throw new NullPointerException(
-					"ColorType must have a valid description");
-		}
-		this.description = description;
-		synchronized (ColorType.class) {
-			this.index = nextID++;
-		}
-	}
+    /**
+     * Creates a new ColorType with the specified description.
+     *
+     * @param description
+     *                    String description of the ColorType.
+     */
+    protected ColorType(String description) {
+        if (description == null) {
+            throw new NullPointerException(
+                    "ColorType must have a valid description");
+        }
+        this.description = description;
+        synchronized (ColorType.class) {
+            this.index = nextID++;
+        }
+    }
 
-	/**
-	 * Returns a unique id, as an integer, for this ColorType.
-	 *
-	 * @return a unique id, as an integer, for this ColorType.
-	 */
-	public final int getID() {
-		return index;
-	}
+    /**
+     * Returns a unique id, as an integer, for this ColorType.
+     *
+     * @return a unique id, as an integer, for this ColorType.
+     */
+    public final int getID() {
+        return index;
+    }
 
-	/**
-	 * Returns the textual description of this <code>ColorType</code>. This is
-	 * the same value that the <code>ColorType</code> was created with.
-	 *
-	 * @return the description of the string
-	 */
-	public String toString() {
-		return description;
-	}
+    /**
+     * Returns the textual description of this <code>ColorType</code>. This is
+     * the same value that the <code>ColorType</code> was created with.
+     *
+     * @return the description of the string
+     */
+    public String toString() {
+        return description;
+    }
 }

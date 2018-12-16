@@ -30,62 +30,62 @@ import org.omg.CORBA.portable.OutputStream;
  */
 public final class BooleanHolder implements Streamable {
 
-	/**
-	 * The <code>boolean</code> value held by this <code>BooleanHolder</code>
-	 * object.
-	 */
-	public boolean value;
+    /**
+     * The <code>boolean</code> value held by this <code>BooleanHolder</code>
+     * object.
+     */
+    public boolean value;
 
-	/**
-	 * Constructs a new <code>BooleanHolder</code> object with its
-	 * <code>value</code> field initialized to <code>false</code>.
-	 */
-	public BooleanHolder() {}
+    /**
+     * Constructs a new <code>BooleanHolder</code> object with its
+     * <code>value</code> field initialized to <code>false</code>.
+     */
+    public BooleanHolder() {}
 
-	/**
-	 * Constructs a new <code>BooleanHolder</code> object with its
-	 * <code>value</code> field initialized with the given <code>boolean</code>.
-	 * 
-	 * @param initial
-	 *                the <code>boolean</code> with which to initialize the
-	 *                <code>value</code> field of the newly-created
-	 *                <code>BooleanHolder</code> object
-	 */
-	public BooleanHolder(boolean initial) {
-		value = initial;
-	}
+    /**
+     * Constructs a new <code>BooleanHolder</code> object with its
+     * <code>value</code> field initialized with the given <code>boolean</code>.
+     * 
+     * @param initial
+     *                the <code>boolean</code> with which to initialize the
+     *                <code>value</code> field of the newly-created
+     *                <code>BooleanHolder</code> object
+     */
+    public BooleanHolder(boolean initial) {
+        value = initial;
+    }
 
-	/**
-	 * Reads unmarshalled data from <code>input</code> and assigns it to this
-	 * <code>BooleanHolder</code> object's <code>value</code> field.
-	 *
-	 * @param input
-	 *              the <code>InputStream</code> object containing CDR formatted
-	 *              data from the wire
-	 */
-	public void _read(InputStream input) {
-		value = input.read_boolean();
-	}
+    /**
+     * Reads unmarshalled data from <code>input</code> and assigns it to this
+     * <code>BooleanHolder</code> object's <code>value</code> field.
+     *
+     * @param input
+     *              the <code>InputStream</code> object containing CDR formatted
+     *              data from the wire
+     */
+    public void _read(InputStream input) {
+        value = input.read_boolean();
+    }
 
-	/**
-	 * Marshals the value in this <code>BooleanHolder</code> object's
-	 * <code>value</code> field to the output stream <code>output</code>.
-	 *
-	 * @param output
-	 *               the OutputStream which will contain the CDR formatted data
-	 */
-	public void _write(OutputStream output) {
-		output.write_boolean(value);
-	}
+    /**
+     * Marshals the value in this <code>BooleanHolder</code> object's
+     * <code>value</code> field to the output stream <code>output</code>.
+     *
+     * @param output
+     *               the OutputStream which will contain the CDR formatted data
+     */
+    public void _write(OutputStream output) {
+        output.write_boolean(value);
+    }
 
-	/**
-	 * Retrieves the <code>TypeCode</code> object that corresponds to the value
-	 * held in this <code>BooleanHolder</code> object.
-	 *
-	 * @return the <code>TypeCode</code> for the value held in this
-	 *         <code>BooleanHolder</code> object
-	 */
-	public TypeCode _type() {
-		return ORB.init().get_primitive_tc(TCKind.tk_boolean);
-	}
+    /**
+     * Retrieves the <code>TypeCode</code> object that corresponds to the value
+     * held in this <code>BooleanHolder</code> object.
+     *
+     * @return the <code>TypeCode</code> for the value held in this
+     *         <code>BooleanHolder</code> object
+     */
+    public TypeCode _type() {
+        return ORB.init().get_primitive_tc(TCKind.tk_boolean);
+    }
 }

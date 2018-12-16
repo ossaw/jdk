@@ -29,74 +29,74 @@ import javax.print.attribute.PrintRequestAttribute;
  *
  */
 public final class Fidelity extends EnumSyntax implements PrintJobAttribute,
-		PrintRequestAttribute {
+        PrintRequestAttribute {
 
-	private static final long serialVersionUID = 6320827847329172308L;
+    private static final long serialVersionUID = 6320827847329172308L;
 
-	/**
-	 * The job must be printed exactly as specified. or else rejected.
-	 */
-	public static final Fidelity FIDELITY_TRUE = new Fidelity(0);
+    /**
+     * The job must be printed exactly as specified. or else rejected.
+     */
+    public static final Fidelity FIDELITY_TRUE = new Fidelity(0);
 
-	/**
-	 * The printer should make reasonable attempts to print the job, even if it
-	 * cannot print it exactly as specified.
-	 */
-	public static final Fidelity FIDELITY_FALSE = new Fidelity(1);
+    /**
+     * The printer should make reasonable attempts to print the job, even if it
+     * cannot print it exactly as specified.
+     */
+    public static final Fidelity FIDELITY_FALSE = new Fidelity(1);
 
-	/**
-	 * Construct a new fidelity enumeration value with the given integer value.
-	 *
-	 * @param value
-	 *              Integer value.
-	 */
-	protected Fidelity(int value) {
-		super(value);
-	}
+    /**
+     * Construct a new fidelity enumeration value with the given integer value.
+     *
+     * @param value
+     *              Integer value.
+     */
+    protected Fidelity(int value) {
+        super(value);
+    }
 
-	private static final String[] myStringTable = { "true", "false" };
+    private static final String[] myStringTable = { "true", "false" };
 
-	private static final Fidelity[] myEnumValueTable = { FIDELITY_TRUE,
-			FIDELITY_FALSE };
+    private static final Fidelity[] myEnumValueTable = { FIDELITY_TRUE,
+            FIDELITY_FALSE };
 
-	/**
-	 * Returns the string table for class Fidelity.
-	 */
-	protected String[] getStringTable() {
-		return myStringTable;
-	}
+    /**
+     * Returns the string table for class Fidelity.
+     */
+    protected String[] getStringTable() {
+        return myStringTable;
+    }
 
-	/**
-	 * Returns the enumeration value table for class Fidelity.
-	 */
-	protected EnumSyntax[] getEnumValueTable() {
-		return myEnumValueTable;
-	}
+    /**
+     * Returns the enumeration value table for class Fidelity.
+     */
+    protected EnumSyntax[] getEnumValueTable() {
+        return myEnumValueTable;
+    }
 
-	/**
-	 * Get the printing attribute class which is to be used as the "category"
-	 * for this printing attribute value.
-	 * <P>
-	 * For class Fidelity the category is class Fidelity itself.
-	 *
-	 * @return Printing attribute class (category), an instance of class
-	 *         {@link java.lang.Class java.lang.Class}.
-	 */
-	public final Class<? extends Attribute> getCategory() {
-		return Fidelity.class;
-	}
+    /**
+     * Get the printing attribute class which is to be used as the "category"
+     * for this printing attribute value.
+     * <P>
+     * For class Fidelity the category is class Fidelity itself.
+     *
+     * @return Printing attribute class (category), an instance of class
+     *         {@link java.lang.Class java.lang.Class}.
+     */
+    public final Class<? extends Attribute> getCategory() {
+        return Fidelity.class;
+    }
 
-	/**
-	 * Get the name of the category of which this attribute value is an
-	 * instance.
-	 * <P>
-	 * For class Fidelity the category name is
-	 * <CODE>"ipp-attribute-fidelity"</CODE>.
-	 *
-	 * @return Attribute category name.
-	 */
-	public final String getName() {
-		return "ipp-attribute-fidelity";
-	}
+    /**
+     * Get the name of the category of which this attribute value is an
+     * instance.
+     * <P>
+     * For class Fidelity the category name is
+     * <CODE>"ipp-attribute-fidelity"</CODE>.
+     *
+     * @return Attribute category name.
+     */
+    public final String getName() {
+        return "ipp-attribute-fidelity";
+    }
 
 }

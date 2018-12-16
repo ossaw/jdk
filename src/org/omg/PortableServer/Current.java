@@ -23,4 +23,4 @@ package org.omg.PortableServer;
  * invoked.
  */
 public interface Current extends CurrentOperations, org.omg.CORBA.Current,
-		org.omg.CORBA.portable.IDLEntity {} // interface Current
+        org.omg.CORBA.portable.IDLEntity {} // interface Current

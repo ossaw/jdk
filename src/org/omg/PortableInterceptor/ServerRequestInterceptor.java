@@ -25,6 +25,6 @@ package org.omg.PortableInterceptor;
  * @see ServerRequestInfo
  */
 public interface ServerRequestInterceptor extends
-		ServerRequestInterceptorOperations,
-		org.omg.PortableInterceptor.Interceptor,
-		org.omg.CORBA.portable.IDLEntity {} // interface ServerRequestInterceptor
+        ServerRequestInterceptorOperations,
+        org.omg.PortableInterceptor.Interceptor,
+        org.omg.CORBA.portable.IDLEntity {} // interface ServerRequestInterceptor

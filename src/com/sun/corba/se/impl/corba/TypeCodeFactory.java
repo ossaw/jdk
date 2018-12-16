@@ -6,11 +6,11 @@
 package com.sun.corba.se.impl.corba;
 
 public interface TypeCodeFactory {
-	void setTypeCode(String id, TypeCodeImpl code);
+    void setTypeCode(String id, TypeCodeImpl code);
 
-	TypeCodeImpl getTypeCode(String id);
+    TypeCodeImpl getTypeCode(String id);
 
-	void setTypeCodeForClass(Class c, TypeCodeImpl tcimpl);
+    void setTypeCodeForClass(Class c, TypeCodeImpl tcimpl);
 
-	TypeCodeImpl getTypeCodeForClass(Class c);
+    TypeCodeImpl getTypeCodeForClass(Class c);
 }

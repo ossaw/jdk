@@ -28,75 +28,75 @@ import java.rmi.server.UID;
  * @since 1.2
  */
 public class ActivationGroupID implements java.io.Serializable {
-	/**
-	 * @serial The group's activation system.
-	 */
-	private ActivationSystem system;
+    /**
+     * @serial The group's activation system.
+     */
+    private ActivationSystem system;
 
-	/**
-	 * @serial The group's unique id.
-	 */
-	private UID uid = new UID();
+    /**
+     * @serial The group's unique id.
+     */
+    private UID uid = new UID();
 
-	/** indicate compatibility with the Java 2 SDK v1.2 version of class */
-	private static final long serialVersionUID = -1648432278909740833L;
+    /** indicate compatibility with the Java 2 SDK v1.2 version of class */
+    private static final long serialVersionUID = -1648432278909740833L;
 
-	/**
-	 * Constructs a unique group id.
-	 *
-	 * @param system
-	 *               the group's activation system
-	 * @throws UnsupportedOperationException
-	 *                                       if and only if activation is not
-	 *                                       supported by this
-	 *                                       implementation
-	 * @since 1.2
-	 */
-	public ActivationGroupID(ActivationSystem system) {
-		this.system = system;
-	}
+    /**
+     * Constructs a unique group id.
+     *
+     * @param system
+     *               the group's activation system
+     * @throws UnsupportedOperationException
+     *                                       if and only if activation is not
+     *                                       supported by this
+     *                                       implementation
+     * @since 1.2
+     */
+    public ActivationGroupID(ActivationSystem system) {
+        this.system = system;
+    }
 
-	/**
-	 * Returns the group's activation system.
-	 * 
-	 * @return the group's activation system
-	 * @since 1.2
-	 */
-	public ActivationSystem getSystem() {
-		return system;
-	}
+    /**
+     * Returns the group's activation system.
+     * 
+     * @return the group's activation system
+     * @since 1.2
+     */
+    public ActivationSystem getSystem() {
+        return system;
+    }
 
-	/**
-	 * Returns a hashcode for the group's identifier. Two group identifiers that
-	 * refer to the same remote group will have the same hash code.
-	 *
-	 * @see java.util.Hashtable
-	 * @since 1.2
-	 */
-	public int hashCode() {
-		return uid.hashCode();
-	}
+    /**
+     * Returns a hashcode for the group's identifier. Two group identifiers that
+     * refer to the same remote group will have the same hash code.
+     *
+     * @see java.util.Hashtable
+     * @since 1.2
+     */
+    public int hashCode() {
+        return uid.hashCode();
+    }
 
-	/**
-	 * Compares two group identifiers for content equality. Returns true if both
-	 * of the following conditions are true: 1) the unique identifiers are
-	 * equivalent (by content), and 2) the activation system specified in each
-	 * refers to the same remote object.
-	 *
-	 * @param obj
-	 *            the Object to compare with
-	 * @return true if these Objects are equal; false otherwise.
-	 * @see java.util.Hashtable
-	 * @since 1.2
-	 */
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		} else if (obj instanceof ActivationGroupID) {
-			ActivationGroupID id = (ActivationGroupID) obj;
-			return (uid.equals(id.uid) && system.equals(id.system));
-		} else {
-			return false;
-		}
-	}
+    /**
+     * Compares two group identifiers for content equality. Returns true if both
+     * of the following conditions are true: 1) the unique identifiers are
+     * equivalent (by content), and 2) the activation system specified in each
+     * refers to the same remote object.
+     *
+     * @param obj
+     *            the Object to compare with
+     * @return true if these Objects are equal; false otherwise.
+     * @see java.util.Hashtable
+     * @since 1.2
+     */
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (obj instanceof ActivationGroupID) {
+            ActivationGroupID id = (ActivationGroupID) obj;
+            return (uid.equals(id.uid) && system.equals(id.system));
+        } else {
+            return false;
+        }
+    }
 }

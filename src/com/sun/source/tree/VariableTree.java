@@ -25,13 +25,13 @@ import javax.lang.model.element.Name;
  */
 @jdk.Exported
 public interface VariableTree extends StatementTree {
-	ModifiersTree getModifiers();
+    ModifiersTree getModifiers();
 
-	Name getName();
+    Name getName();
 
-	ExpressionTree getNameExpression();
+    ExpressionTree getNameExpression();
 
-	Tree getType();
+    Tree getType();
 
-	ExpressionTree getInitializer();
+    ExpressionTree getInitializer();
 }

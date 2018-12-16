@@ -45,19 +45,19 @@ import com.sun.corba.se.impl.encoding.CDRInputStream;
 import com.sun.corba.se.impl.encoding.CDROutputStream;
 
 public interface TypeCodeReader extends MarshalInputStream {
-	public void addTypeCodeAtPosition(TypeCodeImpl tc, int position);
+    public void addTypeCodeAtPosition(TypeCodeImpl tc, int position);
 
-	public TypeCodeImpl getTypeCodeAtPosition(int position);
+    public TypeCodeImpl getTypeCodeAtPosition(int position);
 
-	public void setEnclosingInputStream(InputStream enclosure);
+    public void setEnclosingInputStream(InputStream enclosure);
 
-	public TypeCodeReader getTopLevelStream();
+    public TypeCodeReader getTopLevelStream();
 
-	public int getTopLevelPosition();
+    public int getTopLevelPosition();
 
-	// for debugging
-	// public void printBuffer();
-	public int getPosition();
+    // for debugging
+    // public void printBuffer();
+    public int getPosition();
 
-	public void printTypeMap();
+    public void printTypeMap();
 }

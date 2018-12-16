@@ -79,174 +79,174 @@ import javax.print.attribute.PrintJobAttribute;
  * @author Alan Kaminsky
  */
 public final class PageRanges extends SetOfIntegerSyntax implements
-		DocAttribute, PrintRequestAttribute, PrintJobAttribute {
+        DocAttribute, PrintRequestAttribute, PrintJobAttribute {
 
-	private static final long serialVersionUID = 8639895197656148392L;
+    private static final long serialVersionUID = 8639895197656148392L;
 
-	/**
-	 * Construct a new page ranges attribute with the given members. The members
-	 * are specified in "array form;" see class
-	 * {@link javax.print.attribute.SetOfIntegerSyntax SetOfIntegerSyntax} for
-	 * an explanation of array form.
-	 *
-	 * @param members
-	 *                Set members in array form.
-	 *
-	 * @exception NullPointerException
-	 *                                     (unchecked exception) Thrown if
-	 *                                     <CODE>members</CODE> is
-	 *                                     null or any element of
-	 *                                     <CODE>members</CODE> is null.
-	 * @exception IllegalArgumentException
-	 *                                     (unchecked exception) Thrown if any
-	 *                                     element of
-	 *                                     <CODE>members</CODE> is not a
-	 *                                     length-one or length-two
-	 *                                     array. Also thrown if
-	 *                                     <CODE>members</CODE> is a
-	 *                                     zero-length array or if any member of
-	 *                                     the set is less than
-	 *                                     1.
-	 */
-	public PageRanges(int[][] members) {
-		super(members);
-		if (members == null) {
-			throw new NullPointerException("members is null");
-		}
-		myPageRanges();
-	}
+    /**
+     * Construct a new page ranges attribute with the given members. The members
+     * are specified in "array form;" see class
+     * {@link javax.print.attribute.SetOfIntegerSyntax SetOfIntegerSyntax} for
+     * an explanation of array form.
+     *
+     * @param members
+     *                Set members in array form.
+     *
+     * @exception NullPointerException
+     *                                     (unchecked exception) Thrown if
+     *                                     <CODE>members</CODE> is
+     *                                     null or any element of
+     *                                     <CODE>members</CODE> is null.
+     * @exception IllegalArgumentException
+     *                                     (unchecked exception) Thrown if any
+     *                                     element of
+     *                                     <CODE>members</CODE> is not a
+     *                                     length-one or length-two
+     *                                     array. Also thrown if
+     *                                     <CODE>members</CODE> is a
+     *                                     zero-length array or if any member of
+     *                                     the set is less than
+     *                                     1.
+     */
+    public PageRanges(int[][] members) {
+        super(members);
+        if (members == null) {
+            throw new NullPointerException("members is null");
+        }
+        myPageRanges();
+    }
 
-	/**
-	 * Construct a new page ranges attribute with the given members in string
-	 * form. See class {@link javax.print.attribute.SetOfIntegerSyntax
-	 * SetOfIntegerSyntax} for explanation of the syntax.
-	 *
-	 * @param members
-	 *                Set members in string form.
-	 *
-	 * @exception NullPointerException
-	 *                                     (unchecked exception) Thrown if
-	 *                                     <CODE>members</CODE> is
-	 *                                     null or any element of
-	 *                                     <CODE>members</CODE> is null.
-	 * @exception IllegalArgumentException
-	 *                                     (Unchecked exception) Thrown if
-	 *                                     <CODE>members</CODE> does
-	 *                                     not obey the proper syntax. Also
-	 *                                     thrown if the constructed
-	 *                                     set-of-integer is a zero-length array
-	 *                                     or if any member of
-	 *                                     the set is less than 1.
-	 */
-	public PageRanges(String members) {
-		super(members);
-		if (members == null) {
-			throw new NullPointerException("members is null");
-		}
-		myPageRanges();
-	}
+    /**
+     * Construct a new page ranges attribute with the given members in string
+     * form. See class {@link javax.print.attribute.SetOfIntegerSyntax
+     * SetOfIntegerSyntax} for explanation of the syntax.
+     *
+     * @param members
+     *                Set members in string form.
+     *
+     * @exception NullPointerException
+     *                                     (unchecked exception) Thrown if
+     *                                     <CODE>members</CODE> is
+     *                                     null or any element of
+     *                                     <CODE>members</CODE> is null.
+     * @exception IllegalArgumentException
+     *                                     (Unchecked exception) Thrown if
+     *                                     <CODE>members</CODE> does
+     *                                     not obey the proper syntax. Also
+     *                                     thrown if the constructed
+     *                                     set-of-integer is a zero-length array
+     *                                     or if any member of
+     *                                     the set is less than 1.
+     */
+    public PageRanges(String members) {
+        super(members);
+        if (members == null) {
+            throw new NullPointerException("members is null");
+        }
+        myPageRanges();
+    }
 
-	private void myPageRanges() {
-		int[][] myMembers = getMembers();
-		int n = myMembers.length;
-		if (n == 0) {
-			throw new IllegalArgumentException("members is zero-length");
-		}
-		int i;
-		for (i = 0; i < n; ++i) {
-			if (myMembers[i][0] < 1) {
-				throw new IllegalArgumentException("Page value < 1 specified");
-			}
-		}
-	}
+    private void myPageRanges() {
+        int[][] myMembers = getMembers();
+        int n = myMembers.length;
+        if (n == 0) {
+            throw new IllegalArgumentException("members is zero-length");
+        }
+        int i;
+        for (i = 0; i < n; ++i) {
+            if (myMembers[i][0] < 1) {
+                throw new IllegalArgumentException("Page value < 1 specified");
+            }
+        }
+    }
 
-	/**
-	 * Construct a new page ranges attribute containing a single integer. That
-	 * is, only the one page is to be printed.
-	 *
-	 * @param member
-	 *               Set member.
-	 *
-	 * @exception IllegalArgumentException
-	 *                                     (Unchecked exception) Thrown if
-	 *                                     <CODE>member</CODE> is
-	 *                                     less than 1.
-	 */
-	public PageRanges(int member) {
-		super(member);
-		if (member < 1) {
-			throw new IllegalArgumentException("Page value < 1 specified");
-		}
-	}
+    /**
+     * Construct a new page ranges attribute containing a single integer. That
+     * is, only the one page is to be printed.
+     *
+     * @param member
+     *               Set member.
+     *
+     * @exception IllegalArgumentException
+     *                                     (Unchecked exception) Thrown if
+     *                                     <CODE>member</CODE> is
+     *                                     less than 1.
+     */
+    public PageRanges(int member) {
+        super(member);
+        if (member < 1) {
+            throw new IllegalArgumentException("Page value < 1 specified");
+        }
+    }
 
-	/**
-	 * Construct a new page ranges attribute containing a single range of
-	 * integers. That is, only those pages in the one range are to be printed.
-	 *
-	 * @param lowerBound
-	 *                   Lower bound of the range.
-	 * @param upperBound
-	 *                   Upper bound of the range.
-	 *
-	 * @exception IllegalArgumentException
-	 *                                     (Unchecked exception) Thrown if a
-	 *                                     null range is specified
-	 *                                     or if a non-null range is specified
-	 *                                     with
-	 *                                     <CODE>lowerBound</CODE> less than 1.
-	 */
-	public PageRanges(int lowerBound, int upperBound) {
-		super(lowerBound, upperBound);
-		if (lowerBound > upperBound) {
-			throw new IllegalArgumentException("Null range specified");
-		} else if (lowerBound < 1) {
-			throw new IllegalArgumentException("Page value < 1 specified");
-		}
-	}
+    /**
+     * Construct a new page ranges attribute containing a single range of
+     * integers. That is, only those pages in the one range are to be printed.
+     *
+     * @param lowerBound
+     *                   Lower bound of the range.
+     * @param upperBound
+     *                   Upper bound of the range.
+     *
+     * @exception IllegalArgumentException
+     *                                     (Unchecked exception) Thrown if a
+     *                                     null range is specified
+     *                                     or if a non-null range is specified
+     *                                     with
+     *                                     <CODE>lowerBound</CODE> less than 1.
+     */
+    public PageRanges(int lowerBound, int upperBound) {
+        super(lowerBound, upperBound);
+        if (lowerBound > upperBound) {
+            throw new IllegalArgumentException("Null range specified");
+        } else if (lowerBound < 1) {
+            throw new IllegalArgumentException("Page value < 1 specified");
+        }
+    }
 
-	/**
-	 * Returns whether this page ranges attribute is equivalent to the passed in
-	 * object. To be equivalent, all of the following conditions must be true:
-	 * <OL TYPE=1>
-	 * <LI><CODE>object</CODE> is not null.
-	 * <LI><CODE>object</CODE> is an instance of class PageRanges.
-	 * <LI>This page ranges attribute's members and <CODE>object</CODE>'s
-	 * members are the same.
-	 * </OL>
-	 *
-	 * @param object
-	 *               Object to compare to.
-	 *
-	 * @return True if <CODE>object</CODE> is equivalent to this page ranges
-	 *         attribute, false otherwise.
-	 */
-	public boolean equals(Object object) {
-		return (super.equals(object) && object instanceof PageRanges);
-	}
+    /**
+     * Returns whether this page ranges attribute is equivalent to the passed in
+     * object. To be equivalent, all of the following conditions must be true:
+     * <OL TYPE=1>
+     * <LI><CODE>object</CODE> is not null.
+     * <LI><CODE>object</CODE> is an instance of class PageRanges.
+     * <LI>This page ranges attribute's members and <CODE>object</CODE>'s
+     * members are the same.
+     * </OL>
+     *
+     * @param object
+     *               Object to compare to.
+     *
+     * @return True if <CODE>object</CODE> is equivalent to this page ranges
+     *         attribute, false otherwise.
+     */
+    public boolean equals(Object object) {
+        return (super.equals(object) && object instanceof PageRanges);
+    }
 
-	/**
-	 * Get the printing attribute class which is to be used as the "category"
-	 * for this printing attribute value.
-	 * <P>
-	 * For class PageRanges, the category is class PageRanges itself.
-	 *
-	 * @return Printing attribute class (category), an instance of class
-	 *         {@link java.lang.Class java.lang.Class}.
-	 */
-	public final Class<? extends Attribute> getCategory() {
-		return PageRanges.class;
-	}
+    /**
+     * Get the printing attribute class which is to be used as the "category"
+     * for this printing attribute value.
+     * <P>
+     * For class PageRanges, the category is class PageRanges itself.
+     *
+     * @return Printing attribute class (category), an instance of class
+     *         {@link java.lang.Class java.lang.Class}.
+     */
+    public final Class<? extends Attribute> getCategory() {
+        return PageRanges.class;
+    }
 
-	/**
-	 * Get the name of the category of which this attribute value is an
-	 * instance.
-	 * <P>
-	 * For class PageRanges, the category name is <CODE>"page-ranges"</CODE>.
-	 *
-	 * @return Attribute category name.
-	 */
-	public final String getName() {
-		return "page-ranges";
-	}
+    /**
+     * Get the name of the category of which this attribute value is an
+     * instance.
+     * <P>
+     * For class PageRanges, the category name is <CODE>"page-ranges"</CODE>.
+     *
+     * @return Attribute category name.
+     */
+    public final String getName() {
+        return "page-ranges";
+    }
 
 }

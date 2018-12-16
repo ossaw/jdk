@@ -27,28 +27,28 @@ package javax.print;
 
 public interface CancelablePrintJob extends DocPrintJob {
 
-	/**
-	 * Stops further processing of a print job.
-	 * <p>
-	 * If a service supports this method it cannot be concluded that job
-	 * cancellation will always succeed. A job may not be able to be cancelled
-	 * once it has reached and passed some point in its processing. A successful
-	 * cancellation means only that the entire job was not printed, some portion
-	 * may already have printed when cancel returns.
-	 * <p>
-	 * The service will throw a PrintException if the cancellation did not
-	 * succeed. A job which has not yet been submitted for printing should throw
-	 * this exception. Cancelling an already successfully cancelled Print Job is
-	 * not considered an error and will always succeed.
-	 * <p>
-	 * Cancellation in some services may be a lengthy process, involving
-	 * requests to a server and processing of its print queue. Clients may wish
-	 * to execute cancel in a thread which does not affect application
-	 * execution.
-	 * 
-	 * @throws PrintException
-	 *                        if the job could not be successfully cancelled.
-	 */
-	public void cancel() throws PrintException;
+    /**
+     * Stops further processing of a print job.
+     * <p>
+     * If a service supports this method it cannot be concluded that job
+     * cancellation will always succeed. A job may not be able to be cancelled
+     * once it has reached and passed some point in its processing. A successful
+     * cancellation means only that the entire job was not printed, some portion
+     * may already have printed when cancel returns.
+     * <p>
+     * The service will throw a PrintException if the cancellation did not
+     * succeed. A job which has not yet been submitted for printing should throw
+     * this exception. Cancelling an already successfully cancelled Print Job is
+     * not considered an error and will always succeed.
+     * <p>
+     * Cancellation in some services may be a lengthy process, involving
+     * requests to a server and processing of its print queue. Clients may wish
+     * to execute cancel in a thread which does not affect application
+     * execution.
+     * 
+     * @throws PrintException
+     *                        if the job could not be successfully cancelled.
+     */
+    public void cancel() throws PrintException;
 
 }

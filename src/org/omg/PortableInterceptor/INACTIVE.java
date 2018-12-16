@@ -10,9 +10,9 @@ package org.omg.PortableInterceptor;
 
 public interface INACTIVE {
 
-	/**
-	 * Object adapter state that causes all requests to be discarded. This state
-	 * indicates that the adapter is shutting down.
-	 */
-	public static final short value = (short) (3);
+    /**
+     * Object adapter state that causes all requests to be discarded. This state
+     * indicates that the adapter is shutting down.
+     */
+    public static final short value = (short) (3);
 }

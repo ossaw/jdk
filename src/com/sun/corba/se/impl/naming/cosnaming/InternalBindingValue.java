@@ -15,16 +15,16 @@ import org.omg.CosNaming.NameComponent;
  * components associated with the binding.
  */
 public class InternalBindingValue {
-	public Binding theBinding;
-	public String strObjectRef;
-	public org.omg.CORBA.Object theObjectRef;
+    public Binding theBinding;
+    public String strObjectRef;
+    public org.omg.CORBA.Object theObjectRef;
 
-	// Default constructor
-	public InternalBindingValue() {}
+    // Default constructor
+    public InternalBindingValue() {}
 
-	// Normal constructor
-	public InternalBindingValue(Binding b, String o) {
-		theBinding = b;
-		strObjectRef = o;
-	}
+    // Normal constructor
+    public InternalBindingValue(Binding b, String o) {
+        theBinding = b;
+        strObjectRef = o;
+    }
 }

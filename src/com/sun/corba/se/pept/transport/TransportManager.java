@@ -16,26 +16,26 @@ import com.sun.corba.se.pept.transport.Selector;
  * @author Harold Carr
  */
 public interface TransportManager {
-	public ByteBufferPool getByteBufferPool(int id);
+    public ByteBufferPool getByteBufferPool(int id);
 
-	public OutboundConnectionCache getOutboundConnectionCache(
-			ContactInfo contactInfo);
+    public OutboundConnectionCache getOutboundConnectionCache(
+            ContactInfo contactInfo);
 
-	public Collection getOutboundConnectionCaches();
+    public Collection getOutboundConnectionCaches();
 
-	public InboundConnectionCache getInboundConnectionCache(Acceptor acceptor);
+    public InboundConnectionCache getInboundConnectionCache(Acceptor acceptor);
 
-	public Collection getInboundConnectionCaches();
+    public Collection getInboundConnectionCaches();
 
-	public Selector getSelector(int id);
+    public Selector getSelector(int id);
 
-	public void registerAcceptor(Acceptor acceptor);
+    public void registerAcceptor(Acceptor acceptor);
 
-	public Collection getAcceptors();
+    public Collection getAcceptors();
 
-	public void unregisterAcceptor(Acceptor acceptor);
+    public void unregisterAcceptor(Acceptor acceptor);
 
-	public void close();
+    public void close();
 }
 
 // End of file.

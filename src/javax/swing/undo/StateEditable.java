@@ -16,18 +16,18 @@ import java.util.Hashtable;
 
 public interface StateEditable {
 
-	/** Resource ID for this class. */
-	public static final String RCSID = "$Id: StateEditable.java,v 1.2 1997/09/08 19:39:08 marklin Exp $";
+    /** Resource ID for this class. */
+    public static final String RCSID = "$Id: StateEditable.java,v 1.2 1997/09/08 19:39:08 marklin Exp $";
 
-	/**
-	 * Upon receiving this message the receiver should place any relevant state
-	 * into <EM>state</EM>.
-	 */
-	public void storeState(Hashtable<Object, Object> state);
+    /**
+     * Upon receiving this message the receiver should place any relevant state
+     * into <EM>state</EM>.
+     */
+    public void storeState(Hashtable<Object, Object> state);
 
-	/**
-	 * Upon receiving this message the receiver should extract any relevant
-	 * state out of <EM>state</EM>.
-	 */
-	public void restoreState(Hashtable<?, ?> state);
+    /**
+     * Upon receiving this message the receiver should extract any relevant
+     * state out of <EM>state</EM>.
+     */
+    public void restoreState(Hashtable<?, ?> state);
 } // End of interface StateEditable

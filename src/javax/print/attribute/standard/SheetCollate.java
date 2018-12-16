@@ -126,76 +126,76 @@ import javax.print.attribute.PrintJobAttribute;
  * @author Alan Kaminsky
  */
 public final class SheetCollate extends EnumSyntax implements DocAttribute,
-		PrintRequestAttribute, PrintJobAttribute {
+        PrintRequestAttribute, PrintJobAttribute {
 
-	private static final long serialVersionUID = 7080587914259873003L;
+    private static final long serialVersionUID = 7080587914259873003L;
 
-	/**
-	 * Sheets within a document appear in uncollated order when multiple copies
-	 * are printed.
-	 */
-	public static final SheetCollate UNCOLLATED = new SheetCollate(0);
+    /**
+     * Sheets within a document appear in uncollated order when multiple copies
+     * are printed.
+     */
+    public static final SheetCollate UNCOLLATED = new SheetCollate(0);
 
-	/**
-	 * Sheets within a document appear in collated order when multiple copies
-	 * are printed.
-	 */
-	public static final SheetCollate COLLATED = new SheetCollate(1);
+    /**
+     * Sheets within a document appear in collated order when multiple copies
+     * are printed.
+     */
+    public static final SheetCollate COLLATED = new SheetCollate(1);
 
-	/**
-	 * Construct a new sheet collate enumeration value with the given integer
-	 * value.
-	 *
-	 * @param value
-	 *              Integer value.
-	 */
-	protected SheetCollate(int value) {
-		super(value);
-	}
+    /**
+     * Construct a new sheet collate enumeration value with the given integer
+     * value.
+     *
+     * @param value
+     *              Integer value.
+     */
+    protected SheetCollate(int value) {
+        super(value);
+    }
 
-	private static final String[] myStringTable = { "uncollated", "collated" };
+    private static final String[] myStringTable = { "uncollated", "collated" };
 
-	private static final SheetCollate[] myEnumValueTable = { UNCOLLATED,
-			COLLATED };
+    private static final SheetCollate[] myEnumValueTable = { UNCOLLATED,
+            COLLATED };
 
-	/**
-	 * Returns the string table for class SheetCollate.
-	 */
-	protected String[] getStringTable() {
-		return myStringTable;
-	}
+    /**
+     * Returns the string table for class SheetCollate.
+     */
+    protected String[] getStringTable() {
+        return myStringTable;
+    }
 
-	/**
-	 * Returns the enumeration value table for class SheetCollate.
-	 */
-	protected EnumSyntax[] getEnumValueTable() {
-		return myEnumValueTable;
-	}
+    /**
+     * Returns the enumeration value table for class SheetCollate.
+     */
+    protected EnumSyntax[] getEnumValueTable() {
+        return myEnumValueTable;
+    }
 
-	/**
-	 * Get the printing attribute class which is to be used as the "category"
-	 * for this printing attribute value.
-	 * <P>
-	 * For class SheetCollate, the category is class SheetCollate itself.
-	 *
-	 * @return Printing attribute class (category), an instance of class
-	 *         {@link java.lang.Class java.lang.Class}.
-	 */
-	public final Class<? extends Attribute> getCategory() {
-		return SheetCollate.class;
-	}
+    /**
+     * Get the printing attribute class which is to be used as the "category"
+     * for this printing attribute value.
+     * <P>
+     * For class SheetCollate, the category is class SheetCollate itself.
+     *
+     * @return Printing attribute class (category), an instance of class
+     *         {@link java.lang.Class java.lang.Class}.
+     */
+    public final Class<? extends Attribute> getCategory() {
+        return SheetCollate.class;
+    }
 
-	/**
-	 * Get the name of the category of which this attribute value is an
-	 * instance.
-	 * <P>
-	 * For class SheetCollate, the category name is <CODE>"sheet-collate"</CODE>
-	 * .
-	 *
-	 * @return Attribute category name.
-	 */
-	public final String getName() {
-		return "sheet-collate";
-	}
+    /**
+     * Get the name of the category of which this attribute value is an
+     * instance.
+     * <P>
+     * For class SheetCollate, the category name is <CODE>"sheet-collate"</CODE>
+     * .
+     *
+     * @return Attribute category name.
+     */
+    public final String getName() {
+        return "sheet-collate";
+    }
 
 }

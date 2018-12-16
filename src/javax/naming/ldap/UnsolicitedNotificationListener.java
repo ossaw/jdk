@@ -39,11 +39,11 @@ import javax.naming.event.NamingListener;
  */
 public interface UnsolicitedNotificationListener extends NamingListener {
 
-	/**
-	 * Called when an unsolicited notification has been received.
-	 *
-	 * @param evt
-	 *            The non-null UnsolicitedNotificationEvent
-	 */
-	void notificationReceived(UnsolicitedNotificationEvent evt);
+    /**
+     * Called when an unsolicited notification has been received.
+     *
+     * @param evt
+     *            The non-null UnsolicitedNotificationEvent
+     */
+    void notificationReceived(UnsolicitedNotificationEvent evt);
 }

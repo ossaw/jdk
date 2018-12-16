@@ -10,15 +10,15 @@ package org.omg.PortableInterceptor;
 
 public interface LOCATION_FORWARD {
 
-	/**
-	 * Indicates a LocationForward reply status. One possible value for
-	 * <code>RequestInfo.reply_status</code>.
-	 * 
-	 * @see RequestInfo#reply_status
-	 * @see SUCCESSFUL
-	 * @see SYSTEM_EXCEPTION
-	 * @see USER_EXCEPTION
-	 * @see TRANSPORT_RETRY
-	 */
-	public static final short value = (short) (3);
+    /**
+     * Indicates a LocationForward reply status. One possible value for
+     * <code>RequestInfo.reply_status</code>.
+     * 
+     * @see RequestInfo#reply_status
+     * @see SUCCESSFUL
+     * @see SYSTEM_EXCEPTION
+     * @see USER_EXCEPTION
+     * @see TRANSPORT_RETRY
+     */
+    public static final short value = (short) (3);
 }

@@ -22,50 +22,50 @@ import java.io.IOException;
  * "legacy method."
  */
 public class PrinterIOException extends PrinterException {
-	static final long serialVersionUID = 5850870712125932846L;
+    static final long serialVersionUID = 5850870712125932846L;
 
-	/**
-	 * The IO error that terminated the print job.
-	 * 
-	 * @serial
-	 */
-	private IOException mException;
+    /**
+     * The IO error that terminated the print job.
+     * 
+     * @serial
+     */
+    private IOException mException;
 
-	/**
-	 * Constructs a new <code>PrinterIOException</code> with the string
-	 * representation of the specified {@link IOException}.
-	 * 
-	 * @param exception
-	 *                  the specified <code>IOException</code>
-	 */
-	public PrinterIOException(IOException exception) {
-		initCause(null); // Disallow subsequent initCause
-		mException = exception;
-	}
+    /**
+     * Constructs a new <code>PrinterIOException</code> with the string
+     * representation of the specified {@link IOException}.
+     * 
+     * @param exception
+     *                  the specified <code>IOException</code>
+     */
+    public PrinterIOException(IOException exception) {
+        initCause(null); // Disallow subsequent initCause
+        mException = exception;
+    }
 
-	/**
-	 * Returns the <code>IOException</code> that terminated the print job.
-	 *
-	 * <p>
-	 * This method predates the general-purpose exception chaining facility. The
-	 * {@link Throwable#getCause()} method is now the preferred means of
-	 * obtaining this information.
-	 *
-	 * @return the <code>IOException</code> that terminated the print job.
-	 * @see IOException
-	 */
-	public IOException getIOException() {
-		return mException;
-	}
+    /**
+     * Returns the <code>IOException</code> that terminated the print job.
+     *
+     * <p>
+     * This method predates the general-purpose exception chaining facility. The
+     * {@link Throwable#getCause()} method is now the preferred means of
+     * obtaining this information.
+     *
+     * @return the <code>IOException</code> that terminated the print job.
+     * @see IOException
+     */
+    public IOException getIOException() {
+        return mException;
+    }
 
-	/**
-	 * Returns the the cause of this exception (the <code>IOException</code>
-	 * that terminated the print job).
-	 *
-	 * @return the cause of this exception.
-	 * @since 1.4
-	 */
-	public Throwable getCause() {
-		return mException;
-	}
+    /**
+     * Returns the the cause of this exception (the <code>IOException</code>
+     * that terminated the print job).
+     *
+     * @return the cause of this exception.
+     * @since 1.4
+     */
+    public Throwable getCause() {
+        return mException;
+    }
 }

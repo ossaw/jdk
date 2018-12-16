@@ -29,30 +29,30 @@ import javax.sql.rowset.*;
  */
 public interface XmlReader extends RowSetReader {
 
-	/**
-	 * Reads and parses the given <code>WebRowSet</code> object from the given
-	 * input stream in XML format. The <code>xmlReader</code> field of the given
-	 * <code>WebRowSet</code> object must contain this <code>XmlReader</code>
-	 * object.
-	 * <P>
-	 * If a parsing error occurs, the exception that is thrown will include
-	 * information about the location of the error in the original XML document.
-	 *
-	 * @param caller
-	 *               the <code>WebRowSet</code> object to be parsed, whose
-	 *               <code>xmlReader</code> field must contain a reference to
-	 *               this
-	 *               <code>XmlReader</code> object
-	 * @param reader
-	 *               the <code>java.io.Reader</code> object from which
-	 *               <code>caller</code> will be read
-	 * @throws SQLException
-	 *                      if a database access error occurs or this
-	 *                      <code>XmlReader</code> object is not the reader for
-	 *                      the given
-	 *                      rowset
-	 */
-	public void readXML(WebRowSet caller, java.io.Reader reader)
-			throws SQLException;
+    /**
+     * Reads and parses the given <code>WebRowSet</code> object from the given
+     * input stream in XML format. The <code>xmlReader</code> field of the given
+     * <code>WebRowSet</code> object must contain this <code>XmlReader</code>
+     * object.
+     * <P>
+     * If a parsing error occurs, the exception that is thrown will include
+     * information about the location of the error in the original XML document.
+     *
+     * @param caller
+     *               the <code>WebRowSet</code> object to be parsed, whose
+     *               <code>xmlReader</code> field must contain a reference to
+     *               this
+     *               <code>XmlReader</code> object
+     * @param reader
+     *               the <code>java.io.Reader</code> object from which
+     *               <code>caller</code> will be read
+     * @throws SQLException
+     *                      if a database access error occurs or this
+     *                      <code>XmlReader</code> object is not the reader for
+     *                      the given
+     *                      rowset
+     */
+    public void readXML(WebRowSet caller, java.io.Reader reader)
+            throws SQLException;
 
 }

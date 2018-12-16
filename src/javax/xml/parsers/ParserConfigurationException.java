@@ -13,25 +13,25 @@ package javax.xml.parsers;
 
 public class ParserConfigurationException extends Exception {
 
-	/**
-	 * Create a new <code>ParserConfigurationException</code> with no detail
-	 * mesage.
-	 */
+    /**
+     * Create a new <code>ParserConfigurationException</code> with no detail
+     * mesage.
+     */
 
-	public ParserConfigurationException() {
-		super();
-	}
+    public ParserConfigurationException() {
+        super();
+    }
 
-	/**
-	 * Create a new <code>ParserConfigurationException</code> with the
-	 * <code>String</code> specified as an error message.
-	 *
-	 * @param msg
-	 *            The error message for the exception.
-	 */
+    /**
+     * Create a new <code>ParserConfigurationException</code> with the
+     * <code>String</code> specified as an error message.
+     *
+     * @param msg
+     *            The error message for the exception.
+     */
 
-	public ParserConfigurationException(String msg) {
-		super(msg);
-	}
+    public ParserConfigurationException(String msg) {
+        super(msg);
+    }
 
 }

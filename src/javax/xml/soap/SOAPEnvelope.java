@@ -72,117 +72,117 @@ package javax.xml.soap;
  * 
  * <PRE>
  * Name name = se.createName("GetLastTradePrice", "WOMBAT",
- * 		"http://www.wombat.org/trader");
+ *         "http://www.wombat.org/trader");
  * </PRE>
  */
 public interface SOAPEnvelope extends SOAPElement {
 
-	/**
-	 * Creates a new <code>Name</code> object initialized with the given local
-	 * name, namespace prefix, and namespace URI.
-	 * <P>
-	 * This factory method creates <code>Name</code> objects for use in the
-	 * SOAP/XML document.
-	 *
-	 * @param localName
-	 *                  a <code>String</code> giving the local name
-	 * @param prefix
-	 *                  a <code>String</code> giving the prefix of the namespace
-	 * @param uri
-	 *                  a <code>String</code> giving the URI of the namespace
-	 * @return a <code>Name</code> object initialized with the given local name,
-	 *         namespace prefix, and namespace URI
-	 * @throws SOAPException
-	 *                       if there is a SOAP error
-	 */
-	public abstract Name createName(String localName, String prefix, String uri)
-			throws SOAPException;
+    /**
+     * Creates a new <code>Name</code> object initialized with the given local
+     * name, namespace prefix, and namespace URI.
+     * <P>
+     * This factory method creates <code>Name</code> objects for use in the
+     * SOAP/XML document.
+     *
+     * @param localName
+     *                  a <code>String</code> giving the local name
+     * @param prefix
+     *                  a <code>String</code> giving the prefix of the namespace
+     * @param uri
+     *                  a <code>String</code> giving the URI of the namespace
+     * @return a <code>Name</code> object initialized with the given local name,
+     *         namespace prefix, and namespace URI
+     * @throws SOAPException
+     *                       if there is a SOAP error
+     */
+    public abstract Name createName(String localName, String prefix, String uri)
+            throws SOAPException;
 
-	/**
-	 * Creates a new <code>Name</code> object initialized with the given local
-	 * name.
-	 * <P>
-	 * This factory method creates <code>Name</code> objects for use in the
-	 * SOAP/XML document.
-	 *
-	 * @param localName
-	 *                  a <code>String</code> giving the local name
-	 * @return a <code>Name</code> object initialized with the given local name
-	 * @throws SOAPException
-	 *                       if there is a SOAP error
-	 */
-	public abstract Name createName(String localName) throws SOAPException;
+    /**
+     * Creates a new <code>Name</code> object initialized with the given local
+     * name.
+     * <P>
+     * This factory method creates <code>Name</code> objects for use in the
+     * SOAP/XML document.
+     *
+     * @param localName
+     *                  a <code>String</code> giving the local name
+     * @return a <code>Name</code> object initialized with the given local name
+     * @throws SOAPException
+     *                       if there is a SOAP error
+     */
+    public abstract Name createName(String localName) throws SOAPException;
 
-	/**
-	 * Returns the <code>SOAPHeader</code> object for this
-	 * <code>SOAPEnvelope</code> object.
-	 * <P>
-	 * A new <code>SOAPMessage</code> object is by default created with a
-	 * <code>SOAPEnvelope</code> object that contains an empty
-	 * <code>SOAPHeader</code> object. As a result, the method
-	 * <code>getHeader</code> will always return a <code>SOAPHeader</code>
-	 * object unless the header has been removed and a new one has not been
-	 * added.
-	 *
-	 * @return the <code>SOAPHeader</code> object or <code>null</code> if there
-	 *         is none
-	 * @exception SOAPException
-	 *                          if there is a problem obtaining the
-	 *                          <code>SOAPHeader</code> object
-	 */
-	public SOAPHeader getHeader() throws SOAPException;
+    /**
+     * Returns the <code>SOAPHeader</code> object for this
+     * <code>SOAPEnvelope</code> object.
+     * <P>
+     * A new <code>SOAPMessage</code> object is by default created with a
+     * <code>SOAPEnvelope</code> object that contains an empty
+     * <code>SOAPHeader</code> object. As a result, the method
+     * <code>getHeader</code> will always return a <code>SOAPHeader</code>
+     * object unless the header has been removed and a new one has not been
+     * added.
+     *
+     * @return the <code>SOAPHeader</code> object or <code>null</code> if there
+     *         is none
+     * @exception SOAPException
+     *                          if there is a problem obtaining the
+     *                          <code>SOAPHeader</code> object
+     */
+    public SOAPHeader getHeader() throws SOAPException;
 
-	/**
-	 * Returns the <code>SOAPBody</code> object associated with this
-	 * <code>SOAPEnvelope</code> object.
-	 * <P>
-	 * A new <code>SOAPMessage</code> object is by default created with a
-	 * <code>SOAPEnvelope</code> object that contains an empty
-	 * <code>SOAPBody</code> object. As a result, the method
-	 * <code>getBody</code> will always return a <code>SOAPBody</code> object
-	 * unless the body has been removed and a new one has not been added.
-	 *
-	 * @return the <code>SOAPBody</code> object for this
-	 *         <code>SOAPEnvelope</code> object or <code>null</code> if there is
-	 *         none
-	 * @exception SOAPException
-	 *                          if there is a problem obtaining the
-	 *                          <code>SOAPBody</code>
-	 *                          object
-	 */
-	public SOAPBody getBody() throws SOAPException;
+    /**
+     * Returns the <code>SOAPBody</code> object associated with this
+     * <code>SOAPEnvelope</code> object.
+     * <P>
+     * A new <code>SOAPMessage</code> object is by default created with a
+     * <code>SOAPEnvelope</code> object that contains an empty
+     * <code>SOAPBody</code> object. As a result, the method
+     * <code>getBody</code> will always return a <code>SOAPBody</code> object
+     * unless the body has been removed and a new one has not been added.
+     *
+     * @return the <code>SOAPBody</code> object for this
+     *         <code>SOAPEnvelope</code> object or <code>null</code> if there is
+     *         none
+     * @exception SOAPException
+     *                          if there is a problem obtaining the
+     *                          <code>SOAPBody</code>
+     *                          object
+     */
+    public SOAPBody getBody() throws SOAPException;
 
-	/**
-	 * Creates a <code>SOAPHeader</code> object and sets it as the
-	 * <code>SOAPHeader</code> object for this <code>SOAPEnvelope</code> object.
-	 * <P>
-	 * It is illegal to add a header when the envelope already contains a
-	 * header. Therefore, this method should be called only after the existing
-	 * header has been removed.
-	 *
-	 * @return the new <code>SOAPHeader</code> object
-	 *
-	 * @exception SOAPException
-	 *                          if this <code>SOAPEnvelope</code> object already
-	 *                          contains
-	 *                          a valid <code>SOAPHeader</code> object
-	 */
-	public SOAPHeader addHeader() throws SOAPException;
+    /**
+     * Creates a <code>SOAPHeader</code> object and sets it as the
+     * <code>SOAPHeader</code> object for this <code>SOAPEnvelope</code> object.
+     * <P>
+     * It is illegal to add a header when the envelope already contains a
+     * header. Therefore, this method should be called only after the existing
+     * header has been removed.
+     *
+     * @return the new <code>SOAPHeader</code> object
+     *
+     * @exception SOAPException
+     *                          if this <code>SOAPEnvelope</code> object already
+     *                          contains
+     *                          a valid <code>SOAPHeader</code> object
+     */
+    public SOAPHeader addHeader() throws SOAPException;
 
-	/**
-	 * Creates a <code>SOAPBody</code> object and sets it as the
-	 * <code>SOAPBody</code> object for this <code>SOAPEnvelope</code> object.
-	 * <P>
-	 * It is illegal to add a body when the envelope already contains a body.
-	 * Therefore, this method should be called only after the existing body has
-	 * been removed.
-	 *
-	 * @return the new <code>SOAPBody</code> object
-	 *
-	 * @exception SOAPException
-	 *                          if this <code>SOAPEnvelope</code> object already
-	 *                          contains
-	 *                          a valid <code>SOAPBody</code> object
-	 */
-	public SOAPBody addBody() throws SOAPException;
+    /**
+     * Creates a <code>SOAPBody</code> object and sets it as the
+     * <code>SOAPBody</code> object for this <code>SOAPEnvelope</code> object.
+     * <P>
+     * It is illegal to add a body when the envelope already contains a body.
+     * Therefore, this method should be called only after the existing body has
+     * been removed.
+     *
+     * @return the new <code>SOAPBody</code> object
+     *
+     * @exception SOAPException
+     *                          if this <code>SOAPEnvelope</code> object already
+     *                          contains
+     *                          a valid <code>SOAPBody</code> object
+     */
+    public SOAPBody addBody() throws SOAPException;
 }

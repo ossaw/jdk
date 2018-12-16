@@ -28,82 +28,82 @@ import java.io.ObjectInputStream;
  */
 public class MBeanTrustPermission extends BasicPermission {
 
-	private static final long serialVersionUID = -2952178077029018140L;
+    private static final long serialVersionUID = -2952178077029018140L;
 
-	/**
-	 * <p>
-	 * Create a new MBeanTrustPermission with the given name.
-	 * </p>
-	 * <p>
-	 * This constructor is equivalent to
-	 * <code>MBeanTrustPermission(name,null)</code>.
-	 * </p>
-	 * 
-	 * @param name
-	 *             the name of the permission. It must be "register" or "*" for
-	 *             this permission.
-	 *
-	 * @throws NullPointerException
-	 *                                  if <code>name</code> is
-	 *                                  <code>null</code>.
-	 * @throws IllegalArgumentException
-	 *                                  if <code>name</code> is neither
-	 *                                  "register" nor "*".
-	 */
-	public MBeanTrustPermission(String name) {
-		this(name, null);
-	}
+    /**
+     * <p>
+     * Create a new MBeanTrustPermission with the given name.
+     * </p>
+     * <p>
+     * This constructor is equivalent to
+     * <code>MBeanTrustPermission(name,null)</code>.
+     * </p>
+     * 
+     * @param name
+     *             the name of the permission. It must be "register" or "*" for
+     *             this permission.
+     *
+     * @throws NullPointerException
+     *                                  if <code>name</code> is
+     *                                  <code>null</code>.
+     * @throws IllegalArgumentException
+     *                                  if <code>name</code> is neither
+     *                                  "register" nor "*".
+     */
+    public MBeanTrustPermission(String name) {
+        this(name, null);
+    }
 
-	/**
-	 * <p>
-	 * Create a new MBeanTrustPermission with the given name.
-	 * </p>
-	 * 
-	 * @param name
-	 *                the name of the permission. It must be "register" or "*"
-	 *                for
-	 *                this permission.
-	 * @param actions
-	 *                the actions for the permission. It must be null or
-	 *                <code>""</code>.
-	 *
-	 * @throws NullPointerException
-	 *                                  if <code>name</code> is
-	 *                                  <code>null</code>.
-	 * @throws IllegalArgumentException
-	 *                                  if <code>name</code> is neither
-	 *                                  "register" nor "*"; or if
-	 *                                  <code>actions</code> is a non-null
-	 *                                  non-empty string.
-	 */
-	public MBeanTrustPermission(String name, String actions) {
-		super(name, actions);
-		validate(name, actions);
-	}
+    /**
+     * <p>
+     * Create a new MBeanTrustPermission with the given name.
+     * </p>
+     * 
+     * @param name
+     *                the name of the permission. It must be "register" or "*"
+     *                for
+     *                this permission.
+     * @param actions
+     *                the actions for the permission. It must be null or
+     *                <code>""</code>.
+     *
+     * @throws NullPointerException
+     *                                  if <code>name</code> is
+     *                                  <code>null</code>.
+     * @throws IllegalArgumentException
+     *                                  if <code>name</code> is neither
+     *                                  "register" nor "*"; or if
+     *                                  <code>actions</code> is a non-null
+     *                                  non-empty string.
+     */
+    public MBeanTrustPermission(String name, String actions) {
+        super(name, actions);
+        validate(name, actions);
+    }
 
-	private static void validate(String name, String actions) {
-		/* Check that actions is a null empty string */
-		if (actions != null && actions.length() > 0) {
-			throw new IllegalArgumentException(
-					"MBeanTrustPermission actions must be null: " + actions);
-		}
+    private static void validate(String name, String actions) {
+        /* Check that actions is a null empty string */
+        if (actions != null && actions.length() > 0) {
+            throw new IllegalArgumentException(
+                    "MBeanTrustPermission actions must be null: " + actions);
+        }
 
-		if (!name.equals("register") && !name.equals("*")) {
-			throw new IllegalArgumentException(
-					"MBeanTrustPermission: Unknown target name " + "[" + name
-							+ "]");
-		}
-	}
+        if (!name.equals("register") && !name.equals("*")) {
+            throw new IllegalArgumentException(
+                    "MBeanTrustPermission: Unknown target name " + "[" + name
+                            + "]");
+        }
+    }
 
-	private void readObject(ObjectInputStream in) throws IOException,
-			ClassNotFoundException {
+    private void readObject(ObjectInputStream in) throws IOException,
+            ClassNotFoundException {
 
-		// Reading private fields of base class
-		in.defaultReadObject();
-		try {
-			validate(super.getName(), super.getActions());
-		} catch (IllegalArgumentException e) {
-			throw new InvalidObjectException(e.getMessage());
-		}
-	}
+        // Reading private fields of base class
+        in.defaultReadObject();
+        try {
+            validate(super.getName(), super.getActions());
+        } catch (IllegalArgumentException e) {
+            throw new InvalidObjectException(e.getMessage());
+        }
+    }
 }

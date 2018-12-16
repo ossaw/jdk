@@ -25,28 +25,28 @@ package javax.naming;
  */
 
 public abstract class NamingSecurityException extends NamingException {
-	/**
-	 * Constructs a new instance of NamingSecurityException using the
-	 * explanation supplied. All other fields default to null.
-	 *
-	 * @param explanation
-	 *                    Possibly null additional detail about this exception.
-	 * @see java.lang.Throwable#getMessage
-	 */
-	public NamingSecurityException(String explanation) {
-		super(explanation);
-	}
+    /**
+     * Constructs a new instance of NamingSecurityException using the
+     * explanation supplied. All other fields default to null.
+     *
+     * @param explanation
+     *                    Possibly null additional detail about this exception.
+     * @see java.lang.Throwable#getMessage
+     */
+    public NamingSecurityException(String explanation) {
+        super(explanation);
+    }
 
-	/**
-	 * Constructs a new instance of NamingSecurityException. All fields are
-	 * initialized to null.
-	 */
-	public NamingSecurityException() {
-		super();
-	}
+    /**
+     * Constructs a new instance of NamingSecurityException. All fields are
+     * initialized to null.
+     */
+    public NamingSecurityException() {
+        super();
+    }
 
-	/**
-	 * Use serialVersionUID from JNDI 1.1.1 for interoperability
-	 */
-	private static final long serialVersionUID = 5855287647294685775L;
+    /**
+     * Use serialVersionUID from JNDI 1.1.1 for interoperability
+     */
+    private static final long serialVersionUID = 5855287647294685775L;
 };

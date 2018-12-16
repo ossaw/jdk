@@ -32,19 +32,19 @@ import com.sun.org.apache.xerces.internal.xni.XMLResourceIdentifier;
  */
 public interface XMLEntityDescription extends XMLResourceIdentifier {
 
-	/**
-	 * Sets the name of the entity.
-	 *
-	 * @param name
-	 *             the name of the entity
-	 */
-	public void setEntityName(String name);
+    /**
+     * Sets the name of the entity.
+     *
+     * @param name
+     *             the name of the entity
+     */
+    public void setEntityName(String name);
 
-	/**
-	 * Returns the name of the entity.
-	 *
-	 * @return the name of the entity
-	 */
-	public String getEntityName();
+    /**
+     * Returns the name of the entity.
+     *
+     * @return the name of the entity
+     */
+    public String getEntityName();
 
 } // XMLEntityDescription

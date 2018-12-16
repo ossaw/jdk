@@ -15,11 +15,11 @@ package java.io;
  * @since JDK1.1
  */
 public interface ObjectInputValidation {
-	/**
-	 * Validates the object.
-	 *
-	 * @exception InvalidObjectException
-	 *                                   If the object cannot validate itself.
-	 */
-	public void validateObject() throws InvalidObjectException;
+    /**
+     * Validates the object.
+     *
+     * @exception InvalidObjectException
+     *                                   If the object cannot validate itself.
+     */
+    public void validateObject() throws InvalidObjectException;
 }

@@ -308,46 +308,46 @@ import java.util.StringTokenizer;
 
 public final class RuntimePermission extends BasicPermission {
 
-	private static final long serialVersionUID = 7399184964622342223L;
+    private static final long serialVersionUID = 7399184964622342223L;
 
-	/**
-	 * Creates a new RuntimePermission with the specified name. The name is the
-	 * symbolic name of the RuntimePermission, such as "exit", "setFactory",
-	 * etc. An asterisk may appear at the end of the name, following a ".", or
-	 * by itself, to signify a wildcard match.
-	 *
-	 * @param name
-	 *             the name of the RuntimePermission.
-	 *
-	 * @throws NullPointerException
-	 *                                  if <code>name</code> is
-	 *                                  <code>null</code>.
-	 * @throws IllegalArgumentException
-	 *                                  if <code>name</code> is empty.
-	 */
+    /**
+     * Creates a new RuntimePermission with the specified name. The name is the
+     * symbolic name of the RuntimePermission, such as "exit", "setFactory",
+     * etc. An asterisk may appear at the end of the name, following a ".", or
+     * by itself, to signify a wildcard match.
+     *
+     * @param name
+     *             the name of the RuntimePermission.
+     *
+     * @throws NullPointerException
+     *                                  if <code>name</code> is
+     *                                  <code>null</code>.
+     * @throws IllegalArgumentException
+     *                                  if <code>name</code> is empty.
+     */
 
-	public RuntimePermission(String name) {
-		super(name);
-	}
+    public RuntimePermission(String name) {
+        super(name);
+    }
 
-	/**
-	 * Creates a new RuntimePermission object with the specified name. The name
-	 * is the symbolic name of the RuntimePermission, and the actions String is
-	 * currently unused and should be null.
-	 *
-	 * @param name
-	 *                the name of the RuntimePermission.
-	 * @param actions
-	 *                should be null.
-	 *
-	 * @throws NullPointerException
-	 *                                  if <code>name</code> is
-	 *                                  <code>null</code>.
-	 * @throws IllegalArgumentException
-	 *                                  if <code>name</code> is empty.
-	 */
+    /**
+     * Creates a new RuntimePermission object with the specified name. The name
+     * is the symbolic name of the RuntimePermission, and the actions String is
+     * currently unused and should be null.
+     *
+     * @param name
+     *                the name of the RuntimePermission.
+     * @param actions
+     *                should be null.
+     *
+     * @throws NullPointerException
+     *                                  if <code>name</code> is
+     *                                  <code>null</code>.
+     * @throws IllegalArgumentException
+     *                                  if <code>name</code> is empty.
+     */
 
-	public RuntimePermission(String name, String actions) {
-		super(name, actions);
-	}
+    public RuntimePermission(String name, String actions) {
+        super(name, actions);
+    }
 }

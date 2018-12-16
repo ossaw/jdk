@@ -11,23 +11,23 @@ import com.sun.jmx.snmp.SnmpOid;
  *
  **/
 class SnmpEntryOid extends SnmpOid {
-	private static final long serialVersionUID = 9212653887791059564L;
+    private static final long serialVersionUID = 9212653887791059564L;
 
-	/**
-	 * Constructs a new <CODE>SnmpOid</CODE> from the specified component array,
-	 * starting at given position.
-	 *
-	 * @param oid
-	 *              The original OID array
-	 * @param start
-	 *              The position at which to begin.
-	 *
-	 **/
-	public SnmpEntryOid(long[] oid, int start) {
-		final int subLength = oid.length - start;
-		final long[] subOid = new long[subLength];
-		java.lang.System.arraycopy(oid, start, subOid, 0, subLength);
-		components = subOid;
-		componentCount = subLength;
-	}
+    /**
+     * Constructs a new <CODE>SnmpOid</CODE> from the specified component array,
+     * starting at given position.
+     *
+     * @param oid
+     *              The original OID array
+     * @param start
+     *              The position at which to begin.
+     *
+     **/
+    public SnmpEntryOid(long[] oid, int start) {
+        final int subLength = oid.length - start;
+        final long[] subOid = new long[subLength];
+        java.lang.System.arraycopy(oid, start, subOid, 0, subLength);
+        components = subOid;
+        componentCount = subLength;
+    }
 }

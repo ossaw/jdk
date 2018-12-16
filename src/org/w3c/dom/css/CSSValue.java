@@ -29,58 +29,58 @@ import org.w3c.dom.DOMException;
  * @since DOM Level 2
  */
 public interface CSSValue {
-	// UnitTypes
-	/**
-	 * The value is inherited and the <code>cssText</code> contains "inherit".
-	 */
-	public static final short CSS_INHERIT = 0;
-	/**
-	 * The value is a primitive value and an instance of the
-	 * <code>CSSPrimitiveValue</code> interface can be obtained by using
-	 * binding-specific casting methods on this instance of the
-	 * <code>CSSValue</code> interface.
-	 */
-	public static final short CSS_PRIMITIVE_VALUE = 1;
-	/**
-	 * The value is a <code>CSSValue</code> list and an instance of the
-	 * <code>CSSValueList</code> interface can be obtained by using
-	 * binding-specific casting methods on this instance of the
-	 * <code>CSSValue</code> interface.
-	 */
-	public static final short CSS_VALUE_LIST = 2;
-	/**
-	 * The value is a custom value.
-	 */
-	public static final short CSS_CUSTOM = 3;
+    // UnitTypes
+    /**
+     * The value is inherited and the <code>cssText</code> contains "inherit".
+     */
+    public static final short CSS_INHERIT = 0;
+    /**
+     * The value is a primitive value and an instance of the
+     * <code>CSSPrimitiveValue</code> interface can be obtained by using
+     * binding-specific casting methods on this instance of the
+     * <code>CSSValue</code> interface.
+     */
+    public static final short CSS_PRIMITIVE_VALUE = 1;
+    /**
+     * The value is a <code>CSSValue</code> list and an instance of the
+     * <code>CSSValueList</code> interface can be obtained by using
+     * binding-specific casting methods on this instance of the
+     * <code>CSSValue</code> interface.
+     */
+    public static final short CSS_VALUE_LIST = 2;
+    /**
+     * The value is a custom value.
+     */
+    public static final short CSS_CUSTOM = 3;
 
-	/**
-	 * A string representation of the current value.
-	 */
-	public String getCssText();
+    /**
+     * A string representation of the current value.
+     */
+    public String getCssText();
 
-	/**
-	 * A string representation of the current value.
-	 * 
-	 * @exception DOMException
-	 *                         SYNTAX_ERR: Raised if the specified CSS string
-	 *                         value has a
-	 *                         syntax error (according to the attached property)
-	 *                         or is
-	 *                         unparsable. <br>
-	 *                         INVALID_MODIFICATION_ERR: Raised if the specified
-	 *                         CSS
-	 *                         string value represents a different type of
-	 *                         values than
-	 *                         the values allowed by the CSS property. <br>
-	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this value
-	 *                         is
-	 *                         readonly.
-	 */
-	public void setCssText(String cssText) throws DOMException;
+    /**
+     * A string representation of the current value.
+     * 
+     * @exception DOMException
+     *                         SYNTAX_ERR: Raised if the specified CSS string
+     *                         value has a
+     *                         syntax error (according to the attached property)
+     *                         or is
+     *                         unparsable. <br>
+     *                         INVALID_MODIFICATION_ERR: Raised if the specified
+     *                         CSS
+     *                         string value represents a different type of
+     *                         values than
+     *                         the values allowed by the CSS property. <br>
+     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this value
+     *                         is
+     *                         readonly.
+     */
+    public void setCssText(String cssText) throws DOMException;
 
-	/**
-	 * A code defining the type of the value as defined above.
-	 */
-	public short getCssValueType();
+    /**
+     * A code defining the type of the value as defined above.
+     */
+    public short getCssValueType();
 
 }

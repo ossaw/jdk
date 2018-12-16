@@ -19,54 +19,54 @@ import java.math.BigInteger;
  */
 
 public class DSAParameterSpec implements AlgorithmParameterSpec,
-		java.security.interfaces.DSAParams {
+        java.security.interfaces.DSAParams {
 
-	BigInteger p;
-	BigInteger q;
-	BigInteger g;
+    BigInteger p;
+    BigInteger q;
+    BigInteger g;
 
-	/**
-	 * Creates a new DSAParameterSpec with the specified parameter values.
-	 *
-	 * @param p
-	 *          the prime.
-	 *
-	 * @param q
-	 *          the sub-prime.
-	 *
-	 * @param g
-	 *          the base.
-	 */
-	public DSAParameterSpec(BigInteger p, BigInteger q, BigInteger g) {
-		this.p = p;
-		this.q = q;
-		this.g = g;
-	}
+    /**
+     * Creates a new DSAParameterSpec with the specified parameter values.
+     *
+     * @param p
+     *          the prime.
+     *
+     * @param q
+     *          the sub-prime.
+     *
+     * @param g
+     *          the base.
+     */
+    public DSAParameterSpec(BigInteger p, BigInteger q, BigInteger g) {
+        this.p = p;
+        this.q = q;
+        this.g = g;
+    }
 
-	/**
-	 * Returns the prime {@code p}.
-	 *
-	 * @return the prime {@code p}.
-	 */
-	public BigInteger getP() {
-		return this.p;
-	}
+    /**
+     * Returns the prime {@code p}.
+     *
+     * @return the prime {@code p}.
+     */
+    public BigInteger getP() {
+        return this.p;
+    }
 
-	/**
-	 * Returns the sub-prime {@code q}.
-	 *
-	 * @return the sub-prime {@code q}.
-	 */
-	public BigInteger getQ() {
-		return this.q;
-	}
+    /**
+     * Returns the sub-prime {@code q}.
+     *
+     * @return the sub-prime {@code q}.
+     */
+    public BigInteger getQ() {
+        return this.q;
+    }
 
-	/**
-	 * Returns the base {@code g}.
-	 *
-	 * @return the base {@code g}.
-	 */
-	public BigInteger getG() {
-		return this.g;
-	}
+    /**
+     * Returns the base {@code g}.
+     *
+     * @return the base {@code g}.
+     */
+    public BigInteger getG() {
+        return this.g;
+    }
 }

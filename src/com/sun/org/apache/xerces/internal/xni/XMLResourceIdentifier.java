@@ -28,41 +28,41 @@ package com.sun.org.apache.xerces.internal.xni;
 
 public interface XMLResourceIdentifier {
 
-	/** Sets the public identifier. */
-	public void setPublicId(String publicId);
+    /** Sets the public identifier. */
+    public void setPublicId(String publicId);
 
-	/** Returns the public identifier. */
-	public String getPublicId();
+    /** Returns the public identifier. */
+    public String getPublicId();
 
-	/** Sets the expanded system identifier. */
-	public void setExpandedSystemId(String systemId);
+    /** Sets the expanded system identifier. */
+    public void setExpandedSystemId(String systemId);
 
-	/** Returns the expanded system identifier. */
-	public String getExpandedSystemId();
+    /** Returns the expanded system identifier. */
+    public String getExpandedSystemId();
 
-	/** Sets the literal system identifier. */
-	public void setLiteralSystemId(String systemId);
+    /** Sets the literal system identifier. */
+    public void setLiteralSystemId(String systemId);
 
-	/** Returns the literal system identifier. */
-	public String getLiteralSystemId();
+    /** Returns the literal system identifier. */
+    public String getLiteralSystemId();
 
-	/**
-	 * Setsthe base URI against which the literal SystemId is to be resolved.
-	 */
-	public void setBaseSystemId(String systemId);
+    /**
+     * Setsthe base URI against which the literal SystemId is to be resolved.
+     */
+    public void setBaseSystemId(String systemId);
 
-	/**
-	 * <p>
-	 * Returns the base URI against which the literal SystemId is to be
-	 * resolved.
-	 * </p>
-	 */
-	public String getBaseSystemId();
+    /**
+     * <p>
+     * Returns the base URI against which the literal SystemId is to be
+     * resolved.
+     * </p>
+     */
+    public String getBaseSystemId();
 
-	/** Sets the namespace of the resource. */
-	public void setNamespace(String namespace);
+    /** Sets the namespace of the resource. */
+    public void setNamespace(String namespace);
 
-	/** Returns the namespace of the resource. */
-	public String getNamespace();
+    /** Returns the namespace of the resource. */
+    public String getNamespace();
 
 } // XMLResourceIdentifier

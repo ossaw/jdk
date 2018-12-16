@@ -28,24 +28,24 @@ package org.w3c.dom;
  * @since DOM Level 3
  */
 public interface DOMImplementationList {
-	/**
-	 * Returns the <code>index</code>th item in the collection. If
-	 * <code>index</code> is greater than or equal to the number of
-	 * <code>DOMImplementation</code>s in the list, this returns
-	 * <code>null</code>.
-	 * 
-	 * @param index
-	 *              Index into the collection.
-	 * @return The <code>DOMImplementation</code> at the <code>index</code> th
-	 *         position in the <code>DOMImplementationList</code>, or
-	 *         <code>null</code> if that is not a valid index.
-	 */
-	public DOMImplementation item(int index);
+    /**
+     * Returns the <code>index</code>th item in the collection. If
+     * <code>index</code> is greater than or equal to the number of
+     * <code>DOMImplementation</code>s in the list, this returns
+     * <code>null</code>.
+     * 
+     * @param index
+     *              Index into the collection.
+     * @return The <code>DOMImplementation</code> at the <code>index</code> th
+     *         position in the <code>DOMImplementationList</code>, or
+     *         <code>null</code> if that is not a valid index.
+     */
+    public DOMImplementation item(int index);
 
-	/**
-	 * The number of <code>DOMImplementation</code>s in the list. The range of
-	 * valid child node indices is 0 to <code>length-1</code> inclusive.
-	 */
-	public int getLength();
+    /**
+     * The number of <code>DOMImplementation</code>s in the list. The range of
+     * valid child node indices is 0 to <code>length-1</code> inclusive.
+     */
+    public int getLength();
 
 }

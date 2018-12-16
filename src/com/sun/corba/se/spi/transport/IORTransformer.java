@@ -15,7 +15,7 @@ import com.sun.corba.se.spi.encoding.CorbaOutputObject;
  * object.
  */
 public interface IORTransformer {
-	IOR unmarshal(CorbaInputObject io);
+    IOR unmarshal(CorbaInputObject io);
 
-	void marshal(CorbaOutputObject oo, IOR ior);
+    void marshal(CorbaOutputObject oo, IOR ior);
 }

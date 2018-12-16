@@ -24,30 +24,30 @@ package javax.naming;
  * @since 1.3
  */
 public class ConfigurationException extends NamingException {
-	/**
-	 * Constructs a new instance of ConfigurationException using an explanation.
-	 * All other fields default to null.
-	 *
-	 * @param explanation
-	 *                    A possibly null string containing additional detail
-	 *                    about this
-	 *                    exception.
-	 * @see java.lang.Throwable#getMessage
-	 */
-	public ConfigurationException(String explanation) {
-		super(explanation);
-	}
+    /**
+     * Constructs a new instance of ConfigurationException using an explanation.
+     * All other fields default to null.
+     *
+     * @param explanation
+     *                    A possibly null string containing additional detail
+     *                    about this
+     *                    exception.
+     * @see java.lang.Throwable#getMessage
+     */
+    public ConfigurationException(String explanation) {
+        super(explanation);
+    }
 
-	/**
-	 * Constructs a new instance of ConfigurationException with all name
-	 * resolution fields and explanation initialized to null.
-	 */
-	public ConfigurationException() {
-		super();
-	}
+    /**
+     * Constructs a new instance of ConfigurationException with all name
+     * resolution fields and explanation initialized to null.
+     */
+    public ConfigurationException() {
+        super();
+    }
 
-	/**
-	 * Use serialVersionUID from JNDI 1.1.1 for interoperability
-	 */
-	private static final long serialVersionUID = -2535156726228855704L;
+    /**
+     * Use serialVersionUID from JNDI 1.1.1 for interoperability
+     */
+    private static final long serialVersionUID = -2535156726228855704L;
 }

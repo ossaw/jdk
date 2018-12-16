@@ -32,14 +32,14 @@ package java.util;
  * 
  * <pre>
  * for (int i = 0, n = list.size(); i &lt; n; i++)
- * 	list.get(i);
+ *     list.get(i);
  * </pre>
  * 
  * runs faster than this loop:
  * 
  * <pre>
  * for (Iterator i = list.iterator(); i.hasNext();)
- * 	i.next();
+ *     i.next();
  * </pre>
  *
  * <p>

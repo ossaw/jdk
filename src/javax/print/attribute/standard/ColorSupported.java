@@ -37,76 +37,76 @@ import javax.print.attribute.PrintServiceAttribute;
  * @author Alan Kaminsky
  */
 public final class ColorSupported extends EnumSyntax implements
-		PrintServiceAttribute {
+        PrintServiceAttribute {
 
-	private static final long serialVersionUID = -2700555589688535545L;
+    private static final long serialVersionUID = -2700555589688535545L;
 
-	/**
-	 * The printer is not capable of any type of color printing.
-	 */
-	public static final ColorSupported NOT_SUPPORTED = new ColorSupported(0);
+    /**
+     * The printer is not capable of any type of color printing.
+     */
+    public static final ColorSupported NOT_SUPPORTED = new ColorSupported(0);
 
-	/**
-	 * The printer is capable of some type of color printing, such as highlight
-	 * color or full process color.
-	 */
-	public static final ColorSupported SUPPORTED = new ColorSupported(1);
+    /**
+     * The printer is capable of some type of color printing, such as highlight
+     * color or full process color.
+     */
+    public static final ColorSupported SUPPORTED = new ColorSupported(1);
 
-	/**
-	 * Construct a new color supported enumeration value with the given integer
-	 * value.
-	 *
-	 * @param value
-	 *              Integer value.
-	 */
-	protected ColorSupported(int value) {
-		super(value);
-	}
+    /**
+     * Construct a new color supported enumeration value with the given integer
+     * value.
+     *
+     * @param value
+     *              Integer value.
+     */
+    protected ColorSupported(int value) {
+        super(value);
+    }
 
-	private static final String[] myStringTable = { "not-supported",
-			"supported" };
+    private static final String[] myStringTable = { "not-supported",
+            "supported" };
 
-	private static final ColorSupported[] myEnumValueTable = { NOT_SUPPORTED,
-			SUPPORTED };
+    private static final ColorSupported[] myEnumValueTable = { NOT_SUPPORTED,
+            SUPPORTED };
 
-	/**
-	 * Returns the string table for class ColorSupported.
-	 */
-	protected String[] getStringTable() {
-		return myStringTable;
-	}
+    /**
+     * Returns the string table for class ColorSupported.
+     */
+    protected String[] getStringTable() {
+        return myStringTable;
+    }
 
-	/**
-	 * Returns the enumeration value table for class ColorSupported.
-	 */
-	protected EnumSyntax[] getEnumValueTable() {
-		return myEnumValueTable;
-	}
+    /**
+     * Returns the enumeration value table for class ColorSupported.
+     */
+    protected EnumSyntax[] getEnumValueTable() {
+        return myEnumValueTable;
+    }
 
-	/**
-	 * Get the printing attribute class which is to be used as the "category"
-	 * for this printing attribute value.
-	 * <P>
-	 * For class ColorSupported, the category is class ColorSupported itself.
-	 *
-	 * @return Printing attribute class (category), an instance of class
-	 *         {@link java.lang.Class java.lang.Class}.
-	 */
-	public final Class<? extends Attribute> getCategory() {
-		return ColorSupported.class;
-	}
+    /**
+     * Get the printing attribute class which is to be used as the "category"
+     * for this printing attribute value.
+     * <P>
+     * For class ColorSupported, the category is class ColorSupported itself.
+     *
+     * @return Printing attribute class (category), an instance of class
+     *         {@link java.lang.Class java.lang.Class}.
+     */
+    public final Class<? extends Attribute> getCategory() {
+        return ColorSupported.class;
+    }
 
-	/**
-	 * Get the name of the category of which this attribute value is an
-	 * instance.
-	 * <P>
-	 * For class ColorSupported, the category name is
-	 * <CODE>"color-supported"</CODE>.
-	 *
-	 * @return Attribute category name.
-	 */
-	public final String getName() {
-		return "color-supported";
-	}
+    /**
+     * Get the name of the category of which this attribute value is an
+     * instance.
+     * <P>
+     * For class ColorSupported, the category name is
+     * <CODE>"color-supported"</CODE>.
+     *
+     * @return Attribute category name.
+     */
+    public final String getName() {
+        return "color-supported";
+    }
 
 }

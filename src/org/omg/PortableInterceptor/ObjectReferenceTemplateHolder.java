@@ -16,28 +16,28 @@ package org.omg.PortableInterceptor;
  * less useful in many cases.
  */
 public final class ObjectReferenceTemplateHolder implements
-		org.omg.CORBA.portable.Streamable {
-	public org.omg.PortableInterceptor.ObjectReferenceTemplate value = null;
+        org.omg.CORBA.portable.Streamable {
+    public org.omg.PortableInterceptor.ObjectReferenceTemplate value = null;
 
-	public ObjectReferenceTemplateHolder() {}
+    public ObjectReferenceTemplateHolder() {}
 
-	public ObjectReferenceTemplateHolder(
-			org.omg.PortableInterceptor.ObjectReferenceTemplate initialValue) {
-		value = initialValue;
-	}
+    public ObjectReferenceTemplateHolder(
+            org.omg.PortableInterceptor.ObjectReferenceTemplate initialValue) {
+        value = initialValue;
+    }
 
-	public void _read(org.omg.CORBA.portable.InputStream i) {
-		value = org.omg.PortableInterceptor.ObjectReferenceTemplateHelper.read(
-				i);
-	}
+    public void _read(org.omg.CORBA.portable.InputStream i) {
+        value = org.omg.PortableInterceptor.ObjectReferenceTemplateHelper.read(
+                i);
+    }
 
-	public void _write(org.omg.CORBA.portable.OutputStream o) {
-		org.omg.PortableInterceptor.ObjectReferenceTemplateHelper.write(o,
-				value);
-	}
+    public void _write(org.omg.CORBA.portable.OutputStream o) {
+        org.omg.PortableInterceptor.ObjectReferenceTemplateHelper.write(o,
+                value);
+    }
 
-	public org.omg.CORBA.TypeCode _type() {
-		return org.omg.PortableInterceptor.ObjectReferenceTemplateHelper.type();
-	}
+    public org.omg.CORBA.TypeCode _type() {
+        return org.omg.PortableInterceptor.ObjectReferenceTemplateHelper.type();
+    }
 
 }

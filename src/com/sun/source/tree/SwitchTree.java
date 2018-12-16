@@ -26,7 +26,7 @@ import java.util.List;
  */
 @jdk.Exported
 public interface SwitchTree extends StatementTree {
-	ExpressionTree getExpression();
+    ExpressionTree getExpression();
 
-	List<? extends CaseTree> getCases();
+    List<? extends CaseTree> getCases();
 }

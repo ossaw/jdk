@@ -28,9 +28,9 @@ package org.w3c.dom.css;
  * @since DOM Level 2
  */
 public interface CSSFontFaceRule extends CSSRule {
-	/**
-	 * The declaration-block of this rule.
-	 */
-	public CSSStyleDeclaration getStyle();
+    /**
+     * The declaration-block of this rule.
+     */
+    public CSSStyleDeclaration getStyle();
 
 }

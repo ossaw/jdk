@@ -68,49 +68,49 @@ import java.util.StringTokenizer;
 
 public final class SerializablePermission extends BasicPermission {
 
-	private static final long serialVersionUID = 8537212141160296410L;
+    private static final long serialVersionUID = 8537212141160296410L;
 
-	/**
-	 * @serial
-	 */
-	private String actions;
+    /**
+     * @serial
+     */
+    private String actions;
 
-	/**
-	 * Creates a new SerializablePermission with the specified name. The name is
-	 * the symbolic name of the SerializablePermission, such as
-	 * "enableSubstitution", etc.
-	 *
-	 * @param name
-	 *             the name of the SerializablePermission.
-	 *
-	 * @throws NullPointerException
-	 *                                  if <code>name</code> is
-	 *                                  <code>null</code>.
-	 * @throws IllegalArgumentException
-	 *                                  if <code>name</code> is empty.
-	 */
-	public SerializablePermission(String name) {
-		super(name);
-	}
+    /**
+     * Creates a new SerializablePermission with the specified name. The name is
+     * the symbolic name of the SerializablePermission, such as
+     * "enableSubstitution", etc.
+     *
+     * @param name
+     *             the name of the SerializablePermission.
+     *
+     * @throws NullPointerException
+     *                                  if <code>name</code> is
+     *                                  <code>null</code>.
+     * @throws IllegalArgumentException
+     *                                  if <code>name</code> is empty.
+     */
+    public SerializablePermission(String name) {
+        super(name);
+    }
 
-	/**
-	 * Creates a new SerializablePermission object with the specified name. The
-	 * name is the symbolic name of the SerializablePermission, and the actions
-	 * String is currently unused and should be null.
-	 *
-	 * @param name
-	 *                the name of the SerializablePermission.
-	 * @param actions
-	 *                currently unused and must be set to null
-	 *
-	 * @throws NullPointerException
-	 *                                  if <code>name</code> is
-	 *                                  <code>null</code>.
-	 * @throws IllegalArgumentException
-	 *                                  if <code>name</code> is empty.
-	 */
+    /**
+     * Creates a new SerializablePermission object with the specified name. The
+     * name is the symbolic name of the SerializablePermission, and the actions
+     * String is currently unused and should be null.
+     *
+     * @param name
+     *                the name of the SerializablePermission.
+     * @param actions
+     *                currently unused and must be set to null
+     *
+     * @throws NullPointerException
+     *                                  if <code>name</code> is
+     *                                  <code>null</code>.
+     * @throws IllegalArgumentException
+     *                                  if <code>name</code> is empty.
+     */
 
-	public SerializablePermission(String name, String actions) {
-		super(name, actions);
-	}
+    public SerializablePermission(String name, String actions) {
+        super(name, actions);
+    }
 }

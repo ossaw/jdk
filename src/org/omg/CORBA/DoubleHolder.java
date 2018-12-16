@@ -31,62 +31,62 @@ import org.omg.CORBA.portable.OutputStream;
  */
 public final class DoubleHolder implements Streamable {
 
-	/**
-	 * The <code>double</code> value held by this <code>DoubleHolder</code>
-	 * object.
-	 */
+    /**
+     * The <code>double</code> value held by this <code>DoubleHolder</code>
+     * object.
+     */
 
-	public double value;
+    public double value;
 
-	/**
-	 * Constructs a new <code>DoubleHolder</code> object with its
-	 * <code>value</code> field initialized to 0.0.
-	 */
-	public DoubleHolder() {}
+    /**
+     * Constructs a new <code>DoubleHolder</code> object with its
+     * <code>value</code> field initialized to 0.0.
+     */
+    public DoubleHolder() {}
 
-	/**
-	 * Constructs a new <code>DoubleHolder</code> object for the given
-	 * <code>double</code>.
-	 * 
-	 * @param initial
-	 *                the <code>double</code> with which to initialize the
-	 *                <code>value</code> field of the new
-	 *                <code>DoubleHolder</code>
-	 *                object
-	 */
-	public DoubleHolder(double initial) {
-		value = initial;
-	}
+    /**
+     * Constructs a new <code>DoubleHolder</code> object for the given
+     * <code>double</code>.
+     * 
+     * @param initial
+     *                the <code>double</code> with which to initialize the
+     *                <code>value</code> field of the new
+     *                <code>DoubleHolder</code>
+     *                object
+     */
+    public DoubleHolder(double initial) {
+        value = initial;
+    }
 
-	/**
-	 * Read a double value from the input stream and store it in the value
-	 * member.
-	 *
-	 * @param input
-	 *              the <code>InputStream</code> to read from.
-	 */
-	public void _read(InputStream input) {
-		value = input.read_double();
-	}
+    /**
+     * Read a double value from the input stream and store it in the value
+     * member.
+     *
+     * @param input
+     *              the <code>InputStream</code> to read from.
+     */
+    public void _read(InputStream input) {
+        value = input.read_double();
+    }
 
-	/**
-	 * Write the double value stored in this holder to an
-	 * <code>OutputStream</code>.
-	 *
-	 * @param output
-	 *               the <code>OutputStream</code> to write into.
-	 */
-	public void _write(OutputStream output) {
-		output.write_double(value);
-	}
+    /**
+     * Write the double value stored in this holder to an
+     * <code>OutputStream</code>.
+     *
+     * @param output
+     *               the <code>OutputStream</code> to write into.
+     */
+    public void _write(OutputStream output) {
+        output.write_double(value);
+    }
 
-	/**
-	 * Return the <code>TypeCode</code> of this holder object.
-	 *
-	 * @return the <code>TypeCode</code> object.
-	 */
-	public org.omg.CORBA.TypeCode _type() {
-		return ORB.init().get_primitive_tc(TCKind.tk_double);
-	}
+    /**
+     * Return the <code>TypeCode</code> of this holder object.
+     *
+     * @return the <code>TypeCode</code> object.
+     */
+    public org.omg.CORBA.TypeCode _type() {
+        return ORB.init().get_primitive_tc(TCKind.tk_double);
+    }
 
 }

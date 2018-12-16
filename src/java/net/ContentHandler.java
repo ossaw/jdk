@@ -47,49 +47,49 @@ import java.io.IOException;
  * @since JDK1.0
  */
 abstract public class ContentHandler {
-	/**
-	 * Given a URL connect stream positioned at the beginning of the
-	 * representation of an object, this method reads that stream and creates an
-	 * object from it.
-	 *
-	 * @param urlc
-	 *             a URL connection.
-	 * @return the object read by the {@code ContentHandler}.
-	 * @exception IOException
-	 *                        if an I/O error occurs while reading the object.
-	 */
-	abstract public Object getContent(URLConnection urlc) throws IOException;
+    /**
+     * Given a URL connect stream positioned at the beginning of the
+     * representation of an object, this method reads that stream and creates an
+     * object from it.
+     *
+     * @param urlc
+     *             a URL connection.
+     * @return the object read by the {@code ContentHandler}.
+     * @exception IOException
+     *                        if an I/O error occurs while reading the object.
+     */
+    abstract public Object getContent(URLConnection urlc) throws IOException;
 
-	/**
-	 * Given a URL connect stream positioned at the beginning of the
-	 * representation of an object, this method reads that stream and creates an
-	 * object that matches one of the types specified.
-	 *
-	 * The default implementation of this method should call getContent() and
-	 * screen the return type for a match of the suggested types.
-	 *
-	 * @param urlc
-	 *                a URL connection.
-	 * @param classes
-	 *                an array of types requested
-	 * @return the object read by the {@code ContentHandler} that is the first
-	 *         match of the suggested types. null if none of the requested are
-	 *         supported.
-	 * @exception IOException
-	 *                        if an I/O error occurs while reading the object.
-	 * @since 1.3
-	 */
-	@SuppressWarnings("rawtypes")
-	public Object getContent(URLConnection urlc, Class[] classes)
-			throws IOException {
-		Object obj = getContent(urlc);
+    /**
+     * Given a URL connect stream positioned at the beginning of the
+     * representation of an object, this method reads that stream and creates an
+     * object that matches one of the types specified.
+     *
+     * The default implementation of this method should call getContent() and
+     * screen the return type for a match of the suggested types.
+     *
+     * @param urlc
+     *                a URL connection.
+     * @param classes
+     *                an array of types requested
+     * @return the object read by the {@code ContentHandler} that is the first
+     *         match of the suggested types. null if none of the requested are
+     *         supported.
+     * @exception IOException
+     *                        if an I/O error occurs while reading the object.
+     * @since 1.3
+     */
+    @SuppressWarnings("rawtypes")
+    public Object getContent(URLConnection urlc, Class[] classes)
+            throws IOException {
+        Object obj = getContent(urlc);
 
-		for (int i = 0; i < classes.length; i++) {
-			if (classes[i].isInstance(obj)) {
-				return obj;
-			}
-		}
-		return null;
-	}
+        for (int i = 0; i < classes.length; i++) {
+            if (classes[i].isInstance(obj)) {
+                return obj;
+            }
+        }
+        return null;
+    }
 
 }

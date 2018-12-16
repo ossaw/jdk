@@ -28,11 +28,11 @@ package com.sun.org.apache.xalan.internal.xsltc.runtime;
  * @author Santiago Pericas-Geertsen
  */
 public class Node {
-	public int node;
-	public int type;
+    public int node;
+    public int type;
 
-	public Node(int n, int t) {
-		node = n;
-		type = t;
-	}
+    public Node(int n, int t) {
+        node = n;
+        type = t;
+    }
 }

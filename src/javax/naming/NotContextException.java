@@ -28,28 +28,28 @@ package javax.naming;
  */
 
 public class NotContextException extends NamingException {
-	/**
-	 * Constructs a new instance of NotContextException using an explanation.
-	 * All other fields default to null.
-	 *
-	 * @param explanation
-	 *                    Possibly null additional detail about this exception.
-	 * @see java.lang.Throwable#getMessage
-	 */
-	public NotContextException(String explanation) {
-		super(explanation);
-	}
+    /**
+     * Constructs a new instance of NotContextException using an explanation.
+     * All other fields default to null.
+     *
+     * @param explanation
+     *                    Possibly null additional detail about this exception.
+     * @see java.lang.Throwable#getMessage
+     */
+    public NotContextException(String explanation) {
+        super(explanation);
+    }
 
-	/**
-	 * Constructs a new instance of NotContextException. All fields default to
-	 * null.
-	 */
-	public NotContextException() {
-		super();
-	}
+    /**
+     * Constructs a new instance of NotContextException. All fields default to
+     * null.
+     */
+    public NotContextException() {
+        super();
+    }
 
-	/**
-	 * Use serialVersionUID from JNDI 1.1.1 for interoperability
-	 */
-	private static final long serialVersionUID = 849752551644540417L;
+    /**
+     * Use serialVersionUID from JNDI 1.1.1 for interoperability
+     */
+    private static final long serialVersionUID = 849752551644540417L;
 }

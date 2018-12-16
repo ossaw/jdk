@@ -36,67 +36,67 @@ package com.sun.org.apache.xerces.internal.dom;
  */
 public class DeferredTextImpl extends TextImpl implements DeferredNode {
 
-	//
-	// Constants
-	//
+    //
+    // Constants
+    //
 
-	/** Serialization version. */
-	static final long serialVersionUID = 2310613872100393425L;
+    /** Serialization version. */
+    static final long serialVersionUID = 2310613872100393425L;
 
-	//
-	// Data
-	//
+    //
+    // Data
+    //
 
-	/** Node index. */
-	protected transient int fNodeIndex;
+    /** Node index. */
+    protected transient int fNodeIndex;
 
-	//
-	// Constructors
-	//
+    //
+    // Constructors
+    //
 
-	/**
-	 * This is the deferred constructor. Only the fNodeIndex is given here. All
-	 * other data, can be requested from the ownerDocument via the index.
-	 */
-	DeferredTextImpl(DeferredDocumentImpl ownerDocument, int nodeIndex) {
-		super(ownerDocument, null);
+    /**
+     * This is the deferred constructor. Only the fNodeIndex is given here. All
+     * other data, can be requested from the ownerDocument via the index.
+     */
+    DeferredTextImpl(DeferredDocumentImpl ownerDocument, int nodeIndex) {
+        super(ownerDocument, null);
 
-		fNodeIndex = nodeIndex;
-		needsSyncData(true);
+        fNodeIndex = nodeIndex;
+        needsSyncData(true);
 
-	} // <init>(DeferredDocumentImpl,int)
+    } // <init>(DeferredDocumentImpl,int)
 
-	//
-	// DeferredNode methods
-	//
+    //
+    // DeferredNode methods
+    //
 
-	/** Returns the node index. */
-	public int getNodeIndex() {
-		return fNodeIndex;
-	}
+    /** Returns the node index. */
+    public int getNodeIndex() {
+        return fNodeIndex;
+    }
 
-	//
-	// Protected methods
-	//
+    //
+    // Protected methods
+    //
 
-	/** Synchronizes the underlying data. */
-	protected void synchronizeData() {
+    /** Synchronizes the underlying data. */
+    protected void synchronizeData() {
 
-		// no need for future synchronizations
-		needsSyncData(false);
+        // no need for future synchronizations
+        needsSyncData(false);
 
-		// get initial text value
-		DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) this
-				.ownerDocument();
-		data = ownerDocument.getNodeValueString(fNodeIndex);
+        // get initial text value
+        DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) this
+                .ownerDocument();
+        data = ownerDocument.getNodeValueString(fNodeIndex);
 
-		// NOTE: We used to normalize adjacent text node values here.
-		// This code has moved to the DeferredDocumentImpl
-		// getNodeValueString() method. -Ac
+        // NOTE: We used to normalize adjacent text node values here.
+        // This code has moved to the DeferredDocumentImpl
+        // getNodeValueString() method. -Ac
 
-		// ignorable whitespace
-		isIgnorableWhitespace(ownerDocument.getNodeExtra(fNodeIndex) == 1);
+        // ignorable whitespace
+        isIgnorableWhitespace(ownerDocument.getNodeExtra(fNodeIndex) == 1);
 
-	} // synchronizeData()
+    } // synchronizeData()
 
 } // class DeferredTextImpl

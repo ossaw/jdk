@@ -24,10 +24,10 @@ import java.util.EventListener;
  */
 public interface TextListener extends EventListener {
 
-	/**
-	 * Invoked when the value of the text has changed. The code written for this
-	 * method performs the operations that need to occur when text changes.
-	 */
-	public void textValueChanged(TextEvent e);
+    /**
+     * Invoked when the value of the text has changed. The code written for this
+     * method performs the operations that need to occur when text changes.
+     */
+    public void textValueChanged(TextEvent e);
 
 }

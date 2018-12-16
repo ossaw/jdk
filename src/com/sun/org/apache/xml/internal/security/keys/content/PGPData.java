@@ -32,20 +32,20 @@ import org.w3c.dom.Element;
  */
 public class PGPData extends SignatureElementProxy implements KeyInfoContent {
 
-	/**
-	 * Constructor PGPData
-	 *
-	 * @param element
-	 * @param BaseURI
-	 * @throws XMLSecurityException
-	 */
-	public PGPData(Element element, String BaseURI)
-			throws XMLSecurityException {
-		super(element, BaseURI);
-	}
+    /**
+     * Constructor PGPData
+     *
+     * @param element
+     * @param BaseURI
+     * @throws XMLSecurityException
+     */
+    public PGPData(Element element, String BaseURI)
+            throws XMLSecurityException {
+        super(element, BaseURI);
+    }
 
-	/** @inheritDoc */
-	public String getBaseLocalName() {
-		return Constants._TAG_PGPDATA;
-	}
+    /** @inheritDoc */
+    public String getBaseLocalName() {
+        return Constants._TAG_PGPDATA;
+    }
 }

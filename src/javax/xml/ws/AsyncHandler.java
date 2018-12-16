@@ -14,12 +14,12 @@ package javax.xml.ws;
  **/
 public interface AsyncHandler<T> {
 
-	/**
-	 * Called when the response to an asynchronous operation is available.
-	 *
-	 * @param res
-	 *            The response to the operation invocation.
-	 *
-	 **/
-	void handleResponse(Response<T> res);
+    /**
+     * Called when the response to an asynchronous operation is available.
+     *
+     * @param res
+     *            The response to the operation invocation.
+     *
+     **/
+    void handleResponse(Response<T> res);
 }

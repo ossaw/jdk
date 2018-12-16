@@ -82,226 +82,226 @@ import java.util.Set;
  *      List (CRL) Profile</i></a>
  */
 public abstract class PKIXRevocationChecker extends PKIXCertPathChecker {
-	private URI ocspResponder;
-	private X509Certificate ocspResponderCert;
-	private List<Extension> ocspExtensions = Collections.<Extension>emptyList();
-	private Map<X509Certificate, byte[]> ocspResponses = Collections.emptyMap();
-	private Set<Option> options = Collections.emptySet();
+    private URI ocspResponder;
+    private X509Certificate ocspResponderCert;
+    private List<Extension> ocspExtensions = Collections.<Extension>emptyList();
+    private Map<X509Certificate, byte[]> ocspResponses = Collections.emptyMap();
+    private Set<Option> options = Collections.emptySet();
 
-	/**
-	 * Default constructor.
-	 */
-	protected PKIXRevocationChecker() {}
+    /**
+     * Default constructor.
+     */
+    protected PKIXRevocationChecker() {}
 
-	/**
-	 * Sets the URI that identifies the location of the OCSP responder. This
-	 * overrides the {@code ocsp.responderURL} security property and any
-	 * responder specified in a certificate's Authority Information Access
-	 * Extension, as defined in RFC 5280.
-	 *
-	 * @param uri
-	 *            the responder URI
-	 */
-	public void setOcspResponder(URI uri) {
-		this.ocspResponder = uri;
-	}
+    /**
+     * Sets the URI that identifies the location of the OCSP responder. This
+     * overrides the {@code ocsp.responderURL} security property and any
+     * responder specified in a certificate's Authority Information Access
+     * Extension, as defined in RFC 5280.
+     *
+     * @param uri
+     *            the responder URI
+     */
+    public void setOcspResponder(URI uri) {
+        this.ocspResponder = uri;
+    }
 
-	/**
-	 * Gets the URI that identifies the location of the OCSP responder. This
-	 * overrides the {@code ocsp.responderURL} security property. If this
-	 * parameter or the {@code ocsp.responderURL} property is not set, the
-	 * location is determined from the certificate's Authority Information
-	 * Access Extension, as defined in RFC 5280.
-	 *
-	 * @return the responder URI, or {@code null} if not set
-	 */
-	public URI getOcspResponder() {
-		return ocspResponder;
-	}
+    /**
+     * Gets the URI that identifies the location of the OCSP responder. This
+     * overrides the {@code ocsp.responderURL} security property. If this
+     * parameter or the {@code ocsp.responderURL} property is not set, the
+     * location is determined from the certificate's Authority Information
+     * Access Extension, as defined in RFC 5280.
+     *
+     * @return the responder URI, or {@code null} if not set
+     */
+    public URI getOcspResponder() {
+        return ocspResponder;
+    }
 
-	/**
-	 * Sets the OCSP responder's certificate. This overrides the
-	 * {@code ocsp.responderCertSubjectName},
-	 * {@code ocsp.responderCertIssuerName}, and
-	 * {@code ocsp.responderCertSerialNumber} security properties.
-	 *
-	 * @param cert
-	 *             the responder's certificate
-	 */
-	public void setOcspResponderCert(X509Certificate cert) {
-		this.ocspResponderCert = cert;
-	}
+    /**
+     * Sets the OCSP responder's certificate. This overrides the
+     * {@code ocsp.responderCertSubjectName},
+     * {@code ocsp.responderCertIssuerName}, and
+     * {@code ocsp.responderCertSerialNumber} security properties.
+     *
+     * @param cert
+     *             the responder's certificate
+     */
+    public void setOcspResponderCert(X509Certificate cert) {
+        this.ocspResponderCert = cert;
+    }
 
-	/**
-	 * Gets the OCSP responder's certificate. This overrides the
-	 * {@code ocsp.responderCertSubjectName},
-	 * {@code ocsp.responderCertIssuerName}, and
-	 * {@code ocsp.responderCertSerialNumber} security properties. If this
-	 * parameter or the aforementioned properties are not set, then the
-	 * responder's certificate is determined as specified in RFC 2560.
-	 *
-	 * @return the responder's certificate, or {@code null} if not set
-	 */
-	public X509Certificate getOcspResponderCert() {
-		return ocspResponderCert;
-	}
+    /**
+     * Gets the OCSP responder's certificate. This overrides the
+     * {@code ocsp.responderCertSubjectName},
+     * {@code ocsp.responderCertIssuerName}, and
+     * {@code ocsp.responderCertSerialNumber} security properties. If this
+     * parameter or the aforementioned properties are not set, then the
+     * responder's certificate is determined as specified in RFC 2560.
+     *
+     * @return the responder's certificate, or {@code null} if not set
+     */
+    public X509Certificate getOcspResponderCert() {
+        return ocspResponderCert;
+    }
 
-	// request extensions; single extensions not supported
-	/**
-	 * Sets the optional OCSP request extensions.
-	 *
-	 * @param extensions
-	 *                   a list of extensions. The list is copied to protect
-	 *                   against
-	 *                   subsequent modification.
-	 */
-	public void setOcspExtensions(List<Extension> extensions) {
-		this.ocspExtensions = (extensions == null) ? Collections
-				.<Extension>emptyList() : new ArrayList<Extension>(extensions);
-	}
+    // request extensions; single extensions not supported
+    /**
+     * Sets the optional OCSP request extensions.
+     *
+     * @param extensions
+     *                   a list of extensions. The list is copied to protect
+     *                   against
+     *                   subsequent modification.
+     */
+    public void setOcspExtensions(List<Extension> extensions) {
+        this.ocspExtensions = (extensions == null) ? Collections
+                .<Extension>emptyList() : new ArrayList<Extension>(extensions);
+    }
 
-	/**
-	 * Gets the optional OCSP request extensions.
-	 *
-	 * @return an unmodifiable list of extensions. The list is empty if no
-	 *         extensions have been specified.
-	 */
-	public List<Extension> getOcspExtensions() {
-		return Collections.unmodifiableList(ocspExtensions);
-	}
+    /**
+     * Gets the optional OCSP request extensions.
+     *
+     * @return an unmodifiable list of extensions. The list is empty if no
+     *         extensions have been specified.
+     */
+    public List<Extension> getOcspExtensions() {
+        return Collections.unmodifiableList(ocspExtensions);
+    }
 
-	/**
-	 * Sets the OCSP responses. These responses are used to determine the
-	 * revocation status of the specified certificates when OCSP is used.
-	 *
-	 * @param responses
-	 *                  a map of OCSP responses. Each key is an
-	 *                  {@code X509Certificate} that maps to the corresponding
-	 *                  DER-encoded OCSP response for that certificate. A deep
-	 *                  copy of
-	 *                  the map is performed to protect against subsequent
-	 *                  modification.
-	 */
-	public void setOcspResponses(Map<X509Certificate, byte[]> responses) {
-		if (responses == null) {
-			this.ocspResponses = Collections
-					.<X509Certificate, byte[]>emptyMap();
-		} else {
-			Map<X509Certificate, byte[]> copy = new HashMap<>(responses.size());
-			for (Map.Entry<X509Certificate, byte[]> e : responses.entrySet()) {
-				copy.put(e.getKey(), e.getValue().clone());
-			}
-			this.ocspResponses = copy;
-		}
-	}
+    /**
+     * Sets the OCSP responses. These responses are used to determine the
+     * revocation status of the specified certificates when OCSP is used.
+     *
+     * @param responses
+     *                  a map of OCSP responses. Each key is an
+     *                  {@code X509Certificate} that maps to the corresponding
+     *                  DER-encoded OCSP response for that certificate. A deep
+     *                  copy of
+     *                  the map is performed to protect against subsequent
+     *                  modification.
+     */
+    public void setOcspResponses(Map<X509Certificate, byte[]> responses) {
+        if (responses == null) {
+            this.ocspResponses = Collections
+                    .<X509Certificate, byte[]>emptyMap();
+        } else {
+            Map<X509Certificate, byte[]> copy = new HashMap<>(responses.size());
+            for (Map.Entry<X509Certificate, byte[]> e : responses.entrySet()) {
+                copy.put(e.getKey(), e.getValue().clone());
+            }
+            this.ocspResponses = copy;
+        }
+    }
 
-	/**
-	 * Gets the OCSP responses. These responses are used to determine the
-	 * revocation status of the specified certificates when OCSP is used.
-	 *
-	 * @return a map of OCSP responses. Each key is an {@code X509Certificate}
-	 *         that maps to the corresponding DER-encoded OCSP response for that
-	 *         certificate. A deep copy of the map is returned to protect
-	 *         against subsequent modification. Returns an empty map if no
-	 *         responses have been specified.
-	 */
-	public Map<X509Certificate, byte[]> getOcspResponses() {
-		Map<X509Certificate, byte[]> copy = new HashMap<>(ocspResponses.size());
-		for (Map.Entry<X509Certificate, byte[]> e : ocspResponses.entrySet()) {
-			copy.put(e.getKey(), e.getValue().clone());
-		}
-		return copy;
-	}
+    /**
+     * Gets the OCSP responses. These responses are used to determine the
+     * revocation status of the specified certificates when OCSP is used.
+     *
+     * @return a map of OCSP responses. Each key is an {@code X509Certificate}
+     *         that maps to the corresponding DER-encoded OCSP response for that
+     *         certificate. A deep copy of the map is returned to protect
+     *         against subsequent modification. Returns an empty map if no
+     *         responses have been specified.
+     */
+    public Map<X509Certificate, byte[]> getOcspResponses() {
+        Map<X509Certificate, byte[]> copy = new HashMap<>(ocspResponses.size());
+        for (Map.Entry<X509Certificate, byte[]> e : ocspResponses.entrySet()) {
+            copy.put(e.getKey(), e.getValue().clone());
+        }
+        return copy;
+    }
 
-	/**
-	 * Sets the revocation options.
-	 *
-	 * @param options
-	 *                a set of revocation options. The set is copied to protect
-	 *                against subsequent modification.
-	 */
-	public void setOptions(Set<Option> options) {
-		this.options = (options == null) ? Collections.<Option>emptySet()
-				: new HashSet<Option>(options);
-	}
+    /**
+     * Sets the revocation options.
+     *
+     * @param options
+     *                a set of revocation options. The set is copied to protect
+     *                against subsequent modification.
+     */
+    public void setOptions(Set<Option> options) {
+        this.options = (options == null) ? Collections.<Option>emptySet()
+                : new HashSet<Option>(options);
+    }
 
-	/**
-	 * Gets the revocation options.
-	 *
-	 * @return an unmodifiable set of revocation options. The set is empty if no
-	 *         options have been specified.
-	 */
-	public Set<Option> getOptions() {
-		return Collections.unmodifiableSet(options);
-	}
+    /**
+     * Gets the revocation options.
+     *
+     * @return an unmodifiable set of revocation options. The set is empty if no
+     *         options have been specified.
+     */
+    public Set<Option> getOptions() {
+        return Collections.unmodifiableSet(options);
+    }
 
-	/**
-	 * Returns a list containing the exceptions that are ignored by the
-	 * revocation checker when the {@link Option#SOFT_FAIL SOFT_FAIL} option is
-	 * set. The list is cleared each time {@link #init init} is called. The list
-	 * is ordered in ascending order according to the certificate index returned
-	 * by {@link CertPathValidatorException#getIndex getIndex} method of each
-	 * entry.
-	 * <p>
-	 * An implementation of {@code PKIXRevocationChecker} is responsible for
-	 * adding the ignored exceptions to the list.
-	 *
-	 * @return an unmodifiable list containing the ignored exceptions. The list
-	 *         is empty if no exceptions have been ignored.
-	 */
-	public abstract List<CertPathValidatorException> getSoftFailExceptions();
+    /**
+     * Returns a list containing the exceptions that are ignored by the
+     * revocation checker when the {@link Option#SOFT_FAIL SOFT_FAIL} option is
+     * set. The list is cleared each time {@link #init init} is called. The list
+     * is ordered in ascending order according to the certificate index returned
+     * by {@link CertPathValidatorException#getIndex getIndex} method of each
+     * entry.
+     * <p>
+     * An implementation of {@code PKIXRevocationChecker} is responsible for
+     * adding the ignored exceptions to the list.
+     *
+     * @return an unmodifiable list containing the ignored exceptions. The list
+     *         is empty if no exceptions have been ignored.
+     */
+    public abstract List<CertPathValidatorException> getSoftFailExceptions();
 
-	@Override
-	public PKIXRevocationChecker clone() {
-		PKIXRevocationChecker copy = (PKIXRevocationChecker) super.clone();
-		copy.ocspExtensions = new ArrayList<>(ocspExtensions);
-		copy.ocspResponses = new HashMap<>(ocspResponses);
-		// deep-copy the encoded responses, since they are mutable
-		for (Map.Entry<X509Certificate, byte[]> entry : copy.ocspResponses
-				.entrySet()) {
-			byte[] encoded = entry.getValue();
-			entry.setValue(encoded.clone());
-		}
-		copy.options = new HashSet<>(options);
-		return copy;
-	}
+    @Override
+    public PKIXRevocationChecker clone() {
+        PKIXRevocationChecker copy = (PKIXRevocationChecker) super.clone();
+        copy.ocspExtensions = new ArrayList<>(ocspExtensions);
+        copy.ocspResponses = new HashMap<>(ocspResponses);
+        // deep-copy the encoded responses, since they are mutable
+        for (Map.Entry<X509Certificate, byte[]> entry : copy.ocspResponses
+                .entrySet()) {
+            byte[] encoded = entry.getValue();
+            entry.setValue(encoded.clone());
+        }
+        copy.options = new HashSet<>(options);
+        return copy;
+    }
 
-	/**
-	 * Various revocation options that can be specified for the revocation
-	 * checking mechanism.
-	 */
-	public enum Option {
-		/**
-		 * Only check the revocation status of end-entity certificates.
-		 */
-		ONLY_END_ENTITY,
-		/**
-		 * Prefer CRLs to OSCP. The default behavior is to prefer OCSP. Each
-		 * PKIX implementation should document further details of their specific
-		 * preference rules and fallback policies.
-		 */
-		PREFER_CRLS,
-		/**
-		 * Disable the fallback mechanism.
-		 */
-		NO_FALLBACK,
-		/**
-		 * Allow revocation check to succeed if the revocation status cannot be
-		 * determined for one of the following reasons:
-		 * <ul>
-		 * <li>The CRL or OCSP response cannot be obtained because of a network
-		 * error.
-		 * <li>The OCSP responder returns one of the following errors specified
-		 * in section 2.3 of RFC 2560: internalError or tryLater.
-		 * </ul>
-		 * <br>
-		 * Note that these conditions apply to both OCSP and CRLs, and unless
-		 * the {@code NO_FALLBACK} option is set, the revocation check is
-		 * allowed to succeed only if both mechanisms fail under one of the
-		 * conditions as stated above. Exceptions that cause the network errors
-		 * are ignored but can be later retrieved by calling the
-		 * {@link #getSoftFailExceptions getSoftFailExceptions} method.
-		 */
-		SOFT_FAIL
-	}
+    /**
+     * Various revocation options that can be specified for the revocation
+     * checking mechanism.
+     */
+    public enum Option {
+        /**
+         * Only check the revocation status of end-entity certificates.
+         */
+        ONLY_END_ENTITY,
+        /**
+         * Prefer CRLs to OSCP. The default behavior is to prefer OCSP. Each
+         * PKIX implementation should document further details of their specific
+         * preference rules and fallback policies.
+         */
+        PREFER_CRLS,
+        /**
+         * Disable the fallback mechanism.
+         */
+        NO_FALLBACK,
+        /**
+         * Allow revocation check to succeed if the revocation status cannot be
+         * determined for one of the following reasons:
+         * <ul>
+         * <li>The CRL or OCSP response cannot be obtained because of a network
+         * error.
+         * <li>The OCSP responder returns one of the following errors specified
+         * in section 2.3 of RFC 2560: internalError or tryLater.
+         * </ul>
+         * <br>
+         * Note that these conditions apply to both OCSP and CRLs, and unless
+         * the {@code NO_FALLBACK} option is set, the revocation check is
+         * allowed to succeed only if both mechanisms fail under one of the
+         * conditions as stated above. Exceptions that cause the network errors
+         * are ignored but can be later retrieved by calling the
+         * {@link #getSoftFailExceptions getSoftFailExceptions} method.
+         */
+        SOFT_FAIL
+    }
 }

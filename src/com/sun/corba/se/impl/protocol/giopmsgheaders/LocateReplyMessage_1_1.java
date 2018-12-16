@@ -27,93 +27,93 @@ import com.sun.corba.se.impl.logging.ORBUtilSystemException;
  */
 
 public final class LocateReplyMessage_1_1 extends Message_1_1 implements
-		LocateReplyMessage {
+        LocateReplyMessage {
 
-	// Instance variables
+    // Instance variables
 
-	private ORB orb = null;
-	private int request_id = (int) 0;
-	private int reply_status = (int) 0;
-	private IOR ior = null;
+    private ORB orb = null;
+    private int request_id = (int) 0;
+    private int reply_status = (int) 0;
+    private IOR ior = null;
 
-	// Constructors
+    // Constructors
 
-	LocateReplyMessage_1_1(ORB orb) {
-		this.orb = orb;
-	}
+    LocateReplyMessage_1_1(ORB orb) {
+        this.orb = orb;
+    }
 
-	LocateReplyMessage_1_1(ORB orb, int _request_id, int _reply_status,
-			IOR _ior) {
-		super(Message.GIOPBigMagic, GIOPVersion.V1_1, FLAG_NO_FRAG_BIG_ENDIAN,
-				Message.GIOPLocateReply, 0);
-		this.orb = orb;
-		request_id = _request_id;
-		reply_status = _reply_status;
-		ior = _ior;
-	}
+    LocateReplyMessage_1_1(ORB orb, int _request_id, int _reply_status,
+            IOR _ior) {
+        super(Message.GIOPBigMagic, GIOPVersion.V1_1, FLAG_NO_FRAG_BIG_ENDIAN,
+                Message.GIOPLocateReply, 0);
+        this.orb = orb;
+        request_id = _request_id;
+        reply_status = _reply_status;
+        ior = _ior;
+    }
 
-	// Accessor methods
+    // Accessor methods
 
-	public int getRequestId() {
-		return this.request_id;
-	}
+    public int getRequestId() {
+        return this.request_id;
+    }
 
-	public int getReplyStatus() {
-		return this.reply_status;
-	}
+    public int getReplyStatus() {
+        return this.reply_status;
+    }
 
-	public short getAddrDisposition() {
-		return KeyAddr.value;
-	}
+    public short getAddrDisposition() {
+        return KeyAddr.value;
+    }
 
-	public SystemException getSystemException(String message) {
-		return null; // 1.0 LocateReply body does not contain SystemException
-	}
+    public SystemException getSystemException(String message) {
+        return null; // 1.0 LocateReply body does not contain SystemException
+    }
 
-	public IOR getIOR() {
-		return this.ior;
-	}
+    public IOR getIOR() {
+        return this.ior;
+    }
 
-	// IO methods
+    // IO methods
 
-	public void read(org.omg.CORBA.portable.InputStream istream) {
-		super.read(istream);
-		this.request_id = istream.read_ulong();
-		this.reply_status = istream.read_long();
-		isValidReplyStatus(this.reply_status); // raises exception on error
+    public void read(org.omg.CORBA.portable.InputStream istream) {
+        super.read(istream);
+        this.request_id = istream.read_ulong();
+        this.reply_status = istream.read_long();
+        isValidReplyStatus(this.reply_status); // raises exception on error
 
-		// The code below reads the reply body if status is OBJECT_FORWARD
-		if (this.reply_status == OBJECT_FORWARD) {
-			CDRInputStream cdr = (CDRInputStream) istream;
-			this.ior = IORFactories.makeIOR(cdr);
-		}
-	}
+        // The code below reads the reply body if status is OBJECT_FORWARD
+        if (this.reply_status == OBJECT_FORWARD) {
+            CDRInputStream cdr = (CDRInputStream) istream;
+            this.ior = IORFactories.makeIOR(cdr);
+        }
+    }
 
-	// Note, this writes only the header information. SystemException or
-	// IOR may be written afterwards into the reply mesg body.
-	public void write(org.omg.CORBA.portable.OutputStream ostream) {
-		super.write(ostream);
-		ostream.write_ulong(this.request_id);
-		ostream.write_long(this.reply_status);
-	}
+    // Note, this writes only the header information. SystemException or
+    // IOR may be written afterwards into the reply mesg body.
+    public void write(org.omg.CORBA.portable.OutputStream ostream) {
+        super.write(ostream);
+        ostream.write_ulong(this.request_id);
+        ostream.write_long(this.reply_status);
+    }
 
-	// Static methods
+    // Static methods
 
-	public static void isValidReplyStatus(int replyStatus) {
-		switch (replyStatus) {
-			case UNKNOWN_OBJECT:
-			case OBJECT_HERE:
-			case OBJECT_FORWARD:
-				break;
-			default:
-				ORBUtilSystemException localWrapper = ORBUtilSystemException
-						.get(CORBALogDomains.RPC_PROTOCOL);
-				throw localWrapper.illegalReplyStatus(
-						CompletionStatus.COMPLETED_MAYBE);
-		}
-	}
+    public static void isValidReplyStatus(int replyStatus) {
+        switch (replyStatus) {
+            case UNKNOWN_OBJECT:
+            case OBJECT_HERE:
+            case OBJECT_FORWARD:
+                break;
+            default:
+                ORBUtilSystemException localWrapper = ORBUtilSystemException
+                        .get(CORBALogDomains.RPC_PROTOCOL);
+                throw localWrapper.illegalReplyStatus(
+                        CompletionStatus.COMPLETED_MAYBE);
+        }
+    }
 
-	public void callback(MessageHandler handler) throws java.io.IOException {
-		handler.handleInput(this);
-	}
+    public void callback(MessageHandler handler) throws java.io.IOException {
+        handler.handleInput(this);
+    }
 } // class LocateReplyMessage_1_1

@@ -19,26 +19,26 @@ package java.io;
  * @since JDK1.0
  */
 public class EOFException extends IOException {
-	private static final long serialVersionUID = 6433858223774886977L;
+    private static final long serialVersionUID = 6433858223774886977L;
 
-	/**
-	 * Constructs an <code>EOFException</code> with <code>null</code> as its
-	 * error detail message.
-	 */
-	public EOFException() {
-		super();
-	}
+    /**
+     * Constructs an <code>EOFException</code> with <code>null</code> as its
+     * error detail message.
+     */
+    public EOFException() {
+        super();
+    }
 
-	/**
-	 * Constructs an <code>EOFException</code> with the specified detail
-	 * message. The string <code>s</code> may later be retrieved by the
-	 * <code>{@link java.lang.Throwable#getMessage}</code> method of class
-	 * <code>java.lang.Throwable</code>.
-	 *
-	 * @param s
-	 *          the detail message.
-	 */
-	public EOFException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs an <code>EOFException</code> with the specified detail
+     * message. The string <code>s</code> may later be retrieved by the
+     * <code>{@link java.lang.Throwable#getMessage}</code> method of class
+     * <code>java.lang.Throwable</code>.
+     *
+     * @param s
+     *          the detail message.
+     */
+    public EOFException(String s) {
+        super(s);
+    }
 }

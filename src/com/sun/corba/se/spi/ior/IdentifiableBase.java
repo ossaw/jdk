@@ -18,14 +18,14 @@ import com.sun.corba.se.impl.ior.EncapsulationUtility;
  * are also encapsulations (tagged profiles and components).
  */
 public abstract class IdentifiableBase implements Identifiable, WriteContents {
-	/**
-	 * Write the data for this object as a CDR encapsulation. This is used for
-	 * writing tagged components and profiles. These data types must be written
-	 * out as encapsulations, which means that we need to first write the data
-	 * out to an encapsulation stream, then extract the data and write it to os
-	 * as an array of octets.
-	 */
-	final public void write(OutputStream os) {
-		EncapsulationUtility.writeEncapsulation((WriteContents) this, os);
-	}
+    /**
+     * Write the data for this object as a CDR encapsulation. This is used for
+     * writing tagged components and profiles. These data types must be written
+     * out as encapsulations, which means that we need to first write the data
+     * out to an encapsulation stream, then extract the data and write it to os
+     * as an array of octets.
+     */
+    final public void write(OutputStream os) {
+        EncapsulationUtility.writeEncapsulation((WriteContents) this, os);
+    }
 }

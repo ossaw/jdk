@@ -22,40 +22,40 @@ import java.io.PrintWriter;
  */
 
 public class CommunicationException extends
-		javax.management.JMRuntimeException {
+        javax.management.JMRuntimeException {
 
-	/* Serial version */
-	private static final long serialVersionUID = -2499186113233316177L;
+    /* Serial version */
+    private static final long serialVersionUID = -2499186113233316177L;
 
-	/**
-	 * Constructs a CommunicationException with a target exception.
-	 */
-	public CommunicationException(Throwable target) {
-		super(target.getMessage());
-		initCause(target);
-	}
+    /**
+     * Constructs a CommunicationException with a target exception.
+     */
+    public CommunicationException(Throwable target) {
+        super(target.getMessage());
+        initCause(target);
+    }
 
-	/**
-	 * Constructs a CommunicationException with a target exception and a detail
-	 * message.
-	 */
-	public CommunicationException(Throwable target, String msg) {
-		super(msg);
-		initCause(target);
-	}
+    /**
+     * Constructs a CommunicationException with a target exception and a detail
+     * message.
+     */
+    public CommunicationException(Throwable target, String msg) {
+        super(msg);
+        initCause(target);
+    }
 
-	/**
-	 * Constructs a CommunicationException with a detail message.
-	 */
-	public CommunicationException(String msg) {
-		super(msg);
-	}
+    /**
+     * Constructs a CommunicationException with a detail message.
+     */
+    public CommunicationException(String msg) {
+        super(msg);
+    }
 
-	/**
-	 * Get the thrown target exception.
-	 */
-	public Throwable getTargetException() {
-		return getCause();
-	}
+    /**
+     * Get the thrown target exception.
+     */
+    public Throwable getTargetException() {
+        return getCause();
+    }
 
 }

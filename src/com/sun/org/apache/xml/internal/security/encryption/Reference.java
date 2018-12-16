@@ -39,58 +39,58 @@ import org.w3c.dom.Element;
  * @see ReferenceList
  */
 public interface Reference {
-	/**
-	 * Returns the <code>Element</code> tag name for this <code>Reference</code>
-	 * .
-	 *
-	 * @return the tag name of this <code>Reference</code>.
-	 */
-	String getType();
+    /**
+     * Returns the <code>Element</code> tag name for this <code>Reference</code>
+     * .
+     *
+     * @return the tag name of this <code>Reference</code>.
+     */
+    String getType();
 
-	/**
-	 * Returns a <code>URI</code> that points to an <code>Element</code> that
-	 * were encrypted using the key defined in the enclosing
-	 * <code>EncryptedKey</code> element.
-	 *
-	 * @return an Uniform Resource Identifier that qualifies an
-	 *         <code>EncryptedType</code>.
-	 */
-	String getURI();
+    /**
+     * Returns a <code>URI</code> that points to an <code>Element</code> that
+     * were encrypted using the key defined in the enclosing
+     * <code>EncryptedKey</code> element.
+     *
+     * @return an Uniform Resource Identifier that qualifies an
+     *         <code>EncryptedType</code>.
+     */
+    String getURI();
 
-	/**
-	 * Sets a <code>URI</code> that points to an <code>Element</code> that were
-	 * encrypted using the key defined in the enclosing
-	 * <code>EncryptedKey</code> element.
-	 *
-	 * @param uri
-	 *            the Uniform Resource Identifier that qualifies an
-	 *            <code>EncryptedType</code>.
-	 */
-	void setURI(String uri);
+    /**
+     * Sets a <code>URI</code> that points to an <code>Element</code> that were
+     * encrypted using the key defined in the enclosing
+     * <code>EncryptedKey</code> element.
+     *
+     * @param uri
+     *            the Uniform Resource Identifier that qualifies an
+     *            <code>EncryptedType</code>.
+     */
+    void setURI(String uri);
 
-	/**
-	 * Returns an <code>Iterator</code> over all the child elements contained in
-	 * this <code>Reference</code> that will aid the recipient in retrieving the
-	 * <code>EncryptedKey</code> and/or <code>EncryptedData</code> elements.
-	 * These could include information such as XPath transforms, decompression
-	 * transforms, or information on how to retrieve the elements from a
-	 * document storage facility.
-	 *
-	 * @return child elements.
-	 */
-	Iterator<Element> getElementRetrievalInformation();
+    /**
+     * Returns an <code>Iterator</code> over all the child elements contained in
+     * this <code>Reference</code> that will aid the recipient in retrieving the
+     * <code>EncryptedKey</code> and/or <code>EncryptedData</code> elements.
+     * These could include information such as XPath transforms, decompression
+     * transforms, or information on how to retrieve the elements from a
+     * document storage facility.
+     *
+     * @return child elements.
+     */
+    Iterator<Element> getElementRetrievalInformation();
 
-	/**
-	 * Adds retrieval information.
-	 *
-	 * @param info
-	 */
-	void addElementRetrievalInformation(Element info);
+    /**
+     * Adds retrieval information.
+     *
+     * @param info
+     */
+    void addElementRetrievalInformation(Element info);
 
-	/**
-	 * Removes the specified retrieval information.
-	 *
-	 * @param info
-	 */
-	void removeElementRetrievalInformation(Element info);
+    /**
+     * Removes the specified retrieval information.
+     *
+     * @param info
+     */
+    void removeElementRetrievalInformation(Element info);
 }

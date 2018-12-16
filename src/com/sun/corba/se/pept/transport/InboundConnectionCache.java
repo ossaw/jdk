@@ -9,13 +9,13 @@ package com.sun.corba.se.pept.transport;
  * @author Harold Carr
  */
 public interface InboundConnectionCache extends ConnectionCache {
-	public Connection get(Acceptor acceptor); // REVISIT
+    public Connection get(Acceptor acceptor); // REVISIT
 
-	public void put(Acceptor acceptor, Connection connection);
+    public void put(Acceptor acceptor, Connection connection);
 
-	public void remove(Connection connection);
+    public void remove(Connection connection);
 
-	public Acceptor getAcceptor();
+    public Acceptor getAcceptor();
 }
 
 // End of file.

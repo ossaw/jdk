@@ -19,21 +19,21 @@ import javax.tools.JavaFileObject;
  */
 @jdk.Exported
 public interface CompilationUnitTree extends Tree {
-	List<? extends AnnotationTree> getPackageAnnotations();
+    List<? extends AnnotationTree> getPackageAnnotations();
 
-	ExpressionTree getPackageName();
+    ExpressionTree getPackageName();
 
-	List<? extends ImportTree> getImports();
+    List<? extends ImportTree> getImports();
 
-	List<? extends Tree> getTypeDecls();
+    List<? extends Tree> getTypeDecls();
 
-	JavaFileObject getSourceFile();
+    JavaFileObject getSourceFile();
 
-	/**
-	 * Gets the line map for this compilation unit, if available. Returns null
-	 * if the line map is not available.
-	 * 
-	 * @return the line map for this compilation unit
-	 */
-	LineMap getLineMap();
+    /**
+     * Gets the line map for this compilation unit, if available. Returns null
+     * if the line map is not available.
+     * 
+     * @return the line map for this compilation unit
+     */
+    LineMap getLineMap();
 }

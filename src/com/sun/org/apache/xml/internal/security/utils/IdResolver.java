@@ -36,33 +36,33 @@ import org.w3c.dom.Element;
 @Deprecated
 public class IdResolver {
 
-	private IdResolver() {
-		// we don't allow instantiation
-	}
+    private IdResolver() {
+        // we don't allow instantiation
+    }
 
-	/**
-	 * Method registerElementById
-	 *
-	 * @param element
-	 *                the element to register
-	 * @param id
-	 *                the ID attribute
-	 */
-	public static void registerElementById(Element element, Attr id) {
-		element.setIdAttributeNode(id, true);
-	}
+    /**
+     * Method registerElementById
+     *
+     * @param element
+     *                the element to register
+     * @param id
+     *                the ID attribute
+     */
+    public static void registerElementById(Element element, Attr id) {
+        element.setIdAttributeNode(id, true);
+    }
 
-	/**
-	 * Method getElementById
-	 *
-	 * @param doc
-	 *            the document
-	 * @param id
-	 *            the value of the ID
-	 * @return the element obtained by the id, or null if it is not found.
-	 */
-	public static Element getElementById(Document doc, String id) {
-		return doc.getElementById(id);
-	}
+    /**
+     * Method getElementById
+     *
+     * @param doc
+     *            the document
+     * @param id
+     *            the value of the ID
+     * @return the element obtained by the id, or null if it is not found.
+     */
+    public static Element getElementById(Document doc, String id) {
+        return doc.getElementById(id);
+    }
 
 }

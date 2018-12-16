@@ -33,110 +33,110 @@ import java.nio.channels.spi.*;
 
 public abstract class Pipe {
 
-	/**
-	 * A channel representing the readable end of a {@link Pipe}.
-	 *
-	 * @since 1.4
-	 */
-	public static abstract class SourceChannel extends AbstractSelectableChannel
-			implements ReadableByteChannel, ScatteringByteChannel {
-		/**
-		 * Constructs a new instance of this class.
-		 *
-		 * @param provider
-		 *                 The selector provider
-		 */
-		protected SourceChannel(SelectorProvider provider) {
-			super(provider);
-		}
+    /**
+     * A channel representing the readable end of a {@link Pipe}.
+     *
+     * @since 1.4
+     */
+    public static abstract class SourceChannel extends AbstractSelectableChannel
+            implements ReadableByteChannel, ScatteringByteChannel {
+        /**
+         * Constructs a new instance of this class.
+         *
+         * @param provider
+         *                 The selector provider
+         */
+        protected SourceChannel(SelectorProvider provider) {
+            super(provider);
+        }
 
-		/**
-		 * Returns an operation set identifying this channel's supported
-		 * operations.
-		 *
-		 * <p>
-		 * Pipe-source channels only support reading, so this method returns
-		 * {@link SelectionKey#OP_READ}.
-		 * </p>
-		 *
-		 * @return The valid-operation set
-		 */
-		public final int validOps() {
-			return SelectionKey.OP_READ;
-		}
+        /**
+         * Returns an operation set identifying this channel's supported
+         * operations.
+         *
+         * <p>
+         * Pipe-source channels only support reading, so this method returns
+         * {@link SelectionKey#OP_READ}.
+         * </p>
+         *
+         * @return The valid-operation set
+         */
+        public final int validOps() {
+            return SelectionKey.OP_READ;
+        }
 
-	}
+    }
 
-	/**
-	 * A channel representing the writable end of a {@link Pipe}.
-	 *
-	 * @since 1.4
-	 */
-	public static abstract class SinkChannel extends AbstractSelectableChannel
-			implements WritableByteChannel, GatheringByteChannel {
-		/**
-		 * Initializes a new instance of this class.
-		 *
-		 * @param provider
-		 *                 The selector provider
-		 */
-		protected SinkChannel(SelectorProvider provider) {
-			super(provider);
-		}
+    /**
+     * A channel representing the writable end of a {@link Pipe}.
+     *
+     * @since 1.4
+     */
+    public static abstract class SinkChannel extends AbstractSelectableChannel
+            implements WritableByteChannel, GatheringByteChannel {
+        /**
+         * Initializes a new instance of this class.
+         *
+         * @param provider
+         *                 The selector provider
+         */
+        protected SinkChannel(SelectorProvider provider) {
+            super(provider);
+        }
 
-		/**
-		 * Returns an operation set identifying this channel's supported
-		 * operations.
-		 *
-		 * <p>
-		 * Pipe-sink channels only support writing, so this method returns
-		 * {@link SelectionKey#OP_WRITE}.
-		 * </p>
-		 *
-		 * @return The valid-operation set
-		 */
-		public final int validOps() {
-			return SelectionKey.OP_WRITE;
-		}
+        /**
+         * Returns an operation set identifying this channel's supported
+         * operations.
+         *
+         * <p>
+         * Pipe-sink channels only support writing, so this method returns
+         * {@link SelectionKey#OP_WRITE}.
+         * </p>
+         *
+         * @return The valid-operation set
+         */
+        public final int validOps() {
+            return SelectionKey.OP_WRITE;
+        }
 
-	}
+    }
 
-	/**
-	 * Initializes a new instance of this class.
-	 */
-	protected Pipe() {}
+    /**
+     * Initializes a new instance of this class.
+     */
+    protected Pipe() {}
 
-	/**
-	 * Returns this pipe's source channel.
-	 *
-	 * @return This pipe's source channel
-	 */
-	public abstract SourceChannel source();
+    /**
+     * Returns this pipe's source channel.
+     *
+     * @return This pipe's source channel
+     */
+    public abstract SourceChannel source();
 
-	/**
-	 * Returns this pipe's sink channel.
-	 *
-	 * @return This pipe's sink channel
-	 */
-	public abstract SinkChannel sink();
+    /**
+     * Returns this pipe's sink channel.
+     *
+     * @return This pipe's sink channel
+     */
+    public abstract SinkChannel sink();
 
-	/**
-	 * Opens a pipe.
-	 *
-	 * <p>
-	 * The new pipe is created by invoking the
-	 * {@link java.nio.channels.spi.SelectorProvider#openPipe openPipe} method
-	 * of the system-wide default {@link java.nio.channels.spi.SelectorProvider}
-	 * object.
-	 * </p>
-	 *
-	 * @return A new pipe
-	 *
-	 * @throws IOException
-	 *                     If an I/O error occurs
-	 */
-	public static Pipe open() throws IOException {
-		return SelectorProvider.provider().openPipe();
-	}
+    /**
+     * Opens a pipe.
+     *
+     * <p>
+     * The new pipe is created by invoking the
+     * {@link java.nio.channels.spi.SelectorProvider#openPipe openPipe} method
+     * of the system-wide default {@link java.nio.channels.spi.SelectorProvider}
+     * object.
+     * </p>
+     *
+     * @return A new pipe
+     *
+     * @throws IOException
+     *                     If an I/O error occurs
+     */
+    public static Pipe open() throws IOException {
+        return SelectorProvider.provider().openPipe();
+    }
 
 }

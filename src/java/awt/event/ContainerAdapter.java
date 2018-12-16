@@ -32,13 +32,13 @@ package java.awt.event;
  * @since 1.1
  */
 public abstract class ContainerAdapter implements ContainerListener {
-	/**
-	 * Invoked when a component has been added to the container.
-	 */
-	public void componentAdded(ContainerEvent e) {}
+    /**
+     * Invoked when a component has been added to the container.
+     */
+    public void componentAdded(ContainerEvent e) {}
 
-	/**
-	 * Invoked when a component has been removed from the container.
-	 */
-	public void componentRemoved(ContainerEvent e) {}
+    /**
+     * Invoked when a component has been removed from the container.
+     */
+    public void componentRemoved(ContainerEvent e) {}
 }

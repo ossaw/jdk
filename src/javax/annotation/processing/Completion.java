@@ -17,17 +17,17 @@ package javax.annotation.processing;
  */
 public interface Completion {
 
-	/**
-	 * Returns the text of the suggested completion.
-	 * 
-	 * @return the text of the suggested completion.
-	 */
-	String getValue();
+    /**
+     * Returns the text of the suggested completion.
+     * 
+     * @return the text of the suggested completion.
+     */
+    String getValue();
 
-	/**
-	 * Returns an informative message about the completion.
-	 * 
-	 * @return an informative message about the completion.
-	 */
-	String getMessage();
+    /**
+     * Returns an informative message about the completion.
+     * 
+     * @return an informative message about the completion.
+     */
+    String getMessage();
 }

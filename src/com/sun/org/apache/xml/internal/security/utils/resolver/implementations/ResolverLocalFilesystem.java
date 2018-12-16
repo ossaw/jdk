@@ -36,133 +36,133 @@ import com.sun.org.apache.xml.internal.security.utils.resolver.ResourceResolverS
  */
 public class ResolverLocalFilesystem extends ResourceResolverSpi {
 
-	private static final int FILE_URI_LENGTH = "file:/".length();
+    private static final int FILE_URI_LENGTH = "file:/".length();
 
-	/** {@link org.apache.commons.logging} logging facility */
-	private static java.util.logging.Logger log = java.util.logging.Logger
-			.getLogger(ResolverLocalFilesystem.class.getName());
+    /** {@link org.apache.commons.logging} logging facility */
+    private static java.util.logging.Logger log = java.util.logging.Logger
+            .getLogger(ResolverLocalFilesystem.class.getName());
 
-	@Override
-	public boolean engineIsThreadSafe() {
-		return true;
-	}
+    @Override
+    public boolean engineIsThreadSafe() {
+        return true;
+    }
 
-	/**
-	 * @inheritDoc
-	 */
-	@Override
-	public XMLSignatureInput engineResolveURI(ResourceResolverContext context)
-			throws ResourceResolverException {
-		try {
-			// calculate new URI
-			URI uriNew = getNewURI(context.uriToResolve, context.baseUri);
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public XMLSignatureInput engineResolveURI(ResourceResolverContext context)
+            throws ResourceResolverException {
+        try {
+            // calculate new URI
+            URI uriNew = getNewURI(context.uriToResolve, context.baseUri);
 
-			String fileName = ResolverLocalFilesystem.translateUriToFilename(
-					uriNew.toString());
-			FileInputStream inputStream = new FileInputStream(fileName);
-			XMLSignatureInput result = new XMLSignatureInput(inputStream);
+            String fileName = ResolverLocalFilesystem.translateUriToFilename(
+                    uriNew.toString());
+            FileInputStream inputStream = new FileInputStream(fileName);
+            XMLSignatureInput result = new XMLSignatureInput(inputStream);
 
-			result.setSourceURI(uriNew.toString());
+            result.setSourceURI(uriNew.toString());
 
-			return result;
-		} catch (Exception e) {
-			throw new ResourceResolverException("generic.EmptyMessage", e,
-					context.attr, context.baseUri);
-		}
-	}
+            return result;
+        } catch (Exception e) {
+            throw new ResourceResolverException("generic.EmptyMessage", e,
+                    context.attr, context.baseUri);
+        }
+    }
 
-	/**
-	 * Method translateUriToFilename
-	 *
-	 * @param uri
-	 * @return the string of the filename
-	 */
-	private static String translateUriToFilename(String uri) {
+    /**
+     * Method translateUriToFilename
+     *
+     * @param uri
+     * @return the string of the filename
+     */
+    private static String translateUriToFilename(String uri) {
 
-		String subStr = uri.substring(FILE_URI_LENGTH);
+        String subStr = uri.substring(FILE_URI_LENGTH);
 
-		if (subStr.indexOf("%20") > -1) {
-			int offset = 0;
-			int index = 0;
-			StringBuilder temp = new StringBuilder(subStr.length());
-			do {
-				index = subStr.indexOf("%20", offset);
-				if (index == -1) {
-					temp.append(subStr.substring(offset));
-				} else {
-					temp.append(subStr.substring(offset, index));
-					temp.append(' ');
-					offset = index + 3;
-				}
-			} while (index != -1);
-			subStr = temp.toString();
-		}
+        if (subStr.indexOf("%20") > -1) {
+            int offset = 0;
+            int index = 0;
+            StringBuilder temp = new StringBuilder(subStr.length());
+            do {
+                index = subStr.indexOf("%20", offset);
+                if (index == -1) {
+                    temp.append(subStr.substring(offset));
+                } else {
+                    temp.append(subStr.substring(offset, index));
+                    temp.append(' ');
+                    offset = index + 3;
+                }
+            } while (index != -1);
+            subStr = temp.toString();
+        }
 
-		if (subStr.charAt(1) == ':') {
-			// we're running M$ Windows, so this works fine
-			return subStr;
-		}
-		// we're running some UNIX, so we have to prepend a slash
-		return "/" + subStr;
-	}
+        if (subStr.charAt(1) == ':') {
+            // we're running M$ Windows, so this works fine
+            return subStr;
+        }
+        // we're running some UNIX, so we have to prepend a slash
+        return "/" + subStr;
+    }
 
-	/**
-	 * @inheritDoc
-	 */
-	public boolean engineCanResolveURI(ResourceResolverContext context) {
-		if (context.uriToResolve == null) {
-			return false;
-		}
+    /**
+     * @inheritDoc
+     */
+    public boolean engineCanResolveURI(ResourceResolverContext context) {
+        if (context.uriToResolve == null) {
+            return false;
+        }
 
-		if (context.uriToResolve.equals("") || (context.uriToResolve.charAt(
-				0) == '#') || context.uriToResolve.startsWith("http:")) {
-			return false;
-		}
+        if (context.uriToResolve.equals("") || (context.uriToResolve.charAt(
+                0) == '#') || context.uriToResolve.startsWith("http:")) {
+            return false;
+        }
 
-		try {
-			if (log.isLoggable(java.util.logging.Level.FINE)) {
-				log.log(java.util.logging.Level.FINE,
-						"I was asked whether I can resolve "
-								+ context.uriToResolve);
-			}
+        try {
+            if (log.isLoggable(java.util.logging.Level.FINE)) {
+                log.log(java.util.logging.Level.FINE,
+                        "I was asked whether I can resolve "
+                                + context.uriToResolve);
+            }
 
-			if (context.uriToResolve.startsWith("file:") || context.baseUri
-					.startsWith("file:")) {
-				if (log.isLoggable(java.util.logging.Level.FINE)) {
-					log.log(java.util.logging.Level.FINE,
-							"I state that I can resolve "
-									+ context.uriToResolve);
-				}
-				return true;
-			}
-		} catch (Exception e) {
-			if (log.isLoggable(java.util.logging.Level.FINE)) {
-				log.log(java.util.logging.Level.FINE, e.getMessage(), e);
-			}
-		}
+            if (context.uriToResolve.startsWith("file:") || context.baseUri
+                    .startsWith("file:")) {
+                if (log.isLoggable(java.util.logging.Level.FINE)) {
+                    log.log(java.util.logging.Level.FINE,
+                            "I state that I can resolve "
+                                    + context.uriToResolve);
+                }
+                return true;
+            }
+        } catch (Exception e) {
+            if (log.isLoggable(java.util.logging.Level.FINE)) {
+                log.log(java.util.logging.Level.FINE, e.getMessage(), e);
+            }
+        }
 
-		if (log.isLoggable(java.util.logging.Level.FINE)) {
-			log.log(java.util.logging.Level.FINE, "But I can't");
-		}
+        if (log.isLoggable(java.util.logging.Level.FINE)) {
+            log.log(java.util.logging.Level.FINE, "But I can't");
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	private static URI getNewURI(String uri, String baseURI)
-			throws URISyntaxException {
-		URI newUri = null;
-		if (baseURI == null || "".equals(baseURI)) {
-			newUri = new URI(uri);
-		} else {
-			newUri = new URI(baseURI).resolve(uri);
-		}
+    private static URI getNewURI(String uri, String baseURI)
+            throws URISyntaxException {
+        URI newUri = null;
+        if (baseURI == null || "".equals(baseURI)) {
+            newUri = new URI(uri);
+        } else {
+            newUri = new URI(baseURI).resolve(uri);
+        }
 
-		// if the URI contains a fragment, ignore it
-		if (newUri.getFragment() != null) {
-			URI uriNewNoFrag = new URI(newUri.getScheme(), newUri
-					.getSchemeSpecificPart(), null);
-			return uriNewNoFrag;
-		}
-		return newUri;
-	}
+        // if the URI contains a fragment, ignore it
+        if (newUri.getFragment() != null) {
+            URI uriNewNoFrag = new URI(newUri.getScheme(), newUri
+                    .getSchemeSpecificPart(), null);
+            return uriNewNoFrag;
+        }
+        return newUri;
+    }
 }

@@ -34,42 +34,42 @@ package javax.naming.event;
  */
 public interface NamespaceChangeListener extends NamingListener {
 
-	/**
-	 * Called when an object has been added.
-	 * <p>
-	 * The binding of the newly added object can be obtained using
-	 * <tt>evt.getNewBinding()</tt>.
-	 * 
-	 * @param evt
-	 *            The nonnull event.
-	 * @see NamingEvent#OBJECT_ADDED
-	 */
-	void objectAdded(NamingEvent evt);
+    /**
+     * Called when an object has been added.
+     * <p>
+     * The binding of the newly added object can be obtained using
+     * <tt>evt.getNewBinding()</tt>.
+     * 
+     * @param evt
+     *            The nonnull event.
+     * @see NamingEvent#OBJECT_ADDED
+     */
+    void objectAdded(NamingEvent evt);
 
-	/**
-	 * Called when an object has been removed.
-	 * <p>
-	 * The binding of the newly removed object can be obtained using
-	 * <tt>evt.getOldBinding()</tt>.
-	 * 
-	 * @param evt
-	 *            The nonnull event.
-	 * @see NamingEvent#OBJECT_REMOVED
-	 */
-	void objectRemoved(NamingEvent evt);
+    /**
+     * Called when an object has been removed.
+     * <p>
+     * The binding of the newly removed object can be obtained using
+     * <tt>evt.getOldBinding()</tt>.
+     * 
+     * @param evt
+     *            The nonnull event.
+     * @see NamingEvent#OBJECT_REMOVED
+     */
+    void objectRemoved(NamingEvent evt);
 
-	/**
-	 * Called when an object has been renamed.
-	 * <p>
-	 * The binding of the renamed object can be obtained using
-	 * <tt>evt.getNewBinding()</tt>. Its old binding (before the rename) can be
-	 * obtained using <tt>evt.getOldBinding()</tt>. One of these may be null if
-	 * the old/new binding was outside the scope in which the listener has
-	 * registered interest.
-	 * 
-	 * @param evt
-	 *            The nonnull event.
-	 * @see NamingEvent#OBJECT_RENAMED
-	 */
-	void objectRenamed(NamingEvent evt);
+    /**
+     * Called when an object has been renamed.
+     * <p>
+     * The binding of the renamed object can be obtained using
+     * <tt>evt.getNewBinding()</tt>. Its old binding (before the rename) can be
+     * obtained using <tt>evt.getOldBinding()</tt>. One of these may be null if
+     * the old/new binding was outside the scope in which the listener has
+     * registered interest.
+     * 
+     * @param evt
+     *            The nonnull event.
+     * @see NamingEvent#OBJECT_RENAMED
+     */
+    void objectRenamed(NamingEvent evt);
 }

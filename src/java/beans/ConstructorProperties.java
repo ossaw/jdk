@@ -19,21 +19,21 @@ import static java.lang.annotation.RetentionPolicy.*;
  * 
  * <pre>
  * public class Point {
- * 	&#64;ConstructorProperties({ "x", "y" })
- * 	public Point(int x, int y) {
- * 		this.x = x;
- * 		this.y = y;
- * 	}
+ *     &#64;ConstructorProperties({ "x", "y" })
+ *     public Point(int x, int y) {
+ *         this.x = x;
+ *         this.y = y;
+ *     }
  * 
- * 	public int getX() {
- * 		return x;
- * 	}
+ *     public int getX() {
+ *         return x;
+ *     }
  * 
- * 	public int getY() {
- * 		return y;
- * 	}
+ *     public int getY() {
+ *         return y;
+ *     }
  * 
- * 	private final int x, y;
+ *     private final int x, y;
  * }
  * </pre>
  * 
@@ -52,13 +52,13 @@ import static java.lang.annotation.RetentionPolicy.*;
 @Target(CONSTRUCTOR)
 @Retention(RUNTIME)
 public @interface ConstructorProperties {
-	/**
-	 * <p>
-	 * The getter names.
-	 * </p>
-	 * 
-	 * @return the getter names corresponding to the parameters in the annotated
-	 *         constructor.
-	 */
-	String[] value();
+    /**
+     * <p>
+     * The getter names.
+     * </p>
+     * 
+     * @return the getter names corresponding to the parameters in the annotated
+     *         constructor.
+     */
+    String[] value();
 }

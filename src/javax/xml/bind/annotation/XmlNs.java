@@ -35,13 +35,13 @@ import java.lang.annotation.Target;
 @Retention(RUNTIME)
 @Target({})
 public @interface XmlNs {
-	/**
-	 * Namespace prefix
-	 */
-	String prefix();
+    /**
+     * Namespace prefix
+     */
+    String prefix();
 
-	/**
-	 * Namespace URI
-	 */
-	String namespaceURI();
+    /**
+     * Namespace URI
+     */
+    String namespaceURI();
 }

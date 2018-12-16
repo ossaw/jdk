@@ -16,21 +16,21 @@ import java.awt.MenuItem;
  */
 public interface MenuItemPeer extends MenuComponentPeer {
 
-	/**
-	 * Sets the label to be displayed in this menu item.
-	 *
-	 * @param label
-	 *              the label to be displayed
-	 */
-	void setLabel(String label);
+    /**
+     * Sets the label to be displayed in this menu item.
+     *
+     * @param label
+     *              the label to be displayed
+     */
+    void setLabel(String label);
 
-	/**
-	 * Enables or disables the menu item.
-	 *
-	 * @param e
-	 *          {@code true} to enable the menu item, {@code false} to disable
-	 *          it
-	 */
-	void setEnabled(boolean e);
+    /**
+     * Enables or disables the menu item.
+     *
+     * @param e
+     *          {@code true} to enable the menu item, {@code false} to disable
+     *          it
+     */
+    void setEnabled(boolean e);
 
 }

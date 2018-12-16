@@ -15,11 +15,11 @@ package com.sun.corba.se.spi.monitoring;
  *         </p>
  */
 public interface MonitoringManagerFactory {
-	/**
-	 * A Simple Factory Method to create the Monitored Attribute Info.
-	 */
-	MonitoringManager createMonitoringManager(String nameOfTheRoot,
-			String description);
+    /**
+     * A Simple Factory Method to create the Monitored Attribute Info.
+     */
+    MonitoringManager createMonitoringManager(String nameOfTheRoot,
+            String description);
 
-	void remove(String nameOfTheRoot);
+    void remove(String nameOfTheRoot);
 }

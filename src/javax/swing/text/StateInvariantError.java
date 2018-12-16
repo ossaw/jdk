@@ -11,14 +11,14 @@ package javax.swing.text;
  * @author Timothy Prinzing
  */
 class StateInvariantError extends Error {
-	/**
-	 * Creates a new StateInvariantFailure object.
-	 *
-	 * @param s
-	 *          a string indicating the assertion that failed
-	 */
-	public StateInvariantError(String s) {
-		super(s);
-	}
+    /**
+     * Creates a new StateInvariantFailure object.
+     *
+     * @param s
+     *          a string indicating the assertion that failed
+     */
+    public StateInvariantError(String s) {
+        super(s);
+    }
 
 }

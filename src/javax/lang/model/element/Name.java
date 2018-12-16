@@ -32,42 +32,42 @@ package javax.lang.model.element;
  * @since 1.6
  */
 public interface Name extends CharSequence {
-	/**
-	 * Returns {@code true} if the argument represents the same name as
-	 * {@code this}, and {@code false} otherwise.
-	 *
-	 * <p>
-	 * Note that the identity of a {@code Name} is a function both of its
-	 * content in terms of a sequence of characters as well as the
-	 * implementation which created it.
-	 *
-	 * @param obj
-	 *            the object to be compared with this element
-	 * @return {@code true} if the specified object represents the same name as
-	 *         this
-	 * @see Element#equals
-	 */
-	boolean equals(Object obj);
+    /**
+     * Returns {@code true} if the argument represents the same name as
+     * {@code this}, and {@code false} otherwise.
+     *
+     * <p>
+     * Note that the identity of a {@code Name} is a function both of its
+     * content in terms of a sequence of characters as well as the
+     * implementation which created it.
+     *
+     * @param obj
+     *            the object to be compared with this element
+     * @return {@code true} if the specified object represents the same name as
+     *         this
+     * @see Element#equals
+     */
+    boolean equals(Object obj);
 
-	/**
-	 * Obeys the general contract of {@link Object#hashCode Object.hashCode}.
-	 *
-	 * @see #equals
-	 */
-	int hashCode();
+    /**
+     * Obeys the general contract of {@link Object#hashCode Object.hashCode}.
+     *
+     * @see #equals
+     */
+    int hashCode();
 
-	/**
-	 * Compares this name to the specified {@code CharSequence}. The result is
-	 * {@code true} if and only if this name represents the same sequence of
-	 * {@code char} values as the specified sequence.
-	 *
-	 * @return {@code true} if this name represents the same sequence of
-	 *         {@code char} values as the specified sequence, {@code false}
-	 *         otherwise
-	 *
-	 * @param cs
-	 *           The sequence to compare this name against
-	 * @see String#contentEquals(CharSequence)
-	 */
-	boolean contentEquals(CharSequence cs);
+    /**
+     * Compares this name to the specified {@code CharSequence}. The result is
+     * {@code true} if and only if this name represents the same sequence of
+     * {@code char} values as the specified sequence.
+     *
+     * @return {@code true} if this name represents the same sequence of
+     *         {@code char} values as the specified sequence, {@code false}
+     *         otherwise
+     *
+     * @param cs
+     *           The sequence to compare this name against
+     * @see String#contentEquals(CharSequence)
+     */
+    boolean contentEquals(CharSequence cs);
 }

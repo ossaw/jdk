@@ -21,28 +21,28 @@ import javax.naming.NamingException;
  * @since 1.3
  */
 public class InvalidSearchControlsException extends NamingException {
-	/**
-	 * Constructs a new instance of InvalidSearchControlsException. All fields
-	 * are set to null.
-	 */
-	public InvalidSearchControlsException() {
-		super();
-	}
+    /**
+     * Constructs a new instance of InvalidSearchControlsException. All fields
+     * are set to null.
+     */
+    public InvalidSearchControlsException() {
+        super();
+    }
 
-	/**
-	 * Constructs a new instance of InvalidSearchControlsException with an
-	 * explanation. All other fields set to null.
-	 * 
-	 * @param msg
-	 *            Detail about this exception. Can be null.
-	 * @see java.lang.Throwable#getMessage
-	 */
-	public InvalidSearchControlsException(String msg) {
-		super(msg);
-	}
+    /**
+     * Constructs a new instance of InvalidSearchControlsException with an
+     * explanation. All other fields set to null.
+     * 
+     * @param msg
+     *            Detail about this exception. Can be null.
+     * @see java.lang.Throwable#getMessage
+     */
+    public InvalidSearchControlsException(String msg) {
+        super(msg);
+    }
 
-	/**
-	 * Use serialVersionUID from JNDI 1.1.1 for interoperability
-	 */
-	private static final long serialVersionUID = -5124108943352665777L;
+    /**
+     * Use serialVersionUID from JNDI 1.1.1 for interoperability
+     */
+    private static final long serialVersionUID = -5124108943352665777L;
 }

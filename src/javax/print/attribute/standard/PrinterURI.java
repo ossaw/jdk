@@ -26,70 +26,70 @@ import javax.print.attribute.PrintServiceAttribute;
  */
 
 public final class PrinterURI extends URISyntax implements
-		PrintServiceAttribute {
+        PrintServiceAttribute {
 
-	private static final long serialVersionUID = 7923912792485606497L;
+    private static final long serialVersionUID = 7923912792485606497L;
 
-	/**
-	 * Constructs a new PrinterURI attribute with the specified URI.
-	 *
-	 * @param uri
-	 *            URI of the printer
-	 *
-	 * @exception NullPointerException
-	 *                                 (unchecked exception) Thrown if
-	 *                                 <CODE>uri</CODE> is null.
-	 */
-	public PrinterURI(URI uri) {
-		super(uri);
-	}
+    /**
+     * Constructs a new PrinterURI attribute with the specified URI.
+     *
+     * @param uri
+     *            URI of the printer
+     *
+     * @exception NullPointerException
+     *                                 (unchecked exception) Thrown if
+     *                                 <CODE>uri</CODE> is null.
+     */
+    public PrinterURI(URI uri) {
+        super(uri);
+    }
 
-	/**
-	 * Returns whether this printer name attribute is equivalent to the passed
-	 * in object. To be equivalent, all of the following conditions must be
-	 * true:
-	 * <OL TYPE=1>
-	 * <LI><CODE>object</CODE> is not null.
-	 * <LI><CODE>object</CODE> is an instance of class PrinterURI.
-	 * <LI>This PrinterURI attribute's underlying URI and <CODE>object</CODE>'s
-	 * underlying URI are equal.
-	 * </OL>
-	 *
-	 * @param object
-	 *               Object to compare to.
-	 *
-	 * @return True if <CODE>object</CODE> is equivalent to this PrinterURI
-	 *         attribute, false otherwise.
-	 */
-	public boolean equals(Object object) {
-		return (super.equals(object) && object instanceof PrinterURI);
-	}
+    /**
+     * Returns whether this printer name attribute is equivalent to the passed
+     * in object. To be equivalent, all of the following conditions must be
+     * true:
+     * <OL TYPE=1>
+     * <LI><CODE>object</CODE> is not null.
+     * <LI><CODE>object</CODE> is an instance of class PrinterURI.
+     * <LI>This PrinterURI attribute's underlying URI and <CODE>object</CODE>'s
+     * underlying URI are equal.
+     * </OL>
+     *
+     * @param object
+     *               Object to compare to.
+     *
+     * @return True if <CODE>object</CODE> is equivalent to this PrinterURI
+     *         attribute, false otherwise.
+     */
+    public boolean equals(Object object) {
+        return (super.equals(object) && object instanceof PrinterURI);
+    }
 
-	/**
-	 * Get the printing attribute class which is to be used as the "category"
-	 * for this printing attribute value.
-	 * <P>
-	 * For class PrinterURI and any vendor-defined subclasses, the category is
-	 * class PrinterURI itself.
-	 *
-	 * @return Printing attribute class (category), an instance of class
-	 *         {@link java.lang.Class java.lang.Class}.
-	 */
-	public final Class<? extends Attribute> getCategory() {
-		return PrinterURI.class;
-	}
+    /**
+     * Get the printing attribute class which is to be used as the "category"
+     * for this printing attribute value.
+     * <P>
+     * For class PrinterURI and any vendor-defined subclasses, the category is
+     * class PrinterURI itself.
+     *
+     * @return Printing attribute class (category), an instance of class
+     *         {@link java.lang.Class java.lang.Class}.
+     */
+    public final Class<? extends Attribute> getCategory() {
+        return PrinterURI.class;
+    }
 
-	/**
-	 * Get the name of the category of which this attribute value is an
-	 * instance.
-	 * <P>
-	 * For class PrinterURI and any vendor-defined subclasses, the category name
-	 * is <CODE>"printer-uri"</CODE>.
-	 *
-	 * @return Attribute category name.
-	 */
-	public final String getName() {
-		return "printer-uri";
-	}
+    /**
+     * Get the name of the category of which this attribute value is an
+     * instance.
+     * <P>
+     * For class PrinterURI and any vendor-defined subclasses, the category name
+     * is <CODE>"printer-uri"</CODE>.
+     *
+     * @return Attribute category name.
+     */
+    public final String getName() {
+        return "printer-uri";
+    }
 
 }

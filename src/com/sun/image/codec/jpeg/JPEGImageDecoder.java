@@ -89,56 +89,56 @@ import java.awt.image.WritableRaster;
 
 public interface JPEGImageDecoder {
 
-	/**
-	 * Returns the JPEGDecodeParam object that resulted from the most recent
-	 * decoding event.
-	 */
-	public JPEGDecodeParam getJPEGDecodeParam();
+    /**
+     * Returns the JPEGDecodeParam object that resulted from the most recent
+     * decoding event.
+     */
+    public JPEGDecodeParam getJPEGDecodeParam();
 
-	/**
-	 * Sets the JPEGDecodeParam object used to determine the features of the
-	 * decompression performed on the JPEG encoded data. This is ussually only
-	 * needed for decoding abbreviated JPEG data streams.
-	 * 
-	 * @param jdp
-	 *            JPEGDecodeParam object
-	 */
-	public void setJPEGDecodeParam(JPEGDecodeParam jdp);
+    /**
+     * Sets the JPEGDecodeParam object used to determine the features of the
+     * decompression performed on the JPEG encoded data. This is ussually only
+     * needed for decoding abbreviated JPEG data streams.
+     * 
+     * @param jdp
+     *            JPEGDecodeParam object
+     */
+    public void setJPEGDecodeParam(JPEGDecodeParam jdp);
 
-	/**
-	 * Get the input stream that decoding will occur from.
-	 * 
-	 * @return The stream that the decoder is currently assciated with.
-	 */
-	public InputStream getInputStream();
+    /**
+     * Get the input stream that decoding will occur from.
+     * 
+     * @return The stream that the decoder is currently assciated with.
+     */
+    public InputStream getInputStream();
 
-	/**
-	 * Decode the JPEG stream that was passed as part of construction. The JPEG
-	 * decompression will be performed according to the current settings of the
-	 * JPEGDecodeParam object. For a tables only stream this will return null.
-	 * 
-	 * @return Raster containg the image data. Colorspace and other pertinent
-	 *         information can be obtained from the JPEGDecodeParam object.
-	 * @exception ImageFormatException
-	 *                                 if irregularities in the JPEG stream or
-	 *                                 an unknown
-	 *                                 condition is encountered.
-	 */
-	public Raster decodeAsRaster() throws IOException, ImageFormatException;
+    /**
+     * Decode the JPEG stream that was passed as part of construction. The JPEG
+     * decompression will be performed according to the current settings of the
+     * JPEGDecodeParam object. For a tables only stream this will return null.
+     * 
+     * @return Raster containg the image data. Colorspace and other pertinent
+     *         information can be obtained from the JPEGDecodeParam object.
+     * @exception ImageFormatException
+     *                                 if irregularities in the JPEG stream or
+     *                                 an unknown
+     *                                 condition is encountered.
+     */
+    public Raster decodeAsRaster() throws IOException, ImageFormatException;
 
-	/**
-	 * Decodes the current JPEG data stream. The result of decoding this
-	 * InputStream is a BufferedImage the ColorModel associated with this
-	 * BufferedImage is determined based on the encoded COLOR_ID of the
-	 * JPEGDecodeParam object. For a tables only stream this will return null.
-	 * 
-	 * @return BufferedImage containing the image data.
-	 * @exception ImageFormatException
-	 *                                 if irregularities in the JPEG stream or
-	 *                                 an unknown
-	 *                                 condition is encountered.
-	 */
-	public BufferedImage decodeAsBufferedImage() throws IOException,
-			ImageFormatException;
+    /**
+     * Decodes the current JPEG data stream. The result of decoding this
+     * InputStream is a BufferedImage the ColorModel associated with this
+     * BufferedImage is determined based on the encoded COLOR_ID of the
+     * JPEGDecodeParam object. For a tables only stream this will return null.
+     * 
+     * @return BufferedImage containing the image data.
+     * @exception ImageFormatException
+     *                                 if irregularities in the JPEG stream or
+     *                                 an unknown
+     *                                 condition is encountered.
+     */
+    public BufferedImage decodeAsBufferedImage() throws IOException,
+            ImageFormatException;
 
 } // end class JPEGImageDecoder

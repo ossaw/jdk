@@ -27,47 +27,47 @@ import java.sql.Savepoint;
  */
 public interface TransactionalWriter extends RowSetWriter {
 
-	/**
-	 * Makes permanent all changes that have been performed by the
-	 * <code>acceptChanges</code> method since the last call to either the
-	 * <code>commit</code> or <code>rollback</code> methods. This method should
-	 * be used only when auto-commit mode has been disabled.
-	 *
-	 * @throws SQLException
-	 *                      if a database access error occurs or the
-	 *                      <code>Connection</code> object within this
-	 *                      <code>CachedRowSet</code> object is in auto-commit
-	 *                      mode
-	 */
-	public void commit() throws SQLException;
+    /**
+     * Makes permanent all changes that have been performed by the
+     * <code>acceptChanges</code> method since the last call to either the
+     * <code>commit</code> or <code>rollback</code> methods. This method should
+     * be used only when auto-commit mode has been disabled.
+     *
+     * @throws SQLException
+     *                      if a database access error occurs or the
+     *                      <code>Connection</code> object within this
+     *                      <code>CachedRowSet</code> object is in auto-commit
+     *                      mode
+     */
+    public void commit() throws SQLException;
 
-	/**
-	 * Undoes all changes made in the current transaction. This method should be
-	 * used only when auto-commit mode has been disabled.
-	 *
-	 * @throws SQLException
-	 *                      if a database access error occurs or the
-	 *                      <code>Connection</code> object within this
-	 *                      <code>CachedRowSet</code> object is in auto-commit
-	 *                      mode
-	 */
-	public void rollback() throws SQLException;
+    /**
+     * Undoes all changes made in the current transaction. This method should be
+     * used only when auto-commit mode has been disabled.
+     *
+     * @throws SQLException
+     *                      if a database access error occurs or the
+     *                      <code>Connection</code> object within this
+     *                      <code>CachedRowSet</code> object is in auto-commit
+     *                      mode
+     */
+    public void rollback() throws SQLException;
 
-	/**
-	 * Undoes all changes made in the current transaction made prior to the
-	 * given <code>Savepoint</code> object. This method should be used only when
-	 * auto-commit mode has been disabled.
-	 *
-	 * @param s
-	 *          a <code>Savepoint</code> object marking a savepoint in the
-	 *          current transaction. All changes made before <i>s</i> was set
-	 *          will be undone. All changes made after <i>s</i> was set will
-	 *          be made permanent.
-	 * @throws SQLException
-	 *                      if a database access error occurs or the
-	 *                      <code>Connection</code> object within this
-	 *                      <code>CachedRowSet</code> object is in auto-commit
-	 *                      mode
-	 */
-	public void rollback(Savepoint s) throws SQLException;
+    /**
+     * Undoes all changes made in the current transaction made prior to the
+     * given <code>Savepoint</code> object. This method should be used only when
+     * auto-commit mode has been disabled.
+     *
+     * @param s
+     *          a <code>Savepoint</code> object marking a savepoint in the
+     *          current transaction. All changes made before <i>s</i> was set
+     *          will be undone. All changes made after <i>s</i> was set will
+     *          be made permanent.
+     * @throws SQLException
+     *                      if a database access error occurs or the
+     *                      <code>Connection</code> object within this
+     *                      <code>CachedRowSet</code> object is in auto-commit
+     *                      mode
+     */
+    public void rollback(Savepoint s) throws SQLException;
 }

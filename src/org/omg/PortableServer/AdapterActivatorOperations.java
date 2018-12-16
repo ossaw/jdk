@@ -16,18 +16,18 @@ package org.omg.PortableServer;
  */
 public interface AdapterActivatorOperations {
 
-	/**
-	 * This operation is invoked when the ORB receives a request for an object
-	 * reference that identifies a target POA that does not exist. The ORB
-	 * invokes this operation once for each POA that must be created in order
-	 * for the target POA to exist.
-	 * 
-	 * @param parent
-	 *               indicates the parent POA for the POA that needs to be
-	 *               created.
-	 * @param name
-	 *               identifies the name of the POA relative to the parent.
-	 * @return returns TRUE if the POA was created or FALSE otherwise.
-	 */
-	boolean unknown_adapter(org.omg.PortableServer.POA parent, String name);
+    /**
+     * This operation is invoked when the ORB receives a request for an object
+     * reference that identifies a target POA that does not exist. The ORB
+     * invokes this operation once for each POA that must be created in order
+     * for the target POA to exist.
+     * 
+     * @param parent
+     *               indicates the parent POA for the POA that needs to be
+     *               created.
+     * @param name
+     *               identifies the name of the POA relative to the parent.
+     * @return returns TRUE if the POA was created or FALSE otherwise.
+     */
+    boolean unknown_adapter(org.omg.PortableServer.POA parent, String name);
 } // interface AdapterActivatorOperations

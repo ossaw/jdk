@@ -10,19 +10,19 @@ package org.omg.IOP;
 
 public final class IOR implements org.omg.CORBA.portable.IDLEntity {
 
-	/** The type id, represented as a String. */
-	public String type_id = null;
+    /** The type id, represented as a String. */
+    public String type_id = null;
 
-	/**
-	 * An array of tagged profiles associated with this object reference.
-	 */
-	public org.omg.IOP.TaggedProfile profiles[] = null;
+    /**
+     * An array of tagged profiles associated with this object reference.
+     */
+    public org.omg.IOP.TaggedProfile profiles[] = null;
 
-	public IOR() {} // ctor
+    public IOR() {} // ctor
 
-	public IOR(String _type_id, org.omg.IOP.TaggedProfile[] _profiles) {
-		type_id = _type_id;
-		profiles = _profiles;
-	} // ctor
+    public IOR(String _type_id, org.omg.IOP.TaggedProfile[] _profiles) {
+        type_id = _type_id;
+        profiles = _profiles;
+    } // ctor
 
 } // class IOR

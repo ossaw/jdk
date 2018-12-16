@@ -13,22 +13,22 @@ package java.lang;
  * @since JDK1.0
  */
 public class VerifyError extends LinkageError {
-	private static final long serialVersionUID = 7001962396098498785L;
+    private static final long serialVersionUID = 7001962396098498785L;
 
-	/**
-	 * Constructs an <code>VerifyError</code> with no detail message.
-	 */
-	public VerifyError() {
-		super();
-	}
+    /**
+     * Constructs an <code>VerifyError</code> with no detail message.
+     */
+    public VerifyError() {
+        super();
+    }
 
-	/**
-	 * Constructs an <code>VerifyError</code> with the specified detail message.
-	 *
-	 * @param s
-	 *          the detail message.
-	 */
-	public VerifyError(String s) {
-		super(s);
-	}
+    /**
+     * Constructs an <code>VerifyError</code> with the specified detail message.
+     *
+     * @param s
+     *          the detail message.
+     */
+    public VerifyError(String s) {
+        super(s);
+    }
 }

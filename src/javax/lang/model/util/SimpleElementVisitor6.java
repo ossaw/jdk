@@ -71,115 +71,115 @@ import static javax.lang.model.SourceVersion.*;
  */
 @SupportedSourceVersion(RELEASE_6)
 public class SimpleElementVisitor6<R, P> extends AbstractElementVisitor6<R, P> {
-	/**
-	 * Default value to be returned; {@link #defaultAction defaultAction}
-	 * returns this value unless the method is overridden.
-	 */
-	protected final R DEFAULT_VALUE;
+    /**
+     * Default value to be returned; {@link #defaultAction defaultAction}
+     * returns this value unless the method is overridden.
+     */
+    protected final R DEFAULT_VALUE;
 
-	/**
-	 * Constructor for concrete subclasses; uses {@code null} for the default
-	 * value.
-	 */
-	protected SimpleElementVisitor6() {
-		DEFAULT_VALUE = null;
-	}
+    /**
+     * Constructor for concrete subclasses; uses {@code null} for the default
+     * value.
+     */
+    protected SimpleElementVisitor6() {
+        DEFAULT_VALUE = null;
+    }
 
-	/**
-	 * Constructor for concrete subclasses; uses the argument for the default
-	 * value.
-	 *
-	 * @param defaultValue
-	 *                     the value to assign to {@link #DEFAULT_VALUE}
-	 */
-	protected SimpleElementVisitor6(R defaultValue) {
-		DEFAULT_VALUE = defaultValue;
-	}
+    /**
+     * Constructor for concrete subclasses; uses the argument for the default
+     * value.
+     *
+     * @param defaultValue
+     *                     the value to assign to {@link #DEFAULT_VALUE}
+     */
+    protected SimpleElementVisitor6(R defaultValue) {
+        DEFAULT_VALUE = defaultValue;
+    }
 
-	/**
-	 * The default action for visit methods. The implementation in this class
-	 * just returns {@link #DEFAULT_VALUE}; subclasses will commonly override
-	 * this method.
-	 *
-	 * @param e
-	 *          the element to process
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return {@code DEFAULT_VALUE} unless overridden
-	 */
-	protected R defaultAction(Element e, P p) {
-		return DEFAULT_VALUE;
-	}
+    /**
+     * The default action for visit methods. The implementation in this class
+     * just returns {@link #DEFAULT_VALUE}; subclasses will commonly override
+     * this method.
+     *
+     * @param e
+     *          the element to process
+     * @param p
+     *          a visitor-specified parameter
+     * @return {@code DEFAULT_VALUE} unless overridden
+     */
+    protected R defaultAction(Element e, P p) {
+        return DEFAULT_VALUE;
+    }
 
-	/**
-	 * {@inheritDoc} This implementation calls {@code defaultAction}.
-	 *
-	 * @param e
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitPackage(PackageElement e, P p) {
-		return defaultAction(e, p);
-	}
+    /**
+     * {@inheritDoc} This implementation calls {@code defaultAction}.
+     *
+     * @param e
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of {@code defaultAction}
+     */
+    public R visitPackage(PackageElement e, P p) {
+        return defaultAction(e, p);
+    }
 
-	/**
-	 * {@inheritDoc} This implementation calls {@code defaultAction}.
-	 *
-	 * @param e
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitType(TypeElement e, P p) {
-		return defaultAction(e, p);
-	}
+    /**
+     * {@inheritDoc} This implementation calls {@code defaultAction}.
+     *
+     * @param e
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of {@code defaultAction}
+     */
+    public R visitType(TypeElement e, P p) {
+        return defaultAction(e, p);
+    }
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * This implementation calls {@code defaultAction}, unless the element is a
-	 * {@code RESOURCE_VARIABLE} in which case {@code
-	 * visitUnknown} is called.
-	 *
-	 * @param e
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of {@code defaultAction} or {@code visitUnknown}
-	 */
-	public R visitVariable(VariableElement e, P p) {
-		if (e.getKind() != ElementKind.RESOURCE_VARIABLE)
-			return defaultAction(e, p);
-		else
-			return visitUnknown(e, p);
-	}
+    /**
+     * {@inheritDoc}
+     *
+     * This implementation calls {@code defaultAction}, unless the element is a
+     * {@code RESOURCE_VARIABLE} in which case {@code
+     * visitUnknown} is called.
+     *
+     * @param e
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of {@code defaultAction} or {@code visitUnknown}
+     */
+    public R visitVariable(VariableElement e, P p) {
+        if (e.getKind() != ElementKind.RESOURCE_VARIABLE)
+            return defaultAction(e, p);
+        else
+            return visitUnknown(e, p);
+    }
 
-	/**
-	 * {@inheritDoc} This implementation calls {@code defaultAction}.
-	 *
-	 * @param e
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitExecutable(ExecutableElement e, P p) {
-		return defaultAction(e, p);
-	}
+    /**
+     * {@inheritDoc} This implementation calls {@code defaultAction}.
+     *
+     * @param e
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of {@code defaultAction}
+     */
+    public R visitExecutable(ExecutableElement e, P p) {
+        return defaultAction(e, p);
+    }
 
-	/**
-	 * {@inheritDoc} This implementation calls {@code defaultAction}.
-	 *
-	 * @param e
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitTypeParameter(TypeParameterElement e, P p) {
-		return defaultAction(e, p);
-	}
+    /**
+     * {@inheritDoc} This implementation calls {@code defaultAction}.
+     *
+     * @param e
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of {@code defaultAction}
+     */
+    public R visitTypeParameter(TypeParameterElement e, P p) {
+        return defaultAction(e, p);
+    }
 }

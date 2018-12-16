@@ -22,10 +22,10 @@ package java.util.function;
 @FunctionalInterface
 public interface IntSupplier {
 
-	/**
-	 * Gets a result.
-	 *
-	 * @return a result
-	 */
-	int getAsInt();
+    /**
+     * Gets a result.
+     *
+     * @return a result
+     */
+    int getAsInt();
 }

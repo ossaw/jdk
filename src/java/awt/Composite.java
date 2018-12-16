@@ -44,23 +44,23 @@ import java.awt.image.ColorModel;
  */
 public interface Composite {
 
-	/**
-	 * Creates a context containing state that is used to perform the
-	 * compositing operation. In a multi-threaded environment, several contexts
-	 * can exist simultaneously for a single <code>Composite</code> object.
-	 * 
-	 * @param srcColorModel
-	 *                      the {@link ColorModel} of the source
-	 * @param dstColorModel
-	 *                      the <code>ColorModel</code> of the destination
-	 * @param hints
-	 *                      the hint that the context object uses to choose
-	 *                      between
-	 *                      rendering alternatives
-	 * @return the <code>CompositeContext</code> object used to perform the
-	 *         compositing operation.
-	 */
-	public CompositeContext createContext(ColorModel srcColorModel,
-			ColorModel dstColorModel, RenderingHints hints);
+    /**
+     * Creates a context containing state that is used to perform the
+     * compositing operation. In a multi-threaded environment, several contexts
+     * can exist simultaneously for a single <code>Composite</code> object.
+     * 
+     * @param srcColorModel
+     *                      the {@link ColorModel} of the source
+     * @param dstColorModel
+     *                      the <code>ColorModel</code> of the destination
+     * @param hints
+     *                      the hint that the context object uses to choose
+     *                      between
+     *                      rendering alternatives
+     * @return the <code>CompositeContext</code> object used to perform the
+     *         compositing operation.
+     */
+    public CompositeContext createContext(ColorModel srcColorModel,
+            ColorModel dstColorModel, RenderingHints hints);
 
 }

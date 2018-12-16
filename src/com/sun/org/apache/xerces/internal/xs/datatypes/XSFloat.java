@@ -26,9 +26,9 @@ package com.sun.org.apache.xerces.internal.xs.datatypes;
  */
 public interface XSFloat {
 
-	/**
-	 * @return a float value
-	 */
-	public float getValue();
+    /**
+     * @return a float value
+     */
+    public float getValue();
 
 }

@@ -21,34 +21,34 @@ import java.util.Set;
  */
 
 public interface PosixFileAttributes extends BasicFileAttributes {
-	/**
-	 * Returns the owner of the file.
-	 *
-	 * @return the file owner
-	 *
-	 * @see PosixFileAttributeView#setOwner
-	 */
-	UserPrincipal owner();
+    /**
+     * Returns the owner of the file.
+     *
+     * @return the file owner
+     *
+     * @see PosixFileAttributeView#setOwner
+     */
+    UserPrincipal owner();
 
-	/**
-	 * Returns the group owner of the file.
-	 *
-	 * @return the file group owner
-	 *
-	 * @see PosixFileAttributeView#setGroup
-	 */
-	GroupPrincipal group();
+    /**
+     * Returns the group owner of the file.
+     *
+     * @return the file group owner
+     *
+     * @see PosixFileAttributeView#setGroup
+     */
+    GroupPrincipal group();
 
-	/**
-	 * Returns the permissions of the file. The file permissions are returned as
-	 * a set of {@link PosixFilePermission} elements. The returned set is a copy
-	 * of the file permissions and is modifiable. This allows the result to be
-	 * modified and passed to the {@link PosixFileAttributeView#setPermissions
-	 * setPermissions} method to update the file's permissions.
-	 *
-	 * @return the file permissions
-	 *
-	 * @see PosixFileAttributeView#setPermissions
-	 */
-	Set<PosixFilePermission> permissions();
+    /**
+     * Returns the permissions of the file. The file permissions are returned as
+     * a set of {@link PosixFilePermission} elements. The returned set is a copy
+     * of the file permissions and is modifiable. This allows the result to be
+     * modified and passed to the {@link PosixFileAttributeView#setPermissions
+     * setPermissions} method to update the file's permissions.
+     *
+     * @return the file permissions
+     *
+     * @see PosixFileAttributeView#setPermissions
+     */
+    Set<PosixFilePermission> permissions();
 }

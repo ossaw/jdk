@@ -18,10 +18,10 @@ package org.omg.CORBA.portable;
  */
 
 public class ServantObject {
-	/**
-	 * The real servant. The local stub may cast this field to the expected
-	 * type, and then invoke the operation directly. Note, the object may or may
-	 * not be the actual servant instance.
-	 */
-	public java.lang.Object servant;
+    /**
+     * The real servant. The local stub may cast this field to the expected
+     * type, and then invoke the operation directly. Note, the object may or may
+     * not be the actual servant instance.
+     */
+    public java.lang.Object servant;
 }

@@ -67,10 +67,10 @@ import java.lang.annotation.Target;
  * <pre>
  * &#64;WebService(targetNamespace = "http://example.com/numbers")
  * public class AddNumbersImpl {
- * 	public int addNumbers(int number1, int number2)
- * 			throws AddNumbersException {
- * 		return number1 + number2;
- * 	}
+ *     public int addNumbers(int number1, int number2)
+ *             throws AddNumbersException {
+ *         return number1 + number2;
+ *     }
  * }
  * </pre>
  *
@@ -135,14 +135,14 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface FaultAction {
-	/**
-	 * Name of the exception class
-	 */
-	Class<? extends Exception> className();
+    /**
+     * Name of the exception class
+     */
+    Class<? extends Exception> className();
 
-	/**
-	 * Value of WS-Addressing <code>Action</code> message addressing property
-	 * for the exception
-	 */
-	String value() default "";
+    /**
+     * Value of WS-Addressing <code>Action</code> message addressing property
+     * for the exception
+     */
+    String value() default "";
 }

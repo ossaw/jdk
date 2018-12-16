@@ -64,7 +64,7 @@ import org.omg.CORBA.portable.IDLEntity;
  * 
  * <PRE>
  * org.omg.CORBA.TypeCode tcInterface = orb.create_interface_tc("thisId",
- * 		"Account");
+ *         "Account");
  * </PRE>
  * 
  * <LI>as the return value from the <code>_type</code> method in
@@ -147,350 +147,350 @@ import org.omg.CORBA.portable.IDLEntity;
  */
 public abstract class TypeCode implements IDLEntity {
 
-	/**
-	 * Compares this <code>TypeCode</code> object with the given one, testing
-	 * for equality. <code>TypeCode</code> objects are equal if they are
-	 * interchangeable and give identical results when <code>TypeCode</code>
-	 * operations are applied to them.
-	 *
-	 * @param tc
-	 *           the <code>TypeCode</code> object to compare against
-	 * @return <code>true</code> if the type codes are equal; <code>false</code>
-	 *         otherwise
-	 */
+    /**
+     * Compares this <code>TypeCode</code> object with the given one, testing
+     * for equality. <code>TypeCode</code> objects are equal if they are
+     * interchangeable and give identical results when <code>TypeCode</code>
+     * operations are applied to them.
+     *
+     * @param tc
+     *           the <code>TypeCode</code> object to compare against
+     * @return <code>true</code> if the type codes are equal; <code>false</code>
+     *         otherwise
+     */
 
-	public abstract boolean equal(TypeCode tc);
+    public abstract boolean equal(TypeCode tc);
 
-	/**
-	 * Tests to see if the given <code>TypeCode</code> object is equivalent to
-	 * this <code>TypeCode</code> object.
-	 * <P>
-	 *
-	 *
-	 * @param tc
-	 *           the typecode to compare with this typecode
-	 *
-	 * @return <code>true</code> if the given typecode is equivalent to this
-	 *         typecode; <code>false</code> otherwise
-	 *
-	 */
-	public abstract boolean equivalent(TypeCode tc);
+    /**
+     * Tests to see if the given <code>TypeCode</code> object is equivalent to
+     * this <code>TypeCode</code> object.
+     * <P>
+     *
+     *
+     * @param tc
+     *           the typecode to compare with this typecode
+     *
+     * @return <code>true</code> if the given typecode is equivalent to this
+     *         typecode; <code>false</code> otherwise
+     *
+     */
+    public abstract boolean equivalent(TypeCode tc);
 
-	/**
-	 * Strips out all optional name and member name fields, but leaves all alias
-	 * typecodes intact.
-	 * 
-	 * @return a <code>TypeCode</code> object with optional name and member name
-	 *         fields stripped out, except for alias typecodes, which are left
-	 *         intact
-	 * @see <a href="package-summary.html#unimpl"><code>CORBA</code> package
-	 *      comments for unimplemented features</a>
-	 */
-	public abstract TypeCode get_compact_typecode();
+    /**
+     * Strips out all optional name and member name fields, but leaves all alias
+     * typecodes intact.
+     * 
+     * @return a <code>TypeCode</code> object with optional name and member name
+     *         fields stripped out, except for alias typecodes, which are left
+     *         intact
+     * @see <a href="package-summary.html#unimpl"><code>CORBA</code> package
+     *      comments for unimplemented features</a>
+     */
+    public abstract TypeCode get_compact_typecode();
 
-	/**
-	 * Retrieves the kind of this <code>TypeCode</code> object. The kind of a
-	 * type code determines which <code>TypeCode</code> methods may legally be
-	 * invoked on it.
-	 * <P>
-	 * The method <code>kind</code> may be invoked on any <code>TypeCode</code>
-	 * object.
-	 *
-	 * @return the <code>TCKind</code> instance indicating the value of the
-	 *         <code>kind</code> field of this <code>TypeCode</code> object
-	 */
+    /**
+     * Retrieves the kind of this <code>TypeCode</code> object. The kind of a
+     * type code determines which <code>TypeCode</code> methods may legally be
+     * invoked on it.
+     * <P>
+     * The method <code>kind</code> may be invoked on any <code>TypeCode</code>
+     * object.
+     *
+     * @return the <code>TCKind</code> instance indicating the value of the
+     *         <code>kind</code> field of this <code>TypeCode</code> object
+     */
 
-	public abstract TCKind kind();
+    public abstract TCKind kind();
 
-	/**
-	 * Retrieves the RepositoryId globally identifying the type of this
-	 * <code>TypeCode</code> object.
-	 * <P>
-	 * The method <code>id</code> can be invoked on object reference, structure,
-	 * union, enumeration, alias, exception, valuetype, boxed valuetype, native,
-	 * and abstract interface type codes. Object reference, exception,
-	 * valuetype, boxed valuetype, native, and abstract interface
-	 * <code>TypeCode</code> objects always have a RepositoryId. Structure,
-	 * union, enumeration, and alias <code>TypeCode</code> objects obtained from
-	 * the Interface Repository or the method
-	 * <code>ORB.create_operation_list</code> also always have a RepositoryId.
-	 * If there is no RepositoryId, the method can return an empty string.
-	 *
-	 * @return the RepositoryId for this <code>TypeCode</code> object or an
-	 *         empty string if there is no RepositoryID
-	 * @throws org.omg.CORBA.TypeCodePackage.BadKind
-	 *         if the method is invoked on an inappropriate kind of
-	 *         <code>TypeCode</code> object
-	 */
+    /**
+     * Retrieves the RepositoryId globally identifying the type of this
+     * <code>TypeCode</code> object.
+     * <P>
+     * The method <code>id</code> can be invoked on object reference, structure,
+     * union, enumeration, alias, exception, valuetype, boxed valuetype, native,
+     * and abstract interface type codes. Object reference, exception,
+     * valuetype, boxed valuetype, native, and abstract interface
+     * <code>TypeCode</code> objects always have a RepositoryId. Structure,
+     * union, enumeration, and alias <code>TypeCode</code> objects obtained from
+     * the Interface Repository or the method
+     * <code>ORB.create_operation_list</code> also always have a RepositoryId.
+     * If there is no RepositoryId, the method can return an empty string.
+     *
+     * @return the RepositoryId for this <code>TypeCode</code> object or an
+     *         empty string if there is no RepositoryID
+     * @throws org.omg.CORBA.TypeCodePackage.BadKind
+     *         if the method is invoked on an inappropriate kind of
+     *         <code>TypeCode</code> object
+     */
 
-	public abstract String id() throws BadKind;
+    public abstract String id() throws BadKind;
 
-	/**
-	 * Retrieves the simple name identifying this <code>TypeCode</code> object
-	 * within its enclosing scope. Since names are local to a Repository, the
-	 * name returned from a <code>TypeCode</code> object may not match the name
-	 * of the type in any particular Repository, and may even be an empty
-	 * string.
-	 * <P>
-	 * The method <code>name</code> can be invoked on object reference,
-	 * structure, union, enumeration, alias, exception, valuetype, boxed
-	 * valuetype, native, and abstract interface <code>TypeCode</code> objects.
-	 *
-	 * @return the name identifying this <code>TypeCode</code> object or an
-	 *         empty string
-	 * @throws org.omg.CORBA.TypeCodePackage.BadKind
-	 *         if the method is invoked on an inappropriate kind of
-	 *         <code>TypeCode</code> object
-	 */
+    /**
+     * Retrieves the simple name identifying this <code>TypeCode</code> object
+     * within its enclosing scope. Since names are local to a Repository, the
+     * name returned from a <code>TypeCode</code> object may not match the name
+     * of the type in any particular Repository, and may even be an empty
+     * string.
+     * <P>
+     * The method <code>name</code> can be invoked on object reference,
+     * structure, union, enumeration, alias, exception, valuetype, boxed
+     * valuetype, native, and abstract interface <code>TypeCode</code> objects.
+     *
+     * @return the name identifying this <code>TypeCode</code> object or an
+     *         empty string
+     * @throws org.omg.CORBA.TypeCodePackage.BadKind
+     *         if the method is invoked on an inappropriate kind of
+     *         <code>TypeCode</code> object
+     */
 
-	public abstract String name() throws BadKind;
+    public abstract String name() throws BadKind;
 
-	/**
-	 * Retrieves the number of members in the type described by this
-	 * <code>TypeCode</code> object.
-	 * <P>
-	 * The method <code>member_count</code> can be invoked on structure, union,
-	 * and enumeration <code>TypeCode</code> objects. Java IDL extends the CORBA
-	 * specification to allow this method to operate on exceptions as well.
-	 *
-	 * @return the number of members constituting the type described by this
-	 *         <code>TypeCode</code> object
-	 *
-	 * @throws org.omg.CORBA.TypeCodePackage.BadKind
-	 *         if the method is invoked on an inappropriate kind of
-	 *         <code>TypeCode</code> object
-	 */
+    /**
+     * Retrieves the number of members in the type described by this
+     * <code>TypeCode</code> object.
+     * <P>
+     * The method <code>member_count</code> can be invoked on structure, union,
+     * and enumeration <code>TypeCode</code> objects. Java IDL extends the CORBA
+     * specification to allow this method to operate on exceptions as well.
+     *
+     * @return the number of members constituting the type described by this
+     *         <code>TypeCode</code> object
+     *
+     * @throws org.omg.CORBA.TypeCodePackage.BadKind
+     *         if the method is invoked on an inappropriate kind of
+     *         <code>TypeCode</code> object
+     */
 
-	public abstract int member_count() throws BadKind;
+    public abstract int member_count() throws BadKind;
 
-	/**
-	 * Retrieves the simple name of the member identified by the given index.
-	 * Since names are local to a Repository, the name returned from a
-	 * <code>TypeCode</code> object may not match the name of the member in any
-	 * particular Repository, and may even be an empty string.
-	 * <P>
-	 * The method <code>member_name</code> can be invoked on structure, union,
-	 * and enumeration <code>TypeCode</code> objects. Java IDL extends the CORBA
-	 * specification to allow this method to operate on exceptions as well.
-	 *
-	 * @param index
-	 *              index of the member for which a name is being reqested
-	 * @return simple name of the member identified by the index or an empty
-	 *         string
-	 * @throws org.omg.CORBA.TypeCodePackage.Bounds
-	 *         if the index is equal to or greater than the number of
-	 *         members constituting the type
-	 * @throws org.omg.CORBA.TypeCodePackage.BadKind
-	 *         if the method is invoked on an inappropriate kind of
-	 *         <code>TypeCode</code> object
-	 */
+    /**
+     * Retrieves the simple name of the member identified by the given index.
+     * Since names are local to a Repository, the name returned from a
+     * <code>TypeCode</code> object may not match the name of the member in any
+     * particular Repository, and may even be an empty string.
+     * <P>
+     * The method <code>member_name</code> can be invoked on structure, union,
+     * and enumeration <code>TypeCode</code> objects. Java IDL extends the CORBA
+     * specification to allow this method to operate on exceptions as well.
+     *
+     * @param index
+     *              index of the member for which a name is being reqested
+     * @return simple name of the member identified by the index or an empty
+     *         string
+     * @throws org.omg.CORBA.TypeCodePackage.Bounds
+     *         if the index is equal to or greater than the number of
+     *         members constituting the type
+     * @throws org.omg.CORBA.TypeCodePackage.BadKind
+     *         if the method is invoked on an inappropriate kind of
+     *         <code>TypeCode</code> object
+     */
 
-	public abstract String member_name(int index) throws BadKind,
-			org.omg.CORBA.TypeCodePackage.Bounds;
+    public abstract String member_name(int index) throws BadKind,
+            org.omg.CORBA.TypeCodePackage.Bounds;
 
-	/**
-	 * Retrieves the <code>TypeCode</code> object describing the type of the
-	 * member identified by the given index.
-	 * <P>
-	 * The method <code>member_type</code> can be invoked on structure and union
-	 * <code>TypeCode</code> objects. Java IDL extends the CORBA specification
-	 * to allow this method to operate on exceptions as well.
-	 *
-	 * @param index
-	 *              index of the member for which type information is begin
-	 *              requested
-	 * @return the <code>TypeCode</code> object describing the member at the
-	 *         given index
-	 * @throws org.omg.CORBA.TypeCodePackage.Bounds
-	 *         if the index is equal to or greater than the number of
-	 *         members constituting the type
-	 * @throws org.omg.CORBA.TypeCodePackage.BadKind
-	 *         if the method is invoked on an inappropriate kind of
-	 *         <code>TypeCode</code> object
-	 */
+    /**
+     * Retrieves the <code>TypeCode</code> object describing the type of the
+     * member identified by the given index.
+     * <P>
+     * The method <code>member_type</code> can be invoked on structure and union
+     * <code>TypeCode</code> objects. Java IDL extends the CORBA specification
+     * to allow this method to operate on exceptions as well.
+     *
+     * @param index
+     *              index of the member for which type information is begin
+     *              requested
+     * @return the <code>TypeCode</code> object describing the member at the
+     *         given index
+     * @throws org.omg.CORBA.TypeCodePackage.Bounds
+     *         if the index is equal to or greater than the number of
+     *         members constituting the type
+     * @throws org.omg.CORBA.TypeCodePackage.BadKind
+     *         if the method is invoked on an inappropriate kind of
+     *         <code>TypeCode</code> object
+     */
 
-	public abstract TypeCode member_type(int index) throws BadKind,
-			org.omg.CORBA.TypeCodePackage.Bounds;
+    public abstract TypeCode member_type(int index) throws BadKind,
+            org.omg.CORBA.TypeCodePackage.Bounds;
 
-	/**
-	 * Retrieves the label of the union member identified by the given index.
-	 * For the default member, the label is the zero octet.
-	 * <P>
-	 * The method <code>member_label</code> can only be invoked on union
-	 * <code>TypeCode</code> objects.
-	 *
-	 * @param index
-	 *              index of the union member for which the label is being
-	 *              requested
-	 * @return an <code>Any</code> object describing the label of the requested
-	 *         union member or the zero octet for the default member
-	 * @throws org.omg.CORBA.TypeCodePackage.Bounds
-	 *         if the index is equal to or greater than the number of
-	 *         members constituting the union
-	 * @throws org.omg.CORBA.TypeCodePackage.BadKind
-	 *         if the method is invoked on a non-union <code>TypeCode</code>
-	 *         object
-	 */
+    /**
+     * Retrieves the label of the union member identified by the given index.
+     * For the default member, the label is the zero octet.
+     * <P>
+     * The method <code>member_label</code> can only be invoked on union
+     * <code>TypeCode</code> objects.
+     *
+     * @param index
+     *              index of the union member for which the label is being
+     *              requested
+     * @return an <code>Any</code> object describing the label of the requested
+     *         union member or the zero octet for the default member
+     * @throws org.omg.CORBA.TypeCodePackage.Bounds
+     *         if the index is equal to or greater than the number of
+     *         members constituting the union
+     * @throws org.omg.CORBA.TypeCodePackage.BadKind
+     *         if the method is invoked on a non-union <code>TypeCode</code>
+     *         object
+     */
 
-	public abstract Any member_label(int index) throws BadKind,
-			org.omg.CORBA.TypeCodePackage.Bounds;
+    public abstract Any member_label(int index) throws BadKind,
+            org.omg.CORBA.TypeCodePackage.Bounds;
 
-	/**
-	 * Returns a <code>TypeCode</code> object describing all non-default member
-	 * labels. The method <code>discriminator_type</code> can be invoked only on
-	 * union <code>TypeCode</code> objects.
-	 *
-	 * @return the <code>TypeCode</code> object describing the non-default
-	 *         member labels
-	 * @throws org.omg.CORBA.TypeCodePackage.BadKind
-	 *         if the method is invoked on a non-union <code>TypeCode</code>
-	 *         object
-	 */
+    /**
+     * Returns a <code>TypeCode</code> object describing all non-default member
+     * labels. The method <code>discriminator_type</code> can be invoked only on
+     * union <code>TypeCode</code> objects.
+     *
+     * @return the <code>TypeCode</code> object describing the non-default
+     *         member labels
+     * @throws org.omg.CORBA.TypeCodePackage.BadKind
+     *         if the method is invoked on a non-union <code>TypeCode</code>
+     *         object
+     */
 
-	public abstract TypeCode discriminator_type() throws BadKind;
+    public abstract TypeCode discriminator_type() throws BadKind;
 
-	/**
-	 * Returns the index of the default member, or -1 if there is no default
-	 * member.
-	 * <P>
-	 * The method <code>default_index</code> can be invoked only on union
-	 * <code>TypeCode</code> objects.
-	 *
-	 * @return the index of the default member, or -1 if there is no default
-	 *         member
-	 * @throws org.omg.CORBA.TypeCodePackage.BadKind
-	 *         if the method is invoked on a non-union <code>TypeCode</code>
-	 *         object
-	 */
+    /**
+     * Returns the index of the default member, or -1 if there is no default
+     * member.
+     * <P>
+     * The method <code>default_index</code> can be invoked only on union
+     * <code>TypeCode</code> objects.
+     *
+     * @return the index of the default member, or -1 if there is no default
+     *         member
+     * @throws org.omg.CORBA.TypeCodePackage.BadKind
+     *         if the method is invoked on a non-union <code>TypeCode</code>
+     *         object
+     */
 
-	public abstract int default_index() throws BadKind;
+    public abstract int default_index() throws BadKind;
 
-	/**
-	 * Returns the number of elements in the type described by this
-	 * <code>TypeCode</code> object. For strings and sequences, it returns the
-	 * bound, with zero indicating an unbounded string or sequence. For arrays,
-	 * it returns the number of elements in the array.
-	 * <P>
-	 * The method <code>length</code> can be invoked on string, sequence, and
-	 * array <code>TypeCode</code> objects.
-	 *
-	 * @return the bound for strings and sequences, or the number of elements
-	 *         for arrays
-	 * @throws org.omg.CORBA.TypeCodePackage.BadKind
-	 *         if the method is invoked on an inappropriate kind of
-	 *         <code>TypeCode</code> object
-	 */
+    /**
+     * Returns the number of elements in the type described by this
+     * <code>TypeCode</code> object. For strings and sequences, it returns the
+     * bound, with zero indicating an unbounded string or sequence. For arrays,
+     * it returns the number of elements in the array.
+     * <P>
+     * The method <code>length</code> can be invoked on string, sequence, and
+     * array <code>TypeCode</code> objects.
+     *
+     * @return the bound for strings and sequences, or the number of elements
+     *         for arrays
+     * @throws org.omg.CORBA.TypeCodePackage.BadKind
+     *         if the method is invoked on an inappropriate kind of
+     *         <code>TypeCode</code> object
+     */
 
-	public abstract int length() throws BadKind;
+    public abstract int length() throws BadKind;
 
-	/**
-	 * Returns the <code>TypeCode</code> object representing the IDL type for
-	 * the members of the object described by this <code>TypeCode</code> object.
-	 * For sequences and arrays, it returns the element type. For aliases, it
-	 * returns the original type. Note that multidimensional arrays are
-	 * represented by nesting <code>TypeCode</code> objects, one per dimension.
-	 * For boxed valuetypes, it returns the boxed type.
-	 * <P>
-	 * The method <code>content_type</code> can be invoked on sequence, array,
-	 * alias, and boxed valuetype <code>TypeCode</code> objects.
-	 *
-	 * @return a <code>TypeCode</code> object representing the element type for
-	 *         sequences and arrays, the original type for aliases, or the boxed
-	 *         type for boxed valuetypes.
-	 * @throws org.omg.CORBA.TypeCodePackage.BadKind
-	 *         if the method is invoked on an inappropriate kind of
-	 *         <code>TypeCode</code> object
-	 */
+    /**
+     * Returns the <code>TypeCode</code> object representing the IDL type for
+     * the members of the object described by this <code>TypeCode</code> object.
+     * For sequences and arrays, it returns the element type. For aliases, it
+     * returns the original type. Note that multidimensional arrays are
+     * represented by nesting <code>TypeCode</code> objects, one per dimension.
+     * For boxed valuetypes, it returns the boxed type.
+     * <P>
+     * The method <code>content_type</code> can be invoked on sequence, array,
+     * alias, and boxed valuetype <code>TypeCode</code> objects.
+     *
+     * @return a <code>TypeCode</code> object representing the element type for
+     *         sequences and arrays, the original type for aliases, or the boxed
+     *         type for boxed valuetypes.
+     * @throws org.omg.CORBA.TypeCodePackage.BadKind
+     *         if the method is invoked on an inappropriate kind of
+     *         <code>TypeCode</code> object
+     */
 
-	public abstract TypeCode content_type() throws BadKind;
+    public abstract TypeCode content_type() throws BadKind;
 
-	/**
-	 * Returns the number of digits in the fixed type described by this
-	 * <code>TypeCode</code> object. For example, the typecode for the number
-	 * 3000.275d could be <code>fixed<7,3></code>, where 7 is the precision and
-	 * 3 is the scale.
-	 *
-	 * @return the total number of digits
-	 * @throws org.omg.CORBA.TypeCodePackage.BadKind
-	 *         if this method is invoked on an inappropriate kind of
-	 *         <code>TypeCode</code> object
-	 *
-	 */
-	public abstract short fixed_digits() throws BadKind;
+    /**
+     * Returns the number of digits in the fixed type described by this
+     * <code>TypeCode</code> object. For example, the typecode for the number
+     * 3000.275d could be <code>fixed<7,3></code>, where 7 is the precision and
+     * 3 is the scale.
+     *
+     * @return the total number of digits
+     * @throws org.omg.CORBA.TypeCodePackage.BadKind
+     *         if this method is invoked on an inappropriate kind of
+     *         <code>TypeCode</code> object
+     *
+     */
+    public abstract short fixed_digits() throws BadKind;
 
-	/**
-	 * Returns the scale of the fixed type described by this
-	 * <code>TypeCode</code> object. A positive number indicates the number of
-	 * digits to the right of the decimal point. For example, the number 3000d
-	 * could have the typecode <code>fixed<4,0></code>, where the first number
-	 * is the precision and the second number is the scale. A negative number is
-	 * also possible and adds zeroes to the left of the decimal point. In this
-	 * case, <code>fixed<1,-3></code>, could be the typecode for the number
-	 * 3000d.
-	 *
-	 * @return the scale of the fixed type that this <code>TypeCode</code>
-	 *         object describes
-	 * @throws org.omg.CORBA.TypeCodePackage.BadKind
-	 *         if this method is invoked on an inappropriate kind of
-	 *         <code>TypeCode</code> object
-	 */
-	public abstract short fixed_scale() throws BadKind;
+    /**
+     * Returns the scale of the fixed type described by this
+     * <code>TypeCode</code> object. A positive number indicates the number of
+     * digits to the right of the decimal point. For example, the number 3000d
+     * could have the typecode <code>fixed<4,0></code>, where the first number
+     * is the precision and the second number is the scale. A negative number is
+     * also possible and adds zeroes to the left of the decimal point. In this
+     * case, <code>fixed<1,-3></code>, could be the typecode for the number
+     * 3000d.
+     *
+     * @return the scale of the fixed type that this <code>TypeCode</code>
+     *         object describes
+     * @throws org.omg.CORBA.TypeCodePackage.BadKind
+     *         if this method is invoked on an inappropriate kind of
+     *         <code>TypeCode</code> object
+     */
+    public abstract short fixed_scale() throws BadKind;
 
-	/**
-	 * Returns the constant that indicates the visibility of the member at the
-	 * given index.
-	 *
-	 * This operation can only be invoked on non-boxed value
-	 * <code>TypeCode</code> objects.
-	 *
-	 * @param index
-	 *              an <code>int</code> indicating the index into the value
-	 * @return either <code>PRIVATE_MEMBER.value</code> or
-	 *         <code>PUBLIC_MEMBER.value</code>
-	 * @throws org.omg.CORBA.TypeCodePackage.BadKind
-	 *         if this method is invoked on a non-value type
-	 *         <code>TypeCode</code> object
-	 * @throws org.omg.CORBA.TypeCodePackage.Bounds
-	 *         if the given index is out of bounds
-	 * @see <a href="package-summary.html#unimpl"><code>CORBA</code> package
-	 *      comments for unimplemented features</a>
-	 */
+    /**
+     * Returns the constant that indicates the visibility of the member at the
+     * given index.
+     *
+     * This operation can only be invoked on non-boxed value
+     * <code>TypeCode</code> objects.
+     *
+     * @param index
+     *              an <code>int</code> indicating the index into the value
+     * @return either <code>PRIVATE_MEMBER.value</code> or
+     *         <code>PUBLIC_MEMBER.value</code>
+     * @throws org.omg.CORBA.TypeCodePackage.BadKind
+     *         if this method is invoked on a non-value type
+     *         <code>TypeCode</code> object
+     * @throws org.omg.CORBA.TypeCodePackage.Bounds
+     *         if the given index is out of bounds
+     * @see <a href="package-summary.html#unimpl"><code>CORBA</code> package
+     *      comments for unimplemented features</a>
+     */
 
-	abstract public short member_visibility(int index) throws BadKind,
-			org.omg.CORBA.TypeCodePackage.Bounds;
+    abstract public short member_visibility(int index) throws BadKind,
+            org.omg.CORBA.TypeCodePackage.Bounds;
 
-	/**
-	 * Returns a constant indicating the modifier of the value type that this
-	 * <code>TypeCode</code> object describes. The constant returned must be one
-	 * of the following: <code>VM_NONE.value</code>,
-	 * <code>VM_ABSTRACT.value</code>, <code>VM_CUSTOM.value</code>, or
-	 * <code>VM_TRUNCATABLE.value</code>,
-	 *
-	 * @return a constant describing the value type that this
-	 *         <code>TypeCode</code> object describes
-	 * @throws org.omg.CORBA.TypeCodePackage.BadKind
-	 *         if this method is invoked on a non-value type
-	 *         <code>TypeCode</code> object
-	 * @see <a href="package-summary.html#unimpl"><code>CORBA</code> package
-	 *      comments for unimplemented features</a>
-	 */
+    /**
+     * Returns a constant indicating the modifier of the value type that this
+     * <code>TypeCode</code> object describes. The constant returned must be one
+     * of the following: <code>VM_NONE.value</code>,
+     * <code>VM_ABSTRACT.value</code>, <code>VM_CUSTOM.value</code>, or
+     * <code>VM_TRUNCATABLE.value</code>,
+     *
+     * @return a constant describing the value type that this
+     *         <code>TypeCode</code> object describes
+     * @throws org.omg.CORBA.TypeCodePackage.BadKind
+     *         if this method is invoked on a non-value type
+     *         <code>TypeCode</code> object
+     * @see <a href="package-summary.html#unimpl"><code>CORBA</code> package
+     *      comments for unimplemented features</a>
+     */
 
-	abstract public short type_modifier() throws BadKind;
+    abstract public short type_modifier() throws BadKind;
 
-	/**
-	 * Returns the <code>TypeCode</code> object that describes the concrete base
-	 * type of the value type that this <code>TypeCode</code> object describes.
-	 * Returns null if it doesn't have a concrete base type.
-	 *
-	 * @return the <code>TypeCode</code> object that describes the concrete base
-	 *         type of the value type that this <code>TypeCode</code> object
-	 *         describes
-	 * @throws org.omg.CORBA.TypeCodePackage.BadKind
-	 *         if this method is invoked on a non-boxed value type
-	 *         <code>TypeCode</code> object
-	 * @see <a href="package-summary.html#unimpl"><code>CORBA</code> package
-	 *      comments for unimplemented features</a>
-	 */
+    /**
+     * Returns the <code>TypeCode</code> object that describes the concrete base
+     * type of the value type that this <code>TypeCode</code> object describes.
+     * Returns null if it doesn't have a concrete base type.
+     *
+     * @return the <code>TypeCode</code> object that describes the concrete base
+     *         type of the value type that this <code>TypeCode</code> object
+     *         describes
+     * @throws org.omg.CORBA.TypeCodePackage.BadKind
+     *         if this method is invoked on a non-boxed value type
+     *         <code>TypeCode</code> object
+     * @see <a href="package-summary.html#unimpl"><code>CORBA</code> package
+     *      comments for unimplemented features</a>
+     */
 
-	abstract public TypeCode concrete_base_type() throws BadKind;
+    abstract public TypeCode concrete_base_type() throws BadKind;
 }

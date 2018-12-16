@@ -13,24 +13,24 @@ package java.lang;
  * @since 1.2
  */
 public class UnsupportedClassVersionError extends ClassFormatError {
-	private static final long serialVersionUID = -7123279212883497373L;
+    private static final long serialVersionUID = -7123279212883497373L;
 
-	/**
-	 * Constructs a <code>UnsupportedClassVersionError</code> with no detail
-	 * message.
-	 */
-	public UnsupportedClassVersionError() {
-		super();
-	}
+    /**
+     * Constructs a <code>UnsupportedClassVersionError</code> with no detail
+     * message.
+     */
+    public UnsupportedClassVersionError() {
+        super();
+    }
 
-	/**
-	 * Constructs a <code>UnsupportedClassVersionError</code> with the specified
-	 * detail message.
-	 *
-	 * @param s
-	 *          the detail message.
-	 */
-	public UnsupportedClassVersionError(String s) {
-		super(s);
-	}
+    /**
+     * Constructs a <code>UnsupportedClassVersionError</code> with the specified
+     * detail message.
+     *
+     * @param s
+     *          the detail message.
+     */
+    public UnsupportedClassVersionError(String s) {
+        super(s);
+    }
 }

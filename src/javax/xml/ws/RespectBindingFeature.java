@@ -59,34 +59,34 @@ import javax.xml.ws.soap.AddressingFeature;
  * @since JAX-WS 2.1
  */
 public final class RespectBindingFeature extends WebServiceFeature {
-	/**
-	 *
-	 * Constant value identifying the RespectBindingFeature
-	 */
-	public static final String ID = "javax.xml.ws.RespectBindingFeature";
+    /**
+     *
+     * Constant value identifying the RespectBindingFeature
+     */
+    public static final String ID = "javax.xml.ws.RespectBindingFeature";
 
-	/**
-	 * Creates an <code>RespectBindingFeature</code>. The instance created will
-	 * be enabled.
-	 */
-	public RespectBindingFeature() {
-		this.enabled = true;
-	}
+    /**
+     * Creates an <code>RespectBindingFeature</code>. The instance created will
+     * be enabled.
+     */
+    public RespectBindingFeature() {
+        this.enabled = true;
+    }
 
-	/**
-	 * Creates an RespectBindingFeature
-	 *
-	 * @param enabled
-	 *                specifies whether this feature should be enabled or not.
-	 */
-	public RespectBindingFeature(boolean enabled) {
-		this.enabled = enabled;
-	}
+    /**
+     * Creates an RespectBindingFeature
+     *
+     * @param enabled
+     *                specifies whether this feature should be enabled or not.
+     */
+    public RespectBindingFeature(boolean enabled) {
+        this.enabled = enabled;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public String getID() {
-		return ID;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    public String getID() {
+        return ID;
+    }
 }

@@ -13,28 +13,28 @@ import java.util.Iterator;
  * @author Harold Carr
  */
 public interface ClientInvocationInfo {
-	public Iterator getContactInfoListIterator();
+    public Iterator getContactInfoListIterator();
 
-	public void setContactInfoListIterator(Iterator contactInfoListIterator);
+    public void setContactInfoListIterator(Iterator contactInfoListIterator);
 
-	public boolean isRetryInvocation();
+    public boolean isRetryInvocation();
 
-	public void setIsRetryInvocation(boolean isRetryInvocation);
+    public void setIsRetryInvocation(boolean isRetryInvocation);
 
-	public int getEntryCount();
+    public int getEntryCount();
 
-	public void incrementEntryCount();
+    public void incrementEntryCount();
 
-	public void decrementEntryCount();
+    public void decrementEntryCount();
 
-	public void setClientRequestDispatcher(
-			ClientRequestDispatcher clientRequestDispatcher);
+    public void setClientRequestDispatcher(
+            ClientRequestDispatcher clientRequestDispatcher);
 
-	public ClientRequestDispatcher getClientRequestDispatcher();
+    public ClientRequestDispatcher getClientRequestDispatcher();
 
-	public void setMessageMediator(MessageMediator messageMediator);
+    public void setMessageMediator(MessageMediator messageMediator);
 
-	public MessageMediator getMessageMediator();
+    public MessageMediator getMessageMediator();
 }
 
 // End of file.

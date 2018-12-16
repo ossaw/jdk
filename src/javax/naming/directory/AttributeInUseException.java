@@ -21,28 +21,28 @@ import javax.naming.NamingException;
  * @since 1.3
  */
 public class AttributeInUseException extends NamingException {
-	/**
-	 * Constructs a new instance of AttributeInUseException with an explanation.
-	 * All other fields are set to null.
-	 *
-	 * @param explanation
-	 *                    Possibly null additional detail about this exception.
-	 * @see java.lang.Throwable#getMessage
-	 */
-	public AttributeInUseException(String explanation) {
-		super(explanation);
-	}
+    /**
+     * Constructs a new instance of AttributeInUseException with an explanation.
+     * All other fields are set to null.
+     *
+     * @param explanation
+     *                    Possibly null additional detail about this exception.
+     * @see java.lang.Throwable#getMessage
+     */
+    public AttributeInUseException(String explanation) {
+        super(explanation);
+    }
 
-	/**
-	 * Constructs a new instance of AttributeInUseException. All fields are
-	 * initialized to null.
-	 */
-	public AttributeInUseException() {
-		super();
-	}
+    /**
+     * Constructs a new instance of AttributeInUseException. All fields are
+     * initialized to null.
+     */
+    public AttributeInUseException() {
+        super();
+    }
 
-	/**
-	 * Use serialVersionUID from JNDI 1.1.1 for interoperability
-	 */
-	private static final long serialVersionUID = 4437710305529322564L;
+    /**
+     * Use serialVersionUID from JNDI 1.1.1 for interoperability
+     */
+    private static final long serialVersionUID = 4437710305529322564L;
 }

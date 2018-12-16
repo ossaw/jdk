@@ -16,4 +16,4 @@ package org.omg.DynamicAny;
  * no components and a current position of -1.
  */
 public interface DynValueBox extends DynValueBoxOperations,
-		org.omg.DynamicAny.DynValueCommon, org.omg.CORBA.portable.IDLEntity {} // interface DynValueBox
+        org.omg.DynamicAny.DynValueCommon, org.omg.CORBA.portable.IDLEntity {} // interface DynValueBox

@@ -21,14 +21,14 @@ import java.util.EventObject;
  */
 @SuppressWarnings("serial")
 public class ChangeEvent extends EventObject {
-	/**
-	 * Constructs a ChangeEvent object.
-	 *
-	 * @param source
-	 *               the Object that is the source of the event (typically
-	 *               <code>this</code>)
-	 */
-	public ChangeEvent(Object source) {
-		super(source);
-	}
+    /**
+     * Constructs a ChangeEvent object.
+     *
+     * @param source
+     *               the Object that is the source of the event (typically
+     *               <code>this</code>)
+     */
+    public ChangeEvent(Object source) {
+        super(source);
+    }
 }

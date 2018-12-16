@@ -14,5 +14,5 @@ package com.sun.corba.se.spi.copyobject;
  * obj), but this is often not the desired implementation.
  */
 public interface ObjectCopier {
-	Object copy(Object obj) throws ReflectiveCopyException;
+    Object copy(Object obj) throws ReflectiveCopyException;
 }

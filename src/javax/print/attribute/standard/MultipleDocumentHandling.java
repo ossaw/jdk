@@ -135,95 +135,95 @@ import javax.print.attribute.PrintJobAttribute;
  * @author Alan Kaminsky
  */
 public class MultipleDocumentHandling extends EnumSyntax implements
-		PrintRequestAttribute, PrintJobAttribute {
+        PrintRequestAttribute, PrintJobAttribute {
 
-	private static final long serialVersionUID = 8098326460746413466L;
+    private static final long serialVersionUID = 8098326460746413466L;
 
-	/**
-	 * Single document -- see above for <A HREF="#sdfi">further information</A>.
-	 */
-	public static final MultipleDocumentHandling SINGLE_DOCUMENT = new MultipleDocumentHandling(
-			0);
+    /**
+     * Single document -- see above for <A HREF="#sdfi">further information</A>.
+     */
+    public static final MultipleDocumentHandling SINGLE_DOCUMENT = new MultipleDocumentHandling(
+            0);
 
-	/**
-	 * Separate documents uncollated copies -- see above for
-	 * <A HREF="#sducfi">further information</A>.
-	 */
-	public static final MultipleDocumentHandling SEPARATE_DOCUMENTS_UNCOLLATED_COPIES = new MultipleDocumentHandling(
-			1);
+    /**
+     * Separate documents uncollated copies -- see above for
+     * <A HREF="#sducfi">further information</A>.
+     */
+    public static final MultipleDocumentHandling SEPARATE_DOCUMENTS_UNCOLLATED_COPIES = new MultipleDocumentHandling(
+            1);
 
-	/**
-	 * Separate documents collated copies -- see above for
-	 * <A HREF="#sdccfi">further information</A>.
-	 */
-	public static final MultipleDocumentHandling SEPARATE_DOCUMENTS_COLLATED_COPIES = new MultipleDocumentHandling(
-			2);
+    /**
+     * Separate documents collated copies -- see above for
+     * <A HREF="#sdccfi">further information</A>.
+     */
+    public static final MultipleDocumentHandling SEPARATE_DOCUMENTS_COLLATED_COPIES = new MultipleDocumentHandling(
+            2);
 
-	/**
-	 * Single document new sheet -- see above for <A HREF="#sdnsfi">further
-	 * information</A>.
-	 */
-	public static final MultipleDocumentHandling SINGLE_DOCUMENT_NEW_SHEET = new MultipleDocumentHandling(
-			3);
+    /**
+     * Single document new sheet -- see above for <A HREF="#sdnsfi">further
+     * information</A>.
+     */
+    public static final MultipleDocumentHandling SINGLE_DOCUMENT_NEW_SHEET = new MultipleDocumentHandling(
+            3);
 
-	/**
-	 * Construct a new multiple document handling enumeration value with the
-	 * given integer value.
-	 *
-	 * @param value
-	 *              Integer value.
-	 */
-	protected MultipleDocumentHandling(int value) {
-		super(value);
-	}
+    /**
+     * Construct a new multiple document handling enumeration value with the
+     * given integer value.
+     *
+     * @param value
+     *              Integer value.
+     */
+    protected MultipleDocumentHandling(int value) {
+        super(value);
+    }
 
-	private static final String[] myStringTable = { "single-document",
-			"separate-documents-uncollated-copies",
-			"separate-documents-collated-copies", "single-document-new-sheet" };
+    private static final String[] myStringTable = { "single-document",
+            "separate-documents-uncollated-copies",
+            "separate-documents-collated-copies", "single-document-new-sheet" };
 
-	private static final MultipleDocumentHandling[] myEnumValueTable = {
-			SINGLE_DOCUMENT, SEPARATE_DOCUMENTS_UNCOLLATED_COPIES,
-			SEPARATE_DOCUMENTS_COLLATED_COPIES, SINGLE_DOCUMENT_NEW_SHEET };
+    private static final MultipleDocumentHandling[] myEnumValueTable = {
+            SINGLE_DOCUMENT, SEPARATE_DOCUMENTS_UNCOLLATED_COPIES,
+            SEPARATE_DOCUMENTS_COLLATED_COPIES, SINGLE_DOCUMENT_NEW_SHEET };
 
-	/**
-	 * Returns the string table for class MultipleDocumentHandling.
-	 */
-	protected String[] getStringTable() {
-		return (String[]) myStringTable.clone();
-	}
+    /**
+     * Returns the string table for class MultipleDocumentHandling.
+     */
+    protected String[] getStringTable() {
+        return (String[]) myStringTable.clone();
+    }
 
-	/**
-	 * Returns the enumeration value table for class MultipleDocumentHandling.
-	 */
-	protected EnumSyntax[] getEnumValueTable() {
-		return (EnumSyntax[]) myEnumValueTable.clone();
-	}
+    /**
+     * Returns the enumeration value table for class MultipleDocumentHandling.
+     */
+    protected EnumSyntax[] getEnumValueTable() {
+        return (EnumSyntax[]) myEnumValueTable.clone();
+    }
 
-	/**
-	 * Get the printing attribute class which is to be used as the "category"
-	 * for this printing attribute value.
-	 * <P>
-	 * For class MultipleDocumentHandling and any vendor-defined subclasses, the
-	 * category is class MultipleDocumentHandling itself.
-	 *
-	 * @return Printing attribute class (category), an instance of class
-	 *         {@link java.lang.Class java.lang.Class}.
-	 */
-	public final Class<? extends Attribute> getCategory() {
-		return MultipleDocumentHandling.class;
-	}
+    /**
+     * Get the printing attribute class which is to be used as the "category"
+     * for this printing attribute value.
+     * <P>
+     * For class MultipleDocumentHandling and any vendor-defined subclasses, the
+     * category is class MultipleDocumentHandling itself.
+     *
+     * @return Printing attribute class (category), an instance of class
+     *         {@link java.lang.Class java.lang.Class}.
+     */
+    public final Class<? extends Attribute> getCategory() {
+        return MultipleDocumentHandling.class;
+    }
 
-	/**
-	 * Get the name of the category of which this attribute value is an
-	 * instance.
-	 * <P>
-	 * For class MultipleDocumentHandling and any vendor-defined subclasses, the
-	 * category name is <CODE>"multiple-document-handling"</CODE>.
-	 *
-	 * @return Attribute category name.
-	 */
-	public final String getName() {
-		return "multiple-document-handling";
-	}
+    /**
+     * Get the name of the category of which this attribute value is an
+     * instance.
+     * <P>
+     * For class MultipleDocumentHandling and any vendor-defined subclasses, the
+     * category name is <CODE>"multiple-document-handling"</CODE>.
+     *
+     * @return Attribute category name.
+     */
+    public final String getName() {
+        return "multiple-document-handling";
+    }
 
 }

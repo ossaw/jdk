@@ -31,33 +31,33 @@ package javax.management.relation;
  */
 public interface RelationSupportMBean extends Relation {
 
-	/**
-	 * Returns an internal flag specifying if the object is still handled by the
-	 * Relation Service.
-	 *
-	 * @return a Boolean equal to {@link Boolean#TRUE} if the object is still
-	 *         handled by the Relation Service and {@link Boolean#FALSE}
-	 *         otherwise.
-	 */
-	public Boolean isInRelationService();
+    /**
+     * Returns an internal flag specifying if the object is still handled by the
+     * Relation Service.
+     *
+     * @return a Boolean equal to {@link Boolean#TRUE} if the object is still
+     *         handled by the Relation Service and {@link Boolean#FALSE}
+     *         otherwise.
+     */
+    public Boolean isInRelationService();
 
-	/**
-	 * <p>
-	 * Specifies whether this relation is handled by the Relation Service.
-	 * </p>
-	 * <P>
-	 * BEWARE, this method has to be exposed as the Relation Service will access
-	 * the relation through its management interface. It is RECOMMENDED NOT to
-	 * use this method. Using it does not affect the registration of the
-	 * relation object in the Relation Service, but will provide wrong
-	 * information about it!
-	 *
-	 * @param flag
-	 *             whether the relation is handled by the Relation Service.
-	 *
-	 * @exception IllegalArgumentException
-	 *                                     if null parameter
-	 */
-	public void setRelationServiceManagementFlag(Boolean flag)
-			throws IllegalArgumentException;
+    /**
+     * <p>
+     * Specifies whether this relation is handled by the Relation Service.
+     * </p>
+     * <P>
+     * BEWARE, this method has to be exposed as the Relation Service will access
+     * the relation through its management interface. It is RECOMMENDED NOT to
+     * use this method. Using it does not affect the registration of the
+     * relation object in the Relation Service, but will provide wrong
+     * information about it!
+     *
+     * @param flag
+     *             whether the relation is handled by the Relation Service.
+     *
+     * @exception IllegalArgumentException
+     *                                     if null parameter
+     */
+    public void setRelationServiceManagementFlag(Boolean flag)
+            throws IllegalArgumentException;
 }

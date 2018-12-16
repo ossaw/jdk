@@ -16,27 +16,27 @@ package org.omg.CORBA;
 
 public abstract class Environment {
 
-	/**
-	 * Retrieves the exception in this <code>Environment</code> object.
-	 *
-	 * @return the exception in this <code>Environment</code> object
-	 */
+    /**
+     * Retrieves the exception in this <code>Environment</code> object.
+     *
+     * @return the exception in this <code>Environment</code> object
+     */
 
-	public abstract java.lang.Exception exception();
+    public abstract java.lang.Exception exception();
 
-	/**
-	 * Inserts the given exception into this <code>Environment</code> object.
-	 *
-	 * @param except
-	 *               the exception to be set
-	 */
+    /**
+     * Inserts the given exception into this <code>Environment</code> object.
+     *
+     * @param except
+     *               the exception to be set
+     */
 
-	public abstract void exception(java.lang.Exception except);
+    public abstract void exception(java.lang.Exception except);
 
-	/**
-	 * Clears this <code>Environment</code> object of its exception.
-	 */
+    /**
+     * Clears this <code>Environment</code> object of its exception.
+     */
 
-	public abstract void clear();
+    public abstract void clear();
 
 }

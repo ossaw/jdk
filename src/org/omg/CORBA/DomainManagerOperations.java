@@ -17,13 +17,13 @@ package org.omg.CORBA;
  */
 
 public interface DomainManagerOperations {
-	/**
-	 * This returns the policy of the specified type for objects in this domain.
-	 * The types of policies available are domain specific. See the CORBA
-	 * specification for a list of standard ORB policies.
-	 *
-	 * @param policy_type
-	 *                    Type of policy to request
-	 */
-	public org.omg.CORBA.Policy get_domain_policy(int policy_type);
+    /**
+     * This returns the policy of the specified type for objects in this domain.
+     * The types of policies available are domain specific. See the CORBA
+     * specification for a list of standard ORB policies.
+     *
+     * @param policy_type
+     *                    Type of policy to request
+     */
+    public org.omg.CORBA.Policy get_domain_policy(int policy_type);
 }

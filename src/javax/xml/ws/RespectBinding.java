@@ -38,8 +38,8 @@ import javax.xml.ws.spi.WebServiceFeatureAnnotation;
 @Documented
 @WebServiceFeatureAnnotation(id = RespectBindingFeature.ID, bean = RespectBindingFeature.class)
 public @interface RespectBinding {
-	/**
-	 * Specifies if this feature is enabled or disabled.
-	 */
-	boolean enabled() default true;
+    /**
+     * Specifies if this feature is enabled or disabled.
+     */
+    boolean enabled() default true;
 }

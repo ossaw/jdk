@@ -25,71 +25,71 @@ package org.omg.CORBA;
  * <code>myServiceInformationHolder.value</code>.
  */
 public final class ServiceInformationHolder implements
-		org.omg.CORBA.portable.Streamable {
+        org.omg.CORBA.portable.Streamable {
 
-	/**
-	 * The <code>ServiceInformation</code> value held by this
-	 * <code>ServiceInformationHolder</code> object in its <code>value</code>
-	 * field.
-	 */
-	public ServiceInformation value;
+    /**
+     * The <code>ServiceInformation</code> value held by this
+     * <code>ServiceInformationHolder</code> object in its <code>value</code>
+     * field.
+     */
+    public ServiceInformation value;
 
-	/**
-	 * Constructs a new <code>ServiceInformationHolder</code> object with its
-	 * <code>value</code> field initialized to null.
-	 */
-	public ServiceInformationHolder() {
-		this(null);
-	}
+    /**
+     * Constructs a new <code>ServiceInformationHolder</code> object with its
+     * <code>value</code> field initialized to null.
+     */
+    public ServiceInformationHolder() {
+        this(null);
+    }
 
-	/**
-	 * Constructs a new <code>ServiceInformationHolder</code> object with its
-	 * <code>value</code> field initialized to the given
-	 * <code>ServiceInformation</code> object.
-	 *
-	 * @param arg
-	 *            the <code>ServiceInformation</code> object with which to
-	 *            initialize the <code>value</code> field of the newly-created
-	 *            <code>ServiceInformationHolder</code> object
-	 */
-	public ServiceInformationHolder(org.omg.CORBA.ServiceInformation arg) {
-		value = arg;
-	}
+    /**
+     * Constructs a new <code>ServiceInformationHolder</code> object with its
+     * <code>value</code> field initialized to the given
+     * <code>ServiceInformation</code> object.
+     *
+     * @param arg
+     *            the <code>ServiceInformation</code> object with which to
+     *            initialize the <code>value</code> field of the newly-created
+     *            <code>ServiceInformationHolder</code> object
+     */
+    public ServiceInformationHolder(org.omg.CORBA.ServiceInformation arg) {
+        value = arg;
+    }
 
-	/**
-	 * Marshals the value in this <code>ServiceInformationHolder</code> object's
-	 * <code>value</code> field to the output stream <code>out</code>.
-	 *
-	 * @param out
-	 *            the <code>OutputStream</code> object that will contain the CDR
-	 *            formatted data
-	 */
-	public void _write(org.omg.CORBA.portable.OutputStream out) {
-		org.omg.CORBA.ServiceInformationHelper.write(out, value);
-	}
+    /**
+     * Marshals the value in this <code>ServiceInformationHolder</code> object's
+     * <code>value</code> field to the output stream <code>out</code>.
+     *
+     * @param out
+     *            the <code>OutputStream</code> object that will contain the CDR
+     *            formatted data
+     */
+    public void _write(org.omg.CORBA.portable.OutputStream out) {
+        org.omg.CORBA.ServiceInformationHelper.write(out, value);
+    }
 
-	/**
-	 * Reads unmarshalled data from the input stream <code>in</code> and assigns
-	 * it to the <code>value</code> field in this
-	 * <code>ServiceInformationHolder</code> object.
-	 *
-	 * @param in
-	 *           the <code>InputStream</code> object containing CDR formatted
-	 *           data from the wire
-	 */
-	public void _read(org.omg.CORBA.portable.InputStream in) {
-		value = org.omg.CORBA.ServiceInformationHelper.read(in);
-	}
+    /**
+     * Reads unmarshalled data from the input stream <code>in</code> and assigns
+     * it to the <code>value</code> field in this
+     * <code>ServiceInformationHolder</code> object.
+     *
+     * @param in
+     *           the <code>InputStream</code> object containing CDR formatted
+     *           data from the wire
+     */
+    public void _read(org.omg.CORBA.portable.InputStream in) {
+        value = org.omg.CORBA.ServiceInformationHelper.read(in);
+    }
 
-	/**
-	 * Retrieves the <code>TypeCode</code> object that corresponds to the value
-	 * held in this <code>ServiceInformationHolder</code> object's
-	 * <code>value</code> field.
-	 *
-	 * @return the type code for the value held in this
-	 *         <code>ServiceInformationHolder</code> object
-	 */
-	public org.omg.CORBA.TypeCode _type() {
-		return org.omg.CORBA.ServiceInformationHelper.type();
-	}
+    /**
+     * Retrieves the <code>TypeCode</code> object that corresponds to the value
+     * held in this <code>ServiceInformationHolder</code> object's
+     * <code>value</code> field.
+     *
+     * @return the type code for the value held in this
+     *         <code>ServiceInformationHolder</code> object
+     */
+    public org.omg.CORBA.TypeCode _type() {
+        return org.omg.CORBA.ServiceInformationHelper.type();
+    }
 }

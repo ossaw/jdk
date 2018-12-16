@@ -15,24 +15,24 @@ package java.lang;
  * @since JDK1.0
  */
 public class IndexOutOfBoundsException extends RuntimeException {
-	private static final long serialVersionUID = 234122996006267687L;
+    private static final long serialVersionUID = 234122996006267687L;
 
-	/**
-	 * Constructs an <code>IndexOutOfBoundsException</code> with no detail
-	 * message.
-	 */
-	public IndexOutOfBoundsException() {
-		super();
-	}
+    /**
+     * Constructs an <code>IndexOutOfBoundsException</code> with no detail
+     * message.
+     */
+    public IndexOutOfBoundsException() {
+        super();
+    }
 
-	/**
-	 * Constructs an <code>IndexOutOfBoundsException</code> with the specified
-	 * detail message.
-	 *
-	 * @param s
-	 *          the detail message.
-	 */
-	public IndexOutOfBoundsException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs an <code>IndexOutOfBoundsException</code> with the specified
+     * detail message.
+     *
+     * @param s
+     *          the detail message.
+     */
+    public IndexOutOfBoundsException(String s) {
+        super(s);
+    }
 }

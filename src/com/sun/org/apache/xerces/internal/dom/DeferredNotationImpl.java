@@ -40,71 +40,71 @@ package com.sun.org.apache.xerces.internal.dom;
  */
 public class DeferredNotationImpl extends NotationImpl implements DeferredNode {
 
-	//
-	// Constants
-	//
+    //
+    // Constants
+    //
 
-	/** Serialization version. */
-	static final long serialVersionUID = 5705337172887990848L;
+    /** Serialization version. */
+    static final long serialVersionUID = 5705337172887990848L;
 
-	//
-	// Data
-	//
+    //
+    // Data
+    //
 
-	/** Node index. */
-	protected transient int fNodeIndex;
+    /** Node index. */
+    protected transient int fNodeIndex;
 
-	//
-	// Constructors
-	//
+    //
+    // Constructors
+    //
 
-	/**
-	 * This is the deferred constructor. Only the fNodeIndex is given here. All
-	 * other data, can be requested from the ownerDocument via the index.
-	 */
-	DeferredNotationImpl(DeferredDocumentImpl ownerDocument, int nodeIndex) {
-		super(ownerDocument, null);
+    /**
+     * This is the deferred constructor. Only the fNodeIndex is given here. All
+     * other data, can be requested from the ownerDocument via the index.
+     */
+    DeferredNotationImpl(DeferredDocumentImpl ownerDocument, int nodeIndex) {
+        super(ownerDocument, null);
 
-		fNodeIndex = nodeIndex;
-		needsSyncData(true);
+        fNodeIndex = nodeIndex;
+        needsSyncData(true);
 
-	} // <init>(DeferredDocumentImpl,int)
+    } // <init>(DeferredDocumentImpl,int)
 
-	//
-	// DeferredNode methods
-	//
+    //
+    // DeferredNode methods
+    //
 
-	/** Returns the node index. */
-	public int getNodeIndex() {
-		return fNodeIndex;
-	}
+    /** Returns the node index. */
+    public int getNodeIndex() {
+        return fNodeIndex;
+    }
 
-	//
-	// Protected methods
-	//
+    //
+    // Protected methods
+    //
 
-	/**
-	 * Synchronizes the data. This is special because of the way that the "fast"
-	 * notation stores its information internally.
-	 */
-	protected void synchronizeData() {
+    /**
+     * Synchronizes the data. This is special because of the way that the "fast"
+     * notation stores its information internally.
+     */
+    protected void synchronizeData() {
 
-		// no need to synchronize again
-		needsSyncData(false);
+        // no need to synchronize again
+        needsSyncData(false);
 
-		// name
-		DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) this
-				.ownerDocument();
-		name = ownerDocument.getNodeName(fNodeIndex);
+        // name
+        DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) this
+                .ownerDocument();
+        name = ownerDocument.getNodeName(fNodeIndex);
 
-		ownerDocument.getNodeType(fNodeIndex);
-		// public and system ids
-		publicId = ownerDocument.getNodeValue(fNodeIndex);
-		systemId = ownerDocument.getNodeURI(fNodeIndex);
-		int extraDataIndex = ownerDocument.getNodeExtra(fNodeIndex);
-		ownerDocument.getNodeType(extraDataIndex);
-		baseURI = ownerDocument.getNodeName(extraDataIndex);
+        ownerDocument.getNodeType(fNodeIndex);
+        // public and system ids
+        publicId = ownerDocument.getNodeValue(fNodeIndex);
+        systemId = ownerDocument.getNodeURI(fNodeIndex);
+        int extraDataIndex = ownerDocument.getNodeExtra(fNodeIndex);
+        ownerDocument.getNodeType(extraDataIndex);
+        baseURI = ownerDocument.getNodeName(extraDataIndex);
 
-	} // synchronizeData()
+    } // synchronizeData()
 
 } // class DeferredNotationImpl

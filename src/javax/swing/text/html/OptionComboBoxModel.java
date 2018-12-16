@@ -19,22 +19,22 @@ import java.io.Serializable;
  */
 
 class OptionComboBoxModel<E> extends DefaultComboBoxModel<E> implements
-		Serializable {
+        Serializable {
 
-	private Option selectedOption = null;
+    private Option selectedOption = null;
 
-	/**
-	 * Stores the Option that has been marked its selected attribute set.
-	 */
-	public void setInitialSelection(Option option) {
-		selectedOption = option;
-	}
+    /**
+     * Stores the Option that has been marked its selected attribute set.
+     */
+    public void setInitialSelection(Option option) {
+        selectedOption = option;
+    }
 
-	/**
-	 * Fetches the Option item that represents that was initially set to a
-	 * selected state.
-	 */
-	public Option getInitialSelection() {
-		return selectedOption;
-	}
+    /**
+     * Fetches the Option item that represents that was initially set to a
+     * selected state.
+     */
+    public Option getInitialSelection() {
+        return selectedOption;
+    }
 }

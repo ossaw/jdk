@@ -12,10 +12,10 @@ package java.net;
  */
 
 public interface ProtocolFamily {
-	/**
-	 * Returns the name of the protocol family.
-	 *
-	 * @return the name of the protocol family
-	 */
-	String name();
+    /**
+     * Returns the name of the protocol family.
+     *
+     * @return the name of the protocol family
+     */
+    String name();
 }

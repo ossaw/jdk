@@ -58,93 +58,93 @@ import javax.lang.model.util.*;
  * @since 1.6
  */
 public interface ElementVisitor<R, P> {
-	/**
-	 * Visits an element.
-	 * 
-	 * @param e
-	 *          the element to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return a visitor-specified result
-	 */
-	R visit(Element e, P p);
+    /**
+     * Visits an element.
+     * 
+     * @param e
+     *          the element to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return a visitor-specified result
+     */
+    R visit(Element e, P p);
 
-	/**
-	 * A convenience method equivalent to {@code v.visit(e, null)}.
-	 * 
-	 * @param e
-	 *          the element to visit
-	 * @return a visitor-specified result
-	 */
-	R visit(Element e);
+    /**
+     * A convenience method equivalent to {@code v.visit(e, null)}.
+     * 
+     * @param e
+     *          the element to visit
+     * @return a visitor-specified result
+     */
+    R visit(Element e);
 
-	/**
-	 * Visits a package element.
-	 * 
-	 * @param e
-	 *          the element to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return a visitor-specified result
-	 */
-	R visitPackage(PackageElement e, P p);
+    /**
+     * Visits a package element.
+     * 
+     * @param e
+     *          the element to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return a visitor-specified result
+     */
+    R visitPackage(PackageElement e, P p);
 
-	/**
-	 * Visits a type element.
-	 * 
-	 * @param e
-	 *          the element to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return a visitor-specified result
-	 */
-	R visitType(TypeElement e, P p);
+    /**
+     * Visits a type element.
+     * 
+     * @param e
+     *          the element to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return a visitor-specified result
+     */
+    R visitType(TypeElement e, P p);
 
-	/**
-	 * Visits a variable element.
-	 * 
-	 * @param e
-	 *          the element to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return a visitor-specified result
-	 */
-	R visitVariable(VariableElement e, P p);
+    /**
+     * Visits a variable element.
+     * 
+     * @param e
+     *          the element to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return a visitor-specified result
+     */
+    R visitVariable(VariableElement e, P p);
 
-	/**
-	 * Visits an executable element.
-	 * 
-	 * @param e
-	 *          the element to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return a visitor-specified result
-	 */
-	R visitExecutable(ExecutableElement e, P p);
+    /**
+     * Visits an executable element.
+     * 
+     * @param e
+     *          the element to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return a visitor-specified result
+     */
+    R visitExecutable(ExecutableElement e, P p);
 
-	/**
-	 * Visits a type parameter element.
-	 * 
-	 * @param e
-	 *          the element to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return a visitor-specified result
-	 */
-	R visitTypeParameter(TypeParameterElement e, P p);
+    /**
+     * Visits a type parameter element.
+     * 
+     * @param e
+     *          the element to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return a visitor-specified result
+     */
+    R visitTypeParameter(TypeParameterElement e, P p);
 
-	/**
-	 * Visits an unknown kind of element. This can occur if the language evolves
-	 * and new kinds of elements are added to the {@code Element} hierarchy.
-	 *
-	 * @param e
-	 *          the element to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return a visitor-specified result
-	 * @throws UnknownElementException
-	 *                                 a visitor implementation may optionally
-	 *                                 throw this exception
-	 */
-	R visitUnknown(Element e, P p);
+    /**
+     * Visits an unknown kind of element. This can occur if the language evolves
+     * and new kinds of elements are added to the {@code Element} hierarchy.
+     *
+     * @param e
+     *          the element to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return a visitor-specified result
+     * @throws UnknownElementException
+     *                                 a visitor implementation may optionally
+     *                                 throw this exception
+     */
+    R visitUnknown(Element e, P p);
 }

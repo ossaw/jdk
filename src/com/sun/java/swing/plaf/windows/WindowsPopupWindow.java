@@ -30,46 +30,46 @@ import java.awt.Graphics;
  */
 class WindowsPopupWindow extends JWindow {
 
-	static final int UNDEFINED_WINDOW_TYPE = 0;
-	static final int TOOLTIP_WINDOW_TYPE = 1;
-	static final int MENU_WINDOW_TYPE = 2;
-	static final int SUBMENU_WINDOW_TYPE = 3;
-	static final int POPUPMENU_WINDOW_TYPE = 4;
-	static final int COMBOBOX_POPUP_WINDOW_TYPE = 5;
+    static final int UNDEFINED_WINDOW_TYPE = 0;
+    static final int TOOLTIP_WINDOW_TYPE = 1;
+    static final int MENU_WINDOW_TYPE = 2;
+    static final int SUBMENU_WINDOW_TYPE = 3;
+    static final int POPUPMENU_WINDOW_TYPE = 4;
+    static final int COMBOBOX_POPUP_WINDOW_TYPE = 5;
 
-	private int windowType;
+    private int windowType;
 
-	WindowsPopupWindow(Window parent) {
-		super(parent);
-		setFocusableWindowState(false);
-	}
+    WindowsPopupWindow(Window parent) {
+        super(parent);
+        setFocusableWindowState(false);
+    }
 
-	void setWindowType(int type) {
-		windowType = type;
-	}
+    void setWindowType(int type) {
+        windowType = type;
+    }
 
-	int getWindowType() {
-		return windowType;
-	}
+    int getWindowType() {
+        return windowType;
+    }
 
-	public void update(Graphics g) {
-		paint(g);
-	}
+    public void update(Graphics g) {
+        paint(g);
+    }
 
-	public void hide() {
-		super.hide();
-		/**
-		 * We need to call removeNotify() here because hide() does something
-		 * only if Component.visible is true. When the app frame is
-		 * miniaturized, the parent frame of this frame is invisible, causing
-		 * AWT to believe that this frame is invisible and causing hide() to do
-		 * nothing
-		 */
-		removeNotify();
-	}
+    public void hide() {
+        super.hide();
+        /**
+         * We need to call removeNotify() here because hide() does something
+         * only if Component.visible is true. When the app frame is
+         * miniaturized, the parent frame of this frame is invisible, causing
+         * AWT to believe that this frame is invisible and causing hide() to do
+         * nothing
+         */
+        removeNotify();
+    }
 
-	public void show() {
-		super.show();
-		this.pack();
-	}
+    public void show() {
+        super.show();
+        this.pack();
+    }
 }

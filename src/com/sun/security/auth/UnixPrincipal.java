@@ -25,103 +25,103 @@ import java.security.Principal;
 @jdk.Exported
 public class UnixPrincipal implements Principal, java.io.Serializable {
 
-	private static final long serialVersionUID = -2951667807323493631L;
+    private static final long serialVersionUID = -2951667807323493631L;
 
-	/**
-	 * @serial
-	 */
-	private String name;
+    /**
+     * @serial
+     */
+    private String name;
 
-	/**
-	 * Create a UnixPrincipal with a Unix username.
-	 *
-	 * <p>
-	 *
-	 * @param name
-	 *             the Unix username for this user.
-	 *
-	 * @exception NullPointerException
-	 *                                 if the <code>name</code> is
-	 *                                 <code>null</code>.
-	 */
-	public UnixPrincipal(String name) {
-		if (name == null) {
-			java.text.MessageFormat form = new java.text.MessageFormat(
-					sun.security.util.ResourcesMgr.getString(
-							"invalid.null.input.value",
-							"sun.security.util.AuthResources"));
-			Object[] source = { "name" };
-			throw new NullPointerException(form.format(source));
-		}
+    /**
+     * Create a UnixPrincipal with a Unix username.
+     *
+     * <p>
+     *
+     * @param name
+     *             the Unix username for this user.
+     *
+     * @exception NullPointerException
+     *                                 if the <code>name</code> is
+     *                                 <code>null</code>.
+     */
+    public UnixPrincipal(String name) {
+        if (name == null) {
+            java.text.MessageFormat form = new java.text.MessageFormat(
+                    sun.security.util.ResourcesMgr.getString(
+                            "invalid.null.input.value",
+                            "sun.security.util.AuthResources"));
+            Object[] source = { "name" };
+            throw new NullPointerException(form.format(source));
+        }
 
-		this.name = name;
-	}
+        this.name = name;
+    }
 
-	/**
-	 * Return the Unix username for this <code>UnixPrincipal</code>.
-	 *
-	 * <p>
-	 *
-	 * @return the Unix username for this <code>UnixPrincipal</code>
-	 */
-	public String getName() {
-		return name;
-	}
+    /**
+     * Return the Unix username for this <code>UnixPrincipal</code>.
+     *
+     * <p>
+     *
+     * @return the Unix username for this <code>UnixPrincipal</code>
+     */
+    public String getName() {
+        return name;
+    }
 
-	/**
-	 * Return a string representation of this <code>UnixPrincipal</code>.
-	 *
-	 * <p>
-	 *
-	 * @return a string representation of this <code>UnixPrincipal</code>.
-	 */
-	public String toString() {
-		java.text.MessageFormat form = new java.text.MessageFormat(
-				sun.security.util.ResourcesMgr.getString("UnixPrincipal.name",
-						"sun.security.util.AuthResources"));
-		Object[] source = { name };
-		return form.format(source);
-	}
+    /**
+     * Return a string representation of this <code>UnixPrincipal</code>.
+     *
+     * <p>
+     *
+     * @return a string representation of this <code>UnixPrincipal</code>.
+     */
+    public String toString() {
+        java.text.MessageFormat form = new java.text.MessageFormat(
+                sun.security.util.ResourcesMgr.getString("UnixPrincipal.name",
+                        "sun.security.util.AuthResources"));
+        Object[] source = { name };
+        return form.format(source);
+    }
 
-	/**
-	 * Compares the specified Object with this <code>UnixPrincipal</code> for
-	 * equality. Returns true if the given object is also a
-	 * <code>UnixPrincipal</code> and the two UnixPrincipals have the same
-	 * username.
-	 *
-	 * <p>
-	 *
-	 * @param o
-	 *          Object to be compared for equality with this
-	 *          <code>UnixPrincipal</code>.
-	 *
-	 * @return true if the specified Object is equal equal to this
-	 *         <code>UnixPrincipal</code>.
-	 */
-	public boolean equals(Object o) {
-		if (o == null)
-			return false;
+    /**
+     * Compares the specified Object with this <code>UnixPrincipal</code> for
+     * equality. Returns true if the given object is also a
+     * <code>UnixPrincipal</code> and the two UnixPrincipals have the same
+     * username.
+     *
+     * <p>
+     *
+     * @param o
+     *          Object to be compared for equality with this
+     *          <code>UnixPrincipal</code>.
+     *
+     * @return true if the specified Object is equal equal to this
+     *         <code>UnixPrincipal</code>.
+     */
+    public boolean equals(Object o) {
+        if (o == null)
+            return false;
 
-		if (this == o)
-			return true;
+        if (this == o)
+            return true;
 
-		if (!(o instanceof UnixPrincipal))
-			return false;
-		UnixPrincipal that = (UnixPrincipal) o;
+        if (!(o instanceof UnixPrincipal))
+            return false;
+        UnixPrincipal that = (UnixPrincipal) o;
 
-		if (this.getName().equals(that.getName()))
-			return true;
-		return false;
-	}
+        if (this.getName().equals(that.getName()))
+            return true;
+        return false;
+    }
 
-	/**
-	 * Return a hash code for this <code>UnixPrincipal</code>.
-	 *
-	 * <p>
-	 *
-	 * @return a hash code for this <code>UnixPrincipal</code>.
-	 */
-	public int hashCode() {
-		return name.hashCode();
-	}
+    /**
+     * Return a hash code for this <code>UnixPrincipal</code>.
+     *
+     * <p>
+     *
+     * @return a hash code for this <code>UnixPrincipal</code>.
+     */
+    public int hashCode() {
+        return name.hashCode();
+    }
 }

@@ -26,28 +26,28 @@ package javax.naming;
  */
 
 public class InsufficientResourcesException extends NamingException {
-	/**
-	 * Constructs a new instance of InsufficientResourcesException using an
-	 * explanation. All other fields default to null.
-	 *
-	 * @param explanation
-	 *                    Possibly null additional detail about this exception.
-	 * @see java.lang.Throwable#getMessage
-	 */
-	public InsufficientResourcesException(String explanation) {
-		super(explanation);
-	}
+    /**
+     * Constructs a new instance of InsufficientResourcesException using an
+     * explanation. All other fields default to null.
+     *
+     * @param explanation
+     *                    Possibly null additional detail about this exception.
+     * @see java.lang.Throwable#getMessage
+     */
+    public InsufficientResourcesException(String explanation) {
+        super(explanation);
+    }
 
-	/**
-	 * Constructs a new instance of InsufficientResourcesException with all name
-	 * resolution fields and explanation initialized to null.
-	 */
-	public InsufficientResourcesException() {
-		super();
-	}
+    /**
+     * Constructs a new instance of InsufficientResourcesException with all name
+     * resolution fields and explanation initialized to null.
+     */
+    public InsufficientResourcesException() {
+        super();
+    }
 
-	/**
-	 * Use serialVersionUID from JNDI 1.1.1 for interoperability
-	 */
-	private static final long serialVersionUID = 6227672693037844532L;
+    /**
+     * Use serialVersionUID from JNDI 1.1.1 for interoperability
+     */
+    private static final long serialVersionUID = 6227672693037844532L;
 }

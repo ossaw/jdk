@@ -144,183 +144,183 @@ import java.util.Hashtable;
  */
 
 public interface LdapContext extends DirContext {
-	/**
-	 * Performs an extended operation.
-	 *
-	 * This method is used to support LDAPv3 extended operations.
-	 * 
-	 * @param request
-	 *                The non-null request to be performed.
-	 * @return The possibly null response of the operation. null means the
-	 *         operation did not generate any response.
-	 * @throws NamingException
-	 *                         If an error occurred while performing the
-	 *                         extended operation.
-	 */
-	public ExtendedResponse extendedOperation(ExtendedRequest request)
-			throws NamingException;
+    /**
+     * Performs an extended operation.
+     *
+     * This method is used to support LDAPv3 extended operations.
+     * 
+     * @param request
+     *                The non-null request to be performed.
+     * @return The possibly null response of the operation. null means the
+     *         operation did not generate any response.
+     * @throws NamingException
+     *                         If an error occurred while performing the
+     *                         extended operation.
+     */
+    public ExtendedResponse extendedOperation(ExtendedRequest request)
+            throws NamingException;
 
-	/**
-	 * Creates a new instance of this context initialized using request
-	 * controls.
-	 *
-	 * This method is a convenience method for creating a new instance of this
-	 * context for the purposes of multithreaded access. For example, if
-	 * multiple threads want to use different context request controls, each
-	 * thread may use this method to get its own copy of this context and
-	 * set/get context request controls without having to synchronize with other
-	 * threads.
-	 * <p>
-	 * The new context has the same environment properties and connection
-	 * request controls as this context. See the class description for details.
-	 * Implementations might also allow this context and the new context to
-	 * share the same network connection or other resources if doing so does not
-	 * impede the independence of either context.
-	 *
-	 * @param requestControls
-	 *                        The possibly null request controls to use for the
-	 *                        new context.
-	 *                        If null, the context is initialized with no
-	 *                        request controls.
-	 *
-	 * @return A non-null <tt>LdapContext</tt> instance.
-	 * @exception NamingException
-	 *                            If an error occurred while creating the new
-	 *                            instance.
-	 * @see InitialLdapContext
-	 */
-	public LdapContext newInstance(Control[] requestControls)
-			throws NamingException;
+    /**
+     * Creates a new instance of this context initialized using request
+     * controls.
+     *
+     * This method is a convenience method for creating a new instance of this
+     * context for the purposes of multithreaded access. For example, if
+     * multiple threads want to use different context request controls, each
+     * thread may use this method to get its own copy of this context and
+     * set/get context request controls without having to synchronize with other
+     * threads.
+     * <p>
+     * The new context has the same environment properties and connection
+     * request controls as this context. See the class description for details.
+     * Implementations might also allow this context and the new context to
+     * share the same network connection or other resources if doing so does not
+     * impede the independence of either context.
+     *
+     * @param requestControls
+     *                        The possibly null request controls to use for the
+     *                        new context.
+     *                        If null, the context is initialized with no
+     *                        request controls.
+     *
+     * @return A non-null <tt>LdapContext</tt> instance.
+     * @exception NamingException
+     *                            If an error occurred while creating the new
+     *                            instance.
+     * @see InitialLdapContext
+     */
+    public LdapContext newInstance(Control[] requestControls)
+            throws NamingException;
 
-	/**
-	 * Reconnects to the LDAP server using the supplied controls and this
-	 * context's environment.
-	 * <p>
-	 * This method is a way to explicitly initiate an LDAP "bind" operation. For
-	 * example, you can use this method to set request controls for the LDAP
-	 * "bind" operation, or to explicitly connect to the server to get response
-	 * controls returned by the LDAP "bind" operation.
-	 * <p>
-	 * This method sets this context's <tt>connCtls</tt> to be its new
-	 * connection request controls. This context's context request controls are
-	 * not affected. After this method has been invoked, any subsequent implicit
-	 * reconnections will be done using <tt>connCtls</tt>. <tt>connCtls</tt> are
-	 * also used as connection request controls for new context instances
-	 * derived from this context. These connection request controls are not
-	 * affected by <tt>setRequestControls()</tt>.
-	 * <p>
-	 * Service provider implementors should read the "Service Provider" section
-	 * in the class description for implementation details.
-	 * 
-	 * @param connCtls
-	 *                 The possibly null controls to use. If null, no controls
-	 *                 are
-	 *                 used.
-	 * @exception NamingException
-	 *                            If an error occurred while reconnecting.
-	 * @see #getConnectControls
-	 * @see #newInstance
-	 */
-	public void reconnect(Control[] connCtls) throws NamingException;
+    /**
+     * Reconnects to the LDAP server using the supplied controls and this
+     * context's environment.
+     * <p>
+     * This method is a way to explicitly initiate an LDAP "bind" operation. For
+     * example, you can use this method to set request controls for the LDAP
+     * "bind" operation, or to explicitly connect to the server to get response
+     * controls returned by the LDAP "bind" operation.
+     * <p>
+     * This method sets this context's <tt>connCtls</tt> to be its new
+     * connection request controls. This context's context request controls are
+     * not affected. After this method has been invoked, any subsequent implicit
+     * reconnections will be done using <tt>connCtls</tt>. <tt>connCtls</tt> are
+     * also used as connection request controls for new context instances
+     * derived from this context. These connection request controls are not
+     * affected by <tt>setRequestControls()</tt>.
+     * <p>
+     * Service provider implementors should read the "Service Provider" section
+     * in the class description for implementation details.
+     * 
+     * @param connCtls
+     *                 The possibly null controls to use. If null, no controls
+     *                 are
+     *                 used.
+     * @exception NamingException
+     *                            If an error occurred while reconnecting.
+     * @see #getConnectControls
+     * @see #newInstance
+     */
+    public void reconnect(Control[] connCtls) throws NamingException;
 
-	/**
-	 * Retrieves the connection request controls in effect for this context. The
-	 * controls are owned by the JNDI implementation and are immutable. Neither
-	 * the array nor the controls may be modified by the caller.
-	 *
-	 * @return A possibly-null array of controls. null means no connect controls
-	 *         have been set for this context.
-	 * @exception NamingException
-	 *                            If an error occurred while getting the request
-	 *                            controls.
-	 */
-	public Control[] getConnectControls() throws NamingException;
+    /**
+     * Retrieves the connection request controls in effect for this context. The
+     * controls are owned by the JNDI implementation and are immutable. Neither
+     * the array nor the controls may be modified by the caller.
+     *
+     * @return A possibly-null array of controls. null means no connect controls
+     *         have been set for this context.
+     * @exception NamingException
+     *                            If an error occurred while getting the request
+     *                            controls.
+     */
+    public Control[] getConnectControls() throws NamingException;
 
-	/**
-	 * Sets the request controls for methods subsequently invoked on this
-	 * context. The request controls are owned by the JNDI implementation and
-	 * are immutable. Neither the array nor the controls may be modified by the
-	 * caller.
-	 * <p>
-	 * This removes any previous request controls and adds
-	 * <tt>requestControls</tt> for use by subsequent methods invoked on this
-	 * context. This method does not affect this context's connection request
-	 * controls.
-	 * <p>
-	 * Note that <tt>requestControls</tt> will be in effect until the next
-	 * invocation of <tt>setRequestControls()</tt>. You need to explicitly
-	 * invoke <tt>setRequestControls()</tt> with <tt>null</tt> or an empty array
-	 * to clear the controls if you don't want them to affect the context
-	 * methods any more. To check what request controls are in effect for this
-	 * context, use <tt>getRequestControls()</tt>.
-	 * 
-	 * @param requestControls
-	 *                        The possibly null controls to use. If null, no
-	 *                        controls are
-	 *                        used.
-	 * @exception NamingException
-	 *                            If an error occurred while setting the request
-	 *                            controls.
-	 * @see #getRequestControls
-	 */
-	public void setRequestControls(Control[] requestControls)
-			throws NamingException;
+    /**
+     * Sets the request controls for methods subsequently invoked on this
+     * context. The request controls are owned by the JNDI implementation and
+     * are immutable. Neither the array nor the controls may be modified by the
+     * caller.
+     * <p>
+     * This removes any previous request controls and adds
+     * <tt>requestControls</tt> for use by subsequent methods invoked on this
+     * context. This method does not affect this context's connection request
+     * controls.
+     * <p>
+     * Note that <tt>requestControls</tt> will be in effect until the next
+     * invocation of <tt>setRequestControls()</tt>. You need to explicitly
+     * invoke <tt>setRequestControls()</tt> with <tt>null</tt> or an empty array
+     * to clear the controls if you don't want them to affect the context
+     * methods any more. To check what request controls are in effect for this
+     * context, use <tt>getRequestControls()</tt>.
+     * 
+     * @param requestControls
+     *                        The possibly null controls to use. If null, no
+     *                        controls are
+     *                        used.
+     * @exception NamingException
+     *                            If an error occurred while setting the request
+     *                            controls.
+     * @see #getRequestControls
+     */
+    public void setRequestControls(Control[] requestControls)
+            throws NamingException;
 
-	/**
-	 * Retrieves the request controls in effect for this context. The request
-	 * controls are owned by the JNDI implementation and are immutable. Neither
-	 * the array nor the controls may be modified by the caller.
-	 *
-	 * @return A possibly-null array of controls. null means no request controls
-	 *         have been set for this context.
-	 * @exception NamingException
-	 *                            If an error occurred while getting the request
-	 *                            controls.
-	 * @see #setRequestControls
-	 */
-	public Control[] getRequestControls() throws NamingException;
+    /**
+     * Retrieves the request controls in effect for this context. The request
+     * controls are owned by the JNDI implementation and are immutable. Neither
+     * the array nor the controls may be modified by the caller.
+     *
+     * @return A possibly-null array of controls. null means no request controls
+     *         have been set for this context.
+     * @exception NamingException
+     *                            If an error occurred while getting the request
+     *                            controls.
+     * @see #setRequestControls
+     */
+    public Control[] getRequestControls() throws NamingException;
 
-	/**
-	 * Retrieves the response controls produced as a result of the last method
-	 * invoked on this context. The response controls are owned by the JNDI
-	 * implementation and are immutable. Neither the array nor the controls may
-	 * be modified by the caller.
-	 * <p>
-	 * These response controls might have been generated by a successful or
-	 * failed operation.
-	 * <p>
-	 * When a context method that may return response controls is invoked,
-	 * response controls from the previous method invocation are cleared.
-	 * <tt>getResponseControls()</tt> returns all of the response controls
-	 * generated by LDAP operations used by the context method in the order
-	 * received from the LDAP server. Invoking <tt>getResponseControls()</tt>
-	 * does not clear the response controls. You can call it many times (and get
-	 * back the same controls) until the next context method that may return
-	 * controls is invoked.
-	 * <p>
-	 * 
-	 * @return A possibly null array of controls. If null, the previous method
-	 *         invoked on this context did not produce any controls.
-	 * @exception NamingException
-	 *                            If an error occurred while getting the
-	 *                            response controls.
-	 */
-	public Control[] getResponseControls() throws NamingException;
+    /**
+     * Retrieves the response controls produced as a result of the last method
+     * invoked on this context. The response controls are owned by the JNDI
+     * implementation and are immutable. Neither the array nor the controls may
+     * be modified by the caller.
+     * <p>
+     * These response controls might have been generated by a successful or
+     * failed operation.
+     * <p>
+     * When a context method that may return response controls is invoked,
+     * response controls from the previous method invocation are cleared.
+     * <tt>getResponseControls()</tt> returns all of the response controls
+     * generated by LDAP operations used by the context method in the order
+     * received from the LDAP server. Invoking <tt>getResponseControls()</tt>
+     * does not clear the response controls. You can call it many times (and get
+     * back the same controls) until the next context method that may return
+     * controls is invoked.
+     * <p>
+     * 
+     * @return A possibly null array of controls. If null, the previous method
+     *         invoked on this context did not produce any controls.
+     * @exception NamingException
+     *                            If an error occurred while getting the
+     *                            response controls.
+     */
+    public Control[] getResponseControls() throws NamingException;
 
-	/**
-	 * Constant that holds the name of the environment property for specifying
-	 * the list of control factories to use. The value of the property should be
-	 * a colon-separated list of the fully qualified class names of factory
-	 * classes that will create a control given another control. See
-	 * <tt>ControlFactory.getControlInstance()</tt> for details. This property
-	 * may be specified in the environment, an applet parameter, a system
-	 * property, or one or more resource files.
-	 * <p>
-	 * The value of this constant is "java.naming.factory.control".
-	 *
-	 * @see ControlFactory
-	 * @see javax.naming.Context#addToEnvironment
-	 * @see javax.naming.Context#removeFromEnvironment
-	 */
-	static final String CONTROL_FACTORIES = "java.naming.factory.control";
+    /**
+     * Constant that holds the name of the environment property for specifying
+     * the list of control factories to use. The value of the property should be
+     * a colon-separated list of the fully qualified class names of factory
+     * classes that will create a control given another control. See
+     * <tt>ControlFactory.getControlInstance()</tt> for details. This property
+     * may be specified in the environment, an applet parameter, a system
+     * property, or one or more resource files.
+     * <p>
+     * The value of this constant is "java.naming.factory.control".
+     *
+     * @see ControlFactory
+     * @see javax.naming.Context#addToEnvironment
+     * @see javax.naming.Context#removeFromEnvironment
+     */
+    static final String CONTROL_FACTORIES = "java.naming.factory.control";
 }

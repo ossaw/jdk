@@ -22,14 +22,14 @@ import java.util.EventObject;
  */
 @SuppressWarnings("serial")
 public class MenuEvent extends EventObject {
-	/**
-	 * Constructs a MenuEvent object.
-	 *
-	 * @param source
-	 *               the Object that originated the event (typically
-	 *               <code>this</code>)
-	 */
-	public MenuEvent(Object source) {
-		super(source);
-	}
+    /**
+     * Constructs a MenuEvent object.
+     *
+     * @param source
+     *               the Object that originated the event (typically
+     *               <code>this</code>)
+     */
+    public MenuEvent(Object source) {
+        super(source);
+    }
 }

@@ -133,196 +133,196 @@ import javax.print.attribute.PrintJobAttribute;
  * @author Alan Kaminsky
  */
 public class Finishings extends EnumSyntax implements DocAttribute,
-		PrintRequestAttribute, PrintJobAttribute {
+        PrintRequestAttribute, PrintJobAttribute {
 
-	private static final long serialVersionUID = -627840419548391754L;
+    private static final long serialVersionUID = -627840419548391754L;
 
-	/**
-	 * Perform no binding.
-	 */
-	public static final Finishings NONE = new Finishings(3);
+    /**
+     * Perform no binding.
+     */
+    public static final Finishings NONE = new Finishings(3);
 
-	/**
-	 * Bind the document(s) with one or more staples. The exact number and
-	 * placement of the staples is site-defined.
-	 */
-	public static final Finishings STAPLE = new Finishings(4);
+    /**
+     * Bind the document(s) with one or more staples. The exact number and
+     * placement of the staples is site-defined.
+     */
+    public static final Finishings STAPLE = new Finishings(4);
 
-	/**
-	 * This value is specified when it is desired to select a non-printed (or
-	 * pre-printed) cover for the document. This does not supplant the
-	 * specification of a printed cover (on cover stock medium) by the document
-	 * itself.
-	 */
-	public static final Finishings COVER = new Finishings(6);
+    /**
+     * This value is specified when it is desired to select a non-printed (or
+     * pre-printed) cover for the document. This does not supplant the
+     * specification of a printed cover (on cover stock medium) by the document
+     * itself.
+     */
+    public static final Finishings COVER = new Finishings(6);
 
-	/**
-	 * This value indicates that a binding is to be applied to the document; the
-	 * type and placement of the binding is site-defined.
-	 */
-	public static final Finishings BIND = new Finishings(7);
+    /**
+     * This value indicates that a binding is to be applied to the document; the
+     * type and placement of the binding is site-defined.
+     */
+    public static final Finishings BIND = new Finishings(7);
 
-	/**
-	 * Bind the document(s) with one or more staples (wire stitches) along the
-	 * middle fold. The exact number and placement of the staples and the middle
-	 * fold is implementation- and/or site-defined.
-	 */
-	public static final Finishings SADDLE_STITCH = new Finishings(8);
+    /**
+     * Bind the document(s) with one or more staples (wire stitches) along the
+     * middle fold. The exact number and placement of the staples and the middle
+     * fold is implementation- and/or site-defined.
+     */
+    public static final Finishings SADDLE_STITCH = new Finishings(8);
 
-	/**
-	 * Bind the document(s) with one or more staples (wire stitches) along one
-	 * edge. The exact number and placement of the staples is implementation-
-	 * and/or site- defined.
-	 */
-	public static final Finishings EDGE_STITCH = new Finishings(9);
+    /**
+     * Bind the document(s) with one or more staples (wire stitches) along one
+     * edge. The exact number and placement of the staples is implementation-
+     * and/or site- defined.
+     */
+    public static final Finishings EDGE_STITCH = new Finishings(9);
 
-	/**
-	 * Bind the document(s) with one or more staples in the top left corner.
-	 */
-	public static final Finishings STAPLE_TOP_LEFT = new Finishings(20);
+    /**
+     * Bind the document(s) with one or more staples in the top left corner.
+     */
+    public static final Finishings STAPLE_TOP_LEFT = new Finishings(20);
 
-	/**
-	 * Bind the document(s) with one or more staples in the bottom left corner.
-	 */
-	public static final Finishings STAPLE_BOTTOM_LEFT = new Finishings(21);
+    /**
+     * Bind the document(s) with one or more staples in the bottom left corner.
+     */
+    public static final Finishings STAPLE_BOTTOM_LEFT = new Finishings(21);
 
-	/**
-	 * Bind the document(s) with one or more staples in the top right corner.
-	 */
-	public static final Finishings STAPLE_TOP_RIGHT = new Finishings(22);
+    /**
+     * Bind the document(s) with one or more staples in the top right corner.
+     */
+    public static final Finishings STAPLE_TOP_RIGHT = new Finishings(22);
 
-	/**
-	 * Bind the document(s) with one or more staples in the bottom right corner.
-	 */
-	public static final Finishings STAPLE_BOTTOM_RIGHT = new Finishings(23);
+    /**
+     * Bind the document(s) with one or more staples in the bottom right corner.
+     */
+    public static final Finishings STAPLE_BOTTOM_RIGHT = new Finishings(23);
 
-	/**
-	 * Bind the document(s) with one or more staples (wire stitches) along the
-	 * left edge. The exact number and placement of the staples is
-	 * implementation- and/or site-defined.
-	 */
-	public static final Finishings EDGE_STITCH_LEFT = new Finishings(24);
+    /**
+     * Bind the document(s) with one or more staples (wire stitches) along the
+     * left edge. The exact number and placement of the staples is
+     * implementation- and/or site-defined.
+     */
+    public static final Finishings EDGE_STITCH_LEFT = new Finishings(24);
 
-	/**
-	 * Bind the document(s) with one or more staples (wire stitches) along the
-	 * top edge. The exact number and placement of the staples is
-	 * implementation- and/or site-defined.
-	 */
-	public static final Finishings EDGE_STITCH_TOP = new Finishings(25);
+    /**
+     * Bind the document(s) with one or more staples (wire stitches) along the
+     * top edge. The exact number and placement of the staples is
+     * implementation- and/or site-defined.
+     */
+    public static final Finishings EDGE_STITCH_TOP = new Finishings(25);
 
-	/**
-	 * Bind the document(s) with one or more staples (wire stitches) along the
-	 * right edge. The exact number and placement of the staples is
-	 * implementation- and/or site-defined.
-	 */
-	public static final Finishings EDGE_STITCH_RIGHT = new Finishings(26);
+    /**
+     * Bind the document(s) with one or more staples (wire stitches) along the
+     * right edge. The exact number and placement of the staples is
+     * implementation- and/or site-defined.
+     */
+    public static final Finishings EDGE_STITCH_RIGHT = new Finishings(26);
 
-	/**
-	 * Bind the document(s) with one or more staples (wire stitches) along the
-	 * bottom edge. The exact number and placement of the staples is
-	 * implementation- and/or site-defined.
-	 */
-	public static final Finishings EDGE_STITCH_BOTTOM = new Finishings(27);
+    /**
+     * Bind the document(s) with one or more staples (wire stitches) along the
+     * bottom edge. The exact number and placement of the staples is
+     * implementation- and/or site-defined.
+     */
+    public static final Finishings EDGE_STITCH_BOTTOM = new Finishings(27);
 
-	/**
-	 * Bind the document(s) with two staples (wire stitches) along the left edge
-	 * assuming a portrait document (see above).
-	 */
-	public static final Finishings STAPLE_DUAL_LEFT = new Finishings(28);
+    /**
+     * Bind the document(s) with two staples (wire stitches) along the left edge
+     * assuming a portrait document (see above).
+     */
+    public static final Finishings STAPLE_DUAL_LEFT = new Finishings(28);
 
-	/**
-	 * Bind the document(s) with two staples (wire stitches) along the top edge
-	 * assuming a portrait document (see above).
-	 */
-	public static final Finishings STAPLE_DUAL_TOP = new Finishings(29);
+    /**
+     * Bind the document(s) with two staples (wire stitches) along the top edge
+     * assuming a portrait document (see above).
+     */
+    public static final Finishings STAPLE_DUAL_TOP = new Finishings(29);
 
-	/**
-	 * Bind the document(s) with two staples (wire stitches) along the right
-	 * edge assuming a portrait document (see above).
-	 */
-	public static final Finishings STAPLE_DUAL_RIGHT = new Finishings(30);
+    /**
+     * Bind the document(s) with two staples (wire stitches) along the right
+     * edge assuming a portrait document (see above).
+     */
+    public static final Finishings STAPLE_DUAL_RIGHT = new Finishings(30);
 
-	/**
-	 * Bind the document(s) with two staples (wire stitches) along the bottom
-	 * edge assuming a portrait document (see above).
-	 */
-	public static final Finishings STAPLE_DUAL_BOTTOM = new Finishings(31);
+    /**
+     * Bind the document(s) with two staples (wire stitches) along the bottom
+     * edge assuming a portrait document (see above).
+     */
+    public static final Finishings STAPLE_DUAL_BOTTOM = new Finishings(31);
 
-	/**
-	 * Construct a new finishings binding enumeration value with the given
-	 * integer value.
-	 *
-	 * @param value
-	 *              Integer value.
-	 */
-	protected Finishings(int value) {
-		super(value);
-	}
+    /**
+     * Construct a new finishings binding enumeration value with the given
+     * integer value.
+     *
+     * @param value
+     *              Integer value.
+     */
+    protected Finishings(int value) {
+        super(value);
+    }
 
-	private static final String[] myStringTable = { "none", "staple", null,
-			"cover", "bind", "saddle-stitch", "edge-stitch", null, // The next ten enum values
-			// are reserved.
-			null, null, null, null, null, null, null, null, null,
-			"staple-top-left", "staple-bottom-left", "staple-top-right",
-			"staple-bottom-right", "edge-stitch-left", "edge-stitch-top",
-			"edge-stitch-right", "edge-stitch-bottom", "staple-dual-left",
-			"staple-dual-top", "staple-dual-right", "staple-dual-bottom" };
+    private static final String[] myStringTable = { "none", "staple", null,
+            "cover", "bind", "saddle-stitch", "edge-stitch", null, // The next ten enum values
+            // are reserved.
+            null, null, null, null, null, null, null, null, null,
+            "staple-top-left", "staple-bottom-left", "staple-top-right",
+            "staple-bottom-right", "edge-stitch-left", "edge-stitch-top",
+            "edge-stitch-right", "edge-stitch-bottom", "staple-dual-left",
+            "staple-dual-top", "staple-dual-right", "staple-dual-bottom" };
 
-	private static final Finishings[] myEnumValueTable = { NONE, STAPLE, null,
-			COVER, BIND, SADDLE_STITCH, EDGE_STITCH, null, // The next ten enum values are
-			// reserved.
-			null, null, null, null, null, null, null, null, null,
-			STAPLE_TOP_LEFT, STAPLE_BOTTOM_LEFT, STAPLE_TOP_RIGHT,
-			STAPLE_BOTTOM_RIGHT, EDGE_STITCH_LEFT, EDGE_STITCH_TOP,
-			EDGE_STITCH_RIGHT, EDGE_STITCH_BOTTOM, STAPLE_DUAL_LEFT,
-			STAPLE_DUAL_TOP, STAPLE_DUAL_RIGHT, STAPLE_DUAL_BOTTOM };
+    private static final Finishings[] myEnumValueTable = { NONE, STAPLE, null,
+            COVER, BIND, SADDLE_STITCH, EDGE_STITCH, null, // The next ten enum values are
+            // reserved.
+            null, null, null, null, null, null, null, null, null,
+            STAPLE_TOP_LEFT, STAPLE_BOTTOM_LEFT, STAPLE_TOP_RIGHT,
+            STAPLE_BOTTOM_RIGHT, EDGE_STITCH_LEFT, EDGE_STITCH_TOP,
+            EDGE_STITCH_RIGHT, EDGE_STITCH_BOTTOM, STAPLE_DUAL_LEFT,
+            STAPLE_DUAL_TOP, STAPLE_DUAL_RIGHT, STAPLE_DUAL_BOTTOM };
 
-	/**
-	 * Returns the string table for class Finishings.
-	 */
-	protected String[] getStringTable() {
-		return (String[]) myStringTable.clone();
-	}
+    /**
+     * Returns the string table for class Finishings.
+     */
+    protected String[] getStringTable() {
+        return (String[]) myStringTable.clone();
+    }
 
-	/**
-	 * Returns the enumeration value table for class Finishings.
-	 */
-	protected EnumSyntax[] getEnumValueTable() {
-		return (EnumSyntax[]) myEnumValueTable.clone();
-	}
+    /**
+     * Returns the enumeration value table for class Finishings.
+     */
+    protected EnumSyntax[] getEnumValueTable() {
+        return (EnumSyntax[]) myEnumValueTable.clone();
+    }
 
-	/**
-	 * Returns the lowest integer value used by class Finishings.
-	 */
-	protected int getOffset() {
-		return 3;
-	}
+    /**
+     * Returns the lowest integer value used by class Finishings.
+     */
+    protected int getOffset() {
+        return 3;
+    }
 
-	/**
-	 * Get the printing attribute class which is to be used as the "category"
-	 * for this printing attribute value.
-	 * <P>
-	 * For class Finishings and any vendor-defined subclasses, the category is
-	 * class Finishings itself.
-	 *
-	 * @return Printing attribute class (category), an instance of class
-	 *         {@link java.lang.Class java.lang.Class}.
-	 */
-	public final Class<? extends Attribute> getCategory() {
-		return Finishings.class;
-	}
+    /**
+     * Get the printing attribute class which is to be used as the "category"
+     * for this printing attribute value.
+     * <P>
+     * For class Finishings and any vendor-defined subclasses, the category is
+     * class Finishings itself.
+     *
+     * @return Printing attribute class (category), an instance of class
+     *         {@link java.lang.Class java.lang.Class}.
+     */
+    public final Class<? extends Attribute> getCategory() {
+        return Finishings.class;
+    }
 
-	/**
-	 * Get the name of the category of which this attribute value is an
-	 * instance.
-	 * <P>
-	 * For class Finishings and any vendor-defined subclasses, the category name
-	 * is <CODE>"finishings"</CODE>.
-	 *
-	 * @return Attribute category name.
-	 */
-	public final String getName() {
-		return "finishings";
-	}
+    /**
+     * Get the name of the category of which this attribute value is an
+     * instance.
+     * <P>
+     * For class Finishings and any vendor-defined subclasses, the category name
+     * is <CODE>"finishings"</CODE>.
+     *
+     * @return Attribute category name.
+     */
+    public final String getName() {
+        return "finishings";
+    }
 
 }

@@ -25,29 +25,29 @@ package javax.naming;
  */
 
 public class NameAlreadyBoundException extends NamingException {
-	/**
-	 * Constructs a new instance of NameAlreadyBoundException using the
-	 * explanation supplied. All other fields default to null.
-	 *
-	 *
-	 * @param explanation
-	 *                    Possibly null additional detail about this exception.
-	 * @see java.lang.Throwable#getMessage
-	 */
-	public NameAlreadyBoundException(String explanation) {
-		super(explanation);
-	}
+    /**
+     * Constructs a new instance of NameAlreadyBoundException using the
+     * explanation supplied. All other fields default to null.
+     *
+     *
+     * @param explanation
+     *                    Possibly null additional detail about this exception.
+     * @see java.lang.Throwable#getMessage
+     */
+    public NameAlreadyBoundException(String explanation) {
+        super(explanation);
+    }
 
-	/**
-	 * Constructs a new instance of NameAlreadyBoundException. All fields are
-	 * set to null;
-	 */
-	public NameAlreadyBoundException() {
-		super();
-	}
+    /**
+     * Constructs a new instance of NameAlreadyBoundException. All fields are
+     * set to null;
+     */
+    public NameAlreadyBoundException() {
+        super();
+    }
 
-	/**
-	 * Use serialVersionUID from JNDI 1.1.1 for interoperability
-	 */
-	private static final long serialVersionUID = -8491441000356780586L;
+    /**
+     * Use serialVersionUID from JNDI 1.1.1 for interoperability
+     */
+    private static final long serialVersionUID = -8491441000356780586L;
 }

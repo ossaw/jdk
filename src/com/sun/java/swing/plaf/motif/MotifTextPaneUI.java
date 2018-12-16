@@ -22,26 +22,26 @@ import javax.swing.plaf.basic.BasicTextPaneUI;
  */
 public class MotifTextPaneUI extends BasicTextPaneUI {
 
-	/**
-	 * Creates a UI for the JTextPane.
-	 *
-	 * @param c
-	 *          the JTextPane object
-	 * @return the UI
-	 */
-	public static ComponentUI createUI(JComponent c) {
-		return new MotifTextPaneUI();
-	}
+    /**
+     * Creates a UI for the JTextPane.
+     *
+     * @param c
+     *          the JTextPane object
+     * @return the UI
+     */
+    public static ComponentUI createUI(JComponent c) {
+        return new MotifTextPaneUI();
+    }
 
-	/**
-	 * Creates the object to use for a caret. By default an instance of
-	 * MotifTextUI.MotifCaret is created. This method can be redefined to
-	 * provide something else that implements the Caret interface.
-	 *
-	 * @return the caret object
-	 */
-	protected Caret createCaret() {
-		return MotifTextUI.createCaret();
-	}
+    /**
+     * Creates the object to use for a caret. By default an instance of
+     * MotifTextUI.MotifCaret is created. This method can be redefined to
+     * provide something else that implements the Caret interface.
+     *
+     * @return the caret object
+     */
+    protected Caret createCaret() {
+        return MotifTextUI.createCaret();
+    }
 
 }

@@ -21,23 +21,23 @@ package java.lang;
  * @since JDK1.0
  */
 public class ArrayStoreException extends RuntimeException {
-	private static final long serialVersionUID = -4522193890499838241L;
+    private static final long serialVersionUID = -4522193890499838241L;
 
-	/**
-	 * Constructs an <code>ArrayStoreException</code> with no detail message.
-	 */
-	public ArrayStoreException() {
-		super();
-	}
+    /**
+     * Constructs an <code>ArrayStoreException</code> with no detail message.
+     */
+    public ArrayStoreException() {
+        super();
+    }
 
-	/**
-	 * Constructs an <code>ArrayStoreException</code> with the specified detail
-	 * message.
-	 *
-	 * @param s
-	 *          the detail message.
-	 */
-	public ArrayStoreException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs an <code>ArrayStoreException</code> with the specified detail
+     * message.
+     *
+     * @param s
+     *          the detail message.
+     */
+    public ArrayStoreException(String s) {
+        super(s);
+    }
 }

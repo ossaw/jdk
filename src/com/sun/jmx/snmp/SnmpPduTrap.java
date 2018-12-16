@@ -23,54 +23,54 @@ package com.sun.jmx.snmp;
  */
 
 public class SnmpPduTrap extends SnmpPduPacket {
-	private static final long serialVersionUID = -3670886636491433011L;
+    private static final long serialVersionUID = -3670886636491433011L;
 
-	/**
-	 * Enterprise object identifier.
-	 * 
-	 * @serial
-	 */
-	public SnmpOid enterprise;
+    /**
+     * Enterprise object identifier.
+     * 
+     * @serial
+     */
+    public SnmpOid enterprise;
 
-	/**
-	 * Agent address. If the agent address source was not an IPv4 one (eg :
-	 * IPv6), this field is null.
-	 * 
-	 * @serial
-	 */
-	public SnmpIpAddress agentAddr;
+    /**
+     * Agent address. If the agent address source was not an IPv4 one (eg :
+     * IPv6), this field is null.
+     * 
+     * @serial
+     */
+    public SnmpIpAddress agentAddr;
 
-	/**
-	 * Generic trap number. <BR>
-	 * The possible values are defined in
-	 * {@link com.sun.jmx.snmp.SnmpDefinitions#trapColdStart SnmpDefinitions}.
-	 * 
-	 * @serial
-	 */
-	public int genericTrap;
+    /**
+     * Generic trap number. <BR>
+     * The possible values are defined in
+     * {@link com.sun.jmx.snmp.SnmpDefinitions#trapColdStart SnmpDefinitions}.
+     * 
+     * @serial
+     */
+    public int genericTrap;
 
-	/**
-	 * Specific trap number.
-	 * 
-	 * @serial
-	 */
-	public int specificTrap;
+    /**
+     * Specific trap number.
+     * 
+     * @serial
+     */
+    public int specificTrap;
 
-	/**
-	 * Time-stamp.
-	 * 
-	 * @serial
-	 */
-	public long timeStamp;
+    /**
+     * Time-stamp.
+     * 
+     * @serial
+     */
+    public long timeStamp;
 
-	/**
-	 * Builds a new trap PDU. <BR>
-	 * <CODE>type</CODE> and <CODE>version</CODE> fields are initialized with
-	 * {@link com.sun.jmx.snmp.SnmpDefinitions#pduV1TrapPdu pduV1TrapPdu} and
-	 * {@link com.sun.jmx.snmp.SnmpDefinitions#snmpVersionOne snmpVersionOne}.
-	 */
-	public SnmpPduTrap() {
-		type = pduV1TrapPdu;
-		version = snmpVersionOne;
-	}
+    /**
+     * Builds a new trap PDU. <BR>
+     * <CODE>type</CODE> and <CODE>version</CODE> fields are initialized with
+     * {@link com.sun.jmx.snmp.SnmpDefinitions#pduV1TrapPdu pduV1TrapPdu} and
+     * {@link com.sun.jmx.snmp.SnmpDefinitions#snmpVersionOne snmpVersionOne}.
+     */
+    public SnmpPduTrap() {
+        type = pduV1TrapPdu;
+        version = snmpVersionOne;
+    }
 }

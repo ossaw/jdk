@@ -25,77 +25,77 @@ import javax.print.attribute.EnumSyntax;
  */
 public class MediaTray extends Media implements Attribute {
 
-	private static final long serialVersionUID = -982503611095214703L;
+    private static final long serialVersionUID = -982503611095214703L;
 
-	/**
-	 * The top input tray in the printer.
-	 */
-	public static final MediaTray TOP = new MediaTray(0);
+    /**
+     * The top input tray in the printer.
+     */
+    public static final MediaTray TOP = new MediaTray(0);
 
-	/**
-	 * The middle input tray in the printer.
-	 */
-	public static final MediaTray MIDDLE = new MediaTray(1);
+    /**
+     * The middle input tray in the printer.
+     */
+    public static final MediaTray MIDDLE = new MediaTray(1);
 
-	/**
-	 * The bottom input tray in the printer.
-	 */
-	public static final MediaTray BOTTOM = new MediaTray(2);
+    /**
+     * The bottom input tray in the printer.
+     */
+    public static final MediaTray BOTTOM = new MediaTray(2);
 
-	/**
-	 * The envelope input tray in the printer.
-	 */
-	public static final MediaTray ENVELOPE = new MediaTray(3);
+    /**
+     * The envelope input tray in the printer.
+     */
+    public static final MediaTray ENVELOPE = new MediaTray(3);
 
-	/**
-	 * The manual feed input tray in the printer.
-	 */
-	public static final MediaTray MANUAL = new MediaTray(4);
+    /**
+     * The manual feed input tray in the printer.
+     */
+    public static final MediaTray MANUAL = new MediaTray(4);
 
-	/**
-	 * The large capacity input tray in the printer.
-	 */
-	public static final MediaTray LARGE_CAPACITY = new MediaTray(5);
+    /**
+     * The large capacity input tray in the printer.
+     */
+    public static final MediaTray LARGE_CAPACITY = new MediaTray(5);
 
-	/**
-	 * The main input tray in the printer.
-	 */
-	public static final MediaTray MAIN = new MediaTray(6);
+    /**
+     * The main input tray in the printer.
+     */
+    public static final MediaTray MAIN = new MediaTray(6);
 
-	/**
-	 * The side input tray.
-	 */
-	public static final MediaTray SIDE = new MediaTray(7);
+    /**
+     * The side input tray.
+     */
+    public static final MediaTray SIDE = new MediaTray(7);
 
-	/**
-	 * Construct a new media tray enumeration value with the given integer
-	 * value.
-	 *
-	 * @param value
-	 *              Integer value.
-	 */
-	protected MediaTray(int value) {
-		super(value);
-	}
+    /**
+     * Construct a new media tray enumeration value with the given integer
+     * value.
+     *
+     * @param value
+     *              Integer value.
+     */
+    protected MediaTray(int value) {
+        super(value);
+    }
 
-	private static final String[] myStringTable = { "top", "middle", "bottom",
-			"envelope", "manual", "large-capacity", "main", "side" };
+    private static final String[] myStringTable = { "top", "middle", "bottom",
+            "envelope", "manual", "large-capacity", "main", "side" };
 
-	private static final MediaTray[] myEnumValueTable = { TOP, MIDDLE, BOTTOM,
-			ENVELOPE, MANUAL, LARGE_CAPACITY, MAIN, SIDE };
+    private static final MediaTray[] myEnumValueTable = { TOP, MIDDLE, BOTTOM,
+            ENVELOPE, MANUAL, LARGE_CAPACITY, MAIN, SIDE };
 
-	/**
-	 * Returns the string table for class MediaTray.
-	 */
-	protected String[] getStringTable() {
-		return (String[]) myStringTable.clone();
-	}
+    /**
+     * Returns the string table for class MediaTray.
+     */
+    protected String[] getStringTable() {
+        return (String[]) myStringTable.clone();
+    }
 
-	/**
-	 * Returns the enumeration value table for class MediaTray.
-	 */
-	protected EnumSyntax[] getEnumValueTable() {
-		return (EnumSyntax[]) myEnumValueTable.clone();
-	}
+    /**
+     * Returns the enumeration value table for class MediaTray.
+     */
+    protected EnumSyntax[] getEnumValueTable() {
+        return (EnumSyntax[]) myEnumValueTable.clone();
+    }
 
 }

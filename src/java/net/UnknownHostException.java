@@ -14,21 +14,21 @@ import java.io.IOException;
  * @since JDK1.0
  */
 public class UnknownHostException extends IOException {
-	private static final long serialVersionUID = -4639126076052875403L;
+    private static final long serialVersionUID = -4639126076052875403L;
 
-	/**
-	 * Constructs a new {@code UnknownHostException} with the specified detail
-	 * message.
-	 *
-	 * @param host
-	 *             the detail message.
-	 */
-	public UnknownHostException(String host) {
-		super(host);
-	}
+    /**
+     * Constructs a new {@code UnknownHostException} with the specified detail
+     * message.
+     *
+     * @param host
+     *             the detail message.
+     */
+    public UnknownHostException(String host) {
+        super(host);
+    }
 
-	/**
-	 * Constructs a new {@code UnknownHostException} with no detail message.
-	 */
-	public UnknownHostException() {}
+    /**
+     * Constructs a new {@code UnknownHostException} with no detail message.
+     */
+    public UnknownHostException() {}
 }

@@ -23,5 +23,5 @@ package org.omg.PortableInterceptor;
  * @see IORInfo
  */
 public interface IORInterceptor extends IORInterceptorOperations,
-		org.omg.PortableInterceptor.Interceptor,
-		org.omg.CORBA.portable.IDLEntity {} // interface IORInterceptor
+        org.omg.PortableInterceptor.Interceptor,
+        org.omg.CORBA.portable.IDLEntity {} // interface IORInterceptor

@@ -45,134 +45,134 @@ import java.util.Vector;
 
 public class StateEdit extends AbstractUndoableEdit {
 
-	protected static final String RCSID = "$Id: StateEdit.java,v 1.6 1997/10/01 20:05:51 sandipc Exp $";
+    protected static final String RCSID = "$Id: StateEdit.java,v 1.6 1997/10/01 20:05:51 sandipc Exp $";
 
-	//
-	// Attributes
-	//
+    //
+    // Attributes
+    //
 
-	/**
-	 * The object being edited
-	 */
-	protected StateEditable object;
+    /**
+     * The object being edited
+     */
+    protected StateEditable object;
 
-	/**
-	 * The state information prior to the edit
-	 */
-	protected Hashtable<Object, Object> preState;
+    /**
+     * The state information prior to the edit
+     */
+    protected Hashtable<Object, Object> preState;
 
-	/**
-	 * The state information after the edit
-	 */
-	protected Hashtable<Object, Object> postState;
+    /**
+     * The state information after the edit
+     */
+    protected Hashtable<Object, Object> postState;
 
-	/**
-	 * The undo/redo presentation name
-	 */
-	protected String undoRedoName;
+    /**
+     * The undo/redo presentation name
+     */
+    protected String undoRedoName;
 
-	//
-	// Constructors
-	//
+    //
+    // Constructors
+    //
 
-	/**
-	 * Create and return a new StateEdit.
-	 *
-	 * @param anObject
-	 *                 The object to watch for changing state
-	 *
-	 * @see StateEdit
-	 */
-	public StateEdit(StateEditable anObject) {
-		super();
-		init(anObject, null);
-	}
+    /**
+     * Create and return a new StateEdit.
+     *
+     * @param anObject
+     *                 The object to watch for changing state
+     *
+     * @see StateEdit
+     */
+    public StateEdit(StateEditable anObject) {
+        super();
+        init(anObject, null);
+    }
 
-	/**
-	 * Create and return a new StateEdit with a presentation name.
-	 *
-	 * @param anObject
-	 *                 The object to watch for changing state
-	 * @param name
-	 *                 The presentation name to be used for this edit
-	 *
-	 * @see StateEdit
-	 */
-	public StateEdit(StateEditable anObject, String name) {
-		super();
-		init(anObject, name);
-	}
+    /**
+     * Create and return a new StateEdit with a presentation name.
+     *
+     * @param anObject
+     *                 The object to watch for changing state
+     * @param name
+     *                 The presentation name to be used for this edit
+     *
+     * @see StateEdit
+     */
+    public StateEdit(StateEditable anObject, String name) {
+        super();
+        init(anObject, name);
+    }
 
-	protected void init(StateEditable anObject, String name) {
-		this.object = anObject;
-		this.preState = new Hashtable<Object, Object>(11);
-		this.object.storeState(this.preState);
-		this.postState = null;
-		this.undoRedoName = name;
-	}
+    protected void init(StateEditable anObject, String name) {
+        this.object = anObject;
+        this.preState = new Hashtable<Object, Object>(11);
+        this.object.storeState(this.preState);
+        this.postState = null;
+        this.undoRedoName = name;
+    }
 
-	//
-	// Operation
-	//
+    //
+    // Operation
+    //
 
-	/**
-	 * Gets the post-edit state of the StateEditable object and ends the edit.
-	 */
-	public void end() {
-		this.postState = new Hashtable<Object, Object>(11);
-		this.object.storeState(this.postState);
-		this.removeRedundantState();
-	}
+    /**
+     * Gets the post-edit state of the StateEditable object and ends the edit.
+     */
+    public void end() {
+        this.postState = new Hashtable<Object, Object>(11);
+        this.object.storeState(this.postState);
+        this.removeRedundantState();
+    }
 
-	/**
-	 * Tells the edited object to apply the state prior to the edit
-	 */
-	public void undo() {
-		super.undo();
-		this.object.restoreState(preState);
-	}
+    /**
+     * Tells the edited object to apply the state prior to the edit
+     */
+    public void undo() {
+        super.undo();
+        this.object.restoreState(preState);
+    }
 
-	/**
-	 * Tells the edited object to apply the state after the edit
-	 */
-	public void redo() {
-		super.redo();
-		this.object.restoreState(postState);
-	}
+    /**
+     * Tells the edited object to apply the state after the edit
+     */
+    public void redo() {
+        super.redo();
+        this.object.restoreState(postState);
+    }
 
-	/**
-	 * Gets the presentation name for this edit
-	 */
-	public String getPresentationName() {
-		return this.undoRedoName;
-	}
+    /**
+     * Gets the presentation name for this edit
+     */
+    public String getPresentationName() {
+        return this.undoRedoName;
+    }
 
-	//
-	// Internal support
-	//
+    //
+    // Internal support
+    //
 
-	/**
-	 * Remove redundant key/values in state hashtables.
-	 */
-	protected void removeRedundantState() {
-		Vector<Object> uselessKeys = new Vector<Object>();
-		Enumeration myKeys = preState.keys();
+    /**
+     * Remove redundant key/values in state hashtables.
+     */
+    protected void removeRedundantState() {
+        Vector<Object> uselessKeys = new Vector<Object>();
+        Enumeration myKeys = preState.keys();
 
-		// Locate redundant state
-		while (myKeys.hasMoreElements()) {
-			Object myKey = myKeys.nextElement();
-			if (postState.containsKey(myKey) && postState.get(myKey).equals(
-					preState.get(myKey))) {
-				uselessKeys.addElement(myKey);
-			}
-		}
+        // Locate redundant state
+        while (myKeys.hasMoreElements()) {
+            Object myKey = myKeys.nextElement();
+            if (postState.containsKey(myKey) && postState.get(myKey).equals(
+                    preState.get(myKey))) {
+                uselessKeys.addElement(myKey);
+            }
+        }
 
-		// Remove redundant state
-		for (int i = uselessKeys.size() - 1; i >= 0; i--) {
-			Object myKey = uselessKeys.elementAt(i);
-			preState.remove(myKey);
-			postState.remove(myKey);
-		}
-	}
+        // Remove redundant state
+        for (int i = uselessKeys.size() - 1; i >= 0; i--) {
+            Object myKey = uselessKeys.elementAt(i);
+            preState.remove(myKey);
+            postState.remove(myKey);
+        }
+    }
 
 } // End of class StateEdit

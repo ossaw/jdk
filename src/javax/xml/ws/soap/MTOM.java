@@ -38,15 +38,15 @@ import javax.xml.ws.WebServiceProvider;
 @Documented
 @WebServiceFeatureAnnotation(id = MTOMFeature.ID, bean = MTOMFeature.class)
 public @interface MTOM {
-	/**
-	 * Specifies if this feature is enabled or disabled.
-	 */
-	boolean enabled() default true;
+    /**
+     * Specifies if this feature is enabled or disabled.
+     */
+    boolean enabled() default true;
 
-	/**
-	 * Property for MTOM threshold value. When MTOM is enabled, binary data
-	 * above this size in bytes will be XOP encoded or sent as attachment. The
-	 * value of this property MUST always be >= 0. Default value is 0.
-	 */
-	int threshold() default 0;
+    /**
+     * Property for MTOM threshold value. When MTOM is enabled, binary data
+     * above this size in bytes will be XOP encoded or sent as attachment. The
+     * value of this property MUST always be >= 0. Default value is 0.
+     */
+    int threshold() default 0;
 }

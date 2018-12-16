@@ -34,116 +34,116 @@ import sun.corba.EncapsInputStreamFactory;
  * we can make all constructors take such parameters.
  */
 public class EncapsInputStream extends CDRInputStream {
-	private ORBUtilSystemException wrapper;
+    private ORBUtilSystemException wrapper;
 
-	// corba/EncapsOutputStream
-	// corba/ORBSingleton
-	// iiop/ORB
-	public EncapsInputStream(org.omg.CORBA.ORB orb, byte[] buf, int size,
-			boolean littleEndian, GIOPVersion version) {
-		super(orb, ByteBuffer.wrap(buf), size, littleEndian, version,
-				Message.CDR_ENC_VERSION, BufferManagerFactory
-						.newBufferManagerRead(BufferManagerFactory.GROW,
-								Message.CDR_ENC_VERSION, (ORB) orb));
+    // corba/EncapsOutputStream
+    // corba/ORBSingleton
+    // iiop/ORB
+    public EncapsInputStream(org.omg.CORBA.ORB orb, byte[] buf, int size,
+            boolean littleEndian, GIOPVersion version) {
+        super(orb, ByteBuffer.wrap(buf), size, littleEndian, version,
+                Message.CDR_ENC_VERSION, BufferManagerFactory
+                        .newBufferManagerRead(BufferManagerFactory.GROW,
+                                Message.CDR_ENC_VERSION, (ORB) orb));
 
-		wrapper = ORBUtilSystemException.get((ORB) orb,
-				CORBALogDomains.RPC_ENCODING);
+        wrapper = ORBUtilSystemException.get((ORB) orb,
+                CORBALogDomains.RPC_ENCODING);
 
-		performORBVersionSpecificInit();
-	}
+        performORBVersionSpecificInit();
+    }
 
-	public EncapsInputStream(org.omg.CORBA.ORB orb, ByteBuffer byteBuffer,
-			int size, boolean littleEndian, GIOPVersion version) {
-		super(orb, byteBuffer, size, littleEndian, version,
-				Message.CDR_ENC_VERSION, BufferManagerFactory
-						.newBufferManagerRead(BufferManagerFactory.GROW,
-								Message.CDR_ENC_VERSION,
-								(com.sun.corba.se.spi.orb.ORB) orb));
+    public EncapsInputStream(org.omg.CORBA.ORB orb, ByteBuffer byteBuffer,
+            int size, boolean littleEndian, GIOPVersion version) {
+        super(orb, byteBuffer, size, littleEndian, version,
+                Message.CDR_ENC_VERSION, BufferManagerFactory
+                        .newBufferManagerRead(BufferManagerFactory.GROW,
+                                Message.CDR_ENC_VERSION,
+                                (com.sun.corba.se.spi.orb.ORB) orb));
 
-		performORBVersionSpecificInit();
-	}
+        performORBVersionSpecificInit();
+    }
 
-	// ior/IdentifiableBase
-	// ior/IIOPProfile
-	// corba/ORBSingleton
-	// iiop/ORB
-	public EncapsInputStream(org.omg.CORBA.ORB orb, byte[] data, int size) {
-		this(orb, data, size, GIOPVersion.V1_2);
-	}
+    // ior/IdentifiableBase
+    // ior/IIOPProfile
+    // corba/ORBSingleton
+    // iiop/ORB
+    public EncapsInputStream(org.omg.CORBA.ORB orb, byte[] data, int size) {
+        this(orb, data, size, GIOPVersion.V1_2);
+    }
 
-	// corba/AnyImpl
-	public EncapsInputStream(EncapsInputStream eis) {
-		super(eis);
+    // corba/AnyImpl
+    public EncapsInputStream(EncapsInputStream eis) {
+        super(eis);
 
-		wrapper = ORBUtilSystemException.get((ORB) (eis.orb()),
-				CORBALogDomains.RPC_ENCODING);
+        wrapper = ORBUtilSystemException.get((ORB) (eis.orb()),
+                CORBALogDomains.RPC_ENCODING);
 
-		performORBVersionSpecificInit();
-	}
+        performORBVersionSpecificInit();
+    }
 
-	// CDREncapsCodec
-	// ServiceContext
-	//
-	// Assumes big endian (can use consumeEndian to read and set
-	// the endianness if it is an encapsulation with a byte order
-	// mark at the beginning)
-	public EncapsInputStream(org.omg.CORBA.ORB orb, byte[] data, int size,
-			GIOPVersion version) {
-		this(orb, data, size, false, version);
-	}
+    // CDREncapsCodec
+    // ServiceContext
+    //
+    // Assumes big endian (can use consumeEndian to read and set
+    // the endianness if it is an encapsulation with a byte order
+    // mark at the beginning)
+    public EncapsInputStream(org.omg.CORBA.ORB orb, byte[] data, int size,
+            GIOPVersion version) {
+        this(orb, data, size, false, version);
+    }
 
-	/**
-	 * Full constructor with a CodeBase parameter useful for unmarshaling
-	 * RMI-IIOP valuetypes (technically against the intention of an
-	 * encapsulation, but necessary due to OMG issue 4795. Used by
-	 * ServiceContexts.
-	 */
-	public EncapsInputStream(org.omg.CORBA.ORB orb, byte[] data, int size,
-			GIOPVersion version, CodeBase codeBase) {
-		super(orb, ByteBuffer.wrap(data), size, false, version,
-				Message.CDR_ENC_VERSION, BufferManagerFactory
-						.newBufferManagerRead(BufferManagerFactory.GROW,
-								Message.CDR_ENC_VERSION, (ORB) orb));
+    /**
+     * Full constructor with a CodeBase parameter useful for unmarshaling
+     * RMI-IIOP valuetypes (technically against the intention of an
+     * encapsulation, but necessary due to OMG issue 4795. Used by
+     * ServiceContexts.
+     */
+    public EncapsInputStream(org.omg.CORBA.ORB orb, byte[] data, int size,
+            GIOPVersion version, CodeBase codeBase) {
+        super(orb, ByteBuffer.wrap(data), size, false, version,
+                Message.CDR_ENC_VERSION, BufferManagerFactory
+                        .newBufferManagerRead(BufferManagerFactory.GROW,
+                                Message.CDR_ENC_VERSION, (ORB) orb));
 
-		this.codeBase = codeBase;
+        this.codeBase = codeBase;
 
-		performORBVersionSpecificInit();
-	}
+        performORBVersionSpecificInit();
+    }
 
-	public CDRInputStream dup() {
-		return EncapsInputStreamFactory.newEncapsInputStream(this);
-	}
+    public CDRInputStream dup() {
+        return EncapsInputStreamFactory.newEncapsInputStream(this);
+    }
 
-	protected CodeSetConversion.BTCConverter createCharBTCConverter() {
-		return CodeSetConversion.impl().getBTCConverter(
-				OSFCodeSetRegistry.ISO_8859_1);
-	}
+    protected CodeSetConversion.BTCConverter createCharBTCConverter() {
+        return CodeSetConversion.impl().getBTCConverter(
+                OSFCodeSetRegistry.ISO_8859_1);
+    }
 
-	protected CodeSetConversion.BTCConverter createWCharBTCConverter() {
-		// Wide characters don't exist in GIOP 1.0
-		if (getGIOPVersion().equals(GIOPVersion.V1_0))
-			throw wrapper.wcharDataInGiop10(CompletionStatus.COMPLETED_MAYBE);
+    protected CodeSetConversion.BTCConverter createWCharBTCConverter() {
+        // Wide characters don't exist in GIOP 1.0
+        if (getGIOPVersion().equals(GIOPVersion.V1_0))
+            throw wrapper.wcharDataInGiop10(CompletionStatus.COMPLETED_MAYBE);
 
-		// In GIOP 1.1, we shouldn't have byte order markers. Take the order
-		// of the stream if we don't see them.
-		if (getGIOPVersion().equals(GIOPVersion.V1_1))
-			return CodeSetConversion.impl().getBTCConverter(
-					OSFCodeSetRegistry.UTF_16, isLittleEndian());
+        // In GIOP 1.1, we shouldn't have byte order markers. Take the order
+        // of the stream if we don't see them.
+        if (getGIOPVersion().equals(GIOPVersion.V1_1))
+            return CodeSetConversion.impl().getBTCConverter(
+                    OSFCodeSetRegistry.UTF_16, isLittleEndian());
 
-		// Assume anything else adheres to GIOP 1.2 requirements.
-		//
-		// Our UTF_16 converter will work with byte order markers, and if
-		// they aren't present, it will use the provided endianness.
-		//
-		// With no byte order marker, it's big endian in GIOP 1.2.
-		// formal 00-11-03 15.3.16.
-		return CodeSetConversion.impl().getBTCConverter(
-				OSFCodeSetRegistry.UTF_16, false);
-	}
+        // Assume anything else adheres to GIOP 1.2 requirements.
+        //
+        // Our UTF_16 converter will work with byte order markers, and if
+        // they aren't present, it will use the provided endianness.
+        //
+        // With no byte order marker, it's big endian in GIOP 1.2.
+        // formal 00-11-03 15.3.16.
+        return CodeSetConversion.impl().getBTCConverter(
+                OSFCodeSetRegistry.UTF_16, false);
+    }
 
-	public CodeBase getCodeBase() {
-		return codeBase;
-	}
+    public CodeBase getCodeBase() {
+        return codeBase;
+    }
 
-	private CodeBase codeBase;
+    private CodeBase codeBase;
 }

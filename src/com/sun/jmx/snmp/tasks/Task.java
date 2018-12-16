@@ -43,11 +43,11 @@ package com.sun.jmx.snmp.tasks;
  * @since 1.5
  **/
 public interface Task extends Runnable {
-	/**
-	 * Cancel the submitted task. The implementation of this method is
-	 * Task-implementation dependent. It could involve some message logging, or
-	 * even call the run() method. Note that only one of run() or cancel() will
-	 * be called - and exactly one.
-	 **/
-	public void cancel();
+    /**
+     * Cancel the submitted task. The implementation of this method is
+     * Task-implementation dependent. It could involve some message logging, or
+     * even call the run() method. Note that only one of run() or cancel() will
+     * be called - and exactly one.
+     **/
+    public void cancel();
 }

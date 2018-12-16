@@ -90,57 +90,57 @@ import java.security.*;
 
 public final class SQLPermission extends BasicPermission {
 
-	/**
-	 * Creates a new <code>SQLPermission</code> object with the specified name.
-	 * The name is the symbolic name of the <code>SQLPermission</code>.
-	 *
-	 * @param name
-	 *             the name of this <code>SQLPermission</code> object, which
-	 *             must
-	 *             be either {@code  setLog}, {@code callAbort},
-	 *             {@code setSyncFactory}, {@code deregisterDriver}, or
-	 *             {@code setNetworkTimeout}
-	 * @throws NullPointerException
-	 *                                  if <code>name</code> is
-	 *                                  <code>null</code>.
-	 * @throws IllegalArgumentException
-	 *                                  if <code>name</code> is empty.
-	 * 
-	 */
+    /**
+     * Creates a new <code>SQLPermission</code> object with the specified name.
+     * The name is the symbolic name of the <code>SQLPermission</code>.
+     *
+     * @param name
+     *             the name of this <code>SQLPermission</code> object, which
+     *             must
+     *             be either {@code  setLog}, {@code callAbort},
+     *             {@code setSyncFactory}, {@code deregisterDriver}, or
+     *             {@code setNetworkTimeout}
+     * @throws NullPointerException
+     *                                  if <code>name</code> is
+     *                                  <code>null</code>.
+     * @throws IllegalArgumentException
+     *                                  if <code>name</code> is empty.
+     * 
+     */
 
-	public SQLPermission(String name) {
-		super(name);
-	}
+    public SQLPermission(String name) {
+        super(name);
+    }
 
-	/**
-	 * Creates a new <code>SQLPermission</code> object with the specified name.
-	 * The name is the symbolic name of the <code>SQLPermission</code>; the
-	 * actions <code>String</code> is currently unused and should be
-	 * <code>null</code>.
-	 *
-	 * @param name
-	 *                the name of this <code>SQLPermission</code> object, which
-	 *                must
-	 *                be either {@code  setLog}, {@code callAbort},
-	 *                {@code setSyncFactory}, {@code deregisterDriver}, or
-	 *                {@code setNetworkTimeout}
-	 * @param actions
-	 *                should be <code>null</code>
-	 * @throws NullPointerException
-	 *                                  if <code>name</code> is
-	 *                                  <code>null</code>.
-	 * @throws IllegalArgumentException
-	 *                                  if <code>name</code> is empty.
-	 * 
-	 */
+    /**
+     * Creates a new <code>SQLPermission</code> object with the specified name.
+     * The name is the symbolic name of the <code>SQLPermission</code>; the
+     * actions <code>String</code> is currently unused and should be
+     * <code>null</code>.
+     *
+     * @param name
+     *                the name of this <code>SQLPermission</code> object, which
+     *                must
+     *                be either {@code  setLog}, {@code callAbort},
+     *                {@code setSyncFactory}, {@code deregisterDriver}, or
+     *                {@code setNetworkTimeout}
+     * @param actions
+     *                should be <code>null</code>
+     * @throws NullPointerException
+     *                                  if <code>name</code> is
+     *                                  <code>null</code>.
+     * @throws IllegalArgumentException
+     *                                  if <code>name</code> is empty.
+     * 
+     */
 
-	public SQLPermission(String name, String actions) {
-		super(name, actions);
-	}
+    public SQLPermission(String name, String actions) {
+        super(name, actions);
+    }
 
-	/**
-	 * Private serial version unique ID to ensure serialization compatibility.
-	 */
-	static final long serialVersionUID = -1439323187199563495L;
+    /**
+     * Private serial version unique ID to ensure serialization compatibility.
+     */
+    static final long serialVersionUID = -1439323187199563495L;
 
 }

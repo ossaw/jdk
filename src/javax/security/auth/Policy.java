@@ -140,210 +140,210 @@ import sun.security.util.Debug;
 @Deprecated
 public abstract class Policy {
 
-	private static Policy policy;
-	private final static String AUTH_POLICY = "sun.security.provider.AuthPolicyFile";
+    private static Policy policy;
+    private final static String AUTH_POLICY = "sun.security.provider.AuthPolicyFile";
 
-	private final java.security.AccessControlContext acc = java.security.AccessController
-			.getContext();
+    private final java.security.AccessControlContext acc = java.security.AccessController
+            .getContext();
 
-	// true if a custom (not AUTH_POLICY) system-wide policy object is set
-	private static boolean isCustomPolicy;
+    // true if a custom (not AUTH_POLICY) system-wide policy object is set
+    private static boolean isCustomPolicy;
 
-	/**
-	 * Sole constructor. (For invocation by subclass constructors, typically
-	 * implicit.)
-	 */
-	protected Policy() {}
+    /**
+     * Sole constructor. (For invocation by subclass constructors, typically
+     * implicit.)
+     */
+    protected Policy() {}
 
-	/**
-	 * Returns the installed Policy object. This method first calls
-	 * {@code SecurityManager.checkPermission} with the
-	 * {@code AuthPermission("getPolicy")} permission to ensure the caller has
-	 * permission to get the Policy object.
-	 *
-	 * <p>
-	 *
-	 * @return the installed Policy. The return value cannot be {@code null}.
-	 *
-	 * @exception java.lang.SecurityException
-	 *            if the current thread does not have permission to get the
-	 *            Policy object.
-	 *
-	 * @see #setPolicy
-	 */
-	public static Policy getPolicy() {
-		java.lang.SecurityManager sm = System.getSecurityManager();
-		if (sm != null)
-			sm.checkPermission(new AuthPermission("getPolicy"));
-		return getPolicyNoCheck();
-	}
+    /**
+     * Returns the installed Policy object. This method first calls
+     * {@code SecurityManager.checkPermission} with the
+     * {@code AuthPermission("getPolicy")} permission to ensure the caller has
+     * permission to get the Policy object.
+     *
+     * <p>
+     *
+     * @return the installed Policy. The return value cannot be {@code null}.
+     *
+     * @exception java.lang.SecurityException
+     *            if the current thread does not have permission to get the
+     *            Policy object.
+     *
+     * @see #setPolicy
+     */
+    public static Policy getPolicy() {
+        java.lang.SecurityManager sm = System.getSecurityManager();
+        if (sm != null)
+            sm.checkPermission(new AuthPermission("getPolicy"));
+        return getPolicyNoCheck();
+    }
 
-	/**
-	 * Returns the installed Policy object, skipping the security check.
-	 *
-	 * @return the installed Policy.
-	 *
-	 */
-	static Policy getPolicyNoCheck() {
-		if (policy == null) {
+    /**
+     * Returns the installed Policy object, skipping the security check.
+     *
+     * @return the installed Policy.
+     *
+     */
+    static Policy getPolicyNoCheck() {
+        if (policy == null) {
 
-			synchronized (Policy.class) {
+            synchronized (Policy.class) {
 
-				if (policy == null) {
-					String policy_class = null;
-					policy_class = AccessController.doPrivileged(
-							new PrivilegedAction<String>() {
-								public String run() {
-									return java.security.Security.getProperty(
-											"auth.policy.provider");
-								}
-							});
-					if (policy_class == null) {
-						policy_class = AUTH_POLICY;
-					}
+                if (policy == null) {
+                    String policy_class = null;
+                    policy_class = AccessController.doPrivileged(
+                            new PrivilegedAction<String>() {
+                                public String run() {
+                                    return java.security.Security.getProperty(
+                                            "auth.policy.provider");
+                                }
+                            });
+                    if (policy_class == null) {
+                        policy_class = AUTH_POLICY;
+                    }
 
-					try {
-						final String finalClass = policy_class;
+                    try {
+                        final String finalClass = policy_class;
 
-						Policy untrustedImpl = AccessController.doPrivileged(
-								new PrivilegedExceptionAction<Policy>() {
-									public Policy run()
-											throws ClassNotFoundException,
-											InstantiationException,
-											IllegalAccessException {
-										Class<? extends Policy> implClass = Class
-												.forName(finalClass, false,
-														Thread.currentThread()
-																.getContextClassLoader())
-												.asSubclass(Policy.class);
-										return implClass.newInstance();
-									}
-								});
-						AccessController.doPrivileged(
-								new PrivilegedExceptionAction<Void>() {
-									public Void run() {
-										setPolicy(untrustedImpl);
-										isCustomPolicy = !finalClass.equals(
-												AUTH_POLICY);
-										return null;
-									}
-								}, Objects.requireNonNull(untrustedImpl.acc));
-					} catch (Exception e) {
-						throw new SecurityException(
-								sun.security.util.ResourcesMgr.getString(
-										"unable.to.instantiate.Subject.based.policy"));
-					}
-				}
-			}
-		}
-		return policy;
-	}
+                        Policy untrustedImpl = AccessController.doPrivileged(
+                                new PrivilegedExceptionAction<Policy>() {
+                                    public Policy run()
+                                            throws ClassNotFoundException,
+                                            InstantiationException,
+                                            IllegalAccessException {
+                                        Class<? extends Policy> implClass = Class
+                                                .forName(finalClass, false,
+                                                        Thread.currentThread()
+                                                                .getContextClassLoader())
+                                                .asSubclass(Policy.class);
+                                        return implClass.newInstance();
+                                    }
+                                });
+                        AccessController.doPrivileged(
+                                new PrivilegedExceptionAction<Void>() {
+                                    public Void run() {
+                                        setPolicy(untrustedImpl);
+                                        isCustomPolicy = !finalClass.equals(
+                                                AUTH_POLICY);
+                                        return null;
+                                    }
+                                }, Objects.requireNonNull(untrustedImpl.acc));
+                    } catch (Exception e) {
+                        throw new SecurityException(
+                                sun.security.util.ResourcesMgr.getString(
+                                        "unable.to.instantiate.Subject.based.policy"));
+                    }
+                }
+            }
+        }
+        return policy;
+    }
 
-	/**
-	 * Sets the system-wide Policy object. This method first calls
-	 * {@code SecurityManager.checkPermission} with the
-	 * {@code AuthPermission("setPolicy")} permission to ensure the caller has
-	 * permission to set the Policy.
-	 *
-	 * <p>
-	 *
-	 * @param policy
-	 *               the new system Policy object.
-	 *
-	 * @exception java.lang.SecurityException
-	 *            if the current thread does not have permission to set the
-	 *            Policy.
-	 *
-	 * @see #getPolicy
-	 */
-	public static void setPolicy(Policy policy) {
-		java.lang.SecurityManager sm = System.getSecurityManager();
-		if (sm != null)
-			sm.checkPermission(new AuthPermission("setPolicy"));
-		Policy.policy = policy;
-		// all non-null policy objects are assumed to be custom
-		isCustomPolicy = policy != null ? true : false;
-	}
+    /**
+     * Sets the system-wide Policy object. This method first calls
+     * {@code SecurityManager.checkPermission} with the
+     * {@code AuthPermission("setPolicy")} permission to ensure the caller has
+     * permission to set the Policy.
+     *
+     * <p>
+     *
+     * @param policy
+     *               the new system Policy object.
+     *
+     * @exception java.lang.SecurityException
+     *            if the current thread does not have permission to set the
+     *            Policy.
+     *
+     * @see #getPolicy
+     */
+    public static void setPolicy(Policy policy) {
+        java.lang.SecurityManager sm = System.getSecurityManager();
+        if (sm != null)
+            sm.checkPermission(new AuthPermission("setPolicy"));
+        Policy.policy = policy;
+        // all non-null policy objects are assumed to be custom
+        isCustomPolicy = policy != null ? true : false;
+    }
 
-	/**
-	 * Returns true if a custom (not AUTH_POLICY) system-wide policy object has
-	 * been set or installed. This method is called by SubjectDomainCombiner to
-	 * provide backwards compatibility for developers that provide their own
-	 * javax.security.auth.Policy implementations.
-	 *
-	 * @return true if a custom (not AUTH_POLICY) system-wide policy object has
-	 *         been set; false otherwise
-	 */
-	static boolean isCustomPolicySet(Debug debug) {
-		if (policy != null) {
-			if (debug != null && isCustomPolicy) {
-				debug.println("Providing backwards compatibility for "
-						+ "javax.security.auth.policy implementation: " + policy
-								.toString());
-			}
-			return isCustomPolicy;
-		}
-		// check if custom policy has been set using auth.policy.provider prop
-		String policyClass = java.security.AccessController.doPrivileged(
-				new java.security.PrivilegedAction<String>() {
-					public String run() {
-						return Security.getProperty("auth.policy.provider");
-					}
-				});
-		if (policyClass != null && !policyClass.equals(AUTH_POLICY)) {
-			if (debug != null) {
-				debug.println("Providing backwards compatibility for "
-						+ "javax.security.auth.policy implementation: "
-						+ policyClass);
-			}
-			return true;
-		}
-		return false;
-	}
+    /**
+     * Returns true if a custom (not AUTH_POLICY) system-wide policy object has
+     * been set or installed. This method is called by SubjectDomainCombiner to
+     * provide backwards compatibility for developers that provide their own
+     * javax.security.auth.Policy implementations.
+     *
+     * @return true if a custom (not AUTH_POLICY) system-wide policy object has
+     *         been set; false otherwise
+     */
+    static boolean isCustomPolicySet(Debug debug) {
+        if (policy != null) {
+            if (debug != null && isCustomPolicy) {
+                debug.println("Providing backwards compatibility for "
+                        + "javax.security.auth.policy implementation: " + policy
+                                .toString());
+            }
+            return isCustomPolicy;
+        }
+        // check if custom policy has been set using auth.policy.provider prop
+        String policyClass = java.security.AccessController.doPrivileged(
+                new java.security.PrivilegedAction<String>() {
+                    public String run() {
+                        return Security.getProperty("auth.policy.provider");
+                    }
+                });
+        if (policyClass != null && !policyClass.equals(AUTH_POLICY)) {
+            if (debug != null) {
+                debug.println("Providing backwards compatibility for "
+                        + "javax.security.auth.policy implementation: "
+                        + policyClass);
+            }
+            return true;
+        }
+        return false;
+    }
 
-	/**
-	 * Retrieve the Permissions granted to the Principals associated with the
-	 * specified {@code CodeSource}.
-	 *
-	 * <p>
-	 *
-	 * @param subject
-	 *                the {@code Subject} whose associated Principals, in
-	 *                conjunction with the provided {@code CodeSource},
-	 *                determines
-	 *                the Permissions returned by this method. This parameter
-	 *                may be
-	 *                {@code null}.
-	 *                <p>
-	 *
-	 * @param cs
-	 *                the code specified by its {@code CodeSource} that
-	 *                determines,
-	 *                in conjunction with the provided {@code Subject}, the
-	 *                Permissions returned by this method. This parameter may be
-	 *                {@code null}.
-	 *
-	 * @return the Collection of Permissions granted to all the {@code Subject}
-	 *         and code specified in the provided <i>subject</i> and <i>cs</i>
-	 *         parameters.
-	 */
-	public abstract java.security.PermissionCollection getPermissions(
-			Subject subject, java.security.CodeSource cs);
+    /**
+     * Retrieve the Permissions granted to the Principals associated with the
+     * specified {@code CodeSource}.
+     *
+     * <p>
+     *
+     * @param subject
+     *                the {@code Subject} whose associated Principals, in
+     *                conjunction with the provided {@code CodeSource},
+     *                determines
+     *                the Permissions returned by this method. This parameter
+     *                may be
+     *                {@code null}.
+     *                <p>
+     *
+     * @param cs
+     *                the code specified by its {@code CodeSource} that
+     *                determines,
+     *                in conjunction with the provided {@code Subject}, the
+     *                Permissions returned by this method. This parameter may be
+     *                {@code null}.
+     *
+     * @return the Collection of Permissions granted to all the {@code Subject}
+     *         and code specified in the provided <i>subject</i> and <i>cs</i>
+     *         parameters.
+     */
+    public abstract java.security.PermissionCollection getPermissions(
+            Subject subject, java.security.CodeSource cs);
 
-	/**
-	 * Refresh and reload the Policy.
-	 *
-	 * <p>
-	 * This method causes this object to refresh/reload its current Policy. This
-	 * is implementation-dependent. For example, if the Policy object is stored
-	 * in a file, calling {@code refresh} will cause the file to be re-read.
-	 *
-	 * <p>
-	 *
-	 * @exception SecurityException
-	 *                              if the caller does not have permission to
-	 *                              refresh the
-	 *                              Policy.
-	 */
-	public abstract void refresh();
+    /**
+     * Refresh and reload the Policy.
+     *
+     * <p>
+     * This method causes this object to refresh/reload its current Policy. This
+     * is implementation-dependent. For example, if the Policy object is stored
+     * in a file, calling {@code refresh} will cause the file to be re-read.
+     *
+     * <p>
+     *
+     * @exception SecurityException
+     *                              if the caller does not have permission to
+     *                              refresh the
+     *                              Policy.
+     */
+    public abstract void refresh();
 }

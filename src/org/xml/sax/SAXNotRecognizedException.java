@@ -31,25 +31,25 @@ package org.xml.sax;
  */
 public class SAXNotRecognizedException extends SAXException {
 
-	/**
-	 * Default constructor.
-	 */
-	public SAXNotRecognizedException() {
-		super();
-	}
+    /**
+     * Default constructor.
+     */
+    public SAXNotRecognizedException() {
+        super();
+    }
 
-	/**
-	 * Construct a new exception with the given message.
-	 *
-	 * @param message
-	 *                The text message of the exception.
-	 */
-	public SAXNotRecognizedException(String message) {
-		super(message);
-	}
+    /**
+     * Construct a new exception with the given message.
+     *
+     * @param message
+     *                The text message of the exception.
+     */
+    public SAXNotRecognizedException(String message) {
+        super(message);
+    }
 
-	// Added serialVersionUID to preserve binary compatibility
-	static final long serialVersionUID = 5440506620509557213L;
+    // Added serialVersionUID to preserve binary compatibility
+    static final long serialVersionUID = 5440506620509557213L;
 }
 
 // end of SAXNotRecognizedException.java

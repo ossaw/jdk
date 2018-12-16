@@ -17,16 +17,16 @@ package javax.tools;
  * @since 1.6
  */
 public interface DiagnosticListener<S> {
-	/**
-	 * Invoked when a problem is found.
-	 *
-	 * @param diagnostic
-	 *                   a diagnostic representing the problem that was found
-	 * @throws NullPointerException
-	 *                              if the diagnostic argument is {@code null}
-	 *                              and the
-	 *                              implementation cannot handle {@code null}
-	 *                              arguments
-	 */
-	void report(Diagnostic<? extends S> diagnostic);
+    /**
+     * Invoked when a problem is found.
+     *
+     * @param diagnostic
+     *                   a diagnostic representing the problem that was found
+     * @throws NullPointerException
+     *                              if the diagnostic argument is {@code null}
+     *                              and the
+     *                              implementation cannot handle {@code null}
+     *                              arguments
+     */
+    void report(Diagnostic<? extends S> diagnostic);
 }

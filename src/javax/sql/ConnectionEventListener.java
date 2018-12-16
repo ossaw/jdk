@@ -29,28 +29,28 @@ package javax.sql;
 
 public interface ConnectionEventListener extends java.util.EventListener {
 
-	/**
-	 * Notifies this <code>ConnectionEventListener</code> that the application
-	 * has called the method <code>close</code> on its representation of a
-	 * pooled connection.
-	 *
-	 * @param event
-	 *              an event object describing the source of the event
-	 */
-	void connectionClosed(ConnectionEvent event);
+    /**
+     * Notifies this <code>ConnectionEventListener</code> that the application
+     * has called the method <code>close</code> on its representation of a
+     * pooled connection.
+     *
+     * @param event
+     *              an event object describing the source of the event
+     */
+    void connectionClosed(ConnectionEvent event);
 
-	/**
-	 * Notifies this <code>ConnectionEventListener</code> that a fatal error has
-	 * occurred and the pooled connection can no longer be used. The driver
-	 * makes this notification just before it throws the application the
-	 * <code>SQLException</code> contained in the given
-	 * <code>ConnectionEvent</code> object.
-	 *
-	 * @param event
-	 *              an event object describing the source of the event and
-	 *              containing the <code>SQLException</code> that the driver is
-	 *              about to throw
-	 */
-	void connectionErrorOccurred(ConnectionEvent event);
+    /**
+     * Notifies this <code>ConnectionEventListener</code> that a fatal error has
+     * occurred and the pooled connection can no longer be used. The driver
+     * makes this notification just before it throws the application the
+     * <code>SQLException</code> contained in the given
+     * <code>ConnectionEvent</code> object.
+     *
+     * @param event
+     *              an event object describing the source of the event and
+     *              containing the <code>SQLException</code> that the driver is
+     *              about to throw
+     */
+    void connectionErrorOccurred(ConnectionEvent event);
 
 }

@@ -22,48 +22,48 @@ import java.util.EventListenerProxy;
  * @since 1.4
  */
 public class VetoableChangeListenerProxy extends
-		EventListenerProxy<VetoableChangeListener> implements
-		VetoableChangeListener {
+        EventListenerProxy<VetoableChangeListener> implements
+        VetoableChangeListener {
 
-	private final String propertyName;
+    private final String propertyName;
 
-	/**
-	 * Constructor which binds the {@code VetoableChangeListener} to a specific
-	 * property.
-	 *
-	 * @param propertyName
-	 *                     the name of the property to listen on
-	 * @param listener
-	 *                     the listener object
-	 */
-	public VetoableChangeListenerProxy(String propertyName,
-			VetoableChangeListener listener) {
-		super(listener);
-		this.propertyName = propertyName;
-	}
+    /**
+     * Constructor which binds the {@code VetoableChangeListener} to a specific
+     * property.
+     *
+     * @param propertyName
+     *                     the name of the property to listen on
+     * @param listener
+     *                     the listener object
+     */
+    public VetoableChangeListenerProxy(String propertyName,
+            VetoableChangeListener listener) {
+        super(listener);
+        this.propertyName = propertyName;
+    }
 
-	/**
-	 * Forwards the property change event to the listener delegate.
-	 *
-	 * @param event
-	 *              the property change event
-	 *
-	 * @exception PropertyVetoException
-	 *                                  if the recipient wishes the property
-	 *                                  change to be rolled
-	 *                                  back
-	 */
-	public void vetoableChange(PropertyChangeEvent event)
-			throws PropertyVetoException {
-		getListener().vetoableChange(event);
-	}
+    /**
+     * Forwards the property change event to the listener delegate.
+     *
+     * @param event
+     *              the property change event
+     *
+     * @exception PropertyVetoException
+     *                                  if the recipient wishes the property
+     *                                  change to be rolled
+     *                                  back
+     */
+    public void vetoableChange(PropertyChangeEvent event)
+            throws PropertyVetoException {
+        getListener().vetoableChange(event);
+    }
 
-	/**
-	 * Returns the name of the named property associated with the listener.
-	 *
-	 * @return the name of the named property associated with the listener
-	 */
-	public String getPropertyName() {
-		return this.propertyName;
-	}
+    /**
+     * Returns the name of the named property associated with the listener.
+     *
+     * @return the name of the named property associated with the listener
+     */
+    public String getPropertyName() {
+        return this.propertyName;
+    }
 }

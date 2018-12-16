@@ -16,26 +16,26 @@ package javax.security.auth.login;
  */
 public class FailedLoginException extends LoginException {
 
-	private static final long serialVersionUID = 802556922354616286L;
+    private static final long serialVersionUID = 802556922354616286L;
 
-	/**
-	 * Constructs a FailedLoginException with no detail message. A detail
-	 * message is a String that describes this particular exception.
-	 */
-	public FailedLoginException() {
-		super();
-	}
+    /**
+     * Constructs a FailedLoginException with no detail message. A detail
+     * message is a String that describes this particular exception.
+     */
+    public FailedLoginException() {
+        super();
+    }
 
-	/**
-	 * Constructs a FailedLoginException with the specified detail message. A
-	 * detail message is a String that describes this particular exception.
-	 *
-	 * <p>
-	 *
-	 * @param msg
-	 *            the detail message.
-	 */
-	public FailedLoginException(String msg) {
-		super(msg);
-	}
+    /**
+     * Constructs a FailedLoginException with the specified detail message. A
+     * detail message is a String that describes this particular exception.
+     *
+     * <p>
+     *
+     * @param msg
+     *            the detail message.
+     */
+    public FailedLoginException(String msg) {
+        super(msg);
+    }
 }

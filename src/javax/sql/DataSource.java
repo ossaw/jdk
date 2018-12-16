@@ -53,42 +53,42 @@ import java.sql.Wrapper;
 
 public interface DataSource extends CommonDataSource, Wrapper {
 
-	/**
-	 * <p>
-	 * Attempts to establish a connection with the data source that this
-	 * {@code DataSource} object represents.
-	 *
-	 * @return a connection to the data source
-	 * @exception SQLException
-	 *                         if a database access error occurs
-	 * @throws java.sql.SQLTimeoutException
-	 *         when the driver has determined that the timeout value
-	 *         specified by the {@code setLoginTimeout} method has been
-	 *         exceeded and has at least tried to cancel the current
-	 *         database connection attempt
-	 */
-	Connection getConnection() throws SQLException;
+    /**
+     * <p>
+     * Attempts to establish a connection with the data source that this
+     * {@code DataSource} object represents.
+     *
+     * @return a connection to the data source
+     * @exception SQLException
+     *                         if a database access error occurs
+     * @throws java.sql.SQLTimeoutException
+     *         when the driver has determined that the timeout value
+     *         specified by the {@code setLoginTimeout} method has been
+     *         exceeded and has at least tried to cancel the current
+     *         database connection attempt
+     */
+    Connection getConnection() throws SQLException;
 
-	/**
-	 * <p>
-	 * Attempts to establish a connection with the data source that this
-	 * {@code DataSource} object represents.
-	 *
-	 * @param username
-	 *                 the database user on whose behalf the connection is being
-	 *                 made
-	 * @param password
-	 *                 the user's password
-	 * @return a connection to the data source
-	 * @exception SQLException
-	 *                         if a database access error occurs
-	 * @throws java.sql.SQLTimeoutException
-	 *         when the driver has determined that the timeout value
-	 *         specified by the {@code setLoginTimeout} method has been
-	 *         exceeded and has at least tried to cancel the current
-	 *         database connection attempt
-	 * @since 1.4
-	 */
-	Connection getConnection(String username, String password)
-			throws SQLException;
+    /**
+     * <p>
+     * Attempts to establish a connection with the data source that this
+     * {@code DataSource} object represents.
+     *
+     * @param username
+     *                 the database user on whose behalf the connection is being
+     *                 made
+     * @param password
+     *                 the user's password
+     * @return a connection to the data source
+     * @exception SQLException
+     *                         if a database access error occurs
+     * @throws java.sql.SQLTimeoutException
+     *         when the driver has determined that the timeout value
+     *         specified by the {@code setLoginTimeout} method has been
+     *         exceeded and has at least tried to cancel the current
+     *         database connection attempt
+     * @since 1.4
+     */
+    Connection getConnection(String username, String password)
+            throws SQLException;
 }

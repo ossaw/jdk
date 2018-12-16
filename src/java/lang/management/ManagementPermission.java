@@ -63,51 +63,51 @@ package java.lang.management;
  */
 
 public final class ManagementPermission extends java.security.BasicPermission {
-	private static final long serialVersionUID = 1897496590799378737L;
+    private static final long serialVersionUID = 1897496590799378737L;
 
-	/**
-	 * Constructs a ManagementPermission with the specified name.
-	 *
-	 * @param name
-	 *             Permission name. Must be either "monitor" or "control".
-	 *
-	 * @throws NullPointerException
-	 *                                  if <code>name</code> is
-	 *                                  <code>null</code>.
-	 * @throws IllegalArgumentException
-	 *                                  if <code>name</code> is empty or
-	 *                                  invalid.
-	 */
-	public ManagementPermission(String name) {
-		super(name);
-		if (!name.equals("control") && !name.equals("monitor")) {
-			throw new IllegalArgumentException("name: " + name);
-		}
-	}
+    /**
+     * Constructs a ManagementPermission with the specified name.
+     *
+     * @param name
+     *             Permission name. Must be either "monitor" or "control".
+     *
+     * @throws NullPointerException
+     *                                  if <code>name</code> is
+     *                                  <code>null</code>.
+     * @throws IllegalArgumentException
+     *                                  if <code>name</code> is empty or
+     *                                  invalid.
+     */
+    public ManagementPermission(String name) {
+        super(name);
+        if (!name.equals("control") && !name.equals("monitor")) {
+            throw new IllegalArgumentException("name: " + name);
+        }
+    }
 
-	/**
-	 * Constructs a new ManagementPermission object.
-	 *
-	 * @param name
-	 *                Permission name. Must be either "monitor" or "control".
-	 * @param actions
-	 *                Must be either null or the empty string.
-	 *
-	 * @throws NullPointerException
-	 *                                  if <code>name</code> is
-	 *                                  <code>null</code>.
-	 * @throws IllegalArgumentException
-	 *                                  if <code>name</code> is empty or if
-	 *                                  arguments are invalid.
-	 */
-	public ManagementPermission(String name, String actions)
-			throws IllegalArgumentException {
-		super(name);
-		if (!name.equals("control") && !name.equals("monitor")) {
-			throw new IllegalArgumentException("name: " + name);
-		}
-		if (actions != null && actions.length() > 0) {
-			throw new IllegalArgumentException("actions: " + actions);
-		}
-	}
+    /**
+     * Constructs a new ManagementPermission object.
+     *
+     * @param name
+     *                Permission name. Must be either "monitor" or "control".
+     * @param actions
+     *                Must be either null or the empty string.
+     *
+     * @throws NullPointerException
+     *                                  if <code>name</code> is
+     *                                  <code>null</code>.
+     * @throws IllegalArgumentException
+     *                                  if <code>name</code> is empty or if
+     *                                  arguments are invalid.
+     */
+    public ManagementPermission(String name, String actions)
+            throws IllegalArgumentException {
+        super(name);
+        if (!name.equals("control") && !name.equals("monitor")) {
+            throw new IllegalArgumentException("name: " + name);
+        }
+        if (actions != null && actions.length() > 0) {
+            throw new IllegalArgumentException("actions: " + actions);
+        }
+    }
 }

@@ -28,11 +28,11 @@ import java.util.List;
  */
 @jdk.Exported
 public interface TryTree extends StatementTree {
-	BlockTree getBlock();
+    BlockTree getBlock();
 
-	List<? extends CatchTree> getCatches();
+    List<? extends CatchTree> getCatches();
 
-	BlockTree getFinallyBlock();
+    BlockTree getFinallyBlock();
 
-	List<? extends Tree> getResources();
+    List<? extends Tree> getResources();
 }

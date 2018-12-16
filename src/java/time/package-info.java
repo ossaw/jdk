@@ -268,8 +268,8 @@
  * LocalDate customerBirthday = customer.loadBirthdayFromDatabase();
  * LocalDate today = LocalDate.now();
  * if (customerBirthday.equals(today)) {
- * 	LocalDate specialOfferExpiryDate = today.plusWeeks(2).with(next(FRIDAY));
- * 	customer.sendBirthdaySpecialOffer(specialOfferExpiryDate);
+ *     LocalDate specialOfferExpiryDate = today.plusWeeks(2).with(next(FRIDAY));
+ *     customer.sendBirthdaySpecialOffer(specialOfferExpiryDate);
  * }
  *
  * </pre>

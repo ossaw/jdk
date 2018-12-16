@@ -39,115 +39,115 @@ import javax.print.attribute.Attribute;
  * @author Alan Kaminsky
  */
 public class ReferenceUriSchemesSupported extends EnumSyntax implements
-		Attribute {
+        Attribute {
 
-	private static final long serialVersionUID = -8989076942813442805L;
+    private static final long serialVersionUID = -8989076942813442805L;
 
-	/**
-	 * File Transfer Protocol (FTP).
-	 */
-	public static final ReferenceUriSchemesSupported FTP = new ReferenceUriSchemesSupported(
-			0);
+    /**
+     * File Transfer Protocol (FTP).
+     */
+    public static final ReferenceUriSchemesSupported FTP = new ReferenceUriSchemesSupported(
+            0);
 
-	/**
-	 * HyperText Transfer Protocol (HTTP).
-	 */
-	public static final ReferenceUriSchemesSupported HTTP = new ReferenceUriSchemesSupported(
-			1);
+    /**
+     * HyperText Transfer Protocol (HTTP).
+     */
+    public static final ReferenceUriSchemesSupported HTTP = new ReferenceUriSchemesSupported(
+            1);
 
-	/**
-	 * Secure HyperText Transfer Protocol (HTTPS).
-	 */
-	public static final ReferenceUriSchemesSupported HTTPS = new ReferenceUriSchemesSupported(
-			2);
+    /**
+     * Secure HyperText Transfer Protocol (HTTPS).
+     */
+    public static final ReferenceUriSchemesSupported HTTPS = new ReferenceUriSchemesSupported(
+            2);
 
-	/**
-	 * Gopher Protocol.
-	 */
-	public static final ReferenceUriSchemesSupported GOPHER = new ReferenceUriSchemesSupported(
-			3);
+    /**
+     * Gopher Protocol.
+     */
+    public static final ReferenceUriSchemesSupported GOPHER = new ReferenceUriSchemesSupported(
+            3);
 
-	/**
-	 * USENET news.
-	 */
-	public static final ReferenceUriSchemesSupported NEWS = new ReferenceUriSchemesSupported(
-			4);
+    /**
+     * USENET news.
+     */
+    public static final ReferenceUriSchemesSupported NEWS = new ReferenceUriSchemesSupported(
+            4);
 
-	/**
-	 * USENET news using Network News Transfer Protocol (NNTP).
-	 */
-	public static final ReferenceUriSchemesSupported NNTP = new ReferenceUriSchemesSupported(
-			5);
+    /**
+     * USENET news using Network News Transfer Protocol (NNTP).
+     */
+    public static final ReferenceUriSchemesSupported NNTP = new ReferenceUriSchemesSupported(
+            5);
 
-	/**
-	 * Wide Area Information Server (WAIS) protocol.
-	 */
-	public static final ReferenceUriSchemesSupported WAIS = new ReferenceUriSchemesSupported(
-			6);
+    /**
+     * Wide Area Information Server (WAIS) protocol.
+     */
+    public static final ReferenceUriSchemesSupported WAIS = new ReferenceUriSchemesSupported(
+            6);
 
-	/**
-	 * Host-specific file names.
-	 */
-	public static final ReferenceUriSchemesSupported FILE = new ReferenceUriSchemesSupported(
-			7);
+    /**
+     * Host-specific file names.
+     */
+    public static final ReferenceUriSchemesSupported FILE = new ReferenceUriSchemesSupported(
+            7);
 
-	/**
-	 * Construct a new reference URI scheme enumeration value with the given
-	 * integer value.
-	 *
-	 * @param value
-	 *              Integer value.
-	 */
-	protected ReferenceUriSchemesSupported(int value) {
-		super(value);
-	}
+    /**
+     * Construct a new reference URI scheme enumeration value with the given
+     * integer value.
+     *
+     * @param value
+     *              Integer value.
+     */
+    protected ReferenceUriSchemesSupported(int value) {
+        super(value);
+    }
 
-	private static final String[] myStringTable = { "ftp", "http", "https",
-			"gopher", "news", "nntp", "wais", "file", };
+    private static final String[] myStringTable = { "ftp", "http", "https",
+            "gopher", "news", "nntp", "wais", "file", };
 
-	private static final ReferenceUriSchemesSupported[] myEnumValueTable = {
-			FTP, HTTP, HTTPS, GOPHER, NEWS, NNTP, WAIS, FILE, };
+    private static final ReferenceUriSchemesSupported[] myEnumValueTable = {
+            FTP, HTTP, HTTPS, GOPHER, NEWS, NNTP, WAIS, FILE, };
 
-	/**
-	 * Returns the string table for class ReferenceUriSchemesSupported.
-	 */
-	protected String[] getStringTable() {
-		return myStringTable.clone();
-	}
+    /**
+     * Returns the string table for class ReferenceUriSchemesSupported.
+     */
+    protected String[] getStringTable() {
+        return myStringTable.clone();
+    }
 
-	/**
-	 * Returns the enumeration value table for class
-	 * ReferenceUriSchemesSupported.
-	 */
-	protected EnumSyntax[] getEnumValueTable() {
-		return (EnumSyntax[]) myEnumValueTable.clone();
-	}
+    /**
+     * Returns the enumeration value table for class
+     * ReferenceUriSchemesSupported.
+     */
+    protected EnumSyntax[] getEnumValueTable() {
+        return (EnumSyntax[]) myEnumValueTable.clone();
+    }
 
-	/**
-	 * Get the printing attribute class which is to be used as the "category"
-	 * for this printing attribute value.
-	 * <P>
-	 * For class ReferenceUriSchemesSupported and any vendor-defined subclasses,
-	 * the category is class ReferenceUriSchemesSupported itself.
-	 *
-	 * @return Printing attribute class (category), an instance of class
-	 *         {@link java.lang.Class java.lang.Class}.
-	 */
-	public final Class<? extends Attribute> getCategory() {
-		return ReferenceUriSchemesSupported.class;
-	}
+    /**
+     * Get the printing attribute class which is to be used as the "category"
+     * for this printing attribute value.
+     * <P>
+     * For class ReferenceUriSchemesSupported and any vendor-defined subclasses,
+     * the category is class ReferenceUriSchemesSupported itself.
+     *
+     * @return Printing attribute class (category), an instance of class
+     *         {@link java.lang.Class java.lang.Class}.
+     */
+    public final Class<? extends Attribute> getCategory() {
+        return ReferenceUriSchemesSupported.class;
+    }
 
-	/**
-	 * Get the name of the category of which this attribute value is an
-	 * instance.
-	 * <P>
-	 * For class ReferenceUriSchemesSupported and any vendor-defined subclasses,
-	 * the category name is <CODE>"reference-uri-schemes-supported"</CODE>.
-	 *
-	 * @return Attribute category name.
-	 */
-	public final String getName() {
-		return "reference-uri-schemes-supported";
-	}
+    /**
+     * Get the name of the category of which this attribute value is an
+     * instance.
+     * <P>
+     * For class ReferenceUriSchemesSupported and any vendor-defined subclasses,
+     * the category name is <CODE>"reference-uri-schemes-supported"</CODE>.
+     *
+     * @return Attribute category name.
+     */
+    public final String getName() {
+        return "reference-uri-schemes-supported";
+    }
 
 }

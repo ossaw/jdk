@@ -29,20 +29,20 @@ import javax.lang.model.element.Name;
  */
 @jdk.Exported
 public interface TypeParameterTree extends Tree {
-	Name getName();
+    Name getName();
 
-	List<? extends Tree> getBounds();
+    List<? extends Tree> getBounds();
 
-	/**
-	 * Return annotations on the type parameter declaration.
-	 *
-	 * Annotations need Target meta-annotations of
-	 * {@link java.lang.annotation.ElementType#TYPE_PARAMETER} or
-	 * {@link java.lang.annotation.ElementType#TYPE_USE} to appear in this
-	 * position.
-	 *
-	 * @return annotations on the type parameter declaration
-	 * @since 1.8
-	 */
-	List<? extends AnnotationTree> getAnnotations();
+    /**
+     * Return annotations on the type parameter declaration.
+     *
+     * Annotations need Target meta-annotations of
+     * {@link java.lang.annotation.ElementType#TYPE_PARAMETER} or
+     * {@link java.lang.annotation.ElementType#TYPE_USE} to appear in this
+     * position.
+     *
+     * @return annotations on the type parameter declaration
+     * @since 1.8
+     */
+    List<? extends AnnotationTree> getAnnotations();
 }

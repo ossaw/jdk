@@ -35,9 +35,9 @@ import javax.xml.transform.Source;
 @Retention(RUNTIME)
 @Target({ FIELD, METHOD, PARAMETER })
 public @interface XmlMimeType {
-	/**
-	 * The textual representation of the MIME type, such as "image/jpeg"
-	 * "image/*", "text/xml; charset=iso-8859-1" and so on.
-	 */
-	String value();
+    /**
+     * The textual representation of the MIME type, such as "image/jpeg"
+     * "image/*", "text/xml; charset=iso-8859-1" and so on.
+     */
+    String value();
 }

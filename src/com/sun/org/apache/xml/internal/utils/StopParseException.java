@@ -29,12 +29,12 @@ package com.sun.org.apache.xml.internal.utils;
  * @xsl.usage internal
  */
 public class StopParseException extends org.xml.sax.SAXException {
-	static final long serialVersionUID = 210102479218258961L;
+    static final long serialVersionUID = 210102479218258961L;
 
-	/**
-	 * Constructor StopParseException.
-	 */
-	StopParseException() {
-		super("Stylesheet PIs found, stop the parse");
-	}
+    /**
+     * Constructor StopParseException.
+     */
+    StopParseException() {
+        super("Stylesheet PIs found, stop the parse");
+    }
 }

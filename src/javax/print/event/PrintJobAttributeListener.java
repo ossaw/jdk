@@ -13,15 +13,15 @@ package javax.print.event;
  */
 public interface PrintJobAttributeListener {
 
-	/**
-	 * Notifies the listener of a change in some print job attributes. One
-	 * example of an occurrence triggering this event is if the
-	 * {@link javax.print.attribute.standard.JobState JobState} attribute
-	 * changed from <code>PROCESSING</code> to <code>PROCESSING_STOPPED</code>.
-	 * 
-	 * @param pjae
-	 *             the event.
-	 */
-	public void attributeUpdate(PrintJobAttributeEvent pjae);
+    /**
+     * Notifies the listener of a change in some print job attributes. One
+     * example of an occurrence triggering this event is if the
+     * {@link javax.print.attribute.standard.JobState JobState} attribute
+     * changed from <code>PROCESSING</code> to <code>PROCESSING_STOPPED</code>.
+     * 
+     * @param pjae
+     *             the event.
+     */
+    public void attributeUpdate(PrintJobAttributeEvent pjae);
 
 }

@@ -25,11 +25,11 @@ import javax.swing.plaf.basic.BasicProgressBarUI;
  * @author Michael C. Albers
  */
 public class MotifProgressBarUI extends BasicProgressBarUI {
-	/**
-	 * Creates the ProgressBar's UI
-	 */
-	public static ComponentUI createUI(JComponent x) {
-		return new MotifProgressBarUI();
-	}
+    /**
+     * Creates the ProgressBar's UI
+     */
+    public static ComponentUI createUI(JComponent x) {
+        return new MotifProgressBarUI();
+    }
 
 }

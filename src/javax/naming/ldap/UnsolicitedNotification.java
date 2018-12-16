@@ -25,21 +25,21 @@ import javax.naming.NamingException;
  */
 
 public interface UnsolicitedNotification extends ExtendedResponse, HasControls {
-	/**
-	 * Retrieves the referral(s) sent by the server.
-	 *
-	 * @return A possibly null array of referrals, each of which is represented
-	 *         by a URL string. If null, no referral was sent by the server.
-	 */
-	public String[] getReferrals();
+    /**
+     * Retrieves the referral(s) sent by the server.
+     *
+     * @return A possibly null array of referrals, each of which is represented
+     *         by a URL string. If null, no referral was sent by the server.
+     */
+    public String[] getReferrals();
 
-	/**
-	 * Retrieves the exception as constructed using information sent by the
-	 * server.
-	 * 
-	 * @return A possibly null exception as constructed using information sent
-	 *         by the server. If null, a "success" status was indicated by the
-	 *         server.
-	 */
-	public NamingException getException();
+    /**
+     * Retrieves the exception as constructed using information sent by the
+     * server.
+     * 
+     * @return A possibly null exception as constructed using information sent
+     *         by the server. If null, a "success" status was indicated by the
+     *         server.
+     */
+    public NamingException getException();
 }

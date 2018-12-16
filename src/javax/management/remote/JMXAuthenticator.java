@@ -36,27 +36,27 @@ import javax.security.auth.Subject;
  */
 public interface JMXAuthenticator {
 
-	/**
-	 * <p>
-	 * Authenticates the <code>MBeanServerConnection</code> client with the
-	 * given client credentials.
-	 * </p>
-	 *
-	 * @param credentials
-	 *                    the user-defined credentials to be passed into the
-	 *                    server in
-	 *                    order to authenticate the user before creating the
-	 *                    <code>MBeanServerConnection</code>. The actual type of
-	 *                    this
-	 *                    parameter, and whether it can be null, depends on the
-	 *                    connector.
-	 *
-	 * @return the authenticated subject containing its associated principals.
-	 *
-	 * @exception SecurityException
-	 *                              if the server cannot authenticate the user
-	 *                              with the
-	 *                              provided credentials.
-	 */
-	public Subject authenticate(Object credentials);
+    /**
+     * <p>
+     * Authenticates the <code>MBeanServerConnection</code> client with the
+     * given client credentials.
+     * </p>
+     *
+     * @param credentials
+     *                    the user-defined credentials to be passed into the
+     *                    server in
+     *                    order to authenticate the user before creating the
+     *                    <code>MBeanServerConnection</code>. The actual type of
+     *                    this
+     *                    parameter, and whether it can be null, depends on the
+     *                    connector.
+     *
+     * @return the authenticated subject containing its associated principals.
+     *
+     * @exception SecurityException
+     *                              if the server cannot authenticate the user
+     *                              with the
+     *                              provided credentials.
+     */
+    public Subject authenticate(Object credentials);
 }

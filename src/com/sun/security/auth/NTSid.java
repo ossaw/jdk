@@ -32,111 +32,111 @@ import java.security.Principal;
 @jdk.Exported
 public class NTSid implements Principal, java.io.Serializable {
 
-	private static final long serialVersionUID = 4412290580770249885L;
+    private static final long serialVersionUID = 4412290580770249885L;
 
-	/**
-	 * @serial
-	 */
-	private String sid;
+    /**
+     * @serial
+     */
+    private String sid;
 
-	/**
-	 * Create an <code>NTSid</code> with a Windows NT SID.
-	 *
-	 * <p>
-	 *
-	 * @param stringSid
-	 *                  the Windows NT SID.
-	 *                  <p>
-	 *
-	 * @exception NullPointerException
-	 *                                     if the <code>String</code> is
-	 *                                     <code>null</code>.
-	 *
-	 * @exception IllegalArgumentException
-	 *                                     if the <code>String</code> has zero
-	 *                                     length.
-	 */
-	public NTSid(String stringSid) {
-		if (stringSid == null) {
-			java.text.MessageFormat form = new java.text.MessageFormat(
-					sun.security.util.ResourcesMgr.getString(
-							"invalid.null.input.value",
-							"sun.security.util.AuthResources"));
-			Object[] source = { "stringSid" };
-			throw new NullPointerException(form.format(source));
-		}
-		if (stringSid.length() == 0) {
-			throw new IllegalArgumentException(sun.security.util.ResourcesMgr
-					.getString("Invalid.NTSid.value",
-							"sun.security.util.AuthResources"));
-		}
-		sid = new String(stringSid);
-	}
+    /**
+     * Create an <code>NTSid</code> with a Windows NT SID.
+     *
+     * <p>
+     *
+     * @param stringSid
+     *                  the Windows NT SID.
+     *                  <p>
+     *
+     * @exception NullPointerException
+     *                                     if the <code>String</code> is
+     *                                     <code>null</code>.
+     *
+     * @exception IllegalArgumentException
+     *                                     if the <code>String</code> has zero
+     *                                     length.
+     */
+    public NTSid(String stringSid) {
+        if (stringSid == null) {
+            java.text.MessageFormat form = new java.text.MessageFormat(
+                    sun.security.util.ResourcesMgr.getString(
+                            "invalid.null.input.value",
+                            "sun.security.util.AuthResources"));
+            Object[] source = { "stringSid" };
+            throw new NullPointerException(form.format(source));
+        }
+        if (stringSid.length() == 0) {
+            throw new IllegalArgumentException(sun.security.util.ResourcesMgr
+                    .getString("Invalid.NTSid.value",
+                            "sun.security.util.AuthResources"));
+        }
+        sid = new String(stringSid);
+    }
 
-	/**
-	 * Return a string version of this <code>NTSid</code>.
-	 *
-	 * <p>
-	 *
-	 * @return a string version of this <code>NTSid</code>
-	 */
-	public String getName() {
-		return sid;
-	}
+    /**
+     * Return a string version of this <code>NTSid</code>.
+     *
+     * <p>
+     *
+     * @return a string version of this <code>NTSid</code>
+     */
+    public String getName() {
+        return sid;
+    }
 
-	/**
-	 * Return a string representation of this <code>NTSid</code>.
-	 *
-	 * <p>
-	 *
-	 * @return a string representation of this <code>NTSid</code>.
-	 */
-	public String toString() {
-		java.text.MessageFormat form = new java.text.MessageFormat(
-				sun.security.util.ResourcesMgr.getString("NTSid.name",
-						"sun.security.util.AuthResources"));
-		Object[] source = { sid };
-		return form.format(source);
-	}
+    /**
+     * Return a string representation of this <code>NTSid</code>.
+     *
+     * <p>
+     *
+     * @return a string representation of this <code>NTSid</code>.
+     */
+    public String toString() {
+        java.text.MessageFormat form = new java.text.MessageFormat(
+                sun.security.util.ResourcesMgr.getString("NTSid.name",
+                        "sun.security.util.AuthResources"));
+        Object[] source = { sid };
+        return form.format(source);
+    }
 
-	/**
-	 * Compares the specified Object with this <code>NTSid</code> for equality.
-	 * Returns true if the given object is also a <code>NTSid</code> and the two
-	 * NTSids have the same String representation.
-	 *
-	 * <p>
-	 *
-	 * @param o
-	 *          Object to be compared for equality with this
-	 *          <code>NTSid</code>.
-	 *
-	 * @return true if the specified Object is equal to this <code>NTSid</code>.
-	 */
-	public boolean equals(Object o) {
-		if (o == null)
-			return false;
+    /**
+     * Compares the specified Object with this <code>NTSid</code> for equality.
+     * Returns true if the given object is also a <code>NTSid</code> and the two
+     * NTSids have the same String representation.
+     *
+     * <p>
+     *
+     * @param o
+     *          Object to be compared for equality with this
+     *          <code>NTSid</code>.
+     *
+     * @return true if the specified Object is equal to this <code>NTSid</code>.
+     */
+    public boolean equals(Object o) {
+        if (o == null)
+            return false;
 
-		if (this == o)
-			return true;
+        if (this == o)
+            return true;
 
-		if (!(o instanceof NTSid))
-			return false;
-		NTSid that = (NTSid) o;
+        if (!(o instanceof NTSid))
+            return false;
+        NTSid that = (NTSid) o;
 
-		if (sid.equals(that.sid)) {
-			return true;
-		}
-		return false;
-	}
+        if (sid.equals(that.sid)) {
+            return true;
+        }
+        return false;
+    }
 
-	/**
-	 * Return a hash code for this <code>NTSid</code>.
-	 *
-	 * <p>
-	 *
-	 * @return a hash code for this <code>NTSid</code>.
-	 */
-	public int hashCode() {
-		return sid.hashCode();
-	}
+    /**
+     * Return a hash code for this <code>NTSid</code>.
+     *
+     * <p>
+     *
+     * @return a hash code for this <code>NTSid</code>.
+     */
+    public int hashCode() {
+        return sid.hashCode();
+    }
 }

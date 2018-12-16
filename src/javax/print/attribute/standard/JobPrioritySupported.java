@@ -29,73 +29,73 @@ import javax.print.attribute.SupportedValuesAttribute;
  * @author Alan Kaminsky
  */
 public final class JobPrioritySupported extends IntegerSyntax implements
-		SupportedValuesAttribute {
+        SupportedValuesAttribute {
 
-	private static final long serialVersionUID = 2564840378013555894L;
+    private static final long serialVersionUID = 2564840378013555894L;
 
-	/**
-	 * Construct a new job priority supported attribute with the given integer
-	 * value.
-	 *
-	 * @param value
-	 *              Number of different job priority levels supported.
-	 *
-	 * @exception IllegalArgumentException
-	 *                                     (Unchecked exception) Thrown if
-	 *                                     <CODE>value</CODE> is less
-	 *                                     than 1 or greater than 100.
-	 */
-	public JobPrioritySupported(int value) {
-		super(value, 1, 100);
-	}
+    /**
+     * Construct a new job priority supported attribute with the given integer
+     * value.
+     *
+     * @param value
+     *              Number of different job priority levels supported.
+     *
+     * @exception IllegalArgumentException
+     *                                     (Unchecked exception) Thrown if
+     *                                     <CODE>value</CODE> is less
+     *                                     than 1 or greater than 100.
+     */
+    public JobPrioritySupported(int value) {
+        super(value, 1, 100);
+    }
 
-	/**
-	 * Returns whether this job priority supported attribute is equivalent to
-	 * the passed in object. To be equivalent, all of the following conditions
-	 * must be true:
-	 * <OL TYPE=1>
-	 * <LI><CODE>object</CODE> is not null.
-	 * <LI><CODE>object</CODE> is an instance of class JobPrioritySupported.
-	 * <LI>This job priority supported attribute's value and <CODE>object</CODE>
-	 * 's value are equal.
-	 * </OL>
-	 *
-	 * @param object
-	 *               Object to compare to.
-	 *
-	 * @return True if <CODE>object</CODE> is equivalent to this job priority
-	 *         supported attribute, false otherwise.
-	 */
-	public boolean equals(Object object) {
+    /**
+     * Returns whether this job priority supported attribute is equivalent to
+     * the passed in object. To be equivalent, all of the following conditions
+     * must be true:
+     * <OL TYPE=1>
+     * <LI><CODE>object</CODE> is not null.
+     * <LI><CODE>object</CODE> is an instance of class JobPrioritySupported.
+     * <LI>This job priority supported attribute's value and <CODE>object</CODE>
+     * 's value are equal.
+     * </OL>
+     *
+     * @param object
+     *               Object to compare to.
+     *
+     * @return True if <CODE>object</CODE> is equivalent to this job priority
+     *         supported attribute, false otherwise.
+     */
+    public boolean equals(Object object) {
 
-		return (super.equals(object) && object instanceof JobPrioritySupported);
-	}
+        return (super.equals(object) && object instanceof JobPrioritySupported);
+    }
 
-	/**
-	 * Get the printing attribute class which is to be used as the "category"
-	 * for this printing attribute value.
-	 * <P>
-	 * For class JobPrioritySupported, the category is class
-	 * JobPrioritySupported itself.
-	 *
-	 * @return Printing attribute class (category), an instance of class
-	 *         {@link java.lang.Class java.lang.Class}.
-	 */
-	public final Class<? extends Attribute> getCategory() {
-		return JobPrioritySupported.class;
-	}
+    /**
+     * Get the printing attribute class which is to be used as the "category"
+     * for this printing attribute value.
+     * <P>
+     * For class JobPrioritySupported, the category is class
+     * JobPrioritySupported itself.
+     *
+     * @return Printing attribute class (category), an instance of class
+     *         {@link java.lang.Class java.lang.Class}.
+     */
+    public final Class<? extends Attribute> getCategory() {
+        return JobPrioritySupported.class;
+    }
 
-	/**
-	 * Get the name of the category of which this attribute value is an
-	 * instance.
-	 * <P>
-	 * For class JobPrioritySupported, the category name is
-	 * <CODE>"job-priority-supported"</CODE>.
-	 *
-	 * @return Attribute category name.
-	 */
-	public final String getName() {
-		return "job-priority-supported";
-	}
+    /**
+     * Get the name of the category of which this attribute value is an
+     * instance.
+     * <P>
+     * For class JobPrioritySupported, the category name is
+     * <CODE>"job-priority-supported"</CODE>.
+     *
+     * @return Attribute category name.
+     */
+    public final String getName() {
+        return "job-priority-supported";
+    }
 
 }

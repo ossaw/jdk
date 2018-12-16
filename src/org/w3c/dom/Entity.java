@@ -57,49 +57,49 @@ package org.w3c.dom;
  * Object Model (DOM) Level 3 Core Specification</a>.
  */
 public interface Entity extends Node {
-	/**
-	 * The public identifier associated with the entity if specified, and
-	 * <code>null</code> otherwise.
-	 */
-	public String getPublicId();
+    /**
+     * The public identifier associated with the entity if specified, and
+     * <code>null</code> otherwise.
+     */
+    public String getPublicId();
 
-	/**
-	 * The system identifier associated with the entity if specified, and
-	 * <code>null</code> otherwise. This may be an absolute URI or not.
-	 */
-	public String getSystemId();
+    /**
+     * The system identifier associated with the entity if specified, and
+     * <code>null</code> otherwise. This may be an absolute URI or not.
+     */
+    public String getSystemId();
 
-	/**
-	 * For unparsed entities, the name of the notation for the entity. For
-	 * parsed entities, this is <code>null</code>.
-	 */
-	public String getNotationName();
+    /**
+     * For unparsed entities, the name of the notation for the entity. For
+     * parsed entities, this is <code>null</code>.
+     */
+    public String getNotationName();
 
-	/**
-	 * An attribute specifying the encoding used for this entity at the time of
-	 * parsing, when it is an external parsed entity. This is <code>null</code>
-	 * if it an entity from the internal subset or if it is not known.
-	 * 
-	 * @since DOM Level 3
-	 */
-	public String getInputEncoding();
+    /**
+     * An attribute specifying the encoding used for this entity at the time of
+     * parsing, when it is an external parsed entity. This is <code>null</code>
+     * if it an entity from the internal subset or if it is not known.
+     * 
+     * @since DOM Level 3
+     */
+    public String getInputEncoding();
 
-	/**
-	 * An attribute specifying, as part of the text declaration, the encoding of
-	 * this entity, when it is an external parsed entity. This is
-	 * <code>null</code> otherwise.
-	 * 
-	 * @since DOM Level 3
-	 */
-	public String getXmlEncoding();
+    /**
+     * An attribute specifying, as part of the text declaration, the encoding of
+     * this entity, when it is an external parsed entity. This is
+     * <code>null</code> otherwise.
+     * 
+     * @since DOM Level 3
+     */
+    public String getXmlEncoding();
 
-	/**
-	 * An attribute specifying, as part of the text declaration, the version
-	 * number of this entity, when it is an external parsed entity. This is
-	 * <code>null</code> otherwise.
-	 * 
-	 * @since DOM Level 3
-	 */
-	public String getXmlVersion();
+    /**
+     * An attribute specifying, as part of the text declaration, the version
+     * number of this entity, when it is an external parsed entity. This is
+     * <code>null</code> otherwise.
+     * 
+     * @since DOM Level 3
+     */
+    public String getXmlVersion();
 
 }

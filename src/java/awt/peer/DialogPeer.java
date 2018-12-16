@@ -18,35 +18,35 @@ import java.awt.*;
  */
 public interface DialogPeer extends WindowPeer {
 
-	/**
-	 * Sets the title on the dialog window.
-	 *
-	 * @param title
-	 *              the title to set
-	 *
-	 * @see Dialog#setTitle(String)
-	 */
-	void setTitle(String title);
+    /**
+     * Sets the title on the dialog window.
+     *
+     * @param title
+     *              the title to set
+     *
+     * @see Dialog#setTitle(String)
+     */
+    void setTitle(String title);
 
-	/**
-	 * Sets if the dialog should be resizable or not.
-	 *
-	 * @param resizeable
-	 *                   {@code true} when the dialog should be resizable,
-	 *                   {@code false} if not
-	 *
-	 * @see Dialog#setResizable(boolean)
-	 */
-	void setResizable(boolean resizeable);
+    /**
+     * Sets if the dialog should be resizable or not.
+     *
+     * @param resizeable
+     *                   {@code true} when the dialog should be resizable,
+     *                   {@code false} if not
+     *
+     * @see Dialog#setResizable(boolean)
+     */
+    void setResizable(boolean resizeable);
 
-	/**
-	 * Block the specified windows. This is used for modal dialogs.
-	 *
-	 * @param windows
-	 *                the windows to block
-	 *
-	 * @see Dialog#modalShow()
-	 * @see Dialog#blockWindows()
-	 */
-	void blockWindows(java.util.List<Window> windows);
+    /**
+     * Block the specified windows. This is used for modal dialogs.
+     *
+     * @param windows
+     *                the windows to block
+     *
+     * @see Dialog#modalShow()
+     * @see Dialog#blockWindows()
+     */
+    void blockWindows(java.util.List<Window> windows);
 }

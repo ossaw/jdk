@@ -26,14 +26,14 @@ package javax.naming;
  * @since 1.3
  */
 public interface Referenceable {
-	/**
-	 * Retrieves the Reference of this object.
-	 *
-	 * @return The non-null Reference of this object.
-	 * @exception NamingException
-	 *                            If a naming exception was encountered while
-	 *                            retrieving the
-	 *                            reference.
-	 */
-	Reference getReference() throws NamingException;
+    /**
+     * Retrieves the Reference of this object.
+     *
+     * @return The non-null Reference of this object.
+     * @exception NamingException
+     *                            If a naming exception was encountered while
+     *                            retrieving the
+     *                            reference.
+     */
+    Reference getReference() throws NamingException;
 }

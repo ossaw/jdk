@@ -16,17 +16,17 @@ package com.sun.jmx.snmp.internal;
  */
 public interface SnmpModel {
 
-	/**
-	 * Returns the sub system that manages this model.
-	 * 
-	 * @return The sub system.
-	 */
-	public SnmpSubSystem getSubSystem();
+    /**
+     * Returns the sub system that manages this model.
+     * 
+     * @return The sub system.
+     */
+    public SnmpSubSystem getSubSystem();
 
-	/**
-	 * A human readable model name.
-	 * 
-	 * @return The model name.
-	 */
-	public String getName();
+    /**
+     * A human readable model name.
+     * 
+     * @return The model name.
+     */
+    public String getName();
 }

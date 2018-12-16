@@ -16,11 +16,11 @@ package java.nio;
 
 public class BufferUnderflowException extends RuntimeException {
 
-	private static final long serialVersionUID = -1713313658691622206L;
+    private static final long serialVersionUID = -1713313658691622206L;
 
-	/**
-	 * Constructs an instance of this class.
-	 */
-	public BufferUnderflowException() {}
+    /**
+     * Constructs an instance of this class.
+     */
+    public BufferUnderflowException() {}
 
 }

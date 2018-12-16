@@ -17,25 +17,25 @@ import java.security.BasicPermission;
  */
 
 public class SnmpPermission extends BasicPermission {
-	/**
-	 * Constructs a SnmpPermission with the specified name.
-	 *
-	 * @param name
-	 *             Permission name.
-	 */
-	public SnmpPermission(String name) {
-		super(name);
-	}
+    /**
+     * Constructs a SnmpPermission with the specified name.
+     *
+     * @param name
+     *             Permission name.
+     */
+    public SnmpPermission(String name) {
+        super(name);
+    }
 
-	/**
-	 * Constructs a new SnmpPermission object.
-	 *
-	 * @param name
-	 *                Permission name.
-	 * @param actions
-	 */
-	public SnmpPermission(String name, String actions) {
-		super(name, actions);
-	}
+    /**
+     * Constructs a new SnmpPermission object.
+     *
+     * @param name
+     *                Permission name.
+     * @param actions
+     */
+    public SnmpPermission(String name, String actions) {
+        super(name, actions);
+    }
 
 }

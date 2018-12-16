@@ -32,9 +32,9 @@ import java.awt.AWTEvent;
  */
 public interface AWTEventListener extends EventListener {
 
-	/**
-	 * Invoked when an event is dispatched in the AWT.
-	 */
-	public void eventDispatched(AWTEvent event);
+    /**
+     * Invoked when an event is dispatched in the AWT.
+     */
+    public void eventDispatched(AWTEvent event);
 
 }

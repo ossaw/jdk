@@ -22,37 +22,37 @@ package javax.accessibility;
  */
 public interface AccessibleIcon {
 
-	/**
-	 * Gets the description of the icon. This is meant to be a brief textual
-	 * description of the object. For example, it might be presented to a blind
-	 * user to give an indication of the purpose of the icon.
-	 *
-	 * @return the description of the icon
-	 */
-	public String getAccessibleIconDescription();
+    /**
+     * Gets the description of the icon. This is meant to be a brief textual
+     * description of the object. For example, it might be presented to a blind
+     * user to give an indication of the purpose of the icon.
+     *
+     * @return the description of the icon
+     */
+    public String getAccessibleIconDescription();
 
-	/**
-	 * Sets the description of the icon. This is meant to be a brief textual
-	 * description of the object. For example, it might be presented to a blind
-	 * user to give an indication of the purpose of the icon.
-	 *
-	 * @param description
-	 *                    the description of the icon
-	 */
-	public void setAccessibleIconDescription(String description);
+    /**
+     * Sets the description of the icon. This is meant to be a brief textual
+     * description of the object. For example, it might be presented to a blind
+     * user to give an indication of the purpose of the icon.
+     *
+     * @param description
+     *                    the description of the icon
+     */
+    public void setAccessibleIconDescription(String description);
 
-	/**
-	 * Gets the width of the icon
-	 *
-	 * @return the width of the icon.
-	 */
-	public int getAccessibleIconWidth();
+    /**
+     * Gets the width of the icon
+     *
+     * @return the width of the icon.
+     */
+    public int getAccessibleIconWidth();
 
-	/**
-	 * Gets the height of the icon
-	 *
-	 * @return the height of the icon.
-	 */
-	public int getAccessibleIconHeight();
+    /**
+     * Gets the height of the icon
+     *
+     * @return the height of the icon.
+     */
+    public int getAccessibleIconHeight();
 
 }

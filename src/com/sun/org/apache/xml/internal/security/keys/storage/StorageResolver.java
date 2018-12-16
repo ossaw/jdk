@@ -38,155 +38,155 @@ import com.sun.org.apache.xml.internal.security.keys.storage.implementations.Sin
  */
 public class StorageResolver {
 
-	/** {@link org.apache.commons.logging} logging facility */
-	private static java.util.logging.Logger log = java.util.logging.Logger
-			.getLogger(StorageResolver.class.getName());
+    /** {@link org.apache.commons.logging} logging facility */
+    private static java.util.logging.Logger log = java.util.logging.Logger
+            .getLogger(StorageResolver.class.getName());
 
-	/** Field storageResolvers */
-	private List<StorageResolverSpi> storageResolvers = null;
+    /** Field storageResolvers */
+    private List<StorageResolverSpi> storageResolvers = null;
 
-	/**
-	 * Constructor StorageResolver
-	 *
-	 */
-	public StorageResolver() {}
+    /**
+     * Constructor StorageResolver
+     *
+     */
+    public StorageResolver() {}
 
-	/**
-	 * Constructor StorageResolver
-	 *
-	 * @param resolver
-	 */
-	public StorageResolver(StorageResolverSpi resolver) {
-		this.add(resolver);
-	}
+    /**
+     * Constructor StorageResolver
+     *
+     * @param resolver
+     */
+    public StorageResolver(StorageResolverSpi resolver) {
+        this.add(resolver);
+    }
 
-	/**
-	 * Method addResolver
-	 *
-	 * @param resolver
-	 */
-	public void add(StorageResolverSpi resolver) {
-		if (storageResolvers == null) {
-			storageResolvers = new ArrayList<StorageResolverSpi>();
-		}
-		this.storageResolvers.add(resolver);
-	}
+    /**
+     * Method addResolver
+     *
+     * @param resolver
+     */
+    public void add(StorageResolverSpi resolver) {
+        if (storageResolvers == null) {
+            storageResolvers = new ArrayList<StorageResolverSpi>();
+        }
+        this.storageResolvers.add(resolver);
+    }
 
-	/**
-	 * Constructor StorageResolver
-	 *
-	 * @param keyStore
-	 */
-	public StorageResolver(KeyStore keyStore) {
-		this.add(keyStore);
-	}
+    /**
+     * Constructor StorageResolver
+     *
+     * @param keyStore
+     */
+    public StorageResolver(KeyStore keyStore) {
+        this.add(keyStore);
+    }
 
-	/**
-	 * Method addKeyStore
-	 *
-	 * @param keyStore
-	 */
-	public void add(KeyStore keyStore) {
-		try {
-			this.add(new KeyStoreResolver(keyStore));
-		} catch (StorageResolverException ex) {
-			log.log(java.util.logging.Level.SEVERE,
-					"Could not add KeyStore because of: ", ex);
-		}
-	}
+    /**
+     * Method addKeyStore
+     *
+     * @param keyStore
+     */
+    public void add(KeyStore keyStore) {
+        try {
+            this.add(new KeyStoreResolver(keyStore));
+        } catch (StorageResolverException ex) {
+            log.log(java.util.logging.Level.SEVERE,
+                    "Could not add KeyStore because of: ", ex);
+        }
+    }
 
-	/**
-	 * Constructor StorageResolver
-	 *
-	 * @param x509certificate
-	 */
-	public StorageResolver(X509Certificate x509certificate) {
-		this.add(x509certificate);
-	}
+    /**
+     * Constructor StorageResolver
+     *
+     * @param x509certificate
+     */
+    public StorageResolver(X509Certificate x509certificate) {
+        this.add(x509certificate);
+    }
 
-	/**
-	 * Method addCertificate
-	 *
-	 * @param x509certificate
-	 */
-	public void add(X509Certificate x509certificate) {
-		this.add(new SingleCertificateResolver(x509certificate));
-	}
+    /**
+     * Method addCertificate
+     *
+     * @param x509certificate
+     */
+    public void add(X509Certificate x509certificate) {
+        this.add(new SingleCertificateResolver(x509certificate));
+    }
 
-	/**
-	 * Method getIterator
-	 * 
-	 * @return the iterator for the resolvers.
-	 */
-	public Iterator<Certificate> getIterator() {
-		return new StorageResolverIterator(this.storageResolvers.iterator());
-	}
+    /**
+     * Method getIterator
+     * 
+     * @return the iterator for the resolvers.
+     */
+    public Iterator<Certificate> getIterator() {
+        return new StorageResolverIterator(this.storageResolvers.iterator());
+    }
 
-	/**
-	 * Class StorageResolverIterator This iterates over all the Certificates
-	 * found in all the resolvers.
-	 */
-	static class StorageResolverIterator implements Iterator<Certificate> {
+    /**
+     * Class StorageResolverIterator This iterates over all the Certificates
+     * found in all the resolvers.
+     */
+    static class StorageResolverIterator implements Iterator<Certificate> {
 
-		/** Field resolvers */
-		Iterator<StorageResolverSpi> resolvers = null;
+        /** Field resolvers */
+        Iterator<StorageResolverSpi> resolvers = null;
 
-		/** Field currentResolver */
-		Iterator<Certificate> currentResolver = null;
+        /** Field currentResolver */
+        Iterator<Certificate> currentResolver = null;
 
-		/**
-		 * Constructor StorageResolverIterator
-		 *
-		 * @param resolvers
-		 */
-		public StorageResolverIterator(Iterator<StorageResolverSpi> resolvers) {
-			this.resolvers = resolvers;
-			currentResolver = findNextResolver();
-		}
+        /**
+         * Constructor StorageResolverIterator
+         *
+         * @param resolvers
+         */
+        public StorageResolverIterator(Iterator<StorageResolverSpi> resolvers) {
+            this.resolvers = resolvers;
+            currentResolver = findNextResolver();
+        }
 
-		/** @inheritDoc */
-		public boolean hasNext() {
-			if (currentResolver == null) {
-				return false;
-			}
+        /** @inheritDoc */
+        public boolean hasNext() {
+            if (currentResolver == null) {
+                return false;
+            }
 
-			if (currentResolver.hasNext()) {
-				return true;
-			}
+            if (currentResolver.hasNext()) {
+                return true;
+            }
 
-			currentResolver = findNextResolver();
-			return (currentResolver != null);
-		}
+            currentResolver = findNextResolver();
+            return (currentResolver != null);
+        }
 
-		/** @inheritDoc */
-		public Certificate next() {
-			if (hasNext()) {
-				return currentResolver.next();
-			}
+        /** @inheritDoc */
+        public Certificate next() {
+            if (hasNext()) {
+                return currentResolver.next();
+            }
 
-			throw new NoSuchElementException();
-		}
+            throw new NoSuchElementException();
+        }
 
-		/**
-		 * Method remove
-		 */
-		public void remove() {
-			throw new UnsupportedOperationException(
-					"Can't remove keys from KeyStore");
-		}
+        /**
+         * Method remove
+         */
+        public void remove() {
+            throw new UnsupportedOperationException(
+                    "Can't remove keys from KeyStore");
+        }
 
-		// Find the next storage with at least one element and return its
-		// Iterator
-		private Iterator<Certificate> findNextResolver() {
-			while (resolvers.hasNext()) {
-				StorageResolverSpi resolverSpi = resolvers.next();
-				Iterator<Certificate> iter = resolverSpi.getIterator();
-				if (iter.hasNext()) {
-					return iter;
-				}
-			}
+        // Find the next storage with at least one element and return its
+        // Iterator
+        private Iterator<Certificate> findNextResolver() {
+            while (resolvers.hasNext()) {
+                StorageResolverSpi resolverSpi = resolvers.next();
+                Iterator<Certificate> iter = resolverSpi.getIterator();
+                if (iter.hasNext()) {
+                    return iter;
+                }
+            }
 
-			return null;
-		}
-	}
+            return null;
+        }
+    }
 }

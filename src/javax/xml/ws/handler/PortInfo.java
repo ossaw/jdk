@@ -19,28 +19,28 @@ import javax.xml.namespace.QName;
  **/
 public interface PortInfo {
 
-	/**
-	 * Gets the qualified name of the WSDL service name containing the port
-	 * being accessed.
-	 *
-	 * @return javax.xml.namespace.QName The qualified name of the WSDL service.
-	 **/
-	public QName getServiceName();
+    /**
+     * Gets the qualified name of the WSDL service name containing the port
+     * being accessed.
+     *
+     * @return javax.xml.namespace.QName The qualified name of the WSDL service.
+     **/
+    public QName getServiceName();
 
-	/**
-	 * Gets the qualified name of the WSDL port being accessed.
-	 *
-	 * @return javax.xml.namespace.QName The qualified name of the WSDL port.
-	 **/
-	public QName getPortName();
+    /**
+     * Gets the qualified name of the WSDL port being accessed.
+     *
+     * @return javax.xml.namespace.QName The qualified name of the WSDL port.
+     **/
+    public QName getPortName();
 
-	/**
-	 * Gets the URI identifying the binding used by the port being accessed.
-	 *
-	 * @return String The binding identifier for the port.
-	 *
-	 * @see javax.xml.ws.Binding
-	 **/
-	public String getBindingID();
+    /**
+     * Gets the URI identifying the binding used by the port being accessed.
+     *
+     * @return String The binding identifier for the port.
+     *
+     * @see javax.xml.ws.Binding
+     **/
+    public String getBindingID();
 
 }

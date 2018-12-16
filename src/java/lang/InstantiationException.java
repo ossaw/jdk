@@ -22,23 +22,23 @@ package java.lang;
  * @since JDK1.0
  */
 public class InstantiationException extends ReflectiveOperationException {
-	private static final long serialVersionUID = -8441929162975509110L;
+    private static final long serialVersionUID = -8441929162975509110L;
 
-	/**
-	 * Constructs an {@code InstantiationException} with no detail message.
-	 */
-	public InstantiationException() {
-		super();
-	}
+    /**
+     * Constructs an {@code InstantiationException} with no detail message.
+     */
+    public InstantiationException() {
+        super();
+    }
 
-	/**
-	 * Constructs an {@code InstantiationException} with the specified detail
-	 * message.
-	 *
-	 * @param s
-	 *          the detail message.
-	 */
-	public InstantiationException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs an {@code InstantiationException} with the specified detail
+     * message.
+     *
+     * @param s
+     *          the detail message.
+     */
+    public InstantiationException(String s) {
+        super(s);
+    }
 }

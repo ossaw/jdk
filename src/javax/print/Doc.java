@@ -84,102 +84,102 @@ import javax.print.attribute.DocAttributeSet;
  */
 public interface Doc {
 
-	/**
-	 * Determines the doc flavor in which this doc object will supply its piece
-	 * of print data.
-	 *
-	 * @return Doc flavor.
-	 */
-	public DocFlavor getDocFlavor();
+    /**
+     * Determines the doc flavor in which this doc object will supply its piece
+     * of print data.
+     *
+     * @return Doc flavor.
+     */
+    public DocFlavor getDocFlavor();
 
-	/**
-	 * Obtains the print data representation object that contains this doc
-	 * object's piece of print data in the format corresponding to the supported
-	 * doc flavor. The <CODE>getPrintData()</CODE> method returns an instance of
-	 * the representation class whose name is given by <CODE>{@link
-	 * #getDocFlavor() getDocFlavor()}.{@link
-	 * DocFlavor#getRepresentationClassName()
-	 * getRepresentationClassName()}</CODE>, and the return value can be cast
-	 * from class Object to that representation class.
-	 *
-	 * @return Print data representation object.
-	 *
-	 * @exception IOException
-	 *                        Thrown if the representation class is a stream and
-	 *                        there
-	 *                        was an I/O error while constructing the stream.
-	 */
-	public Object getPrintData() throws IOException;
+    /**
+     * Obtains the print data representation object that contains this doc
+     * object's piece of print data in the format corresponding to the supported
+     * doc flavor. The <CODE>getPrintData()</CODE> method returns an instance of
+     * the representation class whose name is given by <CODE>{@link
+     * #getDocFlavor() getDocFlavor()}.{@link
+     * DocFlavor#getRepresentationClassName()
+     * getRepresentationClassName()}</CODE>, and the return value can be cast
+     * from class Object to that representation class.
+     *
+     * @return Print data representation object.
+     *
+     * @exception IOException
+     *                        Thrown if the representation class is a stream and
+     *                        there
+     *                        was an I/O error while constructing the stream.
+     */
+    public Object getPrintData() throws IOException;
 
-	/**
-	 * Obtains the set of printing attributes for this doc object. If the
-	 * returned attribute set includes an instance of a particular attribute
-	 * <I>X,</I> the printer must use that attribute value for this doc,
-	 * overriding any value of attribute <I>X</I> in the job's attribute set. If
-	 * the returned attribute set does not include an instance of a particular
-	 * attribute <I>X</I> or if null is returned, the printer must consult the
-	 * job's attribute set to obtain the value for attribute <I>X,</I> and if
-	 * not found there, the printer must use an implementation-dependent default
-	 * value. The returned attribute set is unmodifiable.
-	 *
-	 * @return Unmodifiable set of printing attributes for this doc, or null to
-	 *         obtain all attribute values from the job's attribute set.
-	 */
-	public DocAttributeSet getAttributes();
+    /**
+     * Obtains the set of printing attributes for this doc object. If the
+     * returned attribute set includes an instance of a particular attribute
+     * <I>X,</I> the printer must use that attribute value for this doc,
+     * overriding any value of attribute <I>X</I> in the job's attribute set. If
+     * the returned attribute set does not include an instance of a particular
+     * attribute <I>X</I> or if null is returned, the printer must consult the
+     * job's attribute set to obtain the value for attribute <I>X,</I> and if
+     * not found there, the printer must use an implementation-dependent default
+     * value. The returned attribute set is unmodifiable.
+     *
+     * @return Unmodifiable set of printing attributes for this doc, or null to
+     *         obtain all attribute values from the job's attribute set.
+     */
+    public DocAttributeSet getAttributes();
 
-	/**
-	 * Obtains a reader for extracting character print data from this doc. The
-	 * Doc implementation is required to support this method if the DocFlavor
-	 * has one of the following print data representation classes, and return
-	 * null otherwise:
-	 * <UL>
-	 * <LI>char[]
-	 * <LI>java.lang.String
-	 * <LI>java.io.Reader
-	 * </UL>
-	 * The doc's print data representation object is used to construct and
-	 * return a Reader for reading the print data as a stream of characters from
-	 * the print data representation object. However, if the print data
-	 * representation object is itself a Reader, then the print data
-	 * representation object is simply returned.
-	 * <P>
-	 * 
-	 * @return Reader for reading the print data characters from this doc. If a
-	 *         reader cannot be provided because this doc does not meet the
-	 *         criteria stated above, null is returned.
-	 *
-	 * @exception IOException
-	 *                        Thrown if there was an I/O error while creating
-	 *                        the
-	 *                        reader.
-	 */
-	public Reader getReaderForText() throws IOException;
+    /**
+     * Obtains a reader for extracting character print data from this doc. The
+     * Doc implementation is required to support this method if the DocFlavor
+     * has one of the following print data representation classes, and return
+     * null otherwise:
+     * <UL>
+     * <LI>char[]
+     * <LI>java.lang.String
+     * <LI>java.io.Reader
+     * </UL>
+     * The doc's print data representation object is used to construct and
+     * return a Reader for reading the print data as a stream of characters from
+     * the print data representation object. However, if the print data
+     * representation object is itself a Reader, then the print data
+     * representation object is simply returned.
+     * <P>
+     * 
+     * @return Reader for reading the print data characters from this doc. If a
+     *         reader cannot be provided because this doc does not meet the
+     *         criteria stated above, null is returned.
+     *
+     * @exception IOException
+     *                        Thrown if there was an I/O error while creating
+     *                        the
+     *                        reader.
+     */
+    public Reader getReaderForText() throws IOException;
 
-	/**
-	 * Obtains an input stream for extracting byte print data from this doc. The
-	 * Doc implementation is required to support this method if the DocFlavor
-	 * has one of the following print data representation classes, and return
-	 * null otherwise:
-	 * <UL>
-	 * <LI>byte[]
-	 * <LI>java.io.InputStream
-	 * </UL>
-	 * This doc's print data representation object is obtained, then an input
-	 * stream for reading the print data from the print data representation
-	 * object as a stream of bytes is created and returned. However, if the
-	 * print data representation object is itself an input stream, then the
-	 * print data representation object is simply returned.
-	 * <P>
-	 * 
-	 * @return Input stream for reading the print data bytes from this doc. If
-	 *         an input stream cannot be provided because this doc does not meet
-	 *         the criteria stated above, null is returned.
-	 *
-	 * @exception IOException
-	 *                        Thrown if there was an I/O error while creating
-	 *                        the input
-	 *                        stream.
-	 */
-	public InputStream getStreamForBytes() throws IOException;
+    /**
+     * Obtains an input stream for extracting byte print data from this doc. The
+     * Doc implementation is required to support this method if the DocFlavor
+     * has one of the following print data representation classes, and return
+     * null otherwise:
+     * <UL>
+     * <LI>byte[]
+     * <LI>java.io.InputStream
+     * </UL>
+     * This doc's print data representation object is obtained, then an input
+     * stream for reading the print data from the print data representation
+     * object as a stream of bytes is created and returned. However, if the
+     * print data representation object is itself an input stream, then the
+     * print data representation object is simply returned.
+     * <P>
+     * 
+     * @return Input stream for reading the print data bytes from this doc. If
+     *         an input stream cannot be provided because this doc does not meet
+     *         the criteria stated above, null is returned.
+     *
+     * @exception IOException
+     *                        Thrown if there was an I/O error while creating
+     *                        the input
+     *                        stream.
+     */
+    public InputStream getStreamForBytes() throws IOException;
 
 }

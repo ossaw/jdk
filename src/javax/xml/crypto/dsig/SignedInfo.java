@@ -45,44 +45,44 @@ import java.util.List;
  */
 public interface SignedInfo extends XMLStructure {
 
-	/**
-	 * Returns the canonicalization method of this <code>SignedInfo</code>.
-	 *
-	 * @return the canonicalization method
-	 */
-	CanonicalizationMethod getCanonicalizationMethod();
+    /**
+     * Returns the canonicalization method of this <code>SignedInfo</code>.
+     *
+     * @return the canonicalization method
+     */
+    CanonicalizationMethod getCanonicalizationMethod();
 
-	/**
-	 * Returns the signature method of this <code>SignedInfo</code>.
-	 *
-	 * @return the signature method
-	 */
-	SignatureMethod getSignatureMethod();
+    /**
+     * Returns the signature method of this <code>SignedInfo</code>.
+     *
+     * @return the signature method
+     */
+    SignatureMethod getSignatureMethod();
 
-	/**
-	 * Returns an {@link java.util.Collections#unmodifiableList unmodifiable
-	 * list} of one or more {@link Reference}s.
-	 *
-	 * @return an unmodifiable list of one or more {@link Reference}s
-	 */
-	@SuppressWarnings("rawtypes")
-	List getReferences();
+    /**
+     * Returns an {@link java.util.Collections#unmodifiableList unmodifiable
+     * list} of one or more {@link Reference}s.
+     *
+     * @return an unmodifiable list of one or more {@link Reference}s
+     */
+    @SuppressWarnings("rawtypes")
+    List getReferences();
 
-	/**
-	 * Returns the optional <code>Id</code> attribute of this
-	 * <code>SignedInfo</code>.
-	 *
-	 * @return the id (may be <code>null</code> if not specified)
-	 */
-	String getId();
+    /**
+     * Returns the optional <code>Id</code> attribute of this
+     * <code>SignedInfo</code>.
+     *
+     * @return the id (may be <code>null</code> if not specified)
+     */
+    String getId();
 
-	/**
-	 * Returns the canonicalized signed info bytes after a signing or validation
-	 * operation. This method is useful for debugging.
-	 *
-	 * @return an <code>InputStream</code> containing the canonicalized bytes,
-	 *         or <code>null</code> if this <code>SignedInfo</code> has not been
-	 *         signed or validated yet
-	 */
-	InputStream getCanonicalizedData();
+    /**
+     * Returns the canonicalized signed info bytes after a signing or validation
+     * operation. This method is useful for debugging.
+     *
+     * @return an <code>InputStream</code> containing the canonicalized bytes,
+     *         or <code>null</code> if this <code>SignedInfo</code> has not been
+     *         signed or validated yet
+     */
+    InputStream getCanonicalizedData();
 }

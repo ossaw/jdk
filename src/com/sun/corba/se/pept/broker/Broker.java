@@ -12,13 +12,13 @@ import com.sun.corba.se.pept.transport.TransportManager;
  * @author Harold Carr
  */
 public interface Broker {
-	public ClientInvocationInfo createOrIncrementInvocationInfo();
+    public ClientInvocationInfo createOrIncrementInvocationInfo();
 
-	public ClientInvocationInfo getInvocationInfo();
+    public ClientInvocationInfo getInvocationInfo();
 
-	public void releaseOrDecrementInvocationInfo();
+    public void releaseOrDecrementInvocationInfo();
 
-	public abstract TransportManager getTransportManager();
+    public abstract TransportManager getTransportManager();
 }
 
 // End of file.

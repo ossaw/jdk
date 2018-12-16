@@ -20,27 +20,27 @@ package javax.security.auth.login;
  */
 public class CredentialExpiredException extends CredentialException {
 
-	private static final long serialVersionUID = -5344739593859737937L;
+    private static final long serialVersionUID = -5344739593859737937L;
 
-	/**
-	 * Constructs a CredentialExpiredException with no detail message. A detail
-	 * message is a String that describes this particular exception.
-	 */
-	public CredentialExpiredException() {
-		super();
-	}
+    /**
+     * Constructs a CredentialExpiredException with no detail message. A detail
+     * message is a String that describes this particular exception.
+     */
+    public CredentialExpiredException() {
+        super();
+    }
 
-	/**
-	 * Constructs a CredentialExpiredException with the specified detail
-	 * message. A detail message is a String that describes this particular
-	 * exception.
-	 *
-	 * <p>
-	 *
-	 * @param msg
-	 *            the detail message.
-	 */
-	public CredentialExpiredException(String msg) {
-		super(msg);
-	}
+    /**
+     * Constructs a CredentialExpiredException with the specified detail
+     * message. A detail message is a String that describes this particular
+     * exception.
+     *
+     * <p>
+     *
+     * @param msg
+     *            the detail message.
+     */
+    public CredentialExpiredException(String msg) {
+        super(msg);
+    }
 }

@@ -37,16 +37,16 @@ package org.w3c.dom;
  * Object Model (DOM) Level 3 Core Specification</a>.
  */
 public interface Notation extends Node {
-	/**
-	 * The public identifier of this notation. If the public identifier was not
-	 * specified, this is <code>null</code>.
-	 */
-	public String getPublicId();
+    /**
+     * The public identifier of this notation. If the public identifier was not
+     * specified, this is <code>null</code>.
+     */
+    public String getPublicId();
 
-	/**
-	 * The system identifier of this notation. If the system identifier was not
-	 * specified, this is <code>null</code>. This may be an absolute URI or not.
-	 */
-	public String getSystemId();
+    /**
+     * The system identifier of this notation. If the system identifier was not
+     * specified, this is <code>null</code>. This may be an absolute URI or not.
+     */
+    public String getSystemId();
 
 }

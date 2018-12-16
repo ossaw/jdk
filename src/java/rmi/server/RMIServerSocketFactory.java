@@ -42,17 +42,17 @@ import java.net.*;
  */
 public interface RMIServerSocketFactory {
 
-	/**
-	 * Create a server socket on the specified port (port 0 indicates an
-	 * anonymous port).
-	 * 
-	 * @param port
-	 *             the port number
-	 * @return the server socket on the specified port
-	 * @exception IOException
-	 *                        if an I/O error occurs during server socket
-	 *                        creation
-	 * @since 1.2
-	 */
-	public ServerSocket createServerSocket(int port) throws IOException;
+    /**
+     * Create a server socket on the specified port (port 0 indicates an
+     * anonymous port).
+     * 
+     * @param port
+     *             the port number
+     * @return the server socket on the specified port
+     * @exception IOException
+     *                        if an I/O error occurs during server socket
+     *                        creation
+     * @since 1.2
+     */
+    public ServerSocket createServerSocket(int port) throws IOException;
 }

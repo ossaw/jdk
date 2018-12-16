@@ -18,7 +18,7 @@ package org.omg.CORBA;
  * <PRE>
  * ORB orb = ORB.init(args, null);
  * org.omg.CORBA.NamedValue nv = orb.create_named_value("argumentIdentifier",
- * 		myAny, org.omg.CORBA.ARG_INOUT.value);
+ *         myAny, org.omg.CORBA.ARG_INOUT.value);
  * </PRE>
  *
  * @see org.omg.CORBA.NamedValue
@@ -26,8 +26,8 @@ package org.omg.CORBA;
  */
 public interface ARG_INOUT {
 
-	/**
-	 * The constant value indicating an argument used for both input and output.
-	 */
-	int value = 3;
+    /**
+     * The constant value indicating an argument used for both input and output.
+     */
+    int value = 3;
 }

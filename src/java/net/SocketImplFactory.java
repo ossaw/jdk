@@ -16,11 +16,11 @@ package java.net;
  * @since JDK1.0
  */
 public interface SocketImplFactory {
-	/**
-	 * Creates a new {@code SocketImpl} instance.
-	 *
-	 * @return a new instance of {@code SocketImpl}.
-	 * @see java.net.SocketImpl
-	 */
-	SocketImpl createSocketImpl();
+    /**
+     * Creates a new {@code SocketImpl} instance.
+     *
+     * @return a new instance of {@code SocketImpl}.
+     * @see java.net.SocketImpl
+     */
+    SocketImpl createSocketImpl();
 }

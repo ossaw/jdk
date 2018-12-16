@@ -25,4 +25,4 @@ package org.omg.CORBA;
  */
 
 public interface IDLType extends IDLTypeOperations, org.omg.CORBA.IRObject,
-		org.omg.CORBA.portable.IDLEntity {} // interface IDLType
+        org.omg.CORBA.portable.IDLEntity {} // interface IDLType

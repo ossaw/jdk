@@ -23,25 +23,25 @@ package javax.security.cert;
  */
 public class CertificateNotYetValidException extends CertificateException {
 
-	private static final long serialVersionUID = -8976172474266822818L;
+    private static final long serialVersionUID = -8976172474266822818L;
 
-	/**
-	 * Constructs a CertificateNotYetValidException with no detail message. A
-	 * detail message is a String that describes this particular exception.
-	 */
-	public CertificateNotYetValidException() {
-		super();
-	}
+    /**
+     * Constructs a CertificateNotYetValidException with no detail message. A
+     * detail message is a String that describes this particular exception.
+     */
+    public CertificateNotYetValidException() {
+        super();
+    }
 
-	/**
-	 * Constructs a CertificateNotYetValidException with the specified detail
-	 * message. A detail message is a String that describes this particular
-	 * exception.
-	 *
-	 * @param message
-	 *                the detail message.
-	 */
-	public CertificateNotYetValidException(String message) {
-		super(message);
-	}
+    /**
+     * Constructs a CertificateNotYetValidException with the specified detail
+     * message. A detail message is a String that describes this particular
+     * exception.
+     *
+     * @param message
+     *                the detail message.
+     */
+    public CertificateNotYetValidException(String message) {
+        super(message);
+    }
 }

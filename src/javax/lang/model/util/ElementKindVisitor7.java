@@ -68,37 +68,37 @@ import static javax.lang.model.SourceVersion.*;
  */
 @SupportedSourceVersion(RELEASE_7)
 public class ElementKindVisitor7<R, P> extends ElementKindVisitor6<R, P> {
-	/**
-	 * Constructor for concrete subclasses; uses {@code null} for the default
-	 * value.
-	 */
-	protected ElementKindVisitor7() {
-		super(null);
-	}
+    /**
+     * Constructor for concrete subclasses; uses {@code null} for the default
+     * value.
+     */
+    protected ElementKindVisitor7() {
+        super(null);
+    }
 
-	/**
-	 * Constructor for concrete subclasses; uses the argument for the default
-	 * value.
-	 *
-	 * @param defaultValue
-	 *                     the value to assign to {@link #DEFAULT_VALUE}
-	 */
-	protected ElementKindVisitor7(R defaultValue) {
-		super(defaultValue);
-	}
+    /**
+     * Constructor for concrete subclasses; uses the argument for the default
+     * value.
+     *
+     * @param defaultValue
+     *                     the value to assign to {@link #DEFAULT_VALUE}
+     */
+    protected ElementKindVisitor7(R defaultValue) {
+        super(defaultValue);
+    }
 
-	/**
-	 * Visits a {@code RESOURCE_VARIABLE} variable element by calling
-	 * {@code defaultAction}.
-	 *
-	 * @param e
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of {@code defaultAction}
-	 */
-	@Override
-	public R visitVariableAsResourceVariable(VariableElement e, P p) {
-		return defaultAction(e, p);
-	}
+    /**
+     * Visits a {@code RESOURCE_VARIABLE} variable element by calling
+     * {@code defaultAction}.
+     *
+     * @param e
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of {@code defaultAction}
+     */
+    @Override
+    public R visitVariableAsResourceVariable(VariableElement e, P p) {
+        return defaultAction(e, p);
+    }
 }

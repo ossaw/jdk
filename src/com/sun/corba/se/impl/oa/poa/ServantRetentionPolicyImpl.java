@@ -9,33 +9,33 @@ import org.omg.CORBA.*;
 import org.omg.PortableServer.*;
 
 final class ServantRetentionPolicyImpl extends org.omg.CORBA.LocalObject
-		implements ServantRetentionPolicy {
+        implements ServantRetentionPolicy {
 
-	public ServantRetentionPolicyImpl(ServantRetentionPolicyValue value) {
-		this.value = value;
-	}
+    public ServantRetentionPolicyImpl(ServantRetentionPolicyValue value) {
+        this.value = value;
+    }
 
-	public ServantRetentionPolicyValue value() {
-		return value;
-	}
+    public ServantRetentionPolicyValue value() {
+        return value;
+    }
 
-	public int policy_type() {
-		return SERVANT_RETENTION_POLICY_ID.value;
-	}
+    public int policy_type() {
+        return SERVANT_RETENTION_POLICY_ID.value;
+    }
 
-	public Policy copy() {
-		return new ServantRetentionPolicyImpl(value);
-	}
+    public Policy copy() {
+        return new ServantRetentionPolicyImpl(value);
+    }
 
-	public void destroy() {
-		value = null;
-	}
+    public void destroy() {
+        value = null;
+    }
 
-	private ServantRetentionPolicyValue value;
+    private ServantRetentionPolicyValue value;
 
-	public String toString() {
-		return "ServantRetentionPolicy[" + ((value
-				.value() == ServantRetentionPolicyValue._RETAIN) ? "RETAIN"
-						: "NON_RETAIN" + "]");
-	}
+    public String toString() {
+        return "ServantRetentionPolicy[" + ((value
+                .value() == ServantRetentionPolicyValue._RETAIN) ? "RETAIN"
+                        : "NON_RETAIN" + "]");
+    }
 }

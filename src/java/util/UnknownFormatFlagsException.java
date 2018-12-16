@@ -17,33 +17,33 @@ package java.util;
  */
 public class UnknownFormatFlagsException extends IllegalFormatException {
 
-	private static final long serialVersionUID = 19370506L;
+    private static final long serialVersionUID = 19370506L;
 
-	private String flags;
+    private String flags;
 
-	/**
-	 * Constructs an instance of this class with the specified flags.
-	 *
-	 * @param f
-	 *          The set of format flags which contain an unknown flag
-	 */
-	public UnknownFormatFlagsException(String f) {
-		if (f == null)
-			throw new NullPointerException();
-		this.flags = f;
-	}
+    /**
+     * Constructs an instance of this class with the specified flags.
+     *
+     * @param f
+     *          The set of format flags which contain an unknown flag
+     */
+    public UnknownFormatFlagsException(String f) {
+        if (f == null)
+            throw new NullPointerException();
+        this.flags = f;
+    }
 
-	/**
-	 * Returns the set of flags which contains an unknown flag.
-	 *
-	 * @return The flags
-	 */
-	public String getFlags() {
-		return flags;
-	}
+    /**
+     * Returns the set of flags which contains an unknown flag.
+     *
+     * @return The flags
+     */
+    public String getFlags() {
+        return flags;
+    }
 
-	// javadoc inherited from Throwable.java
-	public String getMessage() {
-		return "Flags = " + flags;
-	}
+    // javadoc inherited from Throwable.java
+    public String getMessage() {
+        return "Flags = " + flags;
+    }
 }

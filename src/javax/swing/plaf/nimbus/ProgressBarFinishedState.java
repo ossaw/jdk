@@ -8,15 +8,15 @@ import java.awt.*;
 import javax.swing.*;
 
 class ProgressBarFinishedState extends State {
-	ProgressBarFinishedState() {
-		super("Finished");
-	}
+    ProgressBarFinishedState() {
+        super("Finished");
+    }
 
-	@Override
-	protected boolean isInState(JComponent c) {
+    @Override
+    protected boolean isInState(JComponent c) {
 
-		return c instanceof JProgressBar && ((JProgressBar) c)
-				.getPercentComplete() == 1.0;
+        return c instanceof JProgressBar && ((JProgressBar) c)
+                .getPercentComplete() == 1.0;
 
-	}
+    }
 }

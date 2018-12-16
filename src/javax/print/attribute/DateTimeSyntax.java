@@ -37,87 +37,87 @@ import java.util.Date;
  */
 public abstract class DateTimeSyntax implements Serializable, Cloneable {
 
-	private static final long serialVersionUID = -1400819079791208582L;
+    private static final long serialVersionUID = -1400819079791208582L;
 
-	// Hidden data members.
+    // Hidden data members.
 
-	/**
-	 * This date-time attribute's<code>java.util.Date</code> value.
-	 * 
-	 * @serial
-	 */
-	private Date value;
+    /**
+     * This date-time attribute's<code>java.util.Date</code> value.
+     * 
+     * @serial
+     */
+    private Date value;
 
-	// Hidden constructors.
+    // Hidden constructors.
 
-	/**
-	 * Construct a new date-time attribute with the given
-	 * <code>java.util.Date </code> value.
-	 *
-	 * @param value
-	 *              <code>java.util.Date</code> value.
-	 *
-	 * @exception NullPointerException
-	 *                                 (unchecked exception) Thrown if
-	 *                                 <CODE>theValue</CODE> is
-	 *                                 null.
-	 */
-	protected DateTimeSyntax(Date value) {
-		if (value == null) {
-			throw new NullPointerException("value is null");
-		}
-		this.value = value;
-	}
+    /**
+     * Construct a new date-time attribute with the given
+     * <code>java.util.Date </code> value.
+     *
+     * @param value
+     *              <code>java.util.Date</code> value.
+     *
+     * @exception NullPointerException
+     *                                 (unchecked exception) Thrown if
+     *                                 <CODE>theValue</CODE> is
+     *                                 null.
+     */
+    protected DateTimeSyntax(Date value) {
+        if (value == null) {
+            throw new NullPointerException("value is null");
+        }
+        this.value = value;
+    }
 
-	// Exported operations.
+    // Exported operations.
 
-	/**
-	 * Returns this date-time attribute's <code>java.util.Date</code> value.
-	 * 
-	 * @return the Date.
-	 */
-	public Date getValue() {
-		return new Date(value.getTime());
-	}
+    /**
+     * Returns this date-time attribute's <code>java.util.Date</code> value.
+     * 
+     * @return the Date.
+     */
+    public Date getValue() {
+        return new Date(value.getTime());
+    }
 
-	// Exported operations inherited and overridden from class Object.
+    // Exported operations inherited and overridden from class Object.
 
-	/**
-	 * Returns whether this date-time attribute is equivalent to the passed in
-	 * object. To be equivalent, all of the following conditions must be true:
-	 * <OL TYPE=1>
-	 * <LI><CODE>object</CODE> is not null.
-	 * <LI><CODE>object</CODE> is an instance of class DateTimeSyntax.
-	 * <LI>This date-time attribute's <code>java.util.Date</code> value and
-	 * <CODE>object</CODE>'s <code>java.util.Date</code> value are equal.
-	 * </OL>
-	 *
-	 * @param object
-	 *               Object to compare to.
-	 *
-	 * @return True if <CODE>object</CODE> is equivalent to this date-time
-	 *         attribute, false otherwise.
-	 */
-	public boolean equals(Object object) {
-		return (object != null && object instanceof DateTimeSyntax && value
-				.equals(((DateTimeSyntax) object).value));
-	}
+    /**
+     * Returns whether this date-time attribute is equivalent to the passed in
+     * object. To be equivalent, all of the following conditions must be true:
+     * <OL TYPE=1>
+     * <LI><CODE>object</CODE> is not null.
+     * <LI><CODE>object</CODE> is an instance of class DateTimeSyntax.
+     * <LI>This date-time attribute's <code>java.util.Date</code> value and
+     * <CODE>object</CODE>'s <code>java.util.Date</code> value are equal.
+     * </OL>
+     *
+     * @param object
+     *               Object to compare to.
+     *
+     * @return True if <CODE>object</CODE> is equivalent to this date-time
+     *         attribute, false otherwise.
+     */
+    public boolean equals(Object object) {
+        return (object != null && object instanceof DateTimeSyntax && value
+                .equals(((DateTimeSyntax) object).value));
+    }
 
-	/**
-	 * Returns a hash code value for this date-time attribute. The hashcode is
-	 * that of this attribute's <code>java.util.Date</code> value.
-	 */
-	public int hashCode() {
-		return value.hashCode();
-	}
+    /**
+     * Returns a hash code value for this date-time attribute. The hashcode is
+     * that of this attribute's <code>java.util.Date</code> value.
+     */
+    public int hashCode() {
+        return value.hashCode();
+    }
 
-	/**
-	 * Returns a string value corresponding to this date-time attribute. The
-	 * string value is just this attribute's <code>java.util.Date</code> value
-	 * converted to a string.
-	 */
-	public String toString() {
-		return "" + value;
-	}
+    /**
+     * Returns a string value corresponding to this date-time attribute. The
+     * string value is just this attribute's <code>java.util.Date</code> value
+     * converted to a string.
+     */
+    public String toString() {
+        return "" + value;
+    }
 
 }

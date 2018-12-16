@@ -24,20 +24,20 @@ import java.util.*;
  * @since 1.4
  */
 public interface PreferencesFactory {
-	/**
-	 * Returns the system root preference node. (Multiple calls on this method
-	 * will return the same object reference.)
-	 * 
-	 * @return the system root preference node
-	 */
-	Preferences systemRoot();
+    /**
+     * Returns the system root preference node. (Multiple calls on this method
+     * will return the same object reference.)
+     * 
+     * @return the system root preference node
+     */
+    Preferences systemRoot();
 
-	/**
-	 * Returns the user root preference node corresponding to the calling user.
-	 * In a server, the returned value will typically depend on some implicit
-	 * client-context.
-	 * 
-	 * @return the user root preference node corresponding to the calling user
-	 */
-	Preferences userRoot();
+    /**
+     * Returns the user root preference node corresponding to the calling user.
+     * In a server, the returned value will typically depend on some implicit
+     * client-context.
+     * 
+     * @return the user root preference node corresponding to the calling user
+     */
+    Preferences userRoot();
 }

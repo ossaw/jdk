@@ -41,8 +41,8 @@ import java.lang.annotation.Target;
 @Retention(RUNTIME)
 @Target({ PACKAGE })
 public @interface XmlSchemaTypes {
-	/**
-	 * Collection of @{@link XmlSchemaType} annotations
-	 */
-	XmlSchemaType[] value();
+    /**
+     * Collection of @{@link XmlSchemaType} annotations
+     */
+    XmlSchemaType[] value();
 }

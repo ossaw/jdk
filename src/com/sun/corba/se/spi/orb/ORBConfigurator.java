@@ -13,5 +13,5 @@ package com.sun.corba.se.spi.orb;
  * Implementations of this interface must have a public no-args constructor.
  */
 public interface ORBConfigurator {
-	void configure(DataCollector dc, ORB orb);
+    void configure(DataCollector dc, ORB orb);
 }

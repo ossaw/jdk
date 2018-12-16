@@ -52,43 +52,43 @@ import javax.xml.crypto.XMLStructure;
  */
 public interface PGPData extends XMLStructure {
 
-	/**
-	 * URI identifying the PGPData KeyInfo type:
-	 * http://www.w3.org/2000/09/xmldsig#PGPData. This can be specified as the
-	 * value of the <code>type</code> parameter of the {@link RetrievalMethod}
-	 * class to describe a remote <code>PGPData</code> structure.
-	 */
-	final static String TYPE = "http://www.w3.org/2000/09/xmldsig#PGPData";
+    /**
+     * URI identifying the PGPData KeyInfo type:
+     * http://www.w3.org/2000/09/xmldsig#PGPData. This can be specified as the
+     * value of the <code>type</code> parameter of the {@link RetrievalMethod}
+     * class to describe a remote <code>PGPData</code> structure.
+     */
+    final static String TYPE = "http://www.w3.org/2000/09/xmldsig#PGPData";
 
-	/**
-	 * Returns the PGP public key identifier of this <code>PGPData</code> as
-	 * defined in <a href="http://www.ietf.org/rfc/rfc2440.txt">RFC 2440</a>,
-	 * section 11.2.
-	 *
-	 * @return the PGP public key identifier (may be <code>null</code> if not
-	 *         specified). Each invocation of this method returns a new clone to
-	 *         protect against subsequent modification.
-	 */
-	byte[] getKeyId();
+    /**
+     * Returns the PGP public key identifier of this <code>PGPData</code> as
+     * defined in <a href="http://www.ietf.org/rfc/rfc2440.txt">RFC 2440</a>,
+     * section 11.2.
+     *
+     * @return the PGP public key identifier (may be <code>null</code> if not
+     *         specified). Each invocation of this method returns a new clone to
+     *         protect against subsequent modification.
+     */
+    byte[] getKeyId();
 
-	/**
-	 * Returns the PGP key material packet of this <code>PGPData</code> as
-	 * defined in <a href="http://www.ietf.org/rfc/rfc2440.txt">RFC 2440</a>,
-	 * section 5.5.
-	 *
-	 * @return the PGP key material packet (may be <code>null</code> if not
-	 *         specified). Each invocation of this method returns a new clone to
-	 *         protect against subsequent modification.
-	 */
-	byte[] getKeyPacket();
+    /**
+     * Returns the PGP key material packet of this <code>PGPData</code> as
+     * defined in <a href="http://www.ietf.org/rfc/rfc2440.txt">RFC 2440</a>,
+     * section 5.5.
+     *
+     * @return the PGP key material packet (may be <code>null</code> if not
+     *         specified). Each invocation of this method returns a new clone to
+     *         protect against subsequent modification.
+     */
+    byte[] getKeyPacket();
 
-	/**
-	 * Returns an {@link Collections#unmodifiableList unmodifiable list} of
-	 * {@link XMLStructure}s representing elements from an external namespace.
-	 *
-	 * @return an unmodifiable list of <code>XMLStructure</code>s (may be empty,
-	 *         but never <code>null</code>)
-	 */
-	@SuppressWarnings("rawtypes")
-	List getExternalElements();
+    /**
+     * Returns an {@link Collections#unmodifiableList unmodifiable list} of
+     * {@link XMLStructure}s representing elements from an external namespace.
+     *
+     * @return an unmodifiable list of <code>XMLStructure</code>s (may be empty,
+     *         but never <code>null</code>)
+     */
+    @SuppressWarnings("rawtypes")
+    List getExternalElements();
 }

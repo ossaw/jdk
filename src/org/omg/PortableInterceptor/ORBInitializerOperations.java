@@ -110,35 +110,35 @@ package org.omg.PortableInterceptor;
  */
 public interface ORBInitializerOperations {
 
-	/**
-	 * Called during ORB initialization. If it is expected that initial services
-	 * registered by an interceptor will be used by other interceptors, then
-	 * those initial services shall be registered at this point via calls to
-	 * <code>ORBInitInfo.register_initial_reference</code>.
-	 * 
-	 * @param info
-	 *             provides initialization attributes and operations by which
-	 *             Interceptors can be registered.
-	 */
-	void pre_init(org.omg.PortableInterceptor.ORBInitInfo info);
+    /**
+     * Called during ORB initialization. If it is expected that initial services
+     * registered by an interceptor will be used by other interceptors, then
+     * those initial services shall be registered at this point via calls to
+     * <code>ORBInitInfo.register_initial_reference</code>.
+     * 
+     * @param info
+     *             provides initialization attributes and operations by which
+     *             Interceptors can be registered.
+     */
+    void pre_init(org.omg.PortableInterceptor.ORBInitInfo info);
 
-	/**
-	 * Called during ORB initialization. If a service must resolve initial
-	 * references as part of its initialization, it can assume that all initial
-	 * references will be available at this point.
-	 * <p>
-	 * Calling the <code>post_init</code> operations is not the final task of
-	 * ORB initialization. The final task, following the <code>post_init</code>
-	 * calls, is attaching the lists of registered interceptors to the ORB.
-	 * Therefore, the ORB does not contain the interceptors during calls to
-	 * <code>post_init</code>. If an ORB-mediated call is made from within
-	 * <code>post_init</code>, no request interceptors will be invoked on that
-	 * call. Likewise, if an operation is performed which causes an IOR to be
-	 * created, no IOR interceptors will be invoked.
-	 *
-	 * @param info
-	 *             provides initialization attributes and operations by which
-	 *             Interceptors can be registered.
-	 */
-	void post_init(org.omg.PortableInterceptor.ORBInitInfo info);
+    /**
+     * Called during ORB initialization. If a service must resolve initial
+     * references as part of its initialization, it can assume that all initial
+     * references will be available at this point.
+     * <p>
+     * Calling the <code>post_init</code> operations is not the final task of
+     * ORB initialization. The final task, following the <code>post_init</code>
+     * calls, is attaching the lists of registered interceptors to the ORB.
+     * Therefore, the ORB does not contain the interceptors during calls to
+     * <code>post_init</code>. If an ORB-mediated call is made from within
+     * <code>post_init</code>, no request interceptors will be invoked on that
+     * call. Likewise, if an operation is performed which causes an IOR to be
+     * created, no IOR interceptors will be invoked.
+     *
+     * @param info
+     *             provides initialization attributes and operations by which
+     *             Interceptors can be registered.
+     */
+    void post_init(org.omg.PortableInterceptor.ORBInitInfo info);
 } // interface ORBInitializerOperations

@@ -27,21 +27,21 @@ package java.security.cert;
  */
 public interface CRLSelector extends Cloneable {
 
-	/**
-	 * Decides whether a {@code CRL} should be selected.
-	 *
-	 * @param crl
-	 *            the {@code CRL} to be checked
-	 * @return {@code true} if the {@code CRL} should be selected, {@code false}
-	 *         otherwise
-	 */
-	boolean match(CRL crl);
+    /**
+     * Decides whether a {@code CRL} should be selected.
+     *
+     * @param crl
+     *            the {@code CRL} to be checked
+     * @return {@code true} if the {@code CRL} should be selected, {@code false}
+     *         otherwise
+     */
+    boolean match(CRL crl);
 
-	/**
-	 * Makes a copy of this {@code CRLSelector}. Changes to the copy will not
-	 * affect the original and vice versa.
-	 *
-	 * @return a copy of this {@code CRLSelector}
-	 */
-	Object clone();
+    /**
+     * Makes a copy of this {@code CRLSelector}. Changes to the copy will not
+     * affect the original and vice versa.
+     *
+     * @return a copy of this {@code CRLSelector}
+     */
+    Object clone();
 }

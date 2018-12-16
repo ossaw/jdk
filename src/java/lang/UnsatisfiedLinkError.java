@@ -14,23 +14,23 @@ package java.lang;
  * @since JDK1.0
  */
 public class UnsatisfiedLinkError extends LinkageError {
-	private static final long serialVersionUID = -4019343241616879428L;
+    private static final long serialVersionUID = -4019343241616879428L;
 
-	/**
-	 * Constructs an <code>UnsatisfiedLinkError</code> with no detail message.
-	 */
-	public UnsatisfiedLinkError() {
-		super();
-	}
+    /**
+     * Constructs an <code>UnsatisfiedLinkError</code> with no detail message.
+     */
+    public UnsatisfiedLinkError() {
+        super();
+    }
 
-	/**
-	 * Constructs an <code>UnsatisfiedLinkError</code> with the specified detail
-	 * message.
-	 *
-	 * @param s
-	 *          the detail message.
-	 */
-	public UnsatisfiedLinkError(String s) {
-		super(s);
-	}
+    /**
+     * Constructs an <code>UnsatisfiedLinkError</code> with the specified detail
+     * message.
+     *
+     * @param s
+     *          the detail message.
+     */
+    public UnsatisfiedLinkError(String s) {
+        super(s);
+    }
 }

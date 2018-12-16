@@ -16,9 +16,9 @@ import java.util.EventListener;
  */
 
 public interface TableModelListener extends java.util.EventListener {
-	/**
-	 * This fine grain notification tells listeners the exact range of cells,
-	 * rows, or columns that changed.
-	 */
-	public void tableChanged(TableModelEvent e);
+    /**
+     * This fine grain notification tells listeners the exact range of cells,
+     * rows, or columns that changed.
+     */
+    public void tableChanged(TableModelEvent e);
 }

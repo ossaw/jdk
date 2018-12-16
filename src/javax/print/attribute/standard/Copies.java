@@ -46,68 +46,68 @@ import javax.print.attribute.PrintJobAttribute;
  * @author Alan Kamihensky
  */
 public final class Copies extends IntegerSyntax implements
-		PrintRequestAttribute, PrintJobAttribute {
+        PrintRequestAttribute, PrintJobAttribute {
 
-	private static final long serialVersionUID = -6426631521680023833L;
+    private static final long serialVersionUID = -6426631521680023833L;
 
-	/**
-	 * Construct a new copies attribute with the given integer value.
-	 *
-	 * @param value
-	 *              Integer value.
-	 *
-	 * @exception IllegalArgumentException
-	 *                                     (Unchecked exception) Thrown if
-	 *                                     <CODE>value</CODE> is less
-	 *                                     than 1.
-	 */
-	public Copies(int value) {
-		super(value, 1, Integer.MAX_VALUE);
-	}
+    /**
+     * Construct a new copies attribute with the given integer value.
+     *
+     * @param value
+     *              Integer value.
+     *
+     * @exception IllegalArgumentException
+     *                                     (Unchecked exception) Thrown if
+     *                                     <CODE>value</CODE> is less
+     *                                     than 1.
+     */
+    public Copies(int value) {
+        super(value, 1, Integer.MAX_VALUE);
+    }
 
-	/**
-	 * Returns whether this copies attribute is equivalent to the passed in
-	 * object. To be equivalent, all of the following conditions must be true:
-	 * <OL TYPE=1>
-	 * <LI><CODE>object</CODE> is not null.
-	 * <LI><CODE>object</CODE> is an instance of class Copies.
-	 * <LI>This copies attribute's value and <CODE>object</CODE>'s value are
-	 * equal.
-	 * </OL>
-	 *
-	 * @param object
-	 *               Object to compare to.
-	 *
-	 * @return True if <CODE>object</CODE> is equivalent to this copies
-	 *         attribute, false otherwise.
-	 */
-	public boolean equals(Object object) {
-		return super.equals(object) && object instanceof Copies;
-	}
+    /**
+     * Returns whether this copies attribute is equivalent to the passed in
+     * object. To be equivalent, all of the following conditions must be true:
+     * <OL TYPE=1>
+     * <LI><CODE>object</CODE> is not null.
+     * <LI><CODE>object</CODE> is an instance of class Copies.
+     * <LI>This copies attribute's value and <CODE>object</CODE>'s value are
+     * equal.
+     * </OL>
+     *
+     * @param object
+     *               Object to compare to.
+     *
+     * @return True if <CODE>object</CODE> is equivalent to this copies
+     *         attribute, false otherwise.
+     */
+    public boolean equals(Object object) {
+        return super.equals(object) && object instanceof Copies;
+    }
 
-	/**
-	 * Get the printing attribute class which is to be used as the "category"
-	 * for this printing attribute value.
-	 * <P>
-	 * For class Copies, the category is class Copies itself.
-	 *
-	 * @return Printing attribute class (category), an instance of class
-	 *         {@link java.lang.Class java.lang.Class}.
-	 */
-	public final Class<? extends Attribute> getCategory() {
-		return Copies.class;
-	}
+    /**
+     * Get the printing attribute class which is to be used as the "category"
+     * for this printing attribute value.
+     * <P>
+     * For class Copies, the category is class Copies itself.
+     *
+     * @return Printing attribute class (category), an instance of class
+     *         {@link java.lang.Class java.lang.Class}.
+     */
+    public final Class<? extends Attribute> getCategory() {
+        return Copies.class;
+    }
 
-	/**
-	 * Get the name of the category of which this attribute value is an
-	 * instance.
-	 * <P>
-	 * For class Copies, the category name is <CODE>"copies"</CODE>.
-	 *
-	 * @return Attribute category name.
-	 */
-	public final String getName() {
-		return "copies";
-	}
+    /**
+     * Get the name of the category of which this attribute value is an
+     * instance.
+     * <P>
+     * For class Copies, the category name is <CODE>"copies"</CODE>.
+     *
+     * @return Attribute category name.
+     */
+    public final String getName() {
+        return "copies";
+    }
 
 }

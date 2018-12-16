@@ -30,27 +30,27 @@ import org.w3c.dom.DOMException;
  * @since DOM Level 2
  */
 public interface CSSPageRule extends CSSRule {
-	/**
-	 * The parsable textual representation of the page selector for the rule.
-	 */
-	public String getSelectorText();
+    /**
+     * The parsable textual representation of the page selector for the rule.
+     */
+    public String getSelectorText();
 
-	/**
-	 * The parsable textual representation of the page selector for the rule.
-	 * 
-	 * @exception DOMException
-	 *                         SYNTAX_ERR: Raised if the specified CSS string
-	 *                         value has a
-	 *                         syntax error and is unparsable. <br>
-	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this rule
-	 *                         is
-	 *                         readonly.
-	 */
-	public void setSelectorText(String selectorText) throws DOMException;
+    /**
+     * The parsable textual representation of the page selector for the rule.
+     * 
+     * @exception DOMException
+     *                         SYNTAX_ERR: Raised if the specified CSS string
+     *                         value has a
+     *                         syntax error and is unparsable. <br>
+     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this rule
+     *                         is
+     *                         readonly.
+     */
+    public void setSelectorText(String selectorText) throws DOMException;
 
-	/**
-	 * The declaration-block of this rule.
-	 */
-	public CSSStyleDeclaration getStyle();
+    /**
+     * The declaration-block of this rule.
+     */
+    public CSSStyleDeclaration getStyle();
 
 }

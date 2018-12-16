@@ -82,298 +82,298 @@ import java.util.Map;
  * @since 1.8
  */
 public final class MinguoChronology extends AbstractChronology implements
-		Serializable {
+        Serializable {
 
-	/**
-	 * Singleton instance for the Minguo chronology.
-	 */
-	public static final MinguoChronology INSTANCE = new MinguoChronology();
+    /**
+     * Singleton instance for the Minguo chronology.
+     */
+    public static final MinguoChronology INSTANCE = new MinguoChronology();
 
-	/**
-	 * Serialization version.
-	 */
-	private static final long serialVersionUID = 1039765215346859963L;
-	/**
-	 * The difference in years between ISO and Minguo.
-	 */
-	static final int YEARS_DIFFERENCE = 1911;
+    /**
+     * Serialization version.
+     */
+    private static final long serialVersionUID = 1039765215346859963L;
+    /**
+     * The difference in years between ISO and Minguo.
+     */
+    static final int YEARS_DIFFERENCE = 1911;
 
-	/**
-	 * Restricted constructor.
-	 */
-	private MinguoChronology() {}
+    /**
+     * Restricted constructor.
+     */
+    private MinguoChronology() {}
 
-	// -----------------------------------------------------------------------
-	/**
-	 * Gets the ID of the chronology - 'Minguo'.
-	 * <p>
-	 * The ID uniquely identifies the {@code Chronology}. It can be used to
-	 * lookup the {@code Chronology} using {@link Chronology#of(String)}.
-	 *
-	 * @return the chronology ID - 'Minguo'
-	 * @see #getCalendarType()
-	 */
-	@Override
-	public String getId() {
-		return "Minguo";
-	}
+    // -----------------------------------------------------------------------
+    /**
+     * Gets the ID of the chronology - 'Minguo'.
+     * <p>
+     * The ID uniquely identifies the {@code Chronology}. It can be used to
+     * lookup the {@code Chronology} using {@link Chronology#of(String)}.
+     *
+     * @return the chronology ID - 'Minguo'
+     * @see #getCalendarType()
+     */
+    @Override
+    public String getId() {
+        return "Minguo";
+    }
 
-	/**
-	 * Gets the calendar type of the underlying calendar system - 'roc'.
-	 * <p>
-	 * The calendar type is an identifier defined by the
-	 * <em>Unicode Locale Data Markup Language (LDML)</em> specification. It can
-	 * be used to lookup the {@code Chronology} using
-	 * {@link Chronology#of(String)}. It can also be used as part of a locale,
-	 * accessible via {@link Locale#getUnicodeLocaleType(String)} with the key
-	 * 'ca'.
-	 *
-	 * @return the calendar system type - 'roc'
-	 * @see #getId()
-	 */
-	@Override
-	public String getCalendarType() {
-		return "roc";
-	}
+    /**
+     * Gets the calendar type of the underlying calendar system - 'roc'.
+     * <p>
+     * The calendar type is an identifier defined by the
+     * <em>Unicode Locale Data Markup Language (LDML)</em> specification. It can
+     * be used to lookup the {@code Chronology} using
+     * {@link Chronology#of(String)}. It can also be used as part of a locale,
+     * accessible via {@link Locale#getUnicodeLocaleType(String)} with the key
+     * 'ca'.
+     *
+     * @return the calendar system type - 'roc'
+     * @see #getId()
+     */
+    @Override
+    public String getCalendarType() {
+        return "roc";
+    }
 
-	// -----------------------------------------------------------------------
-	/**
-	 * Obtains a local date in Minguo calendar system from the era, year-of-era,
-	 * month-of-year and day-of-month fields.
-	 *
-	 * @param era
-	 *                   the Minguo era, not null
-	 * @param yearOfEra
-	 *                   the year-of-era
-	 * @param month
-	 *                   the month-of-year
-	 * @param dayOfMonth
-	 *                   the day-of-month
-	 * @return the Minguo local date, not null
-	 * @throws DateTimeException
-	 *                            if unable to create the date
-	 * @throws ClassCastException
-	 *                            if the {@code era} is not a {@code MinguoEra}
-	 */
-	@Override
-	public MinguoDate date(Era era, int yearOfEra, int month, int dayOfMonth) {
-		return date(prolepticYear(era, yearOfEra), month, dayOfMonth);
-	}
+    // -----------------------------------------------------------------------
+    /**
+     * Obtains a local date in Minguo calendar system from the era, year-of-era,
+     * month-of-year and day-of-month fields.
+     *
+     * @param era
+     *                   the Minguo era, not null
+     * @param yearOfEra
+     *                   the year-of-era
+     * @param month
+     *                   the month-of-year
+     * @param dayOfMonth
+     *                   the day-of-month
+     * @return the Minguo local date, not null
+     * @throws DateTimeException
+     *                            if unable to create the date
+     * @throws ClassCastException
+     *                            if the {@code era} is not a {@code MinguoEra}
+     */
+    @Override
+    public MinguoDate date(Era era, int yearOfEra, int month, int dayOfMonth) {
+        return date(prolepticYear(era, yearOfEra), month, dayOfMonth);
+    }
 
-	/**
-	 * Obtains a local date in Minguo calendar system from the proleptic-year,
-	 * month-of-year and day-of-month fields.
-	 *
-	 * @param prolepticYear
-	 *                      the proleptic-year
-	 * @param month
-	 *                      the month-of-year
-	 * @param dayOfMonth
-	 *                      the day-of-month
-	 * @return the Minguo local date, not null
-	 * @throws DateTimeException
-	 *                           if unable to create the date
-	 */
-	@Override
-	public MinguoDate date(int prolepticYear, int month, int dayOfMonth) {
-		return new MinguoDate(LocalDate.of(prolepticYear + YEARS_DIFFERENCE,
-				month, dayOfMonth));
-	}
+    /**
+     * Obtains a local date in Minguo calendar system from the proleptic-year,
+     * month-of-year and day-of-month fields.
+     *
+     * @param prolepticYear
+     *                      the proleptic-year
+     * @param month
+     *                      the month-of-year
+     * @param dayOfMonth
+     *                      the day-of-month
+     * @return the Minguo local date, not null
+     * @throws DateTimeException
+     *                           if unable to create the date
+     */
+    @Override
+    public MinguoDate date(int prolepticYear, int month, int dayOfMonth) {
+        return new MinguoDate(LocalDate.of(prolepticYear + YEARS_DIFFERENCE,
+                month, dayOfMonth));
+    }
 
-	/**
-	 * Obtains a local date in Minguo calendar system from the era, year-of-era
-	 * and day-of-year fields.
-	 *
-	 * @param era
-	 *                  the Minguo era, not null
-	 * @param yearOfEra
-	 *                  the year-of-era
-	 * @param dayOfYear
-	 *                  the day-of-year
-	 * @return the Minguo local date, not null
-	 * @throws DateTimeException
-	 *                            if unable to create the date
-	 * @throws ClassCastException
-	 *                            if the {@code era} is not a {@code MinguoEra}
-	 */
-	@Override
-	public MinguoDate dateYearDay(Era era, int yearOfEra, int dayOfYear) {
-		return dateYearDay(prolepticYear(era, yearOfEra), dayOfYear);
-	}
+    /**
+     * Obtains a local date in Minguo calendar system from the era, year-of-era
+     * and day-of-year fields.
+     *
+     * @param era
+     *                  the Minguo era, not null
+     * @param yearOfEra
+     *                  the year-of-era
+     * @param dayOfYear
+     *                  the day-of-year
+     * @return the Minguo local date, not null
+     * @throws DateTimeException
+     *                            if unable to create the date
+     * @throws ClassCastException
+     *                            if the {@code era} is not a {@code MinguoEra}
+     */
+    @Override
+    public MinguoDate dateYearDay(Era era, int yearOfEra, int dayOfYear) {
+        return dateYearDay(prolepticYear(era, yearOfEra), dayOfYear);
+    }
 
-	/**
-	 * Obtains a local date in Minguo calendar system from the proleptic-year
-	 * and day-of-year fields.
-	 *
-	 * @param prolepticYear
-	 *                      the proleptic-year
-	 * @param dayOfYear
-	 *                      the day-of-year
-	 * @return the Minguo local date, not null
-	 * @throws DateTimeException
-	 *                           if unable to create the date
-	 */
-	@Override
-	public MinguoDate dateYearDay(int prolepticYear, int dayOfYear) {
-		return new MinguoDate(LocalDate.ofYearDay(prolepticYear
-				+ YEARS_DIFFERENCE, dayOfYear));
-	}
+    /**
+     * Obtains a local date in Minguo calendar system from the proleptic-year
+     * and day-of-year fields.
+     *
+     * @param prolepticYear
+     *                      the proleptic-year
+     * @param dayOfYear
+     *                      the day-of-year
+     * @return the Minguo local date, not null
+     * @throws DateTimeException
+     *                           if unable to create the date
+     */
+    @Override
+    public MinguoDate dateYearDay(int prolepticYear, int dayOfYear) {
+        return new MinguoDate(LocalDate.ofYearDay(prolepticYear
+                + YEARS_DIFFERENCE, dayOfYear));
+    }
 
-	/**
-	 * Obtains a local date in the Minguo calendar system from the epoch-day.
-	 *
-	 * @param epochDay
-	 *                 the epoch day
-	 * @return the Minguo local date, not null
-	 * @throws DateTimeException
-	 *                           if unable to create the date
-	 */
-	@Override // override with covariant return type
-	public MinguoDate dateEpochDay(long epochDay) {
-		return new MinguoDate(LocalDate.ofEpochDay(epochDay));
-	}
+    /**
+     * Obtains a local date in the Minguo calendar system from the epoch-day.
+     *
+     * @param epochDay
+     *                 the epoch day
+     * @return the Minguo local date, not null
+     * @throws DateTimeException
+     *                           if unable to create the date
+     */
+    @Override // override with covariant return type
+    public MinguoDate dateEpochDay(long epochDay) {
+        return new MinguoDate(LocalDate.ofEpochDay(epochDay));
+    }
 
-	@Override
-	public MinguoDate dateNow() {
-		return dateNow(Clock.systemDefaultZone());
-	}
+    @Override
+    public MinguoDate dateNow() {
+        return dateNow(Clock.systemDefaultZone());
+    }
 
-	@Override
-	public MinguoDate dateNow(ZoneId zone) {
-		return dateNow(Clock.system(zone));
-	}
+    @Override
+    public MinguoDate dateNow(ZoneId zone) {
+        return dateNow(Clock.system(zone));
+    }
 
-	@Override
-	public MinguoDate dateNow(Clock clock) {
-		return date(LocalDate.now(clock));
-	}
+    @Override
+    public MinguoDate dateNow(Clock clock) {
+        return date(LocalDate.now(clock));
+    }
 
-	@Override
-	public MinguoDate date(TemporalAccessor temporal) {
-		if (temporal instanceof MinguoDate) {
-			return (MinguoDate) temporal;
-		}
-		return new MinguoDate(LocalDate.from(temporal));
-	}
+    @Override
+    public MinguoDate date(TemporalAccessor temporal) {
+        if (temporal instanceof MinguoDate) {
+            return (MinguoDate) temporal;
+        }
+        return new MinguoDate(LocalDate.from(temporal));
+    }
 
-	@Override
-	@SuppressWarnings("unchecked")
-	public ChronoLocalDateTime<MinguoDate> localDateTime(
-			TemporalAccessor temporal) {
-		return (ChronoLocalDateTime<MinguoDate>) super.localDateTime(temporal);
-	}
+    @Override
+    @SuppressWarnings("unchecked")
+    public ChronoLocalDateTime<MinguoDate> localDateTime(
+            TemporalAccessor temporal) {
+        return (ChronoLocalDateTime<MinguoDate>) super.localDateTime(temporal);
+    }
 
-	@Override
-	@SuppressWarnings("unchecked")
-	public ChronoZonedDateTime<MinguoDate> zonedDateTime(
-			TemporalAccessor temporal) {
-		return (ChronoZonedDateTime<MinguoDate>) super.zonedDateTime(temporal);
-	}
+    @Override
+    @SuppressWarnings("unchecked")
+    public ChronoZonedDateTime<MinguoDate> zonedDateTime(
+            TemporalAccessor temporal) {
+        return (ChronoZonedDateTime<MinguoDate>) super.zonedDateTime(temporal);
+    }
 
-	@Override
-	@SuppressWarnings("unchecked")
-	public ChronoZonedDateTime<MinguoDate> zonedDateTime(Instant instant,
-			ZoneId zone) {
-		return (ChronoZonedDateTime<MinguoDate>) super.zonedDateTime(instant,
-				zone);
-	}
+    @Override
+    @SuppressWarnings("unchecked")
+    public ChronoZonedDateTime<MinguoDate> zonedDateTime(Instant instant,
+            ZoneId zone) {
+        return (ChronoZonedDateTime<MinguoDate>) super.zonedDateTime(instant,
+                zone);
+    }
 
-	// -----------------------------------------------------------------------
-	/**
-	 * Checks if the specified year is a leap year.
-	 * <p>
-	 * Minguo leap years occur exactly in line with ISO leap years. This method
-	 * does not validate the year passed in, and only has a well-defined result
-	 * for years in the supported range.
-	 *
-	 * @param prolepticYear
-	 *                      the proleptic-year to check, not validated for range
-	 * @return true if the year is a leap year
-	 */
-	@Override
-	public boolean isLeapYear(long prolepticYear) {
-		return IsoChronology.INSTANCE.isLeapYear(prolepticYear
-				+ YEARS_DIFFERENCE);
-	}
+    // -----------------------------------------------------------------------
+    /**
+     * Checks if the specified year is a leap year.
+     * <p>
+     * Minguo leap years occur exactly in line with ISO leap years. This method
+     * does not validate the year passed in, and only has a well-defined result
+     * for years in the supported range.
+     *
+     * @param prolepticYear
+     *                      the proleptic-year to check, not validated for range
+     * @return true if the year is a leap year
+     */
+    @Override
+    public boolean isLeapYear(long prolepticYear) {
+        return IsoChronology.INSTANCE.isLeapYear(prolepticYear
+                + YEARS_DIFFERENCE);
+    }
 
-	@Override
-	public int prolepticYear(Era era, int yearOfEra) {
-		if (era instanceof MinguoEra == false) {
-			throw new ClassCastException("Era must be MinguoEra");
-		}
-		return (era == MinguoEra.ROC ? yearOfEra : 1 - yearOfEra);
-	}
+    @Override
+    public int prolepticYear(Era era, int yearOfEra) {
+        if (era instanceof MinguoEra == false) {
+            throw new ClassCastException("Era must be MinguoEra");
+        }
+        return (era == MinguoEra.ROC ? yearOfEra : 1 - yearOfEra);
+    }
 
-	@Override
-	public MinguoEra eraOf(int eraValue) {
-		return MinguoEra.of(eraValue);
-	}
+    @Override
+    public MinguoEra eraOf(int eraValue) {
+        return MinguoEra.of(eraValue);
+    }
 
-	@Override
-	public List<Era> eras() {
-		return Arrays.<Era>asList(MinguoEra.values());
-	}
+    @Override
+    public List<Era> eras() {
+        return Arrays.<Era>asList(MinguoEra.values());
+    }
 
-	// -----------------------------------------------------------------------
-	@Override
-	public ValueRange range(ChronoField field) {
-		switch (field) {
-			case PROLEPTIC_MONTH: {
-				ValueRange range = PROLEPTIC_MONTH.range();
-				return ValueRange.of(range.getMinimum() - YEARS_DIFFERENCE
-						* 12L, range.getMaximum() - YEARS_DIFFERENCE * 12L);
-			}
-			case YEAR_OF_ERA: {
-				ValueRange range = YEAR.range();
-				return ValueRange.of(1, range.getMaximum() - YEARS_DIFFERENCE,
-						-range.getMinimum() + 1 + YEARS_DIFFERENCE);
-			}
-			case YEAR: {
-				ValueRange range = YEAR.range();
-				return ValueRange.of(range.getMinimum() - YEARS_DIFFERENCE,
-						range.getMaximum() - YEARS_DIFFERENCE);
-			}
-		}
-		return field.range();
-	}
+    // -----------------------------------------------------------------------
+    @Override
+    public ValueRange range(ChronoField field) {
+        switch (field) {
+            case PROLEPTIC_MONTH: {
+                ValueRange range = PROLEPTIC_MONTH.range();
+                return ValueRange.of(range.getMinimum() - YEARS_DIFFERENCE
+                        * 12L, range.getMaximum() - YEARS_DIFFERENCE * 12L);
+            }
+            case YEAR_OF_ERA: {
+                ValueRange range = YEAR.range();
+                return ValueRange.of(1, range.getMaximum() - YEARS_DIFFERENCE,
+                        -range.getMinimum() + 1 + YEARS_DIFFERENCE);
+            }
+            case YEAR: {
+                ValueRange range = YEAR.range();
+                return ValueRange.of(range.getMinimum() - YEARS_DIFFERENCE,
+                        range.getMaximum() - YEARS_DIFFERENCE);
+            }
+        }
+        return field.range();
+    }
 
-	// -----------------------------------------------------------------------
-	@Override // override for return type
-	public MinguoDate resolveDate(Map<TemporalField, Long> fieldValues,
-			ResolverStyle resolverStyle) {
-		return (MinguoDate) super.resolveDate(fieldValues, resolverStyle);
-	}
+    // -----------------------------------------------------------------------
+    @Override // override for return type
+    public MinguoDate resolveDate(Map<TemporalField, Long> fieldValues,
+            ResolverStyle resolverStyle) {
+        return (MinguoDate) super.resolveDate(fieldValues, resolverStyle);
+    }
 
-	// -----------------------------------------------------------------------
-	/**
-	 * Writes the Chronology using a
-	 * <a href="../../../serialized-form.html#java.time.chrono.Ser">dedicated
-	 * serialized form</a>.
-	 * 
-	 * @serialData
-	 * 
-	 *             <pre>
-	 *             out.writeByte(1); // identifies a Chronology
-	 *             out.writeUTF(getId());
-	 *             </pre>
-	 *
-	 * @return the instance of {@code Ser}, not null
-	 */
-	@Override
-	Object writeReplace() {
-		return super.writeReplace();
-	}
+    // -----------------------------------------------------------------------
+    /**
+     * Writes the Chronology using a
+     * <a href="../../../serialized-form.html#java.time.chrono.Ser">dedicated
+     * serialized form</a>.
+     * 
+     * @serialData
+     * 
+     *             <pre>
+     *             out.writeByte(1); // identifies a Chronology
+     *             out.writeUTF(getId());
+     *             </pre>
+     *
+     * @return the instance of {@code Ser}, not null
+     */
+    @Override
+    Object writeReplace() {
+        return super.writeReplace();
+    }
 
-	/**
-	 * Defend against malicious streams.
-	 *
-	 * @param s
-	 *          the stream to read
-	 * @throws InvalidObjectException
-	 *                                always
-	 */
-	private void readObject(ObjectInputStream s) throws InvalidObjectException {
-		throw new InvalidObjectException(
-				"Deserialization via serialization delegate");
-	}
+    /**
+     * Defend against malicious streams.
+     *
+     * @param s
+     *          the stream to read
+     * @throws InvalidObjectException
+     *                                always
+     */
+    private void readObject(ObjectInputStream s) throws InvalidObjectException {
+        throw new InvalidObjectException(
+                "Deserialization via serialization delegate");
+    }
 }

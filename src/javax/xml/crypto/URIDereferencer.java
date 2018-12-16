@@ -32,29 +32,29 @@ package javax.xml.crypto;
  */
 public interface URIDereferencer {
 
-	/**
-	 * Dereferences the specified <code>URIReference</code> and returns the
-	 * dereferenced data.
-	 *
-	 * @param uriReference
-	 *                     the <code>URIReference</code>
-	 * @param context
-	 *                     an <code>XMLCryptoContext</code> that may contain
-	 *                     additional
-	 *                     useful information for dereferencing the URI. This
-	 *                     implementation should dereference the specified
-	 *                     <code>URIReference</code> against the context's
-	 *                     <code>baseURI</code> parameter, if specified.
-	 * @return the dereferenced data
-	 * @throws NullPointerException
-	 *                               if <code>uriReference</code> or
-	 *                               <code>context</code> are
-	 *                               <code>null</code>
-	 * @throws URIReferenceException
-	 *                               if an exception occurs while dereferencing
-	 *                               the specified
-	 *                               <code>uriReference</code>
-	 */
-	Data dereference(URIReference uriReference, XMLCryptoContext context)
-			throws URIReferenceException;
+    /**
+     * Dereferences the specified <code>URIReference</code> and returns the
+     * dereferenced data.
+     *
+     * @param uriReference
+     *                     the <code>URIReference</code>
+     * @param context
+     *                     an <code>XMLCryptoContext</code> that may contain
+     *                     additional
+     *                     useful information for dereferencing the URI. This
+     *                     implementation should dereference the specified
+     *                     <code>URIReference</code> against the context's
+     *                     <code>baseURI</code> parameter, if specified.
+     * @return the dereferenced data
+     * @throws NullPointerException
+     *                               if <code>uriReference</code> or
+     *                               <code>context</code> are
+     *                               <code>null</code>
+     * @throws URIReferenceException
+     *                               if an exception occurs while dereferencing
+     *                               the specified
+     *                               <code>uriReference</code>
+     */
+    Data dereference(URIReference uriReference, XMLCryptoContext context)
+            throws URIReferenceException;
 }

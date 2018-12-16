@@ -13,23 +13,23 @@ package javax.management.relation;
  */
 public class RelationNotFoundException extends RelationException {
 
-	/* Serial version */
-	private static final long serialVersionUID = -3793951411158559116L;
+    /* Serial version */
+    private static final long serialVersionUID = -3793951411158559116L;
 
-	/**
-	 * Default constructor, no message put in exception.
-	 */
-	public RelationNotFoundException() {
-		super();
-	}
+    /**
+     * Default constructor, no message put in exception.
+     */
+    public RelationNotFoundException() {
+        super();
+    }
 
-	/**
-	 * Constructor with given message put in exception.
-	 *
-	 * @param message
-	 *                the detail message.
-	 */
-	public RelationNotFoundException(String message) {
-		super(message);
-	}
+    /**
+     * Constructor with given message put in exception.
+     *
+     * @param message
+     *                the detail message.
+     */
+    public RelationNotFoundException(String message) {
+        super(message);
+    }
 }

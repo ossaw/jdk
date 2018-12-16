@@ -22,45 +22,45 @@ import javax.lang.model.UnknownEntityException;
  */
 public class UnknownElementException extends UnknownEntityException {
 
-	private static final long serialVersionUID = 269L;
+    private static final long serialVersionUID = 269L;
 
-	private transient Element element;
-	private transient Object parameter;
+    private transient Element element;
+    private transient Object parameter;
 
-	/**
-	 * Creates a new {@code UnknownElementException}. The {@code p} parameter
-	 * may be used to pass in an additional argument with information about the
-	 * context in which the unknown element was encountered; for example, the
-	 * visit methods of {@link ElementVisitor} may pass in their additional
-	 * parameter.
-	 *
-	 * @param e
-	 *          the unknown element, may be {@code null}
-	 * @param p
-	 *          an additional parameter, may be {@code null}
-	 */
-	public UnknownElementException(Element e, Object p) {
-		super("Unknown element: " + e);
-		element = e;
-		this.parameter = p;
-	}
+    /**
+     * Creates a new {@code UnknownElementException}. The {@code p} parameter
+     * may be used to pass in an additional argument with information about the
+     * context in which the unknown element was encountered; for example, the
+     * visit methods of {@link ElementVisitor} may pass in their additional
+     * parameter.
+     *
+     * @param e
+     *          the unknown element, may be {@code null}
+     * @param p
+     *          an additional parameter, may be {@code null}
+     */
+    public UnknownElementException(Element e, Object p) {
+        super("Unknown element: " + e);
+        element = e;
+        this.parameter = p;
+    }
 
-	/**
-	 * Returns the unknown element. The value may be unavailable if this
-	 * exception has been serialized and then read back in.
-	 *
-	 * @return the unknown element, or {@code null} if unavailable
-	 */
-	public Element getUnknownElement() {
-		return element;
-	}
+    /**
+     * Returns the unknown element. The value may be unavailable if this
+     * exception has been serialized and then read back in.
+     *
+     * @return the unknown element, or {@code null} if unavailable
+     */
+    public Element getUnknownElement() {
+        return element;
+    }
 
-	/**
-	 * Returns the additional argument.
-	 *
-	 * @return the additional argument
-	 */
-	public Object getArgument() {
-		return parameter;
-	}
+    /**
+     * Returns the additional argument.
+     *
+     * @return the additional argument
+     */
+    public Object getArgument() {
+        return parameter;
+    }
 }

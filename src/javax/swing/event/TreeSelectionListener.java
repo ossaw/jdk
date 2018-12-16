@@ -20,11 +20,11 @@ import java.util.EventListener;
  * @author Scott Violet
  */
 public interface TreeSelectionListener extends EventListener {
-	/**
-	 * Called whenever the value of the selection changes.
-	 * 
-	 * @param e
-	 *          the event that characterizes the change.
-	 */
-	void valueChanged(TreeSelectionEvent e);
+    /**
+     * Called whenever the value of the selection changes.
+     * 
+     * @param e
+     *          the event that characterizes the change.
+     */
+    void valueChanged(TreeSelectionEvent e);
 }

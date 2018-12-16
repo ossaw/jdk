@@ -24,34 +24,34 @@ import javax.lang.model.util.Types;
  */
 public interface TypeVariable extends ReferenceType {
 
-	/**
-	 * Returns the element corresponding to this type variable.
-	 *
-	 * @return the element corresponding to this type variable
-	 */
-	Element asElement();
+    /**
+     * Returns the element corresponding to this type variable.
+     *
+     * @return the element corresponding to this type variable
+     */
+    Element asElement();
 
-	/**
-	 * Returns the upper bound of this type variable.
-	 *
-	 * <p>
-	 * If this type variable was declared with no explicit upper bounds, the
-	 * result is {@code java.lang.Object}. If it was declared with multiple
-	 * upper bounds, the result is an {@linkplain IntersectionType intersection
-	 * type}; individual bounds can be found by examining the result's
-	 * {@linkplain IntersectionType#getBounds() bounds}.
-	 *
-	 * @return the upper bound of this type variable
-	 */
-	TypeMirror getUpperBound();
+    /**
+     * Returns the upper bound of this type variable.
+     *
+     * <p>
+     * If this type variable was declared with no explicit upper bounds, the
+     * result is {@code java.lang.Object}. If it was declared with multiple
+     * upper bounds, the result is an {@linkplain IntersectionType intersection
+     * type}; individual bounds can be found by examining the result's
+     * {@linkplain IntersectionType#getBounds() bounds}.
+     *
+     * @return the upper bound of this type variable
+     */
+    TypeMirror getUpperBound();
 
-	/**
-	 * Returns the lower bound of this type variable. While a type parameter
-	 * cannot include an explicit lower bound declaration, capture conversion
-	 * can produce a type variable with a non-trivial lower bound. Type
-	 * variables otherwise have a lower bound of {@link NullType}.
-	 *
-	 * @return the lower bound of this type variable
-	 */
-	TypeMirror getLowerBound();
+    /**
+     * Returns the lower bound of this type variable. While a type parameter
+     * cannot include an explicit lower bound declaration, capture conversion
+     * can produce a type variable with a non-trivial lower bound. Type
+     * variables otherwise have a lower bound of {@link NullType}.
+     *
+     * @return the lower bound of this type variable
+     */
+    TypeMirror getLowerBound();
 }

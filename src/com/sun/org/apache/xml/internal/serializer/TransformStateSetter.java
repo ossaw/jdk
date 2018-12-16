@@ -37,19 +37,19 @@ import org.w3c.dom.Node;
  */
 public interface TransformStateSetter {
 
-	/**
-	 * Set the current node.
-	 *
-	 * @param n
-	 *          The current node.
-	 */
-	void setCurrentNode(Node n);
+    /**
+     * Set the current node.
+     *
+     * @param n
+     *          The current node.
+     */
+    void setCurrentNode(Node n);
 
-	/**
-	 * Reset the state on the given transformer object.
-	 *
-	 * @param transformer
-	 */
-	void resetState(Transformer transformer);
+    /**
+     * Reset the state on the given transformer object.
+     *
+     * @param transformer
+     */
+    void resetState(Transformer transformer);
 
 }

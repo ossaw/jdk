@@ -47,13 +47,13 @@ import static java.lang.annotation.ElementType.TYPE;
  * // Example: Code fragment
  * &#64;XmlRootElement
  * class Point {
- * 	int x;
- * 	int y;
+ *     int x;
+ *     int y;
  * 
- * 	Point(int _x, int _y) {
- * 		x = _x;
- * 		y = _y;
- * 	}
+ *     Point(int _x, int _y) {
+ *         x = _x;
+ *         y = _y;
+ *     }
  * }
  * </pre>
  *
@@ -151,22 +151,22 @@ import static java.lang.annotation.ElementType.TYPE;
 @Retention(RUNTIME)
 @Target({ TYPE })
 public @interface XmlRootElement {
-	/**
-	 * namespace name of the XML element.
-	 * <p>
-	 * If the value is "##default", then the XML namespace name is derived from
-	 * the package of the class ( {@link XmlSchema} ). If the package is
-	 * unnamed, then the XML namespace is the default empty namespace.
-	 */
-	String namespace() default "##default";
+    /**
+     * namespace name of the XML element.
+     * <p>
+     * If the value is "##default", then the XML namespace name is derived from
+     * the package of the class ( {@link XmlSchema} ). If the package is
+     * unnamed, then the XML namespace is the default empty namespace.
+     */
+    String namespace() default "##default";
 
-	/**
-	 * local name of the XML element.
-	 * <p>
-	 * If the value is "##default", then the name is derived from the class
-	 * name.
-	 *
-	 */
-	String name() default "##default";
+    /**
+     * local name of the XML element.
+     * <p>
+     * If the value is "##default", then the name is derived from the class
+     * name.
+     *
+     */
+    String name() default "##default";
 
 }

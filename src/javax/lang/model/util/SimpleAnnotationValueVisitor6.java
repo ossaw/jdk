@@ -66,216 +66,216 @@ import javax.annotation.processing.SupportedSourceVersion;
  */
 @SupportedSourceVersion(RELEASE_6)
 public class SimpleAnnotationValueVisitor6<R, P> extends
-		AbstractAnnotationValueVisitor6<R, P> {
+        AbstractAnnotationValueVisitor6<R, P> {
 
-	/**
-	 * Default value to be returned; {@link #defaultAction defaultAction}
-	 * returns this value unless the method is overridden.
-	 */
-	protected final R DEFAULT_VALUE;
+    /**
+     * Default value to be returned; {@link #defaultAction defaultAction}
+     * returns this value unless the method is overridden.
+     */
+    protected final R DEFAULT_VALUE;
 
-	/**
-	 * Constructor for concrete subclasses; uses {@code null} for the default
-	 * value.
-	 */
-	protected SimpleAnnotationValueVisitor6() {
-		super();
-		DEFAULT_VALUE = null;
-	}
+    /**
+     * Constructor for concrete subclasses; uses {@code null} for the default
+     * value.
+     */
+    protected SimpleAnnotationValueVisitor6() {
+        super();
+        DEFAULT_VALUE = null;
+    }
 
-	/**
-	 * Constructor for concrete subclasses; uses the argument for the default
-	 * value.
-	 *
-	 * @param defaultValue
-	 *                     the value to assign to {@link #DEFAULT_VALUE}
-	 */
-	protected SimpleAnnotationValueVisitor6(R defaultValue) {
-		super();
-		DEFAULT_VALUE = defaultValue;
-	}
+    /**
+     * Constructor for concrete subclasses; uses the argument for the default
+     * value.
+     *
+     * @param defaultValue
+     *                     the value to assign to {@link #DEFAULT_VALUE}
+     */
+    protected SimpleAnnotationValueVisitor6(R defaultValue) {
+        super();
+        DEFAULT_VALUE = defaultValue;
+    }
 
-	/**
-	 * The default action for visit methods. The implementation in this class
-	 * just returns {@link #DEFAULT_VALUE}; subclasses will commonly override
-	 * this method.
-	 *
-	 * @param o
-	 *          the value of the annotation
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return {@code DEFAULT_VALUE} unless overridden
-	 */
-	protected R defaultAction(Object o, P p) {
-		return DEFAULT_VALUE;
-	}
+    /**
+     * The default action for visit methods. The implementation in this class
+     * just returns {@link #DEFAULT_VALUE}; subclasses will commonly override
+     * this method.
+     *
+     * @param o
+     *          the value of the annotation
+     * @param p
+     *          a visitor-specified parameter
+     * @return {@code DEFAULT_VALUE} unless overridden
+     */
+    protected R defaultAction(Object o, P p) {
+        return DEFAULT_VALUE;
+    }
 
-	/**
-	 * {@inheritDoc} This implementation calls {@code defaultAction}.
-	 *
-	 * @param b
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitBoolean(boolean b, P p) {
-		return defaultAction(b, p);
-	}
+    /**
+     * {@inheritDoc} This implementation calls {@code defaultAction}.
+     *
+     * @param b
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of {@code defaultAction}
+     */
+    public R visitBoolean(boolean b, P p) {
+        return defaultAction(b, p);
+    }
 
-	/**
-	 * {@inheritDoc} This implementation calls {@code defaultAction}.
-	 *
-	 * @param b
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitByte(byte b, P p) {
-		return defaultAction(b, p);
-	}
+    /**
+     * {@inheritDoc} This implementation calls {@code defaultAction}.
+     *
+     * @param b
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of {@code defaultAction}
+     */
+    public R visitByte(byte b, P p) {
+        return defaultAction(b, p);
+    }
 
-	/**
-	 * {@inheritDoc} This implementation calls {@code defaultAction}.
-	 *
-	 * @param c
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitChar(char c, P p) {
-		return defaultAction(c, p);
-	}
+    /**
+     * {@inheritDoc} This implementation calls {@code defaultAction}.
+     *
+     * @param c
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of {@code defaultAction}
+     */
+    public R visitChar(char c, P p) {
+        return defaultAction(c, p);
+    }
 
-	/**
-	 * {@inheritDoc} This implementation calls {@code defaultAction}.
-	 *
-	 * @param d
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitDouble(double d, P p) {
-		return defaultAction(d, p);
-	}
+    /**
+     * {@inheritDoc} This implementation calls {@code defaultAction}.
+     *
+     * @param d
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of {@code defaultAction}
+     */
+    public R visitDouble(double d, P p) {
+        return defaultAction(d, p);
+    }
 
-	/**
-	 * {@inheritDoc} This implementation calls {@code defaultAction}.
-	 *
-	 * @param f
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitFloat(float f, P p) {
-		return defaultAction(f, p);
-	}
+    /**
+     * {@inheritDoc} This implementation calls {@code defaultAction}.
+     *
+     * @param f
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of {@code defaultAction}
+     */
+    public R visitFloat(float f, P p) {
+        return defaultAction(f, p);
+    }
 
-	/**
-	 * {@inheritDoc} This implementation calls {@code defaultAction}.
-	 *
-	 * @param i
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitInt(int i, P p) {
-		return defaultAction(i, p);
-	}
+    /**
+     * {@inheritDoc} This implementation calls {@code defaultAction}.
+     *
+     * @param i
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of {@code defaultAction}
+     */
+    public R visitInt(int i, P p) {
+        return defaultAction(i, p);
+    }
 
-	/**
-	 * {@inheritDoc} This implementation calls {@code defaultAction}.
-	 *
-	 * @param i
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitLong(long i, P p) {
-		return defaultAction(i, p);
-	}
+    /**
+     * {@inheritDoc} This implementation calls {@code defaultAction}.
+     *
+     * @param i
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of {@code defaultAction}
+     */
+    public R visitLong(long i, P p) {
+        return defaultAction(i, p);
+    }
 
-	/**
-	 * {@inheritDoc} This implementation calls {@code defaultAction}.
-	 *
-	 * @param s
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitShort(short s, P p) {
-		return defaultAction(s, p);
-	}
+    /**
+     * {@inheritDoc} This implementation calls {@code defaultAction}.
+     *
+     * @param s
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of {@code defaultAction}
+     */
+    public R visitShort(short s, P p) {
+        return defaultAction(s, p);
+    }
 
-	/**
-	 * {@inheritDoc} This implementation calls {@code defaultAction}.
-	 *
-	 * @param s
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitString(String s, P p) {
-		return defaultAction(s, p);
-	}
+    /**
+     * {@inheritDoc} This implementation calls {@code defaultAction}.
+     *
+     * @param s
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of {@code defaultAction}
+     */
+    public R visitString(String s, P p) {
+        return defaultAction(s, p);
+    }
 
-	/**
-	 * {@inheritDoc} This implementation calls {@code defaultAction}.
-	 *
-	 * @param t
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitType(TypeMirror t, P p) {
-		return defaultAction(t, p);
-	}
+    /**
+     * {@inheritDoc} This implementation calls {@code defaultAction}.
+     *
+     * @param t
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of {@code defaultAction}
+     */
+    public R visitType(TypeMirror t, P p) {
+        return defaultAction(t, p);
+    }
 
-	/**
-	 * {@inheritDoc} This implementation calls {@code defaultAction}.
-	 *
-	 * @param c
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitEnumConstant(VariableElement c, P p) {
-		return defaultAction(c, p);
-	}
+    /**
+     * {@inheritDoc} This implementation calls {@code defaultAction}.
+     *
+     * @param c
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of {@code defaultAction}
+     */
+    public R visitEnumConstant(VariableElement c, P p) {
+        return defaultAction(c, p);
+    }
 
-	/**
-	 * {@inheritDoc} This implementation calls {@code defaultAction}.
-	 *
-	 * @param a
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitAnnotation(AnnotationMirror a, P p) {
-		return defaultAction(a, p);
-	}
+    /**
+     * {@inheritDoc} This implementation calls {@code defaultAction}.
+     *
+     * @param a
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of {@code defaultAction}
+     */
+    public R visitAnnotation(AnnotationMirror a, P p) {
+        return defaultAction(a, p);
+    }
 
-	/**
-	 * {@inheritDoc} This implementation calls {@code defaultAction}.
-	 *
-	 * @param vals
-	 *             {@inheritDoc}
-	 * @param p
-	 *             {@inheritDoc}
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitArray(List<? extends AnnotationValue> vals, P p) {
-		return defaultAction(vals, p);
-	}
+    /**
+     * {@inheritDoc} This implementation calls {@code defaultAction}.
+     *
+     * @param vals
+     *             {@inheritDoc}
+     * @param p
+     *             {@inheritDoc}
+     * @return the result of {@code defaultAction}
+     */
+    public R visitArray(List<? extends AnnotationValue> vals, P p) {
+        return defaultAction(vals, p);
+    }
 }

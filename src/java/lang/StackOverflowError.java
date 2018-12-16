@@ -13,23 +13,23 @@ package java.lang;
  * @since JDK1.0
  */
 public class StackOverflowError extends VirtualMachineError {
-	private static final long serialVersionUID = 8609175038441759607L;
+    private static final long serialVersionUID = 8609175038441759607L;
 
-	/**
-	 * Constructs a <code>StackOverflowError</code> with no detail message.
-	 */
-	public StackOverflowError() {
-		super();
-	}
+    /**
+     * Constructs a <code>StackOverflowError</code> with no detail message.
+     */
+    public StackOverflowError() {
+        super();
+    }
 
-	/**
-	 * Constructs a <code>StackOverflowError</code> with the specified detail
-	 * message.
-	 *
-	 * @param s
-	 *          the detail message.
-	 */
-	public StackOverflowError(String s) {
-		super(s);
-	}
+    /**
+     * Constructs a <code>StackOverflowError</code> with the specified detail
+     * message.
+     *
+     * @param s
+     *          the detail message.
+     */
+    public StackOverflowError(String s) {
+        super(s);
+    }
 }

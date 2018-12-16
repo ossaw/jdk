@@ -23,22 +23,22 @@ import java.awt.*;
  * @author Jeff Dinkins
  */
 public class MotifSplitPaneUI extends BasicSplitPaneUI {
-	public MotifSplitPaneUI() {
-		super();
-	}
+    public MotifSplitPaneUI() {
+        super();
+    }
 
-	/**
-	 * Creates a new MotifSplitPaneUI instance
-	 */
-	public static ComponentUI createUI(JComponent x) {
-		return new MotifSplitPaneUI();
-	}
+    /**
+     * Creates a new MotifSplitPaneUI instance
+     */
+    public static ComponentUI createUI(JComponent x) {
+        return new MotifSplitPaneUI();
+    }
 
-	/**
-	 * Creates the default divider.
-	 */
-	public BasicSplitPaneDivider createDefaultDivider() {
-		return new MotifSplitPaneDivider(this);
-	}
+    /**
+     * Creates the default divider.
+     */
+    public BasicSplitPaneDivider createDefaultDivider() {
+        return new MotifSplitPaneDivider(this);
+    }
 
 }

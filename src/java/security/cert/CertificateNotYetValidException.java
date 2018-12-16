@@ -14,25 +14,25 @@ package java.security.cert;
  */
 public class CertificateNotYetValidException extends CertificateException {
 
-	static final long serialVersionUID = 4355919900041064702L;
+    static final long serialVersionUID = 4355919900041064702L;
 
-	/**
-	 * Constructs a CertificateNotYetValidException with no detail message. A
-	 * detail message is a String that describes this particular exception.
-	 */
-	public CertificateNotYetValidException() {
-		super();
-	}
+    /**
+     * Constructs a CertificateNotYetValidException with no detail message. A
+     * detail message is a String that describes this particular exception.
+     */
+    public CertificateNotYetValidException() {
+        super();
+    }
 
-	/**
-	 * Constructs a CertificateNotYetValidException with the specified detail
-	 * message. A detail message is a String that describes this particular
-	 * exception.
-	 *
-	 * @param message
-	 *                the detail message.
-	 */
-	public CertificateNotYetValidException(String message) {
-		super(message);
-	}
+    /**
+     * Constructs a CertificateNotYetValidException with the specified detail
+     * message. A detail message is a String that describes this particular
+     * exception.
+     *
+     * @param message
+     *                the detail message.
+     */
+    public CertificateNotYetValidException(String message) {
+        super(message);
+    }
 }

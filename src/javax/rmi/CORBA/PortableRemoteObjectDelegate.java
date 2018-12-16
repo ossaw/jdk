@@ -28,31 +28,31 @@ import java.rmi.Remote;
  */
 public interface PortableRemoteObjectDelegate {
 
-	/**
-	 * Delegation call for {@link javax.rmi.PortableRemoteObject#exportObject}.
-	 */
-	void exportObject(Remote obj) throws RemoteException;
+    /**
+     * Delegation call for {@link javax.rmi.PortableRemoteObject#exportObject}.
+     */
+    void exportObject(Remote obj) throws RemoteException;
 
-	/**
-	 * Delegation call for {@link javax.rmi.PortableRemoteObject#toStub}.
-	 */
-	Remote toStub(Remote obj) throws NoSuchObjectException;
+    /**
+     * Delegation call for {@link javax.rmi.PortableRemoteObject#toStub}.
+     */
+    Remote toStub(Remote obj) throws NoSuchObjectException;
 
-	/**
-	 * Delegation call for {@link javax.rmi.PortableRemoteObject#unexportObject}
-	 * .
-	 */
-	void unexportObject(Remote obj) throws NoSuchObjectException;
+    /**
+     * Delegation call for {@link javax.rmi.PortableRemoteObject#unexportObject}
+     * .
+     */
+    void unexportObject(Remote obj) throws NoSuchObjectException;
 
-	/**
-	 * Delegation call for {@link javax.rmi.PortableRemoteObject#narrow}.
-	 */
-	java.lang.Object narrow(java.lang.Object narrowFrom,
-			java.lang.Class narrowTo) throws ClassCastException;
+    /**
+     * Delegation call for {@link javax.rmi.PortableRemoteObject#narrow}.
+     */
+    java.lang.Object narrow(java.lang.Object narrowFrom,
+            java.lang.Class narrowTo) throws ClassCastException;
 
-	/**
-	 * Delegation call for {@link javax.rmi.PortableRemoteObject#connect}.
-	 */
-	void connect(Remote target, Remote source) throws RemoteException;
+    /**
+     * Delegation call for {@link javax.rmi.PortableRemoteObject#connect}.
+     */
+    void connect(Remote target, Remote source) throws RemoteException;
 
 }

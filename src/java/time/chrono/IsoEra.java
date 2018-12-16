@@ -80,52 +80,52 @@ import java.time.DateTimeException;
  */
 public enum IsoEra implements Era {
 
-	/**
-	 * The singleton instance for the era before the current one, 'Before
-	 * Current Era', which has the numeric value 0.
-	 */
-	BCE,
-	/**
-	 * The singleton instance for the current era, 'Current Era', which has the
-	 * numeric value 1.
-	 */
-	CE;
+    /**
+     * The singleton instance for the era before the current one, 'Before
+     * Current Era', which has the numeric value 0.
+     */
+    BCE,
+    /**
+     * The singleton instance for the current era, 'Current Era', which has the
+     * numeric value 1.
+     */
+    CE;
 
-	// -----------------------------------------------------------------------
-	/**
-	 * Obtains an instance of {@code IsoEra} from an {@code int} value.
-	 * <p>
-	 * {@code IsoEra} is an enum representing the ISO eras of BCE/CE. This
-	 * factory allows the enum to be obtained from the {@code int} value.
-	 *
-	 * @param isoEra
-	 *               the BCE/CE value to represent, from 0 (BCE) to 1 (CE)
-	 * @return the era singleton, not null
-	 * @throws DateTimeException
-	 *                           if the value is invalid
-	 */
-	public static IsoEra of(int isoEra) {
-		switch (isoEra) {
-			case 0:
-				return BCE;
-			case 1:
-				return CE;
-			default:
-				throw new DateTimeException("Invalid era: " + isoEra);
-		}
-	}
+    // -----------------------------------------------------------------------
+    /**
+     * Obtains an instance of {@code IsoEra} from an {@code int} value.
+     * <p>
+     * {@code IsoEra} is an enum representing the ISO eras of BCE/CE. This
+     * factory allows the enum to be obtained from the {@code int} value.
+     *
+     * @param isoEra
+     *               the BCE/CE value to represent, from 0 (BCE) to 1 (CE)
+     * @return the era singleton, not null
+     * @throws DateTimeException
+     *                           if the value is invalid
+     */
+    public static IsoEra of(int isoEra) {
+        switch (isoEra) {
+            case 0:
+                return BCE;
+            case 1:
+                return CE;
+            default:
+                throw new DateTimeException("Invalid era: " + isoEra);
+        }
+    }
 
-	// -----------------------------------------------------------------------
-	/**
-	 * Gets the numeric era {@code int} value.
-	 * <p>
-	 * The era BCE has the value 0, while the era CE has the value 1.
-	 *
-	 * @return the era value, from 0 (BCE) to 1 (CE)
-	 */
-	@Override
-	public int getValue() {
-		return ordinal();
-	}
+    // -----------------------------------------------------------------------
+    /**
+     * Gets the numeric era {@code int} value.
+     * <p>
+     * The era BCE has the value 0, while the era CE has the value 1.
+     *
+     * @return the era value, from 0 (BCE) to 1 (CE)
+     */
+    @Override
+    public int getValue() {
+        return ordinal();
+    }
 
 }

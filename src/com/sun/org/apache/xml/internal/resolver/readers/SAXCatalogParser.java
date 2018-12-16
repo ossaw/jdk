@@ -38,6 +38,6 @@ import org.xml.sax.*;
  *
  */
 public interface SAXCatalogParser extends ContentHandler, DocumentHandler {
-	/** Set the Catalog for which parsing is being performed. */
-	public void setCatalog(Catalog catalog);
+    /** Set the Catalog for which parsing is being performed. */
+    public void setCatalog(Catalog catalog);
 }

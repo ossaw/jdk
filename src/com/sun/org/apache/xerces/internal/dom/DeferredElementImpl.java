@@ -48,84 +48,84 @@ import org.w3c.dom.NamedNodeMap;
  */
 public class DeferredElementImpl extends ElementImpl implements DeferredNode {
 
-	//
-	// Constants
-	//
+    //
+    // Constants
+    //
 
-	/** Serialization version. */
-	static final long serialVersionUID = -7670981133940934842L;
+    /** Serialization version. */
+    static final long serialVersionUID = -7670981133940934842L;
 
-	//
-	// Data
-	//
+    //
+    // Data
+    //
 
-	/** Node index. */
-	protected transient int fNodeIndex;
+    /** Node index. */
+    protected transient int fNodeIndex;
 
-	//
-	// Constructors
-	//
+    //
+    // Constructors
+    //
 
-	/**
-	 * This is the deferred constructor. Only the fNodeIndex is given here. All
-	 * other data, can be requested from the ownerDocument via the index.
-	 */
-	DeferredElementImpl(DeferredDocumentImpl ownerDoc, int nodeIndex) {
-		super(ownerDoc, null);
+    /**
+     * This is the deferred constructor. Only the fNodeIndex is given here. All
+     * other data, can be requested from the ownerDocument via the index.
+     */
+    DeferredElementImpl(DeferredDocumentImpl ownerDoc, int nodeIndex) {
+        super(ownerDoc, null);
 
-		fNodeIndex = nodeIndex;
-		needsSyncChildren(true);
+        fNodeIndex = nodeIndex;
+        needsSyncChildren(true);
 
-	} // <init>(DocumentImpl,int)
+    } // <init>(DocumentImpl,int)
 
-	//
-	// DeferredNode methods
-	//
+    //
+    // DeferredNode methods
+    //
 
-	/** Returns the node index. */
-	public final int getNodeIndex() {
-		return fNodeIndex;
-	}
+    /** Returns the node index. */
+    public final int getNodeIndex() {
+        return fNodeIndex;
+    }
 
-	//
-	// Protected methods
-	//
+    //
+    // Protected methods
+    //
 
-	/** Synchronizes the data (name and value) for fast nodes. */
-	protected final void synchronizeData() {
+    /** Synchronizes the data (name and value) for fast nodes. */
+    protected final void synchronizeData() {
 
-		// no need to sync in the future
-		needsSyncData(false);
+        // no need to sync in the future
+        needsSyncData(false);
 
-		// fluff data
-		DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) this.ownerDocument;
+        // fluff data
+        DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) this.ownerDocument;
 
-		// we don't want to generate any event for this so turn them off
-		boolean orig = ownerDocument.mutationEvents;
-		ownerDocument.mutationEvents = false;
+        // we don't want to generate any event for this so turn them off
+        boolean orig = ownerDocument.mutationEvents;
+        ownerDocument.mutationEvents = false;
 
-		name = ownerDocument.getNodeName(fNodeIndex);
+        name = ownerDocument.getNodeName(fNodeIndex);
 
-		// attributes
-		setupDefaultAttributes();
-		int index = ownerDocument.getNodeExtra(fNodeIndex);
-		if (index != -1) {
-			NamedNodeMap attrs = getAttributes();
-			do {
-				NodeImpl attr = (NodeImpl) ownerDocument.getNodeObject(index);
-				attrs.setNamedItem(attr);
-				index = ownerDocument.getPrevSibling(index);
-			} while (index != -1);
-		}
+        // attributes
+        setupDefaultAttributes();
+        int index = ownerDocument.getNodeExtra(fNodeIndex);
+        if (index != -1) {
+            NamedNodeMap attrs = getAttributes();
+            do {
+                NodeImpl attr = (NodeImpl) ownerDocument.getNodeObject(index);
+                attrs.setNamedItem(attr);
+                index = ownerDocument.getPrevSibling(index);
+            } while (index != -1);
+        }
 
-		// set mutation events flag back to its original value
-		ownerDocument.mutationEvents = orig;
+        // set mutation events flag back to its original value
+        ownerDocument.mutationEvents = orig;
 
-	} // synchronizeData()
+    } // synchronizeData()
 
-	protected final void synchronizeChildren() {
-		DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) ownerDocument();
-		ownerDocument.synchronizeChildren(this, fNodeIndex);
-	} // synchronizeChildren()
+    protected final void synchronizeChildren() {
+        DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) ownerDocument();
+        ownerDocument.synchronizeChildren(this, fNodeIndex);
+    } // synchronizeChildren()
 
 } // class DeferredElementImpl

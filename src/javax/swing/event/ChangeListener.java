@@ -12,11 +12,11 @@ import java.util.EventListener;
  * @author Jeff Dinkins
  */
 public interface ChangeListener extends EventListener {
-	/**
-	 * Invoked when the target of the listener has changed its state.
-	 *
-	 * @param e
-	 *          a ChangeEvent object
-	 */
-	void stateChanged(ChangeEvent e);
+    /**
+     * Invoked when the target of the listener has changed its state.
+     *
+     * @param e
+     *          a ChangeEvent object
+     */
+    void stateChanged(ChangeEvent e);
 }

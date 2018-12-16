@@ -9,7 +9,7 @@ package com.sun.corba.se.impl.encoding;
  * its internal state without violating encapsulation.
  */
 interface RestorableInputStream {
-	Object createStreamMemento();
+    Object createStreamMemento();
 
-	void restoreInternalState(Object streamMemento);
+    void restoreInternalState(Object streamMemento);
 }

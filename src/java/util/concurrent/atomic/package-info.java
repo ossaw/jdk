@@ -46,14 +46,14 @@
  *
  * <pre>
  * {
- * 	&#64;code
- * 	class Sequencer {
- * 		private final AtomicLong sequenceNumber = new AtomicLong(0);
+ *     &#64;code
+ *     class Sequencer {
+ *         private final AtomicLong sequenceNumber = new AtomicLong(0);
  * 
- * 		public long next() {
- * 			return sequenceNumber.getAndIncrement();
- * 		}
- * 	}
+ *         public long next() {
+ *             return sequenceNumber.getAndIncrement();
+ *         }
+ *     }
  * }
  * </pre>
  *

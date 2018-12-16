@@ -15,4 +15,4 @@ package org.omg.DynamicAny;
  * component_count operation.
  */
 public interface DynArray extends DynArrayOperations, org.omg.DynamicAny.DynAny,
-		org.omg.CORBA.portable.IDLEntity {} // interface DynArray
+        org.omg.CORBA.portable.IDLEntity {} // interface DynArray

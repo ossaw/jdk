@@ -15,10 +15,10 @@ package com.sun.jmx.snmp;
  * @since 1.5
  */
 public interface SnmpAckPdu {
-	/**
-	 * Returns the PDU to use for the response.
-	 * 
-	 * @return The response PDU.
-	 */
-	public SnmpPdu getResponsePdu();
+    /**
+     * Returns the PDU to use for the response.
+     * 
+     * @return The response PDU.
+     */
+    public SnmpPdu getResponsePdu();
 }

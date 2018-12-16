@@ -39,88 +39,88 @@ import org.w3c.dom.Node;
  * @see XMLSignatureFactory#unmarshalXMLSignature(XMLValidateContext)
  */
 public class DOMValidateContext extends DOMCryptoContext implements
-		XMLValidateContext {
+        XMLValidateContext {
 
-	private Node node;
+    private Node node;
 
-	/**
-	 * Creates a <code>DOMValidateContext</code> containing the specified key
-	 * selector and node.
-	 *
-	 * @param ks
-	 *             a key selector for finding a validation key
-	 * @param node
-	 *             the node
-	 * @throws NullPointerException
-	 *                              if <code>ks</code> or <code>node</code> is
-	 *                              <code>null</code>
-	 */
-	public DOMValidateContext(KeySelector ks, Node node) {
-		if (ks == null) {
-			throw new NullPointerException("key selector is null");
-		}
-		init(node, ks);
-	}
+    /**
+     * Creates a <code>DOMValidateContext</code> containing the specified key
+     * selector and node.
+     *
+     * @param ks
+     *             a key selector for finding a validation key
+     * @param node
+     *             the node
+     * @throws NullPointerException
+     *                              if <code>ks</code> or <code>node</code> is
+     *                              <code>null</code>
+     */
+    public DOMValidateContext(KeySelector ks, Node node) {
+        if (ks == null) {
+            throw new NullPointerException("key selector is null");
+        }
+        init(node, ks);
+    }
 
-	/**
-	 * Creates a <code>DOMValidateContext</code> containing the specified key
-	 * and node. The validating key will be stored in a
-	 * {@link KeySelector#singletonKeySelector singleton KeySelector} that is
-	 * returned when the {@link #getKeySelector getKeySelector} method is
-	 * called.
-	 *
-	 * @param validatingKey
-	 *                      the validating key
-	 * @param node
-	 *                      the node
-	 * @throws NullPointerException
-	 *                              if <code>validatingKey</code> or
-	 *                              <code>node</code> is
-	 *                              <code>null</code>
-	 */
-	public DOMValidateContext(Key validatingKey, Node node) {
-		if (validatingKey == null) {
-			throw new NullPointerException("validatingKey is null");
-		}
-		init(node, KeySelector.singletonKeySelector(validatingKey));
-	}
+    /**
+     * Creates a <code>DOMValidateContext</code> containing the specified key
+     * and node. The validating key will be stored in a
+     * {@link KeySelector#singletonKeySelector singleton KeySelector} that is
+     * returned when the {@link #getKeySelector getKeySelector} method is
+     * called.
+     *
+     * @param validatingKey
+     *                      the validating key
+     * @param node
+     *                      the node
+     * @throws NullPointerException
+     *                              if <code>validatingKey</code> or
+     *                              <code>node</code> is
+     *                              <code>null</code>
+     */
+    public DOMValidateContext(Key validatingKey, Node node) {
+        if (validatingKey == null) {
+            throw new NullPointerException("validatingKey is null");
+        }
+        init(node, KeySelector.singletonKeySelector(validatingKey));
+    }
 
-	private void init(Node node, KeySelector ks) {
-		if (node == null) {
-			throw new NullPointerException("node is null");
-		}
+    private void init(Node node, KeySelector ks) {
+        if (node == null) {
+            throw new NullPointerException("node is null");
+        }
 
-		this.node = node;
-		super.setKeySelector(ks);
-		if (System.getSecurityManager() != null) {
-			super.setProperty("org.jcp.xml.dsig.secureValidation",
-					Boolean.TRUE);
-		}
-	}
+        this.node = node;
+        super.setKeySelector(ks);
+        if (System.getSecurityManager() != null) {
+            super.setProperty("org.jcp.xml.dsig.secureValidation",
+                    Boolean.TRUE);
+        }
+    }
 
-	/**
-	 * Sets the node.
-	 *
-	 * @param node
-	 *             the node
-	 * @throws NullPointerException
-	 *                              if <code>node</code> is <code>null</code>
-	 * @see #getNode
-	 */
-	public void setNode(Node node) {
-		if (node == null) {
-			throw new NullPointerException();
-		}
-		this.node = node;
-	}
+    /**
+     * Sets the node.
+     *
+     * @param node
+     *             the node
+     * @throws NullPointerException
+     *                              if <code>node</code> is <code>null</code>
+     * @see #getNode
+     */
+    public void setNode(Node node) {
+        if (node == null) {
+            throw new NullPointerException();
+        }
+        this.node = node;
+    }
 
-	/**
-	 * Returns the node.
-	 *
-	 * @return the node (never <code>null</code>)
-	 * @see #setNode(Node)
-	 */
-	public Node getNode() {
-		return node;
-	}
+    /**
+     * Returns the node.
+     *
+     * @return the node (never <code>null</code>)
+     * @see #setNode(Node)
+     */
+    public Node getNode() {
+        return node;
+    }
 }

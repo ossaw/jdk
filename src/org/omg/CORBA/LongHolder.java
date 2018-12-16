@@ -31,59 +31,59 @@ import org.omg.CORBA.portable.OutputStream;
  */
 public final class LongHolder implements Streamable {
 
-	/**
-	 * The <code>long</code> value held by this <code>LongHolder</code> object.
-	 */
-	public long value;
+    /**
+     * The <code>long</code> value held by this <code>LongHolder</code> object.
+     */
+    public long value;
 
-	/**
-	 * Constructs a new <code>LongHolder</code> object with its
-	 * <code>value</code> field initialized to <code>0</code>.
-	 */
-	public LongHolder() {}
+    /**
+     * Constructs a new <code>LongHolder</code> object with its
+     * <code>value</code> field initialized to <code>0</code>.
+     */
+    public LongHolder() {}
 
-	/**
-	 * Constructs a new <code>LongHolder</code> object with its
-	 * <code>value</code> field initialized to the given <code>long</code>.
-	 * 
-	 * @param initial
-	 *                the <code>long</code> with which to initialize the
-	 *                <code>value</code> field of the newly-created
-	 *                <code>LongHolder</code> object
-	 */
-	public LongHolder(long initial) {
-		value = initial;
-	}
+    /**
+     * Constructs a new <code>LongHolder</code> object with its
+     * <code>value</code> field initialized to the given <code>long</code>.
+     * 
+     * @param initial
+     *                the <code>long</code> with which to initialize the
+     *                <code>value</code> field of the newly-created
+     *                <code>LongHolder</code> object
+     */
+    public LongHolder(long initial) {
+        value = initial;
+    }
 
-	/**
-	 * Reads from <code>input</code> and initalizes the value in the Holder with
-	 * the unmarshalled data.
-	 *
-	 * @param input
-	 *              the InputStream containing CDR formatted data from the wire
-	 */
-	public void _read(InputStream input) {
-		value = input.read_longlong();
-	}
+    /**
+     * Reads from <code>input</code> and initalizes the value in the Holder with
+     * the unmarshalled data.
+     *
+     * @param input
+     *              the InputStream containing CDR formatted data from the wire
+     */
+    public void _read(InputStream input) {
+        value = input.read_longlong();
+    }
 
-	/**
-	 * Marshals to <code>output</code> the value in the Holder.
-	 *
-	 * @param output
-	 *               the OutputStream which will contain the CDR formatted data
-	 */
-	public void _write(OutputStream output) {
-		output.write_longlong(value);
-	}
+    /**
+     * Marshals to <code>output</code> the value in the Holder.
+     *
+     * @param output
+     *               the OutputStream which will contain the CDR formatted data
+     */
+    public void _write(OutputStream output) {
+        output.write_longlong(value);
+    }
 
-	/**
-	 * Returns the <code>TypeCode</code> object corresponding to the value held
-	 * in the Holder.
-	 *
-	 * @return the TypeCode of the value held in the holder
-	 */
-	public org.omg.CORBA.TypeCode _type() {
-		return ORB.init().get_primitive_tc(TCKind.tk_longlong);
-	}
+    /**
+     * Returns the <code>TypeCode</code> object corresponding to the value held
+     * in the Holder.
+     *
+     * @return the TypeCode of the value held in the holder
+     */
+    public org.omg.CORBA.TypeCode _type() {
+        return ORB.init().get_primitive_tc(TCKind.tk_longlong);
+    }
 
 }

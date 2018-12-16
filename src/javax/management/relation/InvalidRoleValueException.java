@@ -17,23 +17,23 @@ package javax.management.relation;
  */
 public class InvalidRoleValueException extends RelationException {
 
-	/* Serial version */
-	private static final long serialVersionUID = -2066091747301983721L;
+    /* Serial version */
+    private static final long serialVersionUID = -2066091747301983721L;
 
-	/**
-	 * Default constructor, no message put in exception.
-	 */
-	public InvalidRoleValueException() {
-		super();
-	}
+    /**
+     * Default constructor, no message put in exception.
+     */
+    public InvalidRoleValueException() {
+        super();
+    }
 
-	/**
-	 * Constructor with given message put in exception.
-	 *
-	 * @param message
-	 *                the detail message.
-	 */
-	public InvalidRoleValueException(String message) {
-		super(message);
-	}
+    /**
+     * Constructor with given message put in exception.
+     *
+     * @param message
+     *                the detail message.
+     */
+    public InvalidRoleValueException(String message) {
+        super(message);
+    }
 }

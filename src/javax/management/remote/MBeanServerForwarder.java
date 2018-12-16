@@ -20,32 +20,32 @@ import javax.management.MBeanServer;
  */
 public interface MBeanServerForwarder extends MBeanServer {
 
-	/**
-	 * Returns the MBeanServer object to which requests will be forwarded.
-	 *
-	 * @return the MBeanServer object to which requests will be forwarded, or
-	 *         null if there is none.
-	 *
-	 * @see #setMBeanServer
-	 */
-	public MBeanServer getMBeanServer();
+    /**
+     * Returns the MBeanServer object to which requests will be forwarded.
+     *
+     * @return the MBeanServer object to which requests will be forwarded, or
+     *         null if there is none.
+     *
+     * @see #setMBeanServer
+     */
+    public MBeanServer getMBeanServer();
 
-	/**
-	 * Sets the MBeanServer object to which requests will be forwarded after
-	 * treatment by this object.
-	 *
-	 * @param mbs
-	 *            the MBeanServer object to which requests will be forwarded.
-	 *
-	 * @exception IllegalArgumentException
-	 *                                     if this object is already forwarding
-	 *                                     to an MBeanServer
-	 *                                     object or if <code>mbs</code> is null
-	 *                                     or if
-	 *                                     <code>mbs</code> is identical to this
-	 *                                     object.
-	 *
-	 * @see #getMBeanServer
-	 */
-	public void setMBeanServer(MBeanServer mbs);
+    /**
+     * Sets the MBeanServer object to which requests will be forwarded after
+     * treatment by this object.
+     *
+     * @param mbs
+     *            the MBeanServer object to which requests will be forwarded.
+     *
+     * @exception IllegalArgumentException
+     *                                     if this object is already forwarding
+     *                                     to an MBeanServer
+     *                                     object or if <code>mbs</code> is null
+     *                                     or if
+     *                                     <code>mbs</code> is identical to this
+     *                                     object.
+     *
+     * @see #getMBeanServer
+     */
+    public void setMBeanServer(MBeanServer mbs);
 }

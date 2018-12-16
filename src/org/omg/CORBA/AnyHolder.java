@@ -30,61 +30,61 @@ import org.omg.CORBA.portable.OutputStream;
  * @since JDK1.2
  */
 public final class AnyHolder implements Streamable {
-	/**
-	 * The <code>Any</code> value held by this <code>AnyHolder</code> object.
-	 */
+    /**
+     * The <code>Any</code> value held by this <code>AnyHolder</code> object.
+     */
 
-	public Any value;
+    public Any value;
 
-	/**
-	 * Constructs a new <code>AnyHolder</code> object with its
-	 * <code>value</code> field initialized to <code>null</code>.
-	 */
-	public AnyHolder() {}
+    /**
+     * Constructs a new <code>AnyHolder</code> object with its
+     * <code>value</code> field initialized to <code>null</code>.
+     */
+    public AnyHolder() {}
 
-	/**
-	 * Constructs a new <code>AnyHolder</code> object for the given
-	 * <code>Any</code> object.
-	 * 
-	 * @param initial
-	 *                the <code>Any</code> object with which to initialize the
-	 *                <code>value</code> field of the new <code>AnyHolder</code>
-	 *                object
-	 */
-	public AnyHolder(Any initial) {
-		value = initial;
-	}
+    /**
+     * Constructs a new <code>AnyHolder</code> object for the given
+     * <code>Any</code> object.
+     * 
+     * @param initial
+     *                the <code>Any</code> object with which to initialize the
+     *                <code>value</code> field of the new <code>AnyHolder</code>
+     *                object
+     */
+    public AnyHolder(Any initial) {
+        value = initial;
+    }
 
-	/**
-	 * Reads from <code>input</code> and initalizes the value in the Holder with
-	 * the unmarshalled data.
-	 *
-	 * @param input
-	 *              the InputStream containing CDR formatted data from the wire.
-	 */
-	public void _read(InputStream input) {
-		value = input.read_any();
-	}
+    /**
+     * Reads from <code>input</code> and initalizes the value in the Holder with
+     * the unmarshalled data.
+     *
+     * @param input
+     *              the InputStream containing CDR formatted data from the wire.
+     */
+    public void _read(InputStream input) {
+        value = input.read_any();
+    }
 
-	/**
-	 * Marshals to <code>output</code> the value in this <code>AnyHolder</code>
-	 * object.
-	 *
-	 * @param output
-	 *               the OutputStream which will contain the CDR formatted data.
-	 */
-	public void _write(OutputStream output) {
-		output.write_any(value);
-	}
+    /**
+     * Marshals to <code>output</code> the value in this <code>AnyHolder</code>
+     * object.
+     *
+     * @param output
+     *               the OutputStream which will contain the CDR formatted data.
+     */
+    public void _write(OutputStream output) {
+        output.write_any(value);
+    }
 
-	/**
-	 * Returns the <code>TypeCode</code> object corresponding to the value held
-	 * in this <code>AnyHolder</code> object.
-	 *
-	 * @return the TypeCode of the value held in this <code>AnyHolder</code>
-	 *         object
-	 */
-	public TypeCode _type() {
-		return ORB.init().get_primitive_tc(TCKind.tk_any);
-	}
+    /**
+     * Returns the <code>TypeCode</code> object corresponding to the value held
+     * in this <code>AnyHolder</code> object.
+     *
+     * @return the TypeCode of the value held in this <code>AnyHolder</code>
+     *         object
+     */
+    public TypeCode _type() {
+        return ORB.init().get_primitive_tc(TCKind.tk_any);
+    }
 }

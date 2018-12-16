@@ -28,12 +28,12 @@ package com.sun.source.tree;
  */
 @jdk.Exported
 public interface IfTree extends StatementTree {
-	ExpressionTree getCondition();
+    ExpressionTree getCondition();
 
-	StatementTree getThenStatement();
+    StatementTree getThenStatement();
 
-	/**
-	 * @return null if this if statement has no else branch.
-	 */
-	StatementTree getElseStatement();
+    /**
+     * @return null if this if statement has no else branch.
+     */
+    StatementTree getElseStatement();
 }

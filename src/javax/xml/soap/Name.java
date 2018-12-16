@@ -40,7 +40,7 @@ package javax.xml.soap;
  * 
  * <PRE>
  * Name name = se.createName("GetLastTradePrice", "WOMBAT",
- * 		"http://www.wombat.org/trader");
+ *         "http://www.wombat.org/trader");
  * </PRE>
  * 
  * The following line of code gives an example of how a <code>Name</code> object
@@ -59,36 +59,36 @@ package javax.xml.soap;
  * @see SOAPFactory#createName(String, String, String) SOAPFactory.createName
  */
 public interface Name {
-	/**
-	 * Gets the local name part of the XML name that this <code>Name</code>
-	 * object represents.
-	 *
-	 * @return a string giving the local name
-	 */
-	String getLocalName();
+    /**
+     * Gets the local name part of the XML name that this <code>Name</code>
+     * object represents.
+     *
+     * @return a string giving the local name
+     */
+    String getLocalName();
 
-	/**
-	 * Gets the namespace-qualified name of the XML name that this
-	 * <code>Name</code> object represents.
-	 *
-	 * @return the namespace-qualified name as a string
-	 */
-	String getQualifiedName();
+    /**
+     * Gets the namespace-qualified name of the XML name that this
+     * <code>Name</code> object represents.
+     *
+     * @return the namespace-qualified name as a string
+     */
+    String getQualifiedName();
 
-	/**
-	 * Returns the prefix that was specified when this <code>Name</code> object
-	 * was initialized. This prefix is associated with the namespace for the XML
-	 * name that this <code>Name</code> object represents.
-	 *
-	 * @return the prefix as a string
-	 */
-	String getPrefix();
+    /**
+     * Returns the prefix that was specified when this <code>Name</code> object
+     * was initialized. This prefix is associated with the namespace for the XML
+     * name that this <code>Name</code> object represents.
+     *
+     * @return the prefix as a string
+     */
+    String getPrefix();
 
-	/**
-	 * Returns the URI of the namespace for the XML name that this
-	 * <code>Name</code> object represents.
-	 *
-	 * @return the URI as a string
-	 */
-	String getURI();
+    /**
+     * Returns the URI of the namespace for the XML name that this
+     * <code>Name</code> object represents.
+     *
+     * @return the URI as a string
+     */
+    String getURI();
 }

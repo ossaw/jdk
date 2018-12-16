@@ -28,41 +28,41 @@ import com.sun.org.apache.xerces.internal.xni.grammars.XMLGrammarPool;
  */
 final class XMLSchema extends AbstractXMLSchema {
 
-	/** The grammar pool is immutable */
-	private final XMLGrammarPool fGrammarPool;
+    /** The grammar pool is immutable */
+    private final XMLGrammarPool fGrammarPool;
 
-	/** Constructor */
-	public XMLSchema(XMLGrammarPool grammarPool) {
-		fGrammarPool = grammarPool;
-	}
+    /** Constructor */
+    public XMLSchema(XMLGrammarPool grammarPool) {
+        fGrammarPool = grammarPool;
+    }
 
-	/*
-	 * XSGrammarPoolContainer methods
-	 */
+    /*
+     * XSGrammarPoolContainer methods
+     */
 
-	/**
-	 * <p>
-	 * Returns the grammar pool contained inside the container.
-	 * </p>
-	 *
-	 * @return the grammar pool contained inside the container
-	 */
-	public XMLGrammarPool getGrammarPool() {
-		return fGrammarPool;
-	}
+    /**
+     * <p>
+     * Returns the grammar pool contained inside the container.
+     * </p>
+     *
+     * @return the grammar pool contained inside the container
+     */
+    public XMLGrammarPool getGrammarPool() {
+        return fGrammarPool;
+    }
 
-	/**
-	 * <p>
-	 * Returns whether the schema components contained in this object can be
-	 * considered to be a fully composed schema and should be used to exclusion
-	 * of other schema components which may be present elsewhere.
-	 * </p>
-	 *
-	 * @return whether the schema components contained in this object can be
-	 *         considered to be a fully composed schema
-	 */
-	public boolean isFullyComposed() {
-		return true;
-	}
+    /**
+     * <p>
+     * Returns whether the schema components contained in this object can be
+     * considered to be a fully composed schema and should be used to exclusion
+     * of other schema components which may be present elsewhere.
+     * </p>
+     *
+     * @return whether the schema components contained in this object can be
+     *         considered to be a fully composed schema
+     */
+    public boolean isFullyComposed() {
+        return true;
+    }
 
 } // XMLSchema

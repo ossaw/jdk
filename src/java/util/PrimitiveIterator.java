@@ -52,270 +52,270 @@ import java.util.function.LongConsumer;
  */
 public interface PrimitiveIterator<T, T_CONS> extends Iterator<T> {
 
-	/**
-	 * Performs the given action for each remaining element, in the order
-	 * elements occur when iterating, until all elements have been processed or
-	 * the action throws an exception. Errors or runtime exceptions thrown by
-	 * the action are relayed to the caller.
-	 *
-	 * @param action
-	 *               The action to be performed for each element
-	 * @throws NullPointerException
-	 *                              if the specified action is null
-	 */
-	@SuppressWarnings("overloads")
-	void forEachRemaining(T_CONS action);
+    /**
+     * Performs the given action for each remaining element, in the order
+     * elements occur when iterating, until all elements have been processed or
+     * the action throws an exception. Errors or runtime exceptions thrown by
+     * the action are relayed to the caller.
+     *
+     * @param action
+     *               The action to be performed for each element
+     * @throws NullPointerException
+     *                              if the specified action is null
+     */
+    @SuppressWarnings("overloads")
+    void forEachRemaining(T_CONS action);
 
-	/**
-	 * An Iterator specialized for {@code int} values.
-	 * 
-	 * @since 1.8
-	 */
-	public static interface OfInt extends
-			PrimitiveIterator<Integer, IntConsumer> {
+    /**
+     * An Iterator specialized for {@code int} values.
+     * 
+     * @since 1.8
+     */
+    public static interface OfInt extends
+            PrimitiveIterator<Integer, IntConsumer> {
 
-		/**
-		 * Returns the next {@code int} element in the iteration.
-		 *
-		 * @return the next {@code int} element in the iteration
-		 * @throws NoSuchElementException
-		 *                                if the iteration has no more elements
-		 */
-		int nextInt();
+        /**
+         * Returns the next {@code int} element in the iteration.
+         *
+         * @return the next {@code int} element in the iteration
+         * @throws NoSuchElementException
+         *                                if the iteration has no more elements
+         */
+        int nextInt();
 
-		/**
-		 * Performs the given action for each remaining element until all
-		 * elements have been processed or the action throws an exception.
-		 * Actions are performed in the order of iteration, if that order is
-		 * specified. Exceptions thrown by the action are relayed to the caller.
-		 *
-		 * @implSpec
-		 *           <p>
-		 *           The default implementation behaves as if:
-		 * 
-		 *           <pre>
-		 * {@code
-		 *     while (hasNext())
-		 *         action.accept(nextInt());
-		 * }
-		 *           </pre>
-		 *
-		 * @param action
-		 *               The action to be performed for each element
-		 * @throws NullPointerException
-		 *                              if the specified action is null
-		 */
-		default void forEachRemaining(IntConsumer action) {
-			Objects.requireNonNull(action);
-			while (hasNext())
-				action.accept(nextInt());
-		}
+        /**
+         * Performs the given action for each remaining element until all
+         * elements have been processed or the action throws an exception.
+         * Actions are performed in the order of iteration, if that order is
+         * specified. Exceptions thrown by the action are relayed to the caller.
+         *
+         * @implSpec
+         *           <p>
+         *           The default implementation behaves as if:
+         * 
+         *           <pre>
+         * {@code
+         *     while (hasNext())
+         *         action.accept(nextInt());
+         * }
+         *           </pre>
+         *
+         * @param action
+         *               The action to be performed for each element
+         * @throws NullPointerException
+         *                              if the specified action is null
+         */
+        default void forEachRemaining(IntConsumer action) {
+            Objects.requireNonNull(action);
+            while (hasNext())
+                action.accept(nextInt());
+        }
 
-		/**
-		 * {@inheritDoc}
-		 * 
-		 * @implSpec The default implementation boxes the result of calling
-		 *           {@link #nextInt()}, and returns that boxed result.
-		 */
-		@Override
-		default Integer next() {
-			if (Tripwire.ENABLED)
-				Tripwire.trip(getClass(),
-						"{0} calling PrimitiveIterator.OfInt.nextInt()");
-			return nextInt();
-		}
+        /**
+         * {@inheritDoc}
+         * 
+         * @implSpec The default implementation boxes the result of calling
+         *           {@link #nextInt()}, and returns that boxed result.
+         */
+        @Override
+        default Integer next() {
+            if (Tripwire.ENABLED)
+                Tripwire.trip(getClass(),
+                        "{0} calling PrimitiveIterator.OfInt.nextInt()");
+            return nextInt();
+        }
 
-		/**
-		 * {@inheritDoc}
-		 * 
-		 * @implSpec If the action is an instance of {@code IntConsumer} then it
-		 *           is cast to {@code IntConsumer} and passed to
-		 *           {@link #forEachRemaining}; otherwise the action is adapted
-		 *           to an instance of {@code IntConsumer}, by boxing the
-		 *           argument of {@code IntConsumer}, and then passed to
-		 *           {@link #forEachRemaining}.
-		 */
-		@Override
-		default void forEachRemaining(Consumer<? super Integer> action) {
-			if (action instanceof IntConsumer) {
-				forEachRemaining((IntConsumer) action);
-			} else {
-				// The method reference action::accept is never null
-				Objects.requireNonNull(action);
-				if (Tripwire.ENABLED)
-					Tripwire.trip(getClass(),
-							"{0} calling PrimitiveIterator.OfInt.forEachRemainingInt(action::accept)");
-				forEachRemaining((IntConsumer) action::accept);
-			}
-		}
+        /**
+         * {@inheritDoc}
+         * 
+         * @implSpec If the action is an instance of {@code IntConsumer} then it
+         *           is cast to {@code IntConsumer} and passed to
+         *           {@link #forEachRemaining}; otherwise the action is adapted
+         *           to an instance of {@code IntConsumer}, by boxing the
+         *           argument of {@code IntConsumer}, and then passed to
+         *           {@link #forEachRemaining}.
+         */
+        @Override
+        default void forEachRemaining(Consumer<? super Integer> action) {
+            if (action instanceof IntConsumer) {
+                forEachRemaining((IntConsumer) action);
+            } else {
+                // The method reference action::accept is never null
+                Objects.requireNonNull(action);
+                if (Tripwire.ENABLED)
+                    Tripwire.trip(getClass(),
+                            "{0} calling PrimitiveIterator.OfInt.forEachRemainingInt(action::accept)");
+                forEachRemaining((IntConsumer) action::accept);
+            }
+        }
 
-	}
+    }
 
-	/**
-	 * An Iterator specialized for {@code long} values.
-	 * 
-	 * @since 1.8
-	 */
-	public static interface OfLong extends
-			PrimitiveIterator<Long, LongConsumer> {
+    /**
+     * An Iterator specialized for {@code long} values.
+     * 
+     * @since 1.8
+     */
+    public static interface OfLong extends
+            PrimitiveIterator<Long, LongConsumer> {
 
-		/**
-		 * Returns the next {@code long} element in the iteration.
-		 *
-		 * @return the next {@code long} element in the iteration
-		 * @throws NoSuchElementException
-		 *                                if the iteration has no more elements
-		 */
-		long nextLong();
+        /**
+         * Returns the next {@code long} element in the iteration.
+         *
+         * @return the next {@code long} element in the iteration
+         * @throws NoSuchElementException
+         *                                if the iteration has no more elements
+         */
+        long nextLong();
 
-		/**
-		 * Performs the given action for each remaining element until all
-		 * elements have been processed or the action throws an exception.
-		 * Actions are performed in the order of iteration, if that order is
-		 * specified. Exceptions thrown by the action are relayed to the caller.
-		 *
-		 * @implSpec
-		 *           <p>
-		 *           The default implementation behaves as if:
-		 * 
-		 *           <pre>
-		 * {@code
-		 *     while (hasNext())
-		 *         action.accept(nextLong());
-		 * }
-		 *           </pre>
-		 *
-		 * @param action
-		 *               The action to be performed for each element
-		 * @throws NullPointerException
-		 *                              if the specified action is null
-		 */
-		default void forEachRemaining(LongConsumer action) {
-			Objects.requireNonNull(action);
-			while (hasNext())
-				action.accept(nextLong());
-		}
+        /**
+         * Performs the given action for each remaining element until all
+         * elements have been processed or the action throws an exception.
+         * Actions are performed in the order of iteration, if that order is
+         * specified. Exceptions thrown by the action are relayed to the caller.
+         *
+         * @implSpec
+         *           <p>
+         *           The default implementation behaves as if:
+         * 
+         *           <pre>
+         * {@code
+         *     while (hasNext())
+         *         action.accept(nextLong());
+         * }
+         *           </pre>
+         *
+         * @param action
+         *               The action to be performed for each element
+         * @throws NullPointerException
+         *                              if the specified action is null
+         */
+        default void forEachRemaining(LongConsumer action) {
+            Objects.requireNonNull(action);
+            while (hasNext())
+                action.accept(nextLong());
+        }
 
-		/**
-		 * {@inheritDoc}
-		 * 
-		 * @implSpec The default implementation boxes the result of calling
-		 *           {@link #nextLong()}, and returns that boxed result.
-		 */
-		@Override
-		default Long next() {
-			if (Tripwire.ENABLED)
-				Tripwire.trip(getClass(),
-						"{0} calling PrimitiveIterator.OfLong.nextLong()");
-			return nextLong();
-		}
+        /**
+         * {@inheritDoc}
+         * 
+         * @implSpec The default implementation boxes the result of calling
+         *           {@link #nextLong()}, and returns that boxed result.
+         */
+        @Override
+        default Long next() {
+            if (Tripwire.ENABLED)
+                Tripwire.trip(getClass(),
+                        "{0} calling PrimitiveIterator.OfLong.nextLong()");
+            return nextLong();
+        }
 
-		/**
-		 * {@inheritDoc}
-		 * 
-		 * @implSpec If the action is an instance of {@code LongConsumer} then
-		 *           it is cast to {@code LongConsumer} and passed to
-		 *           {@link #forEachRemaining}; otherwise the action is adapted
-		 *           to an instance of {@code LongConsumer}, by boxing the
-		 *           argument of {@code LongConsumer}, and then passed to
-		 *           {@link #forEachRemaining}.
-		 */
-		@Override
-		default void forEachRemaining(Consumer<? super Long> action) {
-			if (action instanceof LongConsumer) {
-				forEachRemaining((LongConsumer) action);
-			} else {
-				// The method reference action::accept is never null
-				Objects.requireNonNull(action);
-				if (Tripwire.ENABLED)
-					Tripwire.trip(getClass(),
-							"{0} calling PrimitiveIterator.OfLong.forEachRemainingLong(action::accept)");
-				forEachRemaining((LongConsumer) action::accept);
-			}
-		}
-	}
+        /**
+         * {@inheritDoc}
+         * 
+         * @implSpec If the action is an instance of {@code LongConsumer} then
+         *           it is cast to {@code LongConsumer} and passed to
+         *           {@link #forEachRemaining}; otherwise the action is adapted
+         *           to an instance of {@code LongConsumer}, by boxing the
+         *           argument of {@code LongConsumer}, and then passed to
+         *           {@link #forEachRemaining}.
+         */
+        @Override
+        default void forEachRemaining(Consumer<? super Long> action) {
+            if (action instanceof LongConsumer) {
+                forEachRemaining((LongConsumer) action);
+            } else {
+                // The method reference action::accept is never null
+                Objects.requireNonNull(action);
+                if (Tripwire.ENABLED)
+                    Tripwire.trip(getClass(),
+                            "{0} calling PrimitiveIterator.OfLong.forEachRemainingLong(action::accept)");
+                forEachRemaining((LongConsumer) action::accept);
+            }
+        }
+    }
 
-	/**
-	 * An Iterator specialized for {@code double} values.
-	 * 
-	 * @since 1.8
-	 */
-	public static interface OfDouble extends
-			PrimitiveIterator<Double, DoubleConsumer> {
+    /**
+     * An Iterator specialized for {@code double} values.
+     * 
+     * @since 1.8
+     */
+    public static interface OfDouble extends
+            PrimitiveIterator<Double, DoubleConsumer> {
 
-		/**
-		 * Returns the next {@code double} element in the iteration.
-		 *
-		 * @return the next {@code double} element in the iteration
-		 * @throws NoSuchElementException
-		 *                                if the iteration has no more elements
-		 */
-		double nextDouble();
+        /**
+         * Returns the next {@code double} element in the iteration.
+         *
+         * @return the next {@code double} element in the iteration
+         * @throws NoSuchElementException
+         *                                if the iteration has no more elements
+         */
+        double nextDouble();
 
-		/**
-		 * Performs the given action for each remaining element until all
-		 * elements have been processed or the action throws an exception.
-		 * Actions are performed in the order of iteration, if that order is
-		 * specified. Exceptions thrown by the action are relayed to the caller.
-		 *
-		 * @implSpec
-		 *           <p>
-		 *           The default implementation behaves as if:
-		 * 
-		 *           <pre>
-		 * {@code
-		 *     while (hasNext())
-		 *         action.accept(nextDouble());
-		 * }
-		 *           </pre>
-		 *
-		 * @param action
-		 *               The action to be performed for each element
-		 * @throws NullPointerException
-		 *                              if the specified action is null
-		 */
-		default void forEachRemaining(DoubleConsumer action) {
-			Objects.requireNonNull(action);
-			while (hasNext())
-				action.accept(nextDouble());
-		}
+        /**
+         * Performs the given action for each remaining element until all
+         * elements have been processed or the action throws an exception.
+         * Actions are performed in the order of iteration, if that order is
+         * specified. Exceptions thrown by the action are relayed to the caller.
+         *
+         * @implSpec
+         *           <p>
+         *           The default implementation behaves as if:
+         * 
+         *           <pre>
+         * {@code
+         *     while (hasNext())
+         *         action.accept(nextDouble());
+         * }
+         *           </pre>
+         *
+         * @param action
+         *               The action to be performed for each element
+         * @throws NullPointerException
+         *                              if the specified action is null
+         */
+        default void forEachRemaining(DoubleConsumer action) {
+            Objects.requireNonNull(action);
+            while (hasNext())
+                action.accept(nextDouble());
+        }
 
-		/**
-		 * {@inheritDoc}
-		 * 
-		 * @implSpec The default implementation boxes the result of calling
-		 *           {@link #nextDouble()}, and returns that boxed result.
-		 */
-		@Override
-		default Double next() {
-			if (Tripwire.ENABLED)
-				Tripwire.trip(getClass(),
-						"{0} calling PrimitiveIterator.OfDouble.nextLong()");
-			return nextDouble();
-		}
+        /**
+         * {@inheritDoc}
+         * 
+         * @implSpec The default implementation boxes the result of calling
+         *           {@link #nextDouble()}, and returns that boxed result.
+         */
+        @Override
+        default Double next() {
+            if (Tripwire.ENABLED)
+                Tripwire.trip(getClass(),
+                        "{0} calling PrimitiveIterator.OfDouble.nextLong()");
+            return nextDouble();
+        }
 
-		/**
-		 * {@inheritDoc}
-		 * 
-		 * @implSpec If the action is an instance of {@code DoubleConsumer} then
-		 *           it is cast to {@code DoubleConsumer} and passed to
-		 *           {@link #forEachRemaining}; otherwise the action is adapted
-		 *           to an instance of {@code DoubleConsumer}, by boxing the
-		 *           argument of {@code DoubleConsumer}, and then passed to
-		 *           {@link #forEachRemaining}.
-		 */
-		@Override
-		default void forEachRemaining(Consumer<? super Double> action) {
-			if (action instanceof DoubleConsumer) {
-				forEachRemaining((DoubleConsumer) action);
-			} else {
-				// The method reference action::accept is never null
-				Objects.requireNonNull(action);
-				if (Tripwire.ENABLED)
-					Tripwire.trip(getClass(),
-							"{0} calling PrimitiveIterator.OfDouble.forEachRemainingDouble(action::accept)");
-				forEachRemaining((DoubleConsumer) action::accept);
-			}
-		}
-	}
+        /**
+         * {@inheritDoc}
+         * 
+         * @implSpec If the action is an instance of {@code DoubleConsumer} then
+         *           it is cast to {@code DoubleConsumer} and passed to
+         *           {@link #forEachRemaining}; otherwise the action is adapted
+         *           to an instance of {@code DoubleConsumer}, by boxing the
+         *           argument of {@code DoubleConsumer}, and then passed to
+         *           {@link #forEachRemaining}.
+         */
+        @Override
+        default void forEachRemaining(Consumer<? super Double> action) {
+            if (action instanceof DoubleConsumer) {
+                forEachRemaining((DoubleConsumer) action);
+            } else {
+                // The method reference action::accept is never null
+                Objects.requireNonNull(action);
+                if (Tripwire.ENABLED)
+                    Tripwire.trip(getClass(),
+                            "{0} calling PrimitiveIterator.OfDouble.forEachRemainingDouble(action::accept)");
+                forEachRemaining((DoubleConsumer) action::accept);
+            }
+        }
+    }
 }

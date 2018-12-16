@@ -24,102 +24,102 @@ package javax.sound.sampled;
  */
 public abstract class Control {
 
-	// INSTANCE VARIABLES
+    // INSTANCE VARIABLES
 
-	/**
-	 * The control type.
-	 */
-	private final Type type;
+    /**
+     * The control type.
+     */
+    private final Type type;
 
-	// CONSTRUCTORS
+    // CONSTRUCTORS
 
-	/**
-	 * Constructs a Control with the specified type.
-	 * 
-	 * @param type
-	 *             the kind of control desired
-	 */
-	protected Control(Type type) {
-		this.type = type;
-	}
+    /**
+     * Constructs a Control with the specified type.
+     * 
+     * @param type
+     *             the kind of control desired
+     */
+    protected Control(Type type) {
+        this.type = type;
+    }
 
-	// METHODS
+    // METHODS
 
-	/**
-	 * Obtains the control's type.
-	 * 
-	 * @return the control's type.
-	 */
-	public Type getType() {
-		return type;
-	}
+    /**
+     * Obtains the control's type.
+     * 
+     * @return the control's type.
+     */
+    public Type getType() {
+        return type;
+    }
 
-	// ABSTRACT METHODS
+    // ABSTRACT METHODS
 
-	/**
-	 * Obtains a String describing the control type and its current state.
-	 * 
-	 * @return a String representation of the Control.
-	 */
-	public String toString() {
-		return new String(getType() + " Control");
-	}
+    /**
+     * Obtains a String describing the control type and its current state.
+     * 
+     * @return a String representation of the Control.
+     */
+    public String toString() {
+        return new String(getType() + " Control");
+    }
 
-	/**
-	 * An instance of the <code>Type</code> class represents the type of the
-	 * control. Static instances are provided for the common types.
-	 */
-	public static class Type {
+    /**
+     * An instance of the <code>Type</code> class represents the type of the
+     * control. Static instances are provided for the common types.
+     */
+    public static class Type {
 
-		// CONTROL TYPE DEFINES
+        // CONTROL TYPE DEFINES
 
-		// INSTANCE VARIABLES
+        // INSTANCE VARIABLES
 
-		/**
-		 * Type name.
-		 */
-		private String name;
+        /**
+         * Type name.
+         */
+        private String name;
 
-		// CONSTRUCTOR
+        // CONSTRUCTOR
 
-		/**
-		 * Constructs a new control type with the name specified. The name
-		 * should be a descriptive string appropriate for labelling the control
-		 * in an application, such as "Gain" or "Balance."
-		 * 
-		 * @param name
-		 *             the name of the new control type.
-		 */
-		protected Type(String name) {
-			this.name = name;
-		}
+        /**
+         * Constructs a new control type with the name specified. The name
+         * should be a descriptive string appropriate for labelling the control
+         * in an application, such as "Gain" or "Balance."
+         * 
+         * @param name
+         *             the name of the new control type.
+         */
+        protected Type(String name) {
+            this.name = name;
+        }
 
-		// METHODS
+        // METHODS
 
-		/**
-		 * Finalizes the equals method
-		 */
-		public final boolean equals(Object obj) {
-			return super.equals(obj);
-		}
+        /**
+         * Finalizes the equals method
+         */
+        public final boolean equals(Object obj) {
+            return super.equals(obj);
+        }
 
-		/**
-		 * Finalizes the hashCode method
-		 */
-		public final int hashCode() {
-			return super.hashCode();
-		}
+        /**
+         * Finalizes the hashCode method
+         */
+        public final int hashCode() {
+            return super.hashCode();
+        }
 
-		/**
-		 * Provides the <code>String</code> representation of the control type.
-		 * This <code>String</code> is the same name that was passed to the
-		 * constructor.
-		 *
-		 * @return the control type name
-		 */
-		public final String toString() {
-			return name;
-		}
-	} // class Type
+        /**
+         * Provides the <code>String</code> representation of the control type.
+         * This <code>String</code> is the same name that was passed to the
+         * constructor.
+         *
+         * @return the control type name
+         */
+        public final String toString() {
+            return name;
+        }
+    } // class Type
 
 } // class Control

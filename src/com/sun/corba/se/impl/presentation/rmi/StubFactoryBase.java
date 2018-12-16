@@ -18,25 +18,25 @@ import com.sun.corba.se.spi.orbutil.proxy.InvocationHandlerFactory;
 import com.sun.corba.se.spi.orbutil.proxy.LinkedInvocationHandler;
 
 public abstract class StubFactoryBase implements
-		PresentationManager.StubFactory {
-	private String[] typeIds = null;
+        PresentationManager.StubFactory {
+    private String[] typeIds = null;
 
-	protected final PresentationManager.ClassData classData;
+    protected final PresentationManager.ClassData classData;
 
-	protected StubFactoryBase(PresentationManager.ClassData classData) {
-		this.classData = classData;
-	}
+    protected StubFactoryBase(PresentationManager.ClassData classData) {
+        this.classData = classData;
+    }
 
-	public synchronized String[] getTypeIds() {
-		if (typeIds == null) {
-			if (classData == null) {
-				org.omg.CORBA.Object stub = makeStub();
-				typeIds = StubAdapter.getTypeIds(stub);
-			} else {
-				typeIds = classData.getTypeIds();
-			}
-		}
+    public synchronized String[] getTypeIds() {
+        if (typeIds == null) {
+            if (classData == null) {
+                org.omg.CORBA.Object stub = makeStub();
+                typeIds = StubAdapter.getTypeIds(stub);
+            } else {
+                typeIds = classData.getTypeIds();
+            }
+        }
 
-		return typeIds;
-	}
+        return typeIds;
+    }
 }

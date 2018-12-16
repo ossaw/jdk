@@ -30,26 +30,26 @@ import java.lang.annotation.RetentionPolicy;
 @Documented
 public @interface ResponseWrapper {
 
-	/**
-	 * Element's local name.
-	 */
-	public String localName() default "";
+    /**
+     * Element's local name.
+     */
+    public String localName() default "";
 
-	/**
-	 * Element's namespace name.
-	 */
-	public String targetNamespace() default "";
+    /**
+     * Element's namespace name.
+     */
+    public String targetNamespace() default "";
 
-	/**
-	 * Response wrapper bean name.
-	 */
-	public String className() default "";
+    /**
+     * Response wrapper bean name.
+     */
+    public String className() default "";
 
-	/**
-	 * wsdl:part name for the wrapper part
-	 *
-	 * @since JAX-WS 2.2
-	 */
-	public String partName() default "";
+    /**
+     * wsdl:part name for the wrapper part
+     *
+     * @since JAX-WS 2.2
+     */
+    public String partName() default "";
 
 }

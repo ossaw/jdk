@@ -53,52 +53,52 @@ package javax.naming;
  */
 
 public class LinkRef extends Reference {
-	/* code for link handling */
-	static final String linkClassName = LinkRef.class.getName();
-	static final String linkAddrType = "LinkAddress";
+    /* code for link handling */
+    static final String linkClassName = LinkRef.class.getName();
+    static final String linkAddrType = "LinkAddress";
 
-	/**
-	 * Constructs a LinkRef for a name.
-	 * 
-	 * @param linkName
-	 *                 The non-null name for which to create this link.
-	 */
-	public LinkRef(Name linkName) {
-		super(linkClassName, new StringRefAddr(linkAddrType, linkName
-				.toString()));
-	}
+    /**
+     * Constructs a LinkRef for a name.
+     * 
+     * @param linkName
+     *                 The non-null name for which to create this link.
+     */
+    public LinkRef(Name linkName) {
+        super(linkClassName, new StringRefAddr(linkAddrType, linkName
+                .toString()));
+    }
 
-	/**
-	 * Constructs a LinkRef for a string name.
-	 * 
-	 * @param linkName
-	 *                 The non-null name for which to create this link.
-	 */
-	public LinkRef(String linkName) {
-		super(linkClassName, new StringRefAddr(linkAddrType, linkName));
-	}
+    /**
+     * Constructs a LinkRef for a string name.
+     * 
+     * @param linkName
+     *                 The non-null name for which to create this link.
+     */
+    public LinkRef(String linkName) {
+        super(linkClassName, new StringRefAddr(linkAddrType, linkName));
+    }
 
-	/**
-	 * Retrieves the name of this link.
-	 *
-	 * @return The non-null name of this link.
-	 * @exception MalformedLinkException
-	 *                                   If a link name could not be extracted
-	 * @exception NamingException
-	 *                                   If a naming exception was encountered.
-	 */
-	public String getLinkName() throws NamingException {
-		if (className != null && className.equals(linkClassName)) {
-			RefAddr addr = get(linkAddrType);
-			if (addr != null && addr instanceof StringRefAddr) {
-				return (String) ((StringRefAddr) addr).getContent();
-			}
-		}
-		throw new MalformedLinkException();
-	}
+    /**
+     * Retrieves the name of this link.
+     *
+     * @return The non-null name of this link.
+     * @exception MalformedLinkException
+     *                                   If a link name could not be extracted
+     * @exception NamingException
+     *                                   If a naming exception was encountered.
+     */
+    public String getLinkName() throws NamingException {
+        if (className != null && className.equals(linkClassName)) {
+            RefAddr addr = get(linkAddrType);
+            if (addr != null && addr instanceof StringRefAddr) {
+                return (String) ((StringRefAddr) addr).getContent();
+            }
+        }
+        throw new MalformedLinkException();
+    }
 
-	/**
-	 * Use serialVersionUID from JNDI 1.1.1 for interoperability
-	 */
-	private static final long serialVersionUID = -5386290613498931298L;
+    /**
+     * Use serialVersionUID from JNDI 1.1.1 for interoperability
+     */
+    private static final long serialVersionUID = -5386290613498931298L;
 }

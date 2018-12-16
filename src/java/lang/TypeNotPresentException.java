@@ -24,33 +24,33 @@ package java.lang;
  * @since 1.5
  */
 public class TypeNotPresentException extends RuntimeException {
-	private static final long serialVersionUID = -5101214195716534496L;
+    private static final long serialVersionUID = -5101214195716534496L;
 
-	private String typeName;
+    private String typeName;
 
-	/**
-	 * Constructs a <tt>TypeNotPresentException</tt> for the named type with the
-	 * specified cause.
-	 *
-	 * @param typeName
-	 *                 the fully qualified name of the unavailable type
-	 * @param cause
-	 *                 the exception that was thrown when the system attempted
-	 *                 to
-	 *                 load the named type, or <tt>null</tt> if unavailable or
-	 *                 inapplicable
-	 */
-	public TypeNotPresentException(String typeName, Throwable cause) {
-		super("Type " + typeName + " not present", cause);
-		this.typeName = typeName;
-	}
+    /**
+     * Constructs a <tt>TypeNotPresentException</tt> for the named type with the
+     * specified cause.
+     *
+     * @param typeName
+     *                 the fully qualified name of the unavailable type
+     * @param cause
+     *                 the exception that was thrown when the system attempted
+     *                 to
+     *                 load the named type, or <tt>null</tt> if unavailable or
+     *                 inapplicable
+     */
+    public TypeNotPresentException(String typeName, Throwable cause) {
+        super("Type " + typeName + " not present", cause);
+        this.typeName = typeName;
+    }
 
-	/**
-	 * Returns the fully qualified name of the unavailable type.
-	 *
-	 * @return the fully qualified name of the unavailable type
-	 */
-	public String typeName() {
-		return typeName;
-	}
+    /**
+     * Returns the fully qualified name of the unavailable type.
+     *
+     * @return the fully qualified name of the unavailable type
+     */
+    public String typeName() {
+        return typeName;
+    }
 }

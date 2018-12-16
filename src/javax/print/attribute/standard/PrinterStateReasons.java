@@ -61,243 +61,243 @@ import javax.print.attribute.PrintServiceAttribute;
  * @author Alan Kaminsky
  */
 public final class PrinterStateReasons extends
-		HashMap<PrinterStateReason, Severity> implements PrintServiceAttribute {
+        HashMap<PrinterStateReason, Severity> implements PrintServiceAttribute {
 
-	private static final long serialVersionUID = -3731791085163619457L;
+    private static final long serialVersionUID = -3731791085163619457L;
 
-	/**
-	 * Construct a new, empty printer state reasons attribute; the underlying
-	 * hash map has the default initial capacity and load factor.
-	 */
-	public PrinterStateReasons() {
-		super();
-	}
+    /**
+     * Construct a new, empty printer state reasons attribute; the underlying
+     * hash map has the default initial capacity and load factor.
+     */
+    public PrinterStateReasons() {
+        super();
+    }
 
-	/**
-	 * super a new, empty printer state reasons attribute; the underlying hash
-	 * map has the given initial capacity and the default load factor.
-	 *
-	 * @param initialCapacity
-	 *                        Initial capacity.
-	 *
-	 * @throws IllegalArgumentException
-	 *                                  if the initial capacity is less than
-	 *                                  zero.
-	 */
-	public PrinterStateReasons(int initialCapacity) {
-		super(initialCapacity);
-	}
+    /**
+     * super a new, empty printer state reasons attribute; the underlying hash
+     * map has the given initial capacity and the default load factor.
+     *
+     * @param initialCapacity
+     *                        Initial capacity.
+     *
+     * @throws IllegalArgumentException
+     *                                  if the initial capacity is less than
+     *                                  zero.
+     */
+    public PrinterStateReasons(int initialCapacity) {
+        super(initialCapacity);
+    }
 
-	/**
-	 * Construct a new, empty printer state reasons attribute; the underlying
-	 * hash map has the given initial capacity and load factor.
-	 *
-	 * @param initialCapacity
-	 *                        Initial capacity.
-	 * @param loadFactor
-	 *                        Load factor.
-	 *
-	 * @throws IllegalArgumentException
-	 *                                  if the initial capacity is less than
-	 *                                  zero.
-	 */
-	public PrinterStateReasons(int initialCapacity, float loadFactor) {
-		super(initialCapacity, loadFactor);
-	}
+    /**
+     * Construct a new, empty printer state reasons attribute; the underlying
+     * hash map has the given initial capacity and load factor.
+     *
+     * @param initialCapacity
+     *                        Initial capacity.
+     * @param loadFactor
+     *                        Load factor.
+     *
+     * @throws IllegalArgumentException
+     *                                  if the initial capacity is less than
+     *                                  zero.
+     */
+    public PrinterStateReasons(int initialCapacity, float loadFactor) {
+        super(initialCapacity, loadFactor);
+    }
 
-	/**
-	 * Construct a new printer state reasons attribute that contains the same
-	 * {@link PrinterStateReason PrinterStateReason}-to-{@link Severity
-	 * Severity} mappings as the given map. The underlying hash map's initial
-	 * capacity and load factor are as specified in the superclass constructor
-	 * {@link java.util.HashMap#HashMap(java.util.Map) HashMap(Map)}.
-	 *
-	 * @param map
-	 *            Map to copy.
-	 *
-	 * @exception NullPointerException
-	 *                                 (unchecked exception) Thrown if
-	 *                                 <CODE>map</CODE> is null
-	 *                                 or if any key or value in
-	 *                                 <CODE>map</CODE> is null.
-	 * @throws ClassCastException
-	 *                            (unchecked exception) Thrown if any key in
-	 *                            <CODE>map</CODE>
-	 *                            is not an instance of class
-	 *                            {@link PrinterStateReason
-	 *                            PrinterStateReason} or if any value in
-	 *                            <CODE>map</CODE> is
-	 *                            not an instance of class {@link Severity
-	 *                            Severity}.
-	 */
-	public PrinterStateReasons(Map<PrinterStateReason, Severity> map) {
-		this();
-		for (Map.Entry<PrinterStateReason, Severity> e : map.entrySet())
-			put(e.getKey(), e.getValue());
-	}
+    /**
+     * Construct a new printer state reasons attribute that contains the same
+     * {@link PrinterStateReason PrinterStateReason}-to-{@link Severity
+     * Severity} mappings as the given map. The underlying hash map's initial
+     * capacity and load factor are as specified in the superclass constructor
+     * {@link java.util.HashMap#HashMap(java.util.Map) HashMap(Map)}.
+     *
+     * @param map
+     *            Map to copy.
+     *
+     * @exception NullPointerException
+     *                                 (unchecked exception) Thrown if
+     *                                 <CODE>map</CODE> is null
+     *                                 or if any key or value in
+     *                                 <CODE>map</CODE> is null.
+     * @throws ClassCastException
+     *                            (unchecked exception) Thrown if any key in
+     *                            <CODE>map</CODE>
+     *                            is not an instance of class
+     *                            {@link PrinterStateReason
+     *                            PrinterStateReason} or if any value in
+     *                            <CODE>map</CODE> is
+     *                            not an instance of class {@link Severity
+     *                            Severity}.
+     */
+    public PrinterStateReasons(Map<PrinterStateReason, Severity> map) {
+        this();
+        for (Map.Entry<PrinterStateReason, Severity> e : map.entrySet())
+            put(e.getKey(), e.getValue());
+    }
 
-	/**
-	 * Adds the given printer state reason to this printer state reasons
-	 * attribute, associating it with the given severity level. If this printer
-	 * state reasons attribute previously contained a mapping for the given
-	 * printer state reason, the old value is replaced.
-	 *
-	 * @param reason
-	 *                 Printer state reason. This must be an instance of class
-	 *                 {@link PrinterStateReason PrinterStateReason}.
-	 * @param severity
-	 *                 Severity of the printer state reason. This must be an
-	 *                 instance
-	 *                 of class {@link Severity Severity}.
-	 *
-	 * @return Previous severity associated with the given printer state reason,
-	 *         or <tt>null</tt> if the given printer state reason was not
-	 *         present.
-	 *
-	 * @throws NullPointerException
-	 *                              (unchecked exception) Thrown if
-	 *                              <CODE>reason</CODE> is null
-	 *                              or <CODE>severity</CODE> is null.
-	 * @throws ClassCastException
-	 *                              (unchecked exception) Thrown if
-	 *                              <CODE>reason</CODE> is not an
-	 *                              instance of class {@link PrinterStateReason
-	 *                              PrinterStateReason} or if
-	 *                              <CODE>severity</CODE> is not an
-	 *                              instance of class {@link Severity Severity}.
-	 * @since 1.5
-	 */
-	public Severity put(PrinterStateReason reason, Severity severity) {
-		if (reason == null) {
-			throw new NullPointerException("reason is null");
-		}
-		if (severity == null) {
-			throw new NullPointerException("severity is null");
-		}
-		return super.put(reason, severity);
-	}
+    /**
+     * Adds the given printer state reason to this printer state reasons
+     * attribute, associating it with the given severity level. If this printer
+     * state reasons attribute previously contained a mapping for the given
+     * printer state reason, the old value is replaced.
+     *
+     * @param reason
+     *                 Printer state reason. This must be an instance of class
+     *                 {@link PrinterStateReason PrinterStateReason}.
+     * @param severity
+     *                 Severity of the printer state reason. This must be an
+     *                 instance
+     *                 of class {@link Severity Severity}.
+     *
+     * @return Previous severity associated with the given printer state reason,
+     *         or <tt>null</tt> if the given printer state reason was not
+     *         present.
+     *
+     * @throws NullPointerException
+     *                              (unchecked exception) Thrown if
+     *                              <CODE>reason</CODE> is null
+     *                              or <CODE>severity</CODE> is null.
+     * @throws ClassCastException
+     *                              (unchecked exception) Thrown if
+     *                              <CODE>reason</CODE> is not an
+     *                              instance of class {@link PrinterStateReason
+     *                              PrinterStateReason} or if
+     *                              <CODE>severity</CODE> is not an
+     *                              instance of class {@link Severity Severity}.
+     * @since 1.5
+     */
+    public Severity put(PrinterStateReason reason, Severity severity) {
+        if (reason == null) {
+            throw new NullPointerException("reason is null");
+        }
+        if (severity == null) {
+            throw new NullPointerException("severity is null");
+        }
+        return super.put(reason, severity);
+    }
 
-	/**
-	 * Get the printing attribute class which is to be used as the "category"
-	 * for this printing attribute value.
-	 * <P>
-	 * For class PrinterStateReasons, the category is class PrinterStateReasons
-	 * itself.
-	 *
-	 * @return Printing attribute class (category), an instance of class
-	 *         {@link java.lang.Class java.lang.Class}.
-	 */
-	public final Class<? extends Attribute> getCategory() {
-		return PrinterStateReasons.class;
-	}
+    /**
+     * Get the printing attribute class which is to be used as the "category"
+     * for this printing attribute value.
+     * <P>
+     * For class PrinterStateReasons, the category is class PrinterStateReasons
+     * itself.
+     *
+     * @return Printing attribute class (category), an instance of class
+     *         {@link java.lang.Class java.lang.Class}.
+     */
+    public final Class<? extends Attribute> getCategory() {
+        return PrinterStateReasons.class;
+    }
 
-	/**
-	 * Get the name of the category of which this attribute value is an
-	 * instance.
-	 * <P>
-	 * For class PrinterStateReasons, the category name is
-	 * <CODE>"printer-state-reasons"</CODE>.
-	 *
-	 * @return Attribute category name.
-	 */
-	public final String getName() {
-		return "printer-state-reasons";
-	}
+    /**
+     * Get the name of the category of which this attribute value is an
+     * instance.
+     * <P>
+     * For class PrinterStateReasons, the category name is
+     * <CODE>"printer-state-reasons"</CODE>.
+     *
+     * @return Attribute category name.
+     */
+    public final String getName() {
+        return "printer-state-reasons";
+    }
 
-	/**
-	 * Obtain an unmodifiable set view of the individual printer state reason
-	 * attributes at the given severity level in this PrinterStateReasons
-	 * attribute. Each element in the set view is a {@link PrinterStateReason
-	 * PrinterStateReason} object. The only elements in the set view are the
-	 * {@link PrinterStateReason PrinterStateReason} objects that map to the
-	 * given severity value. The set view is backed by this PrinterStateReasons
-	 * attribute, so changes to this PrinterStateReasons attribute are reflected
-	 * in the set view. The set view does not support element insertion or
-	 * removal. The set view's iterator does not support element removal.
-	 *
-	 * @param severity
-	 *                 Severity level.
-	 *
-	 * @return Set view of the individual {@link PrinterStateReason
-	 *         PrinterStateReason} attributes at the given {@link Severity
-	 *         Severity} level.
-	 *
-	 * @exception NullPointerException
-	 *                                 (unchecked exception) Thrown if
-	 *                                 <CODE>severity</CODE> is
-	 *                                 null.
-	 */
-	public Set<PrinterStateReason> printerStateReasonSet(Severity severity) {
-		if (severity == null) {
-			throw new NullPointerException("severity is null");
-		}
-		return new PrinterStateReasonSet(severity, entrySet());
-	}
+    /**
+     * Obtain an unmodifiable set view of the individual printer state reason
+     * attributes at the given severity level in this PrinterStateReasons
+     * attribute. Each element in the set view is a {@link PrinterStateReason
+     * PrinterStateReason} object. The only elements in the set view are the
+     * {@link PrinterStateReason PrinterStateReason} objects that map to the
+     * given severity value. The set view is backed by this PrinterStateReasons
+     * attribute, so changes to this PrinterStateReasons attribute are reflected
+     * in the set view. The set view does not support element insertion or
+     * removal. The set view's iterator does not support element removal.
+     *
+     * @param severity
+     *                 Severity level.
+     *
+     * @return Set view of the individual {@link PrinterStateReason
+     *         PrinterStateReason} attributes at the given {@link Severity
+     *         Severity} level.
+     *
+     * @exception NullPointerException
+     *                                 (unchecked exception) Thrown if
+     *                                 <CODE>severity</CODE> is
+     *                                 null.
+     */
+    public Set<PrinterStateReason> printerStateReasonSet(Severity severity) {
+        if (severity == null) {
+            throw new NullPointerException("severity is null");
+        }
+        return new PrinterStateReasonSet(severity, entrySet());
+    }
 
-	private class PrinterStateReasonSet extends
-			AbstractSet<PrinterStateReason> {
-		private Severity mySeverity;
-		private Set myEntrySet;
+    private class PrinterStateReasonSet extends
+            AbstractSet<PrinterStateReason> {
+        private Severity mySeverity;
+        private Set myEntrySet;
 
-		public PrinterStateReasonSet(Severity severity, Set entrySet) {
-			mySeverity = severity;
-			myEntrySet = entrySet;
-		}
+        public PrinterStateReasonSet(Severity severity, Set entrySet) {
+            mySeverity = severity;
+            myEntrySet = entrySet;
+        }
 
-		public int size() {
-			int result = 0;
-			Iterator iter = iterator();
-			while (iter.hasNext()) {
-				iter.next();
-				++result;
-			}
-			return result;
-		}
+        public int size() {
+            int result = 0;
+            Iterator iter = iterator();
+            while (iter.hasNext()) {
+                iter.next();
+                ++result;
+            }
+            return result;
+        }
 
-		public Iterator iterator() {
-			return new PrinterStateReasonSetIterator(mySeverity, myEntrySet
-					.iterator());
-		}
-	}
+        public Iterator iterator() {
+            return new PrinterStateReasonSetIterator(mySeverity, myEntrySet
+                    .iterator());
+        }
+    }
 
-	private class PrinterStateReasonSetIterator implements Iterator {
-		private Severity mySeverity;
-		private Iterator myIterator;
-		private Map.Entry myEntry;
+    private class PrinterStateReasonSetIterator implements Iterator {
+        private Severity mySeverity;
+        private Iterator myIterator;
+        private Map.Entry myEntry;
 
-		public PrinterStateReasonSetIterator(Severity severity,
-				Iterator iterator) {
-			mySeverity = severity;
-			myIterator = iterator;
-			goToNext();
-		}
+        public PrinterStateReasonSetIterator(Severity severity,
+                Iterator iterator) {
+            mySeverity = severity;
+            myIterator = iterator;
+            goToNext();
+        }
 
-		private void goToNext() {
-			myEntry = null;
-			while (myEntry == null && myIterator.hasNext()) {
-				myEntry = (Map.Entry) myIterator.next();
-				if ((Severity) myEntry.getValue() != mySeverity) {
-					myEntry = null;
-				}
-			}
-		}
+        private void goToNext() {
+            myEntry = null;
+            while (myEntry == null && myIterator.hasNext()) {
+                myEntry = (Map.Entry) myIterator.next();
+                if ((Severity) myEntry.getValue() != mySeverity) {
+                    myEntry = null;
+                }
+            }
+        }
 
-		public boolean hasNext() {
-			return myEntry != null;
-		}
+        public boolean hasNext() {
+            return myEntry != null;
+        }
 
-		public Object next() {
-			if (myEntry == null) {
-				throw new NoSuchElementException();
-			}
-			Object result = myEntry.getKey();
-			goToNext();
-			return result;
-		}
+        public Object next() {
+            if (myEntry == null) {
+                throw new NoSuchElementException();
+            }
+            Object result = myEntry.getKey();
+            goToNext();
+            return result;
+        }
 
-		public void remove() {
-			throw new UnsupportedOperationException();
-		}
-	}
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
+    }
 
 }

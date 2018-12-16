@@ -25,30 +25,30 @@ package javax.naming;
  * @since 1.3
  */
 public class ContextNotEmptyException extends NamingException {
-	/**
-	 * Constructs a new instance of ContextNotEmptyException using an
-	 * explanation. All other fields default to null.
-	 *
-	 * @param explanation
-	 *                    Possibly null string containing additional detail
-	 *                    about this
-	 *                    exception.
-	 * @see java.lang.Throwable#getMessage
-	 */
-	public ContextNotEmptyException(String explanation) {
-		super(explanation);
-	}
+    /**
+     * Constructs a new instance of ContextNotEmptyException using an
+     * explanation. All other fields default to null.
+     *
+     * @param explanation
+     *                    Possibly null string containing additional detail
+     *                    about this
+     *                    exception.
+     * @see java.lang.Throwable#getMessage
+     */
+    public ContextNotEmptyException(String explanation) {
+        super(explanation);
+    }
 
-	/**
-	 * Constructs a new instance of ContextNotEmptyException with all name
-	 * resolution fields and explanation initialized to null.
-	 */
-	public ContextNotEmptyException() {
-		super();
-	}
+    /**
+     * Constructs a new instance of ContextNotEmptyException with all name
+     * resolution fields and explanation initialized to null.
+     */
+    public ContextNotEmptyException() {
+        super();
+    }
 
-	/**
-	 * Use serialVersionUID from JNDI 1.1.1 for interoperability
-	 */
-	private static final long serialVersionUID = 1090963683348219877L;
+    /**
+     * Use serialVersionUID from JNDI 1.1.1 for interoperability
+     */
+    private static final long serialVersionUID = 1090963683348219877L;
 }

@@ -27,21 +27,21 @@ package java.security.cert;
  */
 public interface CertSelector extends Cloneable {
 
-	/**
-	 * Decides whether a {@code Certificate} should be selected.
-	 *
-	 * @param cert
-	 *             the {@code Certificate} to be checked
-	 * @return {@code true} if the {@code Certificate} should be selected,
-	 *         {@code false} otherwise
-	 */
-	boolean match(Certificate cert);
+    /**
+     * Decides whether a {@code Certificate} should be selected.
+     *
+     * @param cert
+     *             the {@code Certificate} to be checked
+     * @return {@code true} if the {@code Certificate} should be selected,
+     *         {@code false} otherwise
+     */
+    boolean match(Certificate cert);
 
-	/**
-	 * Makes a copy of this {@code CertSelector}. Changes to the copy will not
-	 * affect the original and vice versa.
-	 *
-	 * @return a copy of this {@code CertSelector}
-	 */
-	Object clone();
+    /**
+     * Makes a copy of this {@code CertSelector}. Changes to the copy will not
+     * affect the original and vice versa.
+     *
+     * @return a copy of this {@code CertSelector}
+     */
+    Object clone();
 }

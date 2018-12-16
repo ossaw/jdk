@@ -29,88 +29,88 @@ import java.net.InetAddress;
  */
 public abstract class SnmpPdu implements SnmpDefinitions, Serializable {
 
-	/**
-	 * PDU type. Types are defined in {@link com.sun.jmx.snmp.SnmpDefinitions
-	 * SnmpDefinitions}.
-	 * 
-	 * @serial
-	 */
-	public int type = 0;
+    /**
+     * PDU type. Types are defined in {@link com.sun.jmx.snmp.SnmpDefinitions
+     * SnmpDefinitions}.
+     * 
+     * @serial
+     */
+    public int type = 0;
 
-	/**
-	 * Protocol version. Versions are defined in
-	 * {@link com.sun.jmx.snmp.SnmpDefinitions SnmpDefinitions}.
-	 * 
-	 * @serial
-	 */
-	public int version = 0;
+    /**
+     * Protocol version. Versions are defined in
+     * {@link com.sun.jmx.snmp.SnmpDefinitions SnmpDefinitions}.
+     * 
+     * @serial
+     */
+    public int version = 0;
 
-	/**
-	 * List of variables.
-	 * 
-	 * @serial
-	 */
-	public SnmpVarBind[] varBindList;
+    /**
+     * List of variables.
+     * 
+     * @serial
+     */
+    public SnmpVarBind[] varBindList;
 
-	/**
-	 * Request identifier. Note that this field is not used by
-	 * <CODE>SnmpPduTrap</CODE>.
-	 * 
-	 * @serial
-	 */
-	public int requestId = 0;
+    /**
+     * Request identifier. Note that this field is not used by
+     * <CODE>SnmpPduTrap</CODE>.
+     * 
+     * @serial
+     */
+    public int requestId = 0;
 
-	/**
-	 * Source or destination address.
-	 * <P>
-	 * For an incoming PDU it's the source. <BR>
-	 * For an outgoing PDU it's the destination.
-	 * 
-	 * @serial
-	 */
-	public InetAddress address;
+    /**
+     * Source or destination address.
+     * <P>
+     * For an incoming PDU it's the source. <BR>
+     * For an outgoing PDU it's the destination.
+     * 
+     * @serial
+     */
+    public InetAddress address;
 
-	/**
-	 * Source or destination port.
-	 * <P>
-	 * For an incoming PDU it's the source. <BR>
-	 * For an outgoing PDU it's the destination.
-	 * 
-	 * @serial
-	 */
-	public int port = 0;
+    /**
+     * Source or destination port.
+     * <P>
+     * For an incoming PDU it's the source. <BR>
+     * For an outgoing PDU it's the destination.
+     * 
+     * @serial
+     */
+    public int port = 0;
 
-	/**
-	 * Returns the <CODE>String</CODE> representation of a PDU type. For
-	 * instance, if the PDU type is
-	 * <CODE>SnmpDefinitions.pduGetRequestPdu</CODE>, the method will return
-	 * "SnmpGet".
-	 * 
-	 * @param cmd
-	 *            The integer representation of the PDU type.
-	 * @return The <CODE>String</CODE> representation of the PDU type.
-	 */
-	public static String pduTypeToString(int cmd) {
-		switch (cmd) {
-			case pduGetRequestPdu:
-				return "SnmpGet";
-			case pduGetNextRequestPdu:
-				return "SnmpGetNext";
-			case pduWalkRequest:
-				return "SnmpWalk(*)";
-			case pduSetRequestPdu:
-				return "SnmpSet";
-			case pduGetResponsePdu:
-				return "SnmpResponse";
-			case pduV1TrapPdu:
-				return "SnmpV1Trap";
-			case pduV2TrapPdu:
-				return "SnmpV2Trap";
-			case pduGetBulkRequestPdu:
-				return "SnmpGetBulk";
-			case pduInformRequestPdu:
-				return "SnmpInform";
-		}
-		return "Unknown Command = " + cmd;
-	}
+    /**
+     * Returns the <CODE>String</CODE> representation of a PDU type. For
+     * instance, if the PDU type is
+     * <CODE>SnmpDefinitions.pduGetRequestPdu</CODE>, the method will return
+     * "SnmpGet".
+     * 
+     * @param cmd
+     *            The integer representation of the PDU type.
+     * @return The <CODE>String</CODE> representation of the PDU type.
+     */
+    public static String pduTypeToString(int cmd) {
+        switch (cmd) {
+            case pduGetRequestPdu:
+                return "SnmpGet";
+            case pduGetNextRequestPdu:
+                return "SnmpGetNext";
+            case pduWalkRequest:
+                return "SnmpWalk(*)";
+            case pduSetRequestPdu:
+                return "SnmpSet";
+            case pduGetResponsePdu:
+                return "SnmpResponse";
+            case pduV1TrapPdu:
+                return "SnmpV1Trap";
+            case pduV2TrapPdu:
+                return "SnmpV2Trap";
+            case pduGetBulkRequestPdu:
+                return "SnmpGetBulk";
+            case pduInformRequestPdu:
+                return "SnmpInform";
+        }
+        return "Unknown Command = " + cmd;
+    }
 }

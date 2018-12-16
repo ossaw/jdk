@@ -20,28 +20,28 @@ import javax.naming.NamingException;
  */
 
 public class NoSuchAttributeException extends NamingException {
-	/**
-	 * Constructs a new instance of NoSuchAttributeException using an
-	 * explanation. All other fields are set to null.
-	 * 
-	 * @param explanation
-	 *                    Additional detail about this exception. Can be null.
-	 * @see java.lang.Throwable#getMessage
-	 */
-	public NoSuchAttributeException(String explanation) {
-		super(explanation);
-	}
+    /**
+     * Constructs a new instance of NoSuchAttributeException using an
+     * explanation. All other fields are set to null.
+     * 
+     * @param explanation
+     *                    Additional detail about this exception. Can be null.
+     * @see java.lang.Throwable#getMessage
+     */
+    public NoSuchAttributeException(String explanation) {
+        super(explanation);
+    }
 
-	/**
-	 * Constructs a new instance of NoSuchAttributeException. All fields are
-	 * initialized to null.
-	 */
-	public NoSuchAttributeException() {
-		super();
-	}
+    /**
+     * Constructs a new instance of NoSuchAttributeException. All fields are
+     * initialized to null.
+     */
+    public NoSuchAttributeException() {
+        super();
+    }
 
-	/**
-	 * Use serialVersionUID from JNDI 1.1.1 for interoperability
-	 */
-	private static final long serialVersionUID = 4836415647935888137L;
+    /**
+     * Use serialVersionUID from JNDI 1.1.1 for interoperability
+     */
+    private static final long serialVersionUID = 4836415647935888137L;
 }

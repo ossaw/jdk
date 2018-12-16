@@ -18,23 +18,23 @@ package java.util.concurrent;
  *
  * <pre>
  * {
- * 	&#64;code
- * 	class Fibonacci extends RecursiveTask<Integer> {
- * 		final int n;
+ *     &#64;code
+ *     class Fibonacci extends RecursiveTask<Integer> {
+ *         final int n;
  * 
- * 		Fibonacci(int n) {
- * 			this.n = n;
- * 		}
+ *         Fibonacci(int n) {
+ *             this.n = n;
+ *         }
  * 
- * 		Integer compute() {
- * 			if (n <= 1)
- * 				return n;
- * 			Fibonacci f1 = new Fibonacci(n - 1);
- * 			f1.fork();
- * 			Fibonacci f2 = new Fibonacci(n - 2);
- * 			return f2.compute() + f1.join();
- * 		}
- * 	}
+ *         Integer compute() {
+ *             if (n <= 1)
+ *                 return n;
+ *             Fibonacci f1 = new Fibonacci(n - 1);
+ *             f1.fork();
+ *             Fibonacci f2 = new Fibonacci(n - 2);
+ *             return f2.compute() + f1.join();
+ *         }
+ *     }
  * }
  * </pre>
  *
@@ -49,34 +49,34 @@ package java.util.concurrent;
  * @author Doug Lea
  */
 public abstract class RecursiveTask<V> extends ForkJoinTask<V> {
-	private static final long serialVersionUID = 5232453952276485270L;
+    private static final long serialVersionUID = 5232453952276485270L;
 
-	/**
-	 * The result of the computation.
-	 */
-	V result;
+    /**
+     * The result of the computation.
+     */
+    V result;
 
-	/**
-	 * The main computation performed by this task.
-	 * 
-	 * @return the result of the computation
-	 */
-	protected abstract V compute();
+    /**
+     * The main computation performed by this task.
+     * 
+     * @return the result of the computation
+     */
+    protected abstract V compute();
 
-	public final V getRawResult() {
-		return result;
-	}
+    public final V getRawResult() {
+        return result;
+    }
 
-	protected final void setRawResult(V value) {
-		result = value;
-	}
+    protected final void setRawResult(V value) {
+        result = value;
+    }
 
-	/**
-	 * Implements execution conventions for RecursiveTask.
-	 */
-	protected final boolean exec() {
-		result = compute();
-		return true;
-	}
+    /**
+     * Implements execution conventions for RecursiveTask.
+     */
+    protected final boolean exec() {
+        result = compute();
+        return true;
+    }
 
 }

@@ -32,11 +32,11 @@ import java.util.EventListener;
 
 public interface DragSourceMotionListener extends EventListener {
 
-	/**
-	 * Called whenever the mouse is moved during a drag operation.
-	 *
-	 * @param dsde
-	 *             the <code>DragSourceDragEvent</code>
-	 */
-	void dragMouseMoved(DragSourceDragEvent dsde);
+    /**
+     * Called whenever the mouse is moved during a drag operation.
+     *
+     * @param dsde
+     *             the <code>DragSourceDragEvent</code>
+     */
+    void dragMouseMoved(DragSourceDragEvent dsde);
 }

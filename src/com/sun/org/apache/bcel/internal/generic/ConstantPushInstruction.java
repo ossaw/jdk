@@ -60,6 +60,6 @@ package com.sun.org.apache.bcel.internal.generic;
  * @see SIPUSH
  */
 public interface ConstantPushInstruction extends PushInstruction,
-		TypedInstruction {
-	public Number getValue();
+        TypedInstruction {
+    public Number getValue();
 }

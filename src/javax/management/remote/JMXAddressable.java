@@ -23,12 +23,12 @@ package javax.management.remote;
  * @since 1.6
  */
 public interface JMXAddressable {
-	/**
-	 * <p>
-	 * The address of this object.
-	 * </p>
-	 *
-	 * @return the address of this object, or null if it does not have one.
-	 */
-	public JMXServiceURL getAddress();
+    /**
+     * <p>
+     * The address of this object.
+     * </p>
+     *
+     * @return the address of this object, or null if it does not have one.
+     */
+    public JMXServiceURL getAddress();
 }

@@ -353,17 +353,17 @@ import java.lang.annotation.Target;
  * &#64;XmlType(name = "USAddressType", factoryMethod = "getNewInstance")
  * public class USAddress {
  *
- * 	private String city;
- * 	private String name;
- * 	private String state;
- * 	private String street;
- * 	private int zip;
+ *     private String city;
+ *     private String name;
+ *     private String state;
+ *     private String street;
+ *     private int zip;
  *
- * 	private USAddress() {}
+ *     private USAddress() {}
  *
- * 	public static USAddress getNewInstance() {
- * 		return new USAddress();
- * 	}
+ *     public static USAddress getNewInstance() {
+ *         return new USAddress();
+ *     }
  * }
  * </pre>
  *
@@ -378,74 +378,74 @@ import java.lang.annotation.Target;
 @Retention(RUNTIME)
 @Target({ TYPE })
 public @interface XmlType {
-	/**
-	 * Name of the XML Schema type which the class is mapped.
-	 */
-	String name() default "##default";
+    /**
+     * Name of the XML Schema type which the class is mapped.
+     */
+    String name() default "##default";
 
-	/**
-	 * Specifies the order for XML Schema elements when class is mapped to a XML
-	 * Schema complex type.
-	 *
-	 * <p>
-	 * Refer to the table for how the propOrder affects the mapping of class
-	 * </p>
-	 *
-	 * <p>
-	 * The propOrder is a list of names of JavaBean properties in the class.
-	 * Each name in the list is the name of a Java identifier of the JavaBean
-	 * property. The order in which JavaBean properties are listed is the order
-	 * of XML Schema elements to which the JavaBean properties are mapped.
-	 * </p>
-	 * <p>
-	 * All of the JavaBean properties being mapped to XML Schema elements must
-	 * be listed.
-	 * <p>
-	 * A JavaBean property or field listed in propOrder must not be transient or
-	 * annotated with <tt>@XmlTransient</tt>.
-	 * <p>
-	 * The default ordering of JavaBean properties is determined by @
-	 * {@link XmlAccessorOrder}.
-	 */
-	String[] propOrder() default { "" };
+    /**
+     * Specifies the order for XML Schema elements when class is mapped to a XML
+     * Schema complex type.
+     *
+     * <p>
+     * Refer to the table for how the propOrder affects the mapping of class
+     * </p>
+     *
+     * <p>
+     * The propOrder is a list of names of JavaBean properties in the class.
+     * Each name in the list is the name of a Java identifier of the JavaBean
+     * property. The order in which JavaBean properties are listed is the order
+     * of XML Schema elements to which the JavaBean properties are mapped.
+     * </p>
+     * <p>
+     * All of the JavaBean properties being mapped to XML Schema elements must
+     * be listed.
+     * <p>
+     * A JavaBean property or field listed in propOrder must not be transient or
+     * annotated with <tt>@XmlTransient</tt>.
+     * <p>
+     * The default ordering of JavaBean properties is determined by @
+     * {@link XmlAccessorOrder}.
+     */
+    String[] propOrder() default { "" };
 
-	/**
-	 * Name of the target namespace of the XML Schema type. By default, this is
-	 * the target namespace to which the package containing the class is mapped.
-	 */
-	String namespace() default "##default";
+    /**
+     * Name of the target namespace of the XML Schema type. By default, this is
+     * the target namespace to which the package containing the class is mapped.
+     */
+    String namespace() default "##default";
 
-	/**
-	 * Class containing a no-arg factory method for creating an instance of this
-	 * class. The default is this class.
-	 *
-	 * <p>
-	 * If <tt>factoryClass</tt> is DEFAULT.class and <tt>factoryMethod</tt> is
-	 * "", then there is no static factory method.
-	 *
-	 * <p>
-	 * If <tt>factoryClass</tt> is DEFAULT.class and <tt>factoryMethod</tt> is
-	 * not "", then <tt>factoryMethod</tt> is the name of a static factory
-	 * method in this class.
-	 *
-	 * <p>
-	 * If <tt>factoryClass</tt> is not DEFAULT.class, then
-	 * <tt>factoryMethod</tt> must not be "" and must be the name of a static
-	 * factory method specified in <tt>factoryClass</tt>.
-	 */
-	Class factoryClass() default DEFAULT.class;
+    /**
+     * Class containing a no-arg factory method for creating an instance of this
+     * class. The default is this class.
+     *
+     * <p>
+     * If <tt>factoryClass</tt> is DEFAULT.class and <tt>factoryMethod</tt> is
+     * "", then there is no static factory method.
+     *
+     * <p>
+     * If <tt>factoryClass</tt> is DEFAULT.class and <tt>factoryMethod</tt> is
+     * not "", then <tt>factoryMethod</tt> is the name of a static factory
+     * method in this class.
+     *
+     * <p>
+     * If <tt>factoryClass</tt> is not DEFAULT.class, then
+     * <tt>factoryMethod</tt> must not be "" and must be the name of a static
+     * factory method specified in <tt>factoryClass</tt>.
+     */
+    Class factoryClass() default DEFAULT.class;
 
-	/**
-	 * Used in {@link XmlType#factoryClass()} to signal that either factory
-	 * mehod is not used or that it's in the class with this {@link XmlType}
-	 * itself.
-	 */
-	static final class DEFAULT {}
+    /**
+     * Used in {@link XmlType#factoryClass()} to signal that either factory
+     * mehod is not used or that it's in the class with this {@link XmlType}
+     * itself.
+     */
+    static final class DEFAULT {}
 
-	/**
-	 * Name of a no-arg factory method in the class specified in
-	 * <tt>factoryClass</tt> factoryClass().
-	 *
-	 */
-	String factoryMethod() default "";
+    /**
+     * Name of a no-arg factory method in the class specified in
+     * <tt>factoryClass</tt> factoryClass().
+     *
+     */
+    String factoryMethod() default "";
 }

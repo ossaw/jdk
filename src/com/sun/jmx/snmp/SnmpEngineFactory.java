@@ -23,32 +23,32 @@ package com.sun.jmx.snmp;
  * @since 1.5
  */
 public interface SnmpEngineFactory {
-	/**
-	 * The engine instantiation method.
-	 * 
-	 * @param p
-	 *          The parameters used to instantiate a new engine.
-	 * @throws IllegalArgumentException
-	 *                                  Throwed if one of the configuration file
-	 *                                  file doesn't exist
-	 *                                  (Acl files, security file).
-	 * @return The newly created SnmpEngine.
-	 */
-	public SnmpEngine createEngine(SnmpEngineParameters p);
+    /**
+     * The engine instantiation method.
+     * 
+     * @param p
+     *          The parameters used to instantiate a new engine.
+     * @throws IllegalArgumentException
+     *                                  Throwed if one of the configuration file
+     *                                  file doesn't exist
+     *                                  (Acl files, security file).
+     * @return The newly created SnmpEngine.
+     */
+    public SnmpEngine createEngine(SnmpEngineParameters p);
 
-	/**
-	 * The engine instantiation method.
-	 * 
-	 * @param p
-	 *              The parameters used to instantiate a new engine.
-	 * @param ipacl
-	 *              The Ip ACL to pass to the Access Control Model.
-	 * @throws IllegalArgumentException
-	 *                                  Throwed if one of the configuration file
-	 *                                  file doesn't exist
-	 *                                  (Acl files, security file).
-	 * @return The newly created SnmpEngine.
-	 */
-	public SnmpEngine createEngine(SnmpEngineParameters p,
-			InetAddressAcl ipacl);
+    /**
+     * The engine instantiation method.
+     * 
+     * @param p
+     *              The parameters used to instantiate a new engine.
+     * @param ipacl
+     *              The Ip ACL to pass to the Access Control Model.
+     * @throws IllegalArgumentException
+     *                                  Throwed if one of the configuration file
+     *                                  file doesn't exist
+     *                                  (Acl files, security file).
+     * @return The newly created SnmpEngine.
+     */
+    public SnmpEngine createEngine(SnmpEngineParameters p,
+            InetAddressAcl ipacl);
 }

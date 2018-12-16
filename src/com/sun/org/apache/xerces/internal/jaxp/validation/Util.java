@@ -34,40 +34,40 @@ import org.xml.sax.SAXParseException;
  */
 final class Util {
 
-	/**
-	 * Creates a proper {@link XMLInputSource} from a {@link StreamSource}.
-	 *
-	 * @return always return non-null valid object.
-	 */
-	public static final XMLInputSource toXMLInputSource(StreamSource in) {
-		if (in.getReader() != null)
-			return new XMLInputSource(in.getPublicId(), in.getSystemId(), in
-					.getSystemId(), in.getReader(), null);
-		if (in.getInputStream() != null)
-			return new XMLInputSource(in.getPublicId(), in.getSystemId(), in
-					.getSystemId(), in.getInputStream(), null);
+    /**
+     * Creates a proper {@link XMLInputSource} from a {@link StreamSource}.
+     *
+     * @return always return non-null valid object.
+     */
+    public static final XMLInputSource toXMLInputSource(StreamSource in) {
+        if (in.getReader() != null)
+            return new XMLInputSource(in.getPublicId(), in.getSystemId(), in
+                    .getSystemId(), in.getReader(), null);
+        if (in.getInputStream() != null)
+            return new XMLInputSource(in.getPublicId(), in.getSystemId(), in
+                    .getSystemId(), in.getInputStream(), null);
 
-		return new XMLInputSource(in.getPublicId(), in.getSystemId(), in
-				.getSystemId());
-	}
+        return new XMLInputSource(in.getPublicId(), in.getSystemId(), in
+                .getSystemId());
+    }
 
-	/**
-	 * Reconstructs {@link SAXException} from XNIException.
-	 */
-	public static SAXException toSAXException(XNIException e) {
-		if (e instanceof XMLParseException)
-			return toSAXParseException((XMLParseException) e);
-		if (e.getException() instanceof SAXException)
-			return (SAXException) e.getException();
-		return new SAXException(e.getMessage(), e.getException());
-	}
+    /**
+     * Reconstructs {@link SAXException} from XNIException.
+     */
+    public static SAXException toSAXException(XNIException e) {
+        if (e instanceof XMLParseException)
+            return toSAXParseException((XMLParseException) e);
+        if (e.getException() instanceof SAXException)
+            return (SAXException) e.getException();
+        return new SAXException(e.getMessage(), e.getException());
+    }
 
-	public static SAXParseException toSAXParseException(XMLParseException e) {
-		if (e.getException() instanceof SAXParseException)
-			return (SAXParseException) e.getException();
-		return new SAXParseException(e.getMessage(), e.getPublicId(), e
-				.getExpandedSystemId(), e.getLineNumber(), e.getColumnNumber(),
-				e.getException());
-	}
+    public static SAXParseException toSAXParseException(XMLParseException e) {
+        if (e.getException() instanceof SAXParseException)
+            return (SAXParseException) e.getException();
+        return new SAXParseException(e.getMessage(), e.getPublicId(), e
+                .getExpandedSystemId(), e.getLineNumber(), e.getColumnNumber(),
+                e.getException());
+    }
 
 } // Util

@@ -32,170 +32,170 @@ import java.util.EmptyStackException;
  */
 public class ObjectStack extends ObjectVector {
 
-	/**
-	 * Default constructor. Note that the default block size is very small, for
-	 * small lists.
-	 */
-	public ObjectStack() {
-		super();
-	}
+    /**
+     * Default constructor. Note that the default block size is very small, for
+     * small lists.
+     */
+    public ObjectStack() {
+        super();
+    }
 
-	/**
-	 * Construct a ObjectVector, using the given block size.
-	 *
-	 * @param blocksize
-	 *                  Size of block to allocate
-	 */
-	public ObjectStack(int blocksize) {
-		super(blocksize);
-	}
+    /**
+     * Construct a ObjectVector, using the given block size.
+     *
+     * @param blocksize
+     *                  Size of block to allocate
+     */
+    public ObjectStack(int blocksize) {
+        super(blocksize);
+    }
 
-	/**
-	 * Copy constructor for ObjectStack
-	 *
-	 * @param v
-	 *          ObjectStack to copy
-	 */
-	public ObjectStack(ObjectStack v) {
-		super(v);
-	}
+    /**
+     * Copy constructor for ObjectStack
+     *
+     * @param v
+     *          ObjectStack to copy
+     */
+    public ObjectStack(ObjectStack v) {
+        super(v);
+    }
 
-	/**
-	 * Pushes an item onto the top of this stack.
-	 *
-	 * @param i
-	 *          the int to be pushed onto this stack.
-	 * @return the <code>item</code> argument.
-	 */
-	public Object push(Object i) {
+    /**
+     * Pushes an item onto the top of this stack.
+     *
+     * @param i
+     *          the int to be pushed onto this stack.
+     * @return the <code>item</code> argument.
+     */
+    public Object push(Object i) {
 
-		if ((m_firstFree + 1) >= m_mapSize) {
-			m_mapSize += m_blocksize;
+        if ((m_firstFree + 1) >= m_mapSize) {
+            m_mapSize += m_blocksize;
 
-			Object newMap[] = new Object[m_mapSize];
+            Object newMap[] = new Object[m_mapSize];
 
-			System.arraycopy(m_map, 0, newMap, 0, m_firstFree + 1);
+            System.arraycopy(m_map, 0, newMap, 0, m_firstFree + 1);
 
-			m_map = newMap;
-		}
+            m_map = newMap;
+        }
 
-		m_map[m_firstFree] = i;
+        m_map[m_firstFree] = i;
 
-		m_firstFree++;
+        m_firstFree++;
 
-		return i;
-	}
+        return i;
+    }
 
-	/**
-	 * Removes the object at the top of this stack and returns that object as
-	 * the value of this function.
-	 *
-	 * @return The object at the top of this stack.
-	 */
-	public Object pop() {
-		Object val = m_map[--m_firstFree];
-		m_map[m_firstFree] = null;
+    /**
+     * Removes the object at the top of this stack and returns that object as
+     * the value of this function.
+     *
+     * @return The object at the top of this stack.
+     */
+    public Object pop() {
+        Object val = m_map[--m_firstFree];
+        m_map[m_firstFree] = null;
 
-		return val;
-	}
+        return val;
+    }
 
-	/**
-	 * Quickly pops a number of items from the stack.
-	 */
+    /**
+     * Quickly pops a number of items from the stack.
+     */
 
-	public void quickPop(int n) {
-		m_firstFree -= n;
-	}
+    public void quickPop(int n) {
+        m_firstFree -= n;
+    }
 
-	/**
-	 * Looks at the object at the top of this stack without removing it from the
-	 * stack.
-	 *
-	 * @return the object at the top of this stack.
-	 * @throws EmptyStackException
-	 *                             if this stack is empty.
-	 */
-	public Object peek() {
-		try {
-			return m_map[m_firstFree - 1];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			throw new EmptyStackException();
-		}
-	}
+    /**
+     * Looks at the object at the top of this stack without removing it from the
+     * stack.
+     *
+     * @return the object at the top of this stack.
+     * @throws EmptyStackException
+     *                             if this stack is empty.
+     */
+    public Object peek() {
+        try {
+            return m_map[m_firstFree - 1];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new EmptyStackException();
+        }
+    }
 
-	/**
-	 * Looks at the object at the position the stack counting down n items.
-	 *
-	 * @param n
-	 *          The number of items down, indexed from zero.
-	 * @return the object at n items down.
-	 * @throws EmptyStackException
-	 *                             if this stack is empty.
-	 */
-	public Object peek(int n) {
-		try {
-			return m_map[m_firstFree - (1 + n)];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			throw new EmptyStackException();
-		}
-	}
+    /**
+     * Looks at the object at the position the stack counting down n items.
+     *
+     * @param n
+     *          The number of items down, indexed from zero.
+     * @return the object at n items down.
+     * @throws EmptyStackException
+     *                             if this stack is empty.
+     */
+    public Object peek(int n) {
+        try {
+            return m_map[m_firstFree - (1 + n)];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new EmptyStackException();
+        }
+    }
 
-	/**
-	 * Sets an object at a the top of the statck
-	 *
-	 *
-	 * @param val
-	 *            object to set at the top
-	 * @throws EmptyStackException
-	 *                             if this stack is empty.
-	 */
-	public void setTop(Object val) {
-		try {
-			m_map[m_firstFree - 1] = val;
-		} catch (ArrayIndexOutOfBoundsException e) {
-			throw new EmptyStackException();
-		}
-	}
+    /**
+     * Sets an object at a the top of the statck
+     *
+     *
+     * @param val
+     *            object to set at the top
+     * @throws EmptyStackException
+     *                             if this stack is empty.
+     */
+    public void setTop(Object val) {
+        try {
+            m_map[m_firstFree - 1] = val;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new EmptyStackException();
+        }
+    }
 
-	/**
-	 * Tests if this stack is empty.
-	 *
-	 * @return <code>true</code> if this stack is empty; <code>false</code>
-	 *         otherwise.
-	 * @since JDK1.0
-	 */
-	public boolean empty() {
-		return m_firstFree == 0;
-	}
+    /**
+     * Tests if this stack is empty.
+     *
+     * @return <code>true</code> if this stack is empty; <code>false</code>
+     *         otherwise.
+     * @since JDK1.0
+     */
+    public boolean empty() {
+        return m_firstFree == 0;
+    }
 
-	/**
-	 * Returns where an object is on this stack.
-	 *
-	 * @param o
-	 *          the desired object.
-	 * @return the distance from the top of the stack where the object is]
-	 *         located; the return value <code>-1</code> indicates that the
-	 *         object is not on the stack.
-	 * @since JDK1.0
-	 */
-	public int search(Object o) {
+    /**
+     * Returns where an object is on this stack.
+     *
+     * @param o
+     *          the desired object.
+     * @return the distance from the top of the stack where the object is]
+     *         located; the return value <code>-1</code> indicates that the
+     *         object is not on the stack.
+     * @since JDK1.0
+     */
+    public int search(Object o) {
 
-		int i = lastIndexOf(o);
+        int i = lastIndexOf(o);
 
-		if (i >= 0) {
-			return size() - i;
-		}
+        if (i >= 0) {
+            return size() - i;
+        }
 
-		return -1;
-	}
+        return -1;
+    }
 
-	/**
-	 * Returns clone of current ObjectStack
-	 *
-	 * @return clone of current ObjectStack
-	 */
-	public Object clone() throws CloneNotSupportedException {
-		return (ObjectStack) super.clone();
-	}
+    /**
+     * Returns clone of current ObjectStack
+     *
+     * @return clone of current ObjectStack
+     */
+    public Object clone() throws CloneNotSupportedException {
+        return (ObjectStack) super.clone();
+    }
 
 }

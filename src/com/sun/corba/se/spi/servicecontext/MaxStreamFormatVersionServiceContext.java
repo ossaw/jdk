@@ -19,43 +19,43 @@ import com.sun.corba.se.impl.orbutil.ORBUtility;
 
 public class MaxStreamFormatVersionServiceContext extends ServiceContext {
 
-	private byte maxStreamFormatVersion;
+    private byte maxStreamFormatVersion;
 
-	// The singleton uses the maximum version indicated by our
-	// ValueHandler.
-	public static final MaxStreamFormatVersionServiceContext singleton = new MaxStreamFormatVersionServiceContext();
+    // The singleton uses the maximum version indicated by our
+    // ValueHandler.
+    public static final MaxStreamFormatVersionServiceContext singleton = new MaxStreamFormatVersionServiceContext();
 
-	public MaxStreamFormatVersionServiceContext() {
-		maxStreamFormatVersion = ORBUtility.getMaxStreamFormatVersion();
-	}
+    public MaxStreamFormatVersionServiceContext() {
+        maxStreamFormatVersion = ORBUtility.getMaxStreamFormatVersion();
+    }
 
-	public MaxStreamFormatVersionServiceContext(byte maxStreamFormatVersion) {
-		this.maxStreamFormatVersion = maxStreamFormatVersion;
-	}
+    public MaxStreamFormatVersionServiceContext(byte maxStreamFormatVersion) {
+        this.maxStreamFormatVersion = maxStreamFormatVersion;
+    }
 
-	public MaxStreamFormatVersionServiceContext(InputStream is,
-			GIOPVersion gv) {
-		super(is, gv);
+    public MaxStreamFormatVersionServiceContext(InputStream is,
+            GIOPVersion gv) {
+        super(is, gv);
 
-		maxStreamFormatVersion = is.read_octet();
-	}
+        maxStreamFormatVersion = is.read_octet();
+    }
 
-	public static final int SERVICE_CONTEXT_ID = RMICustomMaxStreamFormat.value;
+    public static final int SERVICE_CONTEXT_ID = RMICustomMaxStreamFormat.value;
 
-	public int getId() {
-		return SERVICE_CONTEXT_ID;
-	}
+    public int getId() {
+        return SERVICE_CONTEXT_ID;
+    }
 
-	public void writeData(OutputStream os) throws SystemException {
-		os.write_octet(maxStreamFormatVersion);
-	}
+    public void writeData(OutputStream os) throws SystemException {
+        os.write_octet(maxStreamFormatVersion);
+    }
 
-	public byte getMaximumStreamFormatVersion() {
-		return maxStreamFormatVersion;
-	}
+    public byte getMaximumStreamFormatVersion() {
+        return maxStreamFormatVersion;
+    }
 
-	public String toString() {
-		return "MaxStreamFormatVersionServiceContext[" + maxStreamFormatVersion
-				+ "]";
-	}
+    public String toString() {
+        return "MaxStreamFormatVersionServiceContext[" + maxStreamFormatVersion
+                + "]";
+    }
 }

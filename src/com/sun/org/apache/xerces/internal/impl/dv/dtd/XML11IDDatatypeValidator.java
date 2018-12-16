@@ -45,48 +45,48 @@ import com.sun.org.apache.xerces.internal.util.XML11Char;
  */
 public class XML11IDDatatypeValidator extends IDDatatypeValidator {
 
-	// construct an ID datatype validator
-	public XML11IDDatatypeValidator() {
-		super();
-	}
+    // construct an ID datatype validator
+    public XML11IDDatatypeValidator() {
+        super();
+    }
 
-	/**
-	 * Checks that "content" string is valid ID value. If invalid a Datatype
-	 * validation exception is thrown.
-	 *
-	 * @param content
-	 *                the string value that needs to be validated
-	 * @param context
-	 *                the validation context
-	 * @throws InvalidDatatypeException
-	 *                                  if the content is invalid according to
-	 *                                  the rules for the
-	 *                                  validators
-	 * @see InvalidDatatypeValueException
-	 */
-	public void validate(String content, ValidationContext context)
-			throws InvalidDatatypeValueException {
+    /**
+     * Checks that "content" string is valid ID value. If invalid a Datatype
+     * validation exception is thrown.
+     *
+     * @param content
+     *                the string value that needs to be validated
+     * @param context
+     *                the validation context
+     * @throws InvalidDatatypeException
+     *                                  if the content is invalid according to
+     *                                  the rules for the
+     *                                  validators
+     * @see InvalidDatatypeValueException
+     */
+    public void validate(String content, ValidationContext context)
+            throws InvalidDatatypeValueException {
 
-		// Check if is valid key-[81] EncName ::= [A-Za-z] ([A-Za-z0-9._] |
-		// '-')*
-		if (context.useNamespaces()) {
-			if (!XML11Char.isXML11ValidNCName(content)) {
-				throw new InvalidDatatypeValueException(
-						"IDInvalidWithNamespaces", new Object[] { content });
-			}
-		} else {
-			if (!XML11Char.isXML11ValidName(content)) {
-				throw new InvalidDatatypeValueException("IDInvalid",
-						new Object[] { content });
-			}
-		}
+        // Check if is valid key-[81] EncName ::= [A-Za-z] ([A-Za-z0-9._] |
+        // '-')*
+        if (context.useNamespaces()) {
+            if (!XML11Char.isXML11ValidNCName(content)) {
+                throw new InvalidDatatypeValueException(
+                        "IDInvalidWithNamespaces", new Object[] { content });
+            }
+        } else {
+            if (!XML11Char.isXML11ValidName(content)) {
+                throw new InvalidDatatypeValueException("IDInvalid",
+                        new Object[] { content });
+            }
+        }
 
-		if (context.isIdDeclared(content)) {
-			throw new InvalidDatatypeValueException("IDNotUnique",
-					new Object[] { content });
-		}
+        if (context.isIdDeclared(content)) {
+            throw new InvalidDatatypeValueException("IDNotUnique",
+                    new Object[] { content });
+        }
 
-		context.addId(content);
-	}
+        context.addId(content);
+    }
 
 }

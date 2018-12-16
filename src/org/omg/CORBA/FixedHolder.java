@@ -25,55 +25,55 @@ import org.omg.CORBA.portable.OutputStream;
  *
  */
 public final class FixedHolder implements Streamable {
-	/**
-	 * The value held by the FixedHolder
-	 */
-	public java.math.BigDecimal value;
+    /**
+     * The value held by the FixedHolder
+     */
+    public java.math.BigDecimal value;
 
-	/**
-	 * Construct the FixedHolder without initializing the contained value.
-	 */
-	public FixedHolder() {}
+    /**
+     * Construct the FixedHolder without initializing the contained value.
+     */
+    public FixedHolder() {}
 
-	/**
-	 * Construct the FixedHolder and initialize it with the given value.
-	 * 
-	 * @param initial
-	 *                the value used to initialize the FixedHolder
-	 */
-	public FixedHolder(java.math.BigDecimal initial) {
-		value = initial;
-	}
+    /**
+     * Construct the FixedHolder and initialize it with the given value.
+     * 
+     * @param initial
+     *                the value used to initialize the FixedHolder
+     */
+    public FixedHolder(java.math.BigDecimal initial) {
+        value = initial;
+    }
 
-	/**
-	 * Read a fixed point value from the input stream and store it in the value
-	 * member.
-	 *
-	 * @param input
-	 *              the <code>InputStream</code> to read from.
-	 */
-	public void _read(InputStream input) {
-		value = input.read_fixed();
-	}
+    /**
+     * Read a fixed point value from the input stream and store it in the value
+     * member.
+     *
+     * @param input
+     *              the <code>InputStream</code> to read from.
+     */
+    public void _read(InputStream input) {
+        value = input.read_fixed();
+    }
 
-	/**
-	 * Write the fixed point value stored in this holder to an
-	 * <code>OutputStream</code>.
-	 *
-	 * @param output
-	 *               the <code>OutputStream</code> to write into.
-	 */
-	public void _write(OutputStream output) {
-		output.write_fixed(value);
-	}
+    /**
+     * Write the fixed point value stored in this holder to an
+     * <code>OutputStream</code>.
+     *
+     * @param output
+     *               the <code>OutputStream</code> to write into.
+     */
+    public void _write(OutputStream output) {
+        output.write_fixed(value);
+    }
 
-	/**
-	 * Return the <code>TypeCode</code> of this holder object.
-	 *
-	 * @return the <code>TypeCode</code> object.
-	 */
-	public org.omg.CORBA.TypeCode _type() {
-		return ORB.init().get_primitive_tc(TCKind.tk_fixed);
-	}
+    /**
+     * Return the <code>TypeCode</code> of this holder object.
+     *
+     * @return the <code>TypeCode</code> object.
+     */
+    public org.omg.CORBA.TypeCode _type() {
+        return ORB.init().get_primitive_tc(TCKind.tk_fixed);
+    }
 
 }

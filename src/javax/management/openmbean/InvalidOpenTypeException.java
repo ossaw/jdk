@@ -14,21 +14,21 @@ package javax.management.openmbean;
  */
 public class InvalidOpenTypeException extends IllegalArgumentException {
 
-	private static final long serialVersionUID = -2837312755412327534L;
+    private static final long serialVersionUID = -2837312755412327534L;
 
-	/** An InvalidOpenTypeException with no detail message. */
-	public InvalidOpenTypeException() {
-		super();
-	}
+    /** An InvalidOpenTypeException with no detail message. */
+    public InvalidOpenTypeException() {
+        super();
+    }
 
-	/**
-	 * An InvalidOpenTypeException with a detail message.
-	 *
-	 * @param msg
-	 *            the detail message.
-	 */
-	public InvalidOpenTypeException(String msg) {
-		super(msg);
-	}
+    /**
+     * An InvalidOpenTypeException with a detail message.
+     *
+     * @param msg
+     *            the detail message.
+     */
+    public InvalidOpenTypeException(String msg) {
+        super(msg);
+    }
 
 }

@@ -50,101 +50,101 @@ import org.xml.sax.SAXNotRecognizedException;
  */
 public abstract class XMLParser {
 
-	//
-	// Constants
-	//
+    //
+    // Constants
+    //
 
-	// properties
+    // properties
 
-	/** Property identifier: entity resolver. */
-	protected static final String ENTITY_RESOLVER = Constants.XERCES_PROPERTY_PREFIX
-			+ Constants.ENTITY_RESOLVER_PROPERTY;
+    /** Property identifier: entity resolver. */
+    protected static final String ENTITY_RESOLVER = Constants.XERCES_PROPERTY_PREFIX
+            + Constants.ENTITY_RESOLVER_PROPERTY;
 
-	/** Property identifier: error handler. */
-	protected static final String ERROR_HANDLER = Constants.XERCES_PROPERTY_PREFIX
-			+ Constants.ERROR_HANDLER_PROPERTY;
+    /** Property identifier: error handler. */
+    protected static final String ERROR_HANDLER = Constants.XERCES_PROPERTY_PREFIX
+            + Constants.ERROR_HANDLER_PROPERTY;
 
-	/** Recognized properties. */
-	private static final String[] RECOGNIZED_PROPERTIES = { ENTITY_RESOLVER,
-			ERROR_HANDLER, };
+    /** Recognized properties. */
+    private static final String[] RECOGNIZED_PROPERTIES = { ENTITY_RESOLVER,
+            ERROR_HANDLER, };
 
-	//
-	// Data
-	//
+    //
+    // Data
+    //
 
-	/** The parser configuration. */
-	protected XMLParserConfiguration fConfiguration;
+    /** The parser configuration. */
+    protected XMLParserConfiguration fConfiguration;
 
-	/** The XML Security Manager. */
-	XMLSecurityManager securityManager;
+    /** The XML Security Manager. */
+    XMLSecurityManager securityManager;
 
-	/** The XML Security Property Manager. */
-	XMLSecurityPropertyManager securityPropertyManager;
+    /** The XML Security Property Manager. */
+    XMLSecurityPropertyManager securityPropertyManager;
 
-	//
-	// Constructors
-	//
+    //
+    // Constructors
+    //
 
-	/**
-	 * Query the state of a feature.
-	 */
-	public boolean getFeature(String featureId) throws SAXNotSupportedException,
-			SAXNotRecognizedException {
-		return fConfiguration.getFeature(featureId);
+    /**
+     * Query the state of a feature.
+     */
+    public boolean getFeature(String featureId) throws SAXNotSupportedException,
+            SAXNotRecognizedException {
+        return fConfiguration.getFeature(featureId);
 
-	}
+    }
 
-	/**
-	 * Default Constructor.
-	 */
-	protected XMLParser(XMLParserConfiguration config) {
+    /**
+     * Default Constructor.
+     */
+    protected XMLParser(XMLParserConfiguration config) {
 
-		// save configuration
-		fConfiguration = config;
+        // save configuration
+        fConfiguration = config;
 
-		// add default recognized properties
-		fConfiguration.addRecognizedProperties(RECOGNIZED_PROPERTIES);
+        // add default recognized properties
+        fConfiguration.addRecognizedProperties(RECOGNIZED_PROPERTIES);
 
-	} // <init>(XMLParserConfiguration)
+    } // <init>(XMLParserConfiguration)
 
-	//
-	// Public methods
-	//
+    //
+    // Public methods
+    //
 
-	/**
-	 * parse
-	 *
-	 * @param inputSource
-	 *
-	 * @exception XNIException
-	 * @exception              java.io.IOException
-	 */
-	public void parse(XMLInputSource inputSource) throws XNIException,
-			IOException {
-		// null indicates that the parser is called directly, initialize them
-		if (securityManager == null) {
-			securityManager = new XMLSecurityManager(true);
-			fConfiguration.setProperty(Constants.SECURITY_MANAGER,
-					securityManager);
-		}
-		if (securityPropertyManager == null) {
-			securityPropertyManager = new XMLSecurityPropertyManager();
-			fConfiguration.setProperty(Constants.XML_SECURITY_PROPERTY_MANAGER,
-					securityPropertyManager);
-		}
+    /**
+     * parse
+     *
+     * @param inputSource
+     *
+     * @exception XNIException
+     * @exception              java.io.IOException
+     */
+    public void parse(XMLInputSource inputSource) throws XNIException,
+            IOException {
+        // null indicates that the parser is called directly, initialize them
+        if (securityManager == null) {
+            securityManager = new XMLSecurityManager(true);
+            fConfiguration.setProperty(Constants.SECURITY_MANAGER,
+                    securityManager);
+        }
+        if (securityPropertyManager == null) {
+            securityPropertyManager = new XMLSecurityPropertyManager();
+            fConfiguration.setProperty(Constants.XML_SECURITY_PROPERTY_MANAGER,
+                    securityPropertyManager);
+        }
 
-		reset();
-		fConfiguration.parse(inputSource);
+        reset();
+        fConfiguration.parse(inputSource);
 
-	} // parse(XMLInputSource)
+    } // parse(XMLInputSource)
 
-	//
-	// Protected methods
-	//
+    //
+    // Protected methods
+    //
 
-	/**
-	 * reset all components before parsing
-	 */
-	protected void reset() throws XNIException {} // reset()
+    /**
+     * reset all components before parsing
+     */
+    protected void reset() throws XNIException {} // reset()
 
 } // class XMLParser

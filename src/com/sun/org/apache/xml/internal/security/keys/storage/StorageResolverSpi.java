@@ -27,10 +27,10 @@ import java.util.Iterator;
 
 public abstract class StorageResolverSpi {
 
-	/**
-	 * Method getIterator
-	 *
-	 * @return the iterator for the storage
-	 */
-	public abstract Iterator<Certificate> getIterator();
+    /**
+     * Method getIterator
+     *
+     * @return the iterator for the storage
+     */
+    public abstract Iterator<Certificate> getIterator();
 }

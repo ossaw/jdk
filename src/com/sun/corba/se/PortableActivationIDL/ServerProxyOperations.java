@@ -13,20 +13,20 @@ package com.sun.corba.se.PortableActivationIDL;
  */
 public interface ServerProxyOperations {
 
-	/**
-	 * Shutdown this server. Returns after orb.shutdown() completes.
-	 */
-	void shutdown();
+    /**
+     * Shutdown this server. Returns after orb.shutdown() completes.
+     */
+    void shutdown();
 
-	/**
-	 * Install the server. Returns after the install hook completes execution in
-	 * the server.
-	 */
-	void install();
+    /**
+     * Install the server. Returns after the install hook completes execution in
+     * the server.
+     */
+    void install();
 
-	/**
-	 * Uninstall the server. Returns after the uninstall hook completes
-	 * execution.
-	 */
-	void uninstall();
+    /**
+     * Uninstall the server. Returns after the uninstall hook completes
+     * execution.
+     */
+    void uninstall();
 } // interface ServerProxyOperations

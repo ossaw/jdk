@@ -13,14 +13,14 @@ package com.sun.naming.internal;
 
 class NamedWeakReference<T> extends java.lang.ref.WeakReference<T> {
 
-	private final String name;
+    private final String name;
 
-	NamedWeakReference(T referent, String name) {
-		super(referent);
-		this.name = name;
-	}
+    NamedWeakReference(T referent, String name) {
+        super(referent);
+        this.name = name;
+    }
 
-	String getName() {
-		return name;
-	}
+    String getName() {
+        return name;
+    }
 }

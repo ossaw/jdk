@@ -14,10 +14,10 @@ package com.sun.corba.se.spi.ior;
  * @author Ken Cavanaugh
  */
 public interface Identifiable extends Writeable {
-	/**
-	 * Return the (type) identity of this entity.
-	 * 
-	 * @return int
-	 */
-	public int getId();
+    /**
+     * Return the (type) identity of this entity.
+     * 
+     * @return int
+     */
+    public int getId();
 }

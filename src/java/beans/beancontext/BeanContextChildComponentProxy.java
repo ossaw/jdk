@@ -22,13 +22,13 @@ import java.awt.Component;
 
 public interface BeanContextChildComponentProxy {
 
-	/**
-	 * Gets the <code>java.awt.Component</code> associated with this
-	 * <code>BeanContextChild</code>.
-	 * 
-	 * @return the AWT <code>Component</code> associated with this
-	 *         <code>BeanContextChild</code>
-	 */
+    /**
+     * Gets the <code>java.awt.Component</code> associated with this
+     * <code>BeanContextChild</code>.
+     * 
+     * @return the AWT <code>Component</code> associated with this
+     *         <code>BeanContextChild</code>
+     */
 
-	Component getComponent();
+    Component getComponent();
 }

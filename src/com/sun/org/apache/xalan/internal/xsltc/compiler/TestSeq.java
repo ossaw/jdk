@@ -46,233 +46,233 @@ import java.util.Vector;
  */
 final class TestSeq {
 
-	/**
-	 * Integer code for the kernel type of this test sequence
-	 */
-	private int _kernelType;
+    /**
+     * Integer code for the kernel type of this test sequence
+     */
+    private int _kernelType;
 
-	/**
-	 * Vector of all patterns in the test sequence. May include patterns with
-	 * "*", "@*" or "node()" kernel.
-	 */
-	private Vector _patterns = null;
+    /**
+     * Vector of all patterns in the test sequence. May include patterns with
+     * "*", "@*" or "node()" kernel.
+     */
+    private Vector _patterns = null;
 
-	/**
-	 * A reference to the Mode object.
-	 */
-	private Mode _mode = null;
+    /**
+     * A reference to the Mode object.
+     */
+    private Mode _mode = null;
 
-	/**
-	 * Default template for this test sequence
-	 */
-	private Template _default = null;
+    /**
+     * Default template for this test sequence
+     */
+    private Template _default = null;
 
-	/**
-	 * Instruction list representing this test sequence.
-	 */
-	private InstructionList _instructionList;
+    /**
+     * Instruction list representing this test sequence.
+     */
+    private InstructionList _instructionList;
 
-	/**
-	 * Cached handle to avoid compiling more than once.
-	 */
-	private InstructionHandle _start = null;
+    /**
+     * Cached handle to avoid compiling more than once.
+     */
+    private InstructionHandle _start = null;
 
-	/**
-	 * Creates a new test sequence given a set of patterns and a mode.
-	 */
-	public TestSeq(Vector patterns, Mode mode) {
-		this(patterns, -2, mode);
-	}
+    /**
+     * Creates a new test sequence given a set of patterns and a mode.
+     */
+    public TestSeq(Vector patterns, Mode mode) {
+        this(patterns, -2, mode);
+    }
 
-	public TestSeq(Vector patterns, int kernelType, Mode mode) {
-		_patterns = patterns;
-		_kernelType = kernelType;
-		_mode = mode;
-	}
+    public TestSeq(Vector patterns, int kernelType, Mode mode) {
+        _patterns = patterns;
+        _kernelType = kernelType;
+        _mode = mode;
+    }
 
-	/**
-	 * Returns a string representation of this test sequence. Notice that test
-	 * sequences are mutable, so the value returned by this method is different
-	 * before and after calling reduce().
-	 */
-	public String toString() {
-		final int count = _patterns.size();
-		final StringBuffer result = new StringBuffer();
+    /**
+     * Returns a string representation of this test sequence. Notice that test
+     * sequences are mutable, so the value returned by this method is different
+     * before and after calling reduce().
+     */
+    public String toString() {
+        final int count = _patterns.size();
+        final StringBuffer result = new StringBuffer();
 
-		for (int i = 0; i < count; i++) {
-			final LocationPathPattern pattern = (LocationPathPattern) _patterns
-					.elementAt(i);
+        for (int i = 0; i < count; i++) {
+            final LocationPathPattern pattern = (LocationPathPattern) _patterns
+                    .elementAt(i);
 
-			if (i == 0) {
-				result.append("Testseq for kernel ").append(_kernelType).append(
-						'\n');
-			}
-			result.append("   pattern ").append(i).append(": ").append(pattern
-					.toString()).append('\n');
-		}
-		return result.toString();
-	}
+            if (i == 0) {
+                result.append("Testseq for kernel ").append(_kernelType).append(
+                        '\n');
+            }
+            result.append("   pattern ").append(i).append(": ").append(pattern
+                    .toString()).append('\n');
+        }
+        return result.toString();
+    }
 
-	/**
-	 * Returns the instruction list for this test sequence
-	 */
-	public InstructionList getInstructionList() {
-		return _instructionList;
-	}
+    /**
+     * Returns the instruction list for this test sequence
+     */
+    public InstructionList getInstructionList() {
+        return _instructionList;
+    }
 
-	/**
-	 * Return the highest priority for a pattern in this test sequence. This is
-	 * either the priority of the first or of the default pattern.
-	 */
-	public double getPriority() {
-		final Template template = (_patterns.size() == 0) ? _default
-				: ((Pattern) _patterns.elementAt(0)).getTemplate();
-		return template.getPriority();
-	}
+    /**
+     * Return the highest priority for a pattern in this test sequence. This is
+     * either the priority of the first or of the default pattern.
+     */
+    public double getPriority() {
+        final Template template = (_patterns.size() == 0) ? _default
+                : ((Pattern) _patterns.elementAt(0)).getTemplate();
+        return template.getPriority();
+    }
 
-	/**
-	 * Returns the position of the highest priority pattern in this test
-	 * sequence.
-	 */
-	public int getPosition() {
-		final Template template = (_patterns.size() == 0) ? _default
-				: ((Pattern) _patterns.elementAt(0)).getTemplate();
-		return template.getPosition();
-	}
+    /**
+     * Returns the position of the highest priority pattern in this test
+     * sequence.
+     */
+    public int getPosition() {
+        final Template template = (_patterns.size() == 0) ? _default
+                : ((Pattern) _patterns.elementAt(0)).getTemplate();
+        return template.getPosition();
+    }
 
-	/**
-	 * Reduce the patterns in this test sequence. Creates a new vector of
-	 * patterns and sets the default pattern if it finds a patterns that is
-	 * fully reduced.
-	 */
-	public void reduce() {
-		final Vector newPatterns = new Vector();
+    /**
+     * Reduce the patterns in this test sequence. Creates a new vector of
+     * patterns and sets the default pattern if it finds a patterns that is
+     * fully reduced.
+     */
+    public void reduce() {
+        final Vector newPatterns = new Vector();
 
-		final int count = _patterns.size();
-		for (int i = 0; i < count; i++) {
-			final LocationPathPattern pattern = (LocationPathPattern) _patterns
-					.elementAt(i);
+        final int count = _patterns.size();
+        for (int i = 0; i < count; i++) {
+            final LocationPathPattern pattern = (LocationPathPattern) _patterns
+                    .elementAt(i);
 
-			// Reduce this pattern
-			pattern.reduceKernelPattern();
+            // Reduce this pattern
+            pattern.reduceKernelPattern();
 
-			// Is this pattern fully reduced?
-			if (pattern.isWildcard()) {
-				_default = pattern.getTemplate();
-				break; // Ignore following patterns
-			} else {
-				newPatterns.addElement(pattern);
-			}
-		}
-		_patterns = newPatterns;
-	}
+            // Is this pattern fully reduced?
+            if (pattern.isWildcard()) {
+                _default = pattern.getTemplate();
+                break; // Ignore following patterns
+            } else {
+                newPatterns.addElement(pattern);
+            }
+        }
+        _patterns = newPatterns;
+    }
 
-	/**
-	 * Returns, by reference, the templates that are included in this test
-	 * sequence. Note that a single template can occur in several test sequences
-	 * if its pattern is a union.
-	 */
-	public void findTemplates(Map<Template, Object> templates) {
-		if (_default != null) {
-			templates.put(_default, this);
-		}
-		for (int i = 0; i < _patterns.size(); i++) {
-			final LocationPathPattern pattern = (LocationPathPattern) _patterns
-					.elementAt(i);
-			templates.put(pattern.getTemplate(), this);
-		}
-	}
+    /**
+     * Returns, by reference, the templates that are included in this test
+     * sequence. Note that a single template can occur in several test sequences
+     * if its pattern is a union.
+     */
+    public void findTemplates(Map<Template, Object> templates) {
+        if (_default != null) {
+            templates.put(_default, this);
+        }
+        for (int i = 0; i < _patterns.size(); i++) {
+            final LocationPathPattern pattern = (LocationPathPattern) _patterns
+                    .elementAt(i);
+            templates.put(pattern.getTemplate(), this);
+        }
+    }
 
-	/**
-	 * Get the instruction handle to a template's code. This is used when a
-	 * single template occurs in several test sequences; that is, if its pattern
-	 * is a union of patterns (e.g. match="A/B | A/C").
-	 */
-	private InstructionHandle getTemplateHandle(Template template) {
-		return (InstructionHandle) _mode.getTemplateInstructionHandle(template);
-	}
+    /**
+     * Get the instruction handle to a template's code. This is used when a
+     * single template occurs in several test sequences; that is, if its pattern
+     * is a union of patterns (e.g. match="A/B | A/C").
+     */
+    private InstructionHandle getTemplateHandle(Template template) {
+        return (InstructionHandle) _mode.getTemplateInstructionHandle(template);
+    }
 
-	/**
-	 * Returns pattern n in this test sequence
-	 */
-	private LocationPathPattern getPattern(int n) {
-		return (LocationPathPattern) _patterns.elementAt(n);
-	}
+    /**
+     * Returns pattern n in this test sequence
+     */
+    private LocationPathPattern getPattern(int n) {
+        return (LocationPathPattern) _patterns.elementAt(n);
+    }
 
-	/**
-	 * Compile the code for this test sequence. Compile patterns from highest to
-	 * lowest priority. Note that since patterns can be share by multiple test
-	 * sequences, instruction lists must be copied before backpatching.
-	 */
-	public InstructionHandle compile(ClassGenerator classGen,
-			MethodGenerator methodGen, InstructionHandle continuation) {
-		// Returned cached value if already compiled
-		if (_start != null) {
-			return _start;
-		}
+    /**
+     * Compile the code for this test sequence. Compile patterns from highest to
+     * lowest priority. Note that since patterns can be share by multiple test
+     * sequences, instruction lists must be copied before backpatching.
+     */
+    public InstructionHandle compile(ClassGenerator classGen,
+            MethodGenerator methodGen, InstructionHandle continuation) {
+        // Returned cached value if already compiled
+        if (_start != null) {
+            return _start;
+        }
 
-		// If not patterns, then return handle for default template
-		final int count = _patterns.size();
-		if (count == 0) {
-			return (_start = getTemplateHandle(_default));
-		}
+        // If not patterns, then return handle for default template
+        final int count = _patterns.size();
+        if (count == 0) {
+            return (_start = getTemplateHandle(_default));
+        }
 
-		// Init handle to jump when all patterns failed
-		InstructionHandle fail = (_default == null) ? continuation
-				: getTemplateHandle(_default);
+        // Init handle to jump when all patterns failed
+        InstructionHandle fail = (_default == null) ? continuation
+                : getTemplateHandle(_default);
 
-		// Compile all patterns in reverse order
-		for (int n = count - 1; n >= 0; n--) {
-			final LocationPathPattern pattern = getPattern(n);
-			final Template template = pattern.getTemplate();
-			final InstructionList il = new InstructionList();
+        // Compile all patterns in reverse order
+        for (int n = count - 1; n >= 0; n--) {
+            final LocationPathPattern pattern = getPattern(n);
+            final Template template = pattern.getTemplate();
+            final InstructionList il = new InstructionList();
 
-			// Patterns expect current node on top of stack
-			il.append(methodGen.loadCurrentNode());
+            // Patterns expect current node on top of stack
+            il.append(methodGen.loadCurrentNode());
 
-			// Apply the test-code compiled for the pattern
-			InstructionList ilist = methodGen.getInstructionList(pattern);
-			if (ilist == null) {
-				ilist = pattern.compile(classGen, methodGen);
-				methodGen.addInstructionList(pattern, ilist);
-			}
+            // Apply the test-code compiled for the pattern
+            InstructionList ilist = methodGen.getInstructionList(pattern);
+            if (ilist == null) {
+                ilist = pattern.compile(classGen, methodGen);
+                methodGen.addInstructionList(pattern, ilist);
+            }
 
-			// Make a copy of the instruction list for backpatching
-			InstructionList copyOfilist = ilist.copy();
+            // Make a copy of the instruction list for backpatching
+            InstructionList copyOfilist = ilist.copy();
 
-			FlowList trueList = pattern.getTrueList();
-			if (trueList != null) {
-				trueList = trueList.copyAndRedirect(ilist, copyOfilist);
-			}
-			FlowList falseList = pattern.getFalseList();
-			if (falseList != null) {
-				falseList = falseList.copyAndRedirect(ilist, copyOfilist);
-			}
+            FlowList trueList = pattern.getTrueList();
+            if (trueList != null) {
+                trueList = trueList.copyAndRedirect(ilist, copyOfilist);
+            }
+            FlowList falseList = pattern.getFalseList();
+            if (falseList != null) {
+                falseList = falseList.copyAndRedirect(ilist, copyOfilist);
+            }
 
-			il.append(copyOfilist);
+            il.append(copyOfilist);
 
-			// On success branch to the template code
-			final InstructionHandle gtmpl = getTemplateHandle(template);
-			final InstructionHandle success = il.append(new GOTO_W(gtmpl));
+            // On success branch to the template code
+            final InstructionHandle gtmpl = getTemplateHandle(template);
+            final InstructionHandle success = il.append(new GOTO_W(gtmpl));
 
-			if (trueList != null) {
-				trueList.backPatch(success);
-			}
-			if (falseList != null) {
-				falseList.backPatch(fail);
-			}
+            if (trueList != null) {
+                trueList.backPatch(success);
+            }
+            if (falseList != null) {
+                falseList.backPatch(fail);
+            }
 
-			// Next pattern's 'fail' target is this pattern's first instruction
-			fail = il.getStart();
+            // Next pattern's 'fail' target is this pattern's first instruction
+            fail = il.getStart();
 
-			// Append existing instruction list to the end of this one
-			if (_instructionList != null) {
-				il.append(_instructionList);
-			}
+            // Append existing instruction list to the end of this one
+            if (_instructionList != null) {
+                il.append(_instructionList);
+            }
 
-			// Set current instruction list to be this one
-			_instructionList = il;
-		}
-		return (_start = fail);
-	}
+            // Set current instruction list to be this one
+            _instructionList = il;
+        }
+        return (_start = fail);
+    }
 }

@@ -23,22 +23,22 @@ import javax.swing.plaf.*;
  */
 public class WindowsSplitPaneUI extends BasicSplitPaneUI {
 
-	public WindowsSplitPaneUI() {
-		super();
-	}
+    public WindowsSplitPaneUI() {
+        super();
+    }
 
-	/**
-	 * Creates a new WindowsSplitPaneUI instance
-	 */
-	public static ComponentUI createUI(JComponent x) {
-		return new WindowsSplitPaneUI();
-	}
+    /**
+     * Creates a new WindowsSplitPaneUI instance
+     */
+    public static ComponentUI createUI(JComponent x) {
+        return new WindowsSplitPaneUI();
+    }
 
-	/**
-	 * Creates the default divider.
-	 */
-	public BasicSplitPaneDivider createDefaultDivider() {
-		return new WindowsSplitPaneDivider(this);
-	}
+    /**
+     * Creates the default divider.
+     */
+    public BasicSplitPaneDivider createDefaultDivider() {
+        return new WindowsSplitPaneDivider(this);
+    }
 
 }

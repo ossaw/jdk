@@ -17,43 +17,43 @@ import static com.sun.jmx.defaults.JmxProperties.TIMER_LOGGER;
 
 class TimerAlarmClock extends java.util.TimerTask {
 
-	Timer listener = null;
-	long timeout = 10000;
-	Date next = null;
+    Timer listener = null;
+    long timeout = 10000;
+    Date next = null;
 
-	/*
-	 * ------------------------------------------ CONSTRUCTORS
-	 * ------------------------------------------
-	 */
+    /*
+     * ------------------------------------------ CONSTRUCTORS
+     * ------------------------------------------
+     */
 
-	public TimerAlarmClock(Timer listener, long timeout) {
-		this.listener = listener;
-		this.timeout = Math.max(0L, timeout);
-	}
+    public TimerAlarmClock(Timer listener, long timeout) {
+        this.listener = listener;
+        this.timeout = Math.max(0L, timeout);
+    }
 
-	public TimerAlarmClock(Timer listener, Date next) {
-		this.listener = listener;
-		this.next = next;
-	}
+    public TimerAlarmClock(Timer listener, Date next) {
+        this.listener = listener;
+        this.next = next;
+    }
 
-	/*
-	 * ------------------------------------------ PUBLIC METHODS
-	 * ------------------------------------------
-	 */
+    /*
+     * ------------------------------------------ PUBLIC METHODS
+     * ------------------------------------------
+     */
 
-	/**
-	 * This method is called by the timer when it is started.
-	 */
-	public void run() {
+    /**
+     * This method is called by the timer when it is started.
+     */
+    public void run() {
 
-		try {
-			// this.sleep(timeout);
-			TimerAlarmClockNotification notif = new TimerAlarmClockNotification(
-					this);
-			listener.notifyAlarmClock(notif);
-		} catch (Exception e) {
-			TIMER_LOGGER.logp(Level.FINEST, Timer.class.getName(), "run",
-					"Got unexpected exception when sending a notification", e);
-		}
-	}
+        try {
+            // this.sleep(timeout);
+            TimerAlarmClockNotification notif = new TimerAlarmClockNotification(
+                    this);
+            listener.notifyAlarmClock(notif);
+        } catch (Exception e) {
+            TIMER_LOGGER.logp(Level.FINEST, Timer.class.getName(), "run",
+                    "Got unexpected exception when sending a notification", e);
+        }
+    }
 }

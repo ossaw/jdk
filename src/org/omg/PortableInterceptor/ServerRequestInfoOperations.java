@@ -408,128 +408,128 @@ package org.omg.PortableInterceptor;
  * @see ServerRequestInterceptor
  */
 public interface ServerRequestInfoOperations extends
-		org.omg.PortableInterceptor.RequestInfoOperations {
+        org.omg.PortableInterceptor.RequestInfoOperations {
 
-	/**
-	 * Returns an any which contains the exception to be returned to the client.
-	 * <p>
-	 * If the exception is a user exception which cannot be inserted into an any
-	 * (e.g., it is unknown or the bindings don't provide the
-	 * <code>TypeCode</code>), then this attribute will be an any containing the
-	 * system exception <code>UNKNOWN</code> with a standard minor code of 1.
-	 *
-	 * @see <a href="package-summary.html#unimpl">
-	 *      <code>PortableInterceptor</code> package comments for limitations /
-	 *      unimplemented features</a>
-	 */
-	org.omg.CORBA.Any sending_exception();
+    /**
+     * Returns an any which contains the exception to be returned to the client.
+     * <p>
+     * If the exception is a user exception which cannot be inserted into an any
+     * (e.g., it is unknown or the bindings don't provide the
+     * <code>TypeCode</code>), then this attribute will be an any containing the
+     * system exception <code>UNKNOWN</code> with a standard minor code of 1.
+     *
+     * @see <a href="package-summary.html#unimpl">
+     *      <code>PortableInterceptor</code> package comments for limitations /
+     *      unimplemented features</a>
+     */
+    org.omg.CORBA.Any sending_exception();
 
-	/**
-	 * Returns the opaque <code>object_id</code> describing the target of the
-	 * operation invocation.
-	 */
-	byte[] object_id();
+    /**
+     * Returns the opaque <code>object_id</code> describing the target of the
+     * operation invocation.
+     */
+    byte[] object_id();
 
-	/**
-	 * Returns the opaque identifier for the object adapter.
-	 */
-	byte[] adapter_id();
+    /**
+     * Returns the opaque identifier for the object adapter.
+     */
+    byte[] adapter_id();
 
-	/**
-	 * Returns the server ID that was specified on ORB::init using the
-	 * -ORBServerId argument.
-	 */
-	String server_id();
+    /**
+     * Returns the server ID that was specified on ORB::init using the
+     * -ORBServerId argument.
+     */
+    String server_id();
 
-	/**
-	 * Returns the ID that was used to create the ORB.
-	 */
-	String orb_id();
+    /**
+     * Returns the ID that was used to create the ORB.
+     */
+    String orb_id();
 
-	/**
-	 * Returns the sequence of strings that identifies the object adapter
-	 * instance that is handling this request.
-	 */
-	String[] adapter_name();
+    /**
+     * Returns the sequence of strings that identifies the object adapter
+     * instance that is handling this request.
+     */
+    String[] adapter_name();
 
-	/**
-	 * Returns the repository id for the most derived interface of the servant.
-	 */
-	String target_most_derived_interface();
+    /**
+     * Returns the repository id for the most derived interface of the servant.
+     */
+    String target_most_derived_interface();
 
-	/**
-	 * Returns the policy in effect for this operation for the given policy
-	 * type. The returned <code>CORBA.Policy</code> object shall only be a
-	 * policy whose type was registered via <code>register_policy_factory</code>
-	 * .
-	 * 
-	 * @param type
-	 *             The <code>CORBA.PolicyType</code> which specifies the policy
-	 *             to be returned.
-	 * @return The <code>CORBA.Policy</code> obtained with the given policy
-	 *         type.
-	 * @exception INV_POLICY
-	 *                       thrown, with a standard minor code of 2, if a
-	 *                       policy for
-	 *                       the given type was not registered via
-	 *                       <code>register_policy_factory</code>.
-	 * @see ORBInitInfo#register_policy_factory
-	 */
-	org.omg.CORBA.Policy get_server_policy(int type);
+    /**
+     * Returns the policy in effect for this operation for the given policy
+     * type. The returned <code>CORBA.Policy</code> object shall only be a
+     * policy whose type was registered via <code>register_policy_factory</code>
+     * .
+     * 
+     * @param type
+     *             The <code>CORBA.PolicyType</code> which specifies the policy
+     *             to be returned.
+     * @return The <code>CORBA.Policy</code> obtained with the given policy
+     *         type.
+     * @exception INV_POLICY
+     *                       thrown, with a standard minor code of 2, if a
+     *                       policy for
+     *                       the given type was not registered via
+     *                       <code>register_policy_factory</code>.
+     * @see ORBInitInfo#register_policy_factory
+     */
+    org.omg.CORBA.Policy get_server_policy(int type);
 
-	/**
-	 * Allows an Interceptor to set a slot in the
-	 * <code>PortableInterceptor.Current</code> that is in the scope of the
-	 * request. If data already exists in that slot, it will be overwritten.
-	 * 
-	 * @param id
-	 *             The id of the slot.
-	 * @param data
-	 *             The data, in the form of an any, to store in that slot.
-	 * @exception InvalidSlot
-	 *                        thrown if the ID does not define an allocated
-	 *                        slot.
-	 * @see Current
-	 */
-	void set_slot(int id, org.omg.CORBA.Any data)
-			throws org.omg.PortableInterceptor.InvalidSlot;
+    /**
+     * Allows an Interceptor to set a slot in the
+     * <code>PortableInterceptor.Current</code> that is in the scope of the
+     * request. If data already exists in that slot, it will be overwritten.
+     * 
+     * @param id
+     *             The id of the slot.
+     * @param data
+     *             The data, in the form of an any, to store in that slot.
+     * @exception InvalidSlot
+     *                        thrown if the ID does not define an allocated
+     *                        slot.
+     * @see Current
+     */
+    void set_slot(int id, org.omg.CORBA.Any data)
+            throws org.omg.PortableInterceptor.InvalidSlot;
 
-	/**
-	 * Returns true if the servant is the given repository id, false if it is
-	 * not.
-	 *
-	 * @param id
-	 *           The caller wants to know if the servant is this repository id.
-	 * @return Is the servant the given RepositoryId?
-	 */
-	boolean target_is_a(String id);
+    /**
+     * Returns true if the servant is the given repository id, false if it is
+     * not.
+     *
+     * @param id
+     *           The caller wants to know if the servant is this repository id.
+     * @return Is the servant the given RepositoryId?
+     */
+    boolean target_is_a(String id);
 
-	/**
-	 * Allows Interceptors to add service contexts to the request.
-	 * <p>
-	 * There is no declaration of the order of the service contexts. They may or
-	 * may not appear in the order that they are added.
-	 *
-	 * @param service_context
-	 *                        The <code>IOP.ServiceContext</code> to add to the
-	 *                        reply.
-	 * @param replace
-	 *                        Indicates the behavior of this operation when a
-	 *                        service
-	 *                        context already exists with the given ID. If
-	 *                        false, then
-	 *                        <code>BAD_INV_ORDER</code> with a standard minor
-	 *                        code of 15 is
-	 *                        thrown. If true, then the existing service context
-	 *                        is replaced
-	 *                        by the new one.
-	 * @exception BAD_INV_ORDER
-	 *                          thrown, with a standard minor code of 15, if
-	 *                          replace is
-	 *                          false and a service context already exists with
-	 *                          the given
-	 *                          ID.
-	 */
-	void add_reply_service_context(org.omg.IOP.ServiceContext service_context,
-			boolean replace);
+    /**
+     * Allows Interceptors to add service contexts to the request.
+     * <p>
+     * There is no declaration of the order of the service contexts. They may or
+     * may not appear in the order that they are added.
+     *
+     * @param service_context
+     *                        The <code>IOP.ServiceContext</code> to add to the
+     *                        reply.
+     * @param replace
+     *                        Indicates the behavior of this operation when a
+     *                        service
+     *                        context already exists with the given ID. If
+     *                        false, then
+     *                        <code>BAD_INV_ORDER</code> with a standard minor
+     *                        code of 15 is
+     *                        thrown. If true, then the existing service context
+     *                        is replaced
+     *                        by the new one.
+     * @exception BAD_INV_ORDER
+     *                          thrown, with a standard minor code of 15, if
+     *                          replace is
+     *                          false and a service context already exists with
+     *                          the given
+     *                          ID.
+     */
+    void add_reply_service_context(org.omg.IOP.ServiceContext service_context,
+            boolean replace);
 } // interface ServerRequestInfoOperations

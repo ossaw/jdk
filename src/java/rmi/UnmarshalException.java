@@ -28,32 +28,32 @@ package java.rmi;
  */
 public class UnmarshalException extends RemoteException {
 
-	/* indicate compatibility with JDK 1.1.x version of class */
-	private static final long serialVersionUID = 594380845140740218L;
+    /* indicate compatibility with JDK 1.1.x version of class */
+    private static final long serialVersionUID = 594380845140740218L;
 
-	/**
-	 * Constructs an <code>UnmarshalException</code> with the specified detail
-	 * message.
-	 *
-	 * @param s
-	 *          the detail message
-	 * @since JDK1.1
-	 */
-	public UnmarshalException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs an <code>UnmarshalException</code> with the specified detail
+     * message.
+     *
+     * @param s
+     *          the detail message
+     * @since JDK1.1
+     */
+    public UnmarshalException(String s) {
+        super(s);
+    }
 
-	/**
-	 * Constructs an <code>UnmarshalException</code> with the specified detail
-	 * message and nested exception.
-	 *
-	 * @param s
-	 *           the detail message
-	 * @param ex
-	 *           the nested exception
-	 * @since JDK1.1
-	 */
-	public UnmarshalException(String s, Exception ex) {
-		super(s, ex);
-	}
+    /**
+     * Constructs an <code>UnmarshalException</code> with the specified detail
+     * message and nested exception.
+     *
+     * @param s
+     *           the detail message
+     * @param ex
+     *           the nested exception
+     * @since JDK1.1
+     */
+    public UnmarshalException(String s, Exception ex) {
+        super(s, ex);
+    }
 }

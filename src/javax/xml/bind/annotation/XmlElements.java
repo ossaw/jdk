@@ -169,8 +169,8 @@ import java.lang.annotation.Target;
 @Retention(RUNTIME)
 @Target({ FIELD, METHOD })
 public @interface XmlElements {
-	/**
-	 * Collection of @{@link XmlElement} annotations
-	 */
-	XmlElement[] value();
+    /**
+     * Collection of @{@link XmlElement} annotations
+     */
+    XmlElement[] value();
 }

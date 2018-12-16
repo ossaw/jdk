@@ -47,81 +47,81 @@ import javax.print.attribute.PrintJobAttribute;
  * @author Alan Kaminsky
  */
 public final class PrinterResolution extends ResolutionSyntax implements
-		DocAttribute, PrintRequestAttribute, PrintJobAttribute {
+        DocAttribute, PrintRequestAttribute, PrintJobAttribute {
 
-	private static final long serialVersionUID = 13090306561090558L;
+    private static final long serialVersionUID = 13090306561090558L;
 
-	/**
-	 * Construct a new printer resolution attribute from the given items.
-	 *
-	 * @param crossFeedResolution
-	 *                            Cross feed direction resolution.
-	 * @param feedResolution
-	 *                            Feed direction resolution.
-	 * @param units
-	 *                            Unit conversion factor, e.g.
-	 *                            <code>ResolutionSyntax.DPI</CODE>
-	 *                            or <code>ResolutionSyntax.DPCM</CODE>.
-	 *
-	 * @exception IllegalArgumentException
-	 *                                     (unchecked exception) Thrown if
-	 *                                     {@code crossFeedResolution < 1} or
-	 *                                     {@code feedResolution < 1} or
-	 *                                     {@code units < 1}.
-	 */
-	public PrinterResolution(int crossFeedResolution, int feedResolution,
-			int units) {
-		super(crossFeedResolution, feedResolution, units);
-	}
+    /**
+     * Construct a new printer resolution attribute from the given items.
+     *
+     * @param crossFeedResolution
+     *                            Cross feed direction resolution.
+     * @param feedResolution
+     *                            Feed direction resolution.
+     * @param units
+     *                            Unit conversion factor, e.g.
+     *                            <code>ResolutionSyntax.DPI</CODE>
+     *                            or <code>ResolutionSyntax.DPCM</CODE>.
+     *
+     * @exception IllegalArgumentException
+     *                                     (unchecked exception) Thrown if
+     *                                     {@code crossFeedResolution < 1} or
+     *                                     {@code feedResolution < 1} or
+     *                                     {@code units < 1}.
+     */
+    public PrinterResolution(int crossFeedResolution, int feedResolution,
+            int units) {
+        super(crossFeedResolution, feedResolution, units);
+    }
 
-	/**
-	 * Returns whether this printer resolution attribute is equivalent to the
-	 * passed in object. To be equivalent, all of the following conditions must
-	 * be true:
-	 * <OL TYPE=1>
-	 * <LI><CODE>object</CODE> is not null.
-	 * <LI><CODE>object</CODE> is an instance of class PrinterResolution.
-	 * <LI>This attribute's cross feed direction resolution is equal to
-	 * <CODE>object</CODE>'s cross feed direction resolution.
-	 * <LI>This attribute's feed direction resolution is equal to
-	 * <CODE>object</CODE>'s feed direction resolution.
-	 * </OL>
-	 *
-	 * @param object
-	 *               Object to compare to.
-	 *
-	 * @return True if <CODE>object</CODE> is equivalent to this printer
-	 *         resolution attribute, false otherwise.
-	 */
-	public boolean equals(Object object) {
-		return (super.equals(object) && object instanceof PrinterResolution);
-	}
+    /**
+     * Returns whether this printer resolution attribute is equivalent to the
+     * passed in object. To be equivalent, all of the following conditions must
+     * be true:
+     * <OL TYPE=1>
+     * <LI><CODE>object</CODE> is not null.
+     * <LI><CODE>object</CODE> is an instance of class PrinterResolution.
+     * <LI>This attribute's cross feed direction resolution is equal to
+     * <CODE>object</CODE>'s cross feed direction resolution.
+     * <LI>This attribute's feed direction resolution is equal to
+     * <CODE>object</CODE>'s feed direction resolution.
+     * </OL>
+     *
+     * @param object
+     *               Object to compare to.
+     *
+     * @return True if <CODE>object</CODE> is equivalent to this printer
+     *         resolution attribute, false otherwise.
+     */
+    public boolean equals(Object object) {
+        return (super.equals(object) && object instanceof PrinterResolution);
+    }
 
-	/**
-	 * Get the printing attribute class which is to be used as the "category"
-	 * for this printing attribute value.
-	 * <P>
-	 * For class PrinterResolution, the category is class PrinterResolution
-	 * itself.
-	 *
-	 * @return Printing attribute class (category), an instance of class
-	 *         {@link java.lang.Class java.lang.Class}.
-	 */
-	public final Class<? extends Attribute> getCategory() {
-		return PrinterResolution.class;
-	}
+    /**
+     * Get the printing attribute class which is to be used as the "category"
+     * for this printing attribute value.
+     * <P>
+     * For class PrinterResolution, the category is class PrinterResolution
+     * itself.
+     *
+     * @return Printing attribute class (category), an instance of class
+     *         {@link java.lang.Class java.lang.Class}.
+     */
+    public final Class<? extends Attribute> getCategory() {
+        return PrinterResolution.class;
+    }
 
-	/**
-	 * Get the name of the category of which this attribute value is an
-	 * instance.
-	 * <P>
-	 * For class PrinterResolution, the category name is
-	 * <CODE>"printer-resolution"</CODE>.
-	 *
-	 * @return Attribute category name.
-	 */
-	public final String getName() {
-		return "printer-resolution";
-	}
+    /**
+     * Get the name of the category of which this attribute value is an
+     * instance.
+     * <P>
+     * For class PrinterResolution, the category name is
+     * <CODE>"printer-resolution"</CODE>.
+     *
+     * @return Attribute category name.
+     */
+    public final String getName() {
+        return "printer-resolution";
+    }
 
 }

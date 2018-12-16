@@ -26,14 +26,14 @@ import org.w3c.dom.events.Event;
  * Object Model (DOM) Level 3 Load and Save Specification</a>.
  */
 public interface LSLoadEvent extends Event {
-	/**
-	 * The document that finished loading.
-	 */
-	public Document getNewDocument();
+    /**
+     * The document that finished loading.
+     */
+    public Document getNewDocument();
 
-	/**
-	 * The input source that was parsed.
-	 */
-	public LSInput getInput();
+    /**
+     * The input source that was parsed.
+     */
+    public LSInput getInput();
 
 }

@@ -39,35 +39,35 @@ package javax.sql;
  * @since 1.6
  */
 public interface StatementEventListener extends java.util.EventListener {
-	/**
-	 * The driver calls this method on all <code>StatementEventListener</code>s
-	 * registered on the connection when it detects that a
-	 * <code>PreparedStatement</code> is closed.
-	 *
-	 * @param event
-	 *              an event object describing the source of the event and that
-	 *              the <code>PreparedStatement</code> was closed.
-	 * @since 1.6
-	 */
-	void statementClosed(StatementEvent event);
+    /**
+     * The driver calls this method on all <code>StatementEventListener</code>s
+     * registered on the connection when it detects that a
+     * <code>PreparedStatement</code> is closed.
+     *
+     * @param event
+     *              an event object describing the source of the event and that
+     *              the <code>PreparedStatement</code> was closed.
+     * @since 1.6
+     */
+    void statementClosed(StatementEvent event);
 
-	/**
-	 * The driver calls this method on all <code>StatementEventListener</code>s
-	 * registered on the connection when it detects that a
-	 * <code>PreparedStatement</code> is invalid. The driver calls this method
-	 * just before it throws the <code>SQLException</code>, contained in the
-	 * given event, to the application.
-	 * <p>
-	 * 
-	 * @param event
-	 *              an event object describing the source of the event, the
-	 *              statement that is invalid and the exception the driver is
-	 *              about to throw. The source of the event is the
-	 *              <code>PooledConnection</code> which the invalid
-	 *              <code>PreparedStatement</code> is associated with.
-	 *              <p>
-	 * @since 1.6
-	 */
-	void statementErrorOccurred(StatementEvent event);
+    /**
+     * The driver calls this method on all <code>StatementEventListener</code>s
+     * registered on the connection when it detects that a
+     * <code>PreparedStatement</code> is invalid. The driver calls this method
+     * just before it throws the <code>SQLException</code>, contained in the
+     * given event, to the application.
+     * <p>
+     * 
+     * @param event
+     *              an event object describing the source of the event, the
+     *              statement that is invalid and the exception the driver is
+     *              about to throw. The source of the event is the
+     *              <code>PooledConnection</code> which the invalid
+     *              <code>PreparedStatement</code> is associated with.
+     *              <p>
+     * @since 1.6
+     */
+    void statementErrorOccurred(StatementEvent event);
 
 }

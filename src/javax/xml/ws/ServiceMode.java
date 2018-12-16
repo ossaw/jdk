@@ -23,12 +23,12 @@ import java.lang.annotation.Inherited;
 @Inherited
 @Documented
 public @interface ServiceMode {
-	/**
-	 * Service mode. <code>PAYLOAD</code> indicates that the
-	 * <code>Provider</code> implementation wishes to work with protocol message
-	 * payloads only. <code>MESSAGE</code> indicates that the
-	 * <code>Provider</code> implementation wishes to work with entire protocol
-	 * messages.
-	 **/
-	public Service.Mode value() default Service.Mode.PAYLOAD;
+    /**
+     * Service mode. <code>PAYLOAD</code> indicates that the
+     * <code>Provider</code> implementation wishes to work with protocol message
+     * payloads only. <code>MESSAGE</code> indicates that the
+     * <code>Provider</code> implementation wishes to work with entire protocol
+     * messages.
+     **/
+    public Service.Mode value() default Service.Mode.PAYLOAD;
 }

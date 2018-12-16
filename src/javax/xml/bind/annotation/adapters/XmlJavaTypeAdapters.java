@@ -43,8 +43,8 @@ import java.lang.annotation.Target;
 @Retention(RUNTIME)
 @Target({ PACKAGE })
 public @interface XmlJavaTypeAdapters {
-	/**
-	 * Collection of @{@link XmlJavaTypeAdapter} annotations
-	 */
-	XmlJavaTypeAdapter[] value();
+    /**
+     * Collection of @{@link XmlJavaTypeAdapter} annotations
+     */
+    XmlJavaTypeAdapter[] value();
 }

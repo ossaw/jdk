@@ -16,26 +16,26 @@ package java.rmi.server;
  */
 public class ServerNotActiveException extends java.lang.Exception {
 
-	/* indicate compatibility with JDK 1.1.x version of class */
-	private static final long serialVersionUID = 4687940720827538231L;
+    /* indicate compatibility with JDK 1.1.x version of class */
+    private static final long serialVersionUID = 4687940720827538231L;
 
-	/**
-	 * Constructs an <code>ServerNotActiveException</code> with no specified
-	 * detail message.
-	 * 
-	 * @since JDK1.1
-	 */
-	public ServerNotActiveException() {}
+    /**
+     * Constructs an <code>ServerNotActiveException</code> with no specified
+     * detail message.
+     * 
+     * @since JDK1.1
+     */
+    public ServerNotActiveException() {}
 
-	/**
-	 * Constructs an <code>ServerNotActiveException</code> with the specified
-	 * detail message.
-	 *
-	 * @param s
-	 *          the detail message.
-	 * @since JDK1.1
-	 */
-	public ServerNotActiveException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs an <code>ServerNotActiveException</code> with the specified
+     * detail message.
+     *
+     * @param s
+     *          the detail message.
+     * @since JDK1.1
+     */
+    public ServerNotActiveException(String s) {
+        super(s);
+    }
 }

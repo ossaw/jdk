@@ -33,18 +33,18 @@ import java.util.ResourceBundle;
  * @see java.util.ServiceLoader#loadInstalled(Class)
  */
 public interface ResourceBundleControlProvider {
-	/**
-	 * Returns a {@code ResourceBundle.Control} instance that is used to handle
-	 * resource bundle loading for the given {@code
-	 * baseName}. This method must return {@code null} if the given
-	 * {@code baseName} isn't handled by this provider.
-	 *
-	 * @param baseName
-	 *                 the base name of the resource bundle
-	 * @return a {@code ResourceBundle.Control} instance, or {@code null} if the
-	 *         given {@code baseName} is not applicable to this provider.
-	 * @throws NullPointerException
-	 *                              if {@code baseName} is {@code null}
-	 */
-	public ResourceBundle.Control getControl(String baseName);
+    /**
+     * Returns a {@code ResourceBundle.Control} instance that is used to handle
+     * resource bundle loading for the given {@code
+     * baseName}. This method must return {@code null} if the given
+     * {@code baseName} isn't handled by this provider.
+     *
+     * @param baseName
+     *                 the base name of the resource bundle
+     * @return a {@code ResourceBundle.Control} instance, or {@code null} if the
+     *         given {@code baseName} is not applicable to this provider.
+     * @throws NullPointerException
+     *                              if {@code baseName} is {@code null}
+     */
+    public ResourceBundle.Control getControl(String baseName);
 }

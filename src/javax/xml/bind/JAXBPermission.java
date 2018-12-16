@@ -55,16 +55,16 @@ import java.security.BasicPermission;
 
 /* code was borrowed originally from java.lang.RuntimePermission. */
 public final class JAXBPermission extends BasicPermission {
-	/**
-	 * Creates a new JAXBPermission with the specified name.
-	 *
-	 * @param name
-	 *             The name of the JAXBPermission. As of 2.2 only
-	 *             "setDatatypeConverter" is defined.
-	 */
-	public JAXBPermission(String name) {
-		super(name);
-	}
+    /**
+     * Creates a new JAXBPermission with the specified name.
+     *
+     * @param name
+     *             The name of the JAXBPermission. As of 2.2 only
+     *             "setDatatypeConverter" is defined.
+     */
+    public JAXBPermission(String name) {
+        super(name);
+    }
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 }

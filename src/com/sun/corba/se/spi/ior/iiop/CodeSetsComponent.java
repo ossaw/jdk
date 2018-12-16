@@ -13,5 +13,5 @@ import com.sun.corba.se.impl.encoding.CodeSetComponentInfo;
  * @author Ken Cavanaugh
  */
 public interface CodeSetsComponent extends TaggedComponent {
-	public CodeSetComponentInfo getCodeSetComponentInfo();
+    public CodeSetComponentInfo getCodeSetComponentInfo();
 }

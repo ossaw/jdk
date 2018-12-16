@@ -33,78 +33,78 @@ import com.sun.org.apache.xerces.internal.xni.XMLLocator;
  */
 public final class SAXLocatorWrapper implements XMLLocator {
 
-	private Locator fLocator = null;
-	private Locator2 fLocator2 = null;
+    private Locator fLocator = null;
+    private Locator2 fLocator2 = null;
 
-	public SAXLocatorWrapper() {}
+    public SAXLocatorWrapper() {}
 
-	public void setLocator(Locator locator) {
-		fLocator = locator;
-		if (locator instanceof Locator2 || locator == null) {
-			fLocator2 = (Locator2) locator;
-		}
-	}
+    public void setLocator(Locator locator) {
+        fLocator = locator;
+        if (locator instanceof Locator2 || locator == null) {
+            fLocator2 = (Locator2) locator;
+        }
+    }
 
-	public Locator getLocator() {
-		return fLocator;
-	}
+    public Locator getLocator() {
+        return fLocator;
+    }
 
-	/*
-	 * XMLLocator methods
-	 */
+    /*
+     * XMLLocator methods
+     */
 
-	public String getPublicId() {
-		if (fLocator != null) {
-			return fLocator.getPublicId();
-		}
-		return null;
-	}
+    public String getPublicId() {
+        if (fLocator != null) {
+            return fLocator.getPublicId();
+        }
+        return null;
+    }
 
-	public String getLiteralSystemId() {
-		if (fLocator != null) {
-			return fLocator.getSystemId();
-		}
-		return null;
-	}
+    public String getLiteralSystemId() {
+        if (fLocator != null) {
+            return fLocator.getSystemId();
+        }
+        return null;
+    }
 
-	public String getBaseSystemId() {
-		return null;
-	}
+    public String getBaseSystemId() {
+        return null;
+    }
 
-	public String getExpandedSystemId() {
-		return getLiteralSystemId();
-	}
+    public String getExpandedSystemId() {
+        return getLiteralSystemId();
+    }
 
-	public int getLineNumber() {
-		if (fLocator != null) {
-			return fLocator.getLineNumber();
-		}
-		return -1;
-	}
+    public int getLineNumber() {
+        if (fLocator != null) {
+            return fLocator.getLineNumber();
+        }
+        return -1;
+    }
 
-	public int getColumnNumber() {
-		if (fLocator != null) {
-			return fLocator.getColumnNumber();
-		}
-		return -1;
-	}
+    public int getColumnNumber() {
+        if (fLocator != null) {
+            return fLocator.getColumnNumber();
+        }
+        return -1;
+    }
 
-	public int getCharacterOffset() {
-		return -1;
-	}
+    public int getCharacterOffset() {
+        return -1;
+    }
 
-	public String getEncoding() {
-		if (fLocator2 != null) {
-			return fLocator2.getEncoding();
-		}
-		return null;
-	}
+    public String getEncoding() {
+        if (fLocator2 != null) {
+            return fLocator2.getEncoding();
+        }
+        return null;
+    }
 
-	public String getXMLVersion() {
-		if (fLocator2 != null) {
-			return fLocator2.getXMLVersion();
-		}
-		return null;
-	}
+    public String getXMLVersion() {
+        if (fLocator2 != null) {
+            return fLocator2.getXMLVersion();
+        }
+        return null;
+    }
 
 } // SAXLocatorWrapper

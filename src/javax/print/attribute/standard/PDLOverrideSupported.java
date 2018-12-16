@@ -23,81 +23,81 @@ import javax.print.attribute.PrintServiceAttribute;
  * @author Alan Kaminsky
  */
 public class PDLOverrideSupported extends EnumSyntax implements
-		PrintServiceAttribute {
+        PrintServiceAttribute {
 
-	private static final long serialVersionUID = -4393264467928463934L;
+    private static final long serialVersionUID = -4393264467928463934L;
 
-	/**
-	 * The printer makes no attempt to make the external job attribute values
-	 * take precedence over embedded instructions in the documents' print data.
-	 */
-	public static final PDLOverrideSupported NOT_ATTEMPTED = new PDLOverrideSupported(
-			0);
+    /**
+     * The printer makes no attempt to make the external job attribute values
+     * take precedence over embedded instructions in the documents' print data.
+     */
+    public static final PDLOverrideSupported NOT_ATTEMPTED = new PDLOverrideSupported(
+            0);
 
-	/**
-	 * The printer attempts to make the external job attribute values take
-	 * precedence over embedded instructions in the documents' print data,
-	 * however there is no guarantee.
-	 */
-	public static final PDLOverrideSupported ATTEMPTED = new PDLOverrideSupported(
-			1);
+    /**
+     * The printer attempts to make the external job attribute values take
+     * precedence over embedded instructions in the documents' print data,
+     * however there is no guarantee.
+     */
+    public static final PDLOverrideSupported ATTEMPTED = new PDLOverrideSupported(
+            1);
 
-	/**
-	 * Construct a new PDL override supported enumeration value with the given
-	 * integer value.
-	 *
-	 * @param value
-	 *              Integer value.
-	 */
-	protected PDLOverrideSupported(int value) {
-		super(value);
-	}
+    /**
+     * Construct a new PDL override supported enumeration value with the given
+     * integer value.
+     *
+     * @param value
+     *              Integer value.
+     */
+    protected PDLOverrideSupported(int value) {
+        super(value);
+    }
 
-	private static final String[] myStringTable = { "not-attempted",
-			"attempted" };
+    private static final String[] myStringTable = { "not-attempted",
+            "attempted" };
 
-	private static final PDLOverrideSupported[] myEnumValueTable = {
-			NOT_ATTEMPTED, ATTEMPTED };
+    private static final PDLOverrideSupported[] myEnumValueTable = {
+            NOT_ATTEMPTED, ATTEMPTED };
 
-	/**
-	 * Returns the string table for class PDLOverrideSupported.
-	 */
-	protected String[] getStringTable() {
-		return (String[]) myStringTable.clone();
-	}
+    /**
+     * Returns the string table for class PDLOverrideSupported.
+     */
+    protected String[] getStringTable() {
+        return (String[]) myStringTable.clone();
+    }
 
-	/**
-	 * Returns the enumeration value table for class PDLOverrideSupported.
-	 */
-	protected EnumSyntax[] getEnumValueTable() {
-		return (EnumSyntax[]) myEnumValueTable.clone();
-	}
+    /**
+     * Returns the enumeration value table for class PDLOverrideSupported.
+     */
+    protected EnumSyntax[] getEnumValueTable() {
+        return (EnumSyntax[]) myEnumValueTable.clone();
+    }
 
-	/**
-	 * Get the printing attribute class which is to be used as the "category"
-	 * for this printing attribute value.
-	 * <P>
-	 * For class PDLOverrideSupported and any vendor-defined subclasses, the
-	 * category is class PDLOverrideSupported itself.
-	 *
-	 * @return Printing attribute class (category), an instance of class
-	 *         {@link java.lang.Class java.lang.Class}.
-	 */
-	public final Class<? extends Attribute> getCategory() {
-		return PDLOverrideSupported.class;
-	}
+    /**
+     * Get the printing attribute class which is to be used as the "category"
+     * for this printing attribute value.
+     * <P>
+     * For class PDLOverrideSupported and any vendor-defined subclasses, the
+     * category is class PDLOverrideSupported itself.
+     *
+     * @return Printing attribute class (category), an instance of class
+     *         {@link java.lang.Class java.lang.Class}.
+     */
+    public final Class<? extends Attribute> getCategory() {
+        return PDLOverrideSupported.class;
+    }
 
-	/**
-	 * Get the name of the category of which this attribute value is an
-	 * instance.
-	 * <P>
-	 * For class PDLOverrideSupported and any vendor-defined subclasses, the
-	 * category name is <CODE>"pdl-override-supported"</CODE>.
-	 *
-	 * @return Attribute category name.
-	 */
-	public final String getName() {
-		return "pdl-override-supported";
-	}
+    /**
+     * Get the name of the category of which this attribute value is an
+     * instance.
+     * <P>
+     * For class PDLOverrideSupported and any vendor-defined subclasses, the
+     * category name is <CODE>"pdl-override-supported"</CODE>.
+     *
+     * @return Attribute category name.
+     */
+    public final String getName() {
+        return "pdl-override-supported";
+    }
 
 }

@@ -21,21 +21,21 @@ package javax.swing;
  */
 public interface ComboBoxModel<E> extends ListModel<E> {
 
-	/**
-	 * Set the selected item. The implementation of this method should notify
-	 * all registered <code>ListDataListener</code>s that the contents have
-	 * changed.
-	 *
-	 * @param anItem
-	 *               the list object to select or <code>null</code> to clear the
-	 *               selection
-	 */
-	void setSelectedItem(Object anItem);
+    /**
+     * Set the selected item. The implementation of this method should notify
+     * all registered <code>ListDataListener</code>s that the contents have
+     * changed.
+     *
+     * @param anItem
+     *               the list object to select or <code>null</code> to clear the
+     *               selection
+     */
+    void setSelectedItem(Object anItem);
 
-	/**
-	 * Returns the selected item
-	 * 
-	 * @return The selected item or <code>null</code> if there is no selection
-	 */
-	Object getSelectedItem();
+    /**
+     * Returns the selected item
+     * 
+     * @return The selected item or <code>null</code> if there is no selection
+     */
+    Object getSelectedItem();
 }

@@ -396,988 +396,988 @@ import java.io.Serializable;
  */
 public class DocFlavor implements Serializable, Cloneable {
 
-	private static final long serialVersionUID = -4512080796965449721L;
-
-	/**
-	 * A String representing the host operating system encoding. This will
-	 * follow the conventions documented in
-	 * <a href="http://www.ietf.org/rfc/rfc2278.txt"> <i>RFC&nbsp;2278:&nbsp;
-	 * IANA Charset Registration Procedures</i></a> except where historical
-	 * names are returned for compatibility with previous versions of the Java
-	 * platform. The value returned from method is valid only for the VM which
-	 * returns it, for use in a DocFlavor. This is the charset for all the
-	 * "HOST" pre-defined DocFlavors in the executing VM.
-	 */
-	public static final String hostEncoding;
-
-	static {
-		hostEncoding = (String) java.security.AccessController.doPrivileged(
-				new sun.security.action.GetPropertyAction("file.encoding"));
-	}
-
-	/**
-	 * MIME type.
-	 */
-	private transient MimeType myMimeType;
-
-	/**
-	 * Representation class name.
-	 * 
-	 * @serial
-	 */
-	private String myClassName;
-
-	/**
-	 * String value for this doc flavor. Computed when needed and cached.
-	 */
-	private transient String myStringValue = null;
-
-	/**
-	 * Constructs a new doc flavor object from the given MIME type and
-	 * representation class name. The given MIME type is converted into
-	 * canonical form and stored internally.
-	 *
-	 * @param mimeType
-	 *                  MIME media type string.
-	 * @param className
-	 *                  Fully-qualified representation class name.
-	 *
-	 * @exception NullPointerException
-	 *                                     (unchecked exception) Thrown if
-	 *                                     <CODE>mimeType</CODE> is
-	 *                                     null or <CODE>className</CODE> is
-	 *                                     null.
-	 * @exception IllegalArgumentException
-	 *                                     (unchecked exception) Thrown if
-	 *                                     <CODE>mimeType</CODE> does
-	 *                                     not obey the syntax for a MIME media
-	 *                                     type string.
-	 */
-	public DocFlavor(String mimeType, String className) {
-		if (className == null) {
-			throw new NullPointerException();
-		}
-		myMimeType = new MimeType(mimeType);
-		myClassName = className;
-	}
-
-	/**
-	 * Returns this doc flavor object's MIME type string based on the canonical
-	 * form. Each parameter value is enclosed in quotes.
-	 * 
-	 * @return the mime type
-	 */
-	public String getMimeType() {
-		return myMimeType.getMimeType();
-	}
-
-	/**
-	 * Returns this doc flavor object's media type (from the MIME type).
-	 * 
-	 * @return the media type
-	 */
-	public String getMediaType() {
-		return myMimeType.getMediaType();
-	}
-
-	/**
-	 * Returns this doc flavor object's media subtype (from the MIME type).
-	 * 
-	 * @return the media sub-type
-	 */
-	public String getMediaSubtype() {
-		return myMimeType.getMediaSubtype();
-	}
-
-	/**
-	 * Returns a <code>String</code> representing a MIME parameter. Mime types
-	 * may include parameters which are usually optional. The charset for text
-	 * types is a commonly useful example. This convenience method will return
-	 * the value of the specified parameter if one was specified in the mime
-	 * type for this flavor.
-	 * <p>
-	 * 
-	 * @param paramName
-	 *                  the name of the paramater. This name is internally
-	 *                  converted
-	 *                  to the canonical lower case format before performing the
-	 *                  match.
-	 * @return String representing a mime parameter, or null if that parameter
-	 *         is not in the mime type string.
-	 * @exception NullPointerException
-	 *                                 if paramName is null.
-	 */
-	public String getParameter(String paramName) {
-		return (String) myMimeType.getParameterMap().get(paramName
-				.toLowerCase());
-	}
-
-	/**
-	 * Returns the name of this doc flavor object's representation class.
-	 * 
-	 * @return the name of the representation class.
-	 */
-	public String getRepresentationClassName() {
-		return myClassName;
-	}
-
-	/**
-	 * Converts this <code>DocFlavor</code> to a string.
-	 *
-	 * @return MIME type string based on the canonical form. Each parameter
-	 *         value is enclosed in quotes. A "class=" parameter is appended to
-	 *         the MIME type string to indicate the representation class name.
-	 */
-	public String toString() {
-		return getStringValue();
-	}
-
-	/**
-	 * Returns a hash code for this doc flavor object.
-	 */
-	public int hashCode() {
-		return getStringValue().hashCode();
-	}
-
-	/**
-	 * Determines if this doc flavor object is equal to the given object. The
-	 * two are equal if the given object is not null, is an instance of
-	 * <code>DocFlavor</code>, has a MIME type equivalent to this doc flavor
-	 * object's MIME type (that is, the MIME types have the same media type,
-	 * media subtype, and parameters), and has the same representation class
-	 * name as this doc flavor object. Thus, if two doc flavor objects' MIME
-	 * types are the same except for comments, they are considered equal.
-	 * However, two doc flavor objects with MIME types of "text/plain" and
-	 * "text/plain; charset=US-ASCII" are not considered equal, even though they
-	 * represent the same media type (because the default character set for
-	 * plain text is US-ASCII).
-	 *
-	 * @param obj
-	 *            Object to test.
-	 *
-	 * @return True if this doc flavor object equals <CODE>obj</CODE>, false
-	 *         otherwise.
-	 */
-	public boolean equals(Object obj) {
-		return obj != null && obj instanceof DocFlavor && getStringValue()
-				.equals(((DocFlavor) obj).getStringValue());
-	}
-
-	/**
-	 * Returns this doc flavor object's string value.
-	 */
-	private String getStringValue() {
-		if (myStringValue == null) {
-			myStringValue = myMimeType + "; class=\"" + myClassName + "\"";
-		}
-		return myStringValue;
-	}
-
-	/**
-	 * Write the instance to a stream (ie serialize the object).
-	 */
-	private void writeObject(ObjectOutputStream s) throws IOException {
-
-		s.defaultWriteObject();
-		s.writeObject(myMimeType.getMimeType());
-	}
-
-	/**
-	 * Reconstitute an instance from a stream (that is, deserialize it).
-	 *
-	 * @serialData The serialised form of a DocFlavor is the String naming the
-	 *             representation class followed by the String representing the
-	 *             canonical form of the mime type.
-	 */
-	private void readObject(ObjectInputStream s) throws ClassNotFoundException,
-			IOException {
-
-		s.defaultReadObject();
-		myMimeType = new MimeType((String) s.readObject());
-	}
-
-	/**
-	 * Class DocFlavor.BYTE_ARRAY provides predefined static constant DocFlavor
-	 * objects for example doc flavors using a byte array (<CODE>byte[]</CODE>)
-	 * as the print data representation class.
-	 * <P>
-	 *
-	 * @author Alan Kaminsky
-	 */
-	public static class BYTE_ARRAY extends DocFlavor {
-
-		private static final long serialVersionUID = -9065578006593857475L;
-
-		/**
-		 * Constructs a new doc flavor with the given MIME type and a print data
-		 * representation class name of <CODE>"[B"</CODE> (byte array).
-		 *
-		 * @param mimeType
-		 *                 MIME media type string.
-		 *
-		 * @exception NullPointerException
-		 *                                     (unchecked exception) Thrown if
-		 *                                     <CODE>mimeType</CODE>
-		 *                                     is null.
-		 * @exception IllegalArgumentException
-		 *                                     (unchecked exception) Thrown if
-		 *                                     <CODE>mimeType</CODE>
-		 *                                     does not obey the syntax for a
-		 *                                     MIME media type string.
-		 */
-		public BYTE_ARRAY(String mimeType) {
-			super(mimeType, "[B");
-		}
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"text/plain"</CODE>, encoded in the
-		 * host platform encoding. See {@link DocFlavor#hostEncoding
-		 * hostEncoding} Print data representation class name =
-		 * <CODE>"[B"</CODE> (byte array).
-		 */
-		public static final BYTE_ARRAY TEXT_PLAIN_HOST = new BYTE_ARRAY(
-				"text/plain; charset=" + hostEncoding);
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"text/plain; charset=utf-8"</CODE>,
-		 * print data representation class name = <CODE>"[B"</CODE> (byte
-		 * array).
-		 */
-		public static final BYTE_ARRAY TEXT_PLAIN_UTF_8 = new BYTE_ARRAY(
-				"text/plain; charset=utf-8");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"text/plain; charset=utf-16"</CODE>
-		 * , print data representation class name = <CODE>"[B"</CODE> (byte
-		 * array).
-		 */
-		public static final BYTE_ARRAY TEXT_PLAIN_UTF_16 = new BYTE_ARRAY(
-				"text/plain; charset=utf-16");
-
-		/**
-		 * Doc flavor with MIME type =
-		 * <CODE>"text/plain; charset=utf-16be"</CODE> (big-endian byte
-		 * ordering), print data representation class name = <CODE>"[B"</CODE>
-		 * (byte array).
-		 */
-		public static final BYTE_ARRAY TEXT_PLAIN_UTF_16BE = new BYTE_ARRAY(
-				"text/plain; charset=utf-16be");
-
-		/**
-		 * Doc flavor with MIME type =
-		 * <CODE>"text/plain; charset=utf-16le"</CODE> (little-endian byte
-		 * ordering), print data representation class name = <CODE>"[B"</CODE>
-		 * (byte array).
-		 */
-		public static final BYTE_ARRAY TEXT_PLAIN_UTF_16LE = new BYTE_ARRAY(
-				"text/plain; charset=utf-16le");
-
-		/**
-		 * Doc flavor with MIME type =
-		 * <CODE>"text/plain; charset=us-ascii"</CODE>, print data
-		 * representation class name = <CODE>"[B"</CODE> (byte array).
-		 */
-		public static final BYTE_ARRAY TEXT_PLAIN_US_ASCII = new BYTE_ARRAY(
-				"text/plain; charset=us-ascii");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"text/html"</CODE>, encoded in the
-		 * host platform encoding. See {@link DocFlavor#hostEncoding
-		 * hostEncoding} Print data representation class name =
-		 * <CODE>"[B"</CODE> (byte array).
-		 */
-		public static final BYTE_ARRAY TEXT_HTML_HOST = new BYTE_ARRAY(
-				"text/html; charset=" + hostEncoding);
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"text/html; charset=utf-8"</CODE>,
-		 * print data representation class name = <CODE>"[B"</CODE> (byte
-		 * array).
-		 */
-		public static final BYTE_ARRAY TEXT_HTML_UTF_8 = new BYTE_ARRAY(
-				"text/html; charset=utf-8");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"text/html; charset=utf-16"</CODE>,
-		 * print data representation class name = <CODE>"[B"</CODE> (byte
-		 * array).
-		 */
-		public static final BYTE_ARRAY TEXT_HTML_UTF_16 = new BYTE_ARRAY(
-				"text/html; charset=utf-16");
-
-		/**
-		 * Doc flavor with MIME type =
-		 * <CODE>"text/html; charset=utf-16be"</CODE> (big-endian byte
-		 * ordering), print data representation class name = <CODE>"[B"</CODE>
-		 * (byte array).
-		 */
-		public static final BYTE_ARRAY TEXT_HTML_UTF_16BE = new BYTE_ARRAY(
-				"text/html; charset=utf-16be");
-
-		/**
-		 * Doc flavor with MIME type =
-		 * <CODE>"text/html; charset=utf-16le"</CODE> (little-endian byte
-		 * ordering), print data representation class name = <CODE>"[B"</CODE>
-		 * (byte array).
-		 */
-		public static final BYTE_ARRAY TEXT_HTML_UTF_16LE = new BYTE_ARRAY(
-				"text/html; charset=utf-16le");
-
-		/**
-		 * Doc flavor with MIME type =
-		 * <CODE>"text/html; charset=us-ascii"</CODE>, print data representation
-		 * class name = <CODE>"[B"</CODE> (byte array).
-		 */
-		public static final BYTE_ARRAY TEXT_HTML_US_ASCII = new BYTE_ARRAY(
-				"text/html; charset=us-ascii");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"application/pdf"</CODE>, print
-		 * data representation class name = <CODE>"[B"</CODE> (byte array).
-		 */
-		public static final BYTE_ARRAY PDF = new BYTE_ARRAY("application/pdf");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"application/postscript"</CODE>,
-		 * print data representation class name = <CODE>"[B"</CODE> (byte
-		 * array).
-		 */
-		public static final BYTE_ARRAY POSTSCRIPT = new BYTE_ARRAY(
-				"application/postscript");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"application/vnd.hp-PCL"</CODE>,
-		 * print data representation class name = <CODE>"[B"</CODE> (byte
-		 * array).
-		 */
-		public static final BYTE_ARRAY PCL = new BYTE_ARRAY(
-				"application/vnd.hp-PCL");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"image/gif"</CODE>, print data
-		 * representation class name = <CODE>"[B"</CODE> (byte array).
-		 */
-		public static final BYTE_ARRAY GIF = new BYTE_ARRAY("image/gif");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"image/jpeg"</CODE>, print data
-		 * representation class name = <CODE>"[B"</CODE> (byte array).
-		 */
-		public static final BYTE_ARRAY JPEG = new BYTE_ARRAY("image/jpeg");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"image/png"</CODE>, print data
-		 * representation class name = <CODE>"[B"</CODE> (byte array).
-		 */
-		public static final BYTE_ARRAY PNG = new BYTE_ARRAY("image/png");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"application/octet-stream"</CODE>,
-		 * print data representation class name = <CODE>"[B"</CODE> (byte
-		 * array). The client must determine that data described using this
-		 * DocFlavor is valid for the printer.
-		 */
-		public static final BYTE_ARRAY AUTOSENSE = new BYTE_ARRAY(
-				"application/octet-stream");
-
-	}
-
-	/**
-	 * Class DocFlavor.INPUT_STREAM provides predefined static constant
-	 * DocFlavor objects for example doc flavors using a byte stream (
-	 * {@link java.io.InputStream java.io.InputStream}) as the print data
-	 * representation class.
-	 * <P>
-	 *
-	 * @author Alan Kaminsky
-	 */
-	public static class INPUT_STREAM extends DocFlavor {
-
-		private static final long serialVersionUID = -7045842700749194127L;
-
-		/**
-		 * Constructs a new doc flavor with the given MIME type and a print data
-		 * representation class name of <CODE>"java.io.InputStream"</CODE> (byte
-		 * stream).
-		 *
-		 * @param mimeType
-		 *                 MIME media type string.
-		 *
-		 * @exception NullPointerException
-		 *                                     (unchecked exception) Thrown if
-		 *                                     <CODE>mimeType</CODE>
-		 *                                     is null.
-		 * @exception IllegalArgumentException
-		 *                                     (unchecked exception) Thrown if
-		 *                                     <CODE>mimeType</CODE>
-		 *                                     does not obey the syntax for a
-		 *                                     MIME media type string.
-		 */
-		public INPUT_STREAM(String mimeType) {
-			super(mimeType, "java.io.InputStream");
-		}
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"text/plain"</CODE>, encoded in the
-		 * host platform encoding. See {@link DocFlavor#hostEncoding
-		 * hostEncoding} Print data representation class name =
-		 * <CODE>"java.io.InputStream"</CODE> (byte stream).
-		 */
-		public static final INPUT_STREAM TEXT_PLAIN_HOST = new INPUT_STREAM(
-				"text/plain; charset=" + hostEncoding);
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"text/plain; charset=utf-8"</CODE>,
-		 * print data representation class name =
-		 * <CODE>"java.io.InputStream"</CODE> (byte stream).
-		 */
-		public static final INPUT_STREAM TEXT_PLAIN_UTF_8 = new INPUT_STREAM(
-				"text/plain; charset=utf-8");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"text/plain; charset=utf-16"</CODE>
-		 * , print data representation class name =
-		 * <CODE>"java.io.InputStream"</CODE> (byte stream).
-		 */
-		public static final INPUT_STREAM TEXT_PLAIN_UTF_16 = new INPUT_STREAM(
-				"text/plain; charset=utf-16");
-
-		/**
-		 * Doc flavor with MIME type =
-		 * <CODE>"text/plain; charset=utf-16be"</CODE> (big-endian byte
-		 * ordering), print data representation class name =
-		 * <CODE>"java.io.InputStream"</CODE> (byte stream).
-		 */
-		public static final INPUT_STREAM TEXT_PLAIN_UTF_16BE = new INPUT_STREAM(
-				"text/plain; charset=utf-16be");
-
-		/**
-		 * Doc flavor with MIME type =
-		 * <CODE>"text/plain; charset=utf-16le"</CODE> (little-endian byte
-		 * ordering), print data representation class name =
-		 * <CODE>"java.io.InputStream"</CODE> (byte stream).
-		 */
-		public static final INPUT_STREAM TEXT_PLAIN_UTF_16LE = new INPUT_STREAM(
-				"text/plain; charset=utf-16le");
-
-		/**
-		 * Doc flavor with MIME type =
-		 * <CODE>"text/plain; charset=us-ascii"</CODE>, print data
-		 * representation class name = <CODE>"java.io.InputStream"</CODE> (byte
-		 * stream).
-		 */
-		public static final INPUT_STREAM TEXT_PLAIN_US_ASCII = new INPUT_STREAM(
-				"text/plain; charset=us-ascii");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"text/html"</CODE>, encoded in the
-		 * host platform encoding. See {@link DocFlavor#hostEncoding
-		 * hostEncoding} Print data representation class name =
-		 * <CODE>"java.io.InputStream"</CODE> (byte stream).
-		 */
-		public static final INPUT_STREAM TEXT_HTML_HOST = new INPUT_STREAM(
-				"text/html; charset=" + hostEncoding);
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"text/html; charset=utf-8"</CODE>,
-		 * print data representation class name =
-		 * <CODE>"java.io.InputStream"</CODE> (byte stream).
-		 */
-		public static final INPUT_STREAM TEXT_HTML_UTF_8 = new INPUT_STREAM(
-				"text/html; charset=utf-8");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"text/html; charset=utf-16"</CODE>,
-		 * print data representation class name =
-		 * <CODE>"java.io.InputStream"</CODE> (byte stream).
-		 */
-		public static final INPUT_STREAM TEXT_HTML_UTF_16 = new INPUT_STREAM(
-				"text/html; charset=utf-16");
-
-		/**
-		 * Doc flavor with MIME type =
-		 * <CODE>"text/html; charset=utf-16be"</CODE> (big-endian byte
-		 * ordering), print data representation class name =
-		 * <CODE>"java.io.InputStream"</CODE> (byte stream).
-		 */
-		public static final INPUT_STREAM TEXT_HTML_UTF_16BE = new INPUT_STREAM(
-				"text/html; charset=utf-16be");
-
-		/**
-		 * Doc flavor with MIME type =
-		 * <CODE>"text/html; charset=utf-16le"</CODE> (little-endian byte
-		 * ordering), print data representation class name =
-		 * <CODE>"java.io.InputStream"</CODE> (byte stream).
-		 */
-		public static final INPUT_STREAM TEXT_HTML_UTF_16LE = new INPUT_STREAM(
-				"text/html; charset=utf-16le");
-
-		/**
-		 * Doc flavor with MIME type =
-		 * <CODE>"text/html; charset=us-ascii"</CODE>, print data representation
-		 * class name = <CODE>"java.io.InputStream"</CODE> (byte stream).
-		 */
-		public static final INPUT_STREAM TEXT_HTML_US_ASCII = new INPUT_STREAM(
-				"text/html; charset=us-ascii");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"application/pdf"</CODE>, print
-		 * data representation class name = <CODE>"java.io.InputStream"</CODE>
-		 * (byte stream).
-		 */
-		public static final INPUT_STREAM PDF = new INPUT_STREAM(
-				"application/pdf");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"application/postscript"</CODE>,
-		 * print data representation class name =
-		 * <CODE>"java.io.InputStream"</CODE> (byte stream).
-		 */
-		public static final INPUT_STREAM POSTSCRIPT = new INPUT_STREAM(
-				"application/postscript");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"application/vnd.hp-PCL"</CODE>,
-		 * print data representation class name =
-		 * <CODE>"java.io.InputStream"</CODE> (byte stream).
-		 */
-		public static final INPUT_STREAM PCL = new INPUT_STREAM(
-				"application/vnd.hp-PCL");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"image/gif"</CODE>, print data
-		 * representation class name = <CODE>"java.io.InputStream"</CODE> (byte
-		 * stream).
-		 */
-		public static final INPUT_STREAM GIF = new INPUT_STREAM("image/gif");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"image/jpeg"</CODE>, print data
-		 * representation class name = <CODE>"java.io.InputStream"</CODE> (byte
-		 * stream).
-		 */
-		public static final INPUT_STREAM JPEG = new INPUT_STREAM("image/jpeg");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"image/png"</CODE>, print data
-		 * representation class name = <CODE>"java.io.InputStream"</CODE> (byte
-		 * stream).
-		 */
-		public static final INPUT_STREAM PNG = new INPUT_STREAM("image/png");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"application/octet-stream"</CODE>,
-		 * print data representation class name =
-		 * <CODE>"java.io.InputStream"</CODE> (byte stream). The client must
-		 * determine that data described using this DocFlavor is valid for the
-		 * printer.
-		 */
-		public static final INPUT_STREAM AUTOSENSE = new INPUT_STREAM(
-				"application/octet-stream");
-
-	}
-
-	/**
-	 * Class DocFlavor.URL provides predefined static constant DocFlavor
-	 * objects. For example doc flavors using a Uniform Resource Locator (
-	 * {@link java.net.URL java.net.URL}) as the print data representation
-	 * class.
-	 * <P>
-	 *
-	 * @author Alan Kaminsky
-	 */
-	public static class URL extends DocFlavor {
-
-		/**
-		 * Constructs a new doc flavor with the given MIME type and a print data
-		 * representation class name of <CODE>"java.net.URL"</CODE>.
-		 *
-		 * @param mimeType
-		 *                 MIME media type string.
-		 *
-		 * @exception NullPointerException
-		 *                                     (unchecked exception) Thrown if
-		 *                                     <CODE>mimeType</CODE>
-		 *                                     is null.
-		 * @exception IllegalArgumentException
-		 *                                     (unchecked exception) Thrown if
-		 *                                     <CODE>mimeType</CODE>
-		 *                                     does not obey the syntax for a
-		 *                                     MIME media type string.
-		 */
-		public URL(String mimeType) {
-			super(mimeType, "java.net.URL");
-		}
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"text/plain"</CODE>, encoded in the
-		 * host platform encoding. See {@link DocFlavor#hostEncoding
-		 * hostEncoding} Print data representation class name =
-		 * <CODE>"java.net.URL"</CODE> (byte stream).
-		 */
-		public static final URL TEXT_PLAIN_HOST = new URL("text/plain; charset="
-				+ hostEncoding);
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"text/plain; charset=utf-8"</CODE>,
-		 * print data representation class name = <CODE>"java.net.URL"</CODE>
-		 * (byte stream).
-		 */
-		public static final URL TEXT_PLAIN_UTF_8 = new URL(
-				"text/plain; charset=utf-8");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"text/plain; charset=utf-16"</CODE>
-		 * , print data representation class name = <CODE>java.net.URL""</CODE>
-		 * (byte stream).
-		 */
-		public static final URL TEXT_PLAIN_UTF_16 = new URL(
-				"text/plain; charset=utf-16");
-
-		/**
-		 * Doc flavor with MIME type =
-		 * <CODE>"text/plain; charset=utf-16be"</CODE> (big-endian byte
-		 * ordering), print data representation class name =
-		 * <CODE>"java.net.URL"</CODE> (byte stream).
-		 */
-		public static final URL TEXT_PLAIN_UTF_16BE = new URL(
-				"text/plain; charset=utf-16be");
-
-		/**
-		 * Doc flavor with MIME type =
-		 * <CODE>"text/plain; charset=utf-16le"</CODE> (little-endian byte
-		 * ordering), print data representation class name =
-		 * <CODE>"java.net.URL"</CODE> (byte stream).
-		 */
-		public static final URL TEXT_PLAIN_UTF_16LE = new URL(
-				"text/plain; charset=utf-16le");
-
-		/**
-		 * Doc flavor with MIME type =
-		 * <CODE>"text/plain; charset=us-ascii"</CODE>, print data
-		 * representation class name = <CODE>"java.net.URL"</CODE> (byte
-		 * stream).
-		 */
-		public static final URL TEXT_PLAIN_US_ASCII = new URL(
-				"text/plain; charset=us-ascii");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"text/html"</CODE>, encoded in the
-		 * host platform encoding. See {@link DocFlavor#hostEncoding
-		 * hostEncoding} Print data representation class name =
-		 * <CODE>"java.net.URL"</CODE> (byte stream).
-		 */
-		public static final URL TEXT_HTML_HOST = new URL("text/html; charset="
-				+ hostEncoding);
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"text/html; charset=utf-8"</CODE>,
-		 * print data representation class name = <CODE>"java.net.URL"</CODE>
-		 * (byte stream).
-		 */
-		public static final URL TEXT_HTML_UTF_8 = new URL(
-				"text/html; charset=utf-8");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"text/html; charset=utf-16"</CODE>,
-		 * print data representation class name = <CODE>"java.net.URL"</CODE>
-		 * (byte stream).
-		 */
-		public static final URL TEXT_HTML_UTF_16 = new URL(
-				"text/html; charset=utf-16");
-
-		/**
-		 * Doc flavor with MIME type =
-		 * <CODE>"text/html; charset=utf-16be"</CODE> (big-endian byte
-		 * ordering), print data representation class name =
-		 * <CODE>"java.net.URL"</CODE> (byte stream).
-		 */
-		public static final URL TEXT_HTML_UTF_16BE = new URL(
-				"text/html; charset=utf-16be");
-
-		/**
-		 * Doc flavor with MIME type =
-		 * <CODE>"text/html; charset=utf-16le"</CODE> (little-endian byte
-		 * ordering), print data representation class name =
-		 * <CODE>"java.net.URL"</CODE> (byte stream).
-		 */
-		public static final URL TEXT_HTML_UTF_16LE = new URL(
-				"text/html; charset=utf-16le");
-
-		/**
-		 * Doc flavor with MIME type =
-		 * <CODE>"text/html; charset=us-ascii"</CODE>, print data representation
-		 * class name = <CODE>"java.net.URL"</CODE> (byte stream).
-		 */
-		public static final URL TEXT_HTML_US_ASCII = new URL(
-				"text/html; charset=us-ascii");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"application/pdf"</CODE>, print
-		 * data representation class name = <CODE>"java.net.URL"</CODE>.
-		 */
-		public static final URL PDF = new URL("application/pdf");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"application/postscript"</CODE>,
-		 * print data representation class name = <CODE>"java.net.URL"</CODE>.
-		 */
-		public static final URL POSTSCRIPT = new URL("application/postscript");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"application/vnd.hp-PCL"</CODE>,
-		 * print data representation class name = <CODE>"java.net.URL"</CODE>.
-		 */
-		public static final URL PCL = new URL("application/vnd.hp-PCL");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"image/gif"</CODE>, print data
-		 * representation class name = <CODE>"java.net.URL"</CODE>.
-		 */
-		public static final URL GIF = new URL("image/gif");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"image/jpeg"</CODE>, print data
-		 * representation class name = <CODE>"java.net.URL"</CODE>.
-		 */
-		public static final URL JPEG = new URL("image/jpeg");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"image/png"</CODE>, print data
-		 * representation class name = <CODE>"java.net.URL"</CODE>.
-		 */
-		public static final URL PNG = new URL("image/png");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"application/octet-stream"</CODE>,
-		 * print data representation class name = <CODE>"java.net.URL"</CODE>.
-		 * The client must determine that data described using this DocFlavor is
-		 * valid for the printer.
-		 */
-		public static final URL AUTOSENSE = new URL("application/octet-stream");
-
-	}
-
-	/**
-	 * Class DocFlavor.CHAR_ARRAY provides predefined static constant DocFlavor
-	 * objects for example doc flavors using a character array (
-	 * <CODE>char[]</CODE>) as the print data representation class. As such, the
-	 * character set is Unicode.
-	 * <P>
-	 *
-	 * @author Alan Kaminsky
-	 */
-	public static class CHAR_ARRAY extends DocFlavor {
-
-		private static final long serialVersionUID = -8720590903724405128L;
-
-		/**
-		 * Constructs a new doc flavor with the given MIME type and a print data
-		 * representation class name of <CODE>"[C"</CODE> (character array).
-		 *
-		 * @param mimeType
-		 *                 MIME media type string. If it is a text media type,
-		 *                 it is
-		 *                 assumed to contain a <CODE>"charset=utf-16"</CODE>
-		 *                 parameter.
-		 *
-		 * @exception NullPointerException
-		 *                                     (unchecked exception) Thrown if
-		 *                                     <CODE>mimeType</CODE>
-		 *                                     is null.
-		 * @exception IllegalArgumentException
-		 *                                     (unchecked exception) Thrown if
-		 *                                     <CODE>mimeType</CODE>
-		 *                                     does not obey the syntax for a
-		 *                                     MIME media type string.
-		 */
-		public CHAR_ARRAY(String mimeType) {
-			super(mimeType, "[C");
-		}
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"text/plain;
-		 * charset=utf-16"</CODE>, print data representation class name =
-		 * <CODE>"[C"</CODE> (character array).
-		 */
-		public static final CHAR_ARRAY TEXT_PLAIN = new CHAR_ARRAY(
-				"text/plain; charset=utf-16");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"text/html;
-		 * charset=utf-16"</CODE>, print data representation class name =
-		 * <CODE>"[C"</CODE> (character array).
-		 */
-		public static final CHAR_ARRAY TEXT_HTML = new CHAR_ARRAY(
-				"text/html; charset=utf-16");
-
-	}
-
-	/**
-	 * Class DocFlavor.STRING provides predefined static constant DocFlavor
-	 * objects for example doc flavors using a string ({@link java.lang.String
-	 * java.lang.String}) as the print data representation class. As such, the
-	 * character set is Unicode.
-	 * <P>
-	 *
-	 * @author Alan Kaminsky
-	 */
-	public static class STRING extends DocFlavor {
-
-		private static final long serialVersionUID = 4414407504887034035L;
-
-		/**
-		 * Constructs a new doc flavor with the given MIME type and a print data
-		 * representation class name of <CODE>"java.lang.String"</CODE>.
-		 *
-		 * @param mimeType
-		 *                 MIME media type string. If it is a text media type,
-		 *                 it is
-		 *                 assumed to contain a <CODE>"charset=utf-16"</CODE>
-		 *                 parameter.
-		 *
-		 * @exception NullPointerException
-		 *                                     (unchecked exception) Thrown if
-		 *                                     <CODE>mimeType</CODE>
-		 *                                     is null.
-		 * @exception IllegalArgumentException
-		 *                                     (unchecked exception) Thrown if
-		 *                                     <CODE>mimeType</CODE>
-		 *                                     does not obey the syntax for a
-		 *                                     MIME media type string.
-		 */
-		public STRING(String mimeType) {
-			super(mimeType, "java.lang.String");
-		}
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"text/plain;
-		 * charset=utf-16"</CODE>, print data representation class name =
-		 * <CODE>"java.lang.String"</CODE>.
-		 */
-		public static final STRING TEXT_PLAIN = new STRING(
-				"text/plain; charset=utf-16");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"text/html;
-		 * charset=utf-16"</CODE>, print data representation class name =
-		 * <CODE>"java.lang.String"</CODE>.
-		 */
-		public static final STRING TEXT_HTML = new STRING(
-				"text/html; charset=utf-16");
-	}
-
-	/**
-	 * Class DocFlavor.READER provides predefined static constant DocFlavor
-	 * objects for example doc flavors using a character stream (
-	 * {@link java.io.Reader java.io.Reader}) as the print data representation
-	 * class. As such, the character set is Unicode.
-	 * <P>
-	 *
-	 * @author Alan Kaminsky
-	 */
-	public static class READER extends DocFlavor {
-
-		private static final long serialVersionUID = 7100295812579351567L;
-
-		/**
-		 * Constructs a new doc flavor with the given MIME type and a print data
-		 * representation class name of\ <CODE>"java.io.Reader"</CODE>
-		 * (character stream).
-		 *
-		 * @param mimeType
-		 *                 MIME media type string. If it is a text media type,
-		 *                 it is
-		 *                 assumed to contain a <CODE>"charset=utf-16"</CODE>
-		 *                 parameter.
-		 *
-		 * @exception NullPointerException
-		 *                                     (unchecked exception) Thrown if
-		 *                                     <CODE>mimeType</CODE>
-		 *                                     is null.
-		 * @exception IllegalArgumentException
-		 *                                     (unchecked exception) Thrown if
-		 *                                     <CODE>mimeType</CODE>
-		 *                                     does not obey the syntax for a
-		 *                                     MIME media type string.
-		 */
-		public READER(String mimeType) {
-			super(mimeType, "java.io.Reader");
-		}
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"text/plain;
-		 * charset=utf-16"</CODE>, print data representation class name =
-		 * <CODE>"java.io.Reader"</CODE> (character stream).
-		 */
-		public static final READER TEXT_PLAIN = new READER(
-				"text/plain; charset=utf-16");
-
-		/**
-		 * Doc flavor with MIME type = <CODE>"text/html;
-		 * charset=utf-16"</CODE>, print data representation class name =
-		 * <CODE>"java.io.Reader"</CODE> (character stream).
-		 */
-		public static final READER TEXT_HTML = new READER(
-				"text/html; charset=utf-16");
-
-	}
-
-	/**
-	 * Class DocFlavor.SERVICE_FORMATTED provides predefined static constant
-	 * DocFlavor objects for example doc flavors for service formatted print
-	 * data.
-	 * <P>
-	 *
-	 * @author Alan Kaminsky
-	 */
-	public static class SERVICE_FORMATTED extends DocFlavor {
-
-		private static final long serialVersionUID = 6181337766266637256L;
-
-		/**
-		 * Constructs a new doc flavor with a MIME type of
-		 * <CODE>"application/x-java-jvm-local-objectref"</CODE> indicating
-		 * service formatted print data and the given print data representation
-		 * class name.
-		 *
-		 * @param className
-		 *                  Fully-qualified representation class name.
-		 *
-		 * @exception NullPointerException
-		 *                                 (unchecked exception) Thrown if
-		 *                                 <CODE>className</CODE>
-		 *                                 is null.
-		 */
-		public SERVICE_FORMATTED(String className) {
-			super("application/x-java-jvm-local-objectref", className);
-		}
-
-		/**
-		 * Service formatted print data doc flavor with print data
-		 * representation class name =
-		 * <CODE>"java.awt.image.renderable.RenderableImage"</CODE> (renderable
-		 * image object).
-		 */
-		public static final SERVICE_FORMATTED RENDERABLE_IMAGE = new SERVICE_FORMATTED(
-				"java.awt.image.renderable.RenderableImage");
-
-		/**
-		 * Service formatted print data doc flavor with print data
-		 * representation class name = <CODE>"java.awt.print.Printable"</CODE>
-		 * (printable object).
-		 */
-		public static final SERVICE_FORMATTED PRINTABLE = new SERVICE_FORMATTED(
-				"java.awt.print.Printable");
-
-		/**
-		 * Service formatted print data doc flavor with print data
-		 * representation class name = <CODE>"java.awt.print.Pageable"</CODE>
-		 * (pageable object).
-		 */
-		public static final SERVICE_FORMATTED PAGEABLE = new SERVICE_FORMATTED(
-				"java.awt.print.Pageable");
-
-	}
+    private static final long serialVersionUID = -4512080796965449721L;
+
+    /**
+     * A String representing the host operating system encoding. This will
+     * follow the conventions documented in
+     * <a href="http://www.ietf.org/rfc/rfc2278.txt"> <i>RFC&nbsp;2278:&nbsp;
+     * IANA Charset Registration Procedures</i></a> except where historical
+     * names are returned for compatibility with previous versions of the Java
+     * platform. The value returned from method is valid only for the VM which
+     * returns it, for use in a DocFlavor. This is the charset for all the
+     * "HOST" pre-defined DocFlavors in the executing VM.
+     */
+    public static final String hostEncoding;
+
+    static {
+        hostEncoding = (String) java.security.AccessController.doPrivileged(
+                new sun.security.action.GetPropertyAction("file.encoding"));
+    }
+
+    /**
+     * MIME type.
+     */
+    private transient MimeType myMimeType;
+
+    /**
+     * Representation class name.
+     * 
+     * @serial
+     */
+    private String myClassName;
+
+    /**
+     * String value for this doc flavor. Computed when needed and cached.
+     */
+    private transient String myStringValue = null;
+
+    /**
+     * Constructs a new doc flavor object from the given MIME type and
+     * representation class name. The given MIME type is converted into
+     * canonical form and stored internally.
+     *
+     * @param mimeType
+     *                  MIME media type string.
+     * @param className
+     *                  Fully-qualified representation class name.
+     *
+     * @exception NullPointerException
+     *                                     (unchecked exception) Thrown if
+     *                                     <CODE>mimeType</CODE> is
+     *                                     null or <CODE>className</CODE> is
+     *                                     null.
+     * @exception IllegalArgumentException
+     *                                     (unchecked exception) Thrown if
+     *                                     <CODE>mimeType</CODE> does
+     *                                     not obey the syntax for a MIME media
+     *                                     type string.
+     */
+    public DocFlavor(String mimeType, String className) {
+        if (className == null) {
+            throw new NullPointerException();
+        }
+        myMimeType = new MimeType(mimeType);
+        myClassName = className;
+    }
+
+    /**
+     * Returns this doc flavor object's MIME type string based on the canonical
+     * form. Each parameter value is enclosed in quotes.
+     * 
+     * @return the mime type
+     */
+    public String getMimeType() {
+        return myMimeType.getMimeType();
+    }
+
+    /**
+     * Returns this doc flavor object's media type (from the MIME type).
+     * 
+     * @return the media type
+     */
+    public String getMediaType() {
+        return myMimeType.getMediaType();
+    }
+
+    /**
+     * Returns this doc flavor object's media subtype (from the MIME type).
+     * 
+     * @return the media sub-type
+     */
+    public String getMediaSubtype() {
+        return myMimeType.getMediaSubtype();
+    }
+
+    /**
+     * Returns a <code>String</code> representing a MIME parameter. Mime types
+     * may include parameters which are usually optional. The charset for text
+     * types is a commonly useful example. This convenience method will return
+     * the value of the specified parameter if one was specified in the mime
+     * type for this flavor.
+     * <p>
+     * 
+     * @param paramName
+     *                  the name of the paramater. This name is internally
+     *                  converted
+     *                  to the canonical lower case format before performing the
+     *                  match.
+     * @return String representing a mime parameter, or null if that parameter
+     *         is not in the mime type string.
+     * @exception NullPointerException
+     *                                 if paramName is null.
+     */
+    public String getParameter(String paramName) {
+        return (String) myMimeType.getParameterMap().get(paramName
+                .toLowerCase());
+    }
+
+    /**
+     * Returns the name of this doc flavor object's representation class.
+     * 
+     * @return the name of the representation class.
+     */
+    public String getRepresentationClassName() {
+        return myClassName;
+    }
+
+    /**
+     * Converts this <code>DocFlavor</code> to a string.
+     *
+     * @return MIME type string based on the canonical form. Each parameter
+     *         value is enclosed in quotes. A "class=" parameter is appended to
+     *         the MIME type string to indicate the representation class name.
+     */
+    public String toString() {
+        return getStringValue();
+    }
+
+    /**
+     * Returns a hash code for this doc flavor object.
+     */
+    public int hashCode() {
+        return getStringValue().hashCode();
+    }
+
+    /**
+     * Determines if this doc flavor object is equal to the given object. The
+     * two are equal if the given object is not null, is an instance of
+     * <code>DocFlavor</code>, has a MIME type equivalent to this doc flavor
+     * object's MIME type (that is, the MIME types have the same media type,
+     * media subtype, and parameters), and has the same representation class
+     * name as this doc flavor object. Thus, if two doc flavor objects' MIME
+     * types are the same except for comments, they are considered equal.
+     * However, two doc flavor objects with MIME types of "text/plain" and
+     * "text/plain; charset=US-ASCII" are not considered equal, even though they
+     * represent the same media type (because the default character set for
+     * plain text is US-ASCII).
+     *
+     * @param obj
+     *            Object to test.
+     *
+     * @return True if this doc flavor object equals <CODE>obj</CODE>, false
+     *         otherwise.
+     */
+    public boolean equals(Object obj) {
+        return obj != null && obj instanceof DocFlavor && getStringValue()
+                .equals(((DocFlavor) obj).getStringValue());
+    }
+
+    /**
+     * Returns this doc flavor object's string value.
+     */
+    private String getStringValue() {
+        if (myStringValue == null) {
+            myStringValue = myMimeType + "; class=\"" + myClassName + "\"";
+        }
+        return myStringValue;
+    }
+
+    /**
+     * Write the instance to a stream (ie serialize the object).
+     */
+    private void writeObject(ObjectOutputStream s) throws IOException {
+
+        s.defaultWriteObject();
+        s.writeObject(myMimeType.getMimeType());
+    }
+
+    /**
+     * Reconstitute an instance from a stream (that is, deserialize it).
+     *
+     * @serialData The serialised form of a DocFlavor is the String naming the
+     *             representation class followed by the String representing the
+     *             canonical form of the mime type.
+     */
+    private void readObject(ObjectInputStream s) throws ClassNotFoundException,
+            IOException {
+
+        s.defaultReadObject();
+        myMimeType = new MimeType((String) s.readObject());
+    }
+
+    /**
+     * Class DocFlavor.BYTE_ARRAY provides predefined static constant DocFlavor
+     * objects for example doc flavors using a byte array (<CODE>byte[]</CODE>)
+     * as the print data representation class.
+     * <P>
+     *
+     * @author Alan Kaminsky
+     */
+    public static class BYTE_ARRAY extends DocFlavor {
+
+        private static final long serialVersionUID = -9065578006593857475L;
+
+        /**
+         * Constructs a new doc flavor with the given MIME type and a print data
+         * representation class name of <CODE>"[B"</CODE> (byte array).
+         *
+         * @param mimeType
+         *                 MIME media type string.
+         *
+         * @exception NullPointerException
+         *                                     (unchecked exception) Thrown if
+         *                                     <CODE>mimeType</CODE>
+         *                                     is null.
+         * @exception IllegalArgumentException
+         *                                     (unchecked exception) Thrown if
+         *                                     <CODE>mimeType</CODE>
+         *                                     does not obey the syntax for a
+         *                                     MIME media type string.
+         */
+        public BYTE_ARRAY(String mimeType) {
+            super(mimeType, "[B");
+        }
+
+        /**
+         * Doc flavor with MIME type = <CODE>"text/plain"</CODE>, encoded in the
+         * host platform encoding. See {@link DocFlavor#hostEncoding
+         * hostEncoding} Print data representation class name =
+         * <CODE>"[B"</CODE> (byte array).
+         */
+        public static final BYTE_ARRAY TEXT_PLAIN_HOST = new BYTE_ARRAY(
+                "text/plain; charset=" + hostEncoding);
+
+        /**
+         * Doc flavor with MIME type = <CODE>"text/plain; charset=utf-8"</CODE>,
+         * print data representation class name = <CODE>"[B"</CODE> (byte
+         * array).
+         */
+        public static final BYTE_ARRAY TEXT_PLAIN_UTF_8 = new BYTE_ARRAY(
+                "text/plain; charset=utf-8");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"text/plain; charset=utf-16"</CODE>
+         * , print data representation class name = <CODE>"[B"</CODE> (byte
+         * array).
+         */
+        public static final BYTE_ARRAY TEXT_PLAIN_UTF_16 = new BYTE_ARRAY(
+                "text/plain; charset=utf-16");
+
+        /**
+         * Doc flavor with MIME type =
+         * <CODE>"text/plain; charset=utf-16be"</CODE> (big-endian byte
+         * ordering), print data representation class name = <CODE>"[B"</CODE>
+         * (byte array).
+         */
+        public static final BYTE_ARRAY TEXT_PLAIN_UTF_16BE = new BYTE_ARRAY(
+                "text/plain; charset=utf-16be");
+
+        /**
+         * Doc flavor with MIME type =
+         * <CODE>"text/plain; charset=utf-16le"</CODE> (little-endian byte
+         * ordering), print data representation class name = <CODE>"[B"</CODE>
+         * (byte array).
+         */
+        public static final BYTE_ARRAY TEXT_PLAIN_UTF_16LE = new BYTE_ARRAY(
+                "text/plain; charset=utf-16le");
+
+        /**
+         * Doc flavor with MIME type =
+         * <CODE>"text/plain; charset=us-ascii"</CODE>, print data
+         * representation class name = <CODE>"[B"</CODE> (byte array).
+         */
+        public static final BYTE_ARRAY TEXT_PLAIN_US_ASCII = new BYTE_ARRAY(
+                "text/plain; charset=us-ascii");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"text/html"</CODE>, encoded in the
+         * host platform encoding. See {@link DocFlavor#hostEncoding
+         * hostEncoding} Print data representation class name =
+         * <CODE>"[B"</CODE> (byte array).
+         */
+        public static final BYTE_ARRAY TEXT_HTML_HOST = new BYTE_ARRAY(
+                "text/html; charset=" + hostEncoding);
+
+        /**
+         * Doc flavor with MIME type = <CODE>"text/html; charset=utf-8"</CODE>,
+         * print data representation class name = <CODE>"[B"</CODE> (byte
+         * array).
+         */
+        public static final BYTE_ARRAY TEXT_HTML_UTF_8 = new BYTE_ARRAY(
+                "text/html; charset=utf-8");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"text/html; charset=utf-16"</CODE>,
+         * print data representation class name = <CODE>"[B"</CODE> (byte
+         * array).
+         */
+        public static final BYTE_ARRAY TEXT_HTML_UTF_16 = new BYTE_ARRAY(
+                "text/html; charset=utf-16");
+
+        /**
+         * Doc flavor with MIME type =
+         * <CODE>"text/html; charset=utf-16be"</CODE> (big-endian byte
+         * ordering), print data representation class name = <CODE>"[B"</CODE>
+         * (byte array).
+         */
+        public static final BYTE_ARRAY TEXT_HTML_UTF_16BE = new BYTE_ARRAY(
+                "text/html; charset=utf-16be");
+
+        /**
+         * Doc flavor with MIME type =
+         * <CODE>"text/html; charset=utf-16le"</CODE> (little-endian byte
+         * ordering), print data representation class name = <CODE>"[B"</CODE>
+         * (byte array).
+         */
+        public static final BYTE_ARRAY TEXT_HTML_UTF_16LE = new BYTE_ARRAY(
+                "text/html; charset=utf-16le");
+
+        /**
+         * Doc flavor with MIME type =
+         * <CODE>"text/html; charset=us-ascii"</CODE>, print data representation
+         * class name = <CODE>"[B"</CODE> (byte array).
+         */
+        public static final BYTE_ARRAY TEXT_HTML_US_ASCII = new BYTE_ARRAY(
+                "text/html; charset=us-ascii");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"application/pdf"</CODE>, print
+         * data representation class name = <CODE>"[B"</CODE> (byte array).
+         */
+        public static final BYTE_ARRAY PDF = new BYTE_ARRAY("application/pdf");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"application/postscript"</CODE>,
+         * print data representation class name = <CODE>"[B"</CODE> (byte
+         * array).
+         */
+        public static final BYTE_ARRAY POSTSCRIPT = new BYTE_ARRAY(
+                "application/postscript");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"application/vnd.hp-PCL"</CODE>,
+         * print data representation class name = <CODE>"[B"</CODE> (byte
+         * array).
+         */
+        public static final BYTE_ARRAY PCL = new BYTE_ARRAY(
+                "application/vnd.hp-PCL");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"image/gif"</CODE>, print data
+         * representation class name = <CODE>"[B"</CODE> (byte array).
+         */
+        public static final BYTE_ARRAY GIF = new BYTE_ARRAY("image/gif");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"image/jpeg"</CODE>, print data
+         * representation class name = <CODE>"[B"</CODE> (byte array).
+         */
+        public static final BYTE_ARRAY JPEG = new BYTE_ARRAY("image/jpeg");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"image/png"</CODE>, print data
+         * representation class name = <CODE>"[B"</CODE> (byte array).
+         */
+        public static final BYTE_ARRAY PNG = new BYTE_ARRAY("image/png");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"application/octet-stream"</CODE>,
+         * print data representation class name = <CODE>"[B"</CODE> (byte
+         * array). The client must determine that data described using this
+         * DocFlavor is valid for the printer.
+         */
+        public static final BYTE_ARRAY AUTOSENSE = new BYTE_ARRAY(
+                "application/octet-stream");
+
+    }
+
+    /**
+     * Class DocFlavor.INPUT_STREAM provides predefined static constant
+     * DocFlavor objects for example doc flavors using a byte stream (
+     * {@link java.io.InputStream java.io.InputStream}) as the print data
+     * representation class.
+     * <P>
+     *
+     * @author Alan Kaminsky
+     */
+    public static class INPUT_STREAM extends DocFlavor {
+
+        private static final long serialVersionUID = -7045842700749194127L;
+
+        /**
+         * Constructs a new doc flavor with the given MIME type and a print data
+         * representation class name of <CODE>"java.io.InputStream"</CODE> (byte
+         * stream).
+         *
+         * @param mimeType
+         *                 MIME media type string.
+         *
+         * @exception NullPointerException
+         *                                     (unchecked exception) Thrown if
+         *                                     <CODE>mimeType</CODE>
+         *                                     is null.
+         * @exception IllegalArgumentException
+         *                                     (unchecked exception) Thrown if
+         *                                     <CODE>mimeType</CODE>
+         *                                     does not obey the syntax for a
+         *                                     MIME media type string.
+         */
+        public INPUT_STREAM(String mimeType) {
+            super(mimeType, "java.io.InputStream");
+        }
+
+        /**
+         * Doc flavor with MIME type = <CODE>"text/plain"</CODE>, encoded in the
+         * host platform encoding. See {@link DocFlavor#hostEncoding
+         * hostEncoding} Print data representation class name =
+         * <CODE>"java.io.InputStream"</CODE> (byte stream).
+         */
+        public static final INPUT_STREAM TEXT_PLAIN_HOST = new INPUT_STREAM(
+                "text/plain; charset=" + hostEncoding);
+
+        /**
+         * Doc flavor with MIME type = <CODE>"text/plain; charset=utf-8"</CODE>,
+         * print data representation class name =
+         * <CODE>"java.io.InputStream"</CODE> (byte stream).
+         */
+        public static final INPUT_STREAM TEXT_PLAIN_UTF_8 = new INPUT_STREAM(
+                "text/plain; charset=utf-8");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"text/plain; charset=utf-16"</CODE>
+         * , print data representation class name =
+         * <CODE>"java.io.InputStream"</CODE> (byte stream).
+         */
+        public static final INPUT_STREAM TEXT_PLAIN_UTF_16 = new INPUT_STREAM(
+                "text/plain; charset=utf-16");
+
+        /**
+         * Doc flavor with MIME type =
+         * <CODE>"text/plain; charset=utf-16be"</CODE> (big-endian byte
+         * ordering), print data representation class name =
+         * <CODE>"java.io.InputStream"</CODE> (byte stream).
+         */
+        public static final INPUT_STREAM TEXT_PLAIN_UTF_16BE = new INPUT_STREAM(
+                "text/plain; charset=utf-16be");
+
+        /**
+         * Doc flavor with MIME type =
+         * <CODE>"text/plain; charset=utf-16le"</CODE> (little-endian byte
+         * ordering), print data representation class name =
+         * <CODE>"java.io.InputStream"</CODE> (byte stream).
+         */
+        public static final INPUT_STREAM TEXT_PLAIN_UTF_16LE = new INPUT_STREAM(
+                "text/plain; charset=utf-16le");
+
+        /**
+         * Doc flavor with MIME type =
+         * <CODE>"text/plain; charset=us-ascii"</CODE>, print data
+         * representation class name = <CODE>"java.io.InputStream"</CODE> (byte
+         * stream).
+         */
+        public static final INPUT_STREAM TEXT_PLAIN_US_ASCII = new INPUT_STREAM(
+                "text/plain; charset=us-ascii");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"text/html"</CODE>, encoded in the
+         * host platform encoding. See {@link DocFlavor#hostEncoding
+         * hostEncoding} Print data representation class name =
+         * <CODE>"java.io.InputStream"</CODE> (byte stream).
+         */
+        public static final INPUT_STREAM TEXT_HTML_HOST = new INPUT_STREAM(
+                "text/html; charset=" + hostEncoding);
+
+        /**
+         * Doc flavor with MIME type = <CODE>"text/html; charset=utf-8"</CODE>,
+         * print data representation class name =
+         * <CODE>"java.io.InputStream"</CODE> (byte stream).
+         */
+        public static final INPUT_STREAM TEXT_HTML_UTF_8 = new INPUT_STREAM(
+                "text/html; charset=utf-8");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"text/html; charset=utf-16"</CODE>,
+         * print data representation class name =
+         * <CODE>"java.io.InputStream"</CODE> (byte stream).
+         */
+        public static final INPUT_STREAM TEXT_HTML_UTF_16 = new INPUT_STREAM(
+                "text/html; charset=utf-16");
+
+        /**
+         * Doc flavor with MIME type =
+         * <CODE>"text/html; charset=utf-16be"</CODE> (big-endian byte
+         * ordering), print data representation class name =
+         * <CODE>"java.io.InputStream"</CODE> (byte stream).
+         */
+        public static final INPUT_STREAM TEXT_HTML_UTF_16BE = new INPUT_STREAM(
+                "text/html; charset=utf-16be");
+
+        /**
+         * Doc flavor with MIME type =
+         * <CODE>"text/html; charset=utf-16le"</CODE> (little-endian byte
+         * ordering), print data representation class name =
+         * <CODE>"java.io.InputStream"</CODE> (byte stream).
+         */
+        public static final INPUT_STREAM TEXT_HTML_UTF_16LE = new INPUT_STREAM(
+                "text/html; charset=utf-16le");
+
+        /**
+         * Doc flavor with MIME type =
+         * <CODE>"text/html; charset=us-ascii"</CODE>, print data representation
+         * class name = <CODE>"java.io.InputStream"</CODE> (byte stream).
+         */
+        public static final INPUT_STREAM TEXT_HTML_US_ASCII = new INPUT_STREAM(
+                "text/html; charset=us-ascii");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"application/pdf"</CODE>, print
+         * data representation class name = <CODE>"java.io.InputStream"</CODE>
+         * (byte stream).
+         */
+        public static final INPUT_STREAM PDF = new INPUT_STREAM(
+                "application/pdf");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"application/postscript"</CODE>,
+         * print data representation class name =
+         * <CODE>"java.io.InputStream"</CODE> (byte stream).
+         */
+        public static final INPUT_STREAM POSTSCRIPT = new INPUT_STREAM(
+                "application/postscript");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"application/vnd.hp-PCL"</CODE>,
+         * print data representation class name =
+         * <CODE>"java.io.InputStream"</CODE> (byte stream).
+         */
+        public static final INPUT_STREAM PCL = new INPUT_STREAM(
+                "application/vnd.hp-PCL");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"image/gif"</CODE>, print data
+         * representation class name = <CODE>"java.io.InputStream"</CODE> (byte
+         * stream).
+         */
+        public static final INPUT_STREAM GIF = new INPUT_STREAM("image/gif");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"image/jpeg"</CODE>, print data
+         * representation class name = <CODE>"java.io.InputStream"</CODE> (byte
+         * stream).
+         */
+        public static final INPUT_STREAM JPEG = new INPUT_STREAM("image/jpeg");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"image/png"</CODE>, print data
+         * representation class name = <CODE>"java.io.InputStream"</CODE> (byte
+         * stream).
+         */
+        public static final INPUT_STREAM PNG = new INPUT_STREAM("image/png");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"application/octet-stream"</CODE>,
+         * print data representation class name =
+         * <CODE>"java.io.InputStream"</CODE> (byte stream). The client must
+         * determine that data described using this DocFlavor is valid for the
+         * printer.
+         */
+        public static final INPUT_STREAM AUTOSENSE = new INPUT_STREAM(
+                "application/octet-stream");
+
+    }
+
+    /**
+     * Class DocFlavor.URL provides predefined static constant DocFlavor
+     * objects. For example doc flavors using a Uniform Resource Locator (
+     * {@link java.net.URL java.net.URL}) as the print data representation
+     * class.
+     * <P>
+     *
+     * @author Alan Kaminsky
+     */
+    public static class URL extends DocFlavor {
+
+        /**
+         * Constructs a new doc flavor with the given MIME type and a print data
+         * representation class name of <CODE>"java.net.URL"</CODE>.
+         *
+         * @param mimeType
+         *                 MIME media type string.
+         *
+         * @exception NullPointerException
+         *                                     (unchecked exception) Thrown if
+         *                                     <CODE>mimeType</CODE>
+         *                                     is null.
+         * @exception IllegalArgumentException
+         *                                     (unchecked exception) Thrown if
+         *                                     <CODE>mimeType</CODE>
+         *                                     does not obey the syntax for a
+         *                                     MIME media type string.
+         */
+        public URL(String mimeType) {
+            super(mimeType, "java.net.URL");
+        }
+
+        /**
+         * Doc flavor with MIME type = <CODE>"text/plain"</CODE>, encoded in the
+         * host platform encoding. See {@link DocFlavor#hostEncoding
+         * hostEncoding} Print data representation class name =
+         * <CODE>"java.net.URL"</CODE> (byte stream).
+         */
+        public static final URL TEXT_PLAIN_HOST = new URL("text/plain; charset="
+                + hostEncoding);
+
+        /**
+         * Doc flavor with MIME type = <CODE>"text/plain; charset=utf-8"</CODE>,
+         * print data representation class name = <CODE>"java.net.URL"</CODE>
+         * (byte stream).
+         */
+        public static final URL TEXT_PLAIN_UTF_8 = new URL(
+                "text/plain; charset=utf-8");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"text/plain; charset=utf-16"</CODE>
+         * , print data representation class name = <CODE>java.net.URL""</CODE>
+         * (byte stream).
+         */
+        public static final URL TEXT_PLAIN_UTF_16 = new URL(
+                "text/plain; charset=utf-16");
+
+        /**
+         * Doc flavor with MIME type =
+         * <CODE>"text/plain; charset=utf-16be"</CODE> (big-endian byte
+         * ordering), print data representation class name =
+         * <CODE>"java.net.URL"</CODE> (byte stream).
+         */
+        public static final URL TEXT_PLAIN_UTF_16BE = new URL(
+                "text/plain; charset=utf-16be");
+
+        /**
+         * Doc flavor with MIME type =
+         * <CODE>"text/plain; charset=utf-16le"</CODE> (little-endian byte
+         * ordering), print data representation class name =
+         * <CODE>"java.net.URL"</CODE> (byte stream).
+         */
+        public static final URL TEXT_PLAIN_UTF_16LE = new URL(
+                "text/plain; charset=utf-16le");
+
+        /**
+         * Doc flavor with MIME type =
+         * <CODE>"text/plain; charset=us-ascii"</CODE>, print data
+         * representation class name = <CODE>"java.net.URL"</CODE> (byte
+         * stream).
+         */
+        public static final URL TEXT_PLAIN_US_ASCII = new URL(
+                "text/plain; charset=us-ascii");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"text/html"</CODE>, encoded in the
+         * host platform encoding. See {@link DocFlavor#hostEncoding
+         * hostEncoding} Print data representation class name =
+         * <CODE>"java.net.URL"</CODE> (byte stream).
+         */
+        public static final URL TEXT_HTML_HOST = new URL("text/html; charset="
+                + hostEncoding);
+
+        /**
+         * Doc flavor with MIME type = <CODE>"text/html; charset=utf-8"</CODE>,
+         * print data representation class name = <CODE>"java.net.URL"</CODE>
+         * (byte stream).
+         */
+        public static final URL TEXT_HTML_UTF_8 = new URL(
+                "text/html; charset=utf-8");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"text/html; charset=utf-16"</CODE>,
+         * print data representation class name = <CODE>"java.net.URL"</CODE>
+         * (byte stream).
+         */
+        public static final URL TEXT_HTML_UTF_16 = new URL(
+                "text/html; charset=utf-16");
+
+        /**
+         * Doc flavor with MIME type =
+         * <CODE>"text/html; charset=utf-16be"</CODE> (big-endian byte
+         * ordering), print data representation class name =
+         * <CODE>"java.net.URL"</CODE> (byte stream).
+         */
+        public static final URL TEXT_HTML_UTF_16BE = new URL(
+                "text/html; charset=utf-16be");
+
+        /**
+         * Doc flavor with MIME type =
+         * <CODE>"text/html; charset=utf-16le"</CODE> (little-endian byte
+         * ordering), print data representation class name =
+         * <CODE>"java.net.URL"</CODE> (byte stream).
+         */
+        public static final URL TEXT_HTML_UTF_16LE = new URL(
+                "text/html; charset=utf-16le");
+
+        /**
+         * Doc flavor with MIME type =
+         * <CODE>"text/html; charset=us-ascii"</CODE>, print data representation
+         * class name = <CODE>"java.net.URL"</CODE> (byte stream).
+         */
+        public static final URL TEXT_HTML_US_ASCII = new URL(
+                "text/html; charset=us-ascii");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"application/pdf"</CODE>, print
+         * data representation class name = <CODE>"java.net.URL"</CODE>.
+         */
+        public static final URL PDF = new URL("application/pdf");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"application/postscript"</CODE>,
+         * print data representation class name = <CODE>"java.net.URL"</CODE>.
+         */
+        public static final URL POSTSCRIPT = new URL("application/postscript");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"application/vnd.hp-PCL"</CODE>,
+         * print data representation class name = <CODE>"java.net.URL"</CODE>.
+         */
+        public static final URL PCL = new URL("application/vnd.hp-PCL");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"image/gif"</CODE>, print data
+         * representation class name = <CODE>"java.net.URL"</CODE>.
+         */
+        public static final URL GIF = new URL("image/gif");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"image/jpeg"</CODE>, print data
+         * representation class name = <CODE>"java.net.URL"</CODE>.
+         */
+        public static final URL JPEG = new URL("image/jpeg");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"image/png"</CODE>, print data
+         * representation class name = <CODE>"java.net.URL"</CODE>.
+         */
+        public static final URL PNG = new URL("image/png");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"application/octet-stream"</CODE>,
+         * print data representation class name = <CODE>"java.net.URL"</CODE>.
+         * The client must determine that data described using this DocFlavor is
+         * valid for the printer.
+         */
+        public static final URL AUTOSENSE = new URL("application/octet-stream");
+
+    }
+
+    /**
+     * Class DocFlavor.CHAR_ARRAY provides predefined static constant DocFlavor
+     * objects for example doc flavors using a character array (
+     * <CODE>char[]</CODE>) as the print data representation class. As such, the
+     * character set is Unicode.
+     * <P>
+     *
+     * @author Alan Kaminsky
+     */
+    public static class CHAR_ARRAY extends DocFlavor {
+
+        private static final long serialVersionUID = -8720590903724405128L;
+
+        /**
+         * Constructs a new doc flavor with the given MIME type and a print data
+         * representation class name of <CODE>"[C"</CODE> (character array).
+         *
+         * @param mimeType
+         *                 MIME media type string. If it is a text media type,
+         *                 it is
+         *                 assumed to contain a <CODE>"charset=utf-16"</CODE>
+         *                 parameter.
+         *
+         * @exception NullPointerException
+         *                                     (unchecked exception) Thrown if
+         *                                     <CODE>mimeType</CODE>
+         *                                     is null.
+         * @exception IllegalArgumentException
+         *                                     (unchecked exception) Thrown if
+         *                                     <CODE>mimeType</CODE>
+         *                                     does not obey the syntax for a
+         *                                     MIME media type string.
+         */
+        public CHAR_ARRAY(String mimeType) {
+            super(mimeType, "[C");
+        }
+
+        /**
+         * Doc flavor with MIME type = <CODE>"text/plain;
+         * charset=utf-16"</CODE>, print data representation class name =
+         * <CODE>"[C"</CODE> (character array).
+         */
+        public static final CHAR_ARRAY TEXT_PLAIN = new CHAR_ARRAY(
+                "text/plain; charset=utf-16");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"text/html;
+         * charset=utf-16"</CODE>, print data representation class name =
+         * <CODE>"[C"</CODE> (character array).
+         */
+        public static final CHAR_ARRAY TEXT_HTML = new CHAR_ARRAY(
+                "text/html; charset=utf-16");
+
+    }
+
+    /**
+     * Class DocFlavor.STRING provides predefined static constant DocFlavor
+     * objects for example doc flavors using a string ({@link java.lang.String
+     * java.lang.String}) as the print data representation class. As such, the
+     * character set is Unicode.
+     * <P>
+     *
+     * @author Alan Kaminsky
+     */
+    public static class STRING extends DocFlavor {
+
+        private static final long serialVersionUID = 4414407504887034035L;
+
+        /**
+         * Constructs a new doc flavor with the given MIME type and a print data
+         * representation class name of <CODE>"java.lang.String"</CODE>.
+         *
+         * @param mimeType
+         *                 MIME media type string. If it is a text media type,
+         *                 it is
+         *                 assumed to contain a <CODE>"charset=utf-16"</CODE>
+         *                 parameter.
+         *
+         * @exception NullPointerException
+         *                                     (unchecked exception) Thrown if
+         *                                     <CODE>mimeType</CODE>
+         *                                     is null.
+         * @exception IllegalArgumentException
+         *                                     (unchecked exception) Thrown if
+         *                                     <CODE>mimeType</CODE>
+         *                                     does not obey the syntax for a
+         *                                     MIME media type string.
+         */
+        public STRING(String mimeType) {
+            super(mimeType, "java.lang.String");
+        }
+
+        /**
+         * Doc flavor with MIME type = <CODE>"text/plain;
+         * charset=utf-16"</CODE>, print data representation class name =
+         * <CODE>"java.lang.String"</CODE>.
+         */
+        public static final STRING TEXT_PLAIN = new STRING(
+                "text/plain; charset=utf-16");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"text/html;
+         * charset=utf-16"</CODE>, print data representation class name =
+         * <CODE>"java.lang.String"</CODE>.
+         */
+        public static final STRING TEXT_HTML = new STRING(
+                "text/html; charset=utf-16");
+    }
+
+    /**
+     * Class DocFlavor.READER provides predefined static constant DocFlavor
+     * objects for example doc flavors using a character stream (
+     * {@link java.io.Reader java.io.Reader}) as the print data representation
+     * class. As such, the character set is Unicode.
+     * <P>
+     *
+     * @author Alan Kaminsky
+     */
+    public static class READER extends DocFlavor {
+
+        private static final long serialVersionUID = 7100295812579351567L;
+
+        /**
+         * Constructs a new doc flavor with the given MIME type and a print data
+         * representation class name of\ <CODE>"java.io.Reader"</CODE>
+         * (character stream).
+         *
+         * @param mimeType
+         *                 MIME media type string. If it is a text media type,
+         *                 it is
+         *                 assumed to contain a <CODE>"charset=utf-16"</CODE>
+         *                 parameter.
+         *
+         * @exception NullPointerException
+         *                                     (unchecked exception) Thrown if
+         *                                     <CODE>mimeType</CODE>
+         *                                     is null.
+         * @exception IllegalArgumentException
+         *                                     (unchecked exception) Thrown if
+         *                                     <CODE>mimeType</CODE>
+         *                                     does not obey the syntax for a
+         *                                     MIME media type string.
+         */
+        public READER(String mimeType) {
+            super(mimeType, "java.io.Reader");
+        }
+
+        /**
+         * Doc flavor with MIME type = <CODE>"text/plain;
+         * charset=utf-16"</CODE>, print data representation class name =
+         * <CODE>"java.io.Reader"</CODE> (character stream).
+         */
+        public static final READER TEXT_PLAIN = new READER(
+                "text/plain; charset=utf-16");
+
+        /**
+         * Doc flavor with MIME type = <CODE>"text/html;
+         * charset=utf-16"</CODE>, print data representation class name =
+         * <CODE>"java.io.Reader"</CODE> (character stream).
+         */
+        public static final READER TEXT_HTML = new READER(
+                "text/html; charset=utf-16");
+
+    }
+
+    /**
+     * Class DocFlavor.SERVICE_FORMATTED provides predefined static constant
+     * DocFlavor objects for example doc flavors for service formatted print
+     * data.
+     * <P>
+     *
+     * @author Alan Kaminsky
+     */
+    public static class SERVICE_FORMATTED extends DocFlavor {
+
+        private static final long serialVersionUID = 6181337766266637256L;
+
+        /**
+         * Constructs a new doc flavor with a MIME type of
+         * <CODE>"application/x-java-jvm-local-objectref"</CODE> indicating
+         * service formatted print data and the given print data representation
+         * class name.
+         *
+         * @param className
+         *                  Fully-qualified representation class name.
+         *
+         * @exception NullPointerException
+         *                                 (unchecked exception) Thrown if
+         *                                 <CODE>className</CODE>
+         *                                 is null.
+         */
+        public SERVICE_FORMATTED(String className) {
+            super("application/x-java-jvm-local-objectref", className);
+        }
+
+        /**
+         * Service formatted print data doc flavor with print data
+         * representation class name =
+         * <CODE>"java.awt.image.renderable.RenderableImage"</CODE> (renderable
+         * image object).
+         */
+        public static final SERVICE_FORMATTED RENDERABLE_IMAGE = new SERVICE_FORMATTED(
+                "java.awt.image.renderable.RenderableImage");
+
+        /**
+         * Service formatted print data doc flavor with print data
+         * representation class name = <CODE>"java.awt.print.Printable"</CODE>
+         * (printable object).
+         */
+        public static final SERVICE_FORMATTED PRINTABLE = new SERVICE_FORMATTED(
+                "java.awt.print.Printable");
+
+        /**
+         * Service formatted print data doc flavor with print data
+         * representation class name = <CODE>"java.awt.print.Pageable"</CODE>
+         * (pageable object).
+         */
+        public static final SERVICE_FORMATTED PAGEABLE = new SERVICE_FORMATTED(
+                "java.awt.print.Pageable");
+
+    }
 
 }

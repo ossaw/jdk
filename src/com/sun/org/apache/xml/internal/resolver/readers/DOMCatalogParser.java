@@ -38,18 +38,18 @@ import org.w3c.dom.Node;
  *
  */
 public interface DOMCatalogParser {
-	/**
-	 * Parse a DOM node as a catalog entry.
-	 *
-	 * <p>
-	 * This method is expected to analyze the specified node and construct
-	 * appropriate catalog entry(ies) from it.
-	 * </p>
-	 *
-	 * @param catalog
-	 *                The catalog for which this node is being considered.
-	 * @param node
-	 *                The DOM Node from the catalog.
-	 */
-	public void parseCatalogEntry(Catalog catalog, Node node);
+    /**
+     * Parse a DOM node as a catalog entry.
+     *
+     * <p>
+     * This method is expected to analyze the specified node and construct
+     * appropriate catalog entry(ies) from it.
+     * </p>
+     *
+     * @param catalog
+     *                The catalog for which this node is being considered.
+     * @param node
+     *                The DOM Node from the catalog.
+     */
+    public void parseCatalogEntry(Catalog catalog, Node node);
 }

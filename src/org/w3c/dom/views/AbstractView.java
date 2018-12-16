@@ -26,10 +26,10 @@ package org.w3c.dom.views;
  * @since DOM Level 2
  */
 public interface AbstractView {
-	/**
-	 * The source <code>DocumentView</code> of which this is an
-	 * <code>AbstractView</code>.
-	 */
-	public DocumentView getDocument();
+    /**
+     * The source <code>DocumentView</code> of which this is an
+     * <code>AbstractView</code>.
+     */
+    public DocumentView getDocument();
 
 }

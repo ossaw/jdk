@@ -28,77 +28,77 @@ import com.sun.corba.se.impl.util.SUNVMCID;
 
 public abstract class SystemException extends java.lang.RuntimeException {
 
-	/**
-	 * The CORBA Exception minor code.
-	 * 
-	 * @serial
-	 */
-	public int minor;
+    /**
+     * The CORBA Exception minor code.
+     * 
+     * @serial
+     */
+    public int minor;
 
-	/**
-	 * The status of the operation that threw this exception.
-	 * 
-	 * @serial
-	 */
-	public CompletionStatus completed;
+    /**
+     * The status of the operation that threw this exception.
+     * 
+     * @serial
+     */
+    public CompletionStatus completed;
 
-	/**
-	 * Constructs a <code>SystemException</code> exception with the specified
-	 * detail message, minor code, and completion status. A detail message is a
-	 * String that describes this particular exception.
-	 * 
-	 * @param reason
-	 *                  the String containing a detail message
-	 * @param minor
-	 *                  the minor code
-	 * @param completed
-	 *                  the completion status
-	 */
-	protected SystemException(String reason, int minor,
-			CompletionStatus completed) {
-		super(reason);
-		this.minor = minor;
-		this.completed = completed;
-	}
+    /**
+     * Constructs a <code>SystemException</code> exception with the specified
+     * detail message, minor code, and completion status. A detail message is a
+     * String that describes this particular exception.
+     * 
+     * @param reason
+     *                  the String containing a detail message
+     * @param minor
+     *                  the minor code
+     * @param completed
+     *                  the completion status
+     */
+    protected SystemException(String reason, int minor,
+            CompletionStatus completed) {
+        super(reason);
+        this.minor = minor;
+        this.completed = completed;
+    }
 
-	/**
-	 * Converts this exception to a representative string.
-	 */
-	public String toString() {
-		// The fully qualified exception class name
-		String result = super.toString();
+    /**
+     * Converts this exception to a representative string.
+     */
+    public String toString() {
+        // The fully qualified exception class name
+        String result = super.toString();
 
-		// The vmcid part
-		int vmcid = minor & 0xFFFFF000;
-		switch (vmcid) {
-			case OMGVMCID.value:
-				result += "  vmcid: OMG";
-				break;
-			case SUNVMCID.value:
-				result += "  vmcid: SUN";
-				break;
-			default:
-				result += "  vmcid: 0x" + Integer.toHexString(vmcid);
-				break;
-		}
+        // The vmcid part
+        int vmcid = minor & 0xFFFFF000;
+        switch (vmcid) {
+            case OMGVMCID.value:
+                result += "  vmcid: OMG";
+                break;
+            case SUNVMCID.value:
+                result += "  vmcid: SUN";
+                break;
+            default:
+                result += "  vmcid: 0x" + Integer.toHexString(vmcid);
+                break;
+        }
 
-		// The minor code part
-		int mc = minor & 0x00000FFF;
-		result += "  minor code: " + mc;
+        // The minor code part
+        int mc = minor & 0x00000FFF;
+        result += "  minor code: " + mc;
 
-		// The completion status part
-		switch (completed.value()) {
-			case CompletionStatus._COMPLETED_YES:
-				result += "  completed: Yes";
-				break;
-			case CompletionStatus._COMPLETED_NO:
-				result += "  completed: No";
-				break;
-			case CompletionStatus._COMPLETED_MAYBE:
-			default:
-				result += " completed: Maybe";
-				break;
-		}
-		return result;
-	}
+        // The completion status part
+        switch (completed.value()) {
+            case CompletionStatus._COMPLETED_YES:
+                result += "  completed: Yes";
+                break;
+            case CompletionStatus._COMPLETED_NO:
+                result += "  completed: No";
+                break;
+            case CompletionStatus._COMPLETED_MAYBE:
+            default:
+                result += " completed: Maybe";
+                break;
+        }
+        return result;
+    }
 }

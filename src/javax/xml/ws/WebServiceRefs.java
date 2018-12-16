@@ -55,8 +55,8 @@ import static java.lang.annotation.RetentionPolicy.*;
 @Retention(RUNTIME)
 @Target(TYPE)
 public @interface WebServiceRefs {
-	/**
-	 * Array used for multiple web service reference declarations.
-	 */
-	WebServiceRef[] value();
+    /**
+     * Array used for multiple web service reference declarations.
+     */
+    WebServiceRef[] value();
 }

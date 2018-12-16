@@ -13,10 +13,10 @@ package org.omg.PortableServer;
  * Active Object Map.
  */
 public interface ServantRetentionPolicyOperations extends
-		org.omg.CORBA.PolicyOperations {
+        org.omg.CORBA.PolicyOperations {
 
-	/**
-	 * specifies the policy value
-	 */
-	org.omg.PortableServer.ServantRetentionPolicyValue value();
+    /**
+     * specifies the policy value
+     */
+    org.omg.PortableServer.ServantRetentionPolicyValue value();
 } // interface ServantRetentionPolicyOperations

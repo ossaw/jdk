@@ -15,28 +15,28 @@ import java.io.IOException;
  */
 
 public class UserPrincipalNotFoundException extends IOException {
-	static final long serialVersionUID = -5369283889045833024L;
+    static final long serialVersionUID = -5369283889045833024L;
 
-	private final String name;
+    private final String name;
 
-	/**
-	 * Constructs an instance of this class.
-	 *
-	 * @param name
-	 *             the principal name; may be {@code null}
-	 */
-	public UserPrincipalNotFoundException(String name) {
-		super();
-		this.name = name;
-	}
+    /**
+     * Constructs an instance of this class.
+     *
+     * @param name
+     *             the principal name; may be {@code null}
+     */
+    public UserPrincipalNotFoundException(String name) {
+        super();
+        this.name = name;
+    }
 
-	/**
-	 * Returns the user principal name if this exception was created with the
-	 * user principal name that was not found, otherwise <tt>null</tt>.
-	 *
-	 * @return the user principal name or {@code null}
-	 */
-	public String getName() {
-		return name;
-	}
+    /**
+     * Returns the user principal name if this exception was created with the
+     * user principal name that was not found, otherwise <tt>null</tt>.
+     *
+     * @return the user principal name or {@code null}
+     */
+    public String getName() {
+        return name;
+    }
 }

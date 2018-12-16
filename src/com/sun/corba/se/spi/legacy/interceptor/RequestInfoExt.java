@@ -16,9 +16,9 @@ import com.sun.corba.se.spi.legacy.connection.Connection;
  */
 
 public interface RequestInfoExt {
-	/**
-	 * @return The connection on which the request is made. The return value
-	 *         will be null when a local transport is used.
-	 */
-	public Connection connection();
+    /**
+     * @return The connection on which the request is made. The return value
+     *         will be null when a local transport is used.
+     */
+    public Connection connection();
 }

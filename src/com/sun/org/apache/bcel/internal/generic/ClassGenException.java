@@ -57,11 +57,11 @@ package com.sun.org.apache.bcel.internal.generic;
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public class ClassGenException extends RuntimeException {
-	public ClassGenException() {
-		super();
-	}
+    public ClassGenException() {
+        super();
+    }
 
-	public ClassGenException(String s) {
-		super(s);
-	}
+    public ClassGenException(String s) {
+        super(s);
+    }
 }

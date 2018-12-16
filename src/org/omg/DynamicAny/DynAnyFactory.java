@@ -36,4 +36,4 @@ package org.omg.DynamicAny;
  * operation can be invoked to create an any value from the constructed DynAny.
  */
 public interface DynAnyFactory extends DynAnyFactoryOperations,
-		org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity {} // interface DynAnyFactory
+        org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity {} // interface DynAnyFactory

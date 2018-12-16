@@ -61,68 +61,68 @@ package javax.sound.midi;
 
 public class VoiceStatus {
 
-	/**
-	 * Indicates whether the voice is currently processing a MIDI note. See the
-	 * explanation of <A HREF="#description_of_active">active and inactive
-	 * voices</A>.
-	 */
-	public boolean active = false;
+    /**
+     * Indicates whether the voice is currently processing a MIDI note. See the
+     * explanation of <A HREF="#description_of_active">active and inactive
+     * voices</A>.
+     */
+    public boolean active = false;
 
-	/**
-	 * The MIDI channel on which this voice is playing. The value is a
-	 * zero-based channel number if the voice is active, or unspecified if the
-	 * voice is inactive.
-	 *
-	 * @see MidiChannel
-	 * @see #active
-	 */
-	public int channel = 0;
+    /**
+     * The MIDI channel on which this voice is playing. The value is a
+     * zero-based channel number if the voice is active, or unspecified if the
+     * voice is inactive.
+     *
+     * @see MidiChannel
+     * @see #active
+     */
+    public int channel = 0;
 
-	/**
-	 * The bank number of the instrument that this voice is currently using.
-	 * This is a number dictated by the MIDI bank-select message; it does not
-	 * refer to a <code>SoundBank</code> object. The value ranges from 0 to
-	 * 16383 if the voice is active, and is unspecified if the voice is
-	 * inactive.
-	 * 
-	 * @see Patch
-	 * @see Soundbank
-	 * @see #active
-	 * @see MidiChannel#programChange(int, int)
-	 */
-	public int bank = 0;
+    /**
+     * The bank number of the instrument that this voice is currently using.
+     * This is a number dictated by the MIDI bank-select message; it does not
+     * refer to a <code>SoundBank</code> object. The value ranges from 0 to
+     * 16383 if the voice is active, and is unspecified if the voice is
+     * inactive.
+     * 
+     * @see Patch
+     * @see Soundbank
+     * @see #active
+     * @see MidiChannel#programChange(int, int)
+     */
+    public int bank = 0;
 
-	/**
-	 * The program number of the instrument that this voice is currently using.
-	 * The value ranges from 0 to 127 if the voice is active, and is unspecified
-	 * if the voice is inactive.
-	 *
-	 * @see MidiChannel#getProgram
-	 * @see Patch
-	 * @see #active
-	 */
-	public int program = 0;
+    /**
+     * The program number of the instrument that this voice is currently using.
+     * The value ranges from 0 to 127 if the voice is active, and is unspecified
+     * if the voice is inactive.
+     *
+     * @see MidiChannel#getProgram
+     * @see Patch
+     * @see #active
+     */
+    public int program = 0;
 
-	/**
-	 * The MIDI note that this voice is playing. The range for an active voice
-	 * is from 0 to 127 in semitones, with 60 referring to Middle C. The value
-	 * is unspecified if the voice is inactive.
-	 *
-	 * @see MidiChannel#noteOn
-	 * @see #active
-	 */
-	public int note = 0;
+    /**
+     * The MIDI note that this voice is playing. The range for an active voice
+     * is from 0 to 127 in semitones, with 60 referring to Middle C. The value
+     * is unspecified if the voice is inactive.
+     *
+     * @see MidiChannel#noteOn
+     * @see #active
+     */
+    public int note = 0;
 
-	/**
-	 * The current MIDI volume level for the voice. The value ranges from 0 to
-	 * 127 if the voice is active, and is unspecified if the voice is inactive.
-	 * <p>
-	 * Note that this value does not necessarily reflect the instantaneous level
-	 * of the sound produced by this voice; that level is the result of many
-	 * contributing factors, including the current instrument and the shape of
-	 * the amplitude envelope it produces.
-	 *
-	 * @see #active
-	 */
-	public int volume = 0;
+    /**
+     * The current MIDI volume level for the voice. The value ranges from 0 to
+     * 127 if the voice is active, and is unspecified if the voice is inactive.
+     * <p>
+     * Note that this value does not necessarily reflect the instantaneous level
+     * of the sound produced by this voice; that level is the result of many
+     * contributing factors, including the current instrument and the shape of
+     * the amplitude envelope it produces.
+     *
+     * @see #active
+     */
+    public int volume = 0;
 }

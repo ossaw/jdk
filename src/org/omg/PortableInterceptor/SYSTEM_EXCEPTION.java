@@ -10,15 +10,15 @@ package org.omg.PortableInterceptor;
 
 public interface SYSTEM_EXCEPTION {
 
-	/**
-	 * Indicates a SystemException reply status. One possible value for
-	 * <code>RequestInfo.reply_status</code>.
-	 * 
-	 * @see RequestInfo#reply_status
-	 * @see SUCCESSFUL
-	 * @see USER_EXCEPTION
-	 * @see LOCATION_FORWARD
-	 * @see TRANSPORT_RETRY
-	 */
-	public static final short value = (short) (1);
+    /**
+     * Indicates a SystemException reply status. One possible value for
+     * <code>RequestInfo.reply_status</code>.
+     * 
+     * @see RequestInfo#reply_status
+     * @see SUCCESSFUL
+     * @see USER_EXCEPTION
+     * @see LOCATION_FORWARD
+     * @see TRANSPORT_RETRY
+     */
+    public static final short value = (short) (1);
 }

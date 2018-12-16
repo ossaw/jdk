@@ -13,10 +13,10 @@ import com.sun.corba.se.spi.resolver.Resolver;
  * is used to implement bootstrapping of initial object references.
  */
 public interface InitialServerRequestDispatcher extends
-		CorbaServerRequestDispatcher {
-	/**
-	 * Plug in the resolver that this InitialServerRequestDispatcher should use
-	 * in order to lookup or list initial name to object reference bindings.
-	 */
-	void init(Resolver resolver);
+        CorbaServerRequestDispatcher {
+    /**
+     * Plug in the resolver that this InitialServerRequestDispatcher should use
+     * in order to lookup or list initial name to object reference bindings.
+     */
+    void init(Resolver resolver);
 }

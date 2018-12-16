@@ -35,56 +35,56 @@ package javax.accessibility;
  */
 public interface AccessibleTableModelChange {
 
-	/**
-	 * Identifies the insertion of new rows and/or columns.
-	 */
-	public static final int INSERT = 1;
+    /**
+     * Identifies the insertion of new rows and/or columns.
+     */
+    public static final int INSERT = 1;
 
-	/**
-	 * Identifies a change to existing data.
-	 */
-	public static final int UPDATE = 0;
+    /**
+     * Identifies a change to existing data.
+     */
+    public static final int UPDATE = 0;
 
-	/**
-	 * Identifies the deletion of rows and/or columns.
-	 */
-	public static final int DELETE = -1;
+    /**
+     * Identifies the deletion of rows and/or columns.
+     */
+    public static final int DELETE = -1;
 
-	/**
-	 * Returns the type of event.
-	 * 
-	 * @return the type of event
-	 * @see #INSERT
-	 * @see #UPDATE
-	 * @see #DELETE
-	 */
-	public int getType();
+    /**
+     * Returns the type of event.
+     * 
+     * @return the type of event
+     * @see #INSERT
+     * @see #UPDATE
+     * @see #DELETE
+     */
+    public int getType();
 
-	/**
-	 * Returns the first row that changed.
-	 * 
-	 * @return the first row that changed
-	 */
-	public int getFirstRow();
+    /**
+     * Returns the first row that changed.
+     * 
+     * @return the first row that changed
+     */
+    public int getFirstRow();
 
-	/**
-	 * Returns the last row that changed.
-	 * 
-	 * @return the last row that changed
-	 */
-	public int getLastRow();
+    /**
+     * Returns the last row that changed.
+     * 
+     * @return the last row that changed
+     */
+    public int getLastRow();
 
-	/**
-	 * Returns the first column that changed.
-	 * 
-	 * @return the first column that changed
-	 */
-	public int getFirstColumn();
+    /**
+     * Returns the first column that changed.
+     * 
+     * @return the first column that changed
+     */
+    public int getFirstColumn();
 
-	/**
-	 * Returns the last column that changed.
-	 * 
-	 * @return the last column that changed
-	 */
-	public int getLastColumn();
+    /**
+     * Returns the last column that changed.
+     * 
+     * @return the last column that changed
+     */
+    public int getLastColumn();
 }

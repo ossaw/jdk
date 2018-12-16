@@ -26,18 +26,18 @@ package java.rmi;
  */
 public class NoSuchObjectException extends RemoteException {
 
-	/* indicate compatibility with JDK 1.1.x version of class */
-	private static final long serialVersionUID = 6619395951570472985L;
+    /* indicate compatibility with JDK 1.1.x version of class */
+    private static final long serialVersionUID = 6619395951570472985L;
 
-	/**
-	 * Constructs a <code>NoSuchObjectException</code> with the specified detail
-	 * message.
-	 *
-	 * @param s
-	 *          the detail message
-	 * @since JDK1.1
-	 */
-	public NoSuchObjectException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs a <code>NoSuchObjectException</code> with the specified detail
+     * message.
+     *
+     * @param s
+     *          the detail message
+     * @since JDK1.1
+     */
+    public NoSuchObjectException(String s) {
+        super(s);
+    }
 }

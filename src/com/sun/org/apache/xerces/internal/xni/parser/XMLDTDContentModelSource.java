@@ -67,14 +67,14 @@ import com.sun.org.apache.xerces.internal.xni.XMLDTDContentModelHandler;
  */
 public interface XMLDTDContentModelSource {
 
-	//
-	// XMLDTDContentModelSource methods
-	//
+    //
+    // XMLDTDContentModelSource methods
+    //
 
-	/** Sets the DTD content model handler. */
-	public void setDTDContentModelHandler(XMLDTDContentModelHandler handler);
+    /** Sets the DTD content model handler. */
+    public void setDTDContentModelHandler(XMLDTDContentModelHandler handler);
 
-	/** Returns the DTD content model handler. */
-	public XMLDTDContentModelHandler getDTDContentModelHandler();
+    /** Returns the DTD content model handler. */
+    public XMLDTDContentModelHandler getDTDContentModelHandler();
 
 } // interface XMLDTDContentModelSource

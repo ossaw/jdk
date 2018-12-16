@@ -20,28 +20,28 @@ package javax.naming.ldap;
  */
 final public class ManageReferralControl extends BasicControl {
 
-	/**
-	 * The ManageReferral control's assigned object identifier is
-	 * 2.16.840.1.113730.3.4.2.
-	 */
-	public static final String OID = "2.16.840.1.113730.3.4.2";
+    /**
+     * The ManageReferral control's assigned object identifier is
+     * 2.16.840.1.113730.3.4.2.
+     */
+    public static final String OID = "2.16.840.1.113730.3.4.2";
 
-	private static final long serialVersionUID = 3017756160149982566L;
+    private static final long serialVersionUID = 3017756160149982566L;
 
-	/**
-	 * Constructs a critical ManageReferral control.
-	 */
-	public ManageReferralControl() {
-		super(OID, true, null);
-	}
+    /**
+     * Constructs a critical ManageReferral control.
+     */
+    public ManageReferralControl() {
+        super(OID, true, null);
+    }
 
-	/**
-	 * Constructs a ManageReferral control.
-	 *
-	 * @param criticality
-	 *                    The control's criticality setting.
-	 */
-	public ManageReferralControl(boolean criticality) {
-		super(OID, criticality, null);
-	}
+    /**
+     * Constructs a ManageReferral control.
+     *
+     * @param criticality
+     *                    The control's criticality setting.
+     */
+    public ManageReferralControl(boolean criticality) {
+        super(OID, criticality, null);
+    }
 }

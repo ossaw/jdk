@@ -37,62 +37,62 @@ import com.sun.org.apache.xml.internal.security.keys.storage.StorageResolverSpi;
  */
 public class SingleCertificateResolver extends StorageResolverSpi {
 
-	/** Field certificate */
-	private X509Certificate certificate = null;
+    /** Field certificate */
+    private X509Certificate certificate = null;
 
-	/**
-	 * @param x509cert
-	 *                 the single {@link X509Certificate}
-	 */
-	public SingleCertificateResolver(X509Certificate x509cert) {
-		this.certificate = x509cert;
-	}
+    /**
+     * @param x509cert
+     *                 the single {@link X509Certificate}
+     */
+    public SingleCertificateResolver(X509Certificate x509cert) {
+        this.certificate = x509cert;
+    }
 
-	/** @inheritDoc */
-	public Iterator<Certificate> getIterator() {
-		return new InternalIterator(this.certificate);
-	}
+    /** @inheritDoc */
+    public Iterator<Certificate> getIterator() {
+        return new InternalIterator(this.certificate);
+    }
 
-	/**
-	 * Class InternalIterator
-	 */
-	static class InternalIterator implements Iterator<Certificate> {
+    /**
+     * Class InternalIterator
+     */
+    static class InternalIterator implements Iterator<Certificate> {
 
-		/** Field alreadyReturned */
-		boolean alreadyReturned = false;
+        /** Field alreadyReturned */
+        boolean alreadyReturned = false;
 
-		/** Field certificate */
-		X509Certificate certificate = null;
+        /** Field certificate */
+        X509Certificate certificate = null;
 
-		/**
-		 * Constructor InternalIterator
-		 *
-		 * @param x509cert
-		 */
-		public InternalIterator(X509Certificate x509cert) {
-			this.certificate = x509cert;
-		}
+        /**
+         * Constructor InternalIterator
+         *
+         * @param x509cert
+         */
+        public InternalIterator(X509Certificate x509cert) {
+            this.certificate = x509cert;
+        }
 
-		/** @inheritDoc */
-		public boolean hasNext() {
-			return !this.alreadyReturned;
-		}
+        /** @inheritDoc */
+        public boolean hasNext() {
+            return !this.alreadyReturned;
+        }
 
-		/** @inheritDoc */
-		public Certificate next() {
-			if (this.alreadyReturned) {
-				throw new NoSuchElementException();
-			}
-			this.alreadyReturned = true;
-			return this.certificate;
-		}
+        /** @inheritDoc */
+        public Certificate next() {
+            if (this.alreadyReturned) {
+                throw new NoSuchElementException();
+            }
+            this.alreadyReturned = true;
+            return this.certificate;
+        }
 
-		/**
-		 * Method remove
-		 */
-		public void remove() {
-			throw new UnsupportedOperationException(
-					"Can't remove keys from KeyStore");
-		}
-	}
+        /**
+         * Method remove
+         */
+        public void remove() {
+            throw new UnsupportedOperationException(
+                    "Can't remove keys from KeyStore");
+        }
+    }
 }

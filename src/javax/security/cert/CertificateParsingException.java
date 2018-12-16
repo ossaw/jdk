@@ -23,25 +23,25 @@ package javax.security.cert;
  */
 public class CertificateParsingException extends CertificateException {
 
-	private static final long serialVersionUID = -8449352422951136229L;
+    private static final long serialVersionUID = -8449352422951136229L;
 
-	/**
-	 * Constructs a CertificateParsingException with no detail message. A detail
-	 * message is a String that describes this particular exception.
-	 */
-	public CertificateParsingException() {
-		super();
-	}
+    /**
+     * Constructs a CertificateParsingException with no detail message. A detail
+     * message is a String that describes this particular exception.
+     */
+    public CertificateParsingException() {
+        super();
+    }
 
-	/**
-	 * Constructs a CertificateParsingException with the specified detail
-	 * message. A detail message is a String that describes this particular
-	 * exception.
-	 *
-	 * @param message
-	 *                the detail message.
-	 */
-	public CertificateParsingException(String message) {
-		super(message);
-	}
+    /**
+     * Constructs a CertificateParsingException with the specified detail
+     * message. A detail message is a String that describes this particular
+     * exception.
+     *
+     * @param message
+     *                the detail message.
+     */
+    public CertificateParsingException(String message) {
+        super(message);
+    }
 }

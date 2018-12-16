@@ -27,21 +27,21 @@ import javax.swing.plaf.basic.*;
  */
 public class MetalTextFieldUI extends BasicTextFieldUI {
 
-	public static ComponentUI createUI(JComponent c) {
-		return new MetalTextFieldUI();
-	}
+    public static ComponentUI createUI(JComponent c) {
+        return new MetalTextFieldUI();
+    }
 
-	/**
-	 * This method gets called when a bound property is changed on the
-	 * associated JTextComponent. This is a hook which UI implementations may
-	 * change to reflect how the UI displays bound properties of JTextComponent
-	 * subclasses.
-	 *
-	 * @param evt
-	 *            the property change event
-	 */
-	public void propertyChange(PropertyChangeEvent evt) {
-		super.propertyChange(evt);
-	}
+    /**
+     * This method gets called when a bound property is changed on the
+     * associated JTextComponent. This is a hook which UI implementations may
+     * change to reflect how the UI displays bound properties of JTextComponent
+     * subclasses.
+     *
+     * @param evt
+     *            the property change event
+     */
+    public void propertyChange(PropertyChangeEvent evt) {
+        super.propertyChange(evt);
+    }
 
 }

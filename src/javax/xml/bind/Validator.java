@@ -126,148 +126,148 @@ package javax.xml.bind;
  */
 public interface Validator {
 
-	/**
-	 * Allow an application to register a validation event handler.
-	 * <p>
-	 * The validation event handler will be called by the JAXB Provider if any
-	 * validation errors are encountered during calls to
-	 * {@link #validate(Object) validate}. If the client application does not
-	 * register a validation event handler before invoking the validate method,
-	 * then validation events will be handled by the default event handler which
-	 * will terminate the validate operation after the first error or fatal
-	 * error is encountered.
-	 * <p>
-	 * Calling this method with a null parameter will cause the Validator to
-	 * revert back to the default default event handler.
-	 *
-	 * @param handler
-	 *                the validation event handler
-	 * @throws JAXBException
-	 *                       if an error was encountered while setting the event
-	 *                       handler
-	 * @deprecated since JAXB2.0
-	 */
-	public void setEventHandler(ValidationEventHandler handler)
-			throws JAXBException;
+    /**
+     * Allow an application to register a validation event handler.
+     * <p>
+     * The validation event handler will be called by the JAXB Provider if any
+     * validation errors are encountered during calls to
+     * {@link #validate(Object) validate}. If the client application does not
+     * register a validation event handler before invoking the validate method,
+     * then validation events will be handled by the default event handler which
+     * will terminate the validate operation after the first error or fatal
+     * error is encountered.
+     * <p>
+     * Calling this method with a null parameter will cause the Validator to
+     * revert back to the default default event handler.
+     *
+     * @param handler
+     *                the validation event handler
+     * @throws JAXBException
+     *                       if an error was encountered while setting the event
+     *                       handler
+     * @deprecated since JAXB2.0
+     */
+    public void setEventHandler(ValidationEventHandler handler)
+            throws JAXBException;
 
-	/**
-	 * Return the current event handler or the default event handler if one
-	 * hasn't been set.
-	 *
-	 * @return the current ValidationEventHandler or the default event handler
-	 *         if it hasn't been set
-	 * @throws JAXBException
-	 *                       if an error was encountered while getting the
-	 *                       current event
-	 *                       handler
-	 * @deprecated since JAXB2.0
-	 */
-	public ValidationEventHandler getEventHandler() throws JAXBException;
+    /**
+     * Return the current event handler or the default event handler if one
+     * hasn't been set.
+     *
+     * @return the current ValidationEventHandler or the default event handler
+     *         if it hasn't been set
+     * @throws JAXBException
+     *                       if an error was encountered while getting the
+     *                       current event
+     *                       handler
+     * @deprecated since JAXB2.0
+     */
+    public ValidationEventHandler getEventHandler() throws JAXBException;
 
-	/**
-	 * Validate the Java content tree starting at <tt>subrootObj</tt>.
-	 * <p>
-	 * Client applications can use this method to validate Java content trees
-	 * on-demand at runtime. This method can be used to validate any arbitrary
-	 * subtree of the Java content tree. Global constraint checking <b>will
-	 * not </b> be performed as part of this operation (i.e. ID/IDREF
-	 * constraints).
-	 *
-	 * @param subrootObj
-	 *                   the obj to begin validation at
-	 * @throws JAXBException
-	 *                                  if any unexpected problem occurs during
-	 *                                  validation
-	 * @throws ValidationException
-	 *                                  If the {@link ValidationEventHandler
-	 *                                  ValidationEventHandler}
-	 *                                  returns false from its
-	 *                                  <tt>handleEvent</tt> method or the
-	 *                                  <tt>Validator</tt> is unable to validate
-	 *                                  the content tree
-	 *                                  rooted at <tt>subrootObj</tt>
-	 * @throws IllegalArgumentException
-	 *                                  If the subrootObj parameter is null
-	 * @return true if the subtree rooted at <tt>subrootObj</tt> is valid, false
-	 *         otherwise
-	 * @deprecated since JAXB2.0
-	 */
-	public boolean validate(Object subrootObj) throws JAXBException;
+    /**
+     * Validate the Java content tree starting at <tt>subrootObj</tt>.
+     * <p>
+     * Client applications can use this method to validate Java content trees
+     * on-demand at runtime. This method can be used to validate any arbitrary
+     * subtree of the Java content tree. Global constraint checking <b>will
+     * not </b> be performed as part of this operation (i.e. ID/IDREF
+     * constraints).
+     *
+     * @param subrootObj
+     *                   the obj to begin validation at
+     * @throws JAXBException
+     *                                  if any unexpected problem occurs during
+     *                                  validation
+     * @throws ValidationException
+     *                                  If the {@link ValidationEventHandler
+     *                                  ValidationEventHandler}
+     *                                  returns false from its
+     *                                  <tt>handleEvent</tt> method or the
+     *                                  <tt>Validator</tt> is unable to validate
+     *                                  the content tree
+     *                                  rooted at <tt>subrootObj</tt>
+     * @throws IllegalArgumentException
+     *                                  If the subrootObj parameter is null
+     * @return true if the subtree rooted at <tt>subrootObj</tt> is valid, false
+     *         otherwise
+     * @deprecated since JAXB2.0
+     */
+    public boolean validate(Object subrootObj) throws JAXBException;
 
-	/**
-	 * Validate the Java content tree rooted at <tt>rootObj</tt>.
-	 * <p>
-	 * Client applications can use this method to validate Java content trees
-	 * on-demand at runtime. This method is used to validate an entire Java
-	 * content tree. Global constraint checking <b>will</b> be performed as part
-	 * of this operation (i.e. ID/IDREF constraints).
-	 *
-	 * @param rootObj
-	 *                the root obj to begin validation at
-	 * @throws JAXBException
-	 *                                  if any unexpected problem occurs during
-	 *                                  validation
-	 * @throws ValidationException
-	 *                                  If the {@link ValidationEventHandler
-	 *                                  ValidationEventHandler}
-	 *                                  returns false from its
-	 *                                  <tt>handleEvent</tt> method or the
-	 *                                  <tt>Validator</tt> is unable to validate
-	 *                                  the content tree
-	 *                                  rooted at <tt>rootObj</tt>
-	 * @throws IllegalArgumentException
-	 *                                  If the rootObj parameter is null
-	 * @return true if the tree rooted at <tt>rootObj</tt> is valid, false
-	 *         otherwise
-	 * @deprecated since JAXB2.0
-	 */
-	public boolean validateRoot(Object rootObj) throws JAXBException;
+    /**
+     * Validate the Java content tree rooted at <tt>rootObj</tt>.
+     * <p>
+     * Client applications can use this method to validate Java content trees
+     * on-demand at runtime. This method is used to validate an entire Java
+     * content tree. Global constraint checking <b>will</b> be performed as part
+     * of this operation (i.e. ID/IDREF constraints).
+     *
+     * @param rootObj
+     *                the root obj to begin validation at
+     * @throws JAXBException
+     *                                  if any unexpected problem occurs during
+     *                                  validation
+     * @throws ValidationException
+     *                                  If the {@link ValidationEventHandler
+     *                                  ValidationEventHandler}
+     *                                  returns false from its
+     *                                  <tt>handleEvent</tt> method or the
+     *                                  <tt>Validator</tt> is unable to validate
+     *                                  the content tree
+     *                                  rooted at <tt>rootObj</tt>
+     * @throws IllegalArgumentException
+     *                                  If the rootObj parameter is null
+     * @return true if the tree rooted at <tt>rootObj</tt> is valid, false
+     *         otherwise
+     * @deprecated since JAXB2.0
+     */
+    public boolean validateRoot(Object rootObj) throws JAXBException;
 
-	/**
-	 * Set the particular property in the underlying implementation of
-	 * <tt>Validator</tt>. This method can only be used to set one of the
-	 * standard JAXB defined properties above or a provider specific property.
-	 * Attempting to set an undefined property will result in a
-	 * PropertyException being thrown. See <a href="#supportedProps"> Supported
-	 * Properties</a>.
-	 *
-	 * @param name
-	 *              the name of the property to be set. This value can either be
-	 *              specified using one of the constant fields or a user
-	 *              supplied
-	 *              string.
-	 * @param value
-	 *              the value of the property to be set
-	 *
-	 * @throws PropertyException
-	 *                                  when there is an error processing the
-	 *                                  given property or value
-	 * @throws IllegalArgumentException
-	 *                                  If the name parameter is null
-	 * @deprecated since JAXB2.0
-	 */
-	public void setProperty(String name, Object value) throws PropertyException;
+    /**
+     * Set the particular property in the underlying implementation of
+     * <tt>Validator</tt>. This method can only be used to set one of the
+     * standard JAXB defined properties above or a provider specific property.
+     * Attempting to set an undefined property will result in a
+     * PropertyException being thrown. See <a href="#supportedProps"> Supported
+     * Properties</a>.
+     *
+     * @param name
+     *              the name of the property to be set. This value can either be
+     *              specified using one of the constant fields or a user
+     *              supplied
+     *              string.
+     * @param value
+     *              the value of the property to be set
+     *
+     * @throws PropertyException
+     *                                  when there is an error processing the
+     *                                  given property or value
+     * @throws IllegalArgumentException
+     *                                  If the name parameter is null
+     * @deprecated since JAXB2.0
+     */
+    public void setProperty(String name, Object value) throws PropertyException;
 
-	/**
-	 * Get the particular property in the underlying implementation of
-	 * <tt>Validator</tt>. This method can only be used to get one of the
-	 * standard JAXB defined properties above or a provider specific property.
-	 * Attempting to get an undefined property will result in a
-	 * PropertyException being thrown. See <a href="#supportedProps"> Supported
-	 * Properties</a>.
-	 *
-	 * @param name
-	 *             the name of the property to retrieve
-	 * @return the value of the requested property
-	 *
-	 * @throws PropertyException
-	 *                                  when there is an error retrieving the
-	 *                                  given property or value
-	 *                                  property name
-	 * @throws IllegalArgumentException
-	 *                                  If the name parameter is null
-	 * @deprecated since JAXB2.0
-	 */
-	public Object getProperty(String name) throws PropertyException;
+    /**
+     * Get the particular property in the underlying implementation of
+     * <tt>Validator</tt>. This method can only be used to get one of the
+     * standard JAXB defined properties above or a provider specific property.
+     * Attempting to get an undefined property will result in a
+     * PropertyException being thrown. See <a href="#supportedProps"> Supported
+     * Properties</a>.
+     *
+     * @param name
+     *             the name of the property to retrieve
+     * @return the value of the requested property
+     *
+     * @throws PropertyException
+     *                                  when there is an error retrieving the
+     *                                  given property or value
+     *                                  property name
+     * @throws IllegalArgumentException
+     *                                  If the name parameter is null
+     * @deprecated since JAXB2.0
+     */
+    public Object getProperty(String name) throws PropertyException;
 
 }

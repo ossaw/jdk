@@ -15,23 +15,23 @@ package javax.management.relation;
  */
 public class InvalidRelationTypeException extends RelationException {
 
-	/* Serial version */
-	private static final long serialVersionUID = 3007446608299169961L;
+    /* Serial version */
+    private static final long serialVersionUID = 3007446608299169961L;
 
-	/**
-	 * Default constructor, no message put in exception.
-	 */
-	public InvalidRelationTypeException() {
-		super();
-	}
+    /**
+     * Default constructor, no message put in exception.
+     */
+    public InvalidRelationTypeException() {
+        super();
+    }
 
-	/**
-	 * Constructor with given message put in exception.
-	 *
-	 * @param message
-	 *                the detail message.
-	 */
-	public InvalidRelationTypeException(String message) {
-		super(message);
-	}
+    /**
+     * Constructor with given message put in exception.
+     *
+     * @param message
+     *                the detail message.
+     */
+    public InvalidRelationTypeException(String message) {
+        super(message);
+    }
 }

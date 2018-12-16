@@ -23,26 +23,26 @@ import javax.swing.plaf.basic.BasicTextAreaUI;
  */
 public class MotifTextAreaUI extends BasicTextAreaUI {
 
-	/**
-	 * Creates a UI for a JTextArea.
-	 *
-	 * @param ta
-	 *           a text area
-	 * @return the UI
-	 */
-	public static ComponentUI createUI(JComponent ta) {
-		return new MotifTextAreaUI();
-	}
+    /**
+     * Creates a UI for a JTextArea.
+     *
+     * @param ta
+     *           a text area
+     * @return the UI
+     */
+    public static ComponentUI createUI(JComponent ta) {
+        return new MotifTextAreaUI();
+    }
 
-	/**
-	 * Creates the object to use for a caret. By default an instance of
-	 * MotifTextUI.MotifCaret is created. This method can be redefined to
-	 * provide something else that implements the Caret interface.
-	 *
-	 * @return the caret object
-	 */
-	protected Caret createCaret() {
-		return MotifTextUI.createCaret();
-	}
+    /**
+     * Creates the object to use for a caret. By default an instance of
+     * MotifTextUI.MotifCaret is created. This method can be redefined to
+     * provide something else that implements the Caret interface.
+     *
+     * @return the caret object
+     */
+    protected Caret createCaret() {
+        return MotifTextUI.createCaret();
+    }
 
 }

@@ -24,96 +24,96 @@ import java.net.URI;
  */
 public class ForwardingFileObject<F extends FileObject> implements FileObject {
 
-	/**
-	 * The file object which all methods are delegated to.
-	 */
-	protected final F fileObject;
+    /**
+     * The file object which all methods are delegated to.
+     */
+    protected final F fileObject;
 
-	/**
-	 * Creates a new instance of ForwardingFileObject.
-	 * 
-	 * @param fileObject
-	 *                   delegate to this file object
-	 */
-	protected ForwardingFileObject(F fileObject) {
-		fileObject.getClass(); // null check
-		this.fileObject = fileObject;
-	}
+    /**
+     * Creates a new instance of ForwardingFileObject.
+     * 
+     * @param fileObject
+     *                   delegate to this file object
+     */
+    protected ForwardingFileObject(F fileObject) {
+        fileObject.getClass(); // null check
+        this.fileObject = fileObject;
+    }
 
-	public URI toUri() {
-		return fileObject.toUri();
-	}
+    public URI toUri() {
+        return fileObject.toUri();
+    }
 
-	public String getName() {
-		return fileObject.getName();
-	}
+    public String getName() {
+        return fileObject.getName();
+    }
 
-	/**
-	 * @throws IllegalStateException
-	 *                                       {@inheritDoc}
-	 * @throws UnsupportedOperationException
-	 *                                       {@inheritDoc}
-	 * @throws IOException
-	 *                                       {@inheritDoc}
-	 */
-	public InputStream openInputStream() throws IOException {
-		return fileObject.openInputStream();
-	}
+    /**
+     * @throws IllegalStateException
+     *                                       {@inheritDoc}
+     * @throws UnsupportedOperationException
+     *                                       {@inheritDoc}
+     * @throws IOException
+     *                                       {@inheritDoc}
+     */
+    public InputStream openInputStream() throws IOException {
+        return fileObject.openInputStream();
+    }
 
-	/**
-	 * @throws IllegalStateException
-	 *                                       {@inheritDoc}
-	 * @throws UnsupportedOperationException
-	 *                                       {@inheritDoc}
-	 * @throws IOException
-	 *                                       {@inheritDoc}
-	 */
-	public OutputStream openOutputStream() throws IOException {
-		return fileObject.openOutputStream();
-	}
+    /**
+     * @throws IllegalStateException
+     *                                       {@inheritDoc}
+     * @throws UnsupportedOperationException
+     *                                       {@inheritDoc}
+     * @throws IOException
+     *                                       {@inheritDoc}
+     */
+    public OutputStream openOutputStream() throws IOException {
+        return fileObject.openOutputStream();
+    }
 
-	/**
-	 * @throws IllegalStateException
-	 *                                       {@inheritDoc}
-	 * @throws UnsupportedOperationException
-	 *                                       {@inheritDoc}
-	 * @throws IOException
-	 *                                       {@inheritDoc}
-	 */
-	public Reader openReader(boolean ignoreEncodingErrors) throws IOException {
-		return fileObject.openReader(ignoreEncodingErrors);
-	}
+    /**
+     * @throws IllegalStateException
+     *                                       {@inheritDoc}
+     * @throws UnsupportedOperationException
+     *                                       {@inheritDoc}
+     * @throws IOException
+     *                                       {@inheritDoc}
+     */
+    public Reader openReader(boolean ignoreEncodingErrors) throws IOException {
+        return fileObject.openReader(ignoreEncodingErrors);
+    }
 
-	/**
-	 * @throws IllegalStateException
-	 *                                       {@inheritDoc}
-	 * @throws UnsupportedOperationException
-	 *                                       {@inheritDoc}
-	 * @throws IOException
-	 *                                       {@inheritDoc}
-	 */
-	public CharSequence getCharContent(boolean ignoreEncodingErrors)
-			throws IOException {
-		return fileObject.getCharContent(ignoreEncodingErrors);
-	}
+    /**
+     * @throws IllegalStateException
+     *                                       {@inheritDoc}
+     * @throws UnsupportedOperationException
+     *                                       {@inheritDoc}
+     * @throws IOException
+     *                                       {@inheritDoc}
+     */
+    public CharSequence getCharContent(boolean ignoreEncodingErrors)
+            throws IOException {
+        return fileObject.getCharContent(ignoreEncodingErrors);
+    }
 
-	/**
-	 * @throws IllegalStateException
-	 *                                       {@inheritDoc}
-	 * @throws UnsupportedOperationException
-	 *                                       {@inheritDoc}
-	 * @throws IOException
-	 *                                       {@inheritDoc}
-	 */
-	public Writer openWriter() throws IOException {
-		return fileObject.openWriter();
-	}
+    /**
+     * @throws IllegalStateException
+     *                                       {@inheritDoc}
+     * @throws UnsupportedOperationException
+     *                                       {@inheritDoc}
+     * @throws IOException
+     *                                       {@inheritDoc}
+     */
+    public Writer openWriter() throws IOException {
+        return fileObject.openWriter();
+    }
 
-	public long getLastModified() {
-		return fileObject.getLastModified();
-	}
+    public long getLastModified() {
+        return fileObject.getLastModified();
+    }
 
-	public boolean delete() {
-		return fileObject.delete();
-	}
+    public boolean delete() {
+        return fileObject.delete();
+    }
 }

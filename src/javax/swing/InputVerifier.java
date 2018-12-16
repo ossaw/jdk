@@ -38,34 +38,34 @@ import java.util.*;
  * // only after that string is typed in by the user.
  *
  * public class VerifierTest extends JFrame {
- * 	public VerifierTest() {
- * 		JTextField tf1 = new JTextField("Type \"pass\" here");
- * 		getContentPane().add(tf1, BorderLayout.NORTH);
- * 		tf1.setInputVerifier(new PassVerifier());
+ *     public VerifierTest() {
+ *         JTextField tf1 = new JTextField("Type \"pass\" here");
+ *         getContentPane().add(tf1, BorderLayout.NORTH);
+ *         tf1.setInputVerifier(new PassVerifier());
  *
- * 		JTextField tf2 = new JTextField("TextField2");
- * 		getContentPane().add(tf2, BorderLayout.SOUTH);
+ *         JTextField tf2 = new JTextField("TextField2");
+ *         getContentPane().add(tf2, BorderLayout.SOUTH);
  *
- * 		WindowListener l = new WindowAdapter() {
- * 			public void windowClosing(WindowEvent e) {
- * 				System.exit(0);
- * 			}
- * 		};
- * 		addWindowListener(l);
- * 	}
+ *         WindowListener l = new WindowAdapter() {
+ *             public void windowClosing(WindowEvent e) {
+ *                 System.exit(0);
+ *             }
+ *         };
+ *         addWindowListener(l);
+ *     }
  *
- * 	class PassVerifier extends InputVerifier {
- * 		public boolean verify(JComponent input) {
- * 			JTextField tf = (JTextField) input;
- * 			return "pass".equals(tf.getText());
- * 		}
- * 	}
+ *     class PassVerifier extends InputVerifier {
+ *         public boolean verify(JComponent input) {
+ *             JTextField tf = (JTextField) input;
+ *             return "pass".equals(tf.getText());
+ *         }
+ *     }
  *
- * 	public static void main(String[] args) {
- * 		Frame f = new VerifierTest();
- * 		f.pack();
- * 		f.setVisible(true);
- * 	}
+ *     public static void main(String[] args) {
+ *         Frame f = new VerifierTest();
+ *         f.pack();
+ *         f.setVisible(true);
+ *     }
  * }
  * </pre>
  *
@@ -74,39 +74,39 @@ import java.util.*;
 
 public abstract class InputVerifier {
 
-	/**
-	 * Checks whether the JComponent's input is valid. This method should have
-	 * no side effects. It returns a boolean indicating the status of the
-	 * argument's input.
-	 *
-	 * @param input
-	 *              the JComponent to verify
-	 * @return <code>true</code> when valid, <code>false</code> when invalid
-	 * @see JComponent#setInputVerifier
-	 * @see JComponent#getInputVerifier
-	 *
-	 */
+    /**
+     * Checks whether the JComponent's input is valid. This method should have
+     * no side effects. It returns a boolean indicating the status of the
+     * argument's input.
+     *
+     * @param input
+     *              the JComponent to verify
+     * @return <code>true</code> when valid, <code>false</code> when invalid
+     * @see JComponent#setInputVerifier
+     * @see JComponent#getInputVerifier
+     *
+     */
 
-	public abstract boolean verify(JComponent input);
+    public abstract boolean verify(JComponent input);
 
-	/**
-	 * Calls <code>verify(input)</code> to ensure that the input is valid. This
-	 * method can have side effects. In particular, this method is called when
-	 * the user attempts to advance focus out of the argument component into
-	 * another Swing component in this window. If this method returns
-	 * <code>true</code>, then the focus is transfered normally; if it returns
-	 * <code>false</code>, then the focus remains in the argument component.
-	 *
-	 * @param input
-	 *              the JComponent to verify
-	 * @return <code>true</code> when valid, <code>false</code> when invalid
-	 * @see JComponent#setInputVerifier
-	 * @see JComponent#getInputVerifier
-	 *
-	 */
+    /**
+     * Calls <code>verify(input)</code> to ensure that the input is valid. This
+     * method can have side effects. In particular, this method is called when
+     * the user attempts to advance focus out of the argument component into
+     * another Swing component in this window. If this method returns
+     * <code>true</code>, then the focus is transfered normally; if it returns
+     * <code>false</code>, then the focus remains in the argument component.
+     *
+     * @param input
+     *              the JComponent to verify
+     * @return <code>true</code> when valid, <code>false</code> when invalid
+     * @see JComponent#setInputVerifier
+     * @see JComponent#getInputVerifier
+     *
+     */
 
-	public boolean shouldYieldFocus(JComponent input) {
-		return verify(input);
-	}
+    public boolean shouldYieldFocus(JComponent input) {
+        return verify(input);
+    }
 
 }

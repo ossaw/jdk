@@ -28,10 +28,10 @@ package org.w3c.dom.views;
  * @since DOM Level 2
  */
 public interface DocumentView {
-	/**
-	 * The default <code>AbstractView</code> for this <code>Document</code>, or
-	 * <code>null</code> if none available.
-	 */
-	public AbstractView getDefaultView();
+    /**
+     * The default <code>AbstractView</code> for this <code>Document</code>, or
+     * <code>null</code> if none available.
+     */
+    public AbstractView getDefaultView();
 
 }

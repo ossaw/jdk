@@ -24,11 +24,11 @@ package com.sun.source.tree;
  */
 @jdk.Exported
 public interface ImportTree extends Tree {
-	boolean isStatic();
+    boolean isStatic();
 
-	/**
-	 * @return a qualified identifier ending in "*" if and only if this is an
-	 *         import-on-demand.
-	 */
-	Tree getQualifiedIdentifier();
+    /**
+     * @return a qualified identifier ending in "*" if and only if this is an
+     *         import-on-demand.
+     */
+    Tree getQualifiedIdentifier();
 }

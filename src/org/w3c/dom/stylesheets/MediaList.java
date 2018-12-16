@@ -34,75 +34,75 @@ import org.w3c.dom.DOMException;
  * @since DOM Level 2
  */
 public interface MediaList {
-	/**
-	 * The parsable textual representation of the media list. This is a
-	 * comma-separated list of media.
-	 */
-	public String getMediaText();
+    /**
+     * The parsable textual representation of the media list. This is a
+     * comma-separated list of media.
+     */
+    public String getMediaText();
 
-	/**
-	 * The parsable textual representation of the media list. This is a
-	 * comma-separated list of media.
-	 * 
-	 * @exception DOMException
-	 *                         SYNTAX_ERR: Raised if the specified string value
-	 *                         has a
-	 *                         syntax error and is unparsable. <br>
-	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this media
-	 *                         list is
-	 *                         readonly.
-	 */
-	public void setMediaText(String mediaText) throws DOMException;
+    /**
+     * The parsable textual representation of the media list. This is a
+     * comma-separated list of media.
+     * 
+     * @exception DOMException
+     *                         SYNTAX_ERR: Raised if the specified string value
+     *                         has a
+     *                         syntax error and is unparsable. <br>
+     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this media
+     *                         list is
+     *                         readonly.
+     */
+    public void setMediaText(String mediaText) throws DOMException;
 
-	/**
-	 * The number of media in the list. The range of valid media is
-	 * <code>0</code> to <code>length-1</code> inclusive.
-	 */
-	public int getLength();
+    /**
+     * The number of media in the list. The range of valid media is
+     * <code>0</code> to <code>length-1</code> inclusive.
+     */
+    public int getLength();
 
-	/**
-	 * Returns the <code>index</code>th in the list. If <code>index</code> is
-	 * greater than or equal to the number of media in the list, this returns
-	 * <code>null</code>.
-	 * 
-	 * @param index
-	 *              Index into the collection.
-	 * @return The medium at the <code>index</code>th position in the
-	 *         <code>MediaList</code>, or <code>null</code> if that is not a
-	 *         valid index.
-	 */
-	public String item(int index);
+    /**
+     * Returns the <code>index</code>th in the list. If <code>index</code> is
+     * greater than or equal to the number of media in the list, this returns
+     * <code>null</code>.
+     * 
+     * @param index
+     *              Index into the collection.
+     * @return The medium at the <code>index</code>th position in the
+     *         <code>MediaList</code>, or <code>null</code> if that is not a
+     *         valid index.
+     */
+    public String item(int index);
 
-	/**
-	 * Deletes the medium indicated by <code>oldMedium</code> from the list.
-	 * 
-	 * @param oldMedium
-	 *                  The medium to delete in the media list.
-	 * @exception DOMException
-	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this list
-	 *                         is
-	 *                         readonly. <br>
-	 *                         NOT_FOUND_ERR: Raised if <code>oldMedium</code>
-	 *                         is not in
-	 *                         the list.
-	 */
-	public void deleteMedium(String oldMedium) throws DOMException;
+    /**
+     * Deletes the medium indicated by <code>oldMedium</code> from the list.
+     * 
+     * @param oldMedium
+     *                  The medium to delete in the media list.
+     * @exception DOMException
+     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this list
+     *                         is
+     *                         readonly. <br>
+     *                         NOT_FOUND_ERR: Raised if <code>oldMedium</code>
+     *                         is not in
+     *                         the list.
+     */
+    public void deleteMedium(String oldMedium) throws DOMException;
 
-	/**
-	 * Adds the medium <code>newMedium</code> to the end of the list. If the
-	 * <code>newMedium</code> is already used, it is first removed.
-	 * 
-	 * @param newMedium
-	 *                  The new medium to add.
-	 * @exception DOMException
-	 *                         INVALID_CHARACTER_ERR: If the medium contains
-	 *                         characters
-	 *                         that are invalid in the underlying style
-	 *                         language. <br>
-	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this list
-	 *                         is
-	 *                         readonly.
-	 */
-	public void appendMedium(String newMedium) throws DOMException;
+    /**
+     * Adds the medium <code>newMedium</code> to the end of the list. If the
+     * <code>newMedium</code> is already used, it is first removed.
+     * 
+     * @param newMedium
+     *                  The new medium to add.
+     * @exception DOMException
+     *                         INVALID_CHARACTER_ERR: If the medium contains
+     *                         characters
+     *                         that are invalid in the underlying style
+     *                         language. <br>
+     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this list
+     *                         is
+     *                         readonly.
+     */
+    public void appendMedium(String newMedium) throws DOMException;
 
 }

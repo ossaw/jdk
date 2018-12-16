@@ -15,14 +15,14 @@ import com.sun.corba.se.spi.oa.ObjectAdapter;
  * ready to receive messages except when the ORB is shutting down.
  */
 public interface TOA extends ObjectAdapter {
-	/**
-	 * Connect the given servant to the ORB by allocating a transient object key
-	 * and creating an IOR and object reference using the current factory.
-	 */
-	void connect(org.omg.CORBA.Object servant);
+    /**
+     * Connect the given servant to the ORB by allocating a transient object key
+     * and creating an IOR and object reference using the current factory.
+     */
+    void connect(org.omg.CORBA.Object servant);
 
-	/**
-	 * Disconnect the object from this ORB.
-	 */
-	void disconnect(org.omg.CORBA.Object obj);
+    /**
+     * Disconnect the object from this ORB.
+     */
+    void disconnect(org.omg.CORBA.Object obj);
 }

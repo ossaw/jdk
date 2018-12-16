@@ -53,41 +53,41 @@ import org.w3c.dom.Attr;
  * @author Axl Mattheus
  */
 public interface CipherReference {
-	/**
-	 * Returns an <code>URI</code> that contains an identifier that should be
-	 * dereferenced.
-	 * 
-	 * @return an <code>URI</code> that contains an identifier that should be
-	 *         dereferenced.
-	 */
-	String getURI();
+    /**
+     * Returns an <code>URI</code> that contains an identifier that should be
+     * dereferenced.
+     * 
+     * @return an <code>URI</code> that contains an identifier that should be
+     *         dereferenced.
+     */
+    String getURI();
 
-	/**
-	 * Gets the URI as an Attribute node. Used to meld the CipherReference with
-	 * the XMLSignature ResourceResolvers
-	 * 
-	 * @return the URI as an Attribute node
-	 */
-	Attr getURIAsAttr();
+    /**
+     * Gets the URI as an Attribute node. Used to meld the CipherReference with
+     * the XMLSignature ResourceResolvers
+     * 
+     * @return the URI as an Attribute node
+     */
+    Attr getURIAsAttr();
 
-	/**
-	 * Returns the <code>Transforms</code> that specifies how to transform the
-	 * <code>URI</code> to yield the appropriate cipher value.
-	 *
-	 * @return the transform that specifies how to transform the reference to
-	 *         yield the intended cipher value.
-	 */
-	Transforms getTransforms();
+    /**
+     * Returns the <code>Transforms</code> that specifies how to transform the
+     * <code>URI</code> to yield the appropriate cipher value.
+     *
+     * @return the transform that specifies how to transform the reference to
+     *         yield the intended cipher value.
+     */
+    Transforms getTransforms();
 
-	/**
-	 * Sets the <code>Transforms</code> that specifies how to transform the
-	 * <code>URI</code> to yield the appropriate cipher value.
-	 *
-	 * @param transforms
-	 *                   the set of <code>Transforms</code> that specifies how
-	 *                   to
-	 *                   transform the reference to yield the intended cipher
-	 *                   value.
-	 */
-	void setTransforms(Transforms transforms);
+    /**
+     * Sets the <code>Transforms</code> that specifies how to transform the
+     * <code>URI</code> to yield the appropriate cipher value.
+     *
+     * @param transforms
+     *                   the set of <code>Transforms</code> that specifies how
+     *                   to
+     *                   transform the reference to yield the intended cipher
+     *                   value.
+     */
+    void setTransforms(Transforms transforms);
 }

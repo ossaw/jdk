@@ -24,18 +24,18 @@ package java.rmi.activation;
  */
 public class UnknownGroupException extends ActivationException {
 
-	/** indicate compatibility with the Java 2 SDK v1.2 version of class */
-	private static final long serialVersionUID = 7056094974750002460L;
+    /** indicate compatibility with the Java 2 SDK v1.2 version of class */
+    private static final long serialVersionUID = 7056094974750002460L;
 
-	/**
-	 * Constructs an <code>UnknownGroupException</code> with the specified
-	 * detail message.
-	 *
-	 * @param s
-	 *          the detail message
-	 * @since 1.2
-	 */
-	public UnknownGroupException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs an <code>UnknownGroupException</code> with the specified
+     * detail message.
+     *
+     * @param s
+     *          the detail message
+     * @since 1.2
+     */
+    public UnknownGroupException(String s) {
+        super(s);
+    }
 }

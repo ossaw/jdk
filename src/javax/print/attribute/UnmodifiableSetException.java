@@ -13,18 +13,18 @@ package javax.print.attribute;
  * @since 1.4
  */
 public class UnmodifiableSetException extends RuntimeException {
-	/**
-	 * Constructs an UnsupportedOperationException with no detail message.
-	 */
-	public UnmodifiableSetException() {}
+    /**
+     * Constructs an UnsupportedOperationException with no detail message.
+     */
+    public UnmodifiableSetException() {}
 
-	/**
-	 * Constructs an UnmodifiableSetException with the specified detail message.
-	 *
-	 * @param message
-	 *                the detail message
-	 */
-	public UnmodifiableSetException(String message) {
-		super(message);
-	}
+    /**
+     * Constructs an UnmodifiableSetException with the specified detail message.
+     *
+     * @param message
+     *                the detail message
+     */
+    public UnmodifiableSetException(String message) {
+        super(message);
+    }
 }

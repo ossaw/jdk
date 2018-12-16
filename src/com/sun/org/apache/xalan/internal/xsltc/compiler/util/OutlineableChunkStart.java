@@ -42,43 +42,43 @@ import com.sun.org.apache.bcel.internal.generic.Instruction;
  * </p>
  */
 class OutlineableChunkStart extends MarkerInstruction {
-	/**
-	 * A constant instance of {@link OutlineableChunkStart}. As it has no
-	 * fields, there should be no need to create an instance of this class.
-	 */
-	public static final Instruction OUTLINEABLECHUNKSTART = new OutlineableChunkStart();
+    /**
+     * A constant instance of {@link OutlineableChunkStart}. As it has no
+     * fields, there should be no need to create an instance of this class.
+     */
+    public static final Instruction OUTLINEABLECHUNKSTART = new OutlineableChunkStart();
 
-	/**
-	 * Private default constructor. As it has no fields, there should be no need
-	 * to create an instance of this class. See
-	 * {@link OutlineableChunkStart#OUTLINEABLECHUNKSTART}.
-	 */
-	private OutlineableChunkStart() {}
+    /**
+     * Private default constructor. As it has no fields, there should be no need
+     * to create an instance of this class. See
+     * {@link OutlineableChunkStart#OUTLINEABLECHUNKSTART}.
+     */
+    private OutlineableChunkStart() {}
 
-	/**
-	 * Get the name of this instruction. Used for debugging.
-	 * 
-	 * @return the instruction name
-	 */
-	public String getName() {
-		return OutlineableChunkStart.class.getName();
-	}
+    /**
+     * Get the name of this instruction. Used for debugging.
+     * 
+     * @return the instruction name
+     */
+    public String getName() {
+        return OutlineableChunkStart.class.getName();
+    }
 
-	/**
-	 * Get the name of this instruction. Used for debugging.
-	 * 
-	 * @return the instruction name
-	 */
-	public String toString() {
-		return getName();
-	}
+    /**
+     * Get the name of this instruction. Used for debugging.
+     * 
+     * @return the instruction name
+     */
+    public String toString() {
+        return getName();
+    }
 
-	/**
-	 * Get the name of this instruction. Used for debugging.
-	 * 
-	 * @return the instruction name
-	 */
-	public String toString(boolean verbose) {
-		return getName();
-	}
+    /**
+     * Get the name of this instruction. Used for debugging.
+     * 
+     * @return the instruction name
+     */
+    public String toString(boolean verbose) {
+        return getName();
+    }
 }

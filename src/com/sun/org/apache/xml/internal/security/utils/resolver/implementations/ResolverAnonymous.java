@@ -37,49 +37,49 @@ import com.sun.org.apache.xml.internal.security.utils.resolver.ResourceResolverS
  */
 public class ResolverAnonymous extends ResourceResolverSpi {
 
-	private InputStream inStream = null;
+    private InputStream inStream = null;
 
-	@Override
-	public boolean engineIsThreadSafe() {
-		return true;
-	}
+    @Override
+    public boolean engineIsThreadSafe() {
+        return true;
+    }
 
-	/**
-	 * @param filename
-	 * @throws FileNotFoundException
-	 * @throws IOException
-	 */
-	public ResolverAnonymous(String filename) throws FileNotFoundException,
-			IOException {
-		inStream = new FileInputStream(filename);
-	}
+    /**
+     * @param filename
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    public ResolverAnonymous(String filename) throws FileNotFoundException,
+            IOException {
+        inStream = new FileInputStream(filename);
+    }
 
-	/**
-	 * @param is
-	 */
-	public ResolverAnonymous(InputStream is) {
-		inStream = is;
-	}
+    /**
+     * @param is
+     */
+    public ResolverAnonymous(InputStream is) {
+        inStream = is;
+    }
 
-	/** @inheritDoc */
-	@Override
-	public XMLSignatureInput engineResolveURI(ResourceResolverContext context) {
-		return new XMLSignatureInput(inStream);
-	}
+    /** @inheritDoc */
+    @Override
+    public XMLSignatureInput engineResolveURI(ResourceResolverContext context) {
+        return new XMLSignatureInput(inStream);
+    }
 
-	/**
-	 * @inheritDoc
-	 */
-	@Override
-	public boolean engineCanResolveURI(ResourceResolverContext context) {
-		if (context.uriToResolve == null) {
-			return true;
-		}
-		return false;
-	}
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public boolean engineCanResolveURI(ResourceResolverContext context) {
+        if (context.uriToResolve == null) {
+            return true;
+        }
+        return false;
+    }
 
-	/** @inheritDoc */
-	public String[] engineGetPropertyKeys() {
-		return new String[0];
-	}
+    /** @inheritDoc */
+    public String[] engineGetPropertyKeys() {
+        return new String[0];
+    }
 }

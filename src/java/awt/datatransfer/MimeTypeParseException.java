@@ -13,23 +13,23 @@ package java.awt.datatransfer;
  */
 public class MimeTypeParseException extends Exception {
 
-	// use serialVersionUID from JDK 1.2.2 for interoperability
-	private static final long serialVersionUID = -5604407764691570741L;
+    // use serialVersionUID from JDK 1.2.2 for interoperability
+    private static final long serialVersionUID = -5604407764691570741L;
 
-	/**
-	 * Constructs a MimeTypeParseException with no specified detail message.
-	 */
-	public MimeTypeParseException() {
-		super();
-	}
+    /**
+     * Constructs a MimeTypeParseException with no specified detail message.
+     */
+    public MimeTypeParseException() {
+        super();
+    }
 
-	/**
-	 * Constructs a MimeTypeParseException with the specified detail message.
-	 *
-	 * @param s
-	 *          the detail message.
-	 */
-	public MimeTypeParseException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs a MimeTypeParseException with the specified detail message.
+     *
+     * @param s
+     *          the detail message.
+     */
+    public MimeTypeParseException(String s) {
+        super(s);
+    }
 } // class MimeTypeParseException

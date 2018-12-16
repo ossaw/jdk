@@ -33,64 +33,64 @@ import java.awt.AWTEvent;
 
 public class TextEvent extends AWTEvent {
 
-	/**
-	 * The first number in the range of ids used for text events.
-	 */
-	public static final int TEXT_FIRST = 900;
+    /**
+     * The first number in the range of ids used for text events.
+     */
+    public static final int TEXT_FIRST = 900;
 
-	/**
-	 * The last number in the range of ids used for text events.
-	 */
-	public static final int TEXT_LAST = 900;
+    /**
+     * The last number in the range of ids used for text events.
+     */
+    public static final int TEXT_LAST = 900;
 
-	/**
-	 * This event id indicates that object's text changed.
-	 */
-	public static final int TEXT_VALUE_CHANGED = TEXT_FIRST;
+    /**
+     * This event id indicates that object's text changed.
+     */
+    public static final int TEXT_VALUE_CHANGED = TEXT_FIRST;
 
-	/*
-	 * JDK 1.1 serialVersionUID
-	 */
-	private static final long serialVersionUID = 6269902291250941179L;
+    /*
+     * JDK 1.1 serialVersionUID
+     */
+    private static final long serialVersionUID = 6269902291250941179L;
 
-	/**
-	 * Constructs a <code>TextEvent</code> object.
-	 * <p>
-	 * This method throws an <code>IllegalArgumentException</code> if
-	 * <code>source</code> is <code>null</code>.
-	 *
-	 * @param source
-	 *               The (<code>TextComponent</code>) object that originated the
-	 *               event
-	 * @param id
-	 *               An integer that identifies the event type. For information
-	 *               on
-	 *               allowable values, see the class description for
-	 *               {@link TextEvent}
-	 * @throws IllegalArgumentException
-	 *                                  if <code>source</code> is null
-	 * @see #getSource()
-	 * @see #getID()
-	 */
-	public TextEvent(Object source, int id) {
-		super(source, id);
-	}
+    /**
+     * Constructs a <code>TextEvent</code> object.
+     * <p>
+     * This method throws an <code>IllegalArgumentException</code> if
+     * <code>source</code> is <code>null</code>.
+     *
+     * @param source
+     *               The (<code>TextComponent</code>) object that originated the
+     *               event
+     * @param id
+     *               An integer that identifies the event type. For information
+     *               on
+     *               allowable values, see the class description for
+     *               {@link TextEvent}
+     * @throws IllegalArgumentException
+     *                                  if <code>source</code> is null
+     * @see #getSource()
+     * @see #getID()
+     */
+    public TextEvent(Object source, int id) {
+        super(source, id);
+    }
 
-	/**
-	 * Returns a parameter string identifying this text event. This method is
-	 * useful for event-logging and for debugging.
-	 *
-	 * @return a string identifying the event and its attributes
-	 */
-	public String paramString() {
-		String typeStr;
-		switch (id) {
-			case TEXT_VALUE_CHANGED:
-				typeStr = "TEXT_VALUE_CHANGED";
-				break;
-			default:
-				typeStr = "unknown type";
-		}
-		return typeStr;
-	}
+    /**
+     * Returns a parameter string identifying this text event. This method is
+     * useful for event-logging and for debugging.
+     *
+     * @return a string identifying the event and its attributes
+     */
+    public String paramString() {
+        String typeStr;
+        switch (id) {
+            case TEXT_VALUE_CHANGED:
+                typeStr = "TEXT_VALUE_CHANGED";
+                break;
+            default:
+                typeStr = "unknown type";
+        }
+        return typeStr;
+    }
 }

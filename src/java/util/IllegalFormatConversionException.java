@@ -18,48 +18,48 @@ package java.util;
  */
 public class IllegalFormatConversionException extends IllegalFormatException {
 
-	private static final long serialVersionUID = 17000126L;
+    private static final long serialVersionUID = 17000126L;
 
-	private char c;
-	private Class<?> arg;
+    private char c;
+    private Class<?> arg;
 
-	/**
-	 * Constructs an instance of this class with the mismatched conversion and
-	 * the corresponding argument class.
-	 *
-	 * @param c
-	 *            Inapplicable conversion
-	 *
-	 * @param arg
-	 *            Class of the mismatched argument
-	 */
-	public IllegalFormatConversionException(char c, Class<?> arg) {
-		if (arg == null)
-			throw new NullPointerException();
-		this.c = c;
-		this.arg = arg;
-	}
+    /**
+     * Constructs an instance of this class with the mismatched conversion and
+     * the corresponding argument class.
+     *
+     * @param c
+     *            Inapplicable conversion
+     *
+     * @param arg
+     *            Class of the mismatched argument
+     */
+    public IllegalFormatConversionException(char c, Class<?> arg) {
+        if (arg == null)
+            throw new NullPointerException();
+        this.c = c;
+        this.arg = arg;
+    }
 
-	/**
-	 * Returns the inapplicable conversion.
-	 *
-	 * @return The inapplicable conversion
-	 */
-	public char getConversion() {
-		return c;
-	}
+    /**
+     * Returns the inapplicable conversion.
+     *
+     * @return The inapplicable conversion
+     */
+    public char getConversion() {
+        return c;
+    }
 
-	/**
-	 * Returns the class of the mismatched argument.
-	 *
-	 * @return The class of the mismatched argument
-	 */
-	public Class<?> getArgumentClass() {
-		return arg;
-	}
+    /**
+     * Returns the class of the mismatched argument.
+     *
+     * @return The class of the mismatched argument
+     */
+    public Class<?> getArgumentClass() {
+        return arg;
+    }
 
-	// javadoc inherited from Throwable.java
-	public String getMessage() {
-		return String.format("%c != %s", c, arg.getName());
-	}
+    // javadoc inherited from Throwable.java
+    public String getMessage() {
+        return String.format("%c != %s", c, arg.getName());
+    }
 }

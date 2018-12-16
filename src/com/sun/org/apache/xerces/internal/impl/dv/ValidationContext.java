@@ -29,38 +29,38 @@ import java.util.Locale;
  * @version $Id: ValidationContext.java,v 1.6 2010/07/23 02:09:29 joehw Exp $
  */
 public interface ValidationContext {
-	// whether to validate against facets
-	public boolean needFacetChecking();
+    // whether to validate against facets
+    public boolean needFacetChecking();
 
-	// whether to do extra id/idref/entity checking
-	public boolean needExtraChecking();
+    // whether to do extra id/idref/entity checking
+    public boolean needExtraChecking();
 
-	// whether we need to normalize the value that is passed!
-	public boolean needToNormalize();
+    // whether we need to normalize the value that is passed!
+    public boolean needToNormalize();
 
-	// are namespaces relevant in this context?
-	public boolean useNamespaces();
+    // are namespaces relevant in this context?
+    public boolean useNamespaces();
 
-	// entity
-	public boolean isEntityDeclared(String name);
+    // entity
+    public boolean isEntityDeclared(String name);
 
-	public boolean isEntityUnparsed(String name);
+    public boolean isEntityUnparsed(String name);
 
-	// id
-	public boolean isIdDeclared(String name);
+    // id
+    public boolean isIdDeclared(String name);
 
-	public void addId(String name);
+    public void addId(String name);
 
-	// idref
-	public void addIdRef(String name);
+    // idref
+    public void addIdRef(String name);
 
-	// get symbol from symbol table
-	public String getSymbol(String symbol);
+    // get symbol from symbol table
+    public String getSymbol(String symbol);
 
-	// qname
-	public String getURI(String prefix);
+    // qname
+    public String getURI(String prefix);
 
-	// Locale
-	public Locale getLocale();
+    // Locale
+    public Locale getLocale();
 
 }

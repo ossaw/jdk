@@ -12,107 +12,107 @@ import java.awt.color.ColorSpace;
  * data which do not have an innate color representation.
  */
 public class BogusColorSpace extends ColorSpace {
-	/**
-	 * Return the type given the number of components.
-	 *
-	 * @param numComponents
-	 *                      The number of components in the
-	 *                      <code>ColorSpace</code>.
-	 * @exception IllegalArgumentException
-	 *                                     if <code>numComponents</code> is less
-	 *                                     than 1.
-	 */
-	private static int getType(int numComponents) {
-		if (numComponents < 1) {
-			throw new IllegalArgumentException("numComponents < 1!");
-		}
+    /**
+     * Return the type given the number of components.
+     *
+     * @param numComponents
+     *                      The number of components in the
+     *                      <code>ColorSpace</code>.
+     * @exception IllegalArgumentException
+     *                                     if <code>numComponents</code> is less
+     *                                     than 1.
+     */
+    private static int getType(int numComponents) {
+        if (numComponents < 1) {
+            throw new IllegalArgumentException("numComponents < 1!");
+        }
 
-		int type;
-		switch (numComponents) {
-			case 1:
-				type = ColorSpace.TYPE_GRAY;
-				break;
-			default:
-				// Based on the constant definitions TYPE_2CLR=12 through
-				// TYPE_FCLR=25. This will return unknown types for
-				// numComponents > 15.
-				type = numComponents + 10;
-		}
+        int type;
+        switch (numComponents) {
+            case 1:
+                type = ColorSpace.TYPE_GRAY;
+                break;
+            default:
+                // Based on the constant definitions TYPE_2CLR=12 through
+                // TYPE_FCLR=25. This will return unknown types for
+                // numComponents > 15.
+                type = numComponents + 10;
+        }
 
-		return type;
-	}
+        return type;
+    }
 
-	/**
-	 * Constructs a bogus <code>ColorSpace</code>.
-	 *
-	 * @param numComponents
-	 *                      The number of components in the
-	 *                      <code>ColorSpace</code>.
-	 * @exception IllegalArgumentException
-	 *                                     if <code>numComponents</code> is less
-	 *                                     than 1.
-	 */
-	public BogusColorSpace(int numComponents) {
-		super(getType(numComponents), numComponents);
-	}
+    /**
+     * Constructs a bogus <code>ColorSpace</code>.
+     *
+     * @param numComponents
+     *                      The number of components in the
+     *                      <code>ColorSpace</code>.
+     * @exception IllegalArgumentException
+     *                                     if <code>numComponents</code> is less
+     *                                     than 1.
+     */
+    public BogusColorSpace(int numComponents) {
+        super(getType(numComponents), numComponents);
+    }
 
-	//
-	// The following methods simply copy the input array to the
-	// output array while otherwise attempting to adhere to the
-	// specified behavior of the methods vis-a-vis exceptions.
-	//
+    //
+    // The following methods simply copy the input array to the
+    // output array while otherwise attempting to adhere to the
+    // specified behavior of the methods vis-a-vis exceptions.
+    //
 
-	public float[] toRGB(float[] colorvalue) {
-		if (colorvalue.length < getNumComponents()) {
-			throw new ArrayIndexOutOfBoundsException(
-					"colorvalue.length < getNumComponents()");
-		}
+    public float[] toRGB(float[] colorvalue) {
+        if (colorvalue.length < getNumComponents()) {
+            throw new ArrayIndexOutOfBoundsException(
+                    "colorvalue.length < getNumComponents()");
+        }
 
-		float[] rgbvalue = new float[3];
+        float[] rgbvalue = new float[3];
 
-		System.arraycopy(colorvalue, 0, rgbvalue, 0, Math.min(3,
-				getNumComponents()));
+        System.arraycopy(colorvalue, 0, rgbvalue, 0, Math.min(3,
+                getNumComponents()));
 
-		return colorvalue;
-	}
+        return colorvalue;
+    }
 
-	public float[] fromRGB(float[] rgbvalue) {
-		if (rgbvalue.length < 3) {
-			throw new ArrayIndexOutOfBoundsException("rgbvalue.length < 3");
-		}
+    public float[] fromRGB(float[] rgbvalue) {
+        if (rgbvalue.length < 3) {
+            throw new ArrayIndexOutOfBoundsException("rgbvalue.length < 3");
+        }
 
-		float[] colorvalue = new float[getNumComponents()];
+        float[] colorvalue = new float[getNumComponents()];
 
-		System.arraycopy(rgbvalue, 0, colorvalue, 0, Math.min(3,
-				colorvalue.length));
+        System.arraycopy(rgbvalue, 0, colorvalue, 0, Math.min(3,
+                colorvalue.length));
 
-		return rgbvalue;
-	}
+        return rgbvalue;
+    }
 
-	public float[] toCIEXYZ(float[] colorvalue) {
-		if (colorvalue.length < getNumComponents()) {
-			throw new ArrayIndexOutOfBoundsException(
-					"colorvalue.length < getNumComponents()");
-		}
+    public float[] toCIEXYZ(float[] colorvalue) {
+        if (colorvalue.length < getNumComponents()) {
+            throw new ArrayIndexOutOfBoundsException(
+                    "colorvalue.length < getNumComponents()");
+        }
 
-		float[] xyzvalue = new float[3];
+        float[] xyzvalue = new float[3];
 
-		System.arraycopy(colorvalue, 0, xyzvalue, 0, Math.min(3,
-				getNumComponents()));
+        System.arraycopy(colorvalue, 0, xyzvalue, 0, Math.min(3,
+                getNumComponents()));
 
-		return colorvalue;
-	}
+        return colorvalue;
+    }
 
-	public float[] fromCIEXYZ(float[] xyzvalue) {
-		if (xyzvalue.length < 3) {
-			throw new ArrayIndexOutOfBoundsException("xyzvalue.length < 3");
-		}
+    public float[] fromCIEXYZ(float[] xyzvalue) {
+        if (xyzvalue.length < 3) {
+            throw new ArrayIndexOutOfBoundsException("xyzvalue.length < 3");
+        }
 
-		float[] colorvalue = new float[getNumComponents()];
+        float[] colorvalue = new float[getNumComponents()];
 
-		System.arraycopy(xyzvalue, 0, colorvalue, 0, Math.min(3,
-				colorvalue.length));
+        System.arraycopy(xyzvalue, 0, colorvalue, 0, Math.min(3,
+                colorvalue.length));
 
-		return xyzvalue;
-	}
+        return xyzvalue;
+    }
 }

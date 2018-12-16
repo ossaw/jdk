@@ -13,31 +13,31 @@ package java.nio.file;
  */
 
 public class NotLinkException extends FileSystemException {
-	static final long serialVersionUID = -388655596416518021L;
+    static final long serialVersionUID = -388655596416518021L;
 
-	/**
-	 * Constructs an instance of this class.
-	 *
-	 * @param file
-	 *             a string identifying the file or {@code null} if not known
-	 */
-	public NotLinkException(String file) {
-		super(file);
-	}
+    /**
+     * Constructs an instance of this class.
+     *
+     * @param file
+     *             a string identifying the file or {@code null} if not known
+     */
+    public NotLinkException(String file) {
+        super(file);
+    }
 
-	/**
-	 * Constructs an instance of this class.
-	 *
-	 * @param file
-	 *               a string identifying the file or {@code null} if not known
-	 * @param other
-	 *               a string identifying the other file or {@code null} if not
-	 *               known
-	 * @param reason
-	 *               a reason message with additional information or
-	 *               {@code null}
-	 */
-	public NotLinkException(String file, String other, String reason) {
-		super(file, other, reason);
-	}
+    /**
+     * Constructs an instance of this class.
+     *
+     * @param file
+     *               a string identifying the file or {@code null} if not known
+     * @param other
+     *               a string identifying the other file or {@code null} if not
+     *               known
+     * @param reason
+     *               a reason message with additional information or
+     *               {@code null}
+     */
+    public NotLinkException(String file, String other, String reason) {
+        super(file, other, reason);
+    }
 }

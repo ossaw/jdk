@@ -32,25 +32,25 @@ package org.xml.sax;
  */
 public class SAXNotSupportedException extends SAXException {
 
-	/**
-	 * Construct a new exception with no message.
-	 */
-	public SAXNotSupportedException() {
-		super();
-	}
+    /**
+     * Construct a new exception with no message.
+     */
+    public SAXNotSupportedException() {
+        super();
+    }
 
-	/**
-	 * Construct a new exception with the given message.
-	 *
-	 * @param message
-	 *                The text message of the exception.
-	 */
-	public SAXNotSupportedException(String message) {
-		super(message);
-	}
+    /**
+     * Construct a new exception with the given message.
+     *
+     * @param message
+     *                The text message of the exception.
+     */
+    public SAXNotSupportedException(String message) {
+        super(message);
+    }
 
-	// Added serialVersionUID to preserve binary compatibility
-	static final long serialVersionUID = -1422818934641823846L;
+    // Added serialVersionUID to preserve binary compatibility
+    static final long serialVersionUID = -1422818934641823846L;
 }
 
 // end of SAXNotSupportedException.java

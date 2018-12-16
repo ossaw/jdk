@@ -22,46 +22,46 @@ import com.sun.corba.se.impl.transport.SocketOrChannelAcceptorImpl;
  * @author Harold Carr
  */
 public class SocketFactoryAcceptorImpl extends SocketOrChannelAcceptorImpl {
-	public SocketFactoryAcceptorImpl(ORB orb, int port, String name,
-			String type) {
-		super(orb, port, name, type);
-	}
+    public SocketFactoryAcceptorImpl(ORB orb, int port, String name,
+            String type) {
+        super(orb, port, name, type);
+    }
 
-	////////////////////////////////////////////////////
-	//
-	// pept Acceptor
-	//
+    ////////////////////////////////////////////////////
+    //
+    // pept Acceptor
+    //
 
-	public boolean initialize() {
-		if (initialized) {
-			return false;
-		}
-		if (orb.transportDebugFlag) {
-			dprint("initialize: " + this);
-		}
-		try {
-			serverSocket = orb.getORBData().getLegacySocketFactory()
-					.createServerSocket(type, port);
-			internalInitialize();
-		} catch (Throwable t) {
-			throw wrapper.createListenerFailed(t, Integer.toString(port));
-		}
-		initialized = true;
-		return true;
-	}
+    public boolean initialize() {
+        if (initialized) {
+            return false;
+        }
+        if (orb.transportDebugFlag) {
+            dprint("initialize: " + this);
+        }
+        try {
+            serverSocket = orb.getORBData().getLegacySocketFactory()
+                    .createServerSocket(type, port);
+            internalInitialize();
+        } catch (Throwable t) {
+            throw wrapper.createListenerFailed(t, Integer.toString(port));
+        }
+        initialized = true;
+        return true;
+    }
 
-	////////////////////////////////////////////////////
-	//
-	// Implementation.
-	//
+    ////////////////////////////////////////////////////
+    //
+    // Implementation.
+    //
 
-	protected String toStringName() {
-		return "SocketFactoryAcceptorImpl";
-	}
+    protected String toStringName() {
+        return "SocketFactoryAcceptorImpl";
+    }
 
-	protected void dprint(String msg) {
-		ORBUtility.dprint(toStringName(), msg);
-	}
+    protected void dprint(String msg) {
+        ORBUtility.dprint(toStringName(), msg);
+    }
 }
 
 // End of file.

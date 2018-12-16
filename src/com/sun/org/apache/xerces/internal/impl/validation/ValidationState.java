@@ -35,181 +35,181 @@ import java.util.Locale;
  */
 public class ValidationState implements ValidationContext {
 
-	//
-	// private data
-	//
-	private boolean fExtraChecking = true;
-	private boolean fFacetChecking = true;
-	private boolean fNormalize = true;
-	private boolean fNamespaces = true;
+    //
+    // private data
+    //
+    private boolean fExtraChecking = true;
+    private boolean fFacetChecking = true;
+    private boolean fNormalize = true;
+    private boolean fNamespaces = true;
 
-	private EntityState fEntityState = null;
-	private NamespaceContext fNamespaceContext = null;
-	private SymbolTable fSymbolTable = null;
-	private Locale fLocale = null;
+    private EntityState fEntityState = null;
+    private NamespaceContext fNamespaceContext = null;
+    private SymbolTable fSymbolTable = null;
+    private Locale fLocale = null;
 
-	private ArrayList<String> fIdList;
-	private ArrayList<String> fIdRefList;
+    private ArrayList<String> fIdList;
+    private ArrayList<String> fIdRefList;
 
-	//
-	// public methods
-	//
-	public void setExtraChecking(boolean newValue) {
-		fExtraChecking = newValue;
-	}
+    //
+    // public methods
+    //
+    public void setExtraChecking(boolean newValue) {
+        fExtraChecking = newValue;
+    }
 
-	public void setFacetChecking(boolean newValue) {
-		fFacetChecking = newValue;
-	}
+    public void setFacetChecking(boolean newValue) {
+        fFacetChecking = newValue;
+    }
 
-	public void setNormalizationRequired(boolean newValue) {
-		fNormalize = newValue;
-	}
+    public void setNormalizationRequired(boolean newValue) {
+        fNormalize = newValue;
+    }
 
-	public void setUsingNamespaces(boolean newValue) {
-		fNamespaces = newValue;
-	}
+    public void setUsingNamespaces(boolean newValue) {
+        fNamespaces = newValue;
+    }
 
-	public void setEntityState(EntityState state) {
-		fEntityState = state;
-	}
+    public void setEntityState(EntityState state) {
+        fEntityState = state;
+    }
 
-	public void setNamespaceSupport(NamespaceContext namespace) {
-		fNamespaceContext = namespace;
-	}
+    public void setNamespaceSupport(NamespaceContext namespace) {
+        fNamespaceContext = namespace;
+    }
 
-	public void setSymbolTable(SymbolTable sTable) {
-		fSymbolTable = sTable;
-	}
+    public void setSymbolTable(SymbolTable sTable) {
+        fSymbolTable = sTable;
+    }
 
-	/**
-	 * return null if all IDREF values have a corresponding ID value; otherwise
-	 * return the first IDREF value without a matching ID value.
-	 */
-	public String checkIDRefID() {
-		if (fIdList == null) {
-			if (fIdRefList != null) {
-				return fIdRefList.get(0);
-			}
-		}
+    /**
+     * return null if all IDREF values have a corresponding ID value; otherwise
+     * return the first IDREF value without a matching ID value.
+     */
+    public String checkIDRefID() {
+        if (fIdList == null) {
+            if (fIdRefList != null) {
+                return fIdRefList.get(0);
+            }
+        }
 
-		if (fIdRefList != null) {
-			String key;
-			for (int i = 0; i < fIdRefList.size(); i++) {
-				key = fIdRefList.get(i);
-				if (!fIdList.contains(key)) {
-					return key;
-				}
-			}
-		}
-		return null;
-	}
+        if (fIdRefList != null) {
+            String key;
+            for (int i = 0; i < fIdRefList.size(); i++) {
+                key = fIdRefList.get(i);
+                if (!fIdList.contains(key)) {
+                    return key;
+                }
+            }
+        }
+        return null;
+    }
 
-	public void reset() {
-		fExtraChecking = true;
-		fFacetChecking = true;
-		fNamespaces = true;
-		fIdList = null;
-		fIdRefList = null;
-		fEntityState = null;
-		fNamespaceContext = null;
-		fSymbolTable = null;
-	}
+    public void reset() {
+        fExtraChecking = true;
+        fFacetChecking = true;
+        fNamespaces = true;
+        fIdList = null;
+        fIdRefList = null;
+        fEntityState = null;
+        fNamespaceContext = null;
+        fSymbolTable = null;
+    }
 
-	/**
-	 * The same validation state can be used to validate more than one (schema)
-	 * validation roots. Entity/Namespace/Symbol are shared, but each validation
-	 * root needs its own id/idref tables. So we need this method to reset only
-	 * the two tables.
-	 */
-	public void resetIDTables() {
-		fIdList = null;
-		fIdRefList = null;
-	}
+    /**
+     * The same validation state can be used to validate more than one (schema)
+     * validation roots. Entity/Namespace/Symbol are shared, but each validation
+     * root needs its own id/idref tables. So we need this method to reset only
+     * the two tables.
+     */
+    public void resetIDTables() {
+        fIdList = null;
+        fIdRefList = null;
+    }
 
-	//
-	// implementation of ValidationContext methods
-	//
+    //
+    // implementation of ValidationContext methods
+    //
 
-	// whether to do extra id/idref/entity checking
-	public boolean needExtraChecking() {
-		return fExtraChecking;
-	}
+    // whether to do extra id/idref/entity checking
+    public boolean needExtraChecking() {
+        return fExtraChecking;
+    }
 
-	// whether to validate against facets
-	public boolean needFacetChecking() {
-		return fFacetChecking;
-	}
+    // whether to validate against facets
+    public boolean needFacetChecking() {
+        return fFacetChecking;
+    }
 
-	public boolean needToNormalize() {
-		return fNormalize;
-	}
+    public boolean needToNormalize() {
+        return fNormalize;
+    }
 
-	public boolean useNamespaces() {
-		return fNamespaces;
-	}
+    public boolean useNamespaces() {
+        return fNamespaces;
+    }
 
-	// entity
-	public boolean isEntityDeclared(String name) {
-		if (fEntityState != null) {
-			return fEntityState.isEntityDeclared(getSymbol(name));
-		}
-		return false;
-	}
+    // entity
+    public boolean isEntityDeclared(String name) {
+        if (fEntityState != null) {
+            return fEntityState.isEntityDeclared(getSymbol(name));
+        }
+        return false;
+    }
 
-	public boolean isEntityUnparsed(String name) {
-		if (fEntityState != null) {
-			return fEntityState.isEntityUnparsed(getSymbol(name));
-		}
-		return false;
-	}
+    public boolean isEntityUnparsed(String name) {
+        if (fEntityState != null) {
+            return fEntityState.isEntityUnparsed(getSymbol(name));
+        }
+        return false;
+    }
 
-	// id
-	public boolean isIdDeclared(String name) {
-		if (fIdList == null)
-			return false;
-		return fIdList.contains(name);
-	}
+    // id
+    public boolean isIdDeclared(String name) {
+        if (fIdList == null)
+            return false;
+        return fIdList.contains(name);
+    }
 
-	public void addId(String name) {
-		if (fIdList == null)
-			fIdList = new ArrayList();
-		fIdList.add(name);
-	}
+    public void addId(String name) {
+        if (fIdList == null)
+            fIdList = new ArrayList();
+        fIdList.add(name);
+    }
 
-	// idref
-	public void addIdRef(String name) {
-		if (fIdRefList == null)
-			fIdRefList = new ArrayList();
-		fIdRefList.add(name);
-	}
-	// get symbols
+    // idref
+    public void addIdRef(String name) {
+        if (fIdRefList == null)
+            fIdRefList = new ArrayList();
+        fIdRefList.add(name);
+    }
+    // get symbols
 
-	public String getSymbol(String symbol) {
-		if (fSymbolTable != null)
-			return fSymbolTable.addSymbol(symbol);
-		// if there is no symbol table, we return java-internalized string,
-		// because symbol table strings are also java-internalzied.
-		// this guarantees that the returned string from this method can be
-		// compared by reference with other symbol table string. -SG
-		return symbol.intern();
-	}
+    public String getSymbol(String symbol) {
+        if (fSymbolTable != null)
+            return fSymbolTable.addSymbol(symbol);
+        // if there is no symbol table, we return java-internalized string,
+        // because symbol table strings are also java-internalzied.
+        // this guarantees that the returned string from this method can be
+        // compared by reference with other symbol table string. -SG
+        return symbol.intern();
+    }
 
-	// qname, notation
-	public String getURI(String prefix) {
-		if (fNamespaceContext != null) {
-			return fNamespaceContext.getURI(prefix);
-		}
-		return null;
-	}
+    // qname, notation
+    public String getURI(String prefix) {
+        if (fNamespaceContext != null) {
+            return fNamespaceContext.getURI(prefix);
+        }
+        return null;
+    }
 
-	// Locale
+    // Locale
 
-	public void setLocale(Locale locale) {
-		fLocale = locale;
-	}
+    public void setLocale(Locale locale) {
+        fLocale = locale;
+    }
 
-	public Locale getLocale() {
-		return fLocale;
-	}
+    public Locale getLocale() {
+        return fLocale;
+    }
 }

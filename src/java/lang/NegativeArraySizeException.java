@@ -12,24 +12,24 @@ package java.lang;
  * @since JDK1.0
  */
 public class NegativeArraySizeException extends RuntimeException {
-	private static final long serialVersionUID = -8960118058596991861L;
+    private static final long serialVersionUID = -8960118058596991861L;
 
-	/**
-	 * Constructs a <code>NegativeArraySizeException</code> with no detail
-	 * message.
-	 */
-	public NegativeArraySizeException() {
-		super();
-	}
+    /**
+     * Constructs a <code>NegativeArraySizeException</code> with no detail
+     * message.
+     */
+    public NegativeArraySizeException() {
+        super();
+    }
 
-	/**
-	 * Constructs a <code>NegativeArraySizeException</code> with the specified
-	 * detail message.
-	 *
-	 * @param s
-	 *          the detail message.
-	 */
-	public NegativeArraySizeException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs a <code>NegativeArraySizeException</code> with the specified
+     * detail message.
+     *
+     * @param s
+     *          the detail message.
+     */
+    public NegativeArraySizeException(String s) {
+        super(s);
+    }
 }

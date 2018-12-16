@@ -31,14 +31,14 @@ package java.awt;
  * @see Graphics2D#setStroke
  */
 public interface Stroke {
-	/**
-	 * Returns an outline <code>Shape</code> which encloses the area that should
-	 * be painted when the <code>Shape</code> is stroked according to the rules
-	 * defined by the object implementing the <code>Stroke</code> interface.
-	 * 
-	 * @param p
-	 *          a <code>Shape</code> to be stroked
-	 * @return the stroked outline <code>Shape</code>.
-	 */
-	Shape createStrokedShape(Shape p);
+    /**
+     * Returns an outline <code>Shape</code> which encloses the area that should
+     * be painted when the <code>Shape</code> is stroked according to the rules
+     * defined by the object implementing the <code>Stroke</code> interface.
+     * 
+     * @param p
+     *          a <code>Shape</code> to be stroked
+     * @return the stroked outline <code>Shape</code>.
+     */
+    Shape createStrokedShape(Shape p);
 }

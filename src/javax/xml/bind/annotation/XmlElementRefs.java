@@ -40,5 +40,5 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Retention(RUNTIME)
 @Target({ FIELD, METHOD })
 public @interface XmlElementRefs {
-	XmlElementRef[] value();
+    XmlElementRef[] value();
 }

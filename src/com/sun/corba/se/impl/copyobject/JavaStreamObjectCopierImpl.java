@@ -26,32 +26,32 @@ import com.sun.corba.se.impl.util.Utility;
 
 public class JavaStreamObjectCopierImpl implements ObjectCopier {
 
-	public JavaStreamObjectCopierImpl(ORB orb) {
-		this.orb = orb;
-	}
+    public JavaStreamObjectCopierImpl(ORB orb) {
+        this.orb = orb;
+    }
 
-	public Object copy(Object obj) {
-		if (obj instanceof Remote) {
-			// Yes, so make sure it is connected and converted
-			// to a stub (if needed)...
-			return Utility.autoConnect(obj, orb, true);
-		}
+    public Object copy(Object obj) {
+        if (obj instanceof Remote) {
+            // Yes, so make sure it is connected and converted
+            // to a stub (if needed)...
+            return Utility.autoConnect(obj, orb, true);
+        }
 
-		try {
-			ByteArrayOutputStream os = new ByteArrayOutputStream(10000);
-			ObjectOutputStream oos = new ObjectOutputStream(os);
-			oos.writeObject(obj);
+        try {
+            ByteArrayOutputStream os = new ByteArrayOutputStream(10000);
+            ObjectOutputStream oos = new ObjectOutputStream(os);
+            oos.writeObject(obj);
 
-			byte[] arr = os.toByteArray();
-			InputStream is = new ByteArrayInputStream(arr);
-			ObjectInputStream ois = new ObjectInputStream(is);
+            byte[] arr = os.toByteArray();
+            InputStream is = new ByteArrayInputStream(arr);
+            ObjectInputStream ois = new ObjectInputStream(is);
 
-			return ois.readObject();
-		} catch (Exception exc) {
-			System.out.println("Failed with exception:" + exc);
-			return null;
-		}
-	}
+            return ois.readObject();
+        } catch (Exception exc) {
+            System.out.println("Failed with exception:" + exc);
+            return null;
+        }
+    }
 
-	private ORB orb;
+    private ORB orb;
 }

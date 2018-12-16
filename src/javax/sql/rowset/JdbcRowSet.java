@@ -101,184 +101,184 @@ import java.io.*;
 
 public interface JdbcRowSet extends RowSet, Joinable {
 
-	/**
-	 * Retrieves a <code>boolean</code> indicating whether rows marked for
-	 * deletion appear in the set of current rows. If <code>true</code> is
-	 * returned, deleted rows are visible with the current rows. If
-	 * <code>false</code> is returned, rows are not visible with the set of
-	 * current rows. The default value is <code>false</code>.
-	 * <P>
-	 * Standard rowset implementations may choose to restrict this behavior for
-	 * security considerations or for certain deployment scenarios. The
-	 * visibility of deleted rows is implementation-defined and does not
-	 * represent standard behavior.
-	 * <P>
-	 * Note: Allowing deleted rows to remain visible complicates the behavior of
-	 * some standard JDBC <code>RowSet</code> implementations methods. However,
-	 * most rowset users can simply ignore this extra detail because only very
-	 * specialized applications will likely want to take advantage of this
-	 * feature.
-	 *
-	 * @return <code>true</code> if deleted rows are visible; <code>false</code>
-	 *         otherwise
-	 * @exception SQLException
-	 *                         if a rowset implementation is unable to to
-	 *                         determine
-	 *                         whether rows marked for deletion remain visible
-	 * @see #setShowDeleted
-	 */
-	public boolean getShowDeleted() throws SQLException;
+    /**
+     * Retrieves a <code>boolean</code> indicating whether rows marked for
+     * deletion appear in the set of current rows. If <code>true</code> is
+     * returned, deleted rows are visible with the current rows. If
+     * <code>false</code> is returned, rows are not visible with the set of
+     * current rows. The default value is <code>false</code>.
+     * <P>
+     * Standard rowset implementations may choose to restrict this behavior for
+     * security considerations or for certain deployment scenarios. The
+     * visibility of deleted rows is implementation-defined and does not
+     * represent standard behavior.
+     * <P>
+     * Note: Allowing deleted rows to remain visible complicates the behavior of
+     * some standard JDBC <code>RowSet</code> implementations methods. However,
+     * most rowset users can simply ignore this extra detail because only very
+     * specialized applications will likely want to take advantage of this
+     * feature.
+     *
+     * @return <code>true</code> if deleted rows are visible; <code>false</code>
+     *         otherwise
+     * @exception SQLException
+     *                         if a rowset implementation is unable to to
+     *                         determine
+     *                         whether rows marked for deletion remain visible
+     * @see #setShowDeleted
+     */
+    public boolean getShowDeleted() throws SQLException;
 
-	/**
-	 * Sets the property <code>showDeleted</code> to the given
-	 * <code>boolean</code> value. This property determines whether rows marked
-	 * for deletion continue to appear in the set of current rows. If the value
-	 * is set to <code>true</code>, deleted rows are immediately visible with
-	 * the set of current rows. If the value is set to <code>false</code>, the
-	 * deleted rows are set as invisible with the current set of rows.
-	 * <P>
-	 * Standard rowset implementations may choose to restrict this behavior for
-	 * security considerations or for certain deployment scenarios. This is left
-	 * as implementation-defined and does not represent standard behavior.
-	 *
-	 * @param b
-	 *          <code>true</code> if deleted rows should be shown;
-	 *          <code>false</code> otherwise
-	 * @exception SQLException
-	 *                         if a rowset implementation is unable to to reset
-	 *                         whether
-	 *                         deleted rows should be visible
-	 * @see #getShowDeleted
-	 */
-	public void setShowDeleted(boolean b) throws SQLException;
+    /**
+     * Sets the property <code>showDeleted</code> to the given
+     * <code>boolean</code> value. This property determines whether rows marked
+     * for deletion continue to appear in the set of current rows. If the value
+     * is set to <code>true</code>, deleted rows are immediately visible with
+     * the set of current rows. If the value is set to <code>false</code>, the
+     * deleted rows are set as invisible with the current set of rows.
+     * <P>
+     * Standard rowset implementations may choose to restrict this behavior for
+     * security considerations or for certain deployment scenarios. This is left
+     * as implementation-defined and does not represent standard behavior.
+     *
+     * @param b
+     *          <code>true</code> if deleted rows should be shown;
+     *          <code>false</code> otherwise
+     * @exception SQLException
+     *                         if a rowset implementation is unable to to reset
+     *                         whether
+     *                         deleted rows should be visible
+     * @see #getShowDeleted
+     */
+    public void setShowDeleted(boolean b) throws SQLException;
 
-	/**
-	 * Retrieves the first warning reported by calls on this
-	 * <code>JdbcRowSet</code> object. If a second warning was reported on this
-	 * <code>JdbcRowSet</code> object, it will be chained to the first warning
-	 * and can be retrieved by calling the method
-	 * <code>RowSetWarning.getNextWarning</code> on the first warning.
-	 * Subsequent warnings on this <code>JdbcRowSet</code> object will be
-	 * chained to the <code>RowSetWarning</code> objects returned by the method
-	 * <code>RowSetWarning.getNextWarning</code>.
-	 *
-	 * The warning chain is automatically cleared each time a new row is read.
-	 * This method may not be called on a <code>RowSet</code> object that has
-	 * been closed; doing so will cause an <code>SQLException</code> to be
-	 * thrown.
-	 * <P>
-	 * Because it is always connected to its data source, a
-	 * <code>JdbcRowSet</code> object can rely on the presence of active
-	 * <code>Statement</code>, <code>Connection</code>, and
-	 * <code>ResultSet</code> instances. This means that applications can obtain
-	 * additional <code>SQLWarning</code> notifications by calling the
-	 * <code>getNextWarning</code> methods that they provide. Disconnected
-	 * <code>Rowset</code> objects, such as a <code>CachedRowSet</code> object,
-	 * do not have access to these <code>getNextWarning</code> methods.
-	 *
-	 * @return the first <code>RowSetWarning</code> object reported on this
-	 *         <code>JdbcRowSet</code> object or <code>null</code> if there are
-	 *         none
-	 * @throws SQLException
-	 *                      if this method is called on a closed
-	 *                      <code>JdbcRowSet</code>
-	 *                      object
-	 * @see RowSetWarning
-	 */
-	public RowSetWarning getRowSetWarnings() throws SQLException;
+    /**
+     * Retrieves the first warning reported by calls on this
+     * <code>JdbcRowSet</code> object. If a second warning was reported on this
+     * <code>JdbcRowSet</code> object, it will be chained to the first warning
+     * and can be retrieved by calling the method
+     * <code>RowSetWarning.getNextWarning</code> on the first warning.
+     * Subsequent warnings on this <code>JdbcRowSet</code> object will be
+     * chained to the <code>RowSetWarning</code> objects returned by the method
+     * <code>RowSetWarning.getNextWarning</code>.
+     *
+     * The warning chain is automatically cleared each time a new row is read.
+     * This method may not be called on a <code>RowSet</code> object that has
+     * been closed; doing so will cause an <code>SQLException</code> to be
+     * thrown.
+     * <P>
+     * Because it is always connected to its data source, a
+     * <code>JdbcRowSet</code> object can rely on the presence of active
+     * <code>Statement</code>, <code>Connection</code>, and
+     * <code>ResultSet</code> instances. This means that applications can obtain
+     * additional <code>SQLWarning</code> notifications by calling the
+     * <code>getNextWarning</code> methods that they provide. Disconnected
+     * <code>Rowset</code> objects, such as a <code>CachedRowSet</code> object,
+     * do not have access to these <code>getNextWarning</code> methods.
+     *
+     * @return the first <code>RowSetWarning</code> object reported on this
+     *         <code>JdbcRowSet</code> object or <code>null</code> if there are
+     *         none
+     * @throws SQLException
+     *                      if this method is called on a closed
+     *                      <code>JdbcRowSet</code>
+     *                      object
+     * @see RowSetWarning
+     */
+    public RowSetWarning getRowSetWarnings() throws SQLException;
 
-	/**
-	 * Each <code>JdbcRowSet</code> contains a <code>Connection</code> object
-	 * from the <code>ResultSet</code> or JDBC properties passed to it's
-	 * constructors. This method wraps the <code>Connection</code> commit method
-	 * to allow flexible auto commit or non auto commit transactional control
-	 * support.
-	 * <p>
-	 * Makes all changes made since the previous commit/rollback permanent and
-	 * releases any database locks currently held by this Connection object.
-	 * This method should be used only when auto-commit mode has been disabled.
-	 *
-	 * @throws SQLException
-	 *                      if a database access error occurs or this Connection
-	 *                      object
-	 *                      within this <code>JdbcRowSet</code> is in
-	 *                      auto-commit mode
-	 * @see java.sql.Connection#setAutoCommit
-	 */
-	public void commit() throws SQLException;
+    /**
+     * Each <code>JdbcRowSet</code> contains a <code>Connection</code> object
+     * from the <code>ResultSet</code> or JDBC properties passed to it's
+     * constructors. This method wraps the <code>Connection</code> commit method
+     * to allow flexible auto commit or non auto commit transactional control
+     * support.
+     * <p>
+     * Makes all changes made since the previous commit/rollback permanent and
+     * releases any database locks currently held by this Connection object.
+     * This method should be used only when auto-commit mode has been disabled.
+     *
+     * @throws SQLException
+     *                      if a database access error occurs or this Connection
+     *                      object
+     *                      within this <code>JdbcRowSet</code> is in
+     *                      auto-commit mode
+     * @see java.sql.Connection#setAutoCommit
+     */
+    public void commit() throws SQLException;
 
-	/**
-	 * Each <code>JdbcRowSet</code> contains a <code>Connection</code> object
-	 * from the original <code>ResultSet</code> or JDBC properties passed to it.
-	 * This method wraps the <code>Connection</code>'s
-	 * <code>getAutoCommit</code> method to allow an application to determine
-	 * the <code>JdbcRowSet</code> transaction behavior.
-	 * <p>
-	 * Sets this connection's auto-commit mode to the given state. If a
-	 * connection is in auto-commit mode, then all its SQL statements will be
-	 * executed and committed as individual transactions. Otherwise, its SQL
-	 * statements are grouped into transactions that are terminated by a call to
-	 * either the method commit or the method rollback. By default, new
-	 * connections are in auto-commit mode.
-	 *
-	 * @return {@code true} if auto-commit is enabled; {@code false} otherwise
-	 * @throws SQLException
-	 *                      if a database access error occurs
-	 * @see java.sql.Connection#getAutoCommit()
-	 */
-	public boolean getAutoCommit() throws SQLException;
+    /**
+     * Each <code>JdbcRowSet</code> contains a <code>Connection</code> object
+     * from the original <code>ResultSet</code> or JDBC properties passed to it.
+     * This method wraps the <code>Connection</code>'s
+     * <code>getAutoCommit</code> method to allow an application to determine
+     * the <code>JdbcRowSet</code> transaction behavior.
+     * <p>
+     * Sets this connection's auto-commit mode to the given state. If a
+     * connection is in auto-commit mode, then all its SQL statements will be
+     * executed and committed as individual transactions. Otherwise, its SQL
+     * statements are grouped into transactions that are terminated by a call to
+     * either the method commit or the method rollback. By default, new
+     * connections are in auto-commit mode.
+     *
+     * @return {@code true} if auto-commit is enabled; {@code false} otherwise
+     * @throws SQLException
+     *                      if a database access error occurs
+     * @see java.sql.Connection#getAutoCommit()
+     */
+    public boolean getAutoCommit() throws SQLException;
 
-	/**
-	 * Each <code>JdbcRowSet</code> contains a <code>Connection</code> object
-	 * from the original <code>ResultSet</code> or JDBC properties passed to it.
-	 * This method wraps the <code>Connection</code>'s
-	 * <code>getAutoCommit</code> method to allow an application to set the
-	 * <code>JdbcRowSet</code> transaction behavior.
-	 * <p>
-	 * Sets the current auto-commit mode for this <code>Connection</code>
-	 * object.
-	 * 
-	 * @param autoCommit
-	 *                   {@code true} to enable auto-commit; {@code false} to
-	 *                   disable
-	 *                   auto-commit
-	 * @throws SQLException
-	 *                      if a database access error occurs
-	 * @see java.sql.Connection#setAutoCommit(boolean)
-	 */
-	public void setAutoCommit(boolean autoCommit) throws SQLException;
+    /**
+     * Each <code>JdbcRowSet</code> contains a <code>Connection</code> object
+     * from the original <code>ResultSet</code> or JDBC properties passed to it.
+     * This method wraps the <code>Connection</code>'s
+     * <code>getAutoCommit</code> method to allow an application to set the
+     * <code>JdbcRowSet</code> transaction behavior.
+     * <p>
+     * Sets the current auto-commit mode for this <code>Connection</code>
+     * object.
+     * 
+     * @param autoCommit
+     *                   {@code true} to enable auto-commit; {@code false} to
+     *                   disable
+     *                   auto-commit
+     * @throws SQLException
+     *                      if a database access error occurs
+     * @see java.sql.Connection#setAutoCommit(boolean)
+     */
+    public void setAutoCommit(boolean autoCommit) throws SQLException;
 
-	/**
-	 * Each <code>JdbcRowSet</code> contains a <code>Connection</code> object
-	 * from the original <code>ResultSet</code> or JDBC properties passed to it.
-	 * Undoes all changes made in the current transaction and releases any
-	 * database locks currently held by this <code>Connection</code> object.
-	 * This method should be used only when auto-commit mode has been disabled.
-	 *
-	 * @throws SQLException
-	 *                      if a database access error occurs or this
-	 *                      <code>Connection</code> object within this
-	 *                      <code>JdbcRowSet</code> is in auto-commit mode.
-	 * @see #rollback(Savepoint)
-	 */
-	public void rollback() throws SQLException;
+    /**
+     * Each <code>JdbcRowSet</code> contains a <code>Connection</code> object
+     * from the original <code>ResultSet</code> or JDBC properties passed to it.
+     * Undoes all changes made in the current transaction and releases any
+     * database locks currently held by this <code>Connection</code> object.
+     * This method should be used only when auto-commit mode has been disabled.
+     *
+     * @throws SQLException
+     *                      if a database access error occurs or this
+     *                      <code>Connection</code> object within this
+     *                      <code>JdbcRowSet</code> is in auto-commit mode.
+     * @see #rollback(Savepoint)
+     */
+    public void rollback() throws SQLException;
 
-	/**
-	 * Each <code>JdbcRowSet</code> contains a <code>Connection</code> object
-	 * from the original <code>ResultSet</code> or JDBC properties passed to it.
-	 * Undoes all changes made in the current transaction to the last set
-	 * savepoint and releases any database locks currently held by this
-	 * <code>Connection</code> object. This method should be used only when
-	 * auto-commit mode has been disabled.
-	 * 
-	 * @param s
-	 *          The {@code Savepoint} to rollback to
-	 * @throws SQLException
-	 *                      if a database access error occurs or this
-	 *                      <code>Connection</code> object within this
-	 *                      <code>JdbcRowSet</code> is in auto-commit mode.
-	 * @see #rollback
-	 */
-	public void rollback(Savepoint s) throws SQLException;
+    /**
+     * Each <code>JdbcRowSet</code> contains a <code>Connection</code> object
+     * from the original <code>ResultSet</code> or JDBC properties passed to it.
+     * Undoes all changes made in the current transaction to the last set
+     * savepoint and releases any database locks currently held by this
+     * <code>Connection</code> object. This method should be used only when
+     * auto-commit mode has been disabled.
+     * 
+     * @param s
+     *          The {@code Savepoint} to rollback to
+     * @throws SQLException
+     *                      if a database access error occurs or this
+     *                      <code>Connection</code> object within this
+     *                      <code>JdbcRowSet</code> is in auto-commit mode.
+     * @see #rollback
+     */
+    public void rollback(Savepoint s) throws SQLException;
 
 }

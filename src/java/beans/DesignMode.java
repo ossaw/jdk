@@ -29,44 +29,44 @@ package java.beans;
 
 public interface DesignMode {
 
-	/**
-	 * The standard value of the propertyName as fired from a BeanContext or
-	 * other source of PropertyChangeEvents.
-	 */
+    /**
+     * The standard value of the propertyName as fired from a BeanContext or
+     * other source of PropertyChangeEvents.
+     */
 
-	static String PROPERTYNAME = "designTime";
+    static String PROPERTYNAME = "designTime";
 
-	/**
-	 * Sets the "value" of the "designTime" property.
-	 * <p>
-	 * If the implementing object is an instance of
-	 * java.beans.beancontext.BeanContext, or a subinterface thereof, then that
-	 * BeanContext should fire a PropertyChangeEvent, to its registered
-	 * BeanContextMembershipListeners, with parameters:
-	 * <ul>
-	 * <li><code>propertyName</code> -
-	 * <code>java.beans.DesignMode.PROPERTYNAME</code>
-	 * <li><code>oldValue</code> - previous value of "designTime"
-	 * <li><code>newValue</code> - current value of "designTime"
-	 * </ul>
-	 * Note it is illegal for a BeanContextChild to invoke this method
-	 * associated with a BeanContext that it is nested within.
-	 *
-	 * @param designTime
-	 *                   the current "value" of the "designTime" property
-	 * @see java.beans.beancontext.BeanContext
-	 * @see java.beans.beancontext.BeanContextMembershipListener
-	 * @see java.beans.PropertyChangeEvent
-	 */
+    /**
+     * Sets the "value" of the "designTime" property.
+     * <p>
+     * If the implementing object is an instance of
+     * java.beans.beancontext.BeanContext, or a subinterface thereof, then that
+     * BeanContext should fire a PropertyChangeEvent, to its registered
+     * BeanContextMembershipListeners, with parameters:
+     * <ul>
+     * <li><code>propertyName</code> -
+     * <code>java.beans.DesignMode.PROPERTYNAME</code>
+     * <li><code>oldValue</code> - previous value of "designTime"
+     * <li><code>newValue</code> - current value of "designTime"
+     * </ul>
+     * Note it is illegal for a BeanContextChild to invoke this method
+     * associated with a BeanContext that it is nested within.
+     *
+     * @param designTime
+     *                   the current "value" of the "designTime" property
+     * @see java.beans.beancontext.BeanContext
+     * @see java.beans.beancontext.BeanContextMembershipListener
+     * @see java.beans.PropertyChangeEvent
+     */
 
-	void setDesignTime(boolean designTime);
+    void setDesignTime(boolean designTime);
 
-	/**
-	 * A value of true denotes that JavaBeans should behave in design time mode,
-	 * a value of false denotes runtime behavior.
-	 *
-	 * @return the current "value" of the "designTime" property.
-	 */
+    /**
+     * A value of true denotes that JavaBeans should behave in design time mode,
+     * a value of false denotes runtime behavior.
+     *
+     * @return the current "value" of the "designTime" property.
+     */
 
-	boolean isDesignTime();
+    boolean isDesignTime();
 }

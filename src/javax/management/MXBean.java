@@ -699,11 +699,11 @@ Map<String,ObjectName>}, has Open Type {@link TabularType} and is mapped to a
  * String typeName = "java.util.Map&lt;java.lang.String, javax.management.ObjectName&gt;";
  * String[] keyValue = new String[] { "key", "value" };
  * OpenType[] openTypes = new OpenType[] { SimpleType.STRING,
- * 		SimpleType.OBJECTNAME };
+ *         SimpleType.OBJECTNAME };
  * CompositeType rowType = new CompositeType(typeName, typeName, keyValue,
- * 		keyValue, openTypes);
+ *         keyValue, openTypes);
  * TabularType tabularType = new TabularType(typeName, typeName, rowType,
- * 		new String[] { "key" });
+ *         new String[] { "key" });
  * </pre>
  * 
  * <p>
@@ -749,11 +749,11 @@ Map<String,ObjectName>}, has Open Type {@link TabularType} and is mapped to a
  * 
  * <pre>
  * public interface ProductMXBean {
- * 	public ModuleMXBean[] getModules();
+ *     public ModuleMXBean[] getModules();
  * }
  * 
  * public interface ModuleMXBean {
- * 	public ProductMXBean getProduct();
+ *     public ProductMXBean getProduct();
  * }
  * </pre>
  * 
@@ -795,9 +795,9 @@ Map<String,ObjectName>}, has Open Type {@link TabularType} and is mapped to a
  * 
  * <pre>
  * public interface ModuleMXBean {
- * 	public ProductMXBean getProduct();
+ *     public ProductMXBean getProduct();
  * 
- * 	public void setProduct(ProductMXBean c);
+ *     public void setProduct(ProductMXBean c);
  * }
  * </pre>
  * 
@@ -1118,9 +1118,9 @@ private String name;
  * 
  * <pre>
  * public interface NamedNumber {
- * 	public int getNumber();
+ *     public int getNumber();
  * 
- * 	public String getName();
+ *     public String getName();
  * }
  * </pre>
  * 
@@ -1315,10 +1315,10 @@ public interface Node {
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface MXBean {
-	/**
-	 * True if the annotated interface is an MXBean interface.
-	 * 
-	 * @return true if the annotated interface is an MXBean interface.
-	 */
-	boolean value() default true;
+    /**
+     * True if the annotated interface is an MXBean interface.
+     * 
+     * @return true if the annotated interface is an MXBean interface.
+     */
+    boolean value() default true;
 }

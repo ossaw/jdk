@@ -93,471 +93,471 @@ import sun.management.jmxremote.ConnectorBootstrap;
  */
 public class FileLoginModule implements LoginModule {
 
-	// Location of the default password file
-	private static final String DEFAULT_PASSWORD_FILE_NAME = AccessController
-			.doPrivileged(new GetPropertyAction("java.home"))
-			+ File.separatorChar + "lib" + File.separatorChar + "management"
-			+ File.separatorChar
-			+ ConnectorBootstrap.DefaultValues.PASSWORD_FILE_NAME;
+    // Location of the default password file
+    private static final String DEFAULT_PASSWORD_FILE_NAME = AccessController
+            .doPrivileged(new GetPropertyAction("java.home"))
+            + File.separatorChar + "lib" + File.separatorChar + "management"
+            + File.separatorChar
+            + ConnectorBootstrap.DefaultValues.PASSWORD_FILE_NAME;
 
-	// Key to retrieve the stored username
-	private static final String USERNAME_KEY = "javax.security.auth.login.name";
+    // Key to retrieve the stored username
+    private static final String USERNAME_KEY = "javax.security.auth.login.name";
 
-	// Key to retrieve the stored password
-	private static final String PASSWORD_KEY = "javax.security.auth.login.password";
+    // Key to retrieve the stored password
+    private static final String PASSWORD_KEY = "javax.security.auth.login.password";
 
-	// Log messages
-	private static final ClassLogger logger = new ClassLogger(
-			"javax.management.remote.misc", "FileLoginModule");
+    // Log messages
+    private static final ClassLogger logger = new ClassLogger(
+            "javax.management.remote.misc", "FileLoginModule");
 
-	// Configurable options
-	private boolean useFirstPass = false;
-	private boolean tryFirstPass = false;
-	private boolean storePass = false;
-	private boolean clearPass = false;
+    // Configurable options
+    private boolean useFirstPass = false;
+    private boolean tryFirstPass = false;
+    private boolean storePass = false;
+    private boolean clearPass = false;
 
-	// Authentication status
-	private boolean succeeded = false;
-	private boolean commitSucceeded = false;
+    // Authentication status
+    private boolean succeeded = false;
+    private boolean commitSucceeded = false;
 
-	// Supplied username and password
-	private String username;
-	private char[] password;
-	private JMXPrincipal user;
+    // Supplied username and password
+    private String username;
+    private char[] password;
+    private JMXPrincipal user;
 
-	// Initial state
-	private Subject subject;
-	private CallbackHandler callbackHandler;
-	private Map<String, Object> sharedState;
-	private Map<String, ?> options;
-	private String passwordFile;
-	private String passwordFileDisplayName;
-	private boolean userSuppliedPasswordFile;
-	private boolean hasJavaHomePermission;
-	private Properties userCredentials;
+    // Initial state
+    private Subject subject;
+    private CallbackHandler callbackHandler;
+    private Map<String, Object> sharedState;
+    private Map<String, ?> options;
+    private String passwordFile;
+    private String passwordFileDisplayName;
+    private boolean userSuppliedPasswordFile;
+    private boolean hasJavaHomePermission;
+    private Properties userCredentials;
 
-	/**
-	 * Initialize this <code>LoginModule</code>.
-	 *
-	 * @param subject
-	 *                        the <code>Subject</code> to be authenticated.
-	 * @param callbackHandler
-	 *                        a <code>CallbackHandler</code> to acquire the
-	 *                        user's name and
-	 *                        password.
-	 * @param sharedState
-	 *                        shared <code>LoginModule</code> state.
-	 * @param options
-	 *                        options specified in the login
-	 *                        <code>Configuration</code> for
-	 *                        this particular <code>LoginModule</code>.
-	 */
-	public void initialize(Subject subject, CallbackHandler callbackHandler,
-			Map<String, ?> sharedState, Map<String, ?> options) {
+    /**
+     * Initialize this <code>LoginModule</code>.
+     *
+     * @param subject
+     *                        the <code>Subject</code> to be authenticated.
+     * @param callbackHandler
+     *                        a <code>CallbackHandler</code> to acquire the
+     *                        user's name and
+     *                        password.
+     * @param sharedState
+     *                        shared <code>LoginModule</code> state.
+     * @param options
+     *                        options specified in the login
+     *                        <code>Configuration</code> for
+     *                        this particular <code>LoginModule</code>.
+     */
+    public void initialize(Subject subject, CallbackHandler callbackHandler,
+            Map<String, ?> sharedState, Map<String, ?> options) {
 
-		this.subject = subject;
-		this.callbackHandler = callbackHandler;
-		this.sharedState = Util.cast(sharedState);
-		this.options = options;
+        this.subject = subject;
+        this.callbackHandler = callbackHandler;
+        this.sharedState = Util.cast(sharedState);
+        this.options = options;
 
-		// initialize any configured options
-		tryFirstPass = "true".equalsIgnoreCase((String) options.get(
-				"tryFirstPass"));
-		useFirstPass = "true".equalsIgnoreCase((String) options.get(
-				"useFirstPass"));
-		storePass = "true".equalsIgnoreCase((String) options.get("storePass"));
-		clearPass = "true".equalsIgnoreCase((String) options.get("clearPass"));
+        // initialize any configured options
+        tryFirstPass = "true".equalsIgnoreCase((String) options.get(
+                "tryFirstPass"));
+        useFirstPass = "true".equalsIgnoreCase((String) options.get(
+                "useFirstPass"));
+        storePass = "true".equalsIgnoreCase((String) options.get("storePass"));
+        clearPass = "true".equalsIgnoreCase((String) options.get("clearPass"));
 
-		passwordFile = (String) options.get("passwordFile");
-		passwordFileDisplayName = passwordFile;
-		userSuppliedPasswordFile = true;
+        passwordFile = (String) options.get("passwordFile");
+        passwordFileDisplayName = passwordFile;
+        userSuppliedPasswordFile = true;
 
-		// set the location of the password file
-		if (passwordFile == null) {
-			passwordFile = DEFAULT_PASSWORD_FILE_NAME;
-			userSuppliedPasswordFile = false;
-			try {
-				System.getProperty("java.home");
-				hasJavaHomePermission = true;
-				passwordFileDisplayName = passwordFile;
-			} catch (SecurityException e) {
-				hasJavaHomePermission = false;
-				passwordFileDisplayName = ConnectorBootstrap.DefaultValues.PASSWORD_FILE_NAME;
-			}
-		}
-	}
+        // set the location of the password file
+        if (passwordFile == null) {
+            passwordFile = DEFAULT_PASSWORD_FILE_NAME;
+            userSuppliedPasswordFile = false;
+            try {
+                System.getProperty("java.home");
+                hasJavaHomePermission = true;
+                passwordFileDisplayName = passwordFile;
+            } catch (SecurityException e) {
+                hasJavaHomePermission = false;
+                passwordFileDisplayName = ConnectorBootstrap.DefaultValues.PASSWORD_FILE_NAME;
+            }
+        }
+    }
 
-	/**
-	 * Begin user authentication (Authentication Phase 1).
-	 *
-	 * <p>
-	 * Acquire the user's name and password and verify them against the
-	 * corresponding credentials from the password file.
-	 *
-	 * @return true always, since this <code>LoginModule</code> should not be
-	 *         ignored.
-	 * @exception FailedLoginException
-	 *                                 if the authentication fails.
-	 * @exception LoginException
-	 *                                 if this <code>LoginModule</code> is
-	 *                                 unable to perform the
-	 *                                 authentication.
-	 */
-	public boolean login() throws LoginException {
+    /**
+     * Begin user authentication (Authentication Phase 1).
+     *
+     * <p>
+     * Acquire the user's name and password and verify them against the
+     * corresponding credentials from the password file.
+     *
+     * @return true always, since this <code>LoginModule</code> should not be
+     *         ignored.
+     * @exception FailedLoginException
+     *                                 if the authentication fails.
+     * @exception LoginException
+     *                                 if this <code>LoginModule</code> is
+     *                                 unable to perform the
+     *                                 authentication.
+     */
+    public boolean login() throws LoginException {
 
-		try {
-			loadPasswordFile();
-		} catch (IOException ioe) {
-			LoginException le = new LoginException(
-					"Error: unable to load the password file: "
-							+ passwordFileDisplayName);
-			throw EnvHelp.initCause(le, ioe);
-		}
+        try {
+            loadPasswordFile();
+        } catch (IOException ioe) {
+            LoginException le = new LoginException(
+                    "Error: unable to load the password file: "
+                            + passwordFileDisplayName);
+            throw EnvHelp.initCause(le, ioe);
+        }
 
-		if (userCredentials == null) {
-			throw new LoginException(
-					"Error: unable to locate the users' credentials.");
-		}
+        if (userCredentials == null) {
+            throw new LoginException(
+                    "Error: unable to locate the users' credentials.");
+        }
 
-		if (logger.debugOn()) {
-			logger.debug("login", "Using password file: "
-					+ passwordFileDisplayName);
-		}
+        if (logger.debugOn()) {
+            logger.debug("login", "Using password file: "
+                    + passwordFileDisplayName);
+        }
 
-		// attempt the authentication
-		if (tryFirstPass) {
+        // attempt the authentication
+        if (tryFirstPass) {
 
-			try {
-				// attempt the authentication by getting the
-				// username and password from shared state
-				attemptAuthentication(true);
+            try {
+                // attempt the authentication by getting the
+                // username and password from shared state
+                attemptAuthentication(true);
 
-				// authentication succeeded
-				succeeded = true;
-				if (logger.debugOn()) {
-					logger.debug("login",
-							"Authentication using cached password has succeeded");
-				}
-				return true;
+                // authentication succeeded
+                succeeded = true;
+                if (logger.debugOn()) {
+                    logger.debug("login",
+                            "Authentication using cached password has succeeded");
+                }
+                return true;
 
-			} catch (LoginException le) {
-				// authentication failed -- try again below by prompting
-				cleanState();
-				logger.debug("login",
-						"Authentication using cached password has failed");
-			}
+            } catch (LoginException le) {
+                // authentication failed -- try again below by prompting
+                cleanState();
+                logger.debug("login",
+                        "Authentication using cached password has failed");
+            }
 
-		} else if (useFirstPass) {
+        } else if (useFirstPass) {
 
-			try {
-				// attempt the authentication by getting the
-				// username and password from shared state
-				attemptAuthentication(true);
+            try {
+                // attempt the authentication by getting the
+                // username and password from shared state
+                attemptAuthentication(true);
 
-				// authentication succeeded
-				succeeded = true;
-				if (logger.debugOn()) {
-					logger.debug("login",
-							"Authentication using cached password has succeeded");
-				}
-				return true;
+                // authentication succeeded
+                succeeded = true;
+                if (logger.debugOn()) {
+                    logger.debug("login",
+                            "Authentication using cached password has succeeded");
+                }
+                return true;
 
-			} catch (LoginException le) {
-				// authentication failed
-				cleanState();
-				logger.debug("login",
-						"Authentication using cached password has failed");
+            } catch (LoginException le) {
+                // authentication failed
+                cleanState();
+                logger.debug("login",
+                        "Authentication using cached password has failed");
 
-				throw le;
-			}
-		}
+                throw le;
+            }
+        }
 
-		if (logger.debugOn()) {
-			logger.debug("login", "Acquiring password");
-		}
+        if (logger.debugOn()) {
+            logger.debug("login", "Acquiring password");
+        }
 
-		// attempt the authentication using the supplied username and password
-		try {
-			attemptAuthentication(false);
+        // attempt the authentication using the supplied username and password
+        try {
+            attemptAuthentication(false);
 
-			// authentication succeeded
-			succeeded = true;
-			if (logger.debugOn()) {
-				logger.debug("login", "Authentication has succeeded");
-			}
-			return true;
+            // authentication succeeded
+            succeeded = true;
+            if (logger.debugOn()) {
+                logger.debug("login", "Authentication has succeeded");
+            }
+            return true;
 
-		} catch (LoginException le) {
-			cleanState();
-			logger.debug("login", "Authentication has failed");
+        } catch (LoginException le) {
+            cleanState();
+            logger.debug("login", "Authentication has failed");
 
-			throw le;
-		}
-	}
+            throw le;
+        }
+    }
 
-	/**
-	 * Complete user authentication (Authentication Phase 2).
-	 *
-	 * <p>
-	 * This method is called if the LoginContext's overall authentication has
-	 * succeeded (all the relevant REQUIRED, REQUISITE, SUFFICIENT and OPTIONAL
-	 * LoginModules have succeeded).
-	 *
-	 * <p>
-	 * If this LoginModule's own authentication attempt succeeded (checked by
-	 * retrieving the private state saved by the <code>login</code> method),
-	 * then this method associates a <code>JMXPrincipal</code> with the
-	 * <code>Subject</code> located in the <code>LoginModule</code>. If this
-	 * LoginModule's own authentication attempted failed, then this method
-	 * removes any state that was originally saved.
-	 *
-	 * @exception LoginException
-	 *                           if the commit fails
-	 * @return true if this LoginModule's own login and commit attempts
-	 *         succeeded, or false otherwise.
-	 */
-	public boolean commit() throws LoginException {
+    /**
+     * Complete user authentication (Authentication Phase 2).
+     *
+     * <p>
+     * This method is called if the LoginContext's overall authentication has
+     * succeeded (all the relevant REQUIRED, REQUISITE, SUFFICIENT and OPTIONAL
+     * LoginModules have succeeded).
+     *
+     * <p>
+     * If this LoginModule's own authentication attempt succeeded (checked by
+     * retrieving the private state saved by the <code>login</code> method),
+     * then this method associates a <code>JMXPrincipal</code> with the
+     * <code>Subject</code> located in the <code>LoginModule</code>. If this
+     * LoginModule's own authentication attempted failed, then this method
+     * removes any state that was originally saved.
+     *
+     * @exception LoginException
+     *                           if the commit fails
+     * @return true if this LoginModule's own login and commit attempts
+     *         succeeded, or false otherwise.
+     */
+    public boolean commit() throws LoginException {
 
-		if (succeeded == false) {
-			return false;
-		} else {
-			if (subject.isReadOnly()) {
-				cleanState();
-				throw new LoginException("Subject is read-only");
-			}
-			// add Principals to the Subject
-			if (!subject.getPrincipals().contains(user)) {
-				subject.getPrincipals().add(user);
-			}
+        if (succeeded == false) {
+            return false;
+        } else {
+            if (subject.isReadOnly()) {
+                cleanState();
+                throw new LoginException("Subject is read-only");
+            }
+            // add Principals to the Subject
+            if (!subject.getPrincipals().contains(user)) {
+                subject.getPrincipals().add(user);
+            }
 
-			if (logger.debugOn()) {
-				logger.debug("commit",
-						"Authentication has completed successfully");
-			}
-		}
-		// in any case, clean out state
-		cleanState();
-		commitSucceeded = true;
-		return true;
-	}
+            if (logger.debugOn()) {
+                logger.debug("commit",
+                        "Authentication has completed successfully");
+            }
+        }
+        // in any case, clean out state
+        cleanState();
+        commitSucceeded = true;
+        return true;
+    }
 
-	/**
-	 * Abort user authentication (Authentication Phase 2).
-	 *
-	 * <p>
-	 * This method is called if the LoginContext's overall authentication failed
-	 * (the relevant REQUIRED, REQUISITE, SUFFICIENT and OPTIONAL LoginModules
-	 * did not succeed).
-	 *
-	 * <p>
-	 * If this LoginModule's own authentication attempt succeeded (checked by
-	 * retrieving the private state saved by the <code>login</code> and
-	 * <code>commit</code> methods), then this method cleans up any state that
-	 * was originally saved.
-	 *
-	 * @exception LoginException
-	 *                           if the abort fails.
-	 * @return false if this LoginModule's own login and/or commit attempts
-	 *         failed, and true otherwise.
-	 */
-	public boolean abort() throws LoginException {
+    /**
+     * Abort user authentication (Authentication Phase 2).
+     *
+     * <p>
+     * This method is called if the LoginContext's overall authentication failed
+     * (the relevant REQUIRED, REQUISITE, SUFFICIENT and OPTIONAL LoginModules
+     * did not succeed).
+     *
+     * <p>
+     * If this LoginModule's own authentication attempt succeeded (checked by
+     * retrieving the private state saved by the <code>login</code> and
+     * <code>commit</code> methods), then this method cleans up any state that
+     * was originally saved.
+     *
+     * @exception LoginException
+     *                           if the abort fails.
+     * @return false if this LoginModule's own login and/or commit attempts
+     *         failed, and true otherwise.
+     */
+    public boolean abort() throws LoginException {
 
-		if (logger.debugOn()) {
-			logger.debug("abort",
-					"Authentication has not completed successfully");
-		}
+        if (logger.debugOn()) {
+            logger.debug("abort",
+                    "Authentication has not completed successfully");
+        }
 
-		if (succeeded == false) {
-			return false;
-		} else if (succeeded == true && commitSucceeded == false) {
+        if (succeeded == false) {
+            return false;
+        } else if (succeeded == true && commitSucceeded == false) {
 
-			// Clean out state
-			succeeded = false;
-			cleanState();
-			user = null;
-		} else {
-			// overall authentication succeeded and commit succeeded,
-			// but someone else's commit failed
-			logout();
-		}
-		return true;
-	}
+            // Clean out state
+            succeeded = false;
+            cleanState();
+            user = null;
+        } else {
+            // overall authentication succeeded and commit succeeded,
+            // but someone else's commit failed
+            logout();
+        }
+        return true;
+    }
 
-	/**
-	 * Logout a user.
-	 *
-	 * <p>
-	 * This method removes the Principals that were added by the
-	 * <code>commit</code> method.
-	 *
-	 * @exception LoginException
-	 *                           if the logout fails.
-	 * @return true in all cases since this <code>LoginModule</code> should not
-	 *         be ignored.
-	 */
-	public boolean logout() throws LoginException {
-		if (subject.isReadOnly()) {
-			cleanState();
-			throw new LoginException("Subject is read-only");
-		}
-		subject.getPrincipals().remove(user);
+    /**
+     * Logout a user.
+     *
+     * <p>
+     * This method removes the Principals that were added by the
+     * <code>commit</code> method.
+     *
+     * @exception LoginException
+     *                           if the logout fails.
+     * @return true in all cases since this <code>LoginModule</code> should not
+     *         be ignored.
+     */
+    public boolean logout() throws LoginException {
+        if (subject.isReadOnly()) {
+            cleanState();
+            throw new LoginException("Subject is read-only");
+        }
+        subject.getPrincipals().remove(user);
 
-		// clean out state
-		cleanState();
-		succeeded = false;
-		commitSucceeded = false;
-		user = null;
+        // clean out state
+        cleanState();
+        succeeded = false;
+        commitSucceeded = false;
+        user = null;
 
-		if (logger.debugOn()) {
-			logger.debug("logout", "Subject is being logged out");
-		}
+        if (logger.debugOn()) {
+            logger.debug("logout", "Subject is being logged out");
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	/**
-	 * Attempt authentication
-	 *
-	 * @param usePasswdFromSharedState
-	 *                                 a flag to tell this method whether to
-	 *                                 retrieve the password
-	 *                                 from the sharedState.
-	 */
-	@SuppressWarnings("unchecked") // sharedState used as Map<String,Object>
-	private void attemptAuthentication(boolean usePasswdFromSharedState)
-			throws LoginException {
+    /**
+     * Attempt authentication
+     *
+     * @param usePasswdFromSharedState
+     *                                 a flag to tell this method whether to
+     *                                 retrieve the password
+     *                                 from the sharedState.
+     */
+    @SuppressWarnings("unchecked") // sharedState used as Map<String,Object>
+    private void attemptAuthentication(boolean usePasswdFromSharedState)
+            throws LoginException {
 
-		// get the username and password
-		getUsernamePassword(usePasswdFromSharedState);
+        // get the username and password
+        getUsernamePassword(usePasswdFromSharedState);
 
-		String localPassword;
+        String localPassword;
 
-		// userCredentials is initialized in login()
-		if (((localPassword = userCredentials.getProperty(username)) == null)
-				|| (!localPassword.equals(new String(password)))) {
+        // userCredentials is initialized in login()
+        if (((localPassword = userCredentials.getProperty(username)) == null)
+                || (!localPassword.equals(new String(password)))) {
 
-			// username not found or passwords do not match
-			if (logger.debugOn()) {
-				logger.debug("login", "Invalid username or password");
-			}
-			throw new FailedLoginException("Invalid username or password");
-		}
+            // username not found or passwords do not match
+            if (logger.debugOn()) {
+                logger.debug("login", "Invalid username or password");
+            }
+            throw new FailedLoginException("Invalid username or password");
+        }
 
-		// Save the username and password in the shared state
-		// only if authentication succeeded
-		if (storePass && !sharedState.containsKey(USERNAME_KEY) && !sharedState
-				.containsKey(PASSWORD_KEY)) {
-			sharedState.put(USERNAME_KEY, username);
-			sharedState.put(PASSWORD_KEY, password);
-		}
+        // Save the username and password in the shared state
+        // only if authentication succeeded
+        if (storePass && !sharedState.containsKey(USERNAME_KEY) && !sharedState
+                .containsKey(PASSWORD_KEY)) {
+            sharedState.put(USERNAME_KEY, username);
+            sharedState.put(PASSWORD_KEY, password);
+        }
 
-		// Create a new user principal
-		user = new JMXPrincipal(username);
+        // Create a new user principal
+        user = new JMXPrincipal(username);
 
-		if (logger.debugOn()) {
-			logger.debug("login", "User '" + username
-					+ "' successfully validated");
-		}
-	}
+        if (logger.debugOn()) {
+            logger.debug("login", "User '" + username
+                    + "' successfully validated");
+        }
+    }
 
-	/*
-	 * Read the password file.
-	 */
-	private void loadPasswordFile() throws IOException {
-		FileInputStream fis;
-		try {
-			fis = new FileInputStream(passwordFile);
-		} catch (SecurityException e) {
-			if (userSuppliedPasswordFile || hasJavaHomePermission) {
-				throw e;
-			} else {
-				final FilePermission fp = new FilePermission(
-						passwordFileDisplayName, "read");
-				AccessControlException ace = new AccessControlException(
-						"access denied " + fp.toString());
-				ace.setStackTrace(e.getStackTrace());
-				throw ace;
-			}
-		}
-		try {
-			final BufferedInputStream bis = new BufferedInputStream(fis);
-			try {
-				userCredentials = new Properties();
-				userCredentials.load(bis);
-			} finally {
-				bis.close();
-			}
-		} finally {
-			fis.close();
-		}
-	}
+    /*
+     * Read the password file.
+     */
+    private void loadPasswordFile() throws IOException {
+        FileInputStream fis;
+        try {
+            fis = new FileInputStream(passwordFile);
+        } catch (SecurityException e) {
+            if (userSuppliedPasswordFile || hasJavaHomePermission) {
+                throw e;
+            } else {
+                final FilePermission fp = new FilePermission(
+                        passwordFileDisplayName, "read");
+                AccessControlException ace = new AccessControlException(
+                        "access denied " + fp.toString());
+                ace.setStackTrace(e.getStackTrace());
+                throw ace;
+            }
+        }
+        try {
+            final BufferedInputStream bis = new BufferedInputStream(fis);
+            try {
+                userCredentials = new Properties();
+                userCredentials.load(bis);
+            } finally {
+                bis.close();
+            }
+        } finally {
+            fis.close();
+        }
+    }
 
-	/**
-	 * Get the username and password. This method does not return any value.
-	 * Instead, it sets global name and password variables.
-	 *
-	 * <p>
-	 * Also note that this method will set the username and password values in
-	 * the shared state in case subsequent LoginModules want to use them via
-	 * use/tryFirstPass.
-	 *
-	 * @param usePasswdFromSharedState
-	 *                                 boolean that tells this method whether to
-	 *                                 retrieve the
-	 *                                 password from the sharedState.
-	 */
-	private void getUsernamePassword(boolean usePasswdFromSharedState)
-			throws LoginException {
+    /**
+     * Get the username and password. This method does not return any value.
+     * Instead, it sets global name and password variables.
+     *
+     * <p>
+     * Also note that this method will set the username and password values in
+     * the shared state in case subsequent LoginModules want to use them via
+     * use/tryFirstPass.
+     *
+     * @param usePasswdFromSharedState
+     *                                 boolean that tells this method whether to
+     *                                 retrieve the
+     *                                 password from the sharedState.
+     */
+    private void getUsernamePassword(boolean usePasswdFromSharedState)
+            throws LoginException {
 
-		if (usePasswdFromSharedState) {
-			// use the password saved by the first module in the stack
-			username = (String) sharedState.get(USERNAME_KEY);
-			password = (char[]) sharedState.get(PASSWORD_KEY);
-			return;
-		}
+        if (usePasswdFromSharedState) {
+            // use the password saved by the first module in the stack
+            username = (String) sharedState.get(USERNAME_KEY);
+            password = (char[]) sharedState.get(PASSWORD_KEY);
+            return;
+        }
 
-		// acquire username and password
-		if (callbackHandler == null)
-			throw new LoginException("Error: no CallbackHandler available "
-					+ "to garner authentication information from the user");
+        // acquire username and password
+        if (callbackHandler == null)
+            throw new LoginException("Error: no CallbackHandler available "
+                    + "to garner authentication information from the user");
 
-		Callback[] callbacks = new Callback[2];
-		callbacks[0] = new NameCallback("username");
-		callbacks[1] = new PasswordCallback("password", false);
+        Callback[] callbacks = new Callback[2];
+        callbacks[0] = new NameCallback("username");
+        callbacks[1] = new PasswordCallback("password", false);
 
-		try {
-			callbackHandler.handle(callbacks);
-			username = ((NameCallback) callbacks[0]).getName();
-			char[] tmpPassword = ((PasswordCallback) callbacks[1])
-					.getPassword();
-			password = new char[tmpPassword.length];
-			System.arraycopy(tmpPassword, 0, password, 0, tmpPassword.length);
-			((PasswordCallback) callbacks[1]).clearPassword();
+        try {
+            callbackHandler.handle(callbacks);
+            username = ((NameCallback) callbacks[0]).getName();
+            char[] tmpPassword = ((PasswordCallback) callbacks[1])
+                    .getPassword();
+            password = new char[tmpPassword.length];
+            System.arraycopy(tmpPassword, 0, password, 0, tmpPassword.length);
+            ((PasswordCallback) callbacks[1]).clearPassword();
 
-		} catch (IOException ioe) {
-			LoginException le = new LoginException(ioe.toString());
-			throw EnvHelp.initCause(le, ioe);
-		} catch (UnsupportedCallbackException uce) {
-			LoginException le = new LoginException("Error: " + uce.getCallback()
-					.toString() + " not available to garner authentication "
-					+ "information from the user");
-			throw EnvHelp.initCause(le, uce);
-		}
-	}
+        } catch (IOException ioe) {
+            LoginException le = new LoginException(ioe.toString());
+            throw EnvHelp.initCause(le, ioe);
+        } catch (UnsupportedCallbackException uce) {
+            LoginException le = new LoginException("Error: " + uce.getCallback()
+                    .toString() + " not available to garner authentication "
+                    + "information from the user");
+            throw EnvHelp.initCause(le, uce);
+        }
+    }
 
-	/**
-	 * Clean out state because of a failed authentication attempt
-	 */
-	private void cleanState() {
-		username = null;
-		if (password != null) {
-			Arrays.fill(password, ' ');
-			password = null;
-		}
+    /**
+     * Clean out state because of a failed authentication attempt
+     */
+    private void cleanState() {
+        username = null;
+        if (password != null) {
+            Arrays.fill(password, ' ');
+            password = null;
+        }
 
-		if (clearPass) {
-			sharedState.remove(USERNAME_KEY);
-			sharedState.remove(PASSWORD_KEY);
-		}
-	}
+        if (clearPass) {
+            sharedState.remove(USERNAME_KEY);
+            sharedState.remove(PASSWORD_KEY);
+        }
+    }
 }

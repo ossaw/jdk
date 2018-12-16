@@ -48,68 +48,68 @@ import java.net.URL;
 
 public interface Soundbank {
 
-	/**
-	 * Obtains the name of the sound bank.
-	 * 
-	 * @return a <code>String</code> naming the sound bank
-	 */
-	public String getName();
+    /**
+     * Obtains the name of the sound bank.
+     * 
+     * @return a <code>String</code> naming the sound bank
+     */
+    public String getName();
 
-	/**
-	 * Obtains the version string for the sound bank.
-	 * 
-	 * @return a <code>String</code> that indicates the sound bank's version
-	 */
-	public String getVersion();
+    /**
+     * Obtains the version string for the sound bank.
+     * 
+     * @return a <code>String</code> that indicates the sound bank's version
+     */
+    public String getVersion();
 
-	/**
-	 * Obtains a <code>string</code> naming the company that provides the sound
-	 * bank
-	 * 
-	 * @return the vendor string
-	 */
-	public String getVendor();
+    /**
+     * Obtains a <code>string</code> naming the company that provides the sound
+     * bank
+     * 
+     * @return the vendor string
+     */
+    public String getVendor();
 
-	/**
-	 * Obtains a textual description of the sound bank, suitable for display.
-	 * 
-	 * @return a <code>String</code> that describes the sound bank
-	 */
-	public String getDescription();
+    /**
+     * Obtains a textual description of the sound bank, suitable for display.
+     * 
+     * @return a <code>String</code> that describes the sound bank
+     */
+    public String getDescription();
 
-	/**
-	 * Extracts a list of non-Instrument resources contained in the sound bank.
-	 * 
-	 * @return an array of resources, excluding instruments. If the sound bank
-	 *         contains no resources (other than instruments), returns an array
-	 *         of length 0.
-	 */
-	public SoundbankResource[] getResources();
+    /**
+     * Extracts a list of non-Instrument resources contained in the sound bank.
+     * 
+     * @return an array of resources, excluding instruments. If the sound bank
+     *         contains no resources (other than instruments), returns an array
+     *         of length 0.
+     */
+    public SoundbankResource[] getResources();
 
-	/**
-	 * Obtains a list of instruments contained in this sound bank.
-	 * 
-	 * @return an array of the <code>Instruments</code> in this
-	 *         <code>SoundBank</code> If the sound bank contains no instruments,
-	 *         returns an array of length 0.
-	 *
-	 * @see Synthesizer#getLoadedInstruments
-	 * @see #getInstrument(Patch)
-	 */
-	public Instrument[] getInstruments();
+    /**
+     * Obtains a list of instruments contained in this sound bank.
+     * 
+     * @return an array of the <code>Instruments</code> in this
+     *         <code>SoundBank</code> If the sound bank contains no instruments,
+     *         returns an array of length 0.
+     *
+     * @see Synthesizer#getLoadedInstruments
+     * @see #getInstrument(Patch)
+     */
+    public Instrument[] getInstruments();
 
-	/**
-	 * Obtains an <code>Instrument</code> from the given <code>Patch</code>.
-	 * 
-	 * @param patch
-	 *              a <code>Patch</code> object specifying the bank index and
-	 *              program change number
-	 * @return the requested instrument, or <code>null</code> if the sound bank
-	 *         doesn't contain that instrument
-	 *
-	 * @see #getInstruments
-	 * @see Synthesizer#loadInstruments(Soundbank, Patch[])
-	 */
-	public Instrument getInstrument(Patch patch);
+    /**
+     * Obtains an <code>Instrument</code> from the given <code>Patch</code>.
+     * 
+     * @param patch
+     *              a <code>Patch</code> object specifying the bank index and
+     *              program change number
+     * @return the requested instrument, or <code>null</code> if the sound bank
+     *         doesn't contain that instrument
+     *
+     * @see #getInstruments
+     * @see Synthesizer#loadInstruments(Soundbank, Patch[])
+     */
+    public Instrument getInstrument(Patch patch);
 
 }

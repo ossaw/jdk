@@ -60,18 +60,18 @@ import org.w3c.dom.Node;
  * Object Model (DOM) Level 3 XPath Specification</a>.
  */
 public interface XPathNamespace extends Node {
-	// XPathNodeType
-	/**
-	 * The node is a <code>Namespace</code>.
-	 */
-	public static final short XPATH_NAMESPACE_NODE = 13;
+    // XPathNodeType
+    /**
+     * The node is a <code>Namespace</code>.
+     */
+    public static final short XPATH_NAMESPACE_NODE = 13;
 
-	/**
-	 * The <code>Element</code> on which the namespace was in scope when it was
-	 * requested. This does not change on a returned namespace node even if the
-	 * document changes such that the namespace goes out of scope on that
-	 * element and this node is no longer found there by XPath.
-	 */
-	public Element getOwnerElement();
+    /**
+     * The <code>Element</code> on which the namespace was in scope when it was
+     * requested. This does not change on a returned namespace node even if the
+     * document changes such that the namespace goes out of scope on that
+     * element and this node is no longer found there by XPath.
+     */
+    public Element getOwnerElement();
 
 }

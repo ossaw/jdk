@@ -43,29 +43,29 @@ import com.sun.org.apache.xerces.internal.xni.parser.XMLInputSource;
  */
 public interface ExternalSubsetResolver extends XMLEntityResolver {
 
-	//
-	// ExternalSubsetResolver methods
-	//
+    //
+    // ExternalSubsetResolver methods
+    //
 
-	/**
-	 * <p>
-	 * Locates an external subset for documents which do not explicitly provide
-	 * one. If no external subset is provided, this method should return
-	 * <code>null</code>.
-	 * </p>
-	 *
-	 * @param grammarDescription
-	 *                           a description of the DTD
-	 *
-	 * @throws XNIException
-	 *                      Thrown on general error.
-	 * @throws IOException
-	 *                      Thrown if resolved entity stream cannot be opened or
-	 *                      some
-	 *                      other i/o error occurs.
-	 */
-	public XMLInputSource getExternalSubset(
-			XMLDTDDescription grammarDescription) throws XNIException,
-			IOException;
+    /**
+     * <p>
+     * Locates an external subset for documents which do not explicitly provide
+     * one. If no external subset is provided, this method should return
+     * <code>null</code>.
+     * </p>
+     *
+     * @param grammarDescription
+     *                           a description of the DTD
+     *
+     * @throws XNIException
+     *                      Thrown on general error.
+     * @throws IOException
+     *                      Thrown if resolved entity stream cannot be opened or
+     *                      some
+     *                      other i/o error occurs.
+     */
+    public XMLInputSource getExternalSubset(
+            XMLDTDDescription grammarDescription) throws XNIException,
+            IOException;
 
 } // interface ExternalSubsetResolver

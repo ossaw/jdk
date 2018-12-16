@@ -30,106 +30,106 @@ import java.security.ProtectionDomain;
  */
 
 public class IIOPProxyImpl implements IIOPProxy {
-	// special ACC used to initialize the IIOP stub
-	// the only allowed privilege is
-	// SerializablePermission("enableSubclassImplementation")
-	private static final AccessControlContext STUB_ACC;
+    // special ACC used to initialize the IIOP stub
+    // the only allowed privilege is
+    // SerializablePermission("enableSubclassImplementation")
+    private static final AccessControlContext STUB_ACC;
 
-	static {
-		Permissions p = new Permissions();
-		p.add(new SerializablePermission("enableSubclassImplementation"));
-		STUB_ACC = new AccessControlContext(new ProtectionDomain[] {
-				new ProtectionDomain(null, p) });
-	}
+    static {
+        Permissions p = new Permissions();
+        p.add(new SerializablePermission("enableSubclassImplementation"));
+        STUB_ACC = new AccessControlContext(new ProtectionDomain[] {
+                new ProtectionDomain(null, p) });
+    }
 
-	public IIOPProxyImpl() {}
+    public IIOPProxyImpl() {}
 
-	@Override
-	public boolean isStub(Object obj) {
-		return (obj instanceof Stub);
-	}
+    @Override
+    public boolean isStub(Object obj) {
+        return (obj instanceof Stub);
+    }
 
-	@Override
-	public Object getDelegate(Object stub) {
-		return ((Stub) stub)._get_delegate();
-	}
+    @Override
+    public Object getDelegate(Object stub) {
+        return ((Stub) stub)._get_delegate();
+    }
 
-	@Override
-	public void setDelegate(Object stub, Object delegate) {
-		((Stub) stub)._set_delegate((Delegate) delegate);
-	}
+    @Override
+    public void setDelegate(Object stub, Object delegate) {
+        ((Stub) stub)._set_delegate((Delegate) delegate);
+    }
 
-	@Override
-	public Object getOrb(Object stub) {
-		try {
-			return ((Stub) stub)._orb();
-		} catch (org.omg.CORBA.BAD_OPERATION x) {
-			throw new UnsupportedOperationException(x);
-		}
-	}
+    @Override
+    public Object getOrb(Object stub) {
+        try {
+            return ((Stub) stub)._orb();
+        } catch (org.omg.CORBA.BAD_OPERATION x) {
+            throw new UnsupportedOperationException(x);
+        }
+    }
 
-	@Override
-	public void connect(Object stub, Object orb) throws RemoteException {
-		((Stub) stub).connect((ORB) orb);
-	}
+    @Override
+    public void connect(Object stub, Object orb) throws RemoteException {
+        ((Stub) stub).connect((ORB) orb);
+    }
 
-	@Override
-	public boolean isOrb(Object obj) {
-		return (obj instanceof ORB);
-	}
+    @Override
+    public boolean isOrb(Object obj) {
+        return (obj instanceof ORB);
+    }
 
-	@Override
-	public Object createOrb(String[] args, Properties props) {
-		return ORB.init(args, props);
-	}
+    @Override
+    public Object createOrb(String[] args, Properties props) {
+        return ORB.init(args, props);
+    }
 
-	@Override
-	public Object stringToObject(Object orb, String str) {
-		return ((ORB) orb).string_to_object(str);
-	}
+    @Override
+    public Object stringToObject(Object orb, String str) {
+        return ((ORB) orb).string_to_object(str);
+    }
 
-	@Override
-	public String objectToString(Object orb, Object obj) {
-		return ((ORB) orb).object_to_string((org.omg.CORBA.Object) obj);
-	}
+    @Override
+    public String objectToString(Object orb, Object obj) {
+        return ((ORB) orb).object_to_string((org.omg.CORBA.Object) obj);
+    }
 
-	@Override
-	@SuppressWarnings("unchecked")
-	public <T> T narrow(Object narrowFrom, Class<T> narrowTo) {
-		return (T) PortableRemoteObject.narrow(narrowFrom, narrowTo);
-	}
+    @Override
+    @SuppressWarnings("unchecked")
+    public <T> T narrow(Object narrowFrom, Class<T> narrowTo) {
+        return (T) PortableRemoteObject.narrow(narrowFrom, narrowTo);
+    }
 
-	@Override
-	public void exportObject(Remote obj) throws RemoteException {
-		PortableRemoteObject.exportObject(obj);
-	}
+    @Override
+    public void exportObject(Remote obj) throws RemoteException {
+        PortableRemoteObject.exportObject(obj);
+    }
 
-	@Override
-	public void unexportObject(Remote obj) throws NoSuchObjectException {
-		PortableRemoteObject.unexportObject(obj);
-	}
+    @Override
+    public void unexportObject(Remote obj) throws NoSuchObjectException {
+        PortableRemoteObject.unexportObject(obj);
+    }
 
-	@Override
-	public Remote toStub(final Remote obj) throws NoSuchObjectException {
-		if (System.getSecurityManager() == null) {
-			return PortableRemoteObject.toStub(obj);
-		} else {
-			try {
-				return AccessController.doPrivileged(
-						new PrivilegedExceptionAction<Remote>() {
+    @Override
+    public Remote toStub(final Remote obj) throws NoSuchObjectException {
+        if (System.getSecurityManager() == null) {
+            return PortableRemoteObject.toStub(obj);
+        } else {
+            try {
+                return AccessController.doPrivileged(
+                        new PrivilegedExceptionAction<Remote>() {
 
-							@Override
-							public Remote run() throws Exception {
-								return PortableRemoteObject.toStub(obj);
-							}
-						}, STUB_ACC);
-			} catch (PrivilegedActionException e) {
-				if (e.getException() instanceof NoSuchObjectException) {
-					throw (NoSuchObjectException) e.getException();
-				}
-				throw new RuntimeException("Unexpected exception type", e
-						.getException());
-			}
-		}
-	}
+                            @Override
+                            public Remote run() throws Exception {
+                                return PortableRemoteObject.toStub(obj);
+                            }
+                        }, STUB_ACC);
+            } catch (PrivilegedActionException e) {
+                if (e.getException() instanceof NoSuchObjectException) {
+                    throw (NoSuchObjectException) e.getException();
+                }
+                throw new RuntimeException("Unexpected exception type", e
+                        .getException());
+            }
+        }
+    }
 }

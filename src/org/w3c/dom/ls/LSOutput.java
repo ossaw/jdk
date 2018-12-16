@@ -50,72 +50,72 @@ package org.w3c.dom.ls;
  * Object Model (DOM) Level 3 Load and Save Specification</a>.
  */
 public interface LSOutput {
-	/**
-	 * An attribute of a language and binding dependent type that represents a
-	 * writable stream to which 16-bit units can be output.
-	 */
-	public java.io.Writer getCharacterStream();
+    /**
+     * An attribute of a language and binding dependent type that represents a
+     * writable stream to which 16-bit units can be output.
+     */
+    public java.io.Writer getCharacterStream();
 
-	/**
-	 * An attribute of a language and binding dependent type that represents a
-	 * writable stream to which 16-bit units can be output.
-	 */
-	public void setCharacterStream(java.io.Writer characterStream);
+    /**
+     * An attribute of a language and binding dependent type that represents a
+     * writable stream to which 16-bit units can be output.
+     */
+    public void setCharacterStream(java.io.Writer characterStream);
 
-	/**
-	 * An attribute of a language and binding dependent type that represents a
-	 * writable stream of bytes.
-	 */
-	public java.io.OutputStream getByteStream();
+    /**
+     * An attribute of a language and binding dependent type that represents a
+     * writable stream of bytes.
+     */
+    public java.io.OutputStream getByteStream();
 
-	/**
-	 * An attribute of a language and binding dependent type that represents a
-	 * writable stream of bytes.
-	 */
-	public void setByteStream(java.io.OutputStream byteStream);
+    /**
+     * An attribute of a language and binding dependent type that represents a
+     * writable stream of bytes.
+     */
+    public void setByteStream(java.io.OutputStream byteStream);
 
-	/**
-	 * The system identifier, a URI reference [
-	 * <a href='http://www.ietf.org/rfc/rfc2396.txt'>IETF RFC 2396</a>], for
-	 * this output destination. <br>
-	 * If the system ID is a relative URI reference (see section 5 in [
-	 * <a href='http://www.ietf.org/rfc/rfc2396.txt'>IETF RFC 2396</a>]), the
-	 * behavior is implementation dependent.
-	 */
-	public String getSystemId();
+    /**
+     * The system identifier, a URI reference [
+     * <a href='http://www.ietf.org/rfc/rfc2396.txt'>IETF RFC 2396</a>], for
+     * this output destination. <br>
+     * If the system ID is a relative URI reference (see section 5 in [
+     * <a href='http://www.ietf.org/rfc/rfc2396.txt'>IETF RFC 2396</a>]), the
+     * behavior is implementation dependent.
+     */
+    public String getSystemId();
 
-	/**
-	 * The system identifier, a URI reference [
-	 * <a href='http://www.ietf.org/rfc/rfc2396.txt'>IETF RFC 2396</a>], for
-	 * this output destination. <br>
-	 * If the system ID is a relative URI reference (see section 5 in [
-	 * <a href='http://www.ietf.org/rfc/rfc2396.txt'>IETF RFC 2396</a>]), the
-	 * behavior is implementation dependent.
-	 */
-	public void setSystemId(String systemId);
+    /**
+     * The system identifier, a URI reference [
+     * <a href='http://www.ietf.org/rfc/rfc2396.txt'>IETF RFC 2396</a>], for
+     * this output destination. <br>
+     * If the system ID is a relative URI reference (see section 5 in [
+     * <a href='http://www.ietf.org/rfc/rfc2396.txt'>IETF RFC 2396</a>]), the
+     * behavior is implementation dependent.
+     */
+    public void setSystemId(String systemId);
 
-	/**
-	 * The character encoding to use for the output. The encoding must be a
-	 * string acceptable for an XML encoding declaration ([
-	 * <a href='http://www.w3.org/TR/2004/REC-xml-20040204'>XML 1.0</a>] section
-	 * 4.3.3 "Character Encoding in Entities"), it is recommended that character
-	 * encodings registered (as charsets) with the Internet Assigned Numbers
-	 * Authority [
-	 * <a href='ftp://ftp.isi.edu/in-notes/iana/assignments/character-sets'>IANA
-	 * -CHARSETS</a>] should be referred to using their registered names.
-	 */
-	public String getEncoding();
+    /**
+     * The character encoding to use for the output. The encoding must be a
+     * string acceptable for an XML encoding declaration ([
+     * <a href='http://www.w3.org/TR/2004/REC-xml-20040204'>XML 1.0</a>] section
+     * 4.3.3 "Character Encoding in Entities"), it is recommended that character
+     * encodings registered (as charsets) with the Internet Assigned Numbers
+     * Authority [
+     * <a href='ftp://ftp.isi.edu/in-notes/iana/assignments/character-sets'>IANA
+     * -CHARSETS</a>] should be referred to using their registered names.
+     */
+    public String getEncoding();
 
-	/**
-	 * The character encoding to use for the output. The encoding must be a
-	 * string acceptable for an XML encoding declaration ([
-	 * <a href='http://www.w3.org/TR/2004/REC-xml-20040204'>XML 1.0</a>] section
-	 * 4.3.3 "Character Encoding in Entities"), it is recommended that character
-	 * encodings registered (as charsets) with the Internet Assigned Numbers
-	 * Authority [
-	 * <a href='ftp://ftp.isi.edu/in-notes/iana/assignments/character-sets'>IANA
-	 * -CHARSETS</a>] should be referred to using their registered names.
-	 */
-	public void setEncoding(String encoding);
+    /**
+     * The character encoding to use for the output. The encoding must be a
+     * string acceptable for an XML encoding declaration ([
+     * <a href='http://www.w3.org/TR/2004/REC-xml-20040204'>XML 1.0</a>] section
+     * 4.3.3 "Character Encoding in Entities"), it is recommended that character
+     * encodings registered (as charsets) with the Internet Assigned Numbers
+     * Authority [
+     * <a href='ftp://ftp.isi.edu/in-notes/iana/assignments/character-sets'>IANA
+     * -CHARSETS</a>] should be referred to using their registered names.
+     */
+    public void setEncoding(String encoding);
 
 }

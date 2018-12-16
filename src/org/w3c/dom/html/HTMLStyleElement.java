@@ -25,27 +25,27 @@ package org.w3c.dom.html;
  * Model (DOM) Level 2 Specification</a>.
  */
 public interface HTMLStyleElement extends HTMLElement {
-	/**
-	 * Enables/disables the style sheet.
-	 */
-	public boolean getDisabled();
+    /**
+     * Enables/disables the style sheet.
+     */
+    public boolean getDisabled();
 
-	public void setDisabled(boolean disabled);
+    public void setDisabled(boolean disabled);
 
-	/**
-	 * Designed for use with one or more target media. See the media attribute
-	 * definition in HTML 4.0.
-	 */
-	public String getMedia();
+    /**
+     * Designed for use with one or more target media. See the media attribute
+     * definition in HTML 4.0.
+     */
+    public String getMedia();
 
-	public void setMedia(String media);
+    public void setMedia(String media);
 
-	/**
-	 * The content type pf the style sheet language. See the type attribute
-	 * definition in HTML 4.0.
-	 */
-	public String getType();
+    /**
+     * The content type pf the style sheet language. See the type attribute
+     * definition in HTML 4.0.
+     */
+    public String getType();
 
-	public void setType(String type);
+    public void setType(String type);
 
 }

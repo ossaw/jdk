@@ -27,30 +27,30 @@ package javax.lang.model.element;
  *
  * &#64;Nesting(TOP_LEVEL)
  * public class NestingExamples {
- * 	&#64;Nesting(MEMBER)
- * 	static class MemberClass1 {}
+ *     &#64;Nesting(MEMBER)
+ *     static class MemberClass1 {}
  *
- * 	&#64;Nesting(MEMBER)
- * 	class MemberClass2 {}
+ *     &#64;Nesting(MEMBER)
+ *     class MemberClass2 {}
  *
- * 	public static void main(String... argv) {
- * 		&#64;Nesting(LOCAL)
- * 		class LocalClass {}
- * 		;
+ *     public static void main(String... argv) {
+ *         &#64;Nesting(LOCAL)
+ *         class LocalClass {}
+ *         ;
  *
- * 		Class&lt;?&gt;[] classes = { NestingExamples.class, MemberClass1.class,
- * 				MemberClass2.class, LocalClass.class };
+ *         Class&lt;?&gt;[] classes = { NestingExamples.class, MemberClass1.class,
+ *                 MemberClass2.class, LocalClass.class };
  *
- * 		for (Class&lt;?&gt; clazz : classes) {
- * 			System.out.format("%s is %s%n", clazz.getName(), clazz
- * 					.getAnnotation(Nesting.class).value());
- * 		}
- * 	}
+ *         for (Class&lt;?&gt; clazz : classes) {
+ *             System.out.format("%s is %s%n", clazz.getName(), clazz
+ *                     .getAnnotation(Nesting.class).value());
+ *         }
+ *     }
  * }
  *
  * &#64;Retention(RUNTIME)
  * &#64;interface Nesting {
- * 	NestingKind value();
+ *     NestingKind value();
  * }
  * </pre>
  * 
@@ -62,35 +62,35 @@ package javax.lang.model.element;
  * @since 1.6
  */
 public enum NestingKind {
-	/**
-	 * A top-level type, not contained within another type.
-	 */
-	TOP_LEVEL,
+    /**
+     * A top-level type, not contained within another type.
+     */
+    TOP_LEVEL,
 
-	/**
-	 * A type that is a named member of another type.
-	 */
-	MEMBER,
+    /**
+     * A type that is a named member of another type.
+     */
+    MEMBER,
 
-	/**
-	 * A named type declared within a construct other than a type.
-	 */
-	LOCAL,
+    /**
+     * A named type declared within a construct other than a type.
+     */
+    LOCAL,
 
-	/**
-	 * A type without a name.
-	 */
-	ANONYMOUS;
+    /**
+     * A type without a name.
+     */
+    ANONYMOUS;
 
-	/**
-	 * Does this constant correspond to a nested type element? A <i>nested</i>
-	 * type element is any that is not top-level. An <i>inner</i> type element
-	 * is any nested type element that is not {@linkplain Modifier#STATIC
-	 * static}.
-	 * 
-	 * @return whether or not the constant is nested
-	 */
-	public boolean isNested() {
-		return this != TOP_LEVEL;
-	}
+    /**
+     * Does this constant correspond to a nested type element? A <i>nested</i>
+     * type element is any that is not top-level. An <i>inner</i> type element
+     * is any nested type element that is not {@linkplain Modifier#STATIC
+     * static}.
+     * 
+     * @return whether or not the constant is nested
+     */
+    public boolean isNested() {
+        return this != TOP_LEVEL;
+    }
 }

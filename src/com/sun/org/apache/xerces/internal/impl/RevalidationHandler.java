@@ -62,15 +62,15 @@ import com.sun.org.apache.xerces.internal.xni.parser.XMLDocumentFilter;
  */
 public interface RevalidationHandler extends XMLDocumentFilter {
 
-	/**
-	 * Character content.
-	 *
-	 * @param data
-	 *             The character data.
-	 * @param augs
-	 *             Augmentations
-	 * @return True if data is whitespace only
-	 */
-	public boolean characterData(String data, Augmentations augs);
+    /**
+     * Character content.
+     *
+     * @param data
+     *             The character data.
+     * @param augs
+     *             Augmentations
+     * @return True if data is whitespace only
+     */
+    public boolean characterData(String data, Augmentations augs);
 
 } // interface DOMRevalidationHandler

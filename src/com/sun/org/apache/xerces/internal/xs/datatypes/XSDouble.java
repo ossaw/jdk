@@ -26,9 +26,9 @@ package com.sun.org.apache.xerces.internal.xs.datatypes;
  */
 public interface XSDouble {
 
-	/**
-	 * @return a double value
-	 */
-	public double getValue();
+    /**
+     * @return a double value
+     */
+    public double getValue();
 
 }

@@ -20,27 +20,27 @@ import com.sun.jmx.snmp.SnmpTooBigException;
  * @since 1.5
  */
 public interface SnmpSecurityParameters {
-	/**
-	 * BER encoding of security parameters.
-	 * 
-	 * @param outputBytes
-	 *                    Array to fill.
-	 * @return Encoded parameters length.
-	 */
-	int encode(byte[] outputBytes) throws SnmpTooBigException;
+    /**
+     * BER encoding of security parameters.
+     * 
+     * @param outputBytes
+     *                    Array to fill.
+     * @return Encoded parameters length.
+     */
+    int encode(byte[] outputBytes) throws SnmpTooBigException;
 
-	/**
-	 * BER decoding of security parameters.
-	 * 
-	 * @param params
-	 *               Encoded parameters.
-	 */
-	void decode(byte[] params) throws SnmpStatusException;
+    /**
+     * BER decoding of security parameters.
+     * 
+     * @param params
+     *               Encoded parameters.
+     */
+    void decode(byte[] params) throws SnmpStatusException;
 
-	/**
-	 * Principal coded inside the security parameters.
-	 * 
-	 * @return The security principal.
-	 */
-	String getPrincipal();
+    /**
+     * Principal coded inside the security parameters.
+     * 
+     * @return The security principal.
+     */
+    String getPrincipal();
 }

@@ -16,11 +16,11 @@ package java.nio.channels;
 
 public class AsynchronousCloseException extends ClosedChannelException {
 
-	private static final long serialVersionUID = 6891178312432313966L;
+    private static final long serialVersionUID = 6891178312432313966L;
 
-	/**
-	 * Constructs an instance of this class.
-	 */
-	public AsynchronousCloseException() {}
+    /**
+     * Constructs an instance of this class.
+     */
+    public AsynchronousCloseException() {}
 
 }

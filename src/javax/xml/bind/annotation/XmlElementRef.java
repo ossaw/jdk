@@ -214,69 +214,69 @@ import static java.lang.annotation.ElementType.METHOD;
 @Retention(RUNTIME)
 @Target({ FIELD, METHOD })
 public @interface XmlElementRef {
-	/**
-	 * The Java type being referenced.
-	 * <p>
-	 * If the value is DEFAULT.class, the type is inferred from the the type of
-	 * the JavaBean property.
-	 */
-	Class type() default DEFAULT.class;
+    /**
+     * The Java type being referenced.
+     * <p>
+     * If the value is DEFAULT.class, the type is inferred from the the type of
+     * the JavaBean property.
+     */
+    Class type() default DEFAULT.class;
 
-	/**
-	 * This parameter and {@link #name()} are used to determine the XML element
-	 * for the JavaBean property.
-	 *
-	 * <p>
-	 * If <tt>type()</tt> is <tt>JAXBElement.class</tt> , then
-	 * <tt>namespace()</tt> and <tt>name()</tt> point to a factory method with
-	 * {@link XmlElementDecl}. The XML element name is the element name from the
-	 * factory method's {@link XmlElementDecl} annotation or if an element from
-	 * its substitution group (of which it is a head element) has been
-	 * substituted in the XML document, then the element name is from the
-	 * {@link XmlElementDecl} on the substituted element.
-	 *
-	 * <p>
-	 * If {@link #type()} is not <tt>JAXBElement.class</tt>, then the XML
-	 * element name is the XML element name statically associated with the type
-	 * using the annotation {@link XmlRootElement} on the type. If the type is
-	 * not annotated with an {@link XmlElementDecl}, then it is an error.
-	 *
-	 * <p>
-	 * If <tt>type()</tt> is not <tt>JAXBElement.class</tt>, then this value
-	 * must be "".
-	 *
-	 */
-	String namespace() default "";
+    /**
+     * This parameter and {@link #name()} are used to determine the XML element
+     * for the JavaBean property.
+     *
+     * <p>
+     * If <tt>type()</tt> is <tt>JAXBElement.class</tt> , then
+     * <tt>namespace()</tt> and <tt>name()</tt> point to a factory method with
+     * {@link XmlElementDecl}. The XML element name is the element name from the
+     * factory method's {@link XmlElementDecl} annotation or if an element from
+     * its substitution group (of which it is a head element) has been
+     * substituted in the XML document, then the element name is from the
+     * {@link XmlElementDecl} on the substituted element.
+     *
+     * <p>
+     * If {@link #type()} is not <tt>JAXBElement.class</tt>, then the XML
+     * element name is the XML element name statically associated with the type
+     * using the annotation {@link XmlRootElement} on the type. If the type is
+     * not annotated with an {@link XmlElementDecl}, then it is an error.
+     *
+     * <p>
+     * If <tt>type()</tt> is not <tt>JAXBElement.class</tt>, then this value
+     * must be "".
+     *
+     */
+    String namespace() default "";
 
-	/**
-	 *
-	 * @see #namespace()
-	 */
-	String name() default "##default";
+    /**
+     *
+     * @see #namespace()
+     */
+    String name() default "##default";
 
-	/**
-	 * Used in {@link XmlElementRef#type()} to signal that the type be inferred
-	 * from the signature of the property.
-	 */
-	static final class DEFAULT {}
+    /**
+     * Used in {@link XmlElementRef#type()} to signal that the type be inferred
+     * from the signature of the property.
+     */
+    static final class DEFAULT {}
 
-	/**
-	 * Customize the element declaration to be required.
-	 * <p>
-	 * If required() is true, then Javabean property is mapped to an XML schema
-	 * element declaration with minOccurs="1". maxOccurs is "1" for a single
-	 * valued property and "unbounded" for a multivalued property.
-	 *
-	 * <p>
-	 * If required() is false, then the Javabean property is mapped to XML
-	 * Schema element declaration with minOccurs="0". maxOccurs is "1" for a
-	 * single valued property and "unbounded" for a multivalued property.
-	 *
-	 * <p>
-	 * For compatibility with JAXB 2.1, this property defaults to <tt>true</tt>,
-	 * despite the fact that {@link XmlElement#required()} defaults to false.
-	 *
-	 * @since 2.2
-	 */
-	boolean required() default true;
+    /**
+     * Customize the element declaration to be required.
+     * <p>
+     * If required() is true, then Javabean property is mapped to an XML schema
+     * element declaration with minOccurs="1". maxOccurs is "1" for a single
+     * valued property and "unbounded" for a multivalued property.
+     *
+     * <p>
+     * If required() is false, then the Javabean property is mapped to XML
+     * Schema element declaration with minOccurs="0". maxOccurs is "1" for a
+     * single valued property and "unbounded" for a multivalued property.
+     *
+     * <p>
+     * For compatibility with JAXB 2.1, this property defaults to <tt>true</tt>,
+     * despite the fact that {@link XmlElement#required()} defaults to false.
+     *
+     * @since 2.2
+     */
+    boolean required() default true;
 }

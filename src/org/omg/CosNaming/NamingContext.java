@@ -19,4 +19,4 @@ package org.omg.CosNaming;
  * CORBA COS Naming Specification.</a>
  */
 public interface NamingContext extends NamingContextOperations,
-		org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity {} // interface NamingContext
+        org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity {} // interface NamingContext

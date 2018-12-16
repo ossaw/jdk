@@ -15,25 +15,25 @@ import java.io.NotSerializableException;
  * @since 1.4
  */
 public class BackingStoreException extends Exception {
-	/**
-	 * Constructs a BackingStoreException with the specified detail message.
-	 *
-	 * @param s
-	 *          the detail message.
-	 */
-	public BackingStoreException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs a BackingStoreException with the specified detail message.
+     *
+     * @param s
+     *          the detail message.
+     */
+    public BackingStoreException(String s) {
+        super(s);
+    }
 
-	/**
-	 * Constructs a BackingStoreException with the specified cause.
-	 *
-	 * @param cause
-	 *              the cause
-	 */
-	public BackingStoreException(Throwable cause) {
-		super(cause);
-	}
+    /**
+     * Constructs a BackingStoreException with the specified cause.
+     *
+     * @param cause
+     *              the cause
+     */
+    public BackingStoreException(Throwable cause) {
+        super(cause);
+    }
 
-	private static final long serialVersionUID = 859796500401108469L;
+    private static final long serialVersionUID = 859796500401108469L;
 }

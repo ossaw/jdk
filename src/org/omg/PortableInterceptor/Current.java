@@ -25,4 +25,4 @@ package org.omg.PortableInterceptor;
  * Interceptor's thread scope PICurrent.
  */
 public interface Current extends CurrentOperations, org.omg.CORBA.Current,
-		org.omg.CORBA.portable.IDLEntity {} // interface Current
+        org.omg.CORBA.portable.IDLEntity {} // interface Current

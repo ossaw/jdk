@@ -13,10 +13,10 @@ package org.omg.PortableServer;
  * the created POA.
  */
 public interface ImplicitActivationPolicyOperations extends
-		org.omg.CORBA.PolicyOperations {
+        org.omg.CORBA.PolicyOperations {
 
-	/**
-	 * specifies the policy value
-	 */
-	org.omg.PortableServer.ImplicitActivationPolicyValue value();
+    /**
+     * specifies the policy value
+     */
+    org.omg.PortableServer.ImplicitActivationPolicyValue value();
 } // interface ImplicitActivationPolicyOperations

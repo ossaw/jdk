@@ -36,71 +36,71 @@ import org.w3c.dom.Element;
  */
 class XSDUniqueOrKeyTraverser extends XSDAbstractIDConstraintTraverser {
 
-	public XSDUniqueOrKeyTraverser(XSDHandler handler,
-			XSAttributeChecker gAttrCheck) {
-		super(handler, gAttrCheck);
-	}
+    public XSDUniqueOrKeyTraverser(XSDHandler handler,
+            XSAttributeChecker gAttrCheck) {
+        super(handler, gAttrCheck);
+    }
 
-	void traverse(Element uElem, XSElementDecl element,
-			XSDocumentInfo schemaDoc, SchemaGrammar grammar) {
+    void traverse(Element uElem, XSElementDecl element,
+            XSDocumentInfo schemaDoc, SchemaGrammar grammar) {
 
-		// General Attribute Checking
-		Object[] attrValues = fAttrChecker.checkAttributes(uElem, false,
-				schemaDoc);
+        // General Attribute Checking
+        Object[] attrValues = fAttrChecker.checkAttributes(uElem, false,
+                schemaDoc);
 
-		// create identity constraint
-		String uName = (String) attrValues[XSAttributeChecker.ATTIDX_NAME];
+        // create identity constraint
+        String uName = (String) attrValues[XSAttributeChecker.ATTIDX_NAME];
 
-		if (uName == null) {
-			reportSchemaError("s4s-att-must-appear", new Object[] { DOMUtil
-					.getLocalName(uElem), SchemaSymbols.ATT_NAME }, uElem);
-			// return this array back to pool
-			fAttrChecker.returnAttrArray(attrValues, schemaDoc);
-			return;
-		}
+        if (uName == null) {
+            reportSchemaError("s4s-att-must-appear", new Object[] { DOMUtil
+                    .getLocalName(uElem), SchemaSymbols.ATT_NAME }, uElem);
+            // return this array back to pool
+            fAttrChecker.returnAttrArray(attrValues, schemaDoc);
+            return;
+        }
 
-		UniqueOrKey uniqueOrKey = null;
-		if (DOMUtil.getLocalName(uElem).equals(SchemaSymbols.ELT_UNIQUE)) {
-			uniqueOrKey = new UniqueOrKey(schemaDoc.fTargetNamespace, uName,
-					element.fName, IdentityConstraint.IC_UNIQUE);
-		} else {
-			uniqueOrKey = new UniqueOrKey(schemaDoc.fTargetNamespace, uName,
-					element.fName, IdentityConstraint.IC_KEY);
-		}
-		// it's XSDElementTraverser's job to ensure that there's no
-		// duplication (or if there is that restriction is involved
-		// and there's identity).
+        UniqueOrKey uniqueOrKey = null;
+        if (DOMUtil.getLocalName(uElem).equals(SchemaSymbols.ELT_UNIQUE)) {
+            uniqueOrKey = new UniqueOrKey(schemaDoc.fTargetNamespace, uName,
+                    element.fName, IdentityConstraint.IC_UNIQUE);
+        } else {
+            uniqueOrKey = new UniqueOrKey(schemaDoc.fTargetNamespace, uName,
+                    element.fName, IdentityConstraint.IC_KEY);
+        }
+        // it's XSDElementTraverser's job to ensure that there's no
+        // duplication (or if there is that restriction is involved
+        // and there's identity).
 
-		// If errors occurred in traversing the identity constraint, then don't
-		// add it to the schema, to avoid errors when processing the instance.
-		if (traverseIdentityConstraint(uniqueOrKey, uElem, schemaDoc,
-				attrValues)) {
-			// and stuff this in the grammar
-			if (grammar.getIDConstraintDecl(uniqueOrKey
-					.getIdentityConstraintName()) == null) {
-				grammar.addIDConstraintDecl(element, uniqueOrKey);
-			}
+        // If errors occurred in traversing the identity constraint, then don't
+        // add it to the schema, to avoid errors when processing the instance.
+        if (traverseIdentityConstraint(uniqueOrKey, uElem, schemaDoc,
+                attrValues)) {
+            // and stuff this in the grammar
+            if (grammar.getIDConstraintDecl(uniqueOrKey
+                    .getIdentityConstraintName()) == null) {
+                grammar.addIDConstraintDecl(element, uniqueOrKey);
+            }
 
-			final String loc = fSchemaHandler.schemaDocument2SystemId(
-					schemaDoc);
-			final IdentityConstraint idc = grammar.getIDConstraintDecl(
-					uniqueOrKey.getIdentityConstraintName(), loc);
-			if (idc == null) {
-				grammar.addIDConstraintDecl(element, uniqueOrKey, loc);
-			}
+            final String loc = fSchemaHandler.schemaDocument2SystemId(
+                    schemaDoc);
+            final IdentityConstraint idc = grammar.getIDConstraintDecl(
+                    uniqueOrKey.getIdentityConstraintName(), loc);
+            if (idc == null) {
+                grammar.addIDConstraintDecl(element, uniqueOrKey, loc);
+            }
 
-			// handle duplicates
-			if (fSchemaHandler.fTolerateDuplicates) {
-				if (idc != null) {
-					if (idc instanceof UniqueOrKey) {
-						uniqueOrKey = (UniqueOrKey) uniqueOrKey;
-					}
-				}
-				fSchemaHandler.addIDConstraintDecl(uniqueOrKey);
-			}
-		}
+            // handle duplicates
+            if (fSchemaHandler.fTolerateDuplicates) {
+                if (idc != null) {
+                    if (idc instanceof UniqueOrKey) {
+                        uniqueOrKey = (UniqueOrKey) uniqueOrKey;
+                    }
+                }
+                fSchemaHandler.addIDConstraintDecl(uniqueOrKey);
+            }
+        }
 
-		// and fix up attributeChecker
-		fAttrChecker.returnAttrArray(attrValues, schemaDoc);
-	} // traverse(Element,XSDElementDecl,XSDocumentInfo, SchemaGrammar)
+        // and fix up attributeChecker
+        fAttrChecker.returnAttrArray(attrValues, schemaDoc);
+    } // traverse(Element,XSDElementDecl,XSDocumentInfo, SchemaGrammar)
 } // XSDUniqueOrKeyTraverser

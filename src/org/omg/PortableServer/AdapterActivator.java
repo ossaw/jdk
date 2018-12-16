@@ -15,4 +15,4 @@ package org.omg.PortableServer;
  * value of TRUE.
  */
 public interface AdapterActivator extends AdapterActivatorOperations,
-		org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity {} // interface AdapterActivator
+        org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity {} // interface AdapterActivator

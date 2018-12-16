@@ -13,10 +13,10 @@ package org.omg.PortableServer;
  * created POA. The default is TRANSIENT.
  */
 public interface LifespanPolicyOperations extends
-		org.omg.CORBA.PolicyOperations {
+        org.omg.CORBA.PolicyOperations {
 
-	/**
-	 * specifies the policy value
-	 */
-	org.omg.PortableServer.LifespanPolicyValue value();
+    /**
+     * specifies the policy value
+     */
+    org.omg.PortableServer.LifespanPolicyValue value();
 } // interface LifespanPolicyOperations

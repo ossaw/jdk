@@ -26,20 +26,20 @@ import javax.imageio.ImageWriter;
  */
 public interface IIOWriteWarningListener extends EventListener {
 
-	/**
-	 * Reports the occurrence of a non-fatal error in encoding. Encoding will
-	 * continue following the call to this method. The application may choose to
-	 * display a dialog, print the warning to the console, ignore the warning,
-	 * or take any other action it chooses.
-	 *
-	 * @param source
-	 *                   the <code>ImageWriter</code> object calling this
-	 *                   method.
-	 * @param imageIndex
-	 *                   the index, starting with 0, of the image generating the
-	 *                   warning.
-	 * @param warning
-	 *                   a <code>String</code> containing the warning.
-	 */
-	void warningOccurred(ImageWriter source, int imageIndex, String warning);
+    /**
+     * Reports the occurrence of a non-fatal error in encoding. Encoding will
+     * continue following the call to this method. The application may choose to
+     * display a dialog, print the warning to the console, ignore the warning,
+     * or take any other action it chooses.
+     *
+     * @param source
+     *                   the <code>ImageWriter</code> object calling this
+     *                   method.
+     * @param imageIndex
+     *                   the index, starting with 0, of the image generating the
+     *                   warning.
+     * @param warning
+     *                   a <code>String</code> containing the warning.
+     */
+    void warningOccurred(ImageWriter source, int imageIndex, String warning);
 }

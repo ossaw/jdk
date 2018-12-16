@@ -14,24 +14,24 @@ package java.lang;
  * @since JDK1.0
  */
 public class IncompatibleClassChangeError extends LinkageError {
-	private static final long serialVersionUID = -4914975503642802119L;
+    private static final long serialVersionUID = -4914975503642802119L;
 
-	/**
-	 * Constructs an <code>IncompatibleClassChangeError</code> with no detail
-	 * message.
-	 */
-	public IncompatibleClassChangeError() {
-		super();
-	}
+    /**
+     * Constructs an <code>IncompatibleClassChangeError</code> with no detail
+     * message.
+     */
+    public IncompatibleClassChangeError() {
+        super();
+    }
 
-	/**
-	 * Constructs an <code>IncompatibleClassChangeError</code> with the
-	 * specified detail message.
-	 *
-	 * @param s
-	 *          the detail message.
-	 */
-	public IncompatibleClassChangeError(String s) {
-		super(s);
-	}
+    /**
+     * Constructs an <code>IncompatibleClassChangeError</code> with the
+     * specified detail message.
+     *
+     * @param s
+     *          the detail message.
+     */
+    public IncompatibleClassChangeError(String s) {
+        super(s);
+    }
 }

@@ -14,4 +14,4 @@ package org.omg.DynamicAny;
  * struct.
  */
 public interface DynStruct extends DynStructOperations,
-		org.omg.DynamicAny.DynAny, org.omg.CORBA.portable.IDLEntity {} // interface DynStruct
+        org.omg.DynamicAny.DynAny, org.omg.CORBA.portable.IDLEntity {} // interface DynStruct

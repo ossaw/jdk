@@ -23,4 +23,4 @@ package org.omg.PortableInterceptor;
  * @see ServerRequestInfo
  */
 public interface RequestInfo extends RequestInfoOperations,
-		org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity {} // interface RequestInfo
+        org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity {} // interface RequestInfo

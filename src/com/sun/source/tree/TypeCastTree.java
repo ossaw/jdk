@@ -22,7 +22,7 @@ package com.sun.source.tree;
  */
 @jdk.Exported
 public interface TypeCastTree extends ExpressionTree {
-	Tree getType();
+    Tree getType();
 
-	ExpressionTree getExpression();
+    ExpressionTree getExpression();
 }

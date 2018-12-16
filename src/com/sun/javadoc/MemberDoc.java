@@ -20,8 +20,8 @@ package com.sun.javadoc;
  */
 public interface MemberDoc extends ProgramElementDoc {
 
-	/**
-	 * Returns true if this member was synthesized by the compiler.
-	 */
-	boolean isSynthetic();
+    /**
+     * Returns true if this member was synthesized by the compiler.
+     */
+    boolean isSynthetic();
 }

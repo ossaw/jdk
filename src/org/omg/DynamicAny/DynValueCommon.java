@@ -13,4 +13,4 @@ package org.omg.DynamicAny;
  * DynValueBox interfaces.
  */
 public interface DynValueCommon extends DynValueCommonOperations,
-		org.omg.DynamicAny.DynAny, org.omg.CORBA.portable.IDLEntity {} // interface DynValueCommon
+        org.omg.DynamicAny.DynAny, org.omg.CORBA.portable.IDLEntity {} // interface DynValueCommon

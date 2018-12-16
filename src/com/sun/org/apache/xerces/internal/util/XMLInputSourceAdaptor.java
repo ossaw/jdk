@@ -71,25 +71,25 @@ import com.sun.org.apache.xerces.internal.xni.parser.XMLInputSource;
  * @author Kohsuke Kawaguchi (kohsuke.kawaguchi@sun.com)
  */
 public final class XMLInputSourceAdaptor implements Source {
-	/**
-	 * the actual source information.
-	 */
-	public final XMLInputSource fSource;
+    /**
+     * the actual source information.
+     */
+    public final XMLInputSource fSource;
 
-	public XMLInputSourceAdaptor(XMLInputSource core) {
-		fSource = core;
-	}
+    public XMLInputSourceAdaptor(XMLInputSource core) {
+        fSource = core;
+    }
 
-	public void setSystemId(String systemId) {
-		fSource.setSystemId(systemId);
-	}
+    public void setSystemId(String systemId) {
+        fSource.setSystemId(systemId);
+    }
 
-	public String getSystemId() {
-		try {
-			return XMLEntityManager.expandSystemId(fSource.getSystemId(),
-					fSource.getBaseSystemId(), false);
-		} catch (MalformedURIException e) {
-			return fSource.getSystemId();
-		}
-	}
+    public String getSystemId() {
+        try {
+            return XMLEntityManager.expandSystemId(fSource.getSystemId(),
+                    fSource.getBaseSystemId(), false);
+        } catch (MalformedURIException e) {
+            return fSource.getSystemId();
+        }
+    }
 }

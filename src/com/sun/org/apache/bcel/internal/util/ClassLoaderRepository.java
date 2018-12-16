@@ -69,76 +69,76 @@ import com.sun.org.apache.bcel.internal.classfile.*;
  * @author David Dixon-Peugh
  */
 public class ClassLoaderRepository implements Repository {
-	private java.lang.ClassLoader loader;
-	private HashMap loadedClasses = new HashMap(); // CLASSNAME X JAVACLASS
+    private java.lang.ClassLoader loader;
+    private HashMap loadedClasses = new HashMap(); // CLASSNAME X JAVACLASS
 
-	public ClassLoaderRepository(java.lang.ClassLoader loader) {
-		this.loader = loader;
-	}
+    public ClassLoaderRepository(java.lang.ClassLoader loader) {
+        this.loader = loader;
+    }
 
-	/**
-	 * Store a new JavaClass into this Repository.
-	 */
-	public void storeClass(JavaClass clazz) {
-		loadedClasses.put(clazz.getClassName(), clazz);
-		clazz.setRepository(this);
-	}
+    /**
+     * Store a new JavaClass into this Repository.
+     */
+    public void storeClass(JavaClass clazz) {
+        loadedClasses.put(clazz.getClassName(), clazz);
+        clazz.setRepository(this);
+    }
 
-	/**
-	 * Remove class from repository
-	 */
-	public void removeClass(JavaClass clazz) {
-		loadedClasses.remove(clazz.getClassName());
-	}
+    /**
+     * Remove class from repository
+     */
+    public void removeClass(JavaClass clazz) {
+        loadedClasses.remove(clazz.getClassName());
+    }
 
-	/**
-	 * Find an already defined JavaClass.
-	 */
-	public JavaClass findClass(String className) {
-		if (loadedClasses.containsKey(className)) {
-			return (JavaClass) loadedClasses.get(className);
-		} else {
-			return null;
-		}
-	}
+    /**
+     * Find an already defined JavaClass.
+     */
+    public JavaClass findClass(String className) {
+        if (loadedClasses.containsKey(className)) {
+            return (JavaClass) loadedClasses.get(className);
+        } else {
+            return null;
+        }
+    }
 
-	/**
-	 * Lookup a JavaClass object from the Class Name provided.
-	 */
-	public JavaClass loadClass(String className) throws ClassNotFoundException {
-		String classFile = className.replace('.', '/');
+    /**
+     * Lookup a JavaClass object from the Class Name provided.
+     */
+    public JavaClass loadClass(String className) throws ClassNotFoundException {
+        String classFile = className.replace('.', '/');
 
-		JavaClass RC = findClass(className);
-		if (RC != null) {
-			return RC;
-		}
+        JavaClass RC = findClass(className);
+        if (RC != null) {
+            return RC;
+        }
 
-		try {
-			InputStream is = loader.getResourceAsStream(classFile + ".class");
+        try {
+            InputStream is = loader.getResourceAsStream(classFile + ".class");
 
-			if (is == null) {
-				throw new ClassNotFoundException(className + " not found.");
-			}
+            if (is == null) {
+                throw new ClassNotFoundException(className + " not found.");
+            }
 
-			ClassParser parser = new ClassParser(is, className);
-			RC = parser.parse();
+            ClassParser parser = new ClassParser(is, className);
+            RC = parser.parse();
 
-			storeClass(RC);
+            storeClass(RC);
 
-			return RC;
-		} catch (IOException e) {
-			throw new ClassNotFoundException(e.toString());
-		}
-	}
+            return RC;
+        } catch (IOException e) {
+            throw new ClassNotFoundException(e.toString());
+        }
+    }
 
-	public JavaClass loadClass(Class clazz) throws ClassNotFoundException {
-		return loadClass(clazz.getName());
-	}
+    public JavaClass loadClass(Class clazz) throws ClassNotFoundException {
+        return loadClass(clazz.getName());
+    }
 
-	/**
-	 * Clear all entries from cache.
-	 */
-	public void clear() {
-		loadedClasses.clear();
-	}
+    /**
+     * Clear all entries from cache.
+     */
+    public void clear() {
+        loadedClasses.clear();
+    }
 }

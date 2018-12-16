@@ -26,28 +26,28 @@ package javax.naming;
  */
 
 public class InvalidNameException extends NamingException {
-	/**
-	 * Constructs an instance of InvalidNameException using an explanation of
-	 * the problem. All other fields are initialized to null.
-	 * 
-	 * @param explanation
-	 *                    A possibly null message explaining the problem.
-	 * @see java.lang.Throwable#getMessage
-	 */
-	public InvalidNameException(String explanation) {
-		super(explanation);
-	}
+    /**
+     * Constructs an instance of InvalidNameException using an explanation of
+     * the problem. All other fields are initialized to null.
+     * 
+     * @param explanation
+     *                    A possibly null message explaining the problem.
+     * @see java.lang.Throwable#getMessage
+     */
+    public InvalidNameException(String explanation) {
+        super(explanation);
+    }
 
-	/**
-	 * Constructs an instance of InvalidNameException with all fields set to
-	 * null.
-	 */
-	public InvalidNameException() {
-		super();
-	}
+    /**
+     * Constructs an instance of InvalidNameException with all fields set to
+     * null.
+     */
+    public InvalidNameException() {
+        super();
+    }
 
-	/**
-	 * Use serialVersionUID from JNDI 1.1.1 for interoperability
-	 */
-	private static final long serialVersionUID = -8370672380823801105L;
+    /**
+     * Use serialVersionUID from JNDI 1.1.1 for interoperability
+     */
+    private static final long serialVersionUID = -8370672380823801105L;
 }

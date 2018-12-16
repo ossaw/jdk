@@ -20,7 +20,7 @@ import org.xml.sax.ContentHandler;
  * Unmarshaller unmarshaller = context.createUnmarshaller();
  *
  * UnmarshallerHandler unmarshallerHandler = unmarshaller
- * 		.getUnmarshallerHandler();
+ *         .getUnmarshallerHandler();
  *
  * SAXParserFactory spf = SAXParserFactory.newInstance();
  * spf.setNamespaceAware(true);
@@ -44,25 +44,25 @@ import org.xml.sax.ContentHandler;
  * @since JAXB1.0
  */
 public interface UnmarshallerHandler extends ContentHandler {
-	/**
-	 * Obtains the unmarshalled result.
-	 *
-	 * This method can be called only after this handler receives the
-	 * endDocument SAX event.
-	 *
-	 * @exception IllegalStateException
-	 *                                  if this method is called before this
-	 *                                  handler receives the
-	 *                                  endDocument event.
-	 *
-	 * @exception JAXBException
-	 *                                  if there is any unmarshalling error.
-	 *                                  Note that the
-	 *                                  implementation is allowed to throw
-	 *                                  SAXException during the
-	 *                                  parsing when it finds an error.
-	 *
-	 * @return always return a non-null valid object which was unmarshalled.
-	 */
-	Object getResult() throws JAXBException, IllegalStateException;
+    /**
+     * Obtains the unmarshalled result.
+     *
+     * This method can be called only after this handler receives the
+     * endDocument SAX event.
+     *
+     * @exception IllegalStateException
+     *                                  if this method is called before this
+     *                                  handler receives the
+     *                                  endDocument event.
+     *
+     * @exception JAXBException
+     *                                  if there is any unmarshalling error.
+     *                                  Note that the
+     *                                  implementation is allowed to throw
+     *                                  SAXException during the
+     *                                  parsing when it finds an error.
+     *
+     * @return always return a non-null valid object which was unmarshalled.
+     */
+    Object getResult() throws JAXBException, IllegalStateException;
 }

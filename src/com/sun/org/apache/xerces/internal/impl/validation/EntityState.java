@@ -27,19 +27,19 @@ package com.sun.org.apache.xerces.internal.impl.validation;
  * @author Elena Litani, IBM
  */
 public interface EntityState {
-	/**
-	 * Query method to check if entity with this name was declared.
-	 *
-	 * @param name
-	 * @return true if name is a declared entity
-	 */
-	public boolean isEntityDeclared(String name);
+    /**
+     * Query method to check if entity with this name was declared.
+     *
+     * @param name
+     * @return true if name is a declared entity
+     */
+    public boolean isEntityDeclared(String name);
 
-	/**
-	 * Query method to check if entity is unparsed.
-	 *
-	 * @param name
-	 * @return true if name is an unparsed entity
-	 */
-	public boolean isEntityUnparsed(String name);
+    /**
+     * Query method to check if entity is unparsed.
+     *
+     * @param name
+     * @return true if name is an unparsed entity
+     */
+    public boolean isEntityUnparsed(String name);
 }

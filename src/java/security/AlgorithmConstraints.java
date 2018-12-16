@@ -30,71 +30,71 @@ import java.util.Set;
 
 public interface AlgorithmConstraints {
 
-	/**
-	 * Determines whether an algorithm is granted permission for the specified
-	 * cryptographic primitives.
-	 *
-	 * @param primitives
-	 *                   a set of cryptographic primitives
-	 * @param algorithm
-	 *                   the algorithm name
-	 * @param parameters
-	 *                   the algorithm parameters, or null if no additional
-	 *                   parameters
-	 *
-	 * @return true if the algorithm is permitted and can be used for all of the
-	 *         specified cryptographic primitives
-	 *
-	 * @throws IllegalArgumentException
-	 *                                  if primitives or algorithm is null or
-	 *                                  empty
-	 */
-	public boolean permits(Set<CryptoPrimitive> primitives, String algorithm,
-			AlgorithmParameters parameters);
+    /**
+     * Determines whether an algorithm is granted permission for the specified
+     * cryptographic primitives.
+     *
+     * @param primitives
+     *                   a set of cryptographic primitives
+     * @param algorithm
+     *                   the algorithm name
+     * @param parameters
+     *                   the algorithm parameters, or null if no additional
+     *                   parameters
+     *
+     * @return true if the algorithm is permitted and can be used for all of the
+     *         specified cryptographic primitives
+     *
+     * @throws IllegalArgumentException
+     *                                  if primitives or algorithm is null or
+     *                                  empty
+     */
+    public boolean permits(Set<CryptoPrimitive> primitives, String algorithm,
+            AlgorithmParameters parameters);
 
-	/**
-	 * Determines whether a key is granted permission for the specified
-	 * cryptographic primitives.
-	 * <p>
-	 * This method is usually used to check key size and key usage.
-	 *
-	 * @param primitives
-	 *                   a set of cryptographic primitives
-	 * @param key
-	 *                   the key
-	 *
-	 * @return true if the key can be used for all of the specified
-	 *         cryptographic primitives
-	 *
-	 * @throws IllegalArgumentException
-	 *                                  if primitives is null or empty, or the
-	 *                                  key is null
-	 */
-	public boolean permits(Set<CryptoPrimitive> primitives, Key key);
+    /**
+     * Determines whether a key is granted permission for the specified
+     * cryptographic primitives.
+     * <p>
+     * This method is usually used to check key size and key usage.
+     *
+     * @param primitives
+     *                   a set of cryptographic primitives
+     * @param key
+     *                   the key
+     *
+     * @return true if the key can be used for all of the specified
+     *         cryptographic primitives
+     *
+     * @throws IllegalArgumentException
+     *                                  if primitives is null or empty, or the
+     *                                  key is null
+     */
+    public boolean permits(Set<CryptoPrimitive> primitives, Key key);
 
-	/**
-	 * Determines whether an algorithm and the corresponding key are granted
-	 * permission for the specified cryptographic primitives.
-	 *
-	 * @param primitives
-	 *                   a set of cryptographic primitives
-	 * @param algorithm
-	 *                   the algorithm name
-	 * @param key
-	 *                   the key
-	 * @param parameters
-	 *                   the algorithm parameters, or null if no additional
-	 *                   parameters
-	 *
-	 * @return true if the key and the algorithm can be used for all of the
-	 *         specified cryptographic primitives
-	 *
-	 * @throws IllegalArgumentException
-	 *                                  if primitives or algorithm is null or
-	 *                                  empty, or the key is
-	 *                                  null
-	 */
-	public boolean permits(Set<CryptoPrimitive> primitives, String algorithm,
-			Key key, AlgorithmParameters parameters);
+    /**
+     * Determines whether an algorithm and the corresponding key are granted
+     * permission for the specified cryptographic primitives.
+     *
+     * @param primitives
+     *                   a set of cryptographic primitives
+     * @param algorithm
+     *                   the algorithm name
+     * @param key
+     *                   the key
+     * @param parameters
+     *                   the algorithm parameters, or null if no additional
+     *                   parameters
+     *
+     * @return true if the key and the algorithm can be used for all of the
+     *         specified cryptographic primitives
+     *
+     * @throws IllegalArgumentException
+     *                                  if primitives or algorithm is null or
+     *                                  empty, or the key is
+     *                                  null
+     */
+    public boolean permits(Set<CryptoPrimitive> primitives, String algorithm,
+            Key key, AlgorithmParameters parameters);
 
 }

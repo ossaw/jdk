@@ -31,12 +31,12 @@ package java.util.concurrent;
  *
  * <pre>
  * {
- * 	&#64;code
- * 	class DirectExecutor implements Executor {
- * 		public void execute(Runnable r) {
- * 			r.run();
- * 		}
- * 	}
+ *     &#64;code
+ *     class DirectExecutor implements Executor {
+ *         public void execute(Runnable r) {
+ *             r.run();
+ *         }
+ *     }
  * }
  * </pre>
  *
@@ -45,12 +45,12 @@ package java.util.concurrent;
  *
  * <pre>
  * {
- * 	&#64;code
- * 	class ThreadPerTaskExecutor implements Executor {
- * 		public void execute(Runnable r) {
- * 			new Thread(r).start();
- * 		}
- * 	}
+ *     &#64;code
+ *     class ThreadPerTaskExecutor implements Executor {
+ *         public void execute(Runnable r) {
+ *             new Thread(r).start();
+ *         }
+ *     }
  * }
  * </pre>
  *
@@ -60,37 +60,37 @@ package java.util.concurrent;
  *
  * <pre>
  * {
- * 	&#64;code
- * 	class SerialExecutor implements Executor {
- * 		final Queue<Runnable> tasks = new ArrayDeque<Runnable>();
- * 		final Executor executor;
- * 		Runnable active;
+ *     &#64;code
+ *     class SerialExecutor implements Executor {
+ *         final Queue<Runnable> tasks = new ArrayDeque<Runnable>();
+ *         final Executor executor;
+ *         Runnable active;
  *
- * 		SerialExecutor(Executor executor) {
- * 			this.executor = executor;
- * 		}
+ *         SerialExecutor(Executor executor) {
+ *             this.executor = executor;
+ *         }
  *
- * 		public synchronized void execute(final Runnable r) {
- * 			tasks.offer(new Runnable() {
- * 				public void run() {
- * 					try {
- * 						r.run();
- * 					} finally {
- * 						scheduleNext();
- * 					}
- * 				}
- * 			});
- * 			if (active == null) {
- * 				scheduleNext();
- * 			}
- * 		}
+ *         public synchronized void execute(final Runnable r) {
+ *             tasks.offer(new Runnable() {
+ *                 public void run() {
+ *                     try {
+ *                         r.run();
+ *                     } finally {
+ *                         scheduleNext();
+ *                     }
+ *                 }
+ *             });
+ *             if (active == null) {
+ *                 scheduleNext();
+ *             }
+ *         }
  *
- * 		protected synchronized void scheduleNext() {
- * 			if ((active = tasks.poll()) != null) {
- * 				executor.execute(active);
- * 			}
- * 		}
- * 	}
+ *         protected synchronized void scheduleNext() {
+ *             if ((active = tasks.poll()) != null) {
+ *                 executor.execute(active);
+ *             }
+ *         }
+ *     }
  * }
  * </pre>
  *
@@ -111,18 +111,18 @@ package java.util.concurrent;
  */
 public interface Executor {
 
-	/**
-	 * Executes the given command at some time in the future. The command may
-	 * execute in a new thread, in a pooled thread, or in the calling thread, at
-	 * the discretion of the {@code Executor} implementation.
-	 *
-	 * @param command
-	 *                the runnable task
-	 * @throws RejectedExecutionException
-	 *                                    if this task cannot be accepted for
-	 *                                    execution
-	 * @throws NullPointerException
-	 *                                    if command is null
-	 */
-	void execute(Runnable command);
+    /**
+     * Executes the given command at some time in the future. The command may
+     * execute in a new thread, in a pooled thread, or in the calling thread, at
+     * the discretion of the {@code Executor} implementation.
+     *
+     * @param command
+     *                the runnable task
+     * @throws RejectedExecutionException
+     *                                    if this task cannot be accepted for
+     *                                    execution
+     * @throws NullPointerException
+     *                                    if command is null
+     */
+    void execute(Runnable command);
 }

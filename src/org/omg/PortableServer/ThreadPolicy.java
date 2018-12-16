@@ -13,4 +13,4 @@ package org.omg.PortableServer;
  * default is ORB_CTRL_MODEL.
  */
 public interface ThreadPolicy extends ThreadPolicyOperations,
-		org.omg.CORBA.Policy, org.omg.CORBA.portable.IDLEntity {} // interface ThreadPolicy
+        org.omg.CORBA.Policy, org.omg.CORBA.portable.IDLEntity {} // interface ThreadPolicy

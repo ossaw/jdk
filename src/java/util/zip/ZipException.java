@@ -16,24 +16,24 @@ import java.io.IOException;
  */
 
 public class ZipException extends IOException {
-	private static final long serialVersionUID = 8000196834066748623L;
+    private static final long serialVersionUID = 8000196834066748623L;
 
-	/**
-	 * Constructs a <code>ZipException</code> with <code>null</code> as its
-	 * error detail message.
-	 */
-	public ZipException() {
-		super();
-	}
+    /**
+     * Constructs a <code>ZipException</code> with <code>null</code> as its
+     * error detail message.
+     */
+    public ZipException() {
+        super();
+    }
 
-	/**
-	 * Constructs a <code>ZipException</code> with the specified detail message.
-	 *
-	 * @param s
-	 *          the detail message.
-	 */
+    /**
+     * Constructs a <code>ZipException</code> with the specified detail message.
+     *
+     * @param s
+     *          the detail message.
+     */
 
-	public ZipException(String s) {
-		super(s);
-	}
+    public ZipException(String s) {
+        super(s);
+    }
 }

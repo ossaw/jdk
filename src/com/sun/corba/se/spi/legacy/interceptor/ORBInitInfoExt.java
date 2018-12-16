@@ -16,5 +16,5 @@ import com.sun.corba.se.spi.orb.ORB;
  * objects.
  */
 public interface ORBInitInfoExt {
-	ORB getORB();
+    ORB getORB();
 }

@@ -27,30 +27,30 @@ import java.util.spi.LocaleServiceProvider;
  * @see Locale#getExtension(char)
  */
 public abstract class DecimalFormatSymbolsProvider extends
-		LocaleServiceProvider {
+        LocaleServiceProvider {
 
-	/**
-	 * Sole constructor. (For invocation by subclass constructors, typically
-	 * implicit.)
-	 */
-	protected DecimalFormatSymbolsProvider() {}
+    /**
+     * Sole constructor. (For invocation by subclass constructors, typically
+     * implicit.)
+     */
+    protected DecimalFormatSymbolsProvider() {}
 
-	/**
-	 * Returns a new <code>DecimalFormatSymbols</code> instance for the
-	 * specified locale.
-	 *
-	 * @param locale
-	 *               the desired locale
-	 * @exception NullPointerException
-	 *                                     if <code>locale</code> is null
-	 * @exception IllegalArgumentException
-	 *                                     if <code>locale</code> isn't one of
-	 *                                     the locales returned
-	 *                                     from
-	 *                                     {@link java.util.spi.LocaleServiceProvider#getAvailableLocales()
-	 *                                     getAvailableLocales()}.
-	 * @return a <code>DecimalFormatSymbols</code> instance.
-	 * @see java.text.DecimalFormatSymbols#getInstance(java.util.Locale)
-	 */
-	public abstract DecimalFormatSymbols getInstance(Locale locale);
+    /**
+     * Returns a new <code>DecimalFormatSymbols</code> instance for the
+     * specified locale.
+     *
+     * @param locale
+     *               the desired locale
+     * @exception NullPointerException
+     *                                     if <code>locale</code> is null
+     * @exception IllegalArgumentException
+     *                                     if <code>locale</code> isn't one of
+     *                                     the locales returned
+     *                                     from
+     *                                     {@link java.util.spi.LocaleServiceProvider#getAvailableLocales()
+     *                                     getAvailableLocales()}.
+     * @return a <code>DecimalFormatSymbols</code> instance.
+     * @see java.text.DecimalFormatSymbols#getInstance(java.util.Locale)
+     */
+    public abstract DecimalFormatSymbols getInstance(Locale locale);
 }

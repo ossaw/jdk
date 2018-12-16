@@ -30,61 +30,61 @@ import org.omg.CORBA.portable.OutputStream;
  */
 public final class ShortHolder implements Streamable {
 
-	/**
-	 * The <code>short</code> value held by this <code>ShortHolder</code>
-	 * object.
-	 */
-	public short value;
+    /**
+     * The <code>short</code> value held by this <code>ShortHolder</code>
+     * object.
+     */
+    public short value;
 
-	/**
-	 * Constructs a new <code>ShortHolder</code> object with its
-	 * <code>value</code> field initialized to <code>0</code>.
-	 */
-	public ShortHolder() {}
+    /**
+     * Constructs a new <code>ShortHolder</code> object with its
+     * <code>value</code> field initialized to <code>0</code>.
+     */
+    public ShortHolder() {}
 
-	/**
-	 * Constructs a new <code>ShortHolder</code> object with its
-	 * <code>value</code> field initialized to the given <code>short</code>.
-	 * 
-	 * @param initial
-	 *                the <code>short</code> with which to initialize the
-	 *                <code>value</code> field of the newly-created
-	 *                <code>ShortHolder</code> object
-	 */
-	public ShortHolder(short initial) {
-		value = initial;
-	}
+    /**
+     * Constructs a new <code>ShortHolder</code> object with its
+     * <code>value</code> field initialized to the given <code>short</code>.
+     * 
+     * @param initial
+     *                the <code>short</code> with which to initialize the
+     *                <code>value</code> field of the newly-created
+     *                <code>ShortHolder</code> object
+     */
+    public ShortHolder(short initial) {
+        value = initial;
+    }
 
-	/**
-	 * Reads from <code>input</code> and initalizes the value in this
-	 * <code>ShortHolder</code> object with the unmarshalled data.
-	 *
-	 * @param input
-	 *              the InputStream containing CDR formatted data from the wire.
-	 */
-	public void _read(InputStream input) {
-		value = input.read_short();
-	}
+    /**
+     * Reads from <code>input</code> and initalizes the value in this
+     * <code>ShortHolder</code> object with the unmarshalled data.
+     *
+     * @param input
+     *              the InputStream containing CDR formatted data from the wire.
+     */
+    public void _read(InputStream input) {
+        value = input.read_short();
+    }
 
-	/**
-	 * Marshals to <code>output</code> the value in this
-	 * <code>ShortHolder</code> object.
-	 *
-	 * @param output
-	 *               the OutputStream which will contain the CDR formatted data.
-	 */
-	public void _write(OutputStream output) {
-		output.write_short(value);
-	}
+    /**
+     * Marshals to <code>output</code> the value in this
+     * <code>ShortHolder</code> object.
+     *
+     * @param output
+     *               the OutputStream which will contain the CDR formatted data.
+     */
+    public void _write(OutputStream output) {
+        output.write_short(value);
+    }
 
-	/**
-	 * Returns the TypeCode corresponding to the value held in this
-	 * <code>ShortHolder</code> object.
-	 *
-	 * @return the TypeCode of the value held in this <code>ShortHolder</code>
-	 *         object
-	 */
-	public org.omg.CORBA.TypeCode _type() {
-		return ORB.init().get_primitive_tc(TCKind.tk_short);
-	}
+    /**
+     * Returns the TypeCode corresponding to the value held in this
+     * <code>ShortHolder</code> object.
+     *
+     * @return the TypeCode of the value held in this <code>ShortHolder</code>
+     *         object
+     */
+    public org.omg.CORBA.TypeCode _type() {
+        return ORB.init().get_primitive_tc(TCKind.tk_short);
+    }
 }

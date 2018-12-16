@@ -22,22 +22,22 @@ package javax.accessibility;
  */
 public interface AccessibleKeyBinding {
 
-	/**
-	 * Returns the number of key bindings for this object
-	 *
-	 * @return the zero-based number of key bindings for this object
-	 */
-	public int getAccessibleKeyBindingCount();
+    /**
+     * Returns the number of key bindings for this object
+     *
+     * @return the zero-based number of key bindings for this object
+     */
+    public int getAccessibleKeyBindingCount();
 
-	/**
-	 * Returns a key binding for this object. The value returned is an
-	 * java.lang.Object which must be cast to appropriate type depending on the
-	 * underlying implementation of the key.
-	 *
-	 * @param i
-	 *          zero-based index of the key bindings
-	 * @return a javax.lang.Object which specifies the key binding
-	 * @see #getAccessibleKeyBindingCount
-	 */
-	public java.lang.Object getAccessibleKeyBinding(int i);
+    /**
+     * Returns a key binding for this object. The value returned is an
+     * java.lang.Object which must be cast to appropriate type depending on the
+     * underlying implementation of the key.
+     *
+     * @param i
+     *          zero-based index of the key bindings
+     * @return a javax.lang.Object which specifies the key binding
+     * @see #getAccessibleKeyBindingCount
+     */
+    public java.lang.Object getAccessibleKeyBinding(int i);
 }

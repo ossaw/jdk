@@ -27,14 +27,14 @@ package java.awt.event;
  * @since 1.3
  */
 public abstract class HierarchyBoundsAdapter implements
-		HierarchyBoundsListener {
-	/**
-	 * Called when an ancestor of the source is moved.
-	 */
-	public void ancestorMoved(HierarchyEvent e) {}
+        HierarchyBoundsListener {
+    /**
+     * Called when an ancestor of the source is moved.
+     */
+    public void ancestorMoved(HierarchyEvent e) {}
 
-	/**
-	 * Called when an ancestor of the source is resized.
-	 */
-	public void ancestorResized(HierarchyEvent e) {}
+    /**
+     * Called when an ancestor of the source is resized.
+     */
+    public void ancestorResized(HierarchyEvent e) {}
 }

@@ -30,59 +30,59 @@ import org.omg.CORBA.portable.OutputStream;
  * @since JDK1.2
  */
 public final class FloatHolder implements Streamable {
-	/**
-	 * The <code>float</code> value held by this <code>FloatHolder</code>
-	 * object.
-	 */
-	public float value;
+    /**
+     * The <code>float</code> value held by this <code>FloatHolder</code>
+     * object.
+     */
+    public float value;
 
-	/**
-	 * Constructs a new <code>FloatHolder</code> object with its
-	 * <code>value</code> field initialized to 0.0.
-	 */
-	public FloatHolder() {}
+    /**
+     * Constructs a new <code>FloatHolder</code> object with its
+     * <code>value</code> field initialized to 0.0.
+     */
+    public FloatHolder() {}
 
-	/**
-	 * Constructs a new <code>FloatHolder</code> object for the given
-	 * <code>float</code>.
-	 * 
-	 * @param initial
-	 *                the <code>float</code> with which to initialize the
-	 *                <code>value</code> field of the new
-	 *                <code>FloatHolder</code>
-	 *                object
-	 */
-	public FloatHolder(float initial) {
-		value = initial;
-	}
+    /**
+     * Constructs a new <code>FloatHolder</code> object for the given
+     * <code>float</code>.
+     * 
+     * @param initial
+     *                the <code>float</code> with which to initialize the
+     *                <code>value</code> field of the new
+     *                <code>FloatHolder</code>
+     *                object
+     */
+    public FloatHolder(float initial) {
+        value = initial;
+    }
 
-	/**
-	 * Read a float from an input stream and initialize the value member with
-	 * the float value.
-	 *
-	 * @param input
-	 *              the <code>InputStream</code> to read from.
-	 */
-	public void _read(InputStream input) {
-		value = input.read_float();
-	}
+    /**
+     * Read a float from an input stream and initialize the value member with
+     * the float value.
+     *
+     * @param input
+     *              the <code>InputStream</code> to read from.
+     */
+    public void _read(InputStream input) {
+        value = input.read_float();
+    }
 
-	/**
-	 * Write the float value into an output stream.
-	 *
-	 * @param output
-	 *               the <code>OutputStream</code> to write into.
-	 */
-	public void _write(OutputStream output) {
-		output.write_float(value);
-	}
+    /**
+     * Write the float value into an output stream.
+     *
+     * @param output
+     *               the <code>OutputStream</code> to write into.
+     */
+    public void _write(OutputStream output) {
+        output.write_float(value);
+    }
 
-	/**
-	 * Return the <code>TypeCode</code> of this Streamable.
-	 *
-	 * @return the <code>TypeCode</code> object.
-	 */
-	public org.omg.CORBA.TypeCode _type() {
-		return ORB.init().get_primitive_tc(TCKind.tk_float);
-	}
+    /**
+     * Return the <code>TypeCode</code> of this Streamable.
+     *
+     * @return the <code>TypeCode</code> object.
+     */
+    public org.omg.CORBA.TypeCode _type() {
+        return ORB.init().get_primitive_tc(TCKind.tk_float);
+    }
 }

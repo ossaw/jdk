@@ -9,9 +9,9 @@ package com.sun.corba.se.pept.transport;
  * @author Harold Carr
  */
 public interface ReaderThread {
-	public Connection getConnection();
+    public Connection getConnection();
 
-	public void close();
+    public void close();
 }
 
 // End of file.

@@ -15,5 +15,5 @@ import javax.swing.InputMap;
  * @since 1.3
  */
 public class InputMapUIResource extends InputMap implements UIResource {
-	public InputMapUIResource() {}
+    public InputMapUIResource() {}
 }

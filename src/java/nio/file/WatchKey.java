@@ -65,73 +65,73 @@ import java.util.List;
 
 public interface WatchKey {
 
-	/**
-	 * Tells whether or not this watch key is valid.
-	 *
-	 * <p>
-	 * A watch key is valid upon creation and remains until it is cancelled, or
-	 * its watch service is closed.
-	 *
-	 * @return {@code true} if, and only if, this watch key is valid
-	 */
-	boolean isValid();
+    /**
+     * Tells whether or not this watch key is valid.
+     *
+     * <p>
+     * A watch key is valid upon creation and remains until it is cancelled, or
+     * its watch service is closed.
+     *
+     * @return {@code true} if, and only if, this watch key is valid
+     */
+    boolean isValid();
 
-	/**
-	 * Retrieves and removes all pending events for this watch key, returning a
-	 * {@code List} of the events that were retrieved.
-	 *
-	 * <p>
-	 * Note that this method does not wait if there are no events pending.
-	 *
-	 * @return the list of the events retrieved; may be empty
-	 */
-	List<WatchEvent<?>> pollEvents();
+    /**
+     * Retrieves and removes all pending events for this watch key, returning a
+     * {@code List} of the events that were retrieved.
+     *
+     * <p>
+     * Note that this method does not wait if there are no events pending.
+     *
+     * @return the list of the events retrieved; may be empty
+     */
+    List<WatchEvent<?>> pollEvents();
 
-	/**
-	 * Resets this watch key.
-	 *
-	 * <p>
-	 * If this watch key has been cancelled or this watch key is already in the
-	 * ready state then invoking this method has no effect. Otherwise if there
-	 * are pending events for the object then this watch key is immediately
-	 * re-queued to the watch service. If there are no pending events then the
-	 * watch key is put into the ready state and will remain in that state until
-	 * an event is detected or the watch key is cancelled.
-	 *
-	 * @return {@code true} if the watch key is valid and has been reset, and
-	 *         {@code false} if the watch key could not be reset because it is
-	 *         no longer {@link #isValid valid}
-	 */
-	boolean reset();
+    /**
+     * Resets this watch key.
+     *
+     * <p>
+     * If this watch key has been cancelled or this watch key is already in the
+     * ready state then invoking this method has no effect. Otherwise if there
+     * are pending events for the object then this watch key is immediately
+     * re-queued to the watch service. If there are no pending events then the
+     * watch key is put into the ready state and will remain in that state until
+     * an event is detected or the watch key is cancelled.
+     *
+     * @return {@code true} if the watch key is valid and has been reset, and
+     *         {@code false} if the watch key could not be reset because it is
+     *         no longer {@link #isValid valid}
+     */
+    boolean reset();
 
-	/**
-	 * Cancels the registration with the watch service. Upon return the watch
-	 * key will be invalid. If the watch key is enqueued, waiting to be
-	 * retrieved from the watch service, then it will remain in the queue until
-	 * it is removed. Pending events, if any, remain pending and may be
-	 * retrieved by invoking the {@link #pollEvents pollEvents} method after the
-	 * key is cancelled.
-	 *
-	 * <p>
-	 * If this watch key has already been cancelled then invoking this method
-	 * has no effect. Once cancelled, a watch key remains forever invalid.
-	 */
-	void cancel();
+    /**
+     * Cancels the registration with the watch service. Upon return the watch
+     * key will be invalid. If the watch key is enqueued, waiting to be
+     * retrieved from the watch service, then it will remain in the queue until
+     * it is removed. Pending events, if any, remain pending and may be
+     * retrieved by invoking the {@link #pollEvents pollEvents} method after the
+     * key is cancelled.
+     *
+     * <p>
+     * If this watch key has already been cancelled then invoking this method
+     * has no effect. Once cancelled, a watch key remains forever invalid.
+     */
+    void cancel();
 
-	/**
-	 * Returns the object for which this watch key was created. This method will
-	 * continue to return the object even after the key is cancelled.
-	 *
-	 * <p>
-	 * As the {@code WatchService} is intended to map directly on to the native
-	 * file event notification facility (where available) then many of details
-	 * on how registered objects are watched is highly implementation specific.
-	 * When watching a directory for changes for example, and the directory is
-	 * moved or renamed in the file system, there is no guarantee that the watch
-	 * key will be cancelled and so the object returned by this method may no
-	 * longer be a valid path to the directory.
-	 *
-	 * @return the object for which this watch key was created
-	 */
-	Watchable watchable();
+    /**
+     * Returns the object for which this watch key was created. This method will
+     * continue to return the object even after the key is cancelled.
+     *
+     * <p>
+     * As the {@code WatchService} is intended to map directly on to the native
+     * file event notification facility (where available) then many of details
+     * on how registered objects are watched is highly implementation specific.
+     * When watching a directory for changes for example, and the directory is
+     * moved or renamed in the file system, there is no guarantee that the watch
+     * key will be cancelled and so the object returned by this method may no
+     * longer be a valid path to the directory.
+     *
+     * @return the object for which this watch key was created
+     */
+    Watchable watchable();
 }

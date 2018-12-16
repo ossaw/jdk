@@ -43,28 +43,28 @@ package java.lang.management;
  * @since 1.5
  */
 public interface GarbageCollectorMXBean extends MemoryManagerMXBean {
-	/**
-	 * Returns the total number of collections that have occurred. This method
-	 * returns <tt>-1</tt> if the collection count is undefined for this
-	 * collector.
-	 *
-	 * @return the total number of collections that have occurred.
-	 */
-	public long getCollectionCount();
+    /**
+     * Returns the total number of collections that have occurred. This method
+     * returns <tt>-1</tt> if the collection count is undefined for this
+     * collector.
+     *
+     * @return the total number of collections that have occurred.
+     */
+    public long getCollectionCount();
 
-	/**
-	 * Returns the approximate accumulated collection elapsed time in
-	 * milliseconds. This method returns <tt>-1</tt> if the collection elapsed
-	 * time is undefined for this collector.
-	 * <p>
-	 * The Java virtual machine implementation may use a high resolution timer
-	 * to measure the elapsed time. This method may return the same value even
-	 * if the collection count has been incremented if the collection elapsed
-	 * time is very short.
-	 *
-	 * @return the approximate accumulated collection elapsed time in
-	 *         milliseconds.
-	 */
-	public long getCollectionTime();
+    /**
+     * Returns the approximate accumulated collection elapsed time in
+     * milliseconds. This method returns <tt>-1</tt> if the collection elapsed
+     * time is undefined for this collector.
+     * <p>
+     * The Java virtual machine implementation may use a high resolution timer
+     * to measure the elapsed time. This method may return the same value even
+     * if the collection count has been incremented if the collection elapsed
+     * time is very short.
+     *
+     * @return the approximate accumulated collection elapsed time in
+     *         milliseconds.
+     */
+    public long getCollectionTime();
 
 }

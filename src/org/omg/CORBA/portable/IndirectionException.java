@@ -28,22 +28,22 @@ import org.omg.CORBA.SystemException;
  */
 public class IndirectionException extends SystemException {
 
-	/**
-	 * Points to the stream's offset.
-	 */
-	public int offset;
+    /**
+     * Points to the stream's offset.
+     */
+    public int offset;
 
-	/**
-	 * Creates an IndirectionException with the right offset value. The stream
-	 * offset is returned in the exception's offset field. This exception is
-	 * constructed and thrown during reading recursively defined values off of a
-	 * stream.
-	 *
-	 * @param offset
-	 *               the stream offset where recursion is detected.
-	 */
-	public IndirectionException(int offset) {
-		super("", 0, org.omg.CORBA.CompletionStatus.COMPLETED_MAYBE);
-		this.offset = offset;
-	}
+    /**
+     * Creates an IndirectionException with the right offset value. The stream
+     * offset is returned in the exception's offset field. This exception is
+     * constructed and thrown during reading recursively defined values off of a
+     * stream.
+     *
+     * @param offset
+     *               the stream offset where recursion is detected.
+     */
+    public IndirectionException(int offset) {
+        super("", 0, org.omg.CORBA.CompletionStatus.COMPLETED_MAYBE);
+        this.offset = offset;
+    }
 }

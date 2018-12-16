@@ -25,28 +25,28 @@ import javax.naming.NamingException;
  */
 
 public class InvalidAttributesException extends NamingException {
-	/**
-	 * Constructs a new instance of InvalidAttributesException using an
-	 * explanation. All other fields are set to null.
-	 * 
-	 * @param explanation
-	 *                    Additional detail about this exception. Can be null.
-	 * @see java.lang.Throwable#getMessage
-	 */
-	public InvalidAttributesException(String explanation) {
-		super(explanation);
-	}
+    /**
+     * Constructs a new instance of InvalidAttributesException using an
+     * explanation. All other fields are set to null.
+     * 
+     * @param explanation
+     *                    Additional detail about this exception. Can be null.
+     * @see java.lang.Throwable#getMessage
+     */
+    public InvalidAttributesException(String explanation) {
+        super(explanation);
+    }
 
-	/**
-	 * Constructs a new instance of InvalidAttributesException. All fields are
-	 * set to null.
-	 */
-	public InvalidAttributesException() {
-		super();
-	}
+    /**
+     * Constructs a new instance of InvalidAttributesException. All fields are
+     * set to null.
+     */
+    public InvalidAttributesException() {
+        super();
+    }
 
-	/**
-	 * Use serialVersionUID from JNDI 1.1.1 for interoperability
-	 */
-	private static final long serialVersionUID = 2607612850539889765L;
+    /**
+     * Use serialVersionUID from JNDI 1.1.1 for interoperability
+     */
+    private static final long serialVersionUID = 2607612850539889765L;
 }

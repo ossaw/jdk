@@ -22,23 +22,23 @@ import java.util.EventListener;
 
 public interface BeanContextMembershipListener extends EventListener {
 
-	/**
-	 * Called when a child or list of children is added to a
-	 * <code>BeanContext</code> that this listener is registered with.
-	 * 
-	 * @param bcme
-	 *             The <code>BeanContextMembershipEvent</code> describing the
-	 *             change that occurred.
-	 */
-	void childrenAdded(BeanContextMembershipEvent bcme);
+    /**
+     * Called when a child or list of children is added to a
+     * <code>BeanContext</code> that this listener is registered with.
+     * 
+     * @param bcme
+     *             The <code>BeanContextMembershipEvent</code> describing the
+     *             change that occurred.
+     */
+    void childrenAdded(BeanContextMembershipEvent bcme);
 
-	/**
-	 * Called when a child or list of children is removed from a
-	 * <code>BeanContext</code> that this listener is registered with.
-	 * 
-	 * @param bcme
-	 *             The <code>BeanContextMembershipEvent</code> describing the
-	 *             change that occurred.
-	 */
-	void childrenRemoved(BeanContextMembershipEvent bcme);
+    /**
+     * Called when a child or list of children is removed from a
+     * <code>BeanContext</code> that this listener is registered with.
+     * 
+     * @param bcme
+     *             The <code>BeanContextMembershipEvent</code> describing the
+     *             change that occurred.
+     */
+    void childrenRemoved(BeanContextMembershipEvent bcme);
 }

@@ -16,20 +16,20 @@ import org.omg.CORBA.ORB;
 
 public class EnvironmentImpl extends Environment {
 
-	private Exception _exc;
+    private Exception _exc;
 
-	public EnvironmentImpl() {}
+    public EnvironmentImpl() {}
 
-	public Exception exception() {
-		return _exc;
-	}
+    public Exception exception() {
+        return _exc;
+    }
 
-	public void exception(Exception exc) {
-		_exc = exc;
-	}
+    public void exception(Exception exc) {
+        _exc = exc;
+    }
 
-	public void clear() {
-		_exc = null;
-	}
+    public void clear() {
+        _exc = null;
+    }
 
 }

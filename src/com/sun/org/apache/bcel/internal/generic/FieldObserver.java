@@ -57,5 +57,5 @@ package com.sun.org.apache.bcel.internal.generic;
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public interface FieldObserver {
-	public void notify(FieldGen field);
+    public void notify(FieldGen field);
 }

@@ -21,11 +21,11 @@ import org.w3c.dom.Node;
  */
 public interface DOMURIReference extends URIReference {
 
-	/**
-	 * Returns the here node.
-	 *
-	 * @return the attribute or processing instruction node or the parent
-	 *         element of the text node that directly contains the URI
-	 */
-	Node getHere();
+    /**
+     * Returns the here node.
+     *
+     * @return the attribute or processing instruction node or the parent
+     *         element of the text node that directly contains the URI
+     */
+    Node getHere();
 }

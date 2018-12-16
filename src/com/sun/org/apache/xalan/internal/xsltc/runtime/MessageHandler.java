@@ -24,7 +24,7 @@ package com.sun.org.apache.xalan.internal.xsltc.runtime;
  * @author Morten Jorgensen
  */
 public class MessageHandler {
-	public void displayMessage(String msg) {
-		System.err.println(msg);
-	}
+    public void displayMessage(String msg) {
+        System.err.println(msg);
+    }
 }

@@ -25,28 +25,28 @@ package org.w3c.dom.html;
  * Model (DOM) Level 2 Specification</a>.
  */
 public interface HTMLBaseFontElement extends HTMLElement {
-	/**
-	 * Font color. See the color attribute definition in HTML 4.0. This
-	 * attribute is deprecated in HTML 4.0.
-	 */
-	public String getColor();
+    /**
+     * Font color. See the color attribute definition in HTML 4.0. This
+     * attribute is deprecated in HTML 4.0.
+     */
+    public String getColor();
 
-	public void setColor(String color);
+    public void setColor(String color);
 
-	/**
-	 * Font face identifier. See the face attribute definition in HTML 4.0. This
-	 * attribute is deprecated in HTML 4.0.
-	 */
-	public String getFace();
+    /**
+     * Font face identifier. See the face attribute definition in HTML 4.0. This
+     * attribute is deprecated in HTML 4.0.
+     */
+    public String getFace();
 
-	public void setFace(String face);
+    public void setFace(String face);
 
-	/**
-	 * Font size. See the size attribute definition in HTML 4.0. This attribute
-	 * is deprecated in HTML 4.0.
-	 */
-	public String getSize();
+    /**
+     * Font size. See the size attribute definition in HTML 4.0. This attribute
+     * is deprecated in HTML 4.0.
+     */
+    public String getSize();
 
-	public void setSize(String size);
+    public void setSize(String size);
 
 }

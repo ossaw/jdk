@@ -19,12 +19,12 @@ package java.util.function;
 @FunctionalInterface
 public interface IntToLongFunction {
 
-	/**
-	 * Applies this function to the given argument.
-	 *
-	 * @param value
-	 *              the function argument
-	 * @return the function result
-	 */
-	long applyAsLong(int value);
+    /**
+     * Applies this function to the given argument.
+     *
+     * @param value
+     *              the function argument
+     * @return the function result
+     */
+    long applyAsLong(int value);
 }

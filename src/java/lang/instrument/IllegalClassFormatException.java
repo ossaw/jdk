@@ -20,24 +20,24 @@ package java.lang.instrument;
  * @since 1.5
  */
 public class IllegalClassFormatException extends Exception {
-	private static final long serialVersionUID = -3841736710924794009L;
+    private static final long serialVersionUID = -3841736710924794009L;
 
-	/**
-	 * Constructs an <code>IllegalClassFormatException</code> with no detail
-	 * message.
-	 */
-	public IllegalClassFormatException() {
-		super();
-	}
+    /**
+     * Constructs an <code>IllegalClassFormatException</code> with no detail
+     * message.
+     */
+    public IllegalClassFormatException() {
+        super();
+    }
 
-	/**
-	 * Constructs an <code>IllegalClassFormatException</code> with the specified
-	 * detail message.
-	 *
-	 * @param s
-	 *          the detail message.
-	 */
-	public IllegalClassFormatException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs an <code>IllegalClassFormatException</code> with the specified
+     * detail message.
+     *
+     * @param s
+     *          the detail message.
+     */
+    public IllegalClassFormatException(String s) {
+        super(s);
+    }
 }

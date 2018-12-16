@@ -15,36 +15,36 @@ package java.nio.charset;
 
 public class MalformedInputException extends CharacterCodingException {
 
-	private static final long serialVersionUID = -3438823399834806194L;
+    private static final long serialVersionUID = -3438823399834806194L;
 
-	private int inputLength;
+    private int inputLength;
 
-	/**
-	 * Constructs an {@code MalformedInputException} with the given length.
-	 * 
-	 * @param inputLength
-	 *                    the length of the input
-	 */
-	public MalformedInputException(int inputLength) {
-		this.inputLength = inputLength;
-	}
+    /**
+     * Constructs an {@code MalformedInputException} with the given length.
+     * 
+     * @param inputLength
+     *                    the length of the input
+     */
+    public MalformedInputException(int inputLength) {
+        this.inputLength = inputLength;
+    }
 
-	/**
-	 * Returns the length of the input.
-	 * 
-	 * @return the length of the input
-	 */
-	public int getInputLength() {
-		return inputLength;
-	}
+    /**
+     * Returns the length of the input.
+     * 
+     * @return the length of the input
+     */
+    public int getInputLength() {
+        return inputLength;
+    }
 
-	/**
-	 * Returns the message.
-	 * 
-	 * @return the message
-	 */
-	public String getMessage() {
-		return "Input length = " + inputLength;
-	}
+    /**
+     * Returns the message.
+     * 
+     * @return the message
+     */
+    public String getMessage() {
+        return "Input length = " + inputLength;
+    }
 
 }

@@ -30,62 +30,62 @@ import org.omg.CORBA.portable.OutputStream;
  * @since JDK1.2
  */
 public final class ByteHolder implements Streamable {
-	/**
-	 * The <code>byte</code> value held by this <code>ByteHolder</code> object.
-	 */
+    /**
+     * The <code>byte</code> value held by this <code>ByteHolder</code> object.
+     */
 
-	public byte value;
+    public byte value;
 
-	/**
-	 * Constructs a new <code>ByteHolder</code> object with its
-	 * <code>value</code> field initialized to 0.
-	 */
-	public ByteHolder() {}
+    /**
+     * Constructs a new <code>ByteHolder</code> object with its
+     * <code>value</code> field initialized to 0.
+     */
+    public ByteHolder() {}
 
-	/**
-	 * Constructs a new <code>ByteHolder</code> object for the given
-	 * <code>byte</code>.
-	 * 
-	 * @param initial
-	 *                the <code>byte</code> with which to initialize the
-	 *                <code>value</code> field of the new
-	 *                <code>ByteHolder</code>
-	 *                object
-	 */
-	public ByteHolder(byte initial) {
-		value = initial;
-	}
+    /**
+     * Constructs a new <code>ByteHolder</code> object for the given
+     * <code>byte</code>.
+     * 
+     * @param initial
+     *                the <code>byte</code> with which to initialize the
+     *                <code>value</code> field of the new
+     *                <code>ByteHolder</code>
+     *                object
+     */
+    public ByteHolder(byte initial) {
+        value = initial;
+    }
 
-	/**
-	 * Reads from <code>input</code> and initalizes the value in this
-	 * <code>ByteHolder</code> object with the unmarshalled data.
-	 *
-	 * @param input
-	 *              the InputStream containing CDR formatted data from the wire.
-	 */
-	public void _read(InputStream input) {
-		value = input.read_octet();
-	}
+    /**
+     * Reads from <code>input</code> and initalizes the value in this
+     * <code>ByteHolder</code> object with the unmarshalled data.
+     *
+     * @param input
+     *              the InputStream containing CDR formatted data from the wire.
+     */
+    public void _read(InputStream input) {
+        value = input.read_octet();
+    }
 
-	/**
-	 * Marshals to <code>output</code> the value in this <code>ByteHolder</code>
-	 * object.
-	 *
-	 * @param output
-	 *               the OutputStream which will contain the CDR formatted data.
-	 */
-	public void _write(OutputStream output) {
-		output.write_octet(value);
-	}
+    /**
+     * Marshals to <code>output</code> the value in this <code>ByteHolder</code>
+     * object.
+     *
+     * @param output
+     *               the OutputStream which will contain the CDR formatted data.
+     */
+    public void _write(OutputStream output) {
+        output.write_octet(value);
+    }
 
-	/**
-	 * Returns the TypeCode corresponding to the value held in this
-	 * <code>ByteHolder</code> object.
-	 *
-	 * @return the TypeCode of the value held in this <code>ByteHolder</code>
-	 *         object
-	 */
-	public org.omg.CORBA.TypeCode _type() {
-		return ORB.init().get_primitive_tc(TCKind.tk_octet);
-	}
+    /**
+     * Returns the TypeCode corresponding to the value held in this
+     * <code>ByteHolder</code> object.
+     *
+     * @return the TypeCode of the value held in this <code>ByteHolder</code>
+     *         object
+     */
+    public org.omg.CORBA.TypeCode _type() {
+        return ORB.init().get_primitive_tc(TCKind.tk_octet);
+    }
 }

@@ -66,37 +66,37 @@ import javax.lang.model.SourceVersion;
  */
 @SupportedSourceVersion(RELEASE_7)
 public class TypeKindVisitor7<R, P> extends TypeKindVisitor6<R, P> {
-	/**
-	 * Constructor for concrete subclasses to call; uses {@code null} for the
-	 * default value.
-	 */
-	protected TypeKindVisitor7() {
-		super(null);
-	}
+    /**
+     * Constructor for concrete subclasses to call; uses {@code null} for the
+     * default value.
+     */
+    protected TypeKindVisitor7() {
+        super(null);
+    }
 
-	/**
-	 * Constructor for concrete subclasses to call; uses the argument for the
-	 * default value.
-	 *
-	 * @param defaultValue
-	 *                     the value to assign to {@link #DEFAULT_VALUE}
-	 */
-	protected TypeKindVisitor7(R defaultValue) {
-		super(defaultValue);
-	}
+    /**
+     * Constructor for concrete subclasses to call; uses the argument for the
+     * default value.
+     *
+     * @param defaultValue
+     *                     the value to assign to {@link #DEFAULT_VALUE}
+     */
+    protected TypeKindVisitor7(R defaultValue) {
+        super(defaultValue);
+    }
 
-	/**
-	 * This implementation visits a {@code UnionType} by calling
-	 * {@code defaultAction}.
-	 *
-	 * @param t
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of {@code defaultAction}
-	 */
-	@Override
-	public R visitUnion(UnionType t, P p) {
-		return defaultAction(t, p);
-	}
+    /**
+     * This implementation visits a {@code UnionType} by calling
+     * {@code defaultAction}.
+     *
+     * @param t
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of {@code defaultAction}
+     */
+    @Override
+    public R visitUnion(UnionType t, P p) {
+        return defaultAction(t, p);
+    }
 }

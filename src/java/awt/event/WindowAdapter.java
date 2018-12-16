@@ -34,64 +34,64 @@ package java.awt.event;
  * @since 1.1
  */
 public abstract class WindowAdapter implements WindowListener,
-		WindowStateListener, WindowFocusListener {
-	/**
-	 * Invoked when a window has been opened.
-	 */
-	public void windowOpened(WindowEvent e) {}
+        WindowStateListener, WindowFocusListener {
+    /**
+     * Invoked when a window has been opened.
+     */
+    public void windowOpened(WindowEvent e) {}
 
-	/**
-	 * Invoked when a window is in the process of being closed. The close
-	 * operation can be overridden at this point.
-	 */
-	public void windowClosing(WindowEvent e) {}
+    /**
+     * Invoked when a window is in the process of being closed. The close
+     * operation can be overridden at this point.
+     */
+    public void windowClosing(WindowEvent e) {}
 
-	/**
-	 * Invoked when a window has been closed.
-	 */
-	public void windowClosed(WindowEvent e) {}
+    /**
+     * Invoked when a window has been closed.
+     */
+    public void windowClosed(WindowEvent e) {}
 
-	/**
-	 * Invoked when a window is iconified.
-	 */
-	public void windowIconified(WindowEvent e) {}
+    /**
+     * Invoked when a window is iconified.
+     */
+    public void windowIconified(WindowEvent e) {}
 
-	/**
-	 * Invoked when a window is de-iconified.
-	 */
-	public void windowDeiconified(WindowEvent e) {}
+    /**
+     * Invoked when a window is de-iconified.
+     */
+    public void windowDeiconified(WindowEvent e) {}
 
-	/**
-	 * Invoked when a window is activated.
-	 */
-	public void windowActivated(WindowEvent e) {}
+    /**
+     * Invoked when a window is activated.
+     */
+    public void windowActivated(WindowEvent e) {}
 
-	/**
-	 * Invoked when a window is de-activated.
-	 */
-	public void windowDeactivated(WindowEvent e) {}
+    /**
+     * Invoked when a window is de-activated.
+     */
+    public void windowDeactivated(WindowEvent e) {}
 
-	/**
-	 * Invoked when a window state is changed.
-	 * 
-	 * @since 1.4
-	 */
-	public void windowStateChanged(WindowEvent e) {}
+    /**
+     * Invoked when a window state is changed.
+     * 
+     * @since 1.4
+     */
+    public void windowStateChanged(WindowEvent e) {}
 
-	/**
-	 * Invoked when the Window is set to be the focused Window, which means that
-	 * the Window, or one of its subcomponents, will receive keyboard events.
-	 *
-	 * @since 1.4
-	 */
-	public void windowGainedFocus(WindowEvent e) {}
+    /**
+     * Invoked when the Window is set to be the focused Window, which means that
+     * the Window, or one of its subcomponents, will receive keyboard events.
+     *
+     * @since 1.4
+     */
+    public void windowGainedFocus(WindowEvent e) {}
 
-	/**
-	 * Invoked when the Window is no longer the focused Window, which means that
-	 * keyboard events will no longer be delivered to the Window or any of its
-	 * subcomponents.
-	 *
-	 * @since 1.4
-	 */
-	public void windowLostFocus(WindowEvent e) {}
+    /**
+     * Invoked when the Window is no longer the focused Window, which means that
+     * keyboard events will no longer be delivered to the Window or any of its
+     * subcomponents.
+     *
+     * @since 1.4
+     */
+    public void windowLostFocus(WindowEvent e) {}
 }

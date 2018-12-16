@@ -36,23 +36,23 @@ package java.lang;
  * @since JDK1.0
  */
 public class IllegalAccessException extends ReflectiveOperationException {
-	private static final long serialVersionUID = 6616958222490762034L;
+    private static final long serialVersionUID = 6616958222490762034L;
 
-	/**
-	 * Constructs an <code>IllegalAccessException</code> without a detail
-	 * message.
-	 */
-	public IllegalAccessException() {
-		super();
-	}
+    /**
+     * Constructs an <code>IllegalAccessException</code> without a detail
+     * message.
+     */
+    public IllegalAccessException() {
+        super();
+    }
 
-	/**
-	 * Constructs an <code>IllegalAccessException</code> with a detail message.
-	 *
-	 * @param s
-	 *          the detail message.
-	 */
-	public IllegalAccessException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs an <code>IllegalAccessException</code> with a detail message.
+     *
+     * @param s
+     *          the detail message.
+     */
+    public IllegalAccessException(String s) {
+        super(s);
+    }
 }

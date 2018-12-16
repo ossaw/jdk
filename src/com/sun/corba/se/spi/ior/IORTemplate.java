@@ -13,11 +13,11 @@ import java.util.Iterator;
  * the typeId and ObjectId. It is a list of TaggedProfileTemplates.
  */
 public interface IORTemplate extends List, IORFactory, MakeImmutable {
-	/**
-	 * Iterate over all TaggedProfileTemplates in this IORTemplate with the
-	 * given id.
-	 */
-	Iterator iteratorById(int id);
+    /**
+     * Iterate over all TaggedProfileTemplates in this IORTemplate with the
+     * given id.
+     */
+    Iterator iteratorById(int id);
 
-	ObjectKeyTemplate getObjectKeyTemplate();
+    ObjectKeyTemplate getObjectKeyTemplate();
 }

@@ -24,7 +24,7 @@ import javax.lang.model.element.Name;
  */
 @jdk.Exported
 public interface LabeledStatementTree extends StatementTree {
-	Name getLabel();
+    Name getLabel();
 
-	StatementTree getStatement();
+    StatementTree getStatement();
 }

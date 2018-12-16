@@ -17,17 +17,17 @@ import com.sun.corba.se.spi.orb.ORB;
  * shared across multiple ObjectKey instances.
  */
 public interface ObjectKey extends Writeable {
-	/**
-	 * Return the object identifier for this Object key.
-	 */
-	ObjectId getId();
+    /**
+     * Return the object identifier for this Object key.
+     */
+    ObjectId getId();
 
-	/**
-	 * Return the template for this object key.
-	 */
-	ObjectKeyTemplate getTemplate();
+    /**
+     * Return the template for this object key.
+     */
+    ObjectKeyTemplate getTemplate();
 
-	byte[] getBytes(org.omg.CORBA.ORB orb);
+    byte[] getBytes(org.omg.CORBA.ORB orb);
 
-	CorbaServerRequestDispatcher getServerRequestDispatcher(ORB orb);
+    CorbaServerRequestDispatcher getServerRequestDispatcher(ORB orb);
 }

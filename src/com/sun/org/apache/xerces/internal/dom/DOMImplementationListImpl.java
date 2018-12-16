@@ -33,43 +33,43 @@ import org.w3c.dom.DOMImplementation;
  */
 public class DOMImplementationListImpl implements DOMImplementationList {
 
-	// A collection of DOMImplementations
-	private Vector fImplementations;
+    // A collection of DOMImplementations
+    private Vector fImplementations;
 
-	/**
-	 * Construct an empty list of DOMImplementations
-	 */
-	public DOMImplementationListImpl() {
-		fImplementations = new Vector();
-	}
+    /**
+     * Construct an empty list of DOMImplementations
+     */
+    public DOMImplementationListImpl() {
+        fImplementations = new Vector();
+    }
 
-	/**
-	 * Construct an empty list of DOMImplementations
-	 */
-	public DOMImplementationListImpl(Vector params) {
-		fImplementations = params;
-	}
+    /**
+     * Construct an empty list of DOMImplementations
+     */
+    public DOMImplementationListImpl(Vector params) {
+        fImplementations = params;
+    }
 
-	/**
-	 * Returns the indexth item in the collection.
-	 *
-	 * @param index
-	 *              The index of the DOMImplemetation from the list to return.
-	 */
-	public DOMImplementation item(int index) {
-		try {
-			return (DOMImplementation) fImplementations.elementAt(index);
-		} catch (ArrayIndexOutOfBoundsException e) {
-			return null;
-		}
-	}
+    /**
+     * Returns the indexth item in the collection.
+     *
+     * @param index
+     *              The index of the DOMImplemetation from the list to return.
+     */
+    public DOMImplementation item(int index) {
+        try {
+            return (DOMImplementation) fImplementations.elementAt(index);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return null;
+        }
+    }
 
-	/**
-	 * Returns the number of DOMImplementations in the list.
-	 *
-	 * @return An integer indicating the number of DOMImplementations.
-	 */
-	public int getLength() {
-		return fImplementations.size();
-	}
+    /**
+     * Returns the number of DOMImplementations in the list.
+     *
+     * @return An integer indicating the number of DOMImplementations.
+     */
+    public int getLength() {
+        return fImplementations.size();
+    }
 }

@@ -30,15 +30,15 @@ import javax.lang.model.element.Name;
  */
 @jdk.Exported
 public interface ClassTree extends StatementTree {
-	ModifiersTree getModifiers();
+    ModifiersTree getModifiers();
 
-	Name getSimpleName();
+    Name getSimpleName();
 
-	List<? extends TypeParameterTree> getTypeParameters();
+    List<? extends TypeParameterTree> getTypeParameters();
 
-	Tree getExtendsClause();
+    Tree getExtendsClause();
 
-	List<? extends Tree> getImplementsClause();
+    List<? extends Tree> getImplementsClause();
 
-	List<? extends Tree> getMembers();
+    List<? extends Tree> getMembers();
 }

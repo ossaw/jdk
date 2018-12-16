@@ -14,13 +14,13 @@ package java.net;
  */
 public interface FileNameMap {
 
-	/**
-	 * Gets the MIME type for the specified file name.
-	 * 
-	 * @param fileName
-	 *                 the specified file name
-	 * @return a {@code String} indicating the MIME type for the specified file
-	 *         name.
-	 */
-	public String getContentTypeFor(String fileName);
+    /**
+     * Gets the MIME type for the specified file name.
+     * 
+     * @param fileName
+     *                 the specified file name
+     * @return a {@code String} indicating the MIME type for the specified file
+     *         name.
+     */
+    public String getContentTypeFor(String fileName);
 }

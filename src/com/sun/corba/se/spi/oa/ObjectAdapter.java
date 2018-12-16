@@ -149,108 +149,108 @@ import com.sun.corba.se.spi.ior.IORTemplate;
  * XXX fast local should not call returnServant: what is correct here?
  */
 public interface ObjectAdapter {
-	////////////////////////////////////////////////////////////////////////////
-	// Basic methods for supporting interceptors
-	////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    // Basic methods for supporting interceptors
+    ////////////////////////////////////////////////////////////////////////////
 
-	/**
-	 * Returns the ORB associated with this adapter.
-	 */
-	ORB getORB();
+    /**
+     * Returns the ORB associated with this adapter.
+     */
+    ORB getORB();
 
-	Policy getEffectivePolicy(int type);
+    Policy getEffectivePolicy(int type);
 
-	/**
-	 * Returns the IOR template of this adapter. The profiles in this template
-	 * may be updated only during the AdapterCreated call. After that call
-	 * completes, the IOR template must be made immutable. Note that the server
-	 * ID, ORB ID, and adapter name are all available from the IOR template.
-	 */
-	IORTemplate getIORTemplate();
+    /**
+     * Returns the IOR template of this adapter. The profiles in this template
+     * may be updated only during the AdapterCreated call. After that call
+     * completes, the IOR template must be made immutable. Note that the server
+     * ID, ORB ID, and adapter name are all available from the IOR template.
+     */
+    IORTemplate getIORTemplate();
 
-	////////////////////////////////////////////////////////////////////////////
-	// Methods needed to support ORT.
-	////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    // Methods needed to support ORT.
+    ////////////////////////////////////////////////////////////////////////////
 
-	/**
-	 * Return the ID of the AdapterManager for this object adapter.
-	 */
-	int getManagerId();
+    /**
+     * Return the ID of the AdapterManager for this object adapter.
+     */
+    int getManagerId();
 
-	/**
-	 * Return the current state of this object adapter (see
-	 * org.omg.PortableInterceptors for states.
-	 */
-	short getState();
+    /**
+     * Return the current state of this object adapter (see
+     * org.omg.PortableInterceptors for states.
+     */
+    short getState();
 
-	ObjectReferenceTemplate getAdapterTemplate();
+    ObjectReferenceTemplate getAdapterTemplate();
 
-	ObjectReferenceFactory getCurrentFactory();
+    ObjectReferenceFactory getCurrentFactory();
 
-	/**
-	 * Change the current factory. This may only be called during the
-	 * AdapterCreated call.
-	 */
-	void setCurrentFactory(ObjectReferenceFactory factory);
+    /**
+     * Change the current factory. This may only be called during the
+     * AdapterCreated call.
+     */
+    void setCurrentFactory(ObjectReferenceFactory factory);
 
-	////////////////////////////////////////////////////////////////////////////
-	// Methods required for dispatching to servants
-	////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    // Methods required for dispatching to servants
+    ////////////////////////////////////////////////////////////////////////////
 
-	/**
-	 * Get the servant corresponding to the given objectId, if this is
-	 * supported. This method is only used for models where the servant is an
-	 * ObjectImpl, which allows the servant to be used directly as the stub.
-	 * This allows an object reference to be replaced by its servant when it is
-	 * unmarshalled locally. Such objects are not ORB mediated.
-	 */
-	org.omg.CORBA.Object getLocalServant(byte[] objectId);
+    /**
+     * Get the servant corresponding to the given objectId, if this is
+     * supported. This method is only used for models where the servant is an
+     * ObjectImpl, which allows the servant to be used directly as the stub.
+     * This allows an object reference to be replaced by its servant when it is
+     * unmarshalled locally. Such objects are not ORB mediated.
+     */
+    org.omg.CORBA.Object getLocalServant(byte[] objectId);
 
-	/**
-	 * Get the servant for the request given by the parameters. info must
-	 * contain a valid objectId in this call. The servant is set in the
-	 * InvocationInfo argument that is passed into this call.
-	 * 
-	 * @param info
-	 *             is the InvocationInfo object for the object reference
-	 * @exception ForwardException
-	 *                             (a runtime exception) is thrown if the
-	 *                             request is to be
-	 *                             handled by a different object reference.
-	 */
-	void getInvocationServant(OAInvocationInfo info);
+    /**
+     * Get the servant for the request given by the parameters. info must
+     * contain a valid objectId in this call. The servant is set in the
+     * InvocationInfo argument that is passed into this call.
+     * 
+     * @param info
+     *             is the InvocationInfo object for the object reference
+     * @exception ForwardException
+     *                             (a runtime exception) is thrown if the
+     *                             request is to be
+     *                             handled by a different object reference.
+     */
+    void getInvocationServant(OAInvocationInfo info);
 
-	/**
-	 * enter must be called before each request is invoked on a servant.
-	 * 
-	 * @exception OADestroyed
-	 *                        is thrown when an OA has been destroyed, which
-	 *                        requires a
-	 *                        retry in the case where an AdapterActivator is
-	 *                        present.
-	 */
-	void enter() throws OADestroyed;
+    /**
+     * enter must be called before each request is invoked on a servant.
+     * 
+     * @exception OADestroyed
+     *                        is thrown when an OA has been destroyed, which
+     *                        requires a
+     *                        retry in the case where an AdapterActivator is
+     *                        present.
+     */
+    void enter() throws OADestroyed;
 
-	/**
-	 * exit must be called after each request has been completed. If enter is
-	 * called, there must always be a corresponding exit.
-	 */
-	void exit();
+    /**
+     * exit must be called after each request has been completed. If enter is
+     * called, there must always be a corresponding exit.
+     */
+    void exit();
 
-	/**
-	 * Must be called every time getInvocationServant is called after the
-	 * request has completed.
-	 */
-	public void returnServant();
+    /**
+     * Must be called every time getInvocationServant is called after the
+     * request has completed.
+     */
+    public void returnServant();
 
-	/**
-	 * Create an instance of InvocationInfo that is appropriate for this Object
-	 * adapter.
-	 */
-	OAInvocationInfo makeInvocationInfo(byte[] objectId);
+    /**
+     * Create an instance of InvocationInfo that is appropriate for this Object
+     * adapter.
+     */
+    OAInvocationInfo makeInvocationInfo(byte[] objectId);
 
-	/**
-	 * Return the most derived interface for the given servant and objectId.
-	 */
-	String[] getInterfaces(Object servant, byte[] objectId);
+    /**
+     * Return the most derived interface for the given servant and objectId.
+     */
+    String[] getInterfaces(Object servant, byte[] objectId);
 }

@@ -22,21 +22,21 @@ import java.net.URL;
  * class and returns a <code>String</code>.
  */
 public class I18NImpl {
-	/**
-	 * Returns the message string with the specified key from the "properties"
-	 * file in the package containing the class with the specified name.
-	 */
-	protected static final String getString(String className,
-			String resource_name, String key) {
-		PropertyResourceBundle bundle = null;
-		try {
-			InputStream stream = Class.forName(className).getResourceAsStream(
-					resource_name);
-			bundle = new PropertyResourceBundle(stream);
-		} catch (Throwable e) {
-			throw new RuntimeException(e); // Chain the exception.
-		}
+    /**
+     * Returns the message string with the specified key from the "properties"
+     * file in the package containing the class with the specified name.
+     */
+    protected static final String getString(String className,
+            String resource_name, String key) {
+        PropertyResourceBundle bundle = null;
+        try {
+            InputStream stream = Class.forName(className).getResourceAsStream(
+                    resource_name);
+            bundle = new PropertyResourceBundle(stream);
+        } catch (Throwable e) {
+            throw new RuntimeException(e); // Chain the exception.
+        }
 
-		return (String) bundle.handleGetObject(key);
-	}
+        return (String) bundle.handleGetObject(key);
+    }
 }

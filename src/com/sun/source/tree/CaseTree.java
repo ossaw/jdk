@@ -28,10 +28,10 @@ import java.util.List;
  */
 @jdk.Exported
 public interface CaseTree extends Tree {
-	/**
-	 * @return null if and only if this Case is {@code default:}
-	 */
-	ExpressionTree getExpression();
+    /**
+     * @return null if and only if this Case is {@code default:}
+     */
+    ExpressionTree getExpression();
 
-	List<? extends StatementTree> getStatements();
+    List<? extends StatementTree> getStatements();
 }

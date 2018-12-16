@@ -18,13 +18,13 @@ package java.security.interfaces;
  */
 public interface DSAKey {
 
-	/**
-	 * Returns the DSA-specific key parameters. These parameters are never
-	 * secret.
-	 *
-	 * @return the DSA-specific key parameters.
-	 *
-	 * @see DSAParams
-	 */
-	public DSAParams getParams();
+    /**
+     * Returns the DSA-specific key parameters. These parameters are never
+     * secret.
+     *
+     * @return the DSA-specific key parameters.
+     *
+     * @see DSAParams
+     */
+    public DSAParams getParams();
 }

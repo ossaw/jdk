@@ -192,675 +192,675 @@ import sun.reflect.misc.ReflectUtil;
  */
 public class SyncFactory {
 
-	/**
-	 * Creates a new <code>SyncFactory</code> object, which is the singleton
-	 * instance. Having a private constructor guarantees that no more than one
-	 * <code>SyncProvider</code> object can exist at a time.
-	 */
-	private SyncFactory() {}
-
-	/**
-	 * The standard property-id for a synchronization provider implementation
-	 * name.
-	 */
-	public static final String ROWSET_SYNC_PROVIDER = "rowset.provider.classname";
-	/**
-	 * The standard property-id for a synchronization provider implementation
-	 * vendor name.
-	 */
-	public static final String ROWSET_SYNC_VENDOR = "rowset.provider.vendor";
-	/**
-	 * The standard property-id for a synchronization provider implementation
-	 * version tag.
-	 */
-	public static final String ROWSET_SYNC_PROVIDER_VERSION = "rowset.provider.version";
-	/**
-	 * The standard resource file name.
-	 */
-	private static String ROWSET_PROPERTIES = "rowset.properties";
-
-	/**
-	 * Permission required to invoke setJNDIContext and setLogger
-	 */
-	private static final SQLPermission SET_SYNCFACTORY_PERMISSION = new SQLPermission(
-			"setSyncFactory");
-	/**
-	 * The initial JNDI context where <code>SyncProvider</code> implementations
-	 * can be stored and from which they can be invoked.
-	 */
-	private static Context ic;
-	/**
-	 * The <code>Logger</code> object to be used by the <code>SyncFactory</code>
-	 * .
-	 */
-	private static volatile Logger rsLogger;
-
-	/**
-	 * The registry of available <code>SyncProvider</code> implementations. See
-	 * section 2.0 of the class comment for <code>SyncFactory</code> for an
-	 * explanation of how a provider can be added to this registry.
-	 */
-	private static Hashtable<String, SyncProvider> implementations;
-
-	/**
-	 * Adds the the given synchronization provider to the factory register.
-	 * Guidelines are provided in the <code>SyncProvider</code> specification
-	 * for the required naming conventions for <code>SyncProvider</code>
-	 * implementations.
-	 * <p>
-	 * Synchronization providers bound to a JNDI context can be registered by
-	 * binding a SyncProvider instance to a JNDI namespace.
-	 *
-	 * <pre>
-	 * {
-	 * 	&#64;code
-	 * 	SyncProvider p = new MySyncProvider();
-	 * 	InitialContext ic = new InitialContext();
-	 * 	ic.bind("jdbc/rowset/MySyncProvider", p);
-	 * }
-	 * </pre>
-	 *
-	 * Furthermore, an initial JNDI context should be set with the
-	 * <code>SyncFactory</code> using the <code>setJNDIContext</code> method.
-	 * The <code>SyncFactory</code> leverages this context to search for
-	 * available <code>SyncProvider</code> objects bound to the JNDI context and
-	 * its child nodes.
-	 *
-	 * @param providerID
-	 *                   A <code>String</code> object with the unique ID of the
-	 *                   synchronization provider being registered
-	 * @throws SyncFactoryException
-	 *                              if an attempt is made to supply an empty or
-	 *                              null provider
-	 *                              name
-	 * @see #setJNDIContext
-	 */
-	public static synchronized void registerProvider(String providerID)
-			throws SyncFactoryException {
-
-		ProviderImpl impl = new ProviderImpl();
-		impl.setClassname(providerID);
-		initMapIfNecessary();
-		implementations.put(providerID, impl);
-
-	}
-
-	/**
-	 * Returns the <code>SyncFactory</code> singleton.
-	 *
-	 * @return the <code>SyncFactory</code> instance
-	 */
-	public static SyncFactory getSyncFactory() {
-		/*
-		 * Using Initialization on Demand Holder idiom as Effective Java 2nd
-		 * Edition,ITEM 71, indicates it is more performant than the
-		 * Double-Check Locking idiom.
-		 */
-		return SyncFactoryHolder.factory;
-	}
-
-	/**
-	 * Removes the designated currently registered synchronization provider from
-	 * the Factory SPI register.
-	 *
-	 * @param providerID
-	 *                   The unique-id of the synchronization provider
-	 * @throws SyncFactoryException
-	 *                              If an attempt is made to unregister a
-	 *                              SyncProvider
-	 *                              implementation that was not registered.
-	 */
-	public static synchronized void unregisterProvider(String providerID)
-			throws SyncFactoryException {
-		initMapIfNecessary();
-		if (implementations.containsKey(providerID)) {
-			implementations.remove(providerID);
-		}
-	}
-
-	private static String colon = ":";
-	private static String strFileSep = "/";
-
-	private static synchronized void initMapIfNecessary()
-			throws SyncFactoryException {
-
-		// Local implementation class names and keys from Properties
-		// file, translate names into Class objects using Class.forName
-		// and store mappings
-		final Properties properties = new Properties();
-
-		if (implementations == null) {
-			implementations = new Hashtable<>();
-
-			try {
-
-				// check if user is supplying his Synchronisation Provider
-				// Implementation if not using Oracle's implementation.
-				// properties.load(new FileInputStream(ROWSET_PROPERTIES));
-
-				// The rowset.properties needs to be in jdk/jre/lib when
-				// integrated with jdk.
-				// else it should be picked from -D option from command line.
-
-				// -Drowset.properties will add to standard properties. Similar
-				// keys will over-write
-
-				/*
-				 * Dependent on application
-				 */
-				String strRowsetProperties;
-				try {
-					strRowsetProperties = AccessController.doPrivileged(
-							new PrivilegedAction<String>() {
-								public String run() {
-									return System.getProperty(
-											"rowset.properties");
-								}
-							}, null, new PropertyPermission("rowset.properties",
-									"read"));
-				} catch (Exception ex) {
-					System.out.println("errorget rowset.properties: " + ex);
-					strRowsetProperties = null;
-				}
-				;
-
-				if (strRowsetProperties != null) {
-					// Load user's implementation of SyncProvider
-					// here. -Drowset.properties=/abc/def/pqr.txt
-					ROWSET_PROPERTIES = strRowsetProperties;
-					try (FileInputStream fis = new FileInputStream(
-							ROWSET_PROPERTIES)) {
-						properties.load(fis);
-					}
-					parseProperties(properties);
-				}
-
-				/*
-				 * Always available
-				 */
-				ROWSET_PROPERTIES = "javax" + strFileSep + "sql" + strFileSep
-						+ "rowset" + strFileSep + "rowset.properties";
-
-				ClassLoader cl = Thread.currentThread().getContextClassLoader();
-
-				try {
-					AccessController.doPrivileged(
-							(PrivilegedExceptionAction<Void>) () -> {
-								try (InputStream stream = (cl == null)
-										? ClassLoader.getSystemResourceAsStream(
-												ROWSET_PROPERTIES)
-										: cl.getResourceAsStream(
-												ROWSET_PROPERTIES)) {
-									if (stream == null) {
-										throw new SyncFactoryException(
-												"Resource " + ROWSET_PROPERTIES
-														+ " not found");
-									}
-									properties.load(stream);
-								}
-								return null;
-							});
-				} catch (PrivilegedActionException ex) {
-					Throwable e = ex.getException();
-					if (e instanceof SyncFactoryException) {
-						throw (SyncFactoryException) e;
-					} else {
-						SyncFactoryException sfe = new SyncFactoryException();
-						sfe.initCause(ex.getException());
-						throw sfe;
-					}
-				}
-
-				parseProperties(properties);
-
-				// removed else, has properties should sum together
-
-			} catch (FileNotFoundException e) {
-				throw new SyncFactoryException("Cannot locate properties file: "
-						+ e);
-			} catch (IOException e) {
-				throw new SyncFactoryException("IOException: " + e);
-			}
-
-			/*
-			 * Now deal with -Drowset.provider.classname load additional
-			 * properties from -D command line
-			 */
-			properties.clear();
-			String providerImpls;
-			try {
-				providerImpls = AccessController.doPrivileged(
-						new PrivilegedAction<String>() {
-							public String run() {
-								return System.getProperty(ROWSET_SYNC_PROVIDER);
-							}
-						}, null, new PropertyPermission(ROWSET_SYNC_PROVIDER,
-								"read"));
-			} catch (Exception ex) {
-				providerImpls = null;
-			}
-
-			if (providerImpls != null) {
-				int i = 0;
-				if (providerImpls.indexOf(colon) > 0) {
-					StringTokenizer tokenizer = new StringTokenizer(
-							providerImpls, colon);
-					while (tokenizer.hasMoreElements()) {
-						properties.put(ROWSET_SYNC_PROVIDER + "." + i, tokenizer
-								.nextToken());
-						i++;
-					}
-				} else {
-					properties.put(ROWSET_SYNC_PROVIDER, providerImpls);
-				}
-				parseProperties(properties);
-			}
-		}
-	}
-
-	/**
-	 * The internal debug switch.
-	 */
-	private static boolean debug = false;
-	/**
-	 * Internal registry count for the number of providers contained in the
-	 * registry.
-	 */
-	private static int providerImplIndex = 0;
-
-	/**
-	 * Internal handler for all standard property parsing. Parses standard
-	 * ROWSET properties and stores lazy references into the the internal
-	 * registry.
-	 */
-	private static void parseProperties(Properties p) {
-
-		ProviderImpl impl = null;
-		String key = null;
-		String[] propertyNames = null;
-
-		for (Enumeration<?> e = p.propertyNames(); e.hasMoreElements();) {
-
-			String str = (String) e.nextElement();
-
-			int w = str.length();
-
-			if (str.startsWith(SyncFactory.ROWSET_SYNC_PROVIDER)) {
-
-				impl = new ProviderImpl();
-				impl.setIndex(providerImplIndex++);
-
-				if (w == (SyncFactory.ROWSET_SYNC_PROVIDER).length()) {
-					// no property index has been set.
-					propertyNames = getPropertyNames(false);
-				} else {
-					// property index has been set.
-					propertyNames = getPropertyNames(true, str.substring(w
-							- 1));
-				}
-
-				key = p.getProperty(propertyNames[0]);
-				impl.setClassname(key);
-				impl.setVendor(p.getProperty(propertyNames[1]));
-				impl.setVersion(p.getProperty(propertyNames[2]));
-				implementations.put(key, impl);
-			}
-		}
-	}
-
-	/**
-	 * Used by the parseProperties methods to disassemble each property tuple.
-	 */
-	private static String[] getPropertyNames(boolean append) {
-		return getPropertyNames(append, null);
-	}
-
-	/**
-	 * Disassembles each property and its associated value. Also handles
-	 * overloaded property names that contain indexes.
-	 */
-	private static String[] getPropertyNames(boolean append,
-			String propertyIndex) {
-		String dot = ".";
-		String[] propertyNames = new String[] {
-				SyncFactory.ROWSET_SYNC_PROVIDER,
-				SyncFactory.ROWSET_SYNC_VENDOR,
-				SyncFactory.ROWSET_SYNC_PROVIDER_VERSION };
-		if (append) {
-			for (int i = 0; i < propertyNames.length; i++) {
-				propertyNames[i] = propertyNames[i] + dot + propertyIndex;
-			}
-			return propertyNames;
-		} else {
-			return propertyNames;
-		}
-	}
-
-	/**
-	 * Internal debug method that outputs the registry contents.
-	 */
-	private static void showImpl(ProviderImpl impl) {
-		System.out.println("Provider implementation:");
-		System.out.println("Classname: " + impl.getClassname());
-		System.out.println("Vendor: " + impl.getVendor());
-		System.out.println("Version: " + impl.getVersion());
-		System.out.println("Impl index: " + impl.getIndex());
-	}
-
-	/**
-	 * Returns the <code>SyncProvider</code> instance identified by
-	 * <i>providerID</i>.
-	 *
-	 * @param providerID
-	 *                   the unique identifier of the provider
-	 * @return a <code>SyncProvider</code> implementation
-	 * @throws SyncFactoryException
-	 *                              If the SyncProvider cannot be found, the
-	 *                              providerID is
-	 *                              {@code null}, or some error was encountered
-	 *                              when trying to
-	 *                              invoke this provider.
-	 */
-	public static SyncProvider getInstance(String providerID)
-			throws SyncFactoryException {
-
-		if (providerID == null) {
-			throw new SyncFactoryException("The providerID cannot be null");
-		}
-
-		initMapIfNecessary(); // populate HashTable
-		initJNDIContext(); // check JNDI context for any additional bindings
-
-		ProviderImpl impl = (ProviderImpl) implementations.get(providerID);
-
-		if (impl == null) {
-			// Requested SyncProvider is unavailable. Return default provider.
-			return new com.sun.rowset.providers.RIOptimisticProvider();
-		}
-
-		try {
-			ReflectUtil.checkPackageAccess(providerID);
-		} catch (java.security.AccessControlException e) {
-			SyncFactoryException sfe = new SyncFactoryException();
-			sfe.initCause(e);
-			throw sfe;
-		}
-
-		// Attempt to invoke classname from registered SyncProvider list
-		Class<?> c = null;
-		try {
-			ClassLoader cl = Thread.currentThread().getContextClassLoader();
-
-			/**
-			 * The SyncProvider implementation of the user will be in the
-			 * classpath. We need to find the ClassLoader which loads this
-			 * SyncFactory and try to load the SyncProvider class from there.
-			 **/
-			c = Class.forName(providerID, true, cl);
-
-			if (c != null) {
-				return (SyncProvider) c.newInstance();
-			} else {
-				return new com.sun.rowset.providers.RIOptimisticProvider();
-			}
-
-		} catch (IllegalAccessException e) {
-			throw new SyncFactoryException("IllegalAccessException: " + e
-					.getMessage());
-		} catch (InstantiationException e) {
-			throw new SyncFactoryException("InstantiationException: " + e
-					.getMessage());
-		} catch (ClassNotFoundException e) {
-			throw new SyncFactoryException("ClassNotFoundException: " + e
-					.getMessage());
-		}
-	}
-
-	/**
-	 * Returns an Enumeration of currently registered synchronization providers.
-	 * A <code>RowSet</code> implementation may use any provider in the
-	 * enumeration as its <code>SyncProvider</code> object.
-	 * <p>
-	 * At a minimum, the reference synchronization provider allowing RowSet
-	 * content data to be stored using a JDBC driver should be possible.
-	 *
-	 * @return Enumeration A enumeration of available synchronization providers
-	 *         that are registered with this Factory
-	 * @throws SyncFactoryException
-	 *                              If an error occurs obtaining the registered
-	 *                              providers
-	 */
-	public static Enumeration<SyncProvider> getRegisteredProviders()
-			throws SyncFactoryException {
-		initMapIfNecessary();
-		// return a collection of classnames
-		// of type SyncProvider
-		return implementations.elements();
-	}
-
-	/**
-	 * Sets the logging object to be used by the <code>SyncProvider</code>
-	 * implementation provided by the <code>SyncFactory</code>. All
-	 * <code>SyncProvider</code> implementations can log their events to this
-	 * object and the application can retrieve a handle to this object using the
-	 * <code>getLogger</code> method.
-	 * <p>
-	 * This method checks to see that there is an {@code SQLPermission} object
-	 * which grants the permission {@code setSyncFactory} before allowing the
-	 * method to succeed. If a {@code SecurityManager} exists and its
-	 * {@code checkPermission} method denies calling {@code setLogger}, this
-	 * method throws a {@code java.lang.SecurityException}.
-	 *
-	 * @param logger
-	 *               A Logger object instance
-	 * @throws                      java.lang.SecurityException
-	 *                              if a security manager exists and its
-	 *                              {@code checkPermission}
-	 *                              method denies calling {@code setLogger}
-	 * @throws NullPointerException
-	 *                              if the logger is null
-	 * @see SecurityManager#checkPermission
-	 */
-	public static void setLogger(Logger logger) {
-
-		SecurityManager sec = System.getSecurityManager();
-		if (sec != null) {
-			sec.checkPermission(SET_SYNCFACTORY_PERMISSION);
-		}
-
-		if (logger == null) {
-			throw new NullPointerException("You must provide a Logger");
-		}
-		rsLogger = logger;
-	}
-
-	/**
-	 * Sets the logging object that is used by <code>SyncProvider</code>
-	 * implementations provided by the <code>SyncFactory</code> SPI. All
-	 * <code>SyncProvider</code> implementations can log their events to this
-	 * object and the application can retrieve a handle to this object using the
-	 * <code>getLogger</code> method.
-	 * <p>
-	 * This method checks to see that there is an {@code SQLPermission} object
-	 * which grants the permission {@code setSyncFactory} before allowing the
-	 * method to succeed. If a {@code SecurityManager} exists and its
-	 * {@code checkPermission} method denies calling {@code setLogger}, this
-	 * method throws a {@code java.lang.SecurityException}.
-	 *
-	 * @param logger
-	 *               a Logger object instance
-	 * @param level
-	 *               a Level object instance indicating the degree of logging
-	 *               required
-	 * @throws                      java.lang.SecurityException
-	 *                              if a security manager exists and its
-	 *                              {@code checkPermission}
-	 *                              method denies calling {@code setLogger}
-	 * @throws NullPointerException
-	 *                              if the logger is null
-	 * @see SecurityManager#checkPermission
-	 * @see LoggingPermission
-	 */
-	public static void setLogger(Logger logger, Level level) {
-		// singleton
-		SecurityManager sec = System.getSecurityManager();
-		if (sec != null) {
-			sec.checkPermission(SET_SYNCFACTORY_PERMISSION);
-		}
-
-		if (logger == null) {
-			throw new NullPointerException("You must provide a Logger");
-		}
-		logger.setLevel(level);
-		rsLogger = logger;
-	}
-
-	/**
-	 * Returns the logging object for applications to retrieve synchronization
-	 * events posted by SyncProvider implementations.
-	 * 
-	 * @return The {@code Logger} that has been specified for use by
-	 *         {@code SyncProvider} implementations
-	 * @throws SyncFactoryException
-	 *                              if no logging object has been set.
-	 */
-	public static Logger getLogger() throws SyncFactoryException {
-
-		Logger result = rsLogger;
-		// only one logger per session
-		if (result == null) {
-			throw new SyncFactoryException(
-					"(SyncFactory) : No logger has been set");
-		}
-
-		return result;
-	}
-
-	/**
-	 * Sets the initial JNDI context from which SyncProvider implementations can
-	 * be retrieved from a JNDI namespace
-	 * <p>
-	 * This method checks to see that there is an {@code SQLPermission} object
-	 * which grants the permission {@code setSyncFactory} before allowing the
-	 * method to succeed. If a {@code SecurityManager} exists and its
-	 * {@code checkPermission} method denies calling {@code setJNDIContext},
-	 * this method throws a {@code java.lang.SecurityException}.
-	 *
-	 * @param ctx
-	 *            a valid JNDI context
-	 * @throws SyncFactoryException
-	 *                              if the supplied JNDI context is null
-	 * @throws                      java.lang.SecurityException
-	 *                              if a security manager exists and its
-	 *                              {@code checkPermission}
-	 *                              method denies calling {@code setJNDIContext}
-	 * @see SecurityManager#checkPermission
-	 */
-	public static synchronized void setJNDIContext(javax.naming.Context ctx)
-			throws SyncFactoryException {
-		SecurityManager sec = System.getSecurityManager();
-		if (sec != null) {
-			sec.checkPermission(SET_SYNCFACTORY_PERMISSION);
-		}
-		if (ctx == null) {
-			throw new SyncFactoryException("Invalid JNDI context supplied");
-		}
-		ic = ctx;
-	}
-
-	/**
-	 * Controls JNDI context initialization.
-	 *
-	 * @throws SyncFactoryException
-	 *                              if an error occurs parsing the JNDI context
-	 */
-	private static synchronized void initJNDIContext()
-			throws SyncFactoryException {
-
-		if ((ic != null) && (lazyJNDICtxRefresh == false)) {
-			try {
-				parseProperties(parseJNDIContext());
-				lazyJNDICtxRefresh = true; // touch JNDI namespace once.
-			} catch (NamingException e) {
-				e.printStackTrace();
-				throw new SyncFactoryException("SPI: NamingException: " + e
-						.getExplanation());
-			} catch (Exception e) {
-				e.printStackTrace();
-				throw new SyncFactoryException("SPI: Exception: " + e
-						.getMessage());
-			}
-		}
-	}
-
-	/**
-	 * Internal switch indicating whether the JNDI namespace should be re-read.
-	 */
-	private static boolean lazyJNDICtxRefresh = false;
-
-	/**
-	 * Parses the set JNDI Context and passes bindings to the enumerateBindings
-	 * method when complete.
-	 */
-	private static Properties parseJNDIContext() throws NamingException {
-
-		NamingEnumeration<?> bindings = ic.listBindings("");
-		Properties properties = new Properties();
-
-		// Hunt one level below context for available SyncProvider objects
-		enumerateBindings(bindings, properties);
-
-		return properties;
-	}
-
-	/**
-	 * Scans each binding on JNDI context and determines if any binding is an
-	 * instance of SyncProvider, if so, add this to the registry and continue to
-	 * scan the current context using a re-entrant call to this method until all
-	 * bindings have been enumerated.
-	 */
-	private static void enumerateBindings(NamingEnumeration<?> bindings,
-			Properties properties) throws NamingException {
-
-		boolean syncProviderObj = false; // move to parameters ?
-
-		try {
-			Binding bd = null;
-			Object elementObj = null;
-			String element = null;
-			while (bindings.hasMore()) {
-				bd = (Binding) bindings.next();
-				element = bd.getName();
-				elementObj = bd.getObject();
-
-				if (!(ic.lookup(element) instanceof Context)) {
-					// skip directories/sub-contexts
-					if (ic.lookup(element) instanceof SyncProvider) {
-						syncProviderObj = true;
-					}
-				}
-
-				if (syncProviderObj) {
-					SyncProvider sync = (SyncProvider) elementObj;
-					properties.put(SyncFactory.ROWSET_SYNC_PROVIDER, sync
-							.getProviderID());
-					syncProviderObj = false; // reset
-				}
-
-			}
-		} catch (javax.naming.NotContextException e) {
-			bindings.next();
-			// Re-entrant call into method
-			enumerateBindings(bindings, properties);
-		}
-	}
-
-	/**
-	 * Lazy initialization Holder class used by {@code getSyncFactory}
-	 */
-	private static class SyncFactoryHolder {
-		static final SyncFactory factory = new SyncFactory();
-	}
+    /**
+     * Creates a new <code>SyncFactory</code> object, which is the singleton
+     * instance. Having a private constructor guarantees that no more than one
+     * <code>SyncProvider</code> object can exist at a time.
+     */
+    private SyncFactory() {}
+
+    /**
+     * The standard property-id for a synchronization provider implementation
+     * name.
+     */
+    public static final String ROWSET_SYNC_PROVIDER = "rowset.provider.classname";
+    /**
+     * The standard property-id for a synchronization provider implementation
+     * vendor name.
+     */
+    public static final String ROWSET_SYNC_VENDOR = "rowset.provider.vendor";
+    /**
+     * The standard property-id for a synchronization provider implementation
+     * version tag.
+     */
+    public static final String ROWSET_SYNC_PROVIDER_VERSION = "rowset.provider.version";
+    /**
+     * The standard resource file name.
+     */
+    private static String ROWSET_PROPERTIES = "rowset.properties";
+
+    /**
+     * Permission required to invoke setJNDIContext and setLogger
+     */
+    private static final SQLPermission SET_SYNCFACTORY_PERMISSION = new SQLPermission(
+            "setSyncFactory");
+    /**
+     * The initial JNDI context where <code>SyncProvider</code> implementations
+     * can be stored and from which they can be invoked.
+     */
+    private static Context ic;
+    /**
+     * The <code>Logger</code> object to be used by the <code>SyncFactory</code>
+     * .
+     */
+    private static volatile Logger rsLogger;
+
+    /**
+     * The registry of available <code>SyncProvider</code> implementations. See
+     * section 2.0 of the class comment for <code>SyncFactory</code> for an
+     * explanation of how a provider can be added to this registry.
+     */
+    private static Hashtable<String, SyncProvider> implementations;
+
+    /**
+     * Adds the the given synchronization provider to the factory register.
+     * Guidelines are provided in the <code>SyncProvider</code> specification
+     * for the required naming conventions for <code>SyncProvider</code>
+     * implementations.
+     * <p>
+     * Synchronization providers bound to a JNDI context can be registered by
+     * binding a SyncProvider instance to a JNDI namespace.
+     *
+     * <pre>
+     * {
+     *     &#64;code
+     *     SyncProvider p = new MySyncProvider();
+     *     InitialContext ic = new InitialContext();
+     *     ic.bind("jdbc/rowset/MySyncProvider", p);
+     * }
+     * </pre>
+     *
+     * Furthermore, an initial JNDI context should be set with the
+     * <code>SyncFactory</code> using the <code>setJNDIContext</code> method.
+     * The <code>SyncFactory</code> leverages this context to search for
+     * available <code>SyncProvider</code> objects bound to the JNDI context and
+     * its child nodes.
+     *
+     * @param providerID
+     *                   A <code>String</code> object with the unique ID of the
+     *                   synchronization provider being registered
+     * @throws SyncFactoryException
+     *                              if an attempt is made to supply an empty or
+     *                              null provider
+     *                              name
+     * @see #setJNDIContext
+     */
+    public static synchronized void registerProvider(String providerID)
+            throws SyncFactoryException {
+
+        ProviderImpl impl = new ProviderImpl();
+        impl.setClassname(providerID);
+        initMapIfNecessary();
+        implementations.put(providerID, impl);
+
+    }
+
+    /**
+     * Returns the <code>SyncFactory</code> singleton.
+     *
+     * @return the <code>SyncFactory</code> instance
+     */
+    public static SyncFactory getSyncFactory() {
+        /*
+         * Using Initialization on Demand Holder idiom as Effective Java 2nd
+         * Edition,ITEM 71, indicates it is more performant than the
+         * Double-Check Locking idiom.
+         */
+        return SyncFactoryHolder.factory;
+    }
+
+    /**
+     * Removes the designated currently registered synchronization provider from
+     * the Factory SPI register.
+     *
+     * @param providerID
+     *                   The unique-id of the synchronization provider
+     * @throws SyncFactoryException
+     *                              If an attempt is made to unregister a
+     *                              SyncProvider
+     *                              implementation that was not registered.
+     */
+    public static synchronized void unregisterProvider(String providerID)
+            throws SyncFactoryException {
+        initMapIfNecessary();
+        if (implementations.containsKey(providerID)) {
+            implementations.remove(providerID);
+        }
+    }
+
+    private static String colon = ":";
+    private static String strFileSep = "/";
+
+    private static synchronized void initMapIfNecessary()
+            throws SyncFactoryException {
+
+        // Local implementation class names and keys from Properties
+        // file, translate names into Class objects using Class.forName
+        // and store mappings
+        final Properties properties = new Properties();
+
+        if (implementations == null) {
+            implementations = new Hashtable<>();
+
+            try {
+
+                // check if user is supplying his Synchronisation Provider
+                // Implementation if not using Oracle's implementation.
+                // properties.load(new FileInputStream(ROWSET_PROPERTIES));
+
+                // The rowset.properties needs to be in jdk/jre/lib when
+                // integrated with jdk.
+                // else it should be picked from -D option from command line.
+
+                // -Drowset.properties will add to standard properties. Similar
+                // keys will over-write
+
+                /*
+                 * Dependent on application
+                 */
+                String strRowsetProperties;
+                try {
+                    strRowsetProperties = AccessController.doPrivileged(
+                            new PrivilegedAction<String>() {
+                                public String run() {
+                                    return System.getProperty(
+                                            "rowset.properties");
+                                }
+                            }, null, new PropertyPermission("rowset.properties",
+                                    "read"));
+                } catch (Exception ex) {
+                    System.out.println("errorget rowset.properties: " + ex);
+                    strRowsetProperties = null;
+                }
+                ;
+
+                if (strRowsetProperties != null) {
+                    // Load user's implementation of SyncProvider
+                    // here. -Drowset.properties=/abc/def/pqr.txt
+                    ROWSET_PROPERTIES = strRowsetProperties;
+                    try (FileInputStream fis = new FileInputStream(
+                            ROWSET_PROPERTIES)) {
+                        properties.load(fis);
+                    }
+                    parseProperties(properties);
+                }
+
+                /*
+                 * Always available
+                 */
+                ROWSET_PROPERTIES = "javax" + strFileSep + "sql" + strFileSep
+                        + "rowset" + strFileSep + "rowset.properties";
+
+                ClassLoader cl = Thread.currentThread().getContextClassLoader();
+
+                try {
+                    AccessController.doPrivileged(
+                            (PrivilegedExceptionAction<Void>) () -> {
+                                try (InputStream stream = (cl == null)
+                                        ? ClassLoader.getSystemResourceAsStream(
+                                                ROWSET_PROPERTIES)
+                                        : cl.getResourceAsStream(
+                                                ROWSET_PROPERTIES)) {
+                                    if (stream == null) {
+                                        throw new SyncFactoryException(
+                                                "Resource " + ROWSET_PROPERTIES
+                                                        + " not found");
+                                    }
+                                    properties.load(stream);
+                                }
+                                return null;
+                            });
+                } catch (PrivilegedActionException ex) {
+                    Throwable e = ex.getException();
+                    if (e instanceof SyncFactoryException) {
+                        throw (SyncFactoryException) e;
+                    } else {
+                        SyncFactoryException sfe = new SyncFactoryException();
+                        sfe.initCause(ex.getException());
+                        throw sfe;
+                    }
+                }
+
+                parseProperties(properties);
+
+                // removed else, has properties should sum together
+
+            } catch (FileNotFoundException e) {
+                throw new SyncFactoryException("Cannot locate properties file: "
+                        + e);
+            } catch (IOException e) {
+                throw new SyncFactoryException("IOException: " + e);
+            }
+
+            /*
+             * Now deal with -Drowset.provider.classname load additional
+             * properties from -D command line
+             */
+            properties.clear();
+            String providerImpls;
+            try {
+                providerImpls = AccessController.doPrivileged(
+                        new PrivilegedAction<String>() {
+                            public String run() {
+                                return System.getProperty(ROWSET_SYNC_PROVIDER);
+                            }
+                        }, null, new PropertyPermission(ROWSET_SYNC_PROVIDER,
+                                "read"));
+            } catch (Exception ex) {
+                providerImpls = null;
+            }
+
+            if (providerImpls != null) {
+                int i = 0;
+                if (providerImpls.indexOf(colon) > 0) {
+                    StringTokenizer tokenizer = new StringTokenizer(
+                            providerImpls, colon);
+                    while (tokenizer.hasMoreElements()) {
+                        properties.put(ROWSET_SYNC_PROVIDER + "." + i, tokenizer
+                                .nextToken());
+                        i++;
+                    }
+                } else {
+                    properties.put(ROWSET_SYNC_PROVIDER, providerImpls);
+                }
+                parseProperties(properties);
+            }
+        }
+    }
+
+    /**
+     * The internal debug switch.
+     */
+    private static boolean debug = false;
+    /**
+     * Internal registry count for the number of providers contained in the
+     * registry.
+     */
+    private static int providerImplIndex = 0;
+
+    /**
+     * Internal handler for all standard property parsing. Parses standard
+     * ROWSET properties and stores lazy references into the the internal
+     * registry.
+     */
+    private static void parseProperties(Properties p) {
+
+        ProviderImpl impl = null;
+        String key = null;
+        String[] propertyNames = null;
+
+        for (Enumeration<?> e = p.propertyNames(); e.hasMoreElements();) {
+
+            String str = (String) e.nextElement();
+
+            int w = str.length();
+
+            if (str.startsWith(SyncFactory.ROWSET_SYNC_PROVIDER)) {
+
+                impl = new ProviderImpl();
+                impl.setIndex(providerImplIndex++);
+
+                if (w == (SyncFactory.ROWSET_SYNC_PROVIDER).length()) {
+                    // no property index has been set.
+                    propertyNames = getPropertyNames(false);
+                } else {
+                    // property index has been set.
+                    propertyNames = getPropertyNames(true, str.substring(w
+                            - 1));
+                }
+
+                key = p.getProperty(propertyNames[0]);
+                impl.setClassname(key);
+                impl.setVendor(p.getProperty(propertyNames[1]));
+                impl.setVersion(p.getProperty(propertyNames[2]));
+                implementations.put(key, impl);
+            }
+        }
+    }
+
+    /**
+     * Used by the parseProperties methods to disassemble each property tuple.
+     */
+    private static String[] getPropertyNames(boolean append) {
+        return getPropertyNames(append, null);
+    }
+
+    /**
+     * Disassembles each property and its associated value. Also handles
+     * overloaded property names that contain indexes.
+     */
+    private static String[] getPropertyNames(boolean append,
+            String propertyIndex) {
+        String dot = ".";
+        String[] propertyNames = new String[] {
+                SyncFactory.ROWSET_SYNC_PROVIDER,
+                SyncFactory.ROWSET_SYNC_VENDOR,
+                SyncFactory.ROWSET_SYNC_PROVIDER_VERSION };
+        if (append) {
+            for (int i = 0; i < propertyNames.length; i++) {
+                propertyNames[i] = propertyNames[i] + dot + propertyIndex;
+            }
+            return propertyNames;
+        } else {
+            return propertyNames;
+        }
+    }
+
+    /**
+     * Internal debug method that outputs the registry contents.
+     */
+    private static void showImpl(ProviderImpl impl) {
+        System.out.println("Provider implementation:");
+        System.out.println("Classname: " + impl.getClassname());
+        System.out.println("Vendor: " + impl.getVendor());
+        System.out.println("Version: " + impl.getVersion());
+        System.out.println("Impl index: " + impl.getIndex());
+    }
+
+    /**
+     * Returns the <code>SyncProvider</code> instance identified by
+     * <i>providerID</i>.
+     *
+     * @param providerID
+     *                   the unique identifier of the provider
+     * @return a <code>SyncProvider</code> implementation
+     * @throws SyncFactoryException
+     *                              If the SyncProvider cannot be found, the
+     *                              providerID is
+     *                              {@code null}, or some error was encountered
+     *                              when trying to
+     *                              invoke this provider.
+     */
+    public static SyncProvider getInstance(String providerID)
+            throws SyncFactoryException {
+
+        if (providerID == null) {
+            throw new SyncFactoryException("The providerID cannot be null");
+        }
+
+        initMapIfNecessary(); // populate HashTable
+        initJNDIContext(); // check JNDI context for any additional bindings
+
+        ProviderImpl impl = (ProviderImpl) implementations.get(providerID);
+
+        if (impl == null) {
+            // Requested SyncProvider is unavailable. Return default provider.
+            return new com.sun.rowset.providers.RIOptimisticProvider();
+        }
+
+        try {
+            ReflectUtil.checkPackageAccess(providerID);
+        } catch (java.security.AccessControlException e) {
+            SyncFactoryException sfe = new SyncFactoryException();
+            sfe.initCause(e);
+            throw sfe;
+        }
+
+        // Attempt to invoke classname from registered SyncProvider list
+        Class<?> c = null;
+        try {
+            ClassLoader cl = Thread.currentThread().getContextClassLoader();
+
+            /**
+             * The SyncProvider implementation of the user will be in the
+             * classpath. We need to find the ClassLoader which loads this
+             * SyncFactory and try to load the SyncProvider class from there.
+             **/
+            c = Class.forName(providerID, true, cl);
+
+            if (c != null) {
+                return (SyncProvider) c.newInstance();
+            } else {
+                return new com.sun.rowset.providers.RIOptimisticProvider();
+            }
+
+        } catch (IllegalAccessException e) {
+            throw new SyncFactoryException("IllegalAccessException: " + e
+                    .getMessage());
+        } catch (InstantiationException e) {
+            throw new SyncFactoryException("InstantiationException: " + e
+                    .getMessage());
+        } catch (ClassNotFoundException e) {
+            throw new SyncFactoryException("ClassNotFoundException: " + e
+                    .getMessage());
+        }
+    }
+
+    /**
+     * Returns an Enumeration of currently registered synchronization providers.
+     * A <code>RowSet</code> implementation may use any provider in the
+     * enumeration as its <code>SyncProvider</code> object.
+     * <p>
+     * At a minimum, the reference synchronization provider allowing RowSet
+     * content data to be stored using a JDBC driver should be possible.
+     *
+     * @return Enumeration A enumeration of available synchronization providers
+     *         that are registered with this Factory
+     * @throws SyncFactoryException
+     *                              If an error occurs obtaining the registered
+     *                              providers
+     */
+    public static Enumeration<SyncProvider> getRegisteredProviders()
+            throws SyncFactoryException {
+        initMapIfNecessary();
+        // return a collection of classnames
+        // of type SyncProvider
+        return implementations.elements();
+    }
+
+    /**
+     * Sets the logging object to be used by the <code>SyncProvider</code>
+     * implementation provided by the <code>SyncFactory</code>. All
+     * <code>SyncProvider</code> implementations can log their events to this
+     * object and the application can retrieve a handle to this object using the
+     * <code>getLogger</code> method.
+     * <p>
+     * This method checks to see that there is an {@code SQLPermission} object
+     * which grants the permission {@code setSyncFactory} before allowing the
+     * method to succeed. If a {@code SecurityManager} exists and its
+     * {@code checkPermission} method denies calling {@code setLogger}, this
+     * method throws a {@code java.lang.SecurityException}.
+     *
+     * @param logger
+     *               A Logger object instance
+     * @throws                      java.lang.SecurityException
+     *                              if a security manager exists and its
+     *                              {@code checkPermission}
+     *                              method denies calling {@code setLogger}
+     * @throws NullPointerException
+     *                              if the logger is null
+     * @see SecurityManager#checkPermission
+     */
+    public static void setLogger(Logger logger) {
+
+        SecurityManager sec = System.getSecurityManager();
+        if (sec != null) {
+            sec.checkPermission(SET_SYNCFACTORY_PERMISSION);
+        }
+
+        if (logger == null) {
+            throw new NullPointerException("You must provide a Logger");
+        }
+        rsLogger = logger;
+    }
+
+    /**
+     * Sets the logging object that is used by <code>SyncProvider</code>
+     * implementations provided by the <code>SyncFactory</code> SPI. All
+     * <code>SyncProvider</code> implementations can log their events to this
+     * object and the application can retrieve a handle to this object using the
+     * <code>getLogger</code> method.
+     * <p>
+     * This method checks to see that there is an {@code SQLPermission} object
+     * which grants the permission {@code setSyncFactory} before allowing the
+     * method to succeed. If a {@code SecurityManager} exists and its
+     * {@code checkPermission} method denies calling {@code setLogger}, this
+     * method throws a {@code java.lang.SecurityException}.
+     *
+     * @param logger
+     *               a Logger object instance
+     * @param level
+     *               a Level object instance indicating the degree of logging
+     *               required
+     * @throws                      java.lang.SecurityException
+     *                              if a security manager exists and its
+     *                              {@code checkPermission}
+     *                              method denies calling {@code setLogger}
+     * @throws NullPointerException
+     *                              if the logger is null
+     * @see SecurityManager#checkPermission
+     * @see LoggingPermission
+     */
+    public static void setLogger(Logger logger, Level level) {
+        // singleton
+        SecurityManager sec = System.getSecurityManager();
+        if (sec != null) {
+            sec.checkPermission(SET_SYNCFACTORY_PERMISSION);
+        }
+
+        if (logger == null) {
+            throw new NullPointerException("You must provide a Logger");
+        }
+        logger.setLevel(level);
+        rsLogger = logger;
+    }
+
+    /**
+     * Returns the logging object for applications to retrieve synchronization
+     * events posted by SyncProvider implementations.
+     * 
+     * @return The {@code Logger} that has been specified for use by
+     *         {@code SyncProvider} implementations
+     * @throws SyncFactoryException
+     *                              if no logging object has been set.
+     */
+    public static Logger getLogger() throws SyncFactoryException {
+
+        Logger result = rsLogger;
+        // only one logger per session
+        if (result == null) {
+            throw new SyncFactoryException(
+                    "(SyncFactory) : No logger has been set");
+        }
+
+        return result;
+    }
+
+    /**
+     * Sets the initial JNDI context from which SyncProvider implementations can
+     * be retrieved from a JNDI namespace
+     * <p>
+     * This method checks to see that there is an {@code SQLPermission} object
+     * which grants the permission {@code setSyncFactory} before allowing the
+     * method to succeed. If a {@code SecurityManager} exists and its
+     * {@code checkPermission} method denies calling {@code setJNDIContext},
+     * this method throws a {@code java.lang.SecurityException}.
+     *
+     * @param ctx
+     *            a valid JNDI context
+     * @throws SyncFactoryException
+     *                              if the supplied JNDI context is null
+     * @throws                      java.lang.SecurityException
+     *                              if a security manager exists and its
+     *                              {@code checkPermission}
+     *                              method denies calling {@code setJNDIContext}
+     * @see SecurityManager#checkPermission
+     */
+    public static synchronized void setJNDIContext(javax.naming.Context ctx)
+            throws SyncFactoryException {
+        SecurityManager sec = System.getSecurityManager();
+        if (sec != null) {
+            sec.checkPermission(SET_SYNCFACTORY_PERMISSION);
+        }
+        if (ctx == null) {
+            throw new SyncFactoryException("Invalid JNDI context supplied");
+        }
+        ic = ctx;
+    }
+
+    /**
+     * Controls JNDI context initialization.
+     *
+     * @throws SyncFactoryException
+     *                              if an error occurs parsing the JNDI context
+     */
+    private static synchronized void initJNDIContext()
+            throws SyncFactoryException {
+
+        if ((ic != null) && (lazyJNDICtxRefresh == false)) {
+            try {
+                parseProperties(parseJNDIContext());
+                lazyJNDICtxRefresh = true; // touch JNDI namespace once.
+            } catch (NamingException e) {
+                e.printStackTrace();
+                throw new SyncFactoryException("SPI: NamingException: " + e
+                        .getExplanation());
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new SyncFactoryException("SPI: Exception: " + e
+                        .getMessage());
+            }
+        }
+    }
+
+    /**
+     * Internal switch indicating whether the JNDI namespace should be re-read.
+     */
+    private static boolean lazyJNDICtxRefresh = false;
+
+    /**
+     * Parses the set JNDI Context and passes bindings to the enumerateBindings
+     * method when complete.
+     */
+    private static Properties parseJNDIContext() throws NamingException {
+
+        NamingEnumeration<?> bindings = ic.listBindings("");
+        Properties properties = new Properties();
+
+        // Hunt one level below context for available SyncProvider objects
+        enumerateBindings(bindings, properties);
+
+        return properties;
+    }
+
+    /**
+     * Scans each binding on JNDI context and determines if any binding is an
+     * instance of SyncProvider, if so, add this to the registry and continue to
+     * scan the current context using a re-entrant call to this method until all
+     * bindings have been enumerated.
+     */
+    private static void enumerateBindings(NamingEnumeration<?> bindings,
+            Properties properties) throws NamingException {
+
+        boolean syncProviderObj = false; // move to parameters ?
+
+        try {
+            Binding bd = null;
+            Object elementObj = null;
+            String element = null;
+            while (bindings.hasMore()) {
+                bd = (Binding) bindings.next();
+                element = bd.getName();
+                elementObj = bd.getObject();
+
+                if (!(ic.lookup(element) instanceof Context)) {
+                    // skip directories/sub-contexts
+                    if (ic.lookup(element) instanceof SyncProvider) {
+                        syncProviderObj = true;
+                    }
+                }
+
+                if (syncProviderObj) {
+                    SyncProvider sync = (SyncProvider) elementObj;
+                    properties.put(SyncFactory.ROWSET_SYNC_PROVIDER, sync
+                            .getProviderID());
+                    syncProviderObj = false; // reset
+                }
+
+            }
+        } catch (javax.naming.NotContextException e) {
+            bindings.next();
+            // Re-entrant call into method
+            enumerateBindings(bindings, properties);
+        }
+    }
+
+    /**
+     * Lazy initialization Holder class used by {@code getSyncFactory}
+     */
+    private static class SyncFactoryHolder {
+        static final SyncFactory factory = new SyncFactory();
+    }
 }
 
 /**
@@ -869,124 +869,124 @@ public class SyncFactory {
  */
 class ProviderImpl extends SyncProvider {
 
-	private String className = null;
-	private String vendorName = null;
-	private String ver = null;
-	private int index;
+    private String className = null;
+    private String vendorName = null;
+    private String ver = null;
+    private int index;
 
-	public void setClassname(String classname) {
-		className = classname;
-	}
+    public void setClassname(String classname) {
+        className = classname;
+    }
 
-	public String getClassname() {
-		return className;
-	}
+    public String getClassname() {
+        return className;
+    }
 
-	public void setVendor(String vendor) {
-		vendorName = vendor;
-	}
+    public void setVendor(String vendor) {
+        vendorName = vendor;
+    }
 
-	public String getVendor() {
-		return vendorName;
-	}
+    public String getVendor() {
+        return vendorName;
+    }
 
-	public void setVersion(String providerVer) {
-		ver = providerVer;
-	}
+    public void setVersion(String providerVer) {
+        ver = providerVer;
+    }
 
-	public String getVersion() {
-		return ver;
-	}
+    public String getVersion() {
+        return ver;
+    }
 
-	public void setIndex(int i) {
-		index = i;
-	}
+    public void setIndex(int i) {
+        index = i;
+    }
 
-	public int getIndex() {
-		return index;
-	}
+    public int getIndex() {
+        return index;
+    }
 
-	public int getDataSourceLock() throws SyncProviderException {
+    public int getDataSourceLock() throws SyncProviderException {
 
-		int dsLock = 0;
-		try {
-			dsLock = SyncFactory.getInstance(className).getDataSourceLock();
-		} catch (SyncFactoryException sfEx) {
+        int dsLock = 0;
+        try {
+            dsLock = SyncFactory.getInstance(className).getDataSourceLock();
+        } catch (SyncFactoryException sfEx) {
 
-			throw new SyncProviderException(sfEx.getMessage());
-		}
+            throw new SyncProviderException(sfEx.getMessage());
+        }
 
-		return dsLock;
-	}
+        return dsLock;
+    }
 
-	public int getProviderGrade() {
+    public int getProviderGrade() {
 
-		int grade = 0;
+        int grade = 0;
 
-		try {
-			grade = SyncFactory.getInstance(className).getProviderGrade();
-		} catch (SyncFactoryException sfEx) {
-			//
-		}
+        try {
+            grade = SyncFactory.getInstance(className).getProviderGrade();
+        } catch (SyncFactoryException sfEx) {
+            //
+        }
 
-		return grade;
-	}
+        return grade;
+    }
 
-	public String getProviderID() {
-		return className;
-	}
+    public String getProviderID() {
+        return className;
+    }
 
-	/*
-	 * public javax.sql.RowSetInternal getRowSetInternal() { try { return
-	 * SyncFactory.getInstance(className).getRowSetInternal(); }
-	 * catch(SyncFactoryException sfEx) { // } }
-	 */
-	public javax.sql.RowSetReader getRowSetReader() {
+    /*
+     * public javax.sql.RowSetInternal getRowSetInternal() { try { return
+     * SyncFactory.getInstance(className).getRowSetInternal(); }
+     * catch(SyncFactoryException sfEx) { // } }
+     */
+    public javax.sql.RowSetReader getRowSetReader() {
 
-		RowSetReader rsReader = null;
+        RowSetReader rsReader = null;
 
-		try {
-			rsReader = SyncFactory.getInstance(className).getRowSetReader();
-		} catch (SyncFactoryException sfEx) {
-			//
-		}
+        try {
+            rsReader = SyncFactory.getInstance(className).getRowSetReader();
+        } catch (SyncFactoryException sfEx) {
+            //
+        }
 
-		return rsReader;
+        return rsReader;
 
-	}
+    }
 
-	public javax.sql.RowSetWriter getRowSetWriter() {
+    public javax.sql.RowSetWriter getRowSetWriter() {
 
-		RowSetWriter rsWriter = null;
-		try {
-			rsWriter = SyncFactory.getInstance(className).getRowSetWriter();
-		} catch (SyncFactoryException sfEx) {
-			//
-		}
+        RowSetWriter rsWriter = null;
+        try {
+            rsWriter = SyncFactory.getInstance(className).getRowSetWriter();
+        } catch (SyncFactoryException sfEx) {
+            //
+        }
 
-		return rsWriter;
-	}
+        return rsWriter;
+    }
 
-	public void setDataSourceLock(int param) throws SyncProviderException {
+    public void setDataSourceLock(int param) throws SyncProviderException {
 
-		try {
-			SyncFactory.getInstance(className).setDataSourceLock(param);
-		} catch (SyncFactoryException sfEx) {
+        try {
+            SyncFactory.getInstance(className).setDataSourceLock(param);
+        } catch (SyncFactoryException sfEx) {
 
-			throw new SyncProviderException(sfEx.getMessage());
-		}
-	}
+            throw new SyncProviderException(sfEx.getMessage());
+        }
+    }
 
-	public int supportsUpdatableView() {
+    public int supportsUpdatableView() {
 
-		int view = 0;
+        int view = 0;
 
-		try {
-			view = SyncFactory.getInstance(className).supportsUpdatableView();
-		} catch (SyncFactoryException sfEx) {
-			//
-		}
+        try {
+            view = SyncFactory.getInstance(className).supportsUpdatableView();
+        } catch (SyncFactoryException sfEx) {
+            //
+        }
 
-		return view;
-	}
+        return view;
+    }
 }

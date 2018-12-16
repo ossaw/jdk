@@ -24,7 +24,7 @@ import java.util.List;
  */
 @jdk.Exported
 public interface ParameterizedTypeTree extends Tree {
-	Tree getType();
+    Tree getType();
 
-	List<? extends Tree> getTypeArguments();
+    List<? extends Tree> getTypeArguments();
 }

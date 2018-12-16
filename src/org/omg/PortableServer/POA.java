@@ -17,4 +17,4 @@ package org.omg.PortableServer;
  * ORB::object_to_string.
  */
 public interface POA extends POAOperations, org.omg.CORBA.Object,
-		org.omg.CORBA.portable.IDLEntity {} // interface POA
+        org.omg.CORBA.portable.IDLEntity {} // interface POA

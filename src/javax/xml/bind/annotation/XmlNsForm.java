@@ -47,5 +47,5 @@ package javax.xml.bind.annotation;
  * @since JAXB2.0
  */
 public enum XmlNsForm {
-	UNQUALIFIED, QUALIFIED, UNSET
+    UNQUALIFIED, QUALIFIED, UNSET
 }

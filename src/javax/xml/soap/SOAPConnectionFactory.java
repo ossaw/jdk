@@ -15,52 +15,52 @@ package javax.xml.soap;
  * <code>SOAPConnectionFactory</code> object.
  */
 public abstract class SOAPConnectionFactory {
-	/**
-	 * A constant representing the default value for a
-	 * <code>SOAPConnection</code> object. The default is the point-to-point
-	 * SOAP connection.
-	 */
-	static final String DEFAULT_SOAP_CONNECTION_FACTORY = "com.sun.xml.internal.messaging.saaj.client.p2p.HttpSOAPConnectionFactory";
+    /**
+     * A constant representing the default value for a
+     * <code>SOAPConnection</code> object. The default is the point-to-point
+     * SOAP connection.
+     */
+    static final String DEFAULT_SOAP_CONNECTION_FACTORY = "com.sun.xml.internal.messaging.saaj.client.p2p.HttpSOAPConnectionFactory";
 
-	/**
-	 * A constant representing the <code>SOAPConnection</code> class.
-	 */
-	static private final String SF_PROPERTY = "javax.xml.soap.SOAPConnectionFactory";
+    /**
+     * A constant representing the <code>SOAPConnection</code> class.
+     */
+    static private final String SF_PROPERTY = "javax.xml.soap.SOAPConnectionFactory";
 
-	/**
-	 * Creates an instance of the default <code>SOAPConnectionFactory</code>
-	 * object.
-	 *
-	 * @return a new instance of a default <code>SOAPConnectionFactory</code>
-	 *         object
-	 *
-	 * @exception SOAPException
-	 *                                          if there was an error creating
-	 *                                          the
-	 *                                          <code>SOAPConnectionFactory</code>
-	 *
-	 * @exception UnsupportedOperationException
-	 *                                          if newInstance is not supported.
-	 */
-	public static SOAPConnectionFactory newInstance() throws SOAPException,
-			UnsupportedOperationException {
-		try {
-			return (SOAPConnectionFactory) FactoryFinder.find(SF_PROPERTY,
-					DEFAULT_SOAP_CONNECTION_FACTORY);
-		} catch (Exception ex) {
-			throw new SOAPException("Unable to create SOAP connection factory: "
-					+ ex.getMessage());
-		}
-	}
+    /**
+     * Creates an instance of the default <code>SOAPConnectionFactory</code>
+     * object.
+     *
+     * @return a new instance of a default <code>SOAPConnectionFactory</code>
+     *         object
+     *
+     * @exception SOAPException
+     *                                          if there was an error creating
+     *                                          the
+     *                                          <code>SOAPConnectionFactory</code>
+     *
+     * @exception UnsupportedOperationException
+     *                                          if newInstance is not supported.
+     */
+    public static SOAPConnectionFactory newInstance() throws SOAPException,
+            UnsupportedOperationException {
+        try {
+            return (SOAPConnectionFactory) FactoryFinder.find(SF_PROPERTY,
+                    DEFAULT_SOAP_CONNECTION_FACTORY);
+        } catch (Exception ex) {
+            throw new SOAPException("Unable to create SOAP connection factory: "
+                    + ex.getMessage());
+        }
+    }
 
-	/**
-	 * Create a new <code>SOAPConnection</code>.
-	 *
-	 * @return the new <code>SOAPConnection</code> object.
-	 *
-	 * @exception SOAPException
-	 *                          if there was an exception creating the
-	 *                          <code>SOAPConnection</code> object.
-	 */
-	public abstract SOAPConnection createConnection() throws SOAPException;
+    /**
+     * Create a new <code>SOAPConnection</code>.
+     *
+     * @return the new <code>SOAPConnection</code> object.
+     *
+     * @exception SOAPException
+     *                          if there was an exception creating the
+     *                          <code>SOAPConnection</code> object.
+     */
+    public abstract SOAPConnection createConnection() throws SOAPException;
 }

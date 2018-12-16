@@ -10,21 +10,21 @@ package org.omg.DynamicAny;
 
 public final class NameDynAnyPair implements org.omg.CORBA.portable.IDLEntity {
 
-	/**
-	 * The name associated with the DynAny.
-	 */
-	public String id = null;
+    /**
+     * The name associated with the DynAny.
+     */
+    public String id = null;
 
-	/**
-	 * The DynAny value associated with the name.
-	 */
-	public org.omg.DynamicAny.DynAny value = null;
+    /**
+     * The DynAny value associated with the name.
+     */
+    public org.omg.DynamicAny.DynAny value = null;
 
-	public NameDynAnyPair() {} // ctor
+    public NameDynAnyPair() {} // ctor
 
-	public NameDynAnyPair(String _id, org.omg.DynamicAny.DynAny _value) {
-		id = _id;
-		value = _value;
-	} // ctor
+    public NameDynAnyPair(String _id, org.omg.DynamicAny.DynAny _value) {
+        id = _id;
+        value = _value;
+    } // ctor
 
 } // class NameDynAnyPair

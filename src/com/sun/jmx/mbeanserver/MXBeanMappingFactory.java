@@ -36,15 +36,15 @@ import java.lang.reflect.Type;
  *
  * <pre>
  * public class MyLinkedListMappingFactory extends MXBeanMappingFactory {
- * 	public MyLinkedListMappingFactory() {}
+ *     public MyLinkedListMappingFactory() {}
  *
- * 	public MXBeanMapping mappingForType(Type t, MXBeanMappingFactory f)
- * 			throws OpenDataException {
- * 		if (t == MyLinkedList.class)
- * 			return new MyLinkedListMapping(t);
- * 		else
- * 			return MXBeanMappingFactory.DEFAULT.mappingForType(t, f);
- * 	}
+ *     public MXBeanMapping mappingForType(Type t, MXBeanMappingFactory f)
+ *             throws OpenDataException {
+ *         if (t == MyLinkedList.class)
+ *             return new MyLinkedListMapping(t);
+ *         else
+ *             return MXBeanMappingFactory.DEFAULT.mappingForType(t, f);
+ *     }
  * }
  * </pre>
  *
@@ -79,49 +79,49 @@ import java.lang.reflect.Type;
  *      "Custom MXBean type mappings"</a>
  */
 public abstract class MXBeanMappingFactory {
-	/**
-	 * <p>
-	 * Construct an instance of this class.
-	 * </p>
-	 */
-	protected MXBeanMappingFactory() {}
+    /**
+     * <p>
+     * Construct an instance of this class.
+     * </p>
+     */
+    protected MXBeanMappingFactory() {}
 
-	/**
-	 * <p>
-	 * Mapping factory that applies the default rules for MXBean mappings, as
-	 * described in the <a href="../MXBean.html#MXBean-spec">MXBean
-	 * specification</a>.
-	 * </p>
-	 */
-	public static final MXBeanMappingFactory DEFAULT = new DefaultMXBeanMappingFactory();
+    /**
+     * <p>
+     * Mapping factory that applies the default rules for MXBean mappings, as
+     * described in the <a href="../MXBean.html#MXBean-spec">MXBean
+     * specification</a>.
+     * </p>
+     */
+    public static final MXBeanMappingFactory DEFAULT = new DefaultMXBeanMappingFactory();
 
-	/**
-	 * <p>
-	 * Return the mapping for the given Java type. Typically, a mapping factory
-	 * will return mappings for types it handles, and forward other types to
-	 * another mapping factory, most often the {@linkplain #DEFAULT default one}
-	 * .
-	 * </p>
-	 * 
-	 * @param t
-	 *          the Java type to be mapped.
-	 * @param f
-	 *          the original mapping factory that was consulted to do the
-	 *          mapping. A mapping factory should pass this parameter intact
-	 *          if it forwards a type to another mapping factory. In the
-	 *          example, this is how {@code MyLinkedListMappingFactory} works
-	 *          for types like {@code MyLinkedList[]} and
-	 *          {@code List<MyLinkedList>}.
-	 * @return the mapping for the given type.
-	 * @throws OpenDataException
-	 *                           if this type cannot be mapped. This exception
-	 *                           is appropriate
-	 *                           if the factory is supposed to handle all types
-	 *                           of this sort
-	 *                           (for example, all linked lists), but cannot
-	 *                           handle this
-	 *                           particular type.
-	 */
-	public abstract MXBeanMapping mappingForType(Type t, MXBeanMappingFactory f)
-			throws OpenDataException;
+    /**
+     * <p>
+     * Return the mapping for the given Java type. Typically, a mapping factory
+     * will return mappings for types it handles, and forward other types to
+     * another mapping factory, most often the {@linkplain #DEFAULT default one}
+     * .
+     * </p>
+     * 
+     * @param t
+     *          the Java type to be mapped.
+     * @param f
+     *          the original mapping factory that was consulted to do the
+     *          mapping. A mapping factory should pass this parameter intact
+     *          if it forwards a type to another mapping factory. In the
+     *          example, this is how {@code MyLinkedListMappingFactory} works
+     *          for types like {@code MyLinkedList[]} and
+     *          {@code List<MyLinkedList>}.
+     * @return the mapping for the given type.
+     * @throws OpenDataException
+     *                           if this type cannot be mapped. This exception
+     *                           is appropriate
+     *                           if the factory is supposed to handle all types
+     *                           of this sort
+     *                           (for example, all linked lists), but cannot
+     *                           handle this
+     *                           particular type.
+     */
+    public abstract MXBeanMapping mappingForType(Type t, MXBeanMappingFactory f)
+            throws OpenDataException;
 }

@@ -13,4 +13,4 @@ package org.omg.DynamicAny;
  * current position of a DynEnum is always -1.
  */
 public interface DynEnum extends DynEnumOperations, org.omg.DynamicAny.DynAny,
-		org.omg.CORBA.portable.IDLEntity {} // interface DynEnum
+        org.omg.CORBA.portable.IDLEntity {} // interface DynEnum

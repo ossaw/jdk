@@ -65,80 +65,80 @@ package com.sun.org.apache.xerces.internal.dom;
  * @since PR-DOM-Level-1-19980818.
  */
 public class DeferredEntityReferenceImpl extends EntityReferenceImpl implements
-		DeferredNode {
+        DeferredNode {
 
-	//
-	// Constants
-	//
+    //
+    // Constants
+    //
 
-	/** Serialization version. */
-	static final long serialVersionUID = 390319091370032223L;
+    /** Serialization version. */
+    static final long serialVersionUID = 390319091370032223L;
 
-	//
-	// Data
-	//
+    //
+    // Data
+    //
 
-	/** Node index. */
-	protected transient int fNodeIndex;
+    /** Node index. */
+    protected transient int fNodeIndex;
 
-	//
-	// Constructors
-	//
+    //
+    // Constructors
+    //
 
-	/**
-	 * This is the deferred constructor. Only the fNodeIndex is given here. All
-	 * other data, can be requested from the ownerDocument via the index.
-	 */
-	DeferredEntityReferenceImpl(DeferredDocumentImpl ownerDocument,
-			int nodeIndex) {
-		super(ownerDocument, null);
+    /**
+     * This is the deferred constructor. Only the fNodeIndex is given here. All
+     * other data, can be requested from the ownerDocument via the index.
+     */
+    DeferredEntityReferenceImpl(DeferredDocumentImpl ownerDocument,
+            int nodeIndex) {
+        super(ownerDocument, null);
 
-		fNodeIndex = nodeIndex;
-		needsSyncData(true);
+        fNodeIndex = nodeIndex;
+        needsSyncData(true);
 
-	} // <init>(DeferredDocumentImpl,int)
+    } // <init>(DeferredDocumentImpl,int)
 
-	//
-	// DeferredNode methods
-	//
+    //
+    // DeferredNode methods
+    //
 
-	/** Returns the node index. */
-	public int getNodeIndex() {
-		return fNodeIndex;
-	}
+    /** Returns the node index. */
+    public int getNodeIndex() {
+        return fNodeIndex;
+    }
 
-	//
-	// Protected methods
-	//
+    //
+    // Protected methods
+    //
 
-	/**
-	 * Synchronize the entity data. This is special because of the way that the
-	 * "fast" version stores the information.
-	 */
-	protected void synchronizeData() {
+    /**
+     * Synchronize the entity data. This is special because of the way that the
+     * "fast" version stores the information.
+     */
+    protected void synchronizeData() {
 
-		// no need to sychronize again
-		needsSyncData(false);
+        // no need to sychronize again
+        needsSyncData(false);
 
-		// get the node data
-		DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) this.ownerDocument;
-		name = ownerDocument.getNodeName(fNodeIndex);
-		baseURI = ownerDocument.getNodeValue(fNodeIndex);
+        // get the node data
+        DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) this.ownerDocument;
+        name = ownerDocument.getNodeName(fNodeIndex);
+        baseURI = ownerDocument.getNodeValue(fNodeIndex);
 
-	} // synchronizeData()
+    } // synchronizeData()
 
-	/** Synchronize the children. */
-	protected void synchronizeChildren() {
+    /** Synchronize the children. */
+    protected void synchronizeChildren() {
 
-		// no need to synchronize again
-		needsSyncChildren(false);
+        // no need to synchronize again
+        needsSyncChildren(false);
 
-		// get children
-		isReadOnly(false);
-		DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) ownerDocument();
-		ownerDocument.synchronizeChildren(this, fNodeIndex);
-		setReadOnly(true, true);
+        // get children
+        isReadOnly(false);
+        DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) ownerDocument();
+        ownerDocument.synchronizeChildren(this, fNodeIndex);
+        setReadOnly(true, true);
 
-	} // synchronizeChildren()
+    } // synchronizeChildren()
 
 } // class DeferredEntityReferenceImpl

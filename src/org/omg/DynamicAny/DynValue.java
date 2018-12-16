@@ -24,4 +24,4 @@ package org.omg.DynamicAny;
  * the encapsulation of the value type.
  */
 public interface DynValue extends DynValueOperations,
-		org.omg.DynamicAny.DynValueCommon, org.omg.CORBA.portable.IDLEntity {} // interface DynValue
+        org.omg.DynamicAny.DynValueCommon, org.omg.CORBA.portable.IDLEntity {} // interface DynValue

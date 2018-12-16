@@ -59,287 +59,287 @@ import javax.print.attribute.PrintRequestAttribute;
  */
 
 public final class MediaPrintableArea implements DocAttribute,
-		PrintRequestAttribute, PrintJobAttribute {
+        PrintRequestAttribute, PrintJobAttribute {
 
-	private int x, y, w, h;
-	private int units;
+    private int x, y, w, h;
+    private int units;
 
-	private static final long serialVersionUID = -1597171464050795793L;
+    private static final long serialVersionUID = -1597171464050795793L;
 
-	/**
-	 * Value to indicate units of inches (in). It is actually the conversion
-	 * factor by which to multiply inches to yield &#181;m (25400).
-	 */
-	public static final int INCH = 25400;
+    /**
+     * Value to indicate units of inches (in). It is actually the conversion
+     * factor by which to multiply inches to yield &#181;m (25400).
+     */
+    public static final int INCH = 25400;
 
-	/**
-	 * Value to indicate units of millimeters (mm). It is actually the
-	 * conversion factor by which to multiply mm to yield &#181;m (1000).
-	 */
-	public static final int MM = 1000;
+    /**
+     * Value to indicate units of millimeters (mm). It is actually the
+     * conversion factor by which to multiply mm to yield &#181;m (1000).
+     */
+    public static final int MM = 1000;
 
-	/**
-	 * Constructs a MediaPrintableArea object from floating point values.
-	 * 
-	 * @param x
-	 *              printable x
-	 * @param y
-	 *              printable y
-	 * @param w
-	 *              printable width
-	 * @param h
-	 *              printable height
-	 * @param units
-	 *              in which the values are expressed.
-	 *
-	 * @exception IllegalArgumentException
-	 *                                     Thrown if {@code x < 0} or
-	 *                                     {@code y < 0} or {@code w <= 0}
-	 *                                     or {@code h <= 0} or
-	 *                                     {@code units < 1}.
-	 */
-	public MediaPrintableArea(float x, float y, float w, float h, int units) {
-		if ((x < 0.0) || (y < 0.0) || (w <= 0.0) || (h <= 0.0) || (units < 1)) {
-			throw new IllegalArgumentException("0 or negative value argument");
-		}
+    /**
+     * Constructs a MediaPrintableArea object from floating point values.
+     * 
+     * @param x
+     *              printable x
+     * @param y
+     *              printable y
+     * @param w
+     *              printable width
+     * @param h
+     *              printable height
+     * @param units
+     *              in which the values are expressed.
+     *
+     * @exception IllegalArgumentException
+     *                                     Thrown if {@code x < 0} or
+     *                                     {@code y < 0} or {@code w <= 0}
+     *                                     or {@code h <= 0} or
+     *                                     {@code units < 1}.
+     */
+    public MediaPrintableArea(float x, float y, float w, float h, int units) {
+        if ((x < 0.0) || (y < 0.0) || (w <= 0.0) || (h <= 0.0) || (units < 1)) {
+            throw new IllegalArgumentException("0 or negative value argument");
+        }
 
-		this.x = (int) (x * units + 0.5f);
-		this.y = (int) (y * units + 0.5f);
-		this.w = (int) (w * units + 0.5f);
-		this.h = (int) (h * units + 0.5f);
+        this.x = (int) (x * units + 0.5f);
+        this.y = (int) (y * units + 0.5f);
+        this.w = (int) (w * units + 0.5f);
+        this.h = (int) (h * units + 0.5f);
 
-	}
+    }
 
-	/**
-	 * Constructs a MediaPrintableArea object from integer values.
-	 * 
-	 * @param x
-	 *              printable x
-	 * @param y
-	 *              printable y
-	 * @param w
-	 *              printable width
-	 * @param h
-	 *              printable height
-	 * @param units
-	 *              in which the values are expressed.
-	 *
-	 * @exception IllegalArgumentException
-	 *                                     Thrown if {@code x < 0} or
-	 *                                     {@code y < 0} or {@code w <= 0}
-	 *                                     or {@code h <= 0} or
-	 *                                     {@code units < 1}.
-	 */
-	public MediaPrintableArea(int x, int y, int w, int h, int units) {
-		if ((x < 0) || (y < 0) || (w <= 0) || (h <= 0) || (units < 1)) {
-			throw new IllegalArgumentException("0 or negative value argument");
-		}
-		this.x = x * units;
-		this.y = y * units;
-		this.w = w * units;
-		this.h = h * units;
+    /**
+     * Constructs a MediaPrintableArea object from integer values.
+     * 
+     * @param x
+     *              printable x
+     * @param y
+     *              printable y
+     * @param w
+     *              printable width
+     * @param h
+     *              printable height
+     * @param units
+     *              in which the values are expressed.
+     *
+     * @exception IllegalArgumentException
+     *                                     Thrown if {@code x < 0} or
+     *                                     {@code y < 0} or {@code w <= 0}
+     *                                     or {@code h <= 0} or
+     *                                     {@code units < 1}.
+     */
+    public MediaPrintableArea(int x, int y, int w, int h, int units) {
+        if ((x < 0) || (y < 0) || (w <= 0) || (h <= 0) || (units < 1)) {
+            throw new IllegalArgumentException("0 or negative value argument");
+        }
+        this.x = x * units;
+        this.y = y * units;
+        this.w = w * units;
+        this.h = h * units;
 
-	}
+    }
 
-	/**
-	 * Get the printable area as an array of 4 values in the order x, y, w, h.
-	 * The values returned are in the given units.
-	 * 
-	 * @param units
-	 *              Unit conversion factor, e.g. {@link #INCH INCH} or
-	 *              {@link #MM
-	 *              MM}.
-	 *
-	 * @return printable area as array of x, y, w, h in the specified units.
-	 *
-	 * @exception IllegalArgumentException
-	 *                                     (unchecked exception) Thrown if
-	 *                                     {@code units < 1}.
-	 */
-	public float[] getPrintableArea(int units) {
-		return new float[] { getX(units), getY(units), getWidth(units),
-				getHeight(units) };
-	}
+    /**
+     * Get the printable area as an array of 4 values in the order x, y, w, h.
+     * The values returned are in the given units.
+     * 
+     * @param units
+     *              Unit conversion factor, e.g. {@link #INCH INCH} or
+     *              {@link #MM
+     *              MM}.
+     *
+     * @return printable area as array of x, y, w, h in the specified units.
+     *
+     * @exception IllegalArgumentException
+     *                                     (unchecked exception) Thrown if
+     *                                     {@code units < 1}.
+     */
+    public float[] getPrintableArea(int units) {
+        return new float[] { getX(units), getY(units), getWidth(units),
+                getHeight(units) };
+    }
 
-	/**
-	 * Get the x location of the origin of the printable area in the specified
-	 * units.
-	 * 
-	 * @param units
-	 *              Unit conversion factor, e.g. {@link #INCH INCH} or
-	 *              {@link #MM
-	 *              MM}.
-	 *
-	 * @return x location of the origin of the printable area in the specified
-	 *         units.
-	 *
-	 * @exception IllegalArgumentException
-	 *                                     (unchecked exception) Thrown if
-	 *                                     {@code units < 1}.
-	 */
-	public float getX(int units) {
-		return convertFromMicrometers(x, units);
-	}
+    /**
+     * Get the x location of the origin of the printable area in the specified
+     * units.
+     * 
+     * @param units
+     *              Unit conversion factor, e.g. {@link #INCH INCH} or
+     *              {@link #MM
+     *              MM}.
+     *
+     * @return x location of the origin of the printable area in the specified
+     *         units.
+     *
+     * @exception IllegalArgumentException
+     *                                     (unchecked exception) Thrown if
+     *                                     {@code units < 1}.
+     */
+    public float getX(int units) {
+        return convertFromMicrometers(x, units);
+    }
 
-	/**
-	 * Get the y location of the origin of the printable area in the specified
-	 * units.
-	 * 
-	 * @param units
-	 *              Unit conversion factor, e.g. {@link #INCH INCH} or
-	 *              {@link #MM
-	 *              MM}.
-	 *
-	 * @return y location of the origin of the printable area in the specified
-	 *         units.
-	 *
-	 * @exception IllegalArgumentException
-	 *                                     (unchecked exception) Thrown if
-	 *                                     {@code units < 1}.
-	 */
-	public float getY(int units) {
-		return convertFromMicrometers(y, units);
-	}
+    /**
+     * Get the y location of the origin of the printable area in the specified
+     * units.
+     * 
+     * @param units
+     *              Unit conversion factor, e.g. {@link #INCH INCH} or
+     *              {@link #MM
+     *              MM}.
+     *
+     * @return y location of the origin of the printable area in the specified
+     *         units.
+     *
+     * @exception IllegalArgumentException
+     *                                     (unchecked exception) Thrown if
+     *                                     {@code units < 1}.
+     */
+    public float getY(int units) {
+        return convertFromMicrometers(y, units);
+    }
 
-	/**
-	 * Get the width of the printable area in the specified units.
-	 * 
-	 * @param units
-	 *              Unit conversion factor, e.g. {@link #INCH INCH} or
-	 *              {@link #MM
-	 *              MM}.
-	 *
-	 * @return width of the printable area in the specified units.
-	 *
-	 * @exception IllegalArgumentException
-	 *                                     (unchecked exception) Thrown if
-	 *                                     {@code units < 1}.
-	 */
-	public float getWidth(int units) {
-		return convertFromMicrometers(w, units);
-	}
+    /**
+     * Get the width of the printable area in the specified units.
+     * 
+     * @param units
+     *              Unit conversion factor, e.g. {@link #INCH INCH} or
+     *              {@link #MM
+     *              MM}.
+     *
+     * @return width of the printable area in the specified units.
+     *
+     * @exception IllegalArgumentException
+     *                                     (unchecked exception) Thrown if
+     *                                     {@code units < 1}.
+     */
+    public float getWidth(int units) {
+        return convertFromMicrometers(w, units);
+    }
 
-	/**
-	 * Get the height of the printable area in the specified units.
-	 * 
-	 * @param units
-	 *              Unit conversion factor, e.g. {@link #INCH INCH} or
-	 *              {@link #MM
-	 *              MM}.
-	 *
-	 * @return height of the printable area in the specified units.
-	 *
-	 * @exception IllegalArgumentException
-	 *                                     (unchecked exception) Thrown if
-	 *                                     {@code units < 1}.
-	 */
-	public float getHeight(int units) {
-		return convertFromMicrometers(h, units);
-	}
+    /**
+     * Get the height of the printable area in the specified units.
+     * 
+     * @param units
+     *              Unit conversion factor, e.g. {@link #INCH INCH} or
+     *              {@link #MM
+     *              MM}.
+     *
+     * @return height of the printable area in the specified units.
+     *
+     * @exception IllegalArgumentException
+     *                                     (unchecked exception) Thrown if
+     *                                     {@code units < 1}.
+     */
+    public float getHeight(int units) {
+        return convertFromMicrometers(h, units);
+    }
 
-	/**
-	 * Returns whether this media margins attribute is equivalent to the passed
-	 * in object. To be equivalent, all of the following conditions must be
-	 * true:
-	 * <OL TYPE=1>
-	 * <LI><CODE>object</CODE> is not null.
-	 * <LI><CODE>object</CODE> is an instance of class MediaPrintableArea.
-	 * <LI>The origin and dimensions are the same.
-	 * </OL>
-	 *
-	 * @param object
-	 *               Object to compare to.
-	 *
-	 * @return True if <CODE>object</CODE> is equivalent to this media margins
-	 *         attribute, false otherwise.
-	 */
-	public boolean equals(Object object) {
-		boolean ret = false;
-		if (object instanceof MediaPrintableArea) {
-			MediaPrintableArea mm = (MediaPrintableArea) object;
-			if (x == mm.x && y == mm.y && w == mm.w && h == mm.h) {
-				ret = true;
-			}
-		}
-		return ret;
-	}
+    /**
+     * Returns whether this media margins attribute is equivalent to the passed
+     * in object. To be equivalent, all of the following conditions must be
+     * true:
+     * <OL TYPE=1>
+     * <LI><CODE>object</CODE> is not null.
+     * <LI><CODE>object</CODE> is an instance of class MediaPrintableArea.
+     * <LI>The origin and dimensions are the same.
+     * </OL>
+     *
+     * @param object
+     *               Object to compare to.
+     *
+     * @return True if <CODE>object</CODE> is equivalent to this media margins
+     *         attribute, false otherwise.
+     */
+    public boolean equals(Object object) {
+        boolean ret = false;
+        if (object instanceof MediaPrintableArea) {
+            MediaPrintableArea mm = (MediaPrintableArea) object;
+            if (x == mm.x && y == mm.y && w == mm.w && h == mm.h) {
+                ret = true;
+            }
+        }
+        return ret;
+    }
 
-	/**
-	 * Get the printing attribute class which is to be used as the "category"
-	 * for this printing attribute value.
-	 * <P>
-	 * For class MediaPrintableArea, the category is class MediaPrintableArea
-	 * itself.
-	 *
-	 * @return Printing attribute class (category), an instance of class
-	 *         {@link java.lang.Class java.lang.Class}.
-	 */
-	public final Class<? extends Attribute> getCategory() {
-		return MediaPrintableArea.class;
-	}
+    /**
+     * Get the printing attribute class which is to be used as the "category"
+     * for this printing attribute value.
+     * <P>
+     * For class MediaPrintableArea, the category is class MediaPrintableArea
+     * itself.
+     *
+     * @return Printing attribute class (category), an instance of class
+     *         {@link java.lang.Class java.lang.Class}.
+     */
+    public final Class<? extends Attribute> getCategory() {
+        return MediaPrintableArea.class;
+    }
 
-	/**
-	 * Get the name of the category of which this attribute value is an
-	 * instance.
-	 * <P>
-	 * For class MediaPrintableArea, the category name is
-	 * <CODE>"media-printable-area"</CODE>.
-	 * <p>
-	 * This is not an IPP V1.1 attribute.
-	 *
-	 * @return Attribute category name.
-	 */
-	public final String getName() {
-		return "media-printable-area";
-	}
+    /**
+     * Get the name of the category of which this attribute value is an
+     * instance.
+     * <P>
+     * For class MediaPrintableArea, the category name is
+     * <CODE>"media-printable-area"</CODE>.
+     * <p>
+     * This is not an IPP V1.1 attribute.
+     *
+     * @return Attribute category name.
+     */
+    public final String getName() {
+        return "media-printable-area";
+    }
 
-	/**
-	 * Returns a string version of this rectangular size attribute in the given
-	 * units.
-	 *
-	 * @param units
-	 *                  Unit conversion factor, e.g. {@link #INCH INCH} or
-	 *                  {@link #MM
-	 *                  MM}.
-	 * @param unitsName
-	 *                  Units name string, e.g. <CODE>"in"</CODE> or
-	 *                  <CODE>"mm"</CODE>
-	 *                  . If null, no units name is appended to the result.
-	 *
-	 * @return String version of this two-dimensional size attribute.
-	 *
-	 * @exception IllegalArgumentException
-	 *                                     (unchecked exception) Thrown if
-	 *                                     {@code units < 1}.
-	 */
-	public String toString(int units, String unitsName) {
-		if (unitsName == null) {
-			unitsName = "";
-		}
-		float[] vals = getPrintableArea(units);
-		String str = "(" + vals[0] + "," + vals[1] + ")->(" + vals[2] + ","
-				+ vals[3] + ")";
-		return str + unitsName;
-	}
+    /**
+     * Returns a string version of this rectangular size attribute in the given
+     * units.
+     *
+     * @param units
+     *                  Unit conversion factor, e.g. {@link #INCH INCH} or
+     *                  {@link #MM
+     *                  MM}.
+     * @param unitsName
+     *                  Units name string, e.g. <CODE>"in"</CODE> or
+     *                  <CODE>"mm"</CODE>
+     *                  . If null, no units name is appended to the result.
+     *
+     * @return String version of this two-dimensional size attribute.
+     *
+     * @exception IllegalArgumentException
+     *                                     (unchecked exception) Thrown if
+     *                                     {@code units < 1}.
+     */
+    public String toString(int units, String unitsName) {
+        if (unitsName == null) {
+            unitsName = "";
+        }
+        float[] vals = getPrintableArea(units);
+        String str = "(" + vals[0] + "," + vals[1] + ")->(" + vals[2] + ","
+                + vals[3] + ")";
+        return str + unitsName;
+    }
 
-	/**
-	 * Returns a string version of this rectangular size attribute in mm.
-	 */
-	public String toString() {
-		return (toString(MM, "mm"));
-	}
+    /**
+     * Returns a string version of this rectangular size attribute in mm.
+     */
+    public String toString() {
+        return (toString(MM, "mm"));
+    }
 
-	/**
-	 * Returns a hash code value for this attribute.
-	 */
-	public int hashCode() {
-		return x + 37 * y + 43 * w + 47 * h;
-	}
+    /**
+     * Returns a hash code value for this attribute.
+     */
+    public int hashCode() {
+        return x + 37 * y + 43 * w + 47 * h;
+    }
 
-	private static float convertFromMicrometers(int x, int units) {
-		if (units < 1) {
-			throw new IllegalArgumentException("units is < 1");
-		}
-		return ((float) x) / ((float) units);
-	}
+    private static float convertFromMicrometers(int x, int units) {
+        if (units < 1) {
+            throw new IllegalArgumentException("units is < 1");
+        }
+        return ((float) x) / ((float) units);
+    }
 }

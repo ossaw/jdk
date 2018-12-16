@@ -8,14 +8,14 @@ import java.awt.*;
 import javax.swing.*;
 
 class SplitPaneDividerVerticalState extends State {
-	SplitPaneDividerVerticalState() {
-		super("Vertical");
-	}
+    SplitPaneDividerVerticalState() {
+        super("Vertical");
+    }
 
-	@Override
-	protected boolean isInState(JComponent c) {
+    @Override
+    protected boolean isInState(JComponent c) {
 
-		return c instanceof JSplitPane && (((JSplitPane) c)
-				.getOrientation() == 1);
-	}
+        return c instanceof JSplitPane && (((JSplitPane) c)
+                .getOrientation() == 1);
+    }
 }

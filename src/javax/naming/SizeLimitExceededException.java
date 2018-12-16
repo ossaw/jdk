@@ -22,27 +22,27 @@ import javax.naming.Name;
  * @since 1.3
  */
 public class SizeLimitExceededException extends LimitExceededException {
-	/**
-	 * Constructs a new instance of SizeLimitExceededException. All fields
-	 * default to null.
-	 */
-	public SizeLimitExceededException() {
-		super();
-	}
+    /**
+     * Constructs a new instance of SizeLimitExceededException. All fields
+     * default to null.
+     */
+    public SizeLimitExceededException() {
+        super();
+    }
 
-	/**
-	 * Constructs a new instance of SizeLimitExceededException using an
-	 * explanation. All other fields default to null.
-	 *
-	 * @param explanation
-	 *                    Possibly null detail about this exception.
-	 */
-	public SizeLimitExceededException(String explanation) {
-		super(explanation);
-	}
+    /**
+     * Constructs a new instance of SizeLimitExceededException using an
+     * explanation. All other fields default to null.
+     *
+     * @param explanation
+     *                    Possibly null detail about this exception.
+     */
+    public SizeLimitExceededException(String explanation) {
+        super(explanation);
+    }
 
-	/**
-	 * Use serialVersionUID from JNDI 1.1.1 for interoperability
-	 */
-	private static final long serialVersionUID = 7129289564879168579L;
+    /**
+     * Use serialVersionUID from JNDI 1.1.1 for interoperability
+     */
+    private static final long serialVersionUID = 7129289564879168579L;
 }

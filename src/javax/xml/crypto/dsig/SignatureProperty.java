@@ -37,7 +37,7 @@ import java.util.List;
  * <pre>
  * XMLSignatureFactory factory = XMLSignatureFactory.getInstance("DOM");
  * SignatureProperty property = factory.newSignatureProperty(Collections
- * 		.singletonList(content), "#Signature-1", "TimeStamp");
+ *         .singletonList(content), "#Signature-1", "TimeStamp");
  * </pre>
  *
  * @author Sean Mullan
@@ -48,32 +48,32 @@ import java.util.List;
  */
 public interface SignatureProperty extends XMLStructure {
 
-	/**
-	 * Returns the target URI of this <code>SignatureProperty</code>.
-	 *
-	 * @return the target URI of this <code>SignatureProperty</code> (never
-	 *         <code>null</code>)
-	 */
-	String getTarget();
+    /**
+     * Returns the target URI of this <code>SignatureProperty</code>.
+     *
+     * @return the target URI of this <code>SignatureProperty</code> (never
+     *         <code>null</code>)
+     */
+    String getTarget();
 
-	/**
-	 * Returns the Id of this <code>SignatureProperty</code>.
-	 *
-	 * @return the Id of this <code>SignatureProperty</code> (or
-	 *         <code>null</code> if not specified)
-	 */
-	String getId();
+    /**
+     * Returns the Id of this <code>SignatureProperty</code>.
+     *
+     * @return the Id of this <code>SignatureProperty</code> (or
+     *         <code>null</code> if not specified)
+     */
+    String getId();
 
-	/**
-	 * Returns an {@link java.util.Collections#unmodifiableList unmodifiable
-	 * list} of one or more {@link XMLStructure}s that are contained in this
-	 * <code>SignatureProperty</code>. These represent additional information
-	 * items concerning the generation of the {@link XMLSignature} (i.e.
-	 * date/time stamp or serial numbers of cryptographic hardware used in
-	 * signature generation).
-	 *
-	 * @return an unmodifiable list of one or more <code>XMLStructure</code>s
-	 */
-	@SuppressWarnings("rawtypes")
-	List getContent();
+    /**
+     * Returns an {@link java.util.Collections#unmodifiableList unmodifiable
+     * list} of one or more {@link XMLStructure}s that are contained in this
+     * <code>SignatureProperty</code>. These represent additional information
+     * items concerning the generation of the {@link XMLSignature} (i.e.
+     * date/time stamp or serial numbers of cryptographic hardware used in
+     * signature generation).
+     *
+     * @return an unmodifiable list of one or more <code>XMLStructure</code>s
+     */
+    @SuppressWarnings("rawtypes")
+    List getContent();
 }

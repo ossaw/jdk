@@ -14,11 +14,11 @@ import javax.tools.JavaFileObject;
  */
 @jdk.Exported
 public interface ErroneousTree extends TextTree {
-	/**
-	 * Gets a diagnostic object giving details about the reason the body text is
-	 * in error.
-	 *
-	 * @return a diagnostic
-	 */
-	Diagnostic<JavaFileObject> getDiagnostic();
+    /**
+     * Gets a diagnostic object giving details about the reason the body text is
+     * in error.
+     *
+     * @return a diagnostic
+     */
+    Diagnostic<JavaFileObject> getDiagnostic();
 }

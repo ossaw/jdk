@@ -64,18 +64,18 @@ import com.sun.org.apache.xerces.internal.xni.parser.XMLDocumentFilter;
  */
 public interface XMLDTDValidatorFilter extends XMLDocumentFilter {
 
-	/**
-	 * Returns true if the validator has a DTD grammar
-	 *
-	 * @return true if the validator has a DTD grammar
-	 */
-	public boolean hasGrammar();
+    /**
+     * Returns true if the validator has a DTD grammar
+     *
+     * @return true if the validator has a DTD grammar
+     */
+    public boolean hasGrammar();
 
-	/**
-	 * Return true if validator must validate the document
-	 *
-	 * @return true if validator must validate the document
-	 */
-	public boolean validate();
+    /**
+     * Return true if validator must validate the document
+     *
+     * @return true if validator must validate the document
+     */
+    public boolean validate();
 
 } // interface XMLDTDValidatorFilter

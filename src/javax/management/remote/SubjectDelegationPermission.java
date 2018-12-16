@@ -44,47 +44,47 @@ import java.security.BasicPermission;
  */
 public final class SubjectDelegationPermission extends BasicPermission {
 
-	private static final long serialVersionUID = 1481618113008682343L;
+    private static final long serialVersionUID = 1481618113008682343L;
 
-	/**
-	 * Creates a new SubjectDelegationPermission with the specified name. The
-	 * name is the symbolic name of the SubjectDelegationPermission.
-	 *
-	 * @param name
-	 *             the name of the SubjectDelegationPermission
-	 *
-	 * @throws NullPointerException
-	 *                                  if <code>name</code> is
-	 *                                  <code>null</code>.
-	 * @throws IllegalArgumentException
-	 *                                  if <code>name</code> is empty.
-	 */
-	public SubjectDelegationPermission(String name) {
-		super(name);
-	}
+    /**
+     * Creates a new SubjectDelegationPermission with the specified name. The
+     * name is the symbolic name of the SubjectDelegationPermission.
+     *
+     * @param name
+     *             the name of the SubjectDelegationPermission
+     *
+     * @throws NullPointerException
+     *                                  if <code>name</code> is
+     *                                  <code>null</code>.
+     * @throws IllegalArgumentException
+     *                                  if <code>name</code> is empty.
+     */
+    public SubjectDelegationPermission(String name) {
+        super(name);
+    }
 
-	/**
-	 * Creates a new SubjectDelegationPermission object with the specified name.
-	 * The name is the symbolic name of the SubjectDelegationPermission, and the
-	 * actions String is currently unused and must be null.
-	 *
-	 * @param name
-	 *                the name of the SubjectDelegationPermission
-	 * @param actions
-	 *                must be null.
-	 *
-	 * @throws NullPointerException
-	 *                                  if <code>name</code> is
-	 *                                  <code>null</code>.
-	 * @throws IllegalArgumentException
-	 *                                  if <code>name</code> is empty or
-	 *                                  <code>actions</code> is not
-	 *                                  null.
-	 */
-	public SubjectDelegationPermission(String name, String actions) {
-		super(name, actions);
+    /**
+     * Creates a new SubjectDelegationPermission object with the specified name.
+     * The name is the symbolic name of the SubjectDelegationPermission, and the
+     * actions String is currently unused and must be null.
+     *
+     * @param name
+     *                the name of the SubjectDelegationPermission
+     * @param actions
+     *                must be null.
+     *
+     * @throws NullPointerException
+     *                                  if <code>name</code> is
+     *                                  <code>null</code>.
+     * @throws IllegalArgumentException
+     *                                  if <code>name</code> is empty or
+     *                                  <code>actions</code> is not
+     *                                  null.
+     */
+    public SubjectDelegationPermission(String name, String actions) {
+        super(name, actions);
 
-		if (actions != null)
-			throw new IllegalArgumentException("Non-null actions");
-	}
+        if (actions != null)
+            throw new IllegalArgumentException("Non-null actions");
+    }
 }

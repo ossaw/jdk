@@ -73,360 +73,360 @@ import javax.lang.model.SourceVersion;
  */
 @SupportedSourceVersion(RELEASE_6)
 public class ElementKindVisitor6<R, P> extends SimpleElementVisitor6<R, P> {
-	/**
-	 * Constructor for concrete subclasses; uses {@code null} for the default
-	 * value.
-	 */
-	protected ElementKindVisitor6() {
-		super(null);
-	}
+    /**
+     * Constructor for concrete subclasses; uses {@code null} for the default
+     * value.
+     */
+    protected ElementKindVisitor6() {
+        super(null);
+    }
 
-	/**
-	 * Constructor for concrete subclasses; uses the argument for the default
-	 * value.
-	 *
-	 * @param defaultValue
-	 *                     the value to assign to {@link #DEFAULT_VALUE}
-	 */
-	protected ElementKindVisitor6(R defaultValue) {
-		super(defaultValue);
-	}
+    /**
+     * Constructor for concrete subclasses; uses the argument for the default
+     * value.
+     *
+     * @param defaultValue
+     *                     the value to assign to {@link #DEFAULT_VALUE}
+     */
+    protected ElementKindVisitor6(R defaultValue) {
+        super(defaultValue);
+    }
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * The element argument has kind {@code PACKAGE}.
-	 *
-	 * @param e
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return {@inheritDoc}
-	 */
-	@Override
-	public R visitPackage(PackageElement e, P p) {
-		assert e.getKind() == PACKAGE : "Bad kind on PackageElement";
-		return defaultAction(e, p);
-	}
+    /**
+     * {@inheritDoc}
+     *
+     * The element argument has kind {@code PACKAGE}.
+     *
+     * @param e
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public R visitPackage(PackageElement e, P p) {
+        assert e.getKind() == PACKAGE : "Bad kind on PackageElement";
+        return defaultAction(e, p);
+    }
 
-	/**
-	 * Visits a type element, dispatching to the visit method for the specific
-	 * {@linkplain ElementKind kind} of type, {@code
-	 * ANNOTATION_TYPE}, {@code CLASS}, {@code ENUM}, or {@code
-	 * INTERFACE}.
-	 *
-	 * @param e
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of the kind-specific visit method
-	 */
-	@Override
-	public R visitType(TypeElement e, P p) {
-		ElementKind k = e.getKind();
-		switch (k) {
-			case ANNOTATION_TYPE:
-				return visitTypeAsAnnotationType(e, p);
+    /**
+     * Visits a type element, dispatching to the visit method for the specific
+     * {@linkplain ElementKind kind} of type, {@code
+     * ANNOTATION_TYPE}, {@code CLASS}, {@code ENUM}, or {@code
+     * INTERFACE}.
+     *
+     * @param e
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of the kind-specific visit method
+     */
+    @Override
+    public R visitType(TypeElement e, P p) {
+        ElementKind k = e.getKind();
+        switch (k) {
+            case ANNOTATION_TYPE:
+                return visitTypeAsAnnotationType(e, p);
 
-			case CLASS:
-				return visitTypeAsClass(e, p);
+            case CLASS:
+                return visitTypeAsClass(e, p);
 
-			case ENUM:
-				return visitTypeAsEnum(e, p);
+            case ENUM:
+                return visitTypeAsEnum(e, p);
 
-			case INTERFACE:
-				return visitTypeAsInterface(e, p);
+            case INTERFACE:
+                return visitTypeAsInterface(e, p);
 
-			default:
-				throw new AssertionError("Bad kind " + k + " for TypeElement"
-						+ e);
-		}
-	}
+            default:
+                throw new AssertionError("Bad kind " + k + " for TypeElement"
+                        + e);
+        }
+    }
 
-	/**
-	 * Visits an {@code ANNOTATION_TYPE} type element by calling
-	 * {@code defaultAction}.
-	 *
-	 * @param e
-	 *          the element to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitTypeAsAnnotationType(TypeElement e, P p) {
-		return defaultAction(e, p);
-	}
+    /**
+     * Visits an {@code ANNOTATION_TYPE} type element by calling
+     * {@code defaultAction}.
+     *
+     * @param e
+     *          the element to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return the result of {@code defaultAction}
+     */
+    public R visitTypeAsAnnotationType(TypeElement e, P p) {
+        return defaultAction(e, p);
+    }
 
-	/**
-	 * Visits a {@code CLASS} type element by calling {@code
-	 * defaultAction}.
-	 *
-	 * @param e
-	 *          the element to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitTypeAsClass(TypeElement e, P p) {
-		return defaultAction(e, p);
-	}
+    /**
+     * Visits a {@code CLASS} type element by calling {@code
+     * defaultAction}.
+     *
+     * @param e
+     *          the element to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return the result of {@code defaultAction}
+     */
+    public R visitTypeAsClass(TypeElement e, P p) {
+        return defaultAction(e, p);
+    }
 
-	/**
-	 * Visits an {@code ENUM} type element by calling {@code
-	 * defaultAction}.
-	 *
-	 * @param e
-	 *          the element to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitTypeAsEnum(TypeElement e, P p) {
-		return defaultAction(e, p);
-	}
+    /**
+     * Visits an {@code ENUM} type element by calling {@code
+     * defaultAction}.
+     *
+     * @param e
+     *          the element to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return the result of {@code defaultAction}
+     */
+    public R visitTypeAsEnum(TypeElement e, P p) {
+        return defaultAction(e, p);
+    }
 
-	/**
-	 * Visits an {@code INTERFACE} type element by calling {@code
-	 * defaultAction}. .
-	 * 
-	 * @param e
-	 *          the element to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitTypeAsInterface(TypeElement e, P p) {
-		return defaultAction(e, p);
-	}
+    /**
+     * Visits an {@code INTERFACE} type element by calling {@code
+     * defaultAction}. .
+     * 
+     * @param e
+     *          the element to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return the result of {@code defaultAction}
+     */
+    public R visitTypeAsInterface(TypeElement e, P p) {
+        return defaultAction(e, p);
+    }
 
-	/**
-	 * Visits a variable element, dispatching to the visit method for the
-	 * specific {@linkplain ElementKind kind} of variable, {@code
-	 * ENUM_CONSTANT}, {@code EXCEPTION_PARAMETER}, {@code FIELD},
-	 * {@code LOCAL_VARIABLE}, {@code PARAMETER}, or {@code RESOURCE_VARIABLE}.
-	 *
-	 * @param e
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of the kind-specific visit method
-	 */
-	@Override
-	public R visitVariable(VariableElement e, P p) {
-		ElementKind k = e.getKind();
-		switch (k) {
-			case ENUM_CONSTANT:
-				return visitVariableAsEnumConstant(e, p);
+    /**
+     * Visits a variable element, dispatching to the visit method for the
+     * specific {@linkplain ElementKind kind} of variable, {@code
+     * ENUM_CONSTANT}, {@code EXCEPTION_PARAMETER}, {@code FIELD},
+     * {@code LOCAL_VARIABLE}, {@code PARAMETER}, or {@code RESOURCE_VARIABLE}.
+     *
+     * @param e
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of the kind-specific visit method
+     */
+    @Override
+    public R visitVariable(VariableElement e, P p) {
+        ElementKind k = e.getKind();
+        switch (k) {
+            case ENUM_CONSTANT:
+                return visitVariableAsEnumConstant(e, p);
 
-			case EXCEPTION_PARAMETER:
-				return visitVariableAsExceptionParameter(e, p);
+            case EXCEPTION_PARAMETER:
+                return visitVariableAsExceptionParameter(e, p);
 
-			case FIELD:
-				return visitVariableAsField(e, p);
+            case FIELD:
+                return visitVariableAsField(e, p);
 
-			case LOCAL_VARIABLE:
-				return visitVariableAsLocalVariable(e, p);
+            case LOCAL_VARIABLE:
+                return visitVariableAsLocalVariable(e, p);
 
-			case PARAMETER:
-				return visitVariableAsParameter(e, p);
+            case PARAMETER:
+                return visitVariableAsParameter(e, p);
 
-			case RESOURCE_VARIABLE:
-				return visitVariableAsResourceVariable(e, p);
+            case RESOURCE_VARIABLE:
+                return visitVariableAsResourceVariable(e, p);
 
-			default:
-				throw new AssertionError("Bad kind " + k
-						+ " for VariableElement" + e);
-		}
-	}
+            default:
+                throw new AssertionError("Bad kind " + k
+                        + " for VariableElement" + e);
+        }
+    }
 
-	/**
-	 * Visits an {@code ENUM_CONSTANT} variable element by calling
-	 * {@code defaultAction}.
-	 *
-	 * @param e
-	 *          the element to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitVariableAsEnumConstant(VariableElement e, P p) {
-		return defaultAction(e, p);
-	}
+    /**
+     * Visits an {@code ENUM_CONSTANT} variable element by calling
+     * {@code defaultAction}.
+     *
+     * @param e
+     *          the element to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return the result of {@code defaultAction}
+     */
+    public R visitVariableAsEnumConstant(VariableElement e, P p) {
+        return defaultAction(e, p);
+    }
 
-	/**
-	 * Visits an {@code EXCEPTION_PARAMETER} variable element by calling
-	 * {@code defaultAction}.
-	 *
-	 * @param e
-	 *          the element to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitVariableAsExceptionParameter(VariableElement e, P p) {
-		return defaultAction(e, p);
-	}
+    /**
+     * Visits an {@code EXCEPTION_PARAMETER} variable element by calling
+     * {@code defaultAction}.
+     *
+     * @param e
+     *          the element to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return the result of {@code defaultAction}
+     */
+    public R visitVariableAsExceptionParameter(VariableElement e, P p) {
+        return defaultAction(e, p);
+    }
 
-	/**
-	 * Visits a {@code FIELD} variable element by calling {@code defaultAction}.
-	 *
-	 * @param e
-	 *          the element to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitVariableAsField(VariableElement e, P p) {
-		return defaultAction(e, p);
-	}
+    /**
+     * Visits a {@code FIELD} variable element by calling {@code defaultAction}.
+     *
+     * @param e
+     *          the element to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return the result of {@code defaultAction}
+     */
+    public R visitVariableAsField(VariableElement e, P p) {
+        return defaultAction(e, p);
+    }
 
-	/**
-	 * Visits a {@code LOCAL_VARIABLE} variable element by calling
-	 * {@code defaultAction}.
-	 *
-	 * @param e
-	 *          the element to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitVariableAsLocalVariable(VariableElement e, P p) {
-		return defaultAction(e, p);
-	}
+    /**
+     * Visits a {@code LOCAL_VARIABLE} variable element by calling
+     * {@code defaultAction}.
+     *
+     * @param e
+     *          the element to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return the result of {@code defaultAction}
+     */
+    public R visitVariableAsLocalVariable(VariableElement e, P p) {
+        return defaultAction(e, p);
+    }
 
-	/**
-	 * Visits a {@code PARAMETER} variable element by calling
-	 * {@code defaultAction}.
-	 *
-	 * @param e
-	 *          the element to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitVariableAsParameter(VariableElement e, P p) {
-		return defaultAction(e, p);
-	}
+    /**
+     * Visits a {@code PARAMETER} variable element by calling
+     * {@code defaultAction}.
+     *
+     * @param e
+     *          the element to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return the result of {@code defaultAction}
+     */
+    public R visitVariableAsParameter(VariableElement e, P p) {
+        return defaultAction(e, p);
+    }
 
-	/**
-	 * Visits a {@code RESOURCE_VARIABLE} variable element by calling
-	 * {@code visitUnknown}.
-	 *
-	 * @param e
-	 *          the element to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return the result of {@code visitUnknown}
-	 *
-	 * @since 1.7
-	 */
-	public R visitVariableAsResourceVariable(VariableElement e, P p) {
-		return visitUnknown(e, p);
-	}
+    /**
+     * Visits a {@code RESOURCE_VARIABLE} variable element by calling
+     * {@code visitUnknown}.
+     *
+     * @param e
+     *          the element to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return the result of {@code visitUnknown}
+     *
+     * @since 1.7
+     */
+    public R visitVariableAsResourceVariable(VariableElement e, P p) {
+        return visitUnknown(e, p);
+    }
 
-	/**
-	 * Visits an executable element, dispatching to the visit method for the
-	 * specific {@linkplain ElementKind kind} of executable, {@code CONSTRUCTOR}
-	 * , {@code INSTANCE_INIT}, {@code METHOD}, or {@code STATIC_INIT}.
-	 *
-	 * @param e
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of the kind-specific visit method
-	 */
-	@Override
-	public R visitExecutable(ExecutableElement e, P p) {
-		ElementKind k = e.getKind();
-		switch (k) {
-			case CONSTRUCTOR:
-				return visitExecutableAsConstructor(e, p);
+    /**
+     * Visits an executable element, dispatching to the visit method for the
+     * specific {@linkplain ElementKind kind} of executable, {@code CONSTRUCTOR}
+     * , {@code INSTANCE_INIT}, {@code METHOD}, or {@code STATIC_INIT}.
+     *
+     * @param e
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of the kind-specific visit method
+     */
+    @Override
+    public R visitExecutable(ExecutableElement e, P p) {
+        ElementKind k = e.getKind();
+        switch (k) {
+            case CONSTRUCTOR:
+                return visitExecutableAsConstructor(e, p);
 
-			case INSTANCE_INIT:
-				return visitExecutableAsInstanceInit(e, p);
+            case INSTANCE_INIT:
+                return visitExecutableAsInstanceInit(e, p);
 
-			case METHOD:
-				return visitExecutableAsMethod(e, p);
+            case METHOD:
+                return visitExecutableAsMethod(e, p);
 
-			case STATIC_INIT:
-				return visitExecutableAsStaticInit(e, p);
+            case STATIC_INIT:
+                return visitExecutableAsStaticInit(e, p);
 
-			default:
-				throw new AssertionError("Bad kind " + k
-						+ " for ExecutableElement" + e);
-		}
-	}
+            default:
+                throw new AssertionError("Bad kind " + k
+                        + " for ExecutableElement" + e);
+        }
+    }
 
-	/**
-	 * Visits a {@code CONSTRUCTOR} executable element by calling
-	 * {@code defaultAction}.
-	 *
-	 * @param e
-	 *          the element to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitExecutableAsConstructor(ExecutableElement e, P p) {
-		return defaultAction(e, p);
-	}
+    /**
+     * Visits a {@code CONSTRUCTOR} executable element by calling
+     * {@code defaultAction}.
+     *
+     * @param e
+     *          the element to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return the result of {@code defaultAction}
+     */
+    public R visitExecutableAsConstructor(ExecutableElement e, P p) {
+        return defaultAction(e, p);
+    }
 
-	/**
-	 * Visits an {@code INSTANCE_INIT} executable element by calling
-	 * {@code defaultAction}.
-	 *
-	 * @param e
-	 *          the element to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitExecutableAsInstanceInit(ExecutableElement e, P p) {
-		return defaultAction(e, p);
-	}
+    /**
+     * Visits an {@code INSTANCE_INIT} executable element by calling
+     * {@code defaultAction}.
+     *
+     * @param e
+     *          the element to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return the result of {@code defaultAction}
+     */
+    public R visitExecutableAsInstanceInit(ExecutableElement e, P p) {
+        return defaultAction(e, p);
+    }
 
-	/**
-	 * Visits a {@code METHOD} executable element by calling
-	 * {@code defaultAction}.
-	 *
-	 * @param e
-	 *          the element to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitExecutableAsMethod(ExecutableElement e, P p) {
-		return defaultAction(e, p);
-	}
+    /**
+     * Visits a {@code METHOD} executable element by calling
+     * {@code defaultAction}.
+     *
+     * @param e
+     *          the element to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return the result of {@code defaultAction}
+     */
+    public R visitExecutableAsMethod(ExecutableElement e, P p) {
+        return defaultAction(e, p);
+    }
 
-	/**
-	 * Visits a {@code STATIC_INIT} executable element by calling
-	 * {@code defaultAction}.
-	 *
-	 * @param e
-	 *          the element to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return the result of {@code defaultAction}
-	 */
-	public R visitExecutableAsStaticInit(ExecutableElement e, P p) {
-		return defaultAction(e, p);
-	}
+    /**
+     * Visits a {@code STATIC_INIT} executable element by calling
+     * {@code defaultAction}.
+     *
+     * @param e
+     *          the element to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return the result of {@code defaultAction}
+     */
+    public R visitExecutableAsStaticInit(ExecutableElement e, P p) {
+        return defaultAction(e, p);
+    }
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * The element argument has kind {@code TYPE_PARAMETER}.
-	 *
-	 * @param e
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return {@inheritDoc}
-	 */
-	@Override
-	public R visitTypeParameter(TypeParameterElement e, P p) {
-		assert e.getKind() == TYPE_PARAMETER : "Bad kind on TypeParameterElement";
-		return defaultAction(e, p);
-	}
+    /**
+     * {@inheritDoc}
+     *
+     * The element argument has kind {@code TYPE_PARAMETER}.
+     *
+     * @param e
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public R visitTypeParameter(TypeParameterElement e, P p) {
+        assert e.getKind() == TYPE_PARAMETER : "Bad kind on TypeParameterElement";
+        return defaultAction(e, p);
+    }
 }

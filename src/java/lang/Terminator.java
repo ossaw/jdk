@@ -18,41 +18,41 @@ import sun.misc.SignalHandler;
 
 class Terminator {
 
-	private static SignalHandler handler = null;
+    private static SignalHandler handler = null;
 
-	/*
-	 * Invocations of setup and teardown are already synchronized on the
-	 * shutdown lock, so no further synchronization is needed here
-	 */
+    /*
+     * Invocations of setup and teardown are already synchronized on the
+     * shutdown lock, so no further synchronization is needed here
+     */
 
-	static void setup() {
-		if (handler != null)
-			return;
-		SignalHandler sh = new SignalHandler() {
-			public void handle(Signal sig) {
-				Shutdown.exit(sig.getNumber() + 0200);
-			}
-		};
-		handler = sh;
+    static void setup() {
+        if (handler != null)
+            return;
+        SignalHandler sh = new SignalHandler() {
+            public void handle(Signal sig) {
+                Shutdown.exit(sig.getNumber() + 0200);
+            }
+        };
+        handler = sh;
 
-		// When -Xrs is specified the user is responsible for
-		// ensuring that shutdown hooks are run by calling
-		// System.exit()
-		try {
-			Signal.handle(new Signal("INT"), sh);
-		} catch (IllegalArgumentException e) {
-		}
-		try {
-			Signal.handle(new Signal("TERM"), sh);
-		} catch (IllegalArgumentException e) {
-		}
-	}
+        // When -Xrs is specified the user is responsible for
+        // ensuring that shutdown hooks are run by calling
+        // System.exit()
+        try {
+            Signal.handle(new Signal("INT"), sh);
+        } catch (IllegalArgumentException e) {
+        }
+        try {
+            Signal.handle(new Signal("TERM"), sh);
+        } catch (IllegalArgumentException e) {
+        }
+    }
 
-	static void teardown() {
-		/*
-		 * The current sun.misc.Signal class does not support the cancellation
-		 * of handlers
-		 */
-	}
+    static void teardown() {
+        /*
+         * The current sun.misc.Signal class does not support the cancellation
+         * of handlers
+         */
+    }
 
 }

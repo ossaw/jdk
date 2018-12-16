@@ -32,79 +32,79 @@ import javax.print.attribute.PrintRequestAttribute;
  * @author Alan Kaminsky
  */
 public final class RequestingUserName extends TextSyntax implements
-		PrintRequestAttribute {
+        PrintRequestAttribute {
 
-	private static final long serialVersionUID = -2683049894310331454L;
+    private static final long serialVersionUID = -2683049894310331454L;
 
-	/**
-	 * Constructs a new requesting user name attribute with the given user name
-	 * and locale.
-	 *
-	 * @param userName
-	 *                 User name.
-	 * @param locale
-	 *                 Natural language of the text string. null is interpreted
-	 *                 to
-	 *                 mean the default locale as returned by
-	 *                 <code>Locale.getDefault()</code>
-	 *
-	 * @exception NullPointerException
-	 *                                 (unchecked exception) Thrown if
-	 *                                 <CODE>userName</CODE> is
-	 *                                 null.
-	 */
-	public RequestingUserName(String userName, Locale locale) {
-		super(userName, locale);
-	}
+    /**
+     * Constructs a new requesting user name attribute with the given user name
+     * and locale.
+     *
+     * @param userName
+     *                 User name.
+     * @param locale
+     *                 Natural language of the text string. null is interpreted
+     *                 to
+     *                 mean the default locale as returned by
+     *                 <code>Locale.getDefault()</code>
+     *
+     * @exception NullPointerException
+     *                                 (unchecked exception) Thrown if
+     *                                 <CODE>userName</CODE> is
+     *                                 null.
+     */
+    public RequestingUserName(String userName, Locale locale) {
+        super(userName, locale);
+    }
 
-	/**
-	 * Returns whether this requesting user name attribute is equivalent to the
-	 * passed in object. To be equivalent, all of the following conditions must
-	 * be true:
-	 * <OL TYPE=1>
-	 * <LI><CODE>object</CODE> is not null.
-	 * <LI><CODE>object</CODE> is an instance of class RequestingUserName.
-	 * <LI>This requesting user name attribute's underlying string and
-	 * <CODE>object</CODE>'s underlying string are equal.
-	 * <LI>This requesting user name attribute's locale and <CODE>object</CODE>
-	 * 's locale are equal.
-	 * </OL>
-	 *
-	 * @param object
-	 *               Object to compare to.
-	 *
-	 * @return True if <CODE>object</CODE> is equivalent to this requesting user
-	 *         name attribute, false otherwise.
-	 */
-	public boolean equals(Object object) {
-		return (super.equals(object) && object instanceof RequestingUserName);
-	}
+    /**
+     * Returns whether this requesting user name attribute is equivalent to the
+     * passed in object. To be equivalent, all of the following conditions must
+     * be true:
+     * <OL TYPE=1>
+     * <LI><CODE>object</CODE> is not null.
+     * <LI><CODE>object</CODE> is an instance of class RequestingUserName.
+     * <LI>This requesting user name attribute's underlying string and
+     * <CODE>object</CODE>'s underlying string are equal.
+     * <LI>This requesting user name attribute's locale and <CODE>object</CODE>
+     * 's locale are equal.
+     * </OL>
+     *
+     * @param object
+     *               Object to compare to.
+     *
+     * @return True if <CODE>object</CODE> is equivalent to this requesting user
+     *         name attribute, false otherwise.
+     */
+    public boolean equals(Object object) {
+        return (super.equals(object) && object instanceof RequestingUserName);
+    }
 
-	/**
-	 * Get the printing attribute class which is to be used as the "category"
-	 * for this printing attribute value.
-	 * <P>
-	 * For class RequestingUserName, the category is class RequestingUserName
-	 * itself.
-	 *
-	 * @return Printing attribute class (category), an instance of class
-	 *         {@link java.lang.Class java.lang.Class}.
-	 */
-	public final Class<? extends Attribute> getCategory() {
-		return RequestingUserName.class;
-	}
+    /**
+     * Get the printing attribute class which is to be used as the "category"
+     * for this printing attribute value.
+     * <P>
+     * For class RequestingUserName, the category is class RequestingUserName
+     * itself.
+     *
+     * @return Printing attribute class (category), an instance of class
+     *         {@link java.lang.Class java.lang.Class}.
+     */
+    public final Class<? extends Attribute> getCategory() {
+        return RequestingUserName.class;
+    }
 
-	/**
-	 * Get the name of the category of which this attribute value is an
-	 * instance.
-	 * <P>
-	 * For class RequestingUserName, the category name is
-	 * <CODE>"requesting-user-name"</CODE>.
-	 *
-	 * @return Attribute category name.
-	 */
-	public final String getName() {
-		return "requesting-user-name";
-	}
+    /**
+     * Get the name of the category of which this attribute value is an
+     * instance.
+     * <P>
+     * For class RequestingUserName, the category name is
+     * <CODE>"requesting-user-name"</CODE>.
+     *
+     * @return Attribute category name.
+     */
+    public final String getName() {
+        return "requesting-user-name";
+    }
 
 }

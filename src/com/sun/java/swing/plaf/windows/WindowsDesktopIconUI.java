@@ -21,54 +21,54 @@ import javax.swing.border.*;
  * long term persistence.
  */
 public class WindowsDesktopIconUI extends BasicDesktopIconUI {
-	private int width;
+    private int width;
 
-	public static ComponentUI createUI(JComponent c) {
-		return new WindowsDesktopIconUI();
-	}
+    public static ComponentUI createUI(JComponent c) {
+        return new WindowsDesktopIconUI();
+    }
 
-	public void installDefaults() {
-		super.installDefaults();
-		width = UIManager.getInt("DesktopIcon.width");
-	}
+    public void installDefaults() {
+        super.installDefaults();
+        width = UIManager.getInt("DesktopIcon.width");
+    }
 
-	public void installUI(JComponent c) {
-		super.installUI(c);
+    public void installUI(JComponent c) {
+        super.installUI(c);
 
-		c.setOpaque(XPStyle.getXP() == null);
-	}
+        c.setOpaque(XPStyle.getXP() == null);
+    }
 
-	// Uninstall the listeners added by the WindowsInternalFrameTitlePane
-	public void uninstallUI(JComponent c) {
-		WindowsInternalFrameTitlePane thePane = (WindowsInternalFrameTitlePane) iconPane;
-		super.uninstallUI(c);
-		thePane.uninstallListeners();
-	}
+    // Uninstall the listeners added by the WindowsInternalFrameTitlePane
+    public void uninstallUI(JComponent c) {
+        WindowsInternalFrameTitlePane thePane = (WindowsInternalFrameTitlePane) iconPane;
+        super.uninstallUI(c);
+        thePane.uninstallListeners();
+    }
 
-	protected void installComponents() {
-		iconPane = new WindowsInternalFrameTitlePane(frame);
-		desktopIcon.setLayout(new BorderLayout());
-		desktopIcon.add(iconPane, BorderLayout.CENTER);
+    protected void installComponents() {
+        iconPane = new WindowsInternalFrameTitlePane(frame);
+        desktopIcon.setLayout(new BorderLayout());
+        desktopIcon.add(iconPane, BorderLayout.CENTER);
 
-		if (XPStyle.getXP() != null) {
-			desktopIcon.setBorder(null);
-		}
-	}
+        if (XPStyle.getXP() != null) {
+            desktopIcon.setBorder(null);
+        }
+    }
 
-	public Dimension getPreferredSize(JComponent c) {
-		// Windows desktop icons can not be resized. Therefore, we should
-		// always return the minimum size of the desktop icon. See
-		// getMinimumSize(JComponent c).
-		return getMinimumSize(c);
-	}
+    public Dimension getPreferredSize(JComponent c) {
+        // Windows desktop icons can not be resized. Therefore, we should
+        // always return the minimum size of the desktop icon. See
+        // getMinimumSize(JComponent c).
+        return getMinimumSize(c);
+    }
 
-	/**
-	 * Windows desktop icons are restricted to a width of 160 pixels by default.
-	 * This value is retrieved by the DesktopIcon.width property.
-	 */
-	public Dimension getMinimumSize(JComponent c) {
-		Dimension dim = super.getMinimumSize(c);
-		dim.width = width;
-		return dim;
-	}
+    /**
+     * Windows desktop icons are restricted to a width of 160 pixels by default.
+     * This value is retrieved by the DesktopIcon.width property.
+     */
+    public Dimension getMinimumSize(JComponent c) {
+        Dimension dim = super.getMinimumSize(c);
+        dim.width = width;
+        return dim;
+    }
 }

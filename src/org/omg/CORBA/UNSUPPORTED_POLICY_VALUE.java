@@ -13,8 +13,8 @@ package org.omg.CORBA;
  * @author rip-dev
  */
 public interface UNSUPPORTED_POLICY_VALUE {
-	/**
-	 * The Error code for PolicyError exception.
-	 */
-	final short value = (short) (4L);
+    /**
+     * The Error code for PolicyError exception.
+     */
+    final short value = (short) (4L);
 };

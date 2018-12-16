@@ -57,12 +57,12 @@ package com.sun.org.apache.bcel.internal.generic;
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public interface NamedAndTyped {
-	public String getName();
+    public String getName();
 
-	public Type getType();
+    public Type getType();
 
-	public void setName(String name);
+    public void setName(String name);
 
-	public void setType(Type type);
+    public void setType(Type type);
 
 }

@@ -47,65 +47,65 @@ import java.util.Set;
  */
 public interface PolicyNode {
 
-	/**
-	 * Returns the parent of this node, or {@code null} if this is the root
-	 * node.
-	 *
-	 * @return the parent of this node, or {@code null} if this is the root node
-	 */
-	PolicyNode getParent();
+    /**
+     * Returns the parent of this node, or {@code null} if this is the root
+     * node.
+     *
+     * @return the parent of this node, or {@code null} if this is the root node
+     */
+    PolicyNode getParent();
 
-	/**
-	 * Returns an iterator over the children of this node. Any attempts to
-	 * modify the children of this node through the {@code Iterator}'s remove
-	 * method must throw an {@code UnsupportedOperationException}.
-	 *
-	 * @return an iterator over the children of this node
-	 */
-	Iterator<? extends PolicyNode> getChildren();
+    /**
+     * Returns an iterator over the children of this node. Any attempts to
+     * modify the children of this node through the {@code Iterator}'s remove
+     * method must throw an {@code UnsupportedOperationException}.
+     *
+     * @return an iterator over the children of this node
+     */
+    Iterator<? extends PolicyNode> getChildren();
 
-	/**
-	 * Returns the depth of this node in the valid policy tree.
-	 *
-	 * @return the depth of this node (0 for the root node, 1 for its children,
-	 *         and so on)
-	 */
-	int getDepth();
+    /**
+     * Returns the depth of this node in the valid policy tree.
+     *
+     * @return the depth of this node (0 for the root node, 1 for its children,
+     *         and so on)
+     */
+    int getDepth();
 
-	/**
-	 * Returns the valid policy represented by this node.
-	 *
-	 * @return the {@code String} OID of the valid policy represented by this
-	 *         node. For the root node, this method always returns the special
-	 *         anyPolicy OID: "2.5.29.32.0".
-	 */
-	String getValidPolicy();
+    /**
+     * Returns the valid policy represented by this node.
+     *
+     * @return the {@code String} OID of the valid policy represented by this
+     *         node. For the root node, this method always returns the special
+     *         anyPolicy OID: "2.5.29.32.0".
+     */
+    String getValidPolicy();
 
-	/**
-	 * Returns the set of policy qualifiers associated with the valid policy
-	 * represented by this node.
-	 *
-	 * @return an immutable {@code Set} of {@code PolicyQualifierInfo}s. For the
-	 *         root node, this is always an empty {@code Set}.
-	 */
-	Set<? extends PolicyQualifierInfo> getPolicyQualifiers();
+    /**
+     * Returns the set of policy qualifiers associated with the valid policy
+     * represented by this node.
+     *
+     * @return an immutable {@code Set} of {@code PolicyQualifierInfo}s. For the
+     *         root node, this is always an empty {@code Set}.
+     */
+    Set<? extends PolicyQualifierInfo> getPolicyQualifiers();
 
-	/**
-	 * Returns the set of expected policies that would satisfy this node's valid
-	 * policy in the next certificate to be processed.
-	 *
-	 * @return an immutable {@code Set} of expected policy {@code String} OIDs.
-	 *         For the root node, this method always returns a {@code Set} with
-	 *         one element, the special anyPolicy OID: "2.5.29.32.0".
-	 */
-	Set<String> getExpectedPolicies();
+    /**
+     * Returns the set of expected policies that would satisfy this node's valid
+     * policy in the next certificate to be processed.
+     *
+     * @return an immutable {@code Set} of expected policy {@code String} OIDs.
+     *         For the root node, this method always returns a {@code Set} with
+     *         one element, the special anyPolicy OID: "2.5.29.32.0".
+     */
+    Set<String> getExpectedPolicies();
 
-	/**
-	 * Returns the criticality indicator of the certificate policy extension in
-	 * the most recently processed certificate.
-	 *
-	 * @return {@code true} if extension marked critical, {@code false}
-	 *         otherwise. For the root node, {@code false} is always returned.
-	 */
-	boolean isCritical();
+    /**
+     * Returns the criticality indicator of the certificate policy extension in
+     * the most recently processed certificate.
+     *
+     * @return {@code true} if extension marked critical, {@code false}
+     *         otherwise. For the root node, {@code false} is always returned.
+     */
+    boolean isCritical();
 }

@@ -20,49 +20,49 @@ import com.sun.corba.se.impl.orbutil.fsm.NameBase;
  * class for all states in transitions added to a StateEngine.
  */
 public class StateImpl extends NameBase implements State {
-	private Action defaultAction;
-	private State defaultNextState;
-	private Map inputToGuardedActions;
+    private Action defaultAction;
+    private State defaultNextState;
+    private Map inputToGuardedActions;
 
-	public StateImpl(String name) {
-		super(name);
-		defaultAction = null;
-		inputToGuardedActions = new HashMap();
-	}
+    public StateImpl(String name) {
+        super(name);
+        defaultAction = null;
+        inputToGuardedActions = new HashMap();
+    }
 
-	public void preAction(FSM fsm) {}
+    public void preAction(FSM fsm) {}
 
-	public void postAction(FSM fsm) {}
+    public void postAction(FSM fsm) {}
 
-	// Methods for use only by StateEngineImpl.
+    // Methods for use only by StateEngineImpl.
 
-	public State getDefaultNextState() {
-		return defaultNextState;
-	}
+    public State getDefaultNextState() {
+        return defaultNextState;
+    }
 
-	public void setDefaultNextState(State defaultNextState) {
-		this.defaultNextState = defaultNextState;
-	}
+    public void setDefaultNextState(State defaultNextState) {
+        this.defaultNextState = defaultNextState;
+    }
 
-	public Action getDefaultAction() {
-		return defaultAction;
-	}
+    public Action getDefaultAction() {
+        return defaultAction;
+    }
 
-	public void setDefaultAction(Action defaultAction) {
-		this.defaultAction = defaultAction;
-	}
+    public void setDefaultAction(Action defaultAction) {
+        this.defaultAction = defaultAction;
+    }
 
-	public void addGuardedAction(Input in, GuardedAction ga) {
-		Set gas = (Set) inputToGuardedActions.get(in);
-		if (gas == null) {
-			gas = new HashSet();
-			inputToGuardedActions.put(in, gas);
-		}
+    public void addGuardedAction(Input in, GuardedAction ga) {
+        Set gas = (Set) inputToGuardedActions.get(in);
+        if (gas == null) {
+            gas = new HashSet();
+            inputToGuardedActions.put(in, gas);
+        }
 
-		gas.add(ga);
-	}
+        gas.add(ga);
+    }
 
-	public Set getGuardedActions(Input in) {
-		return (Set) inputToGuardedActions.get(in);
-	}
+    public Set getGuardedActions(Input in) {
+        return (Set) inputToGuardedActions.get(in);
+    }
 }

@@ -95,207 +95,207 @@ package com.sun.image.codec.jpeg;
  */
 
 public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
-	public Object clone();
+    public Object clone();
 
-	/**
-	 * Set the horizontal subsample factor for the given component. Note that
-	 * the subsample factor is the number of input pixels that contribute to
-	 * each output pixel (ussually 2 for YCC).
-	 * 
-	 * @param component
-	 *                  The component being specified.
-	 * @param subsample
-	 *                  The subsampling factor being specified.
-	 */
-	public void setHorizontalSubsampling(int component, int subsample);
+    /**
+     * Set the horizontal subsample factor for the given component. Note that
+     * the subsample factor is the number of input pixels that contribute to
+     * each output pixel (ussually 2 for YCC).
+     * 
+     * @param component
+     *                  The component being specified.
+     * @param subsample
+     *                  The subsampling factor being specified.
+     */
+    public void setHorizontalSubsampling(int component, int subsample);
 
-	/**
-	 * Set the vertical subsample factor for the given component. Note that the
-	 * subsample factor is the number of input pixels that contribute to each
-	 * output pixel (ussually 2 for YCC).
-	 * 
-	 * @param component
-	 *                  The component being specified.
-	 * @param subsample
-	 *                  The subsampling factor being specified.
-	 */
-	public void setVerticalSubsampling(int component, int subsample);
+    /**
+     * Set the vertical subsample factor for the given component. Note that the
+     * subsample factor is the number of input pixels that contribute to each
+     * output pixel (ussually 2 for YCC).
+     * 
+     * @param component
+     *                  The component being specified.
+     * @param subsample
+     *                  The subsampling factor being specified.
+     */
+    public void setVerticalSubsampling(int component, int subsample);
 
-	/**
-	 * Sets the coefficient quantization tables at index passed. tableNum must
-	 * range in value from 0 - 3.
-	 * 
-	 * @param qtable
-	 *                 that will be used.
-	 * @param tableNum
-	 *                 the index of the table to be set.
-	 */
-	public void setQTable(int tableNum, JPEGQTable qTable);
+    /**
+     * Sets the coefficient quantization tables at index passed. tableNum must
+     * range in value from 0 - 3.
+     * 
+     * @param qtable
+     *                 that will be used.
+     * @param tableNum
+     *                 the index of the table to be set.
+     */
+    public void setQTable(int tableNum, JPEGQTable qTable);
 
-	/**
-	 * Sets the DC Huffman coding table at index to the table provided.
-	 * 
-	 * @param huffTable
-	 *                  JPEGHuffmanTable that will be assigned to index
-	 *                  tableNum.
-	 * @param tableNum
-	 *                  - the index of the table to be set.
-	 * @exception IllegalArgumentException
-	 *                                     - thrown if the tableNum is out of
-	 *                                     range. Index must range
-	 *                                     in value from 0 - 3.
-	 */
-	public void setDCHuffmanTable(int tableNum, JPEGHuffmanTable huffTable);
+    /**
+     * Sets the DC Huffman coding table at index to the table provided.
+     * 
+     * @param huffTable
+     *                  JPEGHuffmanTable that will be assigned to index
+     *                  tableNum.
+     * @param tableNum
+     *                  - the index of the table to be set.
+     * @exception IllegalArgumentException
+     *                                     - thrown if the tableNum is out of
+     *                                     range. Index must range
+     *                                     in value from 0 - 3.
+     */
+    public void setDCHuffmanTable(int tableNum, JPEGHuffmanTable huffTable);
 
-	/**
-	 * Sets the AC Huffman coding table at index to the table provided.
-	 * 
-	 * @param huffTable
-	 *                  JPEGHuffmanTable that will be assigned to index
-	 *                  tableNum.
-	 * @param tableNum
-	 *                  - the index of the table to be set.
-	 * @exception IllegalArgumentException
-	 *                                     - thrown if the tableNum is out of
-	 *                                     range. Index must range
-	 *                                     in value from 0 - 3.
-	 */
-	public void setACHuffmanTable(int tableNum, JPEGHuffmanTable huffTable);
+    /**
+     * Sets the AC Huffman coding table at index to the table provided.
+     * 
+     * @param huffTable
+     *                  JPEGHuffmanTable that will be assigned to index
+     *                  tableNum.
+     * @param tableNum
+     *                  - the index of the table to be set.
+     * @exception IllegalArgumentException
+     *                                     - thrown if the tableNum is out of
+     *                                     range. Index must range
+     *                                     in value from 0 - 3.
+     */
+    public void setACHuffmanTable(int tableNum, JPEGHuffmanTable huffTable);
 
-	/**
-	 * Sets the mapping between a component and it's DC Huffman Table.
-	 * 
-	 * @param component
-	 *                  The component to set the mapping for
-	 * @param table
-	 *                  The DC Huffman table to use for component
-	 */
-	public void setDCHuffmanComponentMapping(int component, int table);
+    /**
+     * Sets the mapping between a component and it's DC Huffman Table.
+     * 
+     * @param component
+     *                  The component to set the mapping for
+     * @param table
+     *                  The DC Huffman table to use for component
+     */
+    public void setDCHuffmanComponentMapping(int component, int table);
 
-	/**
-	 * Sets the mapping between a component and it's AC Huffman Table.
-	 * 
-	 * @param component
-	 *                  The component to set the mapping for
-	 * @param table
-	 *                  The AC Huffman table to use for component
-	 */
-	public void setACHuffmanComponentMapping(int component, int table);
+    /**
+     * Sets the mapping between a component and it's AC Huffman Table.
+     * 
+     * @param component
+     *                  The component to set the mapping for
+     * @param table
+     *                  The AC Huffman table to use for component
+     */
+    public void setACHuffmanComponentMapping(int component, int table);
 
-	/**
-	 * Sets the mapping between a component and it's Quantization Table.
-	 * 
-	 * @param component
-	 *                  The component to set the mapping for
-	 * @param table
-	 *                  The Quantization Table to use for component
-	 */
-	public void setQTableComponentMapping(int component, int table);
+    /**
+     * Sets the mapping between a component and it's Quantization Table.
+     * 
+     * @param component
+     *                  The component to set the mapping for
+     * @param table
+     *                  The Quantization Table to use for component
+     */
+    public void setQTableComponentMapping(int component, int table);
 
-	/**
-	 * Set the flag indicating the validity of the table information in the
-	 * ParamBlock. This is used to indicate if tables should be included when
-	 * encoding.
-	 */
-	public void setImageInfoValid(boolean flag);
+    /**
+     * Set the flag indicating the validity of the table information in the
+     * ParamBlock. This is used to indicate if tables should be included when
+     * encoding.
+     */
+    public void setImageInfoValid(boolean flag);
 
-	/**
-	 * Set the flag indicating the validity of the image information in the
-	 * ParamBlock. This is used to indicates if image data should be written
-	 * when encoding.
-	 */
-	public void setTableInfoValid(boolean flag);
+    /**
+     * Set the flag indicating the validity of the image information in the
+     * ParamBlock. This is used to indicates if image data should be written
+     * when encoding.
+     */
+    public void setTableInfoValid(boolean flag);
 
-	/**
-	 * Sets the marker data to be written to the output data stream. This
-	 * removes any existing marker data in the JPEParm object. This can be used
-	 * to remove the default APP0 marker by calling it with data set to null.
-	 * 
-	 * @param marker
-	 *               The marker to set the data for.
-	 * @param data
-	 *               the new set of data to be written.
-	 */
-	public void setMarkerData(int marker, byte[][] data);
+    /**
+     * Sets the marker data to be written to the output data stream. This
+     * removes any existing marker data in the JPEParm object. This can be used
+     * to remove the default APP0 marker by calling it with data set to null.
+     * 
+     * @param marker
+     *               The marker to set the data for.
+     * @param data
+     *               the new set of data to be written.
+     */
+    public void setMarkerData(int marker, byte[][] data);
 
-	/**
-	 * Appends 'data' to the array of byte[] associated with marker. This will
-	 * result in additional instance of the marker being written (one for each
-	 * byte[] in the array.).
-	 * 
-	 * @param marker
-	 *               The marker to add and instance of.
-	 * @param data
-	 *               the data to be written.
-	 */
-	public void addMarkerData(int marker, byte[] data);
+    /**
+     * Appends 'data' to the array of byte[] associated with marker. This will
+     * result in additional instance of the marker being written (one for each
+     * byte[] in the array.).
+     * 
+     * @param marker
+     *               The marker to add and instance of.
+     * @param data
+     *               the data to be written.
+     */
+    public void addMarkerData(int marker, byte[] data);
 
-	/**
-	 * Set the MCUs per restart, or 0 for no restart markers.
-	 * 
-	 * @param restartInterval
-	 *                        number MCUs per restart marker.
-	 */
-	public void setRestartInterval(int restartInterval);
+    /**
+     * Set the MCUs per restart, or 0 for no restart markers.
+     * 
+     * @param restartInterval
+     *                        number MCUs per restart marker.
+     */
+    public void setRestartInterval(int restartInterval);
 
-	/**
-	 * Set the pixel size units This value is copied into the APP0 marker (if
-	 * that marker is written). This value isn't used by the JPEG code.
-	 * 
-	 * @param unit
-	 *             One of the DENSITY_UNIT_* values.
-	 */
-	public void setDensityUnit(int unit);
+    /**
+     * Set the pixel size units This value is copied into the APP0 marker (if
+     * that marker is written). This value isn't used by the JPEG code.
+     * 
+     * @param unit
+     *             One of the DENSITY_UNIT_* values.
+     */
+    public void setDensityUnit(int unit);
 
-	/**
-	 * Set the horizontal pixel density This value is written into the APP0
-	 * marker. It isn't used by the JPEG code.
-	 * 
-	 * @param density
-	 *                the horizontal pixel density, in units described by @see
-	 *                JPEGParam.getDensityUnit.
-	 */
-	public void setXDensity(int density);
+    /**
+     * Set the horizontal pixel density This value is written into the APP0
+     * marker. It isn't used by the JPEG code.
+     * 
+     * @param density
+     *                the horizontal pixel density, in units described by @see
+     *                JPEGParam.getDensityUnit.
+     */
+    public void setXDensity(int density);
 
-	/**
-	 * Set the vertical pixel density. This value is copied into the JFIF APP0
-	 * marker. It isn't used by the JPEG code.
-	 * 
-	 * @param density
-	 *                The verticle pixel density, in units described by @see
-	 *                JPEGParam.getDensityUnit.
-	 */
-	public void setYDensity(int density);
+    /**
+     * Set the vertical pixel density. This value is copied into the JFIF APP0
+     * marker. It isn't used by the JPEG code.
+     * 
+     * @param density
+     *                The verticle pixel density, in units described by @see
+     *                JPEGParam.getDensityUnit.
+     */
+    public void setYDensity(int density);
 
-	/**
-	 * This creates new Quantization tables that replace the currently installed
-	 * Quantization tables. It also updates the Component QTable mapping to the
-	 * default for the current encoded COLOR_ID.
-	 * 
-	 * The Created Quantization table varies from very high compression, very
-	 * low quality, (0.0) to low compression, very high quality (1.0) based on
-	 * the quality parameter.
-	 * <P>
-	 * 
-	 * At a quality level of 1.0 the table will be all 1's which will lead to no
-	 * loss of data due to quantization (however chrominace subsampling, if
-	 * used, and roundoff error in the DCT will still degrade the image some
-	 * what).
-	 * <P>
-	 * 
-	 * This is a linear manipulation of the standard Chrominance Q-Table.
-	 * <P>
-	 * 
-	 * <pre>
-	 * Some guidelines: 0.75 high quality
-	 *                 0.5  medium quality
-	 *                 0.25 low quality
-	 * </pre>
-	 * 
-	 * @param quality
-	 *                      0.0-1.0 setting of desired quality level.
-	 * @param forceBaseline
-	 *                      force baseline quantization table
-	 */
-	public void setQuality(float quality, boolean forceBaseline);
+    /**
+     * This creates new Quantization tables that replace the currently installed
+     * Quantization tables. It also updates the Component QTable mapping to the
+     * default for the current encoded COLOR_ID.
+     * 
+     * The Created Quantization table varies from very high compression, very
+     * low quality, (0.0) to low compression, very high quality (1.0) based on
+     * the quality parameter.
+     * <P>
+     * 
+     * At a quality level of 1.0 the table will be all 1's which will lead to no
+     * loss of data due to quantization (however chrominace subsampling, if
+     * used, and roundoff error in the DCT will still degrade the image some
+     * what).
+     * <P>
+     * 
+     * This is a linear manipulation of the standard Chrominance Q-Table.
+     * <P>
+     * 
+     * <pre>
+     * Some guidelines: 0.75 high quality
+     *                 0.5  medium quality
+     *                 0.25 low quality
+     * </pre>
+     * 
+     * @param quality
+     *                      0.0-1.0 setting of desired quality level.
+     * @param forceBaseline
+     *                      force baseline quantization table
+     */
+    public void setQuality(float quality, boolean forceBaseline);
 }

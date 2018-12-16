@@ -21,26 +21,26 @@ import java.lang.annotation.RetentionPolicy;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface WebFault {
-	/**
-	 * Element's local name.
-	 **/
-	public String name() default "";
+    /**
+     * Element's local name.
+     **/
+    public String name() default "";
 
-	/**
-	 * Element's namespace name.
-	 **/
-	public String targetNamespace() default "";
+    /**
+     * Element's namespace name.
+     **/
+    public String targetNamespace() default "";
 
-	/**
-	 * Fault bean name.
-	 **/
-	public String faultBean() default "";
+    /**
+     * Fault bean name.
+     **/
+    public String faultBean() default "";
 
-	/**
-	 * wsdl:Message's name. Default name is the exception's class name.
-	 * 
-	 * @since JAX-WS 2.2
-	 */
-	public String messageName() default "";
+    /**
+     * wsdl:Message's name. Default name is the exception's class name.
+     * 
+     * @since JAX-WS 2.2
+     */
+    public String messageName() default "";
 
 }

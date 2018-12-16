@@ -41,10 +41,10 @@ import java.security.*;
 @Deprecated
 public class RMISecurityManager extends SecurityManager {
 
-	/**
-	 * Constructs a new {@code RMISecurityManager}.
-	 * 
-	 * @since JDK1.1
-	 */
-	public RMISecurityManager() {}
+    /**
+     * Constructs a new {@code RMISecurityManager}.
+     * 
+     * @since JDK1.1
+     */
+    public RMISecurityManager() {}
 }

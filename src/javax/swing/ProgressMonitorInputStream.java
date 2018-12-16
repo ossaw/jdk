@@ -14,8 +14,8 @@ import java.awt.Component;
  * 
  * <pre>
  * InputStream in = new BufferedInputStream(new ProgressMonitorInputStream(
- * 		parentComponent, "Reading " + fileName, new FileInputStream(
- * 				fileName)));
+ *         parentComponent, "Reading " + fileName, new FileInputStream(
+ *                 fileName)));
  * </pre>
  * <p>
  * This creates a progress monitor to monitor the progress of reading the input
@@ -36,120 +36,120 @@ import java.awt.Component;
  * @author James Gosling
  */
 public class ProgressMonitorInputStream extends FilterInputStream {
-	private ProgressMonitor monitor;
-	private int nread = 0;
-	private int size = 0;
+    private ProgressMonitor monitor;
+    private int nread = 0;
+    private int size = 0;
 
-	/**
-	 * Constructs an object to monitor the progress of an input stream.
-	 *
-	 * @param message
-	 *                        Descriptive text to be placed in the dialog box if
-	 *                        one is
-	 *                        popped up.
-	 * @param parentComponent
-	 *                        The component triggering the operation being
-	 *                        monitored.
-	 * @param in
-	 *                        The input stream to be monitored.
-	 */
-	public ProgressMonitorInputStream(Component parentComponent, Object message,
-			InputStream in) {
-		super(in);
-		try {
-			size = in.available();
-		} catch (IOException ioe) {
-			size = 0;
-		}
-		monitor = new ProgressMonitor(parentComponent, message, null, 0, size);
-	}
+    /**
+     * Constructs an object to monitor the progress of an input stream.
+     *
+     * @param message
+     *                        Descriptive text to be placed in the dialog box if
+     *                        one is
+     *                        popped up.
+     * @param parentComponent
+     *                        The component triggering the operation being
+     *                        monitored.
+     * @param in
+     *                        The input stream to be monitored.
+     */
+    public ProgressMonitorInputStream(Component parentComponent, Object message,
+            InputStream in) {
+        super(in);
+        try {
+            size = in.available();
+        } catch (IOException ioe) {
+            size = 0;
+        }
+        monitor = new ProgressMonitor(parentComponent, message, null, 0, size);
+    }
 
-	/**
-	 * Get the ProgressMonitor object being used by this stream. Normally this
-	 * isn't needed unless you want to do something like change the descriptive
-	 * text partway through reading the file.
-	 * 
-	 * @return the ProgressMonitor object used by this object
-	 */
-	public ProgressMonitor getProgressMonitor() {
-		return monitor;
-	}
+    /**
+     * Get the ProgressMonitor object being used by this stream. Normally this
+     * isn't needed unless you want to do something like change the descriptive
+     * text partway through reading the file.
+     * 
+     * @return the ProgressMonitor object used by this object
+     */
+    public ProgressMonitor getProgressMonitor() {
+        return monitor;
+    }
 
-	/**
-	 * Overrides <code>FilterInputStream.read</code> to update the progress
-	 * monitor after the read.
-	 */
-	public int read() throws IOException {
-		int c = in.read();
-		if (c >= 0)
-			monitor.setProgress(++nread);
-		if (monitor.isCanceled()) {
-			InterruptedIOException exc = new InterruptedIOException("progress");
-			exc.bytesTransferred = nread;
-			throw exc;
-		}
-		return c;
-	}
+    /**
+     * Overrides <code>FilterInputStream.read</code> to update the progress
+     * monitor after the read.
+     */
+    public int read() throws IOException {
+        int c = in.read();
+        if (c >= 0)
+            monitor.setProgress(++nread);
+        if (monitor.isCanceled()) {
+            InterruptedIOException exc = new InterruptedIOException("progress");
+            exc.bytesTransferred = nread;
+            throw exc;
+        }
+        return c;
+    }
 
-	/**
-	 * Overrides <code>FilterInputStream.read</code> to update the progress
-	 * monitor after the read.
-	 */
-	public int read(byte b[]) throws IOException {
-		int nr = in.read(b);
-		if (nr > 0)
-			monitor.setProgress(nread += nr);
-		if (monitor.isCanceled()) {
-			InterruptedIOException exc = new InterruptedIOException("progress");
-			exc.bytesTransferred = nread;
-			throw exc;
-		}
-		return nr;
-	}
+    /**
+     * Overrides <code>FilterInputStream.read</code> to update the progress
+     * monitor after the read.
+     */
+    public int read(byte b[]) throws IOException {
+        int nr = in.read(b);
+        if (nr > 0)
+            monitor.setProgress(nread += nr);
+        if (monitor.isCanceled()) {
+            InterruptedIOException exc = new InterruptedIOException("progress");
+            exc.bytesTransferred = nread;
+            throw exc;
+        }
+        return nr;
+    }
 
-	/**
-	 * Overrides <code>FilterInputStream.read</code> to update the progress
-	 * monitor after the read.
-	 */
-	public int read(byte b[], int off, int len) throws IOException {
-		int nr = in.read(b, off, len);
-		if (nr > 0)
-			monitor.setProgress(nread += nr);
-		if (monitor.isCanceled()) {
-			InterruptedIOException exc = new InterruptedIOException("progress");
-			exc.bytesTransferred = nread;
-			throw exc;
-		}
-		return nr;
-	}
+    /**
+     * Overrides <code>FilterInputStream.read</code> to update the progress
+     * monitor after the read.
+     */
+    public int read(byte b[], int off, int len) throws IOException {
+        int nr = in.read(b, off, len);
+        if (nr > 0)
+            monitor.setProgress(nread += nr);
+        if (monitor.isCanceled()) {
+            InterruptedIOException exc = new InterruptedIOException("progress");
+            exc.bytesTransferred = nread;
+            throw exc;
+        }
+        return nr;
+    }
 
-	/**
-	 * Overrides <code>FilterInputStream.skip</code> to update the progress
-	 * monitor after the skip.
-	 */
-	public long skip(long n) throws IOException {
-		long nr = in.skip(n);
-		if (nr > 0)
-			monitor.setProgress(nread += nr);
-		return nr;
-	}
+    /**
+     * Overrides <code>FilterInputStream.skip</code> to update the progress
+     * monitor after the skip.
+     */
+    public long skip(long n) throws IOException {
+        long nr = in.skip(n);
+        if (nr > 0)
+            monitor.setProgress(nread += nr);
+        return nr;
+    }
 
-	/**
-	 * Overrides <code>FilterInputStream.close</code> to close the progress
-	 * monitor as well as the stream.
-	 */
-	public void close() throws IOException {
-		in.close();
-		monitor.close();
-	}
+    /**
+     * Overrides <code>FilterInputStream.close</code> to close the progress
+     * monitor as well as the stream.
+     */
+    public void close() throws IOException {
+        in.close();
+        monitor.close();
+    }
 
-	/**
-	 * Overrides <code>FilterInputStream.reset</code> to reset the progress
-	 * monitor as well as the stream.
-	 */
-	public synchronized void reset() throws IOException {
-		in.reset();
-		nread = size - in.available();
-		monitor.setProgress(nread);
-	}
+    /**
+     * Overrides <code>FilterInputStream.reset</code> to reset the progress
+     * monitor as well as the stream.
+     */
+    public synchronized void reset() throws IOException {
+        in.reset();
+        nread = size - in.available();
+        monitor.setProgress(nread);
+    }
 }

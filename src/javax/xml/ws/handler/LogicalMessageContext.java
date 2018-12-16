@@ -16,11 +16,11 @@ import javax.xml.ws.LogicalMessage;
  **/
 public interface LogicalMessageContext extends MessageContext {
 
-	/**
-	 * Gets the message from this message context
-	 *
-	 * @return The contained message; returns <code>null</code> if no message is
-	 *         present in this message context
-	 **/
-	public LogicalMessage getMessage();
+    /**
+     * Gets the message from this message context
+     *
+     * @return The contained message; returns <code>null</code> if no message is
+     *         present in this message context
+     **/
+    public LogicalMessage getMessage();
 }

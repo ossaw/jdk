@@ -25,14 +25,14 @@ package com.sun.org.apache.xpath.internal.patterns;
  */
 public interface NodeTestFilter {
 
-	/**
-	 * Set the node test for this filter.
-	 *
-	 *
-	 * @param nodeTest
-	 *                 Reference to a NodeTest that may be used to predetermine
-	 *                 what
-	 *                 nodes to return.
-	 */
-	void setNodeTest(NodeTest nodeTest);
+    /**
+     * Set the node test for this filter.
+     *
+     *
+     * @param nodeTest
+     *                 Reference to a NodeTest that may be used to predetermine
+     *                 what
+     *                 nodes to return.
+     */
+    void setNodeTest(NodeTest nodeTest);
 }

@@ -18,13 +18,13 @@ package javax.swing;
  * @author unattributed
  */
 public class UnsupportedLookAndFeelException extends Exception {
-	/**
-	 * Constructs an UnsupportedLookAndFeelException object.
-	 * 
-	 * @param s
-	 *          a message String
-	 */
-	public UnsupportedLookAndFeelException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs an UnsupportedLookAndFeelException object.
+     * 
+     * @param s
+     *          a message String
+     */
+    public UnsupportedLookAndFeelException(String s) {
+        super(s);
+    }
 }

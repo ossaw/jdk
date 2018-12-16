@@ -86,55 +86,55 @@ import java.time.DateTimeException;
  */
 public enum MinguoEra implements Era {
 
-	/**
-	 * The singleton instance for the era before the current one, 'Before
-	 * Republic of China Era', which has the numeric value 0.
-	 */
-	BEFORE_ROC,
-	/**
-	 * The singleton instance for the current era, 'Republic of China Era',
-	 * which has the numeric value 1.
-	 */
-	ROC;
+    /**
+     * The singleton instance for the era before the current one, 'Before
+     * Republic of China Era', which has the numeric value 0.
+     */
+    BEFORE_ROC,
+    /**
+     * The singleton instance for the current era, 'Republic of China Era',
+     * which has the numeric value 1.
+     */
+    ROC;
 
-	// -----------------------------------------------------------------------
-	/**
-	 * Obtains an instance of {@code MinguoEra} from an {@code int} value.
-	 * <p>
-	 * {@code MinguoEra} is an enum representing the Minguo eras of
-	 * BEFORE_ROC/ROC. This factory allows the enum to be obtained from the
-	 * {@code int} value.
-	 *
-	 * @param minguoEra
-	 *                  the BEFORE_ROC/ROC value to represent, from 0
-	 *                  (BEFORE_ROC) to
-	 *                  1 (ROC)
-	 * @return the era singleton, not null
-	 * @throws DateTimeException
-	 *                           if the value is invalid
-	 */
-	public static MinguoEra of(int minguoEra) {
-		switch (minguoEra) {
-			case 0:
-				return BEFORE_ROC;
-			case 1:
-				return ROC;
-			default:
-				throw new DateTimeException("Invalid era: " + minguoEra);
-		}
-	}
+    // -----------------------------------------------------------------------
+    /**
+     * Obtains an instance of {@code MinguoEra} from an {@code int} value.
+     * <p>
+     * {@code MinguoEra} is an enum representing the Minguo eras of
+     * BEFORE_ROC/ROC. This factory allows the enum to be obtained from the
+     * {@code int} value.
+     *
+     * @param minguoEra
+     *                  the BEFORE_ROC/ROC value to represent, from 0
+     *                  (BEFORE_ROC) to
+     *                  1 (ROC)
+     * @return the era singleton, not null
+     * @throws DateTimeException
+     *                           if the value is invalid
+     */
+    public static MinguoEra of(int minguoEra) {
+        switch (minguoEra) {
+            case 0:
+                return BEFORE_ROC;
+            case 1:
+                return ROC;
+            default:
+                throw new DateTimeException("Invalid era: " + minguoEra);
+        }
+    }
 
-	// -----------------------------------------------------------------------
-	/**
-	 * Gets the numeric era {@code int} value.
-	 * <p>
-	 * The era BEFORE_ROC has the value 0, while the era ROC has the value 1.
-	 *
-	 * @return the era value, from 0 (BEFORE_ROC) to 1 (ROC)
-	 */
-	@Override
-	public int getValue() {
-		return ordinal();
-	}
+    // -----------------------------------------------------------------------
+    /**
+     * Gets the numeric era {@code int} value.
+     * <p>
+     * The era BEFORE_ROC has the value 0, while the era ROC has the value 1.
+     *
+     * @return the era value, from 0 (BEFORE_ROC) to 1 (ROC)
+     */
+    @Override
+    public int getValue() {
+        return ordinal();
+    }
 
 }

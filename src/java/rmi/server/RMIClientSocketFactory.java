@@ -44,17 +44,17 @@ import java.net.*;
  */
 public interface RMIClientSocketFactory {
 
-	/**
-	 * Create a client socket connected to the specified host and port.
-	 * 
-	 * @param host
-	 *             the host name
-	 * @param port
-	 *             the port number
-	 * @return a socket connected to the specified host and port.
-	 * @exception IOException
-	 *                        if an I/O error occurs during socket creation
-	 * @since 1.2
-	 */
-	public Socket createSocket(String host, int port) throws IOException;
+    /**
+     * Create a client socket connected to the specified host and port.
+     * 
+     * @param host
+     *             the host name
+     * @param port
+     *             the port number
+     * @return a socket connected to the specified host and port.
+     * @exception IOException
+     *                        if an I/O error occurs during socket creation
+     * @since 1.2
+     */
+    public Socket createSocket(String host, int port) throws IOException;
 }

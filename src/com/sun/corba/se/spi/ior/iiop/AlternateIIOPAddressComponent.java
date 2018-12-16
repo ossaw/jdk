@@ -12,5 +12,5 @@ import com.sun.corba.se.spi.ior.TaggedComponent;
  * @author Ken Cavanaugh
  */
 public interface AlternateIIOPAddressComponent extends TaggedComponent {
-	public IIOPAddress getAddress();
+    public IIOPAddress getAddress();
 }

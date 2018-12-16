@@ -25,85 +25,85 @@ import javax.print.attribute.DocAttribute;
  */
 public class Compression extends EnumSyntax implements DocAttribute {
 
-	private static final long serialVersionUID = -5716748913324997674L;
+    private static final long serialVersionUID = -5716748913324997674L;
 
-	/**
-	 * No compression is used.
-	 */
-	public static final Compression NONE = new Compression(0);
+    /**
+     * No compression is used.
+     */
+    public static final Compression NONE = new Compression(0);
 
-	/**
-	 * ZIP public domain inflate/deflate compression technology.
-	 */
-	public static final Compression DEFLATE = new Compression(1);
+    /**
+     * ZIP public domain inflate/deflate compression technology.
+     */
+    public static final Compression DEFLATE = new Compression(1);
 
-	/**
-	 * GNU zip compression technology described in
-	 * <A HREF="http://www.ietf.org/rfc/rfc1952.txt">RFC 1952</A>.
-	 */
-	public static final Compression GZIP = new Compression(2);
+    /**
+     * GNU zip compression technology described in
+     * <A HREF="http://www.ietf.org/rfc/rfc1952.txt">RFC 1952</A>.
+     */
+    public static final Compression GZIP = new Compression(2);
 
-	/**
-	 * UNIX compression technology.
-	 */
-	public static final Compression COMPRESS = new Compression(3);
+    /**
+     * UNIX compression technology.
+     */
+    public static final Compression COMPRESS = new Compression(3);
 
-	/**
-	 * Construct a new compression enumeration value with the given integer
-	 * value.
-	 *
-	 * @param value
-	 *              Integer value.
-	 */
-	protected Compression(int value) {
-		super(value);
-	}
+    /**
+     * Construct a new compression enumeration value with the given integer
+     * value.
+     *
+     * @param value
+     *              Integer value.
+     */
+    protected Compression(int value) {
+        super(value);
+    }
 
-	private static final String[] myStringTable = { "none", "deflate", "gzip",
-			"compress" };
+    private static final String[] myStringTable = { "none", "deflate", "gzip",
+            "compress" };
 
-	private static final Compression[] myEnumValueTable = { NONE, DEFLATE, GZIP,
-			COMPRESS };
+    private static final Compression[] myEnumValueTable = { NONE, DEFLATE, GZIP,
+            COMPRESS };
 
-	/**
-	 * Returns the string table for class Compression.
-	 */
-	protected String[] getStringTable() {
-		return (String[]) myStringTable.clone();
-	}
+    /**
+     * Returns the string table for class Compression.
+     */
+    protected String[] getStringTable() {
+        return (String[]) myStringTable.clone();
+    }
 
-	/**
-	 * Returns the enumeration value table for class Compression.
-	 */
-	protected EnumSyntax[] getEnumValueTable() {
-		return (EnumSyntax[]) myEnumValueTable.clone();
-	}
+    /**
+     * Returns the enumeration value table for class Compression.
+     */
+    protected EnumSyntax[] getEnumValueTable() {
+        return (EnumSyntax[]) myEnumValueTable.clone();
+    }
 
-	/**
-	 * Get the printing attribute class which is to be used as the "category"
-	 * for this printing attribute value.
-	 * <P>
-	 * For class Compression and any vendor-defined subclasses, the category is
-	 * class Compression itself.
-	 *
-	 * @return Printing attribute class (category), an instance of class
-	 *         {@link java.lang.Class java.lang.Class}.
-	 */
-	public final Class<? extends Attribute> getCategory() {
-		return Compression.class;
-	}
+    /**
+     * Get the printing attribute class which is to be used as the "category"
+     * for this printing attribute value.
+     * <P>
+     * For class Compression and any vendor-defined subclasses, the category is
+     * class Compression itself.
+     *
+     * @return Printing attribute class (category), an instance of class
+     *         {@link java.lang.Class java.lang.Class}.
+     */
+    public final Class<? extends Attribute> getCategory() {
+        return Compression.class;
+    }
 
-	/**
-	 * Get the name of the category of which this attribute value is an
-	 * instance.
-	 * <P>
-	 * For class Compression and any vendor-defined subclasses, the category
-	 * name is <CODE>"compression"</CODE>.
-	 *
-	 * @return Attribute category name.
-	 */
-	public final String getName() {
-		return "compression";
-	}
+    /**
+     * Get the name of the category of which this attribute value is an
+     * instance.
+     * <P>
+     * For class Compression and any vendor-defined subclasses, the category
+     * name is <CODE>"compression"</CODE>.
+     *
+     * @return Attribute category name.
+     */
+    public final String getName() {
+        return "compression";
+    }
 
 }

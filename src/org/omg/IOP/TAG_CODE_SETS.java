@@ -10,15 +10,15 @@ package org.omg.IOP;
 
 public interface TAG_CODE_SETS {
 
-	/**
-	 * The code set component of the IOR multi-component profile structure
-	 * contains:
-	 * <ul>
-	 * <li>server's native char code set and conversion code sets, and</li>
-	 * <li>server's native wchar code set and conversion code sets.</li>
-	 * </ul>
-	 * Both char and wchar conversion code sets are listed in order of
-	 * preference.
-	 */
-	public static final int value = (int) (1L);
+    /**
+     * The code set component of the IOR multi-component profile structure
+     * contains:
+     * <ul>
+     * <li>server's native char code set and conversion code sets, and</li>
+     * <li>server's native wchar code set and conversion code sets.</li>
+     * </ul>
+     * Both char and wchar conversion code sets are listed in order of
+     * preference.
+     */
+    public static final int value = (int) (1L);
 }

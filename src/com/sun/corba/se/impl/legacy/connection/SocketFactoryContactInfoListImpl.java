@@ -16,23 +16,23 @@ import com.sun.corba.se.impl.transport.CorbaContactInfoListIteratorImpl;
  * @author Harold Carr
  */
 public class SocketFactoryContactInfoListImpl extends CorbaContactInfoListImpl {
-	// XREVISIT - is this used?
-	public SocketFactoryContactInfoListImpl(ORB orb) {
-		super(orb);
-	}
+    // XREVISIT - is this used?
+    public SocketFactoryContactInfoListImpl(ORB orb) {
+        super(orb);
+    }
 
-	public SocketFactoryContactInfoListImpl(ORB orb, IOR targetIOR) {
-		super(orb, targetIOR);
-	}
+    public SocketFactoryContactInfoListImpl(ORB orb, IOR targetIOR) {
+        super(orb, targetIOR);
+    }
 
-	////////////////////////////////////////////////////
-	//
-	// pept.transport.ContactInfoList
-	//
+    ////////////////////////////////////////////////////
+    //
+    // pept.transport.ContactInfoList
+    //
 
-	public Iterator iterator() {
-		return new SocketFactoryContactInfoListIteratorImpl(orb, this);
-	}
+    public Iterator iterator() {
+        return new SocketFactoryContactInfoListIteratorImpl(orb, this);
+    }
 }
 
 // End of file.

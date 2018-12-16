@@ -35,10 +35,10 @@ package java.security;
 
 public interface PrivateKey extends Key, javax.security.auth.Destroyable {
 
-	// Declare serialVersionUID to be compatible with JDK1.1
-	/**
-	 * The class fingerprint that is set to indicate serialization compatibility
-	 * with a previous version of the class.
-	 */
-	static final long serialVersionUID = 6034044314589513430L;
+    // Declare serialVersionUID to be compatible with JDK1.1
+    /**
+     * The class fingerprint that is set to indicate serialization compatibility
+     * with a previous version of the class.
+     */
+    static final long serialVersionUID = 6034044314589513430L;
 }

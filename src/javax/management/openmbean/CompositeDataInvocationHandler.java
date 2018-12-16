@@ -30,9 +30,9 @@ import java.lang.reflect.Proxy;
  * 
  * <pre>
  * public interface NamedNumber {
- * 	public int getNumber();
+ *     public int getNumber();
  * 
- * 	public String getName();
+ *     public String getName();
  * }
  * </pre>
  * 
@@ -61,7 +61,7 @@ import java.lang.reflect.Proxy;
  * <pre>
  * InvocationHandler handler = new CompositeDataInvocationHandler(cd);
  * NamedNumber nn = (NamedNumber) Proxy.newProxyInstance(NamedNumber.class
- * 		.getClassLoader(), new Class[] { NamedNumber.class }, handler);
+ *         .getClassLoader(), new Class[] { NamedNumber.class }, handler);
  * </pre>
  * 
  * </blockquote>
@@ -95,143 +95,143 @@ import java.lang.reflect.Proxy;
  * @since 1.6
  */
 public class CompositeDataInvocationHandler implements InvocationHandler {
-	/**
-	 * <p>
-	 * Construct a handler backed by the given {@code
-	 CompositeData}.
-	 * </p>
-	 * 
-	 * @param compositeData
-	 *                      the {@code CompositeData} that will supply
-	 *                      information to
-	 *                      getters.
-	 * 
-	 * @throws IllegalArgumentException
-	 *                                  if {@code compositeData} is null.
-	 */
-	public CompositeDataInvocationHandler(CompositeData compositeData) {
-		this(compositeData, null);
-	}
+    /**
+     * <p>
+     * Construct a handler backed by the given {@code
+     CompositeData}.
+     * </p>
+     * 
+     * @param compositeData
+     *                      the {@code CompositeData} that will supply
+     *                      information to
+     *                      getters.
+     * 
+     * @throws IllegalArgumentException
+     *                                  if {@code compositeData} is null.
+     */
+    public CompositeDataInvocationHandler(CompositeData compositeData) {
+        this(compositeData, null);
+    }
 
-	/**
-	 * <p>
-	 * Construct a handler backed by the given {@code
-	 CompositeData}.
-	 * </p>
-	 * 
-	 * @param compositeData
-	 *                      the {@code CompositeData} that will supply
-	 *                      information to
-	 *                      getters.
-	 * 
-	 * @throws IllegalArgumentException
-	 *                                  if {@code compositeData} is null.
-	 */
-	CompositeDataInvocationHandler(CompositeData compositeData,
-			MXBeanLookup lookup) {
-		if (compositeData == null)
-			throw new IllegalArgumentException("compositeData");
-		this.compositeData = compositeData;
-		this.lookup = lookup;
-	}
+    /**
+     * <p>
+     * Construct a handler backed by the given {@code
+     CompositeData}.
+     * </p>
+     * 
+     * @param compositeData
+     *                      the {@code CompositeData} that will supply
+     *                      information to
+     *                      getters.
+     * 
+     * @throws IllegalArgumentException
+     *                                  if {@code compositeData} is null.
+     */
+    CompositeDataInvocationHandler(CompositeData compositeData,
+            MXBeanLookup lookup) {
+        if (compositeData == null)
+            throw new IllegalArgumentException("compositeData");
+        this.compositeData = compositeData;
+        this.lookup = lookup;
+    }
 
-	/**
-	 * Return the {@code CompositeData} that was supplied to the constructor.
-	 * 
-	 * @return the {@code CompositeData} that this handler is backed by. This is
-	 *         never null.
-	 */
-	public CompositeData getCompositeData() {
-		assert compositeData != null;
-		return compositeData;
-	}
+    /**
+     * Return the {@code CompositeData} that was supplied to the constructor.
+     * 
+     * @return the {@code CompositeData} that this handler is backed by. This is
+     *         never null.
+     */
+    public CompositeData getCompositeData() {
+        assert compositeData != null;
+        return compositeData;
+    }
 
-	public Object invoke(Object proxy, Method method, Object[] args)
-			throws Throwable {
-		final String methodName = method.getName();
+    public Object invoke(Object proxy, Method method, Object[] args)
+            throws Throwable {
+        final String methodName = method.getName();
 
-		// Handle the methods from java.lang.Object
-		if (method.getDeclaringClass() == Object.class) {
-			if (methodName.equals("toString") && args == null)
-				return "Proxy[" + compositeData + "]";
-			else if (methodName.equals("hashCode") && args == null)
-				return compositeData.hashCode() + 0x43444948;
-			else if (methodName.equals("equals") && args.length == 1 && method
-					.getParameterTypes()[0] == Object.class)
-				return equals(proxy, args[0]);
-			else {
-				/*
-				 * Either someone is calling invoke by hand, or it is a
-				 * non-final method from Object overriden by the generated
-				 * Proxy. At the time of writing, the only non-final methods in
-				 * Object that are not handled above are finalize and clone, and
-				 * these are not overridden in generated proxies.
-				 */
-				// this plain Method.invoke is called only if the declaring
-				// class
-				// is Object and so it's safe.
-				return method.invoke(this, args);
-			}
-		}
+        // Handle the methods from java.lang.Object
+        if (method.getDeclaringClass() == Object.class) {
+            if (methodName.equals("toString") && args == null)
+                return "Proxy[" + compositeData + "]";
+            else if (methodName.equals("hashCode") && args == null)
+                return compositeData.hashCode() + 0x43444948;
+            else if (methodName.equals("equals") && args.length == 1 && method
+                    .getParameterTypes()[0] == Object.class)
+                return equals(proxy, args[0]);
+            else {
+                /*
+                 * Either someone is calling invoke by hand, or it is a
+                 * non-final method from Object overriden by the generated
+                 * Proxy. At the time of writing, the only non-final methods in
+                 * Object that are not handled above are finalize and clone, and
+                 * these are not overridden in generated proxies.
+                 */
+                // this plain Method.invoke is called only if the declaring
+                // class
+                // is Object and so it's safe.
+                return method.invoke(this, args);
+            }
+        }
 
-		String propertyName = DefaultMXBeanMappingFactory.propertyName(method);
-		if (propertyName == null) {
-			throw new IllegalArgumentException("Method is not getter: " + method
-					.getName());
-		}
-		Object openValue;
-		if (compositeData.containsKey(propertyName))
-			openValue = compositeData.get(propertyName);
-		else {
-			String decap = DefaultMXBeanMappingFactory.decapitalize(
-					propertyName);
-			if (compositeData.containsKey(decap))
-				openValue = compositeData.get(decap);
-			else {
-				final String msg = "No CompositeData item " + propertyName
-						+ (decap.equals(propertyName) ? "" : " or " + decap)
-						+ " to match " + methodName;
-				throw new IllegalArgumentException(msg);
-			}
-		}
-		MXBeanMapping mapping = MXBeanMappingFactory.DEFAULT.mappingForType(
-				method.getGenericReturnType(), MXBeanMappingFactory.DEFAULT);
-		return mapping.fromOpenValue(openValue);
-	}
+        String propertyName = DefaultMXBeanMappingFactory.propertyName(method);
+        if (propertyName == null) {
+            throw new IllegalArgumentException("Method is not getter: " + method
+                    .getName());
+        }
+        Object openValue;
+        if (compositeData.containsKey(propertyName))
+            openValue = compositeData.get(propertyName);
+        else {
+            String decap = DefaultMXBeanMappingFactory.decapitalize(
+                    propertyName);
+            if (compositeData.containsKey(decap))
+                openValue = compositeData.get(decap);
+            else {
+                final String msg = "No CompositeData item " + propertyName
+                        + (decap.equals(propertyName) ? "" : " or " + decap)
+                        + " to match " + methodName;
+                throw new IllegalArgumentException(msg);
+            }
+        }
+        MXBeanMapping mapping = MXBeanMappingFactory.DEFAULT.mappingForType(
+                method.getGenericReturnType(), MXBeanMappingFactory.DEFAULT);
+        return mapping.fromOpenValue(openValue);
+    }
 
-	/*
-	 * This method is called when equals(Object) is called on our proxy and
-	 * hence forwarded to us. For example, if we are a proxy for an interface
-	 * like this: public interface GetString { public String string(); } then we
-	 * must compare equal to another CompositeDataInvocationHandler proxy for
-	 * the same interface and where string() returns the same value.
-	 * You might think that we should also compare equal to another object that
-	 * implements GetString directly rather than using Proxy, provided that its
-	 * string() returns the same result as ours, and in fact an earlier version
-	 * of this class did that (by converting the other object into a
-	 * CompositeData and comparing that with ours). But in fact that doesn't
-	 * make a great deal of sense because there's absolutely no guarantee that
-	 * the resulting equals would be reflexive (otherObject.equals(this) might
-	 * be false even if this.equals(otherObject) is true), and, especially,
-	 * there's no way we could generate a hashCode() that would be equal to
-	 * otherObject.hashCode() when this.equals(otherObject), because we don't
-	 * know how otherObject.hashCode() is computed.
-	 */
-	private boolean equals(Object proxy, Object other) {
-		if (other == null)
-			return false;
+    /*
+     * This method is called when equals(Object) is called on our proxy and
+     * hence forwarded to us. For example, if we are a proxy for an interface
+     * like this: public interface GetString { public String string(); } then we
+     * must compare equal to another CompositeDataInvocationHandler proxy for
+     * the same interface and where string() returns the same value.
+     * You might think that we should also compare equal to another object that
+     * implements GetString directly rather than using Proxy, provided that its
+     * string() returns the same result as ours, and in fact an earlier version
+     * of this class did that (by converting the other object into a
+     * CompositeData and comparing that with ours). But in fact that doesn't
+     * make a great deal of sense because there's absolutely no guarantee that
+     * the resulting equals would be reflexive (otherObject.equals(this) might
+     * be false even if this.equals(otherObject) is true), and, especially,
+     * there's no way we could generate a hashCode() that would be equal to
+     * otherObject.hashCode() when this.equals(otherObject), because we don't
+     * know how otherObject.hashCode() is computed.
+     */
+    private boolean equals(Object proxy, Object other) {
+        if (other == null)
+            return false;
 
-		final Class<?> proxyClass = proxy.getClass();
-		final Class<?> otherClass = other.getClass();
-		if (proxyClass != otherClass)
-			return false;
-		InvocationHandler otherih = Proxy.getInvocationHandler(other);
-		if (!(otherih instanceof CompositeDataInvocationHandler))
-			return false;
-		CompositeDataInvocationHandler othercdih = (CompositeDataInvocationHandler) otherih;
-		return compositeData.equals(othercdih.compositeData);
-	}
+        final Class<?> proxyClass = proxy.getClass();
+        final Class<?> otherClass = other.getClass();
+        if (proxyClass != otherClass)
+            return false;
+        InvocationHandler otherih = Proxy.getInvocationHandler(other);
+        if (!(otherih instanceof CompositeDataInvocationHandler))
+            return false;
+        CompositeDataInvocationHandler othercdih = (CompositeDataInvocationHandler) otherih;
+        return compositeData.equals(othercdih.compositeData);
+    }
 
-	private final CompositeData compositeData;
-	private final MXBeanLookup lookup;
+    private final CompositeData compositeData;
+    private final MXBeanLookup lookup;
 }

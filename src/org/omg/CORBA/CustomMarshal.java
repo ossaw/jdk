@@ -20,21 +20,21 @@ import org.omg.CORBA.DataInputStream;
  * @see DataInputStream
  */
 public interface CustomMarshal {
-	/**
-	 * Marshal method has to be implemented by the Customized Marshal class.
-	 * This is the method invoked for Marshalling.
-	 *
-	 * @param os
-	 *           a DataOutputStream
-	 */
-	void marshal(DataOutputStream os);
+    /**
+     * Marshal method has to be implemented by the Customized Marshal class.
+     * This is the method invoked for Marshalling.
+     *
+     * @param os
+     *           a DataOutputStream
+     */
+    void marshal(DataOutputStream os);
 
-	/**
-	 * Unmarshal method has to be implemented by the Customized Marshal class.
-	 * This is the method invoked for Unmarshalling.
-	 *
-	 * @param is
-	 *           a DataInputStream
-	 */
-	void unmarshal(DataInputStream is);
+    /**
+     * Unmarshal method has to be implemented by the Customized Marshal class.
+     * This is the method invoked for Unmarshalling.
+     *
+     * @param is
+     *           a DataInputStream
+     */
+    void unmarshal(DataInputStream is);
 }

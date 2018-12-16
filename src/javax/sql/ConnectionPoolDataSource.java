@@ -17,39 +17,39 @@ import java.sql.SQLException;
 
 public interface ConnectionPoolDataSource extends CommonDataSource {
 
-	/**
-	 * Attempts to establish a physical database connection that can be used as
-	 * a pooled connection.
-	 *
-	 * @return a <code>PooledConnection</code> object that is a physical
-	 *         connection to the database that this
-	 *         <code>ConnectionPoolDataSource</code> object represents
-	 * @exception SQLException
-	 *                         if a database access error occurs
-	 * @exception              java.sql.SQLFeatureNotSupportedException
-	 *                         if the JDBC driver does not support this method
-	 * @since 1.4
-	 */
-	PooledConnection getPooledConnection() throws SQLException;
+    /**
+     * Attempts to establish a physical database connection that can be used as
+     * a pooled connection.
+     *
+     * @return a <code>PooledConnection</code> object that is a physical
+     *         connection to the database that this
+     *         <code>ConnectionPoolDataSource</code> object represents
+     * @exception SQLException
+     *                         if a database access error occurs
+     * @exception              java.sql.SQLFeatureNotSupportedException
+     *                         if the JDBC driver does not support this method
+     * @since 1.4
+     */
+    PooledConnection getPooledConnection() throws SQLException;
 
-	/**
-	 * Attempts to establish a physical database connection that can be used as
-	 * a pooled connection.
-	 *
-	 * @param user
-	 *                 the database user on whose behalf the connection is being
-	 *                 made
-	 * @param password
-	 *                 the user's password
-	 * @return a <code>PooledConnection</code> object that is a physical
-	 *         connection to the database that this
-	 *         <code>ConnectionPoolDataSource</code> object represents
-	 * @exception SQLException
-	 *                         if a database access error occurs
-	 * @exception              java.sql.SQLFeatureNotSupportedException
-	 *                         if the JDBC driver does not support this method
-	 * @since 1.4
-	 */
-	PooledConnection getPooledConnection(String user, String password)
-			throws SQLException;
+    /**
+     * Attempts to establish a physical database connection that can be used as
+     * a pooled connection.
+     *
+     * @param user
+     *                 the database user on whose behalf the connection is being
+     *                 made
+     * @param password
+     *                 the user's password
+     * @return a <code>PooledConnection</code> object that is a physical
+     *         connection to the database that this
+     *         <code>ConnectionPoolDataSource</code> object represents
+     * @exception SQLException
+     *                         if a database access error occurs
+     * @exception              java.sql.SQLFeatureNotSupportedException
+     *                         if the JDBC driver does not support this method
+     * @since 1.4
+     */
+    PooledConnection getPooledConnection(String user, String password)
+            throws SQLException;
 }

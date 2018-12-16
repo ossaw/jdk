@@ -27,15 +27,15 @@ package com.sun.org.apache.xml.internal.utils;
  * @xsl.usage general
  */
 public class WrongParserException extends RuntimeException {
-	static final long serialVersionUID = 6481643018533043846L;
+    static final long serialVersionUID = 6481643018533043846L;
 
-	/**
-	 * Create a WrongParserException object.
-	 * 
-	 * @param message
-	 *                The error message that should be reported to the user.
-	 */
-	public WrongParserException(String message) {
-		super(message);
-	}
+    /**
+     * Create a WrongParserException object.
+     * 
+     * @param message
+     *                The error message that should be reported to the user.
+     */
+    public WrongParserException(String message) {
+        super(message);
+    }
 }

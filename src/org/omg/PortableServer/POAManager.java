@@ -14,4 +14,4 @@ package org.omg.PortableServer;
  * processing state of the POAs it is associated with.
  */
 public interface POAManager extends POAManagerOperations, org.omg.CORBA.Object,
-		org.omg.CORBA.portable.IDLEntity {} // interface POAManager
+        org.omg.CORBA.portable.IDLEntity {} // interface POAManager

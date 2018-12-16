@@ -54,40 +54,40 @@ package java.lang.reflect;
  */
 public final class ReflectPermission extends java.security.BasicPermission {
 
-	private static final long serialVersionUID = 7412737110241507485L;
+    private static final long serialVersionUID = 7412737110241507485L;
 
-	/**
-	 * Constructs a ReflectPermission with the specified name.
-	 *
-	 * @param name
-	 *             the name of the ReflectPermission
-	 *
-	 * @throws NullPointerException
-	 *                                  if {@code name} is {@code null}.
-	 * @throws IllegalArgumentException
-	 *                                  if {@code name} is empty.
-	 */
-	public ReflectPermission(String name) {
-		super(name);
-	}
+    /**
+     * Constructs a ReflectPermission with the specified name.
+     *
+     * @param name
+     *             the name of the ReflectPermission
+     *
+     * @throws NullPointerException
+     *                                  if {@code name} is {@code null}.
+     * @throws IllegalArgumentException
+     *                                  if {@code name} is empty.
+     */
+    public ReflectPermission(String name) {
+        super(name);
+    }
 
-	/**
-	 * Constructs a ReflectPermission with the specified name and actions. The
-	 * actions should be null; they are ignored.
-	 *
-	 * @param name
-	 *                the name of the ReflectPermission
-	 *
-	 * @param actions
-	 *                should be null
-	 *
-	 * @throws NullPointerException
-	 *                                  if {@code name} is {@code null}.
-	 * @throws IllegalArgumentException
-	 *                                  if {@code name} is empty.
-	 */
-	public ReflectPermission(String name, String actions) {
-		super(name, actions);
-	}
+    /**
+     * Constructs a ReflectPermission with the specified name and actions. The
+     * actions should be null; they are ignored.
+     *
+     * @param name
+     *                the name of the ReflectPermission
+     *
+     * @param actions
+     *                should be null
+     *
+     * @throws NullPointerException
+     *                                  if {@code name} is {@code null}.
+     * @throws IllegalArgumentException
+     *                                  if {@code name} is empty.
+     */
+    public ReflectPermission(String name, String actions) {
+        super(name, actions);
+    }
 
 }

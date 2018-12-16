@@ -17,17 +17,17 @@ import javax.naming.NamingException;
  * <pre>
  * NamingEnumeration elts = ectx.search((Name) name, filter, sctls);
  * while (elts.hasMore()) {
- * 	Object entry = elts.next();
+ *     Object entry = elts.next();
  *
- * 	// Get search result
- * 	SearchResult res = (SearchResult) entry;
- * 	// do something with it
+ *     // Get search result
+ *     SearchResult res = (SearchResult) entry;
+ *     // do something with it
  *
- * 	// Get entry controls
- * 	if (entry instanceof HasControls) {
- * 		Control[] entryCtls = ((HasControls) entry).getControls();
- * 		// do something with controls
- * 	}
+ *     // Get entry controls
+ *     if (entry instanceof HasControls) {
+ *         Control[] entryCtls = ((HasControls) entry).getControls();
+ *         // do something with controls
+ *     }
  * }
  * </pre>
  * 
@@ -42,13 +42,13 @@ import javax.naming.NamingException;
 
 public interface HasControls {
 
-	/**
-	 * Retrieves an array of <tt>Control</tt>s from the object that implements
-	 * this interface. It is null if there are no controls.
-	 *
-	 * @return A possibly null array of <tt>Control</tt> objects.
-	 * @throws NamingException
-	 *                         If cannot return controls due to an error.
-	 */
-	public Control[] getControls() throws NamingException;
+    /**
+     * Retrieves an array of <tt>Control</tt>s from the object that implements
+     * this interface. It is null if there are no controls.
+     *
+     * @return A possibly null array of <tt>Control</tt> objects.
+     * @throws NamingException
+     *                         If cannot return controls due to an error.
+     */
+    public Control[] getControls() throws NamingException;
 }

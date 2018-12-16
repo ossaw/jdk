@@ -31,22 +31,22 @@ import com.sun.org.apache.xerces.internal.xs.XSModel;
  */
 public interface XSGrammar extends Grammar {
 
-	/**
-	 * Return an <code>XSModel</code> that represents components in this schema
-	 * grammar and any schema grammars that are imported by this grammar
-	 * directly or indirectly.
-	 *
-	 * @return an <code>XSModel</code> representing this schema grammar
-	 */
-	public XSModel toXSModel();
+    /**
+     * Return an <code>XSModel</code> that represents components in this schema
+     * grammar and any schema grammars that are imported by this grammar
+     * directly or indirectly.
+     *
+     * @return an <code>XSModel</code> representing this schema grammar
+     */
+    public XSModel toXSModel();
 
-	/**
-	 * Return an <code>XSModel</code> that represents components in this schema
-	 * grammar and the grammars in the <code>grammars</code>parameter, any
-	 * schema grammars that are imported by them directly or indirectly.
-	 *
-	 * @return an <code>XSModel</code> representing these schema grammars
-	 */
-	public XSModel toXSModel(XSGrammar[] grammars);
+    /**
+     * Return an <code>XSModel</code> that represents components in this schema
+     * grammar and the grammars in the <code>grammars</code>parameter, any
+     * schema grammars that are imported by them directly or indirectly.
+     *
+     * @return an <code>XSModel</code> representing these schema grammars
+     */
+    public XSModel toXSModel(XSGrammar[] grammars);
 
 } // interface XSGrammar

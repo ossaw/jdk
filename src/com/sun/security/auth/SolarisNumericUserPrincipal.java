@@ -29,139 +29,139 @@ import java.security.Principal;
 @jdk.Exported(false)
 @Deprecated
 public class SolarisNumericUserPrincipal implements Principal,
-		java.io.Serializable {
+        java.io.Serializable {
 
-	private static final long serialVersionUID = -3178578484679887104L;
+    private static final long serialVersionUID = -3178578484679887104L;
 
-	private static final java.util.ResourceBundle rb = java.security.AccessController
-			.doPrivileged(
-					new java.security.PrivilegedAction<java.util.ResourceBundle>() {
-						public java.util.ResourceBundle run() {
-							return (java.util.ResourceBundle.getBundle(
-									"sun.security.util.AuthResources"));
-						}
-					});
+    private static final java.util.ResourceBundle rb = java.security.AccessController
+            .doPrivileged(
+                    new java.security.PrivilegedAction<java.util.ResourceBundle>() {
+                        public java.util.ResourceBundle run() {
+                            return (java.util.ResourceBundle.getBundle(
+                                    "sun.security.util.AuthResources"));
+                        }
+                    });
 
-	/**
-	 * @serial
-	 */
-	private String name;
+    /**
+     * @serial
+     */
+    private String name;
 
-	/**
-	 * Create a <code>SolarisNumericUserPrincipal</code> using a
-	 * <code>String</code> representation of the user's identification number
-	 * (UID).
-	 *
-	 * <p>
-	 *
-	 * @param name
-	 *             the user identification number (UID) for this user.
-	 *
-	 * @exception NullPointerException
-	 *                                 if the <code>name</code> is
-	 *                                 <code>null</code>.
-	 */
-	public SolarisNumericUserPrincipal(String name) {
-		if (name == null)
-			throw new NullPointerException(rb.getString("provided.null.name"));
+    /**
+     * Create a <code>SolarisNumericUserPrincipal</code> using a
+     * <code>String</code> representation of the user's identification number
+     * (UID).
+     *
+     * <p>
+     *
+     * @param name
+     *             the user identification number (UID) for this user.
+     *
+     * @exception NullPointerException
+     *                                 if the <code>name</code> is
+     *                                 <code>null</code>.
+     */
+    public SolarisNumericUserPrincipal(String name) {
+        if (name == null)
+            throw new NullPointerException(rb.getString("provided.null.name"));
 
-		this.name = name;
-	}
+        this.name = name;
+    }
 
-	/**
-	 * Create a <code>SolarisNumericUserPrincipal</code> using a long
-	 * representation of the user's identification number (UID).
-	 *
-	 * <p>
-	 *
-	 * @param name
-	 *             the user identification number (UID) for this user
-	 *             represented
-	 *             as a long.
-	 */
-	public SolarisNumericUserPrincipal(long name) {
-		this.name = (new Long(name)).toString();
-	}
+    /**
+     * Create a <code>SolarisNumericUserPrincipal</code> using a long
+     * representation of the user's identification number (UID).
+     *
+     * <p>
+     *
+     * @param name
+     *             the user identification number (UID) for this user
+     *             represented
+     *             as a long.
+     */
+    public SolarisNumericUserPrincipal(long name) {
+        this.name = (new Long(name)).toString();
+    }
 
-	/**
-	 * Return the user identification number (UID) for this
-	 * <code>SolarisNumericUserPrincipal</code>.
-	 *
-	 * <p>
-	 *
-	 * @return the user identification number (UID) for this
-	 *         <code>SolarisNumericUserPrincipal</code>
-	 */
-	public String getName() {
-		return name;
-	}
+    /**
+     * Return the user identification number (UID) for this
+     * <code>SolarisNumericUserPrincipal</code>.
+     *
+     * <p>
+     *
+     * @return the user identification number (UID) for this
+     *         <code>SolarisNumericUserPrincipal</code>
+     */
+    public String getName() {
+        return name;
+    }
 
-	/**
-	 * Return the user identification number (UID) for this
-	 * <code>SolarisNumericUserPrincipal</code> as a long.
-	 *
-	 * <p>
-	 *
-	 * @return the user identification number (UID) for this
-	 *         <code>SolarisNumericUserPrincipal</code> as a long.
-	 */
-	public long longValue() {
-		return ((new Long(name)).longValue());
-	}
+    /**
+     * Return the user identification number (UID) for this
+     * <code>SolarisNumericUserPrincipal</code> as a long.
+     *
+     * <p>
+     *
+     * @return the user identification number (UID) for this
+     *         <code>SolarisNumericUserPrincipal</code> as a long.
+     */
+    public long longValue() {
+        return ((new Long(name)).longValue());
+    }
 
-	/**
-	 * Return a string representation of this
-	 * <code>SolarisNumericUserPrincipal</code>.
-	 *
-	 * <p>
-	 *
-	 * @return a string representation of this
-	 *         <code>SolarisNumericUserPrincipal</code>.
-	 */
-	public String toString() {
-		return (rb.getString("SolarisNumericUserPrincipal.") + name);
-	}
+    /**
+     * Return a string representation of this
+     * <code>SolarisNumericUserPrincipal</code>.
+     *
+     * <p>
+     *
+     * @return a string representation of this
+     *         <code>SolarisNumericUserPrincipal</code>.
+     */
+    public String toString() {
+        return (rb.getString("SolarisNumericUserPrincipal.") + name);
+    }
 
-	/**
-	 * Compares the specified Object with this
-	 * <code>SolarisNumericUserPrincipal</code> for equality. Returns true if
-	 * the given object is also a <code>SolarisNumericUserPrincipal</code> and
-	 * the two SolarisNumericUserPrincipals have the same user identification
-	 * number (UID).
-	 *
-	 * <p>
-	 *
-	 * @param o
-	 *          Object to be compared for equality with this
-	 *          <code>SolarisNumericUserPrincipal</code>.
-	 *
-	 * @return true if the specified Object is equal equal to this
-	 *         <code>SolarisNumericUserPrincipal</code>.
-	 */
-	public boolean equals(Object o) {
-		if (o == null)
-			return false;
+    /**
+     * Compares the specified Object with this
+     * <code>SolarisNumericUserPrincipal</code> for equality. Returns true if
+     * the given object is also a <code>SolarisNumericUserPrincipal</code> and
+     * the two SolarisNumericUserPrincipals have the same user identification
+     * number (UID).
+     *
+     * <p>
+     *
+     * @param o
+     *          Object to be compared for equality with this
+     *          <code>SolarisNumericUserPrincipal</code>.
+     *
+     * @return true if the specified Object is equal equal to this
+     *         <code>SolarisNumericUserPrincipal</code>.
+     */
+    public boolean equals(Object o) {
+        if (o == null)
+            return false;
 
-		if (this == o)
-			return true;
+        if (this == o)
+            return true;
 
-		if (!(o instanceof SolarisNumericUserPrincipal))
-			return false;
-		SolarisNumericUserPrincipal that = (SolarisNumericUserPrincipal) o;
+        if (!(o instanceof SolarisNumericUserPrincipal))
+            return false;
+        SolarisNumericUserPrincipal that = (SolarisNumericUserPrincipal) o;
 
-		if (this.getName().equals(that.getName()))
-			return true;
-		return false;
-	}
+        if (this.getName().equals(that.getName()))
+            return true;
+        return false;
+    }
 
-	/**
-	 * Return a hash code for this <code>SolarisNumericUserPrincipal</code>.
-	 *
-	 * <p>
-	 *
-	 * @return a hash code for this <code>SolarisNumericUserPrincipal</code>.
-	 */
-	public int hashCode() {
-		return name.hashCode();
-	}
+    /**
+     * Return a hash code for this <code>SolarisNumericUserPrincipal</code>.
+     *
+     * <p>
+     *
+     * @return a hash code for this <code>SolarisNumericUserPrincipal</code>.
+     */
+    public int hashCode() {
+        return name.hashCode();
+    }
 }

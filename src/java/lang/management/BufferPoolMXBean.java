@@ -20,7 +20,7 @@ package java.lang.management;
  * 
  * <pre>
  * List&lt;BufferPoolMXBean&gt; pools = ManagementFactory.getPlatformMXBeans(
- * 		BufferPoolMXBean.class);
+ *         BufferPoolMXBean.class);
  * </pre>
  *
  * <p>
@@ -39,41 +39,41 @@ package java.lang.management;
  */
 public interface BufferPoolMXBean extends PlatformManagedObject {
 
-	/**
-	 * Returns the name representing this buffer pool.
-	 *
-	 * @return The name of this buffer pool.
-	 */
-	String getName();
+    /**
+     * Returns the name representing this buffer pool.
+     *
+     * @return The name of this buffer pool.
+     */
+    String getName();
 
-	/**
-	 * Returns an estimate of the number of buffers in the pool.
-	 *
-	 * @return An estimate of the number of buffers in this pool
-	 */
-	long getCount();
+    /**
+     * Returns an estimate of the number of buffers in the pool.
+     *
+     * @return An estimate of the number of buffers in this pool
+     */
+    long getCount();
 
-	/**
-	 * Returns an estimate of the total capacity of the buffers in this pool. A
-	 * buffer's capacity is the number of elements it contains and the value
-	 * returned by this method is an estimate of the total capacity of buffers
-	 * in the pool in bytes.
-	 *
-	 * @return An estimate of the total capacity of the buffers in this pool in
-	 *         bytes
-	 */
-	long getTotalCapacity();
+    /**
+     * Returns an estimate of the total capacity of the buffers in this pool. A
+     * buffer's capacity is the number of elements it contains and the value
+     * returned by this method is an estimate of the total capacity of buffers
+     * in the pool in bytes.
+     *
+     * @return An estimate of the total capacity of the buffers in this pool in
+     *         bytes
+     */
+    long getTotalCapacity();
 
-	/**
-	 * Returns an estimate of the memory that the Java virtual machine is using
-	 * for this buffer pool. The value returned by this method may differ from
-	 * the estimate of the total {@link #getTotalCapacity capacity} of the
-	 * buffers in this pool. This difference is explained by alignment, memory
-	 * allocator, and other implementation specific reasons.
-	 *
-	 * @return An estimate of the memory that the Java virtual machine is using
-	 *         for this buffer pool in bytes, or {@code -1L} if an estimate of
-	 *         the memory usage is not available
-	 */
-	long getMemoryUsed();
+    /**
+     * Returns an estimate of the memory that the Java virtual machine is using
+     * for this buffer pool. The value returned by this method may differ from
+     * the estimate of the total {@link #getTotalCapacity capacity} of the
+     * buffers in this pool. This difference is explained by alignment, memory
+     * allocator, and other implementation specific reasons.
+     *
+     * @return An estimate of the memory that the Java virtual machine is using
+     *         for this buffer pool in bytes, or {@code -1L} if an estimate of
+     *         the memory usage is not available
+     */
+    long getMemoryUsed();
 }

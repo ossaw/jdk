@@ -54,41 +54,41 @@ import java.util.Iterator;
 
 public abstract class CharsetProvider {
 
-	/**
-	 * Initializes a new charset provider.
-	 *
-	 * @throws SecurityException
-	 *                           If a security manager has been installed and it
-	 *                           denies
-	 *                           {@link RuntimePermission}<tt>("charsetProvider")</tt>
-	 */
-	protected CharsetProvider() {
-		SecurityManager sm = System.getSecurityManager();
-		if (sm != null)
-			sm.checkPermission(new RuntimePermission("charsetProvider"));
-	}
+    /**
+     * Initializes a new charset provider.
+     *
+     * @throws SecurityException
+     *                           If a security manager has been installed and it
+     *                           denies
+     *                           {@link RuntimePermission}<tt>("charsetProvider")</tt>
+     */
+    protected CharsetProvider() {
+        SecurityManager sm = System.getSecurityManager();
+        if (sm != null)
+            sm.checkPermission(new RuntimePermission("charsetProvider"));
+    }
 
-	/**
-	 * Creates an iterator that iterates over the charsets supported by this
-	 * provider. This method is used in the implementation of the
-	 * {@link java.nio.charset.Charset#availableCharsets
-	 * Charset.availableCharsets} method.
-	 *
-	 * @return The new iterator
-	 */
-	public abstract Iterator<Charset> charsets();
+    /**
+     * Creates an iterator that iterates over the charsets supported by this
+     * provider. This method is used in the implementation of the
+     * {@link java.nio.charset.Charset#availableCharsets
+     * Charset.availableCharsets} method.
+     *
+     * @return The new iterator
+     */
+    public abstract Iterator<Charset> charsets();
 
-	/**
-	 * Retrieves a charset for the given charset name.
-	 *
-	 * @param charsetName
-	 *                    The name of the requested charset; may be either a
-	 *                    canonical
-	 *                    name or an alias
-	 *
-	 * @return A charset object for the named charset, or <tt>null</tt> if the
-	 *         named charset is not supported by this provider
-	 */
-	public abstract Charset charsetForName(String charsetName);
+    /**
+     * Retrieves a charset for the given charset name.
+     *
+     * @param charsetName
+     *                    The name of the requested charset; may be either a
+     *                    canonical
+     *                    name or an alias
+     *
+     * @return A charset object for the named charset, or <tt>null</tt> if the
+     *         named charset is not supported by this provider
+     */
+    public abstract Charset charsetForName(String charsetName);
 
 }

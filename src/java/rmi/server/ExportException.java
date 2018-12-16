@@ -19,33 +19,33 @@ package java.rmi.server;
  */
 public class ExportException extends java.rmi.RemoteException {
 
-	/* indicate compatibility with JDK 1.1.x version of class */
-	private static final long serialVersionUID = -9155485338494060170L;
+    /* indicate compatibility with JDK 1.1.x version of class */
+    private static final long serialVersionUID = -9155485338494060170L;
 
-	/**
-	 * Constructs an <code>ExportException</code> with the specified detail
-	 * message.
-	 *
-	 * @param s
-	 *          the detail message
-	 * @since JDK1.1
-	 */
-	public ExportException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs an <code>ExportException</code> with the specified detail
+     * message.
+     *
+     * @param s
+     *          the detail message
+     * @since JDK1.1
+     */
+    public ExportException(String s) {
+        super(s);
+    }
 
-	/**
-	 * Constructs an <code>ExportException</code> with the specified detail
-	 * message and nested exception.
-	 *
-	 * @param s
-	 *           the detail message
-	 * @param ex
-	 *           the nested exception
-	 * @since JDK1.1
-	 */
-	public ExportException(String s, Exception ex) {
-		super(s, ex);
-	}
+    /**
+     * Constructs an <code>ExportException</code> with the specified detail
+     * message and nested exception.
+     *
+     * @param s
+     *           the detail message
+     * @param ex
+     *           the nested exception
+     * @since JDK1.1
+     */
+    public ExportException(String s, Exception ex) {
+        super(s, ex);
+    }
 
 }

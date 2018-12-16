@@ -14,8 +14,8 @@ package java.nio.file;
  */
 
 public enum FileVisitOption {
-	/**
-	 * Follow symbolic links.
-	 */
-	FOLLOW_LINKS;
+    /**
+     * Follow symbolic links.
+     */
+    FOLLOW_LINKS;
 }

@@ -23,12 +23,12 @@ package javax.xml.ws.handler;
  **/
 public interface HandlerResolver {
 
-	/**
-	 * Gets the handler chain for the specified port.
-	 *
-	 * @param portInfo
-	 *                 Contains information about the port being accessed.
-	 * @return java.util.List&lt;Handler> chain
-	 **/
-	public java.util.List<Handler> getHandlerChain(PortInfo portInfo);
+    /**
+     * Gets the handler chain for the specified port.
+     *
+     * @param portInfo
+     *                 Contains information about the port being accessed.
+     * @return java.util.List&lt;Handler> chain
+     **/
+    public java.util.List<Handler> getHandlerChain(PortInfo portInfo);
 }

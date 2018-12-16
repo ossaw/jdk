@@ -23,34 +23,34 @@ import java.rmi.Remote;
  */
 @Deprecated
 public interface Skeleton {
-	/**
-	 * Unmarshals arguments, calls the actual remote object implementation, and
-	 * marshals the return value or any exception.
-	 *
-	 * @param obj
-	 *                remote implementation to dispatch call to
-	 * @param theCall
-	 *                object representing remote call
-	 * @param opnum
-	 *                operation number
-	 * @param hash
-	 *                stub/skeleton interface hash
-	 * @exception java.lang.Exception
-	 *            if a general exception occurs.
-	 * @since JDK1.1
-	 * @deprecated no replacement
-	 */
-	@Deprecated
-	void dispatch(Remote obj, RemoteCall theCall, int opnum, long hash)
-			throws Exception;
+    /**
+     * Unmarshals arguments, calls the actual remote object implementation, and
+     * marshals the return value or any exception.
+     *
+     * @param obj
+     *                remote implementation to dispatch call to
+     * @param theCall
+     *                object representing remote call
+     * @param opnum
+     *                operation number
+     * @param hash
+     *                stub/skeleton interface hash
+     * @exception java.lang.Exception
+     *            if a general exception occurs.
+     * @since JDK1.1
+     * @deprecated no replacement
+     */
+    @Deprecated
+    void dispatch(Remote obj, RemoteCall theCall, int opnum, long hash)
+            throws Exception;
 
-	/**
-	 * Returns the operations supported by the skeleton.
-	 * 
-	 * @return operations supported by skeleton
-	 * @since JDK1.1
-	 * @deprecated no replacement
-	 */
-	@Deprecated
-	Operation[] getOperations();
+    /**
+     * Returns the operations supported by the skeleton.
+     * 
+     * @return operations supported by skeleton
+     * @since JDK1.1
+     * @deprecated no replacement
+     */
+    @Deprecated
+    Operation[] getOperations();
 }

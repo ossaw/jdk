@@ -59,96 +59,96 @@ import com.sun.jndi.ldap.LdapCtx;
  */
 final public class SortResponseControl extends BasicControl {
 
-	/**
-	 * The server-side sort response control's assigned object identifier is
-	 * 1.2.840.113556.1.4.474.
-	 */
-	public static final String OID = "1.2.840.113556.1.4.474";
+    /**
+     * The server-side sort response control's assigned object identifier is
+     * 1.2.840.113556.1.4.474.
+     */
+    public static final String OID = "1.2.840.113556.1.4.474";
 
-	private static final long serialVersionUID = 5142939176006310877L;
+    private static final long serialVersionUID = 5142939176006310877L;
 
-	/**
-	 * The sort result code.
-	 *
-	 * @serial
-	 */
-	private int resultCode = 0;
+    /**
+     * The sort result code.
+     *
+     * @serial
+     */
+    private int resultCode = 0;
 
-	/**
-	 * The ID of the attribute that caused the sort to fail.
-	 *
-	 * @serial
-	 */
-	private String badAttrId = null;
+    /**
+     * The ID of the attribute that caused the sort to fail.
+     *
+     * @serial
+     */
+    private String badAttrId = null;
 
-	/**
-	 * Constructs a control to indicate the outcome of a sort request.
-	 *
-	 * @param id
-	 *                    The control's object identifier string.
-	 * @param criticality
-	 *                    The control's criticality.
-	 * @param value
-	 *                    The control's ASN.1 BER encoded value. It is not
-	 *                    cloned - any
-	 *                    changes to value will affect the contents of the
-	 *                    control.
-	 * @exception IOException
-	 *                        if an error is encountered while decoding the
-	 *                        control's
-	 *                        value.
-	 */
-	public SortResponseControl(String id, boolean criticality, byte[] value)
-			throws IOException {
+    /**
+     * Constructs a control to indicate the outcome of a sort request.
+     *
+     * @param id
+     *                    The control's object identifier string.
+     * @param criticality
+     *                    The control's criticality.
+     * @param value
+     *                    The control's ASN.1 BER encoded value. It is not
+     *                    cloned - any
+     *                    changes to value will affect the contents of the
+     *                    control.
+     * @exception IOException
+     *                        if an error is encountered while decoding the
+     *                        control's
+     *                        value.
+     */
+    public SortResponseControl(String id, boolean criticality, byte[] value)
+            throws IOException {
 
-		super(id, criticality, value);
+        super(id, criticality, value);
 
-		// decode value
-		BerDecoder ber = new BerDecoder(value, 0, value.length);
+        // decode value
+        BerDecoder ber = new BerDecoder(value, 0, value.length);
 
-		ber.parseSeq(null);
-		resultCode = ber.parseEnumeration();
-		if ((ber.bytesLeft() > 0) && (ber.peekByte() == Ber.ASN_CONTEXT)) {
-			badAttrId = ber.parseStringWithTag(Ber.ASN_CONTEXT, true, null);
-		}
-	}
+        ber.parseSeq(null);
+        resultCode = ber.parseEnumeration();
+        if ((ber.bytesLeft() > 0) && (ber.peekByte() == Ber.ASN_CONTEXT)) {
+            badAttrId = ber.parseStringWithTag(Ber.ASN_CONTEXT, true, null);
+        }
+    }
 
-	/**
-	 * Determines if the search results have been successfully sorted. If an
-	 * error occurred during sorting a NamingException is thrown.
-	 *
-	 * @return true if the search results have been sorted.
-	 */
-	public boolean isSorted() {
-		return (resultCode == 0); // a result code of zero indicates success
-	}
+    /**
+     * Determines if the search results have been successfully sorted. If an
+     * error occurred during sorting a NamingException is thrown.
+     *
+     * @return true if the search results have been sorted.
+     */
+    public boolean isSorted() {
+        return (resultCode == 0); // a result code of zero indicates success
+    }
 
-	/**
-	 * Retrieves the LDAP result code of the sort operation.
-	 *
-	 * @return The result code. A zero value indicates success.
-	 */
-	public int getResultCode() {
-		return resultCode;
-	}
+    /**
+     * Retrieves the LDAP result code of the sort operation.
+     *
+     * @return The result code. A zero value indicates success.
+     */
+    public int getResultCode() {
+        return resultCode;
+    }
 
-	/**
-	 * Retrieves the ID of the attribute that caused the sort to fail. Returns
-	 * null if no ID was returned by the server.
-	 *
-	 * @return The possibly null ID of the bad attribute.
-	 */
-	public String getAttributeID() {
-		return badAttrId;
-	}
+    /**
+     * Retrieves the ID of the attribute that caused the sort to fail. Returns
+     * null if no ID was returned by the server.
+     *
+     * @return The possibly null ID of the bad attribute.
+     */
+    public String getAttributeID() {
+        return badAttrId;
+    }
 
-	/**
-	 * Retrieves the NamingException appropriate for the result code.
-	 *
-	 * @return A NamingException or null if the result code indicates success.
-	 */
-	public NamingException getException() {
+    /**
+     * Retrieves the NamingException appropriate for the result code.
+     *
+     * @return A NamingException or null if the result code indicates success.
+     */
+    public NamingException getException() {
 
-		return LdapCtx.mapErrorCode(resultCode, null);
-	}
+        return LdapCtx.mapErrorCode(resultCode, null);
+    }
 }

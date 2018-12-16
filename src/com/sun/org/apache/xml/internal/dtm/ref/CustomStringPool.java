@@ -45,45 +45,45 @@ import java.util.Map;
  */
 public class CustomStringPool extends DTMStringPool {
 
-	final Map<String, Integer> m_stringToInt = new HashMap<>();
-	public static final int NULL = -1;
+    final Map<String, Integer> m_stringToInt = new HashMap<>();
+    public static final int NULL = -1;
 
-	public CustomStringPool() {
-		super();
-	}
+    public CustomStringPool() {
+        super();
+    }
 
-	public void removeAllElements() {
-		m_intToString.removeAllElements();
-		if (m_stringToInt != null) {
-			m_stringToInt.clear();
-		}
-	}
+    public void removeAllElements() {
+        m_intToString.removeAllElements();
+        if (m_stringToInt != null) {
+            m_stringToInt.clear();
+        }
+    }
 
-	/**
-	 * @return string whose value is uniquely identified by this integer index.
-	 * @throws java.lang.ArrayIndexOutOfBoundsException
-	 *         if index doesn't map to a string.
-	 */
-	@Override
-	public String indexToString(int i)
-			throws java.lang.ArrayIndexOutOfBoundsException {
-		return (String) m_intToString.elementAt(i);
-	}
+    /**
+     * @return string whose value is uniquely identified by this integer index.
+     * @throws java.lang.ArrayIndexOutOfBoundsException
+     *         if index doesn't map to a string.
+     */
+    @Override
+    public String indexToString(int i)
+            throws java.lang.ArrayIndexOutOfBoundsException {
+        return (String) m_intToString.elementAt(i);
+    }
 
-	/**
-	 * @return integer index uniquely identifying the value of this string.
-	 */
-	@Override
-	public int stringToIndex(String s) {
-		if (s == null) {
-			return NULL;
-		}
-		Integer iobj = m_stringToInt.get(s);
-		if (iobj == null) {
-			m_intToString.addElement(s);
-			iobj = m_intToString.size();
-			m_stringToInt.put(s, iobj);
-		}
-		return iobj;
-	}
+    /**
+     * @return integer index uniquely identifying the value of this string.
+     */
+    @Override
+    public int stringToIndex(String s) {
+        if (s == null) {
+            return NULL;
+        }
+        Integer iobj = m_stringToInt.get(s);
+        if (iobj == null) {
+            m_intToString.addElement(s);
+            iobj = m_intToString.size();
+            m_stringToInt.put(s, iobj);
+        }
+        return iobj;
+    }
 }

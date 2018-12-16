@@ -20,14 +20,14 @@ package java.util.function;
 @FunctionalInterface
 public interface IntBinaryOperator {
 
-	/**
-	 * Applies this operator to the given operands.
-	 *
-	 * @param left
-	 *              the first operand
-	 * @param right
-	 *              the second operand
-	 * @return the operator result
-	 */
-	int applyAsInt(int left, int right);
+    /**
+     * Applies this operator to the given operands.
+     *
+     * @param left
+     *              the first operand
+     * @param right
+     *              the second operand
+     * @return the operator result
+     */
+    int applyAsInt(int left, int right);
 }

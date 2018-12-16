@@ -16,15 +16,15 @@ package javax.print.event;
 
 public interface PrintServiceAttributeListener {
 
-	/**
-	 * Called to notify a listener of an event in the print service. The service
-	 * will call this method on an event notification thread. The client should
-	 * not perform lengthy processing in this callback or subsequent event
-	 * notifications may be blocked.
-	 * 
-	 * @param psae
-	 *             the event being notified
-	 */
-	public void attributeUpdate(PrintServiceAttributeEvent psae);
+    /**
+     * Called to notify a listener of an event in the print service. The service
+     * will call this method on an event notification thread. The client should
+     * not perform lengthy processing in this callback or subsequent event
+     * notifications may be blocked.
+     * 
+     * @param psae
+     *             the event being notified
+     */
+    public void attributeUpdate(PrintServiceAttributeEvent psae);
 
 }

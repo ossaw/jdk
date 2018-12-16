@@ -24,7 +24,7 @@ import javax.lang.model.element.Name;
  */
 @jdk.Exported
 public interface MemberSelectTree extends ExpressionTree {
-	ExpressionTree getExpression();
+    ExpressionTree getExpression();
 
-	Name getIdentifier();
+    Name getIdentifier();
 }

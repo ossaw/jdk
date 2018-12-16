@@ -10,8 +10,8 @@ package org.omg.PortableInterceptor;
 
 public interface ACTIVE {
 
-	/**
-	 * Object adapter state that indicates normal request processing.
-	 */
-	public static final short value = (short) (1);
+    /**
+     * Object adapter state that indicates normal request processing.
+     */
+    public static final short value = (short) (1);
 }

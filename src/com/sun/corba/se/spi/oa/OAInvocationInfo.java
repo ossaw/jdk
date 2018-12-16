@@ -22,85 +22,85 @@ import com.sun.corba.se.spi.copyobject.ObjectCopierFactory;
  * invocation.
  */
 public class OAInvocationInfo extends ServantObject {
-	// This is the container object for the servant.
-	// In the RMI-IIOP case, it is the RMI-IIOP Tie, and the servant is the
-	// target of the Tie.
-	// In all other cases, it is the same as the Servant.
-	private java.lang.Object servantContainer;
+    // This is the container object for the servant.
+    // In the RMI-IIOP case, it is the RMI-IIOP Tie, and the servant is the
+    // target of the Tie.
+    // In all other cases, it is the same as the Servant.
+    private java.lang.Object servantContainer;
 
-	// These fields are to support standard OMG APIs.
-	private ObjectAdapter oa;
-	private byte[] oid;
+    // These fields are to support standard OMG APIs.
+    private ObjectAdapter oa;
+    private byte[] oid;
 
-	// These fields are to support the Object adapter implementation.
-	private CookieHolder cookieHolder;
-	private String operation;
+    // These fields are to support the Object adapter implementation.
+    private CookieHolder cookieHolder;
+    private String operation;
 
-	// This is the copier to be used by javax.rmi.CORBA.Util.copyObject(s)
-	// For the current request.
-	private ObjectCopierFactory factory;
+    // This is the copier to be used by javax.rmi.CORBA.Util.copyObject(s)
+    // For the current request.
+    private ObjectCopierFactory factory;
 
-	public OAInvocationInfo(ObjectAdapter oa, byte[] id) {
-		this.oa = oa;
-		this.oid = id;
-	}
+    public OAInvocationInfo(ObjectAdapter oa, byte[] id) {
+        this.oa = oa;
+        this.oid = id;
+    }
 
-	// Copy constructor of sorts; used in local optimization path
-	public OAInvocationInfo(OAInvocationInfo info, String operation) {
-		this.servant = info.servant;
-		this.servantContainer = info.servantContainer;
-		this.cookieHolder = info.cookieHolder;
-		this.oa = info.oa;
-		this.oid = info.oid;
-		this.factory = info.factory;
+    // Copy constructor of sorts; used in local optimization path
+    public OAInvocationInfo(OAInvocationInfo info, String operation) {
+        this.servant = info.servant;
+        this.servantContainer = info.servantContainer;
+        this.cookieHolder = info.cookieHolder;
+        this.oa = info.oa;
+        this.oid = info.oid;
+        this.factory = info.factory;
 
-		this.operation = operation;
-	}
+        this.operation = operation;
+    }
 
-	// getters
-	public ObjectAdapter oa() {
-		return oa;
-	}
+    // getters
+    public ObjectAdapter oa() {
+        return oa;
+    }
 
-	public byte[] id() {
-		return oid;
-	}
+    public byte[] id() {
+        return oid;
+    }
 
-	public Object getServantContainer() {
-		return servantContainer;
-	}
+    public Object getServantContainer() {
+        return servantContainer;
+    }
 
-	// Create CookieHolder on demand. This is only called by a single
-	// thread, so no synchronization is needed.
-	public CookieHolder getCookieHolder() {
-		if (cookieHolder == null)
-			cookieHolder = new CookieHolder();
+    // Create CookieHolder on demand. This is only called by a single
+    // thread, so no synchronization is needed.
+    public CookieHolder getCookieHolder() {
+        if (cookieHolder == null)
+            cookieHolder = new CookieHolder();
 
-		return cookieHolder;
-	}
+        return cookieHolder;
+    }
 
-	public String getOperation() {
-		return operation;
-	}
+    public String getOperation() {
+        return operation;
+    }
 
-	public ObjectCopierFactory getCopierFactory() {
-		return factory;
-	}
+    public ObjectCopierFactory getCopierFactory() {
+        return factory;
+    }
 
-	// setters
-	public void setOperation(String operation) {
-		this.operation = operation;
-	}
+    // setters
+    public void setOperation(String operation) {
+        this.operation = operation;
+    }
 
-	public void setCopierFactory(ObjectCopierFactory factory) {
-		this.factory = factory;
-	}
+    public void setCopierFactory(ObjectCopierFactory factory) {
+        this.factory = factory;
+    }
 
-	public void setServant(Object servant) {
-		servantContainer = servant;
-		if (servant instanceof Tie)
-			this.servant = ((Tie) servant).getTarget();
-		else
-			this.servant = servant;
-	}
+    public void setServant(Object servant) {
+        servantContainer = servant;
+        if (servant instanceof Tie)
+            this.servant = ((Tie) servant).getTarget();
+        else
+            this.servant = servant;
+    }
 }

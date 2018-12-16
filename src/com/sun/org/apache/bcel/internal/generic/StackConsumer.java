@@ -56,8 +56,8 @@ package com.sun.org.apache.bcel.internal.generic;
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public interface StackConsumer {
-	/**
-	 * @return how many words are consumed from stack
-	 */
-	public int consumeStack(ConstantPoolGen cpg);
+    /**
+     * @return how many words are consumed from stack
+     */
+    public int consumeStack(ConstantPoolGen cpg);
 }

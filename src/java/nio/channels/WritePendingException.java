@@ -16,11 +16,11 @@ package java.nio.channels;
 
 public class WritePendingException extends IllegalStateException {
 
-	private static final long serialVersionUID = 7031871839266032276L;
+    private static final long serialVersionUID = 7031871839266032276L;
 
-	/**
-	 * Constructs an instance of this class.
-	 */
-	public WritePendingException() {}
+    /**
+     * Constructs an instance of this class.
+     */
+    public WritePendingException() {}
 
 }

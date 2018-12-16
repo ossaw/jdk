@@ -18,32 +18,32 @@ package java.util;
  */
 public class DuplicateFormatFlagsException extends IllegalFormatException {
 
-	private static final long serialVersionUID = 18890531L;
+    private static final long serialVersionUID = 18890531L;
 
-	private String flags;
+    private String flags;
 
-	/**
-	 * Constructs an instance of this class with the specified flags.
-	 *
-	 * @param f
-	 *          The set of format flags which contain a duplicate flag.
-	 */
-	public DuplicateFormatFlagsException(String f) {
-		if (f == null)
-			throw new NullPointerException();
-		this.flags = f;
-	}
+    /**
+     * Constructs an instance of this class with the specified flags.
+     *
+     * @param f
+     *          The set of format flags which contain a duplicate flag.
+     */
+    public DuplicateFormatFlagsException(String f) {
+        if (f == null)
+            throw new NullPointerException();
+        this.flags = f;
+    }
 
-	/**
-	 * Returns the set of flags which contains a duplicate flag.
-	 *
-	 * @return The flags
-	 */
-	public String getFlags() {
-		return flags;
-	}
+    /**
+     * Returns the set of flags which contains a duplicate flag.
+     *
+     * @return The flags
+     */
+    public String getFlags() {
+        return flags;
+    }
 
-	public String getMessage() {
-		return String.format("Flags = '%s'", flags);
-	}
+    public String getMessage() {
+        return String.format("Flags = '%s'", flags);
+    }
 }

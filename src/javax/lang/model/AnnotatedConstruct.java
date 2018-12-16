@@ -96,117 +96,117 @@ import javax.lang.model.type.*;
  * @jls 9.6.3.3 @Inherited
  */
 public interface AnnotatedConstruct {
-	/**
-	 * Returns the annotations that are <em>directly present</em> on this
-	 * construct.
-	 *
-	 * @return the annotations <em>directly present</em> on this construct; an
-	 *         empty list if there are none
-	 */
-	List<? extends AnnotationMirror> getAnnotationMirrors();
+    /**
+     * Returns the annotations that are <em>directly present</em> on this
+     * construct.
+     *
+     * @return the annotations <em>directly present</em> on this construct; an
+     *         empty list if there are none
+     */
+    List<? extends AnnotationMirror> getAnnotationMirrors();
 
-	/**
-	 * Returns this construct's annotation of the specified type if such an
-	 * annotation is <em>present</em>, else {@code null}.
-	 *
-	 * <p>
-	 * The annotation returned by this method could contain an element whose
-	 * value is of type {@code Class}. This value cannot be returned directly:
-	 * information necessary to locate and load a class (such as the class
-	 * loader to use) is not available, and the class might not be loadable at
-	 * all. Attempting to read a {@code Class} object by invoking the relevant
-	 * method on the returned annotation will result in a
-	 * {@link MirroredTypeException}, from which the corresponding
-	 * {@link TypeMirror} may be extracted. Similarly, attempting to read a
-	 * {@code Class[]}-valued element will result in a
-	 * {@link MirroredTypesException}.
-	 *
-	 * <blockquote> <i>Note:</i> This method is unlike others in this and
-	 * related interfaces. It operates on runtime reflective information &mdash;
-	 * representations of annotation types currently loaded into the VM &mdash;
-	 * rather than on the representations defined by and used throughout these
-	 * interfaces. Consequently, calling methods on the returned annotation
-	 * object can throw many of the exceptions that can be thrown when calling
-	 * methods on an annotation object returned by core reflection. This method
-	 * is intended for callers that are written to operate on a known, fixed set
-	 * of annotation types. </blockquote>
-	 *
-	 * @param                <A>
-	 *                       the annotation type
-	 * @param annotationType
-	 *                       the {@code Class} object corresponding to the
-	 *                       annotation type
-	 * @return this construct's annotation for the specified annotation type if
-	 *         present, else {@code null}
-	 *
-	 * @see #getAnnotationMirrors()
-	 * @see java.lang.reflect.AnnotatedElement#getAnnotation
-	 * @see EnumConstantNotPresentException
-	 * @see AnnotationTypeMismatchException
-	 * @see IncompleteAnnotationException
-	 * @see MirroredTypeException
-	 * @see MirroredTypesException
-	 * @jls 9.6.1 Annotation Type Elements
-	 */
-	<A extends Annotation> A getAnnotation(Class<A> annotationType);
+    /**
+     * Returns this construct's annotation of the specified type if such an
+     * annotation is <em>present</em>, else {@code null}.
+     *
+     * <p>
+     * The annotation returned by this method could contain an element whose
+     * value is of type {@code Class}. This value cannot be returned directly:
+     * information necessary to locate and load a class (such as the class
+     * loader to use) is not available, and the class might not be loadable at
+     * all. Attempting to read a {@code Class} object by invoking the relevant
+     * method on the returned annotation will result in a
+     * {@link MirroredTypeException}, from which the corresponding
+     * {@link TypeMirror} may be extracted. Similarly, attempting to read a
+     * {@code Class[]}-valued element will result in a
+     * {@link MirroredTypesException}.
+     *
+     * <blockquote> <i>Note:</i> This method is unlike others in this and
+     * related interfaces. It operates on runtime reflective information &mdash;
+     * representations of annotation types currently loaded into the VM &mdash;
+     * rather than on the representations defined by and used throughout these
+     * interfaces. Consequently, calling methods on the returned annotation
+     * object can throw many of the exceptions that can be thrown when calling
+     * methods on an annotation object returned by core reflection. This method
+     * is intended for callers that are written to operate on a known, fixed set
+     * of annotation types. </blockquote>
+     *
+     * @param                <A>
+     *                       the annotation type
+     * @param annotationType
+     *                       the {@code Class} object corresponding to the
+     *                       annotation type
+     * @return this construct's annotation for the specified annotation type if
+     *         present, else {@code null}
+     *
+     * @see #getAnnotationMirrors()
+     * @see java.lang.reflect.AnnotatedElement#getAnnotation
+     * @see EnumConstantNotPresentException
+     * @see AnnotationTypeMismatchException
+     * @see IncompleteAnnotationException
+     * @see MirroredTypeException
+     * @see MirroredTypesException
+     * @jls 9.6.1 Annotation Type Elements
+     */
+    <A extends Annotation> A getAnnotation(Class<A> annotationType);
 
-	/**
-	 * Returns annotations that are <em>associated</em> with this construct.
-	 *
-	 * If there are no annotations associated with this construct, the return
-	 * value is an array of length 0.
-	 *
-	 * The order of annotations which are directly or indirectly present on a
-	 * construct <i>C</i> is computed as if indirectly present annotations on
-	 * <i>C</i> are directly present on <i>C</i> in place of their container
-	 * annotation, in the order in which they appear in the value element of the
-	 * container annotation.
-	 *
-	 * The difference between this method and {@link #getAnnotation(Class)} is
-	 * that this method detects if its argument is a <em>repeatable
-	 * annotation type</em>, and if so, attempts to find one or more annotations
-	 * of that type by "looking through" a container annotation.
-	 *
-	 * <p>
-	 * The annotations returned by this method could contain an element whose
-	 * value is of type {@code Class}. This value cannot be returned directly:
-	 * information necessary to locate and load a class (such as the class
-	 * loader to use) is not available, and the class might not be loadable at
-	 * all. Attempting to read a {@code Class} object by invoking the relevant
-	 * method on the returned annotation will result in a
-	 * {@link MirroredTypeException}, from which the corresponding
-	 * {@link TypeMirror} may be extracted. Similarly, attempting to read a
-	 * {@code Class[]}-valued element will result in a
-	 * {@link MirroredTypesException}.
-	 *
-	 * <blockquote> <i>Note:</i> This method is unlike others in this and
-	 * related interfaces. It operates on runtime reflective information &mdash;
-	 * representations of annotation types currently loaded into the VM &mdash;
-	 * rather than on the representations defined by and used throughout these
-	 * interfaces. Consequently, calling methods on the returned annotation
-	 * object can throw many of the exceptions that can be thrown when calling
-	 * methods on an annotation object returned by core reflection. This method
-	 * is intended for callers that are written to operate on a known, fixed set
-	 * of annotation types. </blockquote>
-	 *
-	 * @param                <A>
-	 *                       the annotation type
-	 * @param annotationType
-	 *                       the {@code Class} object corresponding to the
-	 *                       annotation type
-	 * @return this construct's annotations for the specified annotation type if
-	 *         present on this construct, else an empty array
-	 *
-	 * @see #getAnnotationMirrors()
-	 * @see #getAnnotation(Class)
-	 * @see java.lang.reflect.AnnotatedElement#getAnnotationsByType(Class)
-	 * @see EnumConstantNotPresentException
-	 * @see AnnotationTypeMismatchException
-	 * @see IncompleteAnnotationException
-	 * @see MirroredTypeException
-	 * @see MirroredTypesException
-	 * @jls 9.6 Annotation Types
-	 * @jls 9.6.1 Annotation Type Elements
-	 */
-	<A extends Annotation> A[] getAnnotationsByType(Class<A> annotationType);
+    /**
+     * Returns annotations that are <em>associated</em> with this construct.
+     *
+     * If there are no annotations associated with this construct, the return
+     * value is an array of length 0.
+     *
+     * The order of annotations which are directly or indirectly present on a
+     * construct <i>C</i> is computed as if indirectly present annotations on
+     * <i>C</i> are directly present on <i>C</i> in place of their container
+     * annotation, in the order in which they appear in the value element of the
+     * container annotation.
+     *
+     * The difference between this method and {@link #getAnnotation(Class)} is
+     * that this method detects if its argument is a <em>repeatable
+     * annotation type</em>, and if so, attempts to find one or more annotations
+     * of that type by "looking through" a container annotation.
+     *
+     * <p>
+     * The annotations returned by this method could contain an element whose
+     * value is of type {@code Class}. This value cannot be returned directly:
+     * information necessary to locate and load a class (such as the class
+     * loader to use) is not available, and the class might not be loadable at
+     * all. Attempting to read a {@code Class} object by invoking the relevant
+     * method on the returned annotation will result in a
+     * {@link MirroredTypeException}, from which the corresponding
+     * {@link TypeMirror} may be extracted. Similarly, attempting to read a
+     * {@code Class[]}-valued element will result in a
+     * {@link MirroredTypesException}.
+     *
+     * <blockquote> <i>Note:</i> This method is unlike others in this and
+     * related interfaces. It operates on runtime reflective information &mdash;
+     * representations of annotation types currently loaded into the VM &mdash;
+     * rather than on the representations defined by and used throughout these
+     * interfaces. Consequently, calling methods on the returned annotation
+     * object can throw many of the exceptions that can be thrown when calling
+     * methods on an annotation object returned by core reflection. This method
+     * is intended for callers that are written to operate on a known, fixed set
+     * of annotation types. </blockquote>
+     *
+     * @param                <A>
+     *                       the annotation type
+     * @param annotationType
+     *                       the {@code Class} object corresponding to the
+     *                       annotation type
+     * @return this construct's annotations for the specified annotation type if
+     *         present on this construct, else an empty array
+     *
+     * @see #getAnnotationMirrors()
+     * @see #getAnnotation(Class)
+     * @see java.lang.reflect.AnnotatedElement#getAnnotationsByType(Class)
+     * @see EnumConstantNotPresentException
+     * @see AnnotationTypeMismatchException
+     * @see IncompleteAnnotationException
+     * @see MirroredTypeException
+     * @see MirroredTypesException
+     * @jls 9.6 Annotation Types
+     * @jls 9.6.1 Annotation Type Elements
+     */
+    <A extends Annotation> A[] getAnnotationsByType(Class<A> annotationType);
 }

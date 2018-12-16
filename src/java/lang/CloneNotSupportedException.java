@@ -20,24 +20,24 @@ package java.lang;
  */
 
 public class CloneNotSupportedException extends Exception {
-	private static final long serialVersionUID = 5195511250079656443L;
+    private static final long serialVersionUID = 5195511250079656443L;
 
-	/**
-	 * Constructs a <code>CloneNotSupportedException</code> with no detail
-	 * message.
-	 */
-	public CloneNotSupportedException() {
-		super();
-	}
+    /**
+     * Constructs a <code>CloneNotSupportedException</code> with no detail
+     * message.
+     */
+    public CloneNotSupportedException() {
+        super();
+    }
 
-	/**
-	 * Constructs a <code>CloneNotSupportedException</code> with the specified
-	 * detail message.
-	 *
-	 * @param s
-	 *          the detail message.
-	 */
-	public CloneNotSupportedException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs a <code>CloneNotSupportedException</code> with the specified
+     * detail message.
+     *
+     * @param s
+     *          the detail message.
+     */
+    public CloneNotSupportedException(String s) {
+        super(s);
+    }
 }

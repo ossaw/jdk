@@ -17,21 +17,21 @@ package org.omg.CORBA.TypeCodePackage;
  */
 
 public final class BadKind extends org.omg.CORBA.UserException {
-	/**
-	 * Constructs a <code>BadKind</code> exception with no reason message.
-	 */
-	public BadKind() {
-		super();
-	}
+    /**
+     * Constructs a <code>BadKind</code> exception with no reason message.
+     */
+    public BadKind() {
+        super();
+    }
 
-	/**
-	 * Constructs a <code>BadKind</code> exception with the specified reason
-	 * message.
-	 * 
-	 * @param reason
-	 *               the String containing a reason message
-	 */
-	public BadKind(String reason) {
-		super(reason);
-	}
+    /**
+     * Constructs a <code>BadKind</code> exception with the specified reason
+     * message.
+     * 
+     * @param reason
+     *               the String containing a reason message
+     */
+    public BadKind(String reason) {
+        super(reason);
+    }
 }

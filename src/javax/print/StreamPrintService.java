@@ -30,61 +30,61 @@ import java.io.OutputStream;
 
 public abstract class StreamPrintService implements PrintService {
 
-	private OutputStream outStream;
-	private boolean disposed = false;
+    private OutputStream outStream;
+    private boolean disposed = false;
 
-	private StreamPrintService() {};
+    private StreamPrintService() {};
 
-	/**
-	 * Constructs a StreamPrintService object.
-	 *
-	 * @param out
-	 *            stream to which to send formatted print data.
-	 */
-	protected StreamPrintService(OutputStream out) {
-		this.outStream = out;
-	}
+    /**
+     * Constructs a StreamPrintService object.
+     *
+     * @param out
+     *            stream to which to send formatted print data.
+     */
+    protected StreamPrintService(OutputStream out) {
+        this.outStream = out;
+    }
 
-	/**
-	 * Gets the output stream.
-	 *
-	 * @return the stream to which this service will send formatted print data.
-	 */
-	public OutputStream getOutputStream() {
-		return outStream;
-	}
+    /**
+     * Gets the output stream.
+     *
+     * @return the stream to which this service will send formatted print data.
+     */
+    public OutputStream getOutputStream() {
+        return outStream;
+    }
 
-	/**
-	 * Returns the document format emitted by this print service. Must be in
-	 * mimetype format, compatible with the mime type components of
-	 * DocFlavors @see DocFlavor.
-	 * 
-	 * @return mime type identifying the output format.
-	 */
-	public abstract String getOutputFormat();
+    /**
+     * Returns the document format emitted by this print service. Must be in
+     * mimetype format, compatible with the mime type components of
+     * DocFlavors @see DocFlavor.
+     * 
+     * @return mime type identifying the output format.
+     */
+    public abstract String getOutputFormat();
 
-	/**
-	 * Disposes this <code>StreamPrintService</code>. If a stream service cannot
-	 * be re-used, it must be disposed to indicate this. Typically the client
-	 * will call this method. Services which write data which cannot
-	 * meaningfully be appended to may also dispose the stream. This does not
-	 * close the stream. It just marks it as not for further use by this
-	 * service.
-	 */
-	public void dispose() {
-		disposed = true;
-	}
+    /**
+     * Disposes this <code>StreamPrintService</code>. If a stream service cannot
+     * be re-used, it must be disposed to indicate this. Typically the client
+     * will call this method. Services which write data which cannot
+     * meaningfully be appended to may also dispose the stream. This does not
+     * close the stream. It just marks it as not for further use by this
+     * service.
+     */
+    public void dispose() {
+        disposed = true;
+    }
 
-	/**
-	 * Returns a <code>boolean</code> indicating whether or not this
-	 * <code>StreamPrintService</code> has been disposed. If this object has
-	 * been disposed, will return true. Used by services and client applications
-	 * to recognize streams to which no further data should be written.
-	 * 
-	 * @return if this <code>StreamPrintService</code> has been disposed
-	 */
-	public boolean isDisposed() {
-		return disposed;
-	}
+    /**
+     * Returns a <code>boolean</code> indicating whether or not this
+     * <code>StreamPrintService</code> has been disposed. If this object has
+     * been disposed, will return true. Used by services and client applications
+     * to recognize streams to which no further data should be written.
+     * 
+     * @return if this <code>StreamPrintService</code> has been disposed
+     */
+    public boolean isDisposed() {
+        return disposed;
+    }
 
 }

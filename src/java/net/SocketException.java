@@ -14,21 +14,21 @@ import java.io.IOException;
  * @since JDK1.0
  */
 public class SocketException extends IOException {
-	private static final long serialVersionUID = -5935874303556886934L;
+    private static final long serialVersionUID = -5935874303556886934L;
 
-	/**
-	 * Constructs a new {@code SocketException} with the specified detail
-	 * message.
-	 *
-	 * @param msg
-	 *            the detail message.
-	 */
-	public SocketException(String msg) {
-		super(msg);
-	}
+    /**
+     * Constructs a new {@code SocketException} with the specified detail
+     * message.
+     *
+     * @param msg
+     *            the detail message.
+     */
+    public SocketException(String msg) {
+        super(msg);
+    }
 
-	/**
-	 * Constructs a new {@code SocketException} with no detail message.
-	 */
-	public SocketException() {}
+    /**
+     * Constructs a new {@code SocketException} with no detail message.
+     */
+    public SocketException() {}
 }

@@ -37,43 +37,43 @@ package com.sun.jmx.snmp;
 
 public interface SnmpPduFactory {
 
-	/**
-	 * Decodes the specified <CODE>SnmpMsg</CODE> and returns the resulting
-	 * <CODE>SnmpPdu</CODE>. If this method returns <CODE>null</CODE>, the
-	 * message will be considered unsafe and will be dropped.
-	 *
-	 * @param msg
-	 *            The <CODE>SnmpMsg</CODE> to be decoded.
-	 * @return Null or a fully initialized <CODE>SnmpPdu</CODE>.
-	 * @exception SnmpStatusException
-	 *                                If the encoding is invalid.
-	 *
-	 * @since 1.5
-	 */
-	public SnmpPdu decodeSnmpPdu(SnmpMsg msg) throws SnmpStatusException;
+    /**
+     * Decodes the specified <CODE>SnmpMsg</CODE> and returns the resulting
+     * <CODE>SnmpPdu</CODE>. If this method returns <CODE>null</CODE>, the
+     * message will be considered unsafe and will be dropped.
+     *
+     * @param msg
+     *            The <CODE>SnmpMsg</CODE> to be decoded.
+     * @return Null or a fully initialized <CODE>SnmpPdu</CODE>.
+     * @exception SnmpStatusException
+     *                                If the encoding is invalid.
+     *
+     * @since 1.5
+     */
+    public SnmpPdu decodeSnmpPdu(SnmpMsg msg) throws SnmpStatusException;
 
-	/**
-	 * Encodes the specified <CODE>SnmpPdu</CODE> and returns the resulting
-	 * <CODE>SnmpMsg</CODE>. If this method returns null, the specified
-	 * <CODE>SnmpPdu</CODE> will be dropped and the current SNMP request will be
-	 * aborted.
-	 *
-	 * @param p
-	 *                      The <CODE>SnmpPdu</CODE> to be encoded.
-	 * @param maxDataLength
-	 *                      The size limit of the resulting encoding.
-	 * @return Null or a fully encoded <CODE>SnmpMsg</CODE>.
-	 * @exception SnmpStatusException
-	 *                                If <CODE>pdu</CODE> contains illegal
-	 *                                values and cannot be
-	 *                                encoded.
-	 * @exception SnmpTooBigException
-	 *                                If the resulting encoding does not fit
-	 *                                into
-	 *                                <CODE>maxPktSize</CODE> bytes.
-	 *
-	 * @since 1.5
-	 */
-	public SnmpMsg encodeSnmpPdu(SnmpPdu p, int maxDataLength)
-			throws SnmpStatusException, SnmpTooBigException;
+    /**
+     * Encodes the specified <CODE>SnmpPdu</CODE> and returns the resulting
+     * <CODE>SnmpMsg</CODE>. If this method returns null, the specified
+     * <CODE>SnmpPdu</CODE> will be dropped and the current SNMP request will be
+     * aborted.
+     *
+     * @param p
+     *                      The <CODE>SnmpPdu</CODE> to be encoded.
+     * @param maxDataLength
+     *                      The size limit of the resulting encoding.
+     * @return Null or a fully encoded <CODE>SnmpMsg</CODE>.
+     * @exception SnmpStatusException
+     *                                If <CODE>pdu</CODE> contains illegal
+     *                                values and cannot be
+     *                                encoded.
+     * @exception SnmpTooBigException
+     *                                If the resulting encoding does not fit
+     *                                into
+     *                                <CODE>maxPktSize</CODE> bytes.
+     *
+     * @since 1.5
+     */
+    public SnmpMsg encodeSnmpPdu(SnmpPdu p, int maxDataLength)
+            throws SnmpStatusException, SnmpTooBigException;
 }

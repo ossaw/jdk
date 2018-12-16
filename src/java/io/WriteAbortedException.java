@@ -25,54 +25,54 @@ package java.io;
  * @since JDK1.1
  */
 public class WriteAbortedException extends ObjectStreamException {
-	private static final long serialVersionUID = -3326426625597282442L;
+    private static final long serialVersionUID = -3326426625597282442L;
 
-	/**
-	 * Exception that was caught while writing the ObjectStream.
-	 *
-	 * <p>
-	 * This field predates the general-purpose exception chaining facility. The
-	 * {@link Throwable#getCause()} method is now the preferred means of
-	 * obtaining this information.
-	 *
-	 * @serial
-	 */
-	public Exception detail;
+    /**
+     * Exception that was caught while writing the ObjectStream.
+     *
+     * <p>
+     * This field predates the general-purpose exception chaining facility. The
+     * {@link Throwable#getCause()} method is now the preferred means of
+     * obtaining this information.
+     *
+     * @serial
+     */
+    public Exception detail;
 
-	/**
-	 * Constructs a WriteAbortedException with a string describing the exception
-	 * and the exception causing the abort.
-	 * 
-	 * @param s
-	 *           String describing the exception.
-	 * @param ex
-	 *           Exception causing the abort.
-	 */
-	public WriteAbortedException(String s, Exception ex) {
-		super(s);
-		initCause(null); // Disallow subsequent initCause
-		detail = ex;
-	}
+    /**
+     * Constructs a WriteAbortedException with a string describing the exception
+     * and the exception causing the abort.
+     * 
+     * @param s
+     *           String describing the exception.
+     * @param ex
+     *           Exception causing the abort.
+     */
+    public WriteAbortedException(String s, Exception ex) {
+        super(s);
+        initCause(null); // Disallow subsequent initCause
+        detail = ex;
+    }
 
-	/**
-	 * Produce the message and include the message from the nested exception, if
-	 * there is one.
-	 */
-	public String getMessage() {
-		if (detail == null)
-			return super.getMessage();
-		else
-			return super.getMessage() + "; " + detail.toString();
-	}
+    /**
+     * Produce the message and include the message from the nested exception, if
+     * there is one.
+     */
+    public String getMessage() {
+        if (detail == null)
+            return super.getMessage();
+        else
+            return super.getMessage() + "; " + detail.toString();
+    }
 
-	/**
-	 * Returns the exception that terminated the operation (the <i>cause</i>).
-	 *
-	 * @return the exception that terminated the operation (the <i>cause</i>),
-	 *         which may be null.
-	 * @since 1.4
-	 */
-	public Throwable getCause() {
-		return detail;
-	}
+    /**
+     * Returns the exception that terminated the operation (the <i>cause</i>).
+     *
+     * @return the exception that terminated the operation (the <i>cause</i>),
+     *         which may be null.
+     * @since 1.4
+     */
+    public Throwable getCause() {
+        return detail;
+    }
 }

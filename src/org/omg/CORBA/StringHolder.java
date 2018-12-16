@@ -31,61 +31,61 @@ import org.omg.CORBA.portable.OutputStream;
  */
 public final class StringHolder implements Streamable {
 
-	/**
-	 * The <code>String</code> value held by this <code>StringHolder</code>
-	 * object.
-	 */
-	public String value;
+    /**
+     * The <code>String</code> value held by this <code>StringHolder</code>
+     * object.
+     */
+    public String value;
 
-	/**
-	 * Constructs a new <code>StringHolder</code> object with its
-	 * <code>value</code> field initialized to <code>null</code>.
-	 */
-	public StringHolder() {}
+    /**
+     * Constructs a new <code>StringHolder</code> object with its
+     * <code>value</code> field initialized to <code>null</code>.
+     */
+    public StringHolder() {}
 
-	/**
-	 * Constructs a new <code>StringHolder</code> object with its
-	 * <code>value</code> field initialized to the given <code>String</code>.
-	 * 
-	 * @param initial
-	 *                the <code>String</code> with which to initialize the
-	 *                <code>value</code> field of the newly-created
-	 *                <code>StringHolder</code> object
-	 */
-	public StringHolder(String initial) {
-		value = initial;
-	}
+    /**
+     * Constructs a new <code>StringHolder</code> object with its
+     * <code>value</code> field initialized to the given <code>String</code>.
+     * 
+     * @param initial
+     *                the <code>String</code> with which to initialize the
+     *                <code>value</code> field of the newly-created
+     *                <code>StringHolder</code> object
+     */
+    public StringHolder(String initial) {
+        value = initial;
+    }
 
-	/**
-	 * Reads the unmarshalled data from <code>input</code> and assigns it to the
-	 * <code>value</code> field of this <code>StringHolder</code> object.
-	 *
-	 * @param input
-	 *              the InputStream containing CDR formatted data from the wire.
-	 */
-	public void _read(InputStream input) {
-		value = input.read_string();
-	}
+    /**
+     * Reads the unmarshalled data from <code>input</code> and assigns it to the
+     * <code>value</code> field of this <code>StringHolder</code> object.
+     *
+     * @param input
+     *              the InputStream containing CDR formatted data from the wire.
+     */
+    public void _read(InputStream input) {
+        value = input.read_string();
+    }
 
-	/**
-	 * Marshals the value held by this <code>StringHolder</code> object to the
-	 * output stream <code>output</code>.
-	 *
-	 * @param output
-	 *               the OutputStream which will contain the CDR formatted data.
-	 */
-	public void _write(OutputStream output) {
-		output.write_string(value);
-	}
+    /**
+     * Marshals the value held by this <code>StringHolder</code> object to the
+     * output stream <code>output</code>.
+     *
+     * @param output
+     *               the OutputStream which will contain the CDR formatted data.
+     */
+    public void _write(OutputStream output) {
+        output.write_string(value);
+    }
 
-	/**
-	 * Retrieves the <code>TypeCode</code> object that corresponds to the value
-	 * held in this <code>StringHolder</code> object.
-	 *
-	 * @return the type code of the value held in this <code>StringHolder</code>
-	 *         object
-	 */
-	public org.omg.CORBA.TypeCode _type() {
-		return ORB.init().get_primitive_tc(TCKind.tk_string);
-	}
+    /**
+     * Retrieves the <code>TypeCode</code> object that corresponds to the value
+     * held in this <code>StringHolder</code> object.
+     *
+     * @return the type code of the value held in this <code>StringHolder</code>
+     *         object
+     */
+    public org.omg.CORBA.TypeCode _type() {
+        return ORB.init().get_primitive_tc(TCKind.tk_string);
+    }
 }

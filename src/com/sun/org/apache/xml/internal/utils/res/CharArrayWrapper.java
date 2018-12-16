@@ -25,17 +25,17 @@ package com.sun.org.apache.xml.internal.utils.res;
  * XResourceBundle class
  */
 public class CharArrayWrapper {
-	private char[] m_char;
+    private char[] m_char;
 
-	public CharArrayWrapper(char[] arg) {
-		m_char = arg;
-	}
+    public CharArrayWrapper(char[] arg) {
+        m_char = arg;
+    }
 
-	public char getChar(int index) {
-		return m_char[index];
-	}
+    public char getChar(int index) {
+        return m_char[index];
+    }
 
-	public int getLength() {
-		return m_char.length;
-	}
+    public int getLength() {
+        return m_char.length;
+    }
 }

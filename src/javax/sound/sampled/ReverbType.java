@@ -119,172 +119,172 @@ package javax.sound.sampled;
  */
 public class ReverbType {
 
-	/**
-	 * Descriptive name of the reverb type..
-	 */
-	private String name;
+    /**
+     * Descriptive name of the reverb type..
+     */
+    private String name;
 
-	/**
-	 * Early reflection delay in microseconds.
-	 */
-	private int earlyReflectionDelay;
+    /**
+     * Early reflection delay in microseconds.
+     */
+    private int earlyReflectionDelay;
 
-	/**
-	 * Early reflection intensity.
-	 */
-	private float earlyReflectionIntensity;
+    /**
+     * Early reflection intensity.
+     */
+    private float earlyReflectionIntensity;
 
-	/**
-	 * Late reflection delay in microseconds.
-	 */
-	private int lateReflectionDelay;
+    /**
+     * Late reflection delay in microseconds.
+     */
+    private int lateReflectionDelay;
 
-	/**
-	 * Late reflection intensity.
-	 */
-	private float lateReflectionIntensity;
+    /**
+     * Late reflection intensity.
+     */
+    private float lateReflectionIntensity;
 
-	/**
-	 * Total decay time
-	 */
-	private int decayTime;
+    /**
+     * Total decay time
+     */
+    private int decayTime;
 
-	/**
-	 * Constructs a new reverb type that has the specified reverberation
-	 * parameter values.
-	 * 
-	 * @param name
-	 *                                 the name of the new reverb type, or a
-	 *                                 zero-length
-	 *                                 <code>String</code>
-	 * @param earlyReflectionDelay
-	 *                                 the new type's early reflection delay
-	 *                                 time in microseconds
-	 * @param earlyReflectionIntensity
-	 *                                 the new type's early reflection intensity
-	 *                                 in dB
-	 * @param lateReflectionDelay
-	 *                                 the new type's late reflection delay time
-	 *                                 in microseconds
-	 * @param lateReflectionIntensity
-	 *                                 the new type's late reflection intensity
-	 *                                 in dB
-	 * @param decayTime
-	 *                                 the new type's decay time in microseconds
-	 */
-	protected ReverbType(String name, int earlyReflectionDelay,
-			float earlyReflectionIntensity, int lateReflectionDelay,
-			float lateReflectionIntensity, int decayTime) {
+    /**
+     * Constructs a new reverb type that has the specified reverberation
+     * parameter values.
+     * 
+     * @param name
+     *                                 the name of the new reverb type, or a
+     *                                 zero-length
+     *                                 <code>String</code>
+     * @param earlyReflectionDelay
+     *                                 the new type's early reflection delay
+     *                                 time in microseconds
+     * @param earlyReflectionIntensity
+     *                                 the new type's early reflection intensity
+     *                                 in dB
+     * @param lateReflectionDelay
+     *                                 the new type's late reflection delay time
+     *                                 in microseconds
+     * @param lateReflectionIntensity
+     *                                 the new type's late reflection intensity
+     *                                 in dB
+     * @param decayTime
+     *                                 the new type's decay time in microseconds
+     */
+    protected ReverbType(String name, int earlyReflectionDelay,
+            float earlyReflectionIntensity, int lateReflectionDelay,
+            float lateReflectionIntensity, int decayTime) {
 
-		this.name = name;
-		this.earlyReflectionDelay = earlyReflectionDelay;
-		this.earlyReflectionIntensity = earlyReflectionIntensity;
-		this.lateReflectionDelay = lateReflectionDelay;
-		this.lateReflectionIntensity = lateReflectionIntensity;
-		this.decayTime = decayTime;
-	}
+        this.name = name;
+        this.earlyReflectionDelay = earlyReflectionDelay;
+        this.earlyReflectionIntensity = earlyReflectionIntensity;
+        this.lateReflectionDelay = lateReflectionDelay;
+        this.lateReflectionIntensity = lateReflectionIntensity;
+        this.decayTime = decayTime;
+    }
 
-	/**
-	 * Obtains the name of this reverb type.
-	 * 
-	 * @return the name of this reverb type
-	 * @since 1.5
-	 */
-	public String getName() {
-		return name;
-	}
+    /**
+     * Obtains the name of this reverb type.
+     * 
+     * @return the name of this reverb type
+     * @since 1.5
+     */
+    public String getName() {
+        return name;
+    }
 
-	/**
-	 * Returns the early reflection delay time in microseconds. This is the
-	 * amount of time between when the direct signal is heard and when the first
-	 * early reflections are heard.
-	 * 
-	 * @return early reflection delay time for this reverb type, in microseconds
-	 */
-	public final int getEarlyReflectionDelay() {
-		return earlyReflectionDelay;
-	}
+    /**
+     * Returns the early reflection delay time in microseconds. This is the
+     * amount of time between when the direct signal is heard and when the first
+     * early reflections are heard.
+     * 
+     * @return early reflection delay time for this reverb type, in microseconds
+     */
+    public final int getEarlyReflectionDelay() {
+        return earlyReflectionDelay;
+    }
 
-	/**
-	 * Returns the early reflection intensity in decibels. This is the amplitude
-	 * attenuation of the first early reflections relative to the direct signal.
-	 * 
-	 * @return early reflection intensity for this reverb type, in dB
-	 */
-	public final float getEarlyReflectionIntensity() {
-		return earlyReflectionIntensity;
-	}
+    /**
+     * Returns the early reflection intensity in decibels. This is the amplitude
+     * attenuation of the first early reflections relative to the direct signal.
+     * 
+     * @return early reflection intensity for this reverb type, in dB
+     */
+    public final float getEarlyReflectionIntensity() {
+        return earlyReflectionIntensity;
+    }
 
-	/**
-	 * Returns the late reflection delay time in microseconds. This is the
-	 * amount of time between when the first early reflections are heard and
-	 * when the first late reflections are heard.
-	 * 
-	 * @return late reflection delay time for this reverb type, in microseconds
-	 */
-	public final int getLateReflectionDelay() {
-		return lateReflectionDelay;
-	}
+    /**
+     * Returns the late reflection delay time in microseconds. This is the
+     * amount of time between when the first early reflections are heard and
+     * when the first late reflections are heard.
+     * 
+     * @return late reflection delay time for this reverb type, in microseconds
+     */
+    public final int getLateReflectionDelay() {
+        return lateReflectionDelay;
+    }
 
-	/**
-	 * Returns the late reflection intensity in decibels. This is the amplitude
-	 * attenuation of the first late reflections relative to the direct signal.
-	 * 
-	 * @return late reflection intensity for this reverb type, in dB
-	 */
-	public final float getLateReflectionIntensity() {
-		return lateReflectionIntensity;
-	}
+    /**
+     * Returns the late reflection intensity in decibels. This is the amplitude
+     * attenuation of the first late reflections relative to the direct signal.
+     * 
+     * @return late reflection intensity for this reverb type, in dB
+     */
+    public final float getLateReflectionIntensity() {
+        return lateReflectionIntensity;
+    }
 
-	/**
-	 * Obtains the decay time, which is the amount of time over which the late
-	 * reflections attenuate to effective zero. The effective zero value is
-	 * implementation-dependent.
-	 * 
-	 * @return the decay time of the late reflections, in microseconds
-	 */
-	public final int getDecayTime() {
-		return decayTime;
-	}
+    /**
+     * Obtains the decay time, which is the amount of time over which the late
+     * reflections attenuate to effective zero. The effective zero value is
+     * implementation-dependent.
+     * 
+     * @return the decay time of the late reflections, in microseconds
+     */
+    public final int getDecayTime() {
+        return decayTime;
+    }
 
-	/**
-	 * Indicates whether the specified object is equal to this reverb type,
-	 * returning <code>true</code> if the objects are identical.
-	 * 
-	 * @param obj
-	 *            the reference object with which to compare
-	 * @return <code>true</code> if this reverb type is the same as
-	 *         <code>obj</code>; <code>false</code> otherwise
-	 */
-	public final boolean equals(Object obj) {
-		return super.equals(obj);
-	}
+    /**
+     * Indicates whether the specified object is equal to this reverb type,
+     * returning <code>true</code> if the objects are identical.
+     * 
+     * @param obj
+     *            the reference object with which to compare
+     * @return <code>true</code> if this reverb type is the same as
+     *         <code>obj</code>; <code>false</code> otherwise
+     */
+    public final boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 
-	/**
-	 * Finalizes the hashcode method.
-	 */
-	public final int hashCode() {
-		return super.hashCode();
-	}
+    /**
+     * Finalizes the hashcode method.
+     */
+    public final int hashCode() {
+        return super.hashCode();
+    }
 
-	/**
-	 * Provides a <code>String</code> representation of the reverb type,
-	 * including its name and its parameter settings. The exact contents of the
-	 * string may vary between implementations of Java Sound.
-	 * 
-	 * @return reverberation type name and description
-	 */
-	public final String toString() {
+    /**
+     * Provides a <code>String</code> representation of the reverb type,
+     * including its name and its parameter settings. The exact contents of the
+     * string may vary between implementations of Java Sound.
+     * 
+     * @return reverberation type name and description
+     */
+    public final String toString() {
 
-		// $$fb2001-07-20: fix for bug 4385060: The "name" attribute of class
-		// "ReverbType" is not accessible.
-		// return (super.toString() + ", early reflection delay " +
-		// earlyReflectionDelay +
-		return (name + ", early reflection delay " + earlyReflectionDelay
-				+ " ns, early reflection intensity " + earlyReflectionIntensity
-				+ " dB, late deflection delay " + lateReflectionDelay
-				+ " ns, late reflection intensity " + lateReflectionIntensity
-				+ " dB, decay time " + decayTime);
-	}
+        // $$fb2001-07-20: fix for bug 4385060: The "name" attribute of class
+        // "ReverbType" is not accessible.
+        // return (super.toString() + ", early reflection delay " +
+        // earlyReflectionDelay +
+        return (name + ", early reflection delay " + earlyReflectionDelay
+                + " ns, early reflection intensity " + earlyReflectionIntensity
+                + " dB, late deflection delay " + lateReflectionDelay
+                + " ns, late reflection intensity " + lateReflectionIntensity
+                + " dB, decay time " + decayTime);
+    }
 
 } // class ReverbType

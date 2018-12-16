@@ -20,21 +20,21 @@ import com.sun.corba.se.impl.orbutil.ORBUtility;
 import com.sun.corba.se.impl.logging.IORSystemException;
 
 public abstract class ObjectReferenceProducerBase {
-	transient protected ORB orb;
+    transient protected ORB orb;
 
-	public abstract IORFactory getIORFactory();
+    public abstract IORFactory getIORFactory();
 
-	public abstract IORTemplateList getIORTemplateList();
+    public abstract IORTemplateList getIORTemplateList();
 
-	public ObjectReferenceProducerBase(ORB orb) {
-		this.orb = orb;
-	}
+    public ObjectReferenceProducerBase(ORB orb) {
+        this.orb = orb;
+    }
 
-	public org.omg.CORBA.Object make_object(String repositoryId,
-			byte[] objectId) {
-		ObjectId oid = IORFactories.makeObjectId(objectId);
-		IOR ior = getIORFactory().makeIOR(orb, repositoryId, oid);
+    public org.omg.CORBA.Object make_object(String repositoryId,
+            byte[] objectId) {
+        ObjectId oid = IORFactories.makeObjectId(objectId);
+        IOR ior = getIORFactory().makeIOR(orb, repositoryId, oid);
 
-		return ORBUtility.makeObjectReference(ior);
-	}
+        return ORBUtility.makeObjectReference(ior);
+    }
 }

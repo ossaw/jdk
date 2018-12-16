@@ -25,17 +25,17 @@ package com.sun.org.apache.xml.internal.utils.res;
  * XResourceBundle class
  */
 public class IntArrayWrapper {
-	private int[] m_int;
+    private int[] m_int;
 
-	public IntArrayWrapper(int[] arg) {
-		m_int = arg;
-	}
+    public IntArrayWrapper(int[] arg) {
+        m_int = arg;
+    }
 
-	public int getInt(int index) {
-		return m_int[index];
-	}
+    public int getInt(int index) {
+        return m_int[index];
+    }
 
-	public int getLength() {
-		return m_int.length;
-	}
+    public int getLength() {
+        return m_int.length;
+    }
 }

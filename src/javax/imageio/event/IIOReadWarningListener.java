@@ -26,16 +26,16 @@ import javax.imageio.ImageReader;
  */
 public interface IIOReadWarningListener extends EventListener {
 
-	/**
-	 * Reports the occurrence of a non-fatal error in decoding. Decoding will
-	 * continue following the call to this method. The application may choose to
-	 * display a dialog, print the warning to the console, ignore the warning,
-	 * or take any other action it chooses.
-	 *
-	 * @param source
-	 *                the <code>ImageReader</code> object calling this method.
-	 * @param warning
-	 *                a <code>String</code> containing the warning.
-	 */
-	void warningOccurred(ImageReader source, String warning);
+    /**
+     * Reports the occurrence of a non-fatal error in decoding. Decoding will
+     * continue following the call to this method. The application may choose to
+     * display a dialog, print the warning to the console, ignore the warning,
+     * or take any other action it chooses.
+     *
+     * @param source
+     *                the <code>ImageReader</code> object calling this method.
+     * @param warning
+     *                a <code>String</code> containing the warning.
+     */
+    void warningOccurred(ImageReader source, String warning);
 }

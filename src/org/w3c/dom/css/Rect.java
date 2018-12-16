@@ -29,24 +29,24 @@ package org.w3c.dom.css;
  * @since DOM Level 2
  */
 public interface Rect {
-	/**
-	 * This attribute is used for the top of the rect.
-	 */
-	public CSSPrimitiveValue getTop();
+    /**
+     * This attribute is used for the top of the rect.
+     */
+    public CSSPrimitiveValue getTop();
 
-	/**
-	 * This attribute is used for the right of the rect.
-	 */
-	public CSSPrimitiveValue getRight();
+    /**
+     * This attribute is used for the right of the rect.
+     */
+    public CSSPrimitiveValue getRight();
 
-	/**
-	 * This attribute is used for the bottom of the rect.
-	 */
-	public CSSPrimitiveValue getBottom();
+    /**
+     * This attribute is used for the bottom of the rect.
+     */
+    public CSSPrimitiveValue getBottom();
 
-	/**
-	 * This attribute is used for the left of the rect.
-	 */
-	public CSSPrimitiveValue getLeft();
+    /**
+     * This attribute is used for the left of the rect.
+     */
+    public CSSPrimitiveValue getLeft();
 
 }

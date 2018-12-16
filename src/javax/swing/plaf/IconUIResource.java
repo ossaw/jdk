@@ -30,31 +30,31 @@ import javax.swing.plaf.UIResource;
  *
  */
 public class IconUIResource implements Icon, UIResource, Serializable {
-	private Icon delegate;
+    private Icon delegate;
 
-	/**
-	 * Creates a UIResource icon object which wraps an existing Icon instance.
-	 * 
-	 * @param delegate
-	 *                 the icon being wrapped
-	 */
-	public IconUIResource(Icon delegate) {
-		if (delegate == null) {
-			throw new IllegalArgumentException("null delegate icon argument");
-		}
-		this.delegate = delegate;
-	}
+    /**
+     * Creates a UIResource icon object which wraps an existing Icon instance.
+     * 
+     * @param delegate
+     *                 the icon being wrapped
+     */
+    public IconUIResource(Icon delegate) {
+        if (delegate == null) {
+            throw new IllegalArgumentException("null delegate icon argument");
+        }
+        this.delegate = delegate;
+    }
 
-	public void paintIcon(Component c, Graphics g, int x, int y) {
-		delegate.paintIcon(c, g, x, y);
-	}
+    public void paintIcon(Component c, Graphics g, int x, int y) {
+        delegate.paintIcon(c, g, x, y);
+    }
 
-	public int getIconWidth() {
-		return delegate.getIconWidth();
-	}
+    public int getIconWidth() {
+        return delegate.getIconWidth();
+    }
 
-	public int getIconHeight() {
-		return delegate.getIconHeight();
-	}
+    public int getIconHeight() {
+        return delegate.getIconHeight();
+    }
 
 }

@@ -32,14 +32,14 @@ import com.sun.org.apache.xerces.internal.xni.XMLDTDHandler;
  */
 public interface XMLDTDSource {
 
-	//
-	// XMLDTDSource methods
-	//
+    //
+    // XMLDTDSource methods
+    //
 
-	/** Sets the DTD handler. */
-	public void setDTDHandler(XMLDTDHandler handler);
+    /** Sets the DTD handler. */
+    public void setDTDHandler(XMLDTDHandler handler);
 
-	/** Returns the DTD handler. */
-	public XMLDTDHandler getDTDHandler();
+    /** Returns the DTD handler. */
+    public XMLDTDHandler getDTDHandler();
 
 } // interface XMLDTDSource

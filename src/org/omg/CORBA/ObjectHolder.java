@@ -31,61 +31,61 @@ import org.omg.CORBA.portable.OutputStream;
  * @since JDK1.2
  */
 public final class ObjectHolder implements Streamable {
-	/**
-	 * The <code>Object</code> value held by this <code>ObjectHolder</code>
-	 * object.
-	 */
-	public Object value;
+    /**
+     * The <code>Object</code> value held by this <code>ObjectHolder</code>
+     * object.
+     */
+    public Object value;
 
-	/**
-	 * Constructs a new <code>ObjectHolder</code> object with its
-	 * <code>value</code> field initialized to <code>null</code>.
-	 */
-	public ObjectHolder() {}
+    /**
+     * Constructs a new <code>ObjectHolder</code> object with its
+     * <code>value</code> field initialized to <code>null</code>.
+     */
+    public ObjectHolder() {}
 
-	/**
-	 * Constructs a new <code>ObjectHolder</code> object with its
-	 * <code>value</code> field initialized to the given <code>Object</code>.
-	 * 
-	 * @param initial
-	 *                the <code>Object</code> with which to initialize the
-	 *                <code>value</code> field of the newly-created
-	 *                <code>ObjectHolder</code> object
-	 */
-	public ObjectHolder(Object initial) {
-		value = initial;
-	}
+    /**
+     * Constructs a new <code>ObjectHolder</code> object with its
+     * <code>value</code> field initialized to the given <code>Object</code>.
+     * 
+     * @param initial
+     *                the <code>Object</code> with which to initialize the
+     *                <code>value</code> field of the newly-created
+     *                <code>ObjectHolder</code> object
+     */
+    public ObjectHolder(Object initial) {
+        value = initial;
+    }
 
-	/**
-	 * Reads from <code>input</code> and initalizes the value in this
-	 * <code>ObjectHolder</code> object with the unmarshalled data.
-	 *
-	 * @param input
-	 *              the InputStream containing CDR formatted data from the wire.
-	 */
-	public void _read(InputStream input) {
-		value = input.read_Object();
-	}
+    /**
+     * Reads from <code>input</code> and initalizes the value in this
+     * <code>ObjectHolder</code> object with the unmarshalled data.
+     *
+     * @param input
+     *              the InputStream containing CDR formatted data from the wire.
+     */
+    public void _read(InputStream input) {
+        value = input.read_Object();
+    }
 
-	/**
-	 * Marshals to <code>output</code> the value in this
-	 * <code>ObjectHolder</code> object.
-	 *
-	 * @param output
-	 *               the OutputStream which will contain the CDR formatted data.
-	 */
-	public void _write(OutputStream output) {
-		output.write_Object(value);
-	}
+    /**
+     * Marshals to <code>output</code> the value in this
+     * <code>ObjectHolder</code> object.
+     *
+     * @param output
+     *               the OutputStream which will contain the CDR formatted data.
+     */
+    public void _write(OutputStream output) {
+        output.write_Object(value);
+    }
 
-	/**
-	 * Returns the TypeCode corresponding to the value held in this
-	 * <code>ObjectHolder</code> object
-	 *
-	 * @return the TypeCode of the value held in this <code>ObjectHolder</code>
-	 *         object
-	 */
-	public org.omg.CORBA.TypeCode _type() {
-		return org.omg.CORBA.ORB.init().get_primitive_tc(TCKind.tk_objref);
-	}
+    /**
+     * Returns the TypeCode corresponding to the value held in this
+     * <code>ObjectHolder</code> object
+     *
+     * @return the TypeCode of the value held in this <code>ObjectHolder</code>
+     *         object
+     */
+    public org.omg.CORBA.TypeCode _type() {
+        return org.omg.CORBA.ORB.init().get_primitive_tc(TCKind.tk_objref);
+    }
 }

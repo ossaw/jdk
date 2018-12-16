@@ -15,8 +15,8 @@ package javax.swing.plaf;
  * 
  * <pre>
  * if (list.getCellRenderer() == null) {
- * 	list.setCellRenderer((ListCellRenderer) (UIManager.get(
- * 			"List.cellRenderer")));
+ *     list.setCellRenderer((ListCellRenderer) (UIManager.get(
+ *             "List.cellRenderer")));
  * }
  * </pre>
  * 
@@ -25,7 +25,7 @@ package javax.swing.plaf;
  * 
  * <pre>
  * if (list.getCellRenderer() instanceof UIResource) {
- * 	list.setCellRenderer(null);
+ *     list.setCellRenderer(null);
  * }
  * </pre>
  * 
@@ -38,7 +38,7 @@ package javax.swing.plaf;
  * 
  * <pre>
  * if (!(list.getFont() instanceof UIResource)) {
- * 	list.setFont(UIManager.getFont("List.font"));
+ *     list.setFont(UIManager.getFont("List.font"));
  * }
  * </pre>
  *

@@ -15,14 +15,14 @@ package javax.xml.bind.annotation;
  */
 
 public enum XmlAccessOrder {
-	/**
-	 * The ordering of fields and properties in a class is undefined.
-	 */
-	UNDEFINED,
-	/**
-	 * The ordering of fields and properties in a class is in alphabetical order
-	 * as determined by the method java.lang.String.compareTo(String
-	 * anotherString).
-	 */
-	ALPHABETICAL
+    /**
+     * The ordering of fields and properties in a class is undefined.
+     */
+    UNDEFINED,
+    /**
+     * The ordering of fields and properties in a class is in alphabetical order
+     * as determined by the method java.lang.String.compareTo(String
+     * anotherString).
+     */
+    ALPHABETICAL
 }

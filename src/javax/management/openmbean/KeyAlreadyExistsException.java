@@ -15,23 +15,23 @@ package javax.management.openmbean;
  */
 public class KeyAlreadyExistsException extends IllegalArgumentException {
 
-	private static final long serialVersionUID = 1845183636745282866L;
+    private static final long serialVersionUID = 1845183636745282866L;
 
-	/**
-	 * A KeyAlreadyExistsException with no detail message.
-	 */
-	public KeyAlreadyExistsException() {
-		super();
-	}
+    /**
+     * A KeyAlreadyExistsException with no detail message.
+     */
+    public KeyAlreadyExistsException() {
+        super();
+    }
 
-	/**
-	 * A KeyAlreadyExistsException with a detail message.
-	 *
-	 * @param msg
-	 *            the detail message.
-	 */
-	public KeyAlreadyExistsException(String msg) {
-		super(msg);
-	}
+    /**
+     * A KeyAlreadyExistsException with a detail message.
+     *
+     * @param msg
+     *            the detail message.
+     */
+    public KeyAlreadyExistsException(String msg) {
+        super(msg);
+    }
 
 }

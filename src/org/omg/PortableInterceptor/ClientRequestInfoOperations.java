@@ -353,135 +353,135 @@ package org.omg.PortableInterceptor;
  * @see ClientRequestInterceptor
  */
 public interface ClientRequestInfoOperations extends
-		org.omg.PortableInterceptor.RequestInfoOperations {
+        org.omg.PortableInterceptor.RequestInfoOperations {
 
-	/**
-	 * Returns the object which the client called to perform the operation.
-	 *
-	 * @see #effective_target
-	 */
-	org.omg.CORBA.Object target();
+    /**
+     * Returns the object which the client called to perform the operation.
+     *
+     * @see #effective_target
+     */
+    org.omg.CORBA.Object target();
 
-	/**
-	 * Returns the actual object on which the operation will be invoked. If the
-	 * <code>reply_status</code> is <code>LOCATION_FORWARD</code>, then on
-	 * subsequent requests, <code>effective_target</code> will contain the
-	 * forwarded IOR while target will remain unchanged.
-	 *
-	 * @see #target
-	 */
-	org.omg.CORBA.Object effective_target();
+    /**
+     * Returns the actual object on which the operation will be invoked. If the
+     * <code>reply_status</code> is <code>LOCATION_FORWARD</code>, then on
+     * subsequent requests, <code>effective_target</code> will contain the
+     * forwarded IOR while target will remain unchanged.
+     *
+     * @see #target
+     */
+    org.omg.CORBA.Object effective_target();
 
-	/**
-	 * Returns the profile that will be used to send the request. If a location
-	 * forward has occurred for this operation's object and that object's
-	 * profile changed accordingly, then this profile will be that located
-	 * profile.
-	 */
-	org.omg.IOP.TaggedProfile effective_profile();
+    /**
+     * Returns the profile that will be used to send the request. If a location
+     * forward has occurred for this operation's object and that object's
+     * profile changed accordingly, then this profile will be that located
+     * profile.
+     */
+    org.omg.IOP.TaggedProfile effective_profile();
 
-	/**
-	 * Returns an any which contains the exception to be returned to the client.
-	 * <p>
-	 * If the exception is a user exception which cannot be inserted into an any
-	 * (e.g., it is unknown or the bindings don t provide the
-	 * <code>TypeCode</code>), then this attribute will be an any containing the
-	 * system exception <code>UNKNOWN</code> with a standard minor code of 1.
-	 * However, the repository id of the exception is available in the
-	 * <code>received_exception_id</code> attribute.
-	 * 
-	 * @see #received_exception_id
-	 */
-	org.omg.CORBA.Any received_exception();
+    /**
+     * Returns an any which contains the exception to be returned to the client.
+     * <p>
+     * If the exception is a user exception which cannot be inserted into an any
+     * (e.g., it is unknown or the bindings don t provide the
+     * <code>TypeCode</code>), then this attribute will be an any containing the
+     * system exception <code>UNKNOWN</code> with a standard minor code of 1.
+     * However, the repository id of the exception is available in the
+     * <code>received_exception_id</code> attribute.
+     * 
+     * @see #received_exception_id
+     */
+    org.omg.CORBA.Any received_exception();
 
-	/**
-	 * Returns the repository id of the exception to be returned to the client.
-	 *
-	 * @see #received_exception
-	 * @see <a href="package-summary.html#unimpl">
-	 *      <code>PortableInterceptor</code> package comments for limitations /
-	 *      unimplemented features</a>
-	 */
-	String received_exception_id();
+    /**
+     * Returns the repository id of the exception to be returned to the client.
+     *
+     * @see #received_exception
+     * @see <a href="package-summary.html#unimpl">
+     *      <code>PortableInterceptor</code> package comments for limitations /
+     *      unimplemented features</a>
+     */
+    String received_exception_id();
 
-	/**
-	 * Returns the <code>IOP.TaggedComponent</code> with the given ID from the
-	 * profile selected for this request.
-	 * <p>
-	 * If there is more than one component for a given component ID, it is
-	 * undefined which component this operation returns. If there is more than
-	 * one component for a given component ID,
-	 * <code>get_effective_components</code> should be called instead.
-	 * 
-	 * @param id
-	 *           The component id of the component which is to be returned.
-	 * @return The <code>IOP.TaggedComponent</code> obtained with the given
-	 *         identifier.
-	 * @exception BAD_PARAM
-	 *                      thrown, with a standard minor code of 28, if no
-	 *                      component
-	 *                      exists for the given component ID.
-	 * @see #get_effective_components
-	 */
-	org.omg.IOP.TaggedComponent get_effective_component(int id);
+    /**
+     * Returns the <code>IOP.TaggedComponent</code> with the given ID from the
+     * profile selected for this request.
+     * <p>
+     * If there is more than one component for a given component ID, it is
+     * undefined which component this operation returns. If there is more than
+     * one component for a given component ID,
+     * <code>get_effective_components</code> should be called instead.
+     * 
+     * @param id
+     *           The component id of the component which is to be returned.
+     * @return The <code>IOP.TaggedComponent</code> obtained with the given
+     *         identifier.
+     * @exception BAD_PARAM
+     *                      thrown, with a standard minor code of 28, if no
+     *                      component
+     *                      exists for the given component ID.
+     * @see #get_effective_components
+     */
+    org.omg.IOP.TaggedComponent get_effective_component(int id);
 
-	/**
-	 * Returns an array of all tagged components with the given ID from the
-	 * profile selected for this request.
-	 * 
-	 * @param id
-	 *           The component id of the components which are to be returned.
-	 * @return An array of <code>TaggedComponent</code> objects, each of which
-	 *         contains the given identifier.
-	 * @exception BAD_PARAM
-	 *                      thrown, with a standard minor code of 28, if no
-	 *                      component
-	 *                      exists for the given component ID.
-	 * @see #get_effective_component
-	 */
-	org.omg.IOP.TaggedComponent[] get_effective_components(int id);
+    /**
+     * Returns an array of all tagged components with the given ID from the
+     * profile selected for this request.
+     * 
+     * @param id
+     *           The component id of the components which are to be returned.
+     * @return An array of <code>TaggedComponent</code> objects, each of which
+     *         contains the given identifier.
+     * @exception BAD_PARAM
+     *                      thrown, with a standard minor code of 28, if no
+     *                      component
+     *                      exists for the given component ID.
+     * @see #get_effective_component
+     */
+    org.omg.IOP.TaggedComponent[] get_effective_components(int id);
 
-	/**
-	 * Returns the given policy in effect for this operation.
-	 * 
-	 * @exception INV_POLICY
-	 *                       thrown, with a standard minor code of 1, if the
-	 *                       policy
-	 *                       type is not valid either because the specified type
-	 *                       is not
-	 *                       supported by this ORB or because a policy object of
-	 *                       that
-	 *                       type is not associated with this Object
-	 * @param type
-	 *             The policy type which specifies the policy to be returned.
-	 * @return The <code>CORBA.Policy</code> obtained with the given type.
-	 * @see <a href="package-summary.html#unimpl">
-	 *      <code>PortableInterceptor</code> package comments for limitations /
-	 *      unimplemented features</a>
-	 */
-	org.omg.CORBA.Policy get_request_policy(int type);
+    /**
+     * Returns the given policy in effect for this operation.
+     * 
+     * @exception INV_POLICY
+     *                       thrown, with a standard minor code of 1, if the
+     *                       policy
+     *                       type is not valid either because the specified type
+     *                       is not
+     *                       supported by this ORB or because a policy object of
+     *                       that
+     *                       type is not associated with this Object
+     * @param type
+     *             The policy type which specifies the policy to be returned.
+     * @return The <code>CORBA.Policy</code> obtained with the given type.
+     * @see <a href="package-summary.html#unimpl">
+     *      <code>PortableInterceptor</code> package comments for limitations /
+     *      unimplemented features</a>
+     */
+    org.omg.CORBA.Policy get_request_policy(int type);
 
-	/**
-	 * Allows Interceptors to add service contexts to the request.
-	 * <p>
-	 * There is no declaration of the order of the service contexts. They may or
-	 * may not appear in the order that they are added.
-	 *
-	 * @param service_context
-	 *                        The <code>IOP.ServiceContext</code> to be added to
-	 *                        the
-	 *                        request.
-	 * @param replace
-	 *                        Indicates the behavior of this operation when a
-	 *                        service
-	 *                        context already exists with the given ID. If
-	 *                        false, then
-	 *                        <code>BAD_INV_ORDER</code> with a standard minor
-	 *                        code of 15 is
-	 *                        thrown. If true, then the existing service context
-	 *                        is replaced
-	 *                        by the new one.
-	 */
-	void add_request_service_context(org.omg.IOP.ServiceContext service_context,
-			boolean replace);
+    /**
+     * Allows Interceptors to add service contexts to the request.
+     * <p>
+     * There is no declaration of the order of the service contexts. They may or
+     * may not appear in the order that they are added.
+     *
+     * @param service_context
+     *                        The <code>IOP.ServiceContext</code> to be added to
+     *                        the
+     *                        request.
+     * @param replace
+     *                        Indicates the behavior of this operation when a
+     *                        service
+     *                        context already exists with the given ID. If
+     *                        false, then
+     *                        <code>BAD_INV_ORDER</code> with a standard minor
+     *                        code of 15 is
+     *                        thrown. If true, then the existing service context
+     *                        is replaced
+     *                        by the new one.
+     */
+    void add_request_service_context(org.omg.IOP.ServiceContext service_context,
+            boolean replace);
 } // interface ClientRequestInfoOperations

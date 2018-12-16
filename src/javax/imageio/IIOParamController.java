@@ -76,23 +76,23 @@ package javax.imageio;
  */
 public interface IIOParamController {
 
-	/**
-	 * Activates the controller. If <code>true</code> is returned, all settings
-	 * in the <code>IIOParam</code> object should be ready for use in a read or
-	 * write operation. If <code>false</code> is returned, no settings in the
-	 * <code>IIOParam</code> object will be disturbed (<i>i.e.</i>, the user
-	 * canceled the operation).
-	 *
-	 * @param param
-	 *              the <code>IIOParam</code> object to be modified.
-	 *
-	 * @return <code>true</code> if the <code>IIOParam</code> has been modified,
-	 *         <code>false</code> otherwise.
-	 *
-	 * @exception IllegalArgumentException
-	 *                                     if <code>param</code> is
-	 *                                     <code>null</code> or is not an
-	 *                                     instance of the correct class.
-	 */
-	boolean activate(IIOParam param);
+    /**
+     * Activates the controller. If <code>true</code> is returned, all settings
+     * in the <code>IIOParam</code> object should be ready for use in a read or
+     * write operation. If <code>false</code> is returned, no settings in the
+     * <code>IIOParam</code> object will be disturbed (<i>i.e.</i>, the user
+     * canceled the operation).
+     *
+     * @param param
+     *              the <code>IIOParam</code> object to be modified.
+     *
+     * @return <code>true</code> if the <code>IIOParam</code> has been modified,
+     *         <code>false</code> otherwise.
+     *
+     * @exception IllegalArgumentException
+     *                                     if <code>param</code> is
+     *                                     <code>null</code> or is not an
+     *                                     instance of the correct class.
+     */
+    boolean activate(IIOParam param);
 }

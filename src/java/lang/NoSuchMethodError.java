@@ -17,23 +17,23 @@ package java.lang;
  * @since JDK1.0
  */
 public class NoSuchMethodError extends IncompatibleClassChangeError {
-	private static final long serialVersionUID = -3765521442372831335L;
+    private static final long serialVersionUID = -3765521442372831335L;
 
-	/**
-	 * Constructs a <code>NoSuchMethodError</code> with no detail message.
-	 */
-	public NoSuchMethodError() {
-		super();
-	}
+    /**
+     * Constructs a <code>NoSuchMethodError</code> with no detail message.
+     */
+    public NoSuchMethodError() {
+        super();
+    }
 
-	/**
-	 * Constructs a <code>NoSuchMethodError</code> with the specified detail
-	 * message.
-	 *
-	 * @param s
-	 *          the detail message.
-	 */
-	public NoSuchMethodError(String s) {
-		super(s);
-	}
+    /**
+     * Constructs a <code>NoSuchMethodError</code> with the specified detail
+     * message.
+     *
+     * @param s
+     *          the detail message.
+     */
+    public NoSuchMethodError(String s) {
+        super(s);
+    }
 }

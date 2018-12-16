@@ -38,19 +38,19 @@ package org.w3c.dom.css;
  * @since DOM Level 2
  */
 public interface RGBColor {
-	/**
-	 * This attribute is used for the red value of the RGB color.
-	 */
-	public CSSPrimitiveValue getRed();
+    /**
+     * This attribute is used for the red value of the RGB color.
+     */
+    public CSSPrimitiveValue getRed();
 
-	/**
-	 * This attribute is used for the green value of the RGB color.
-	 */
-	public CSSPrimitiveValue getGreen();
+    /**
+     * This attribute is used for the green value of the RGB color.
+     */
+    public CSSPrimitiveValue getGreen();
 
-	/**
-	 * This attribute is used for the blue value of the RGB color.
-	 */
-	public CSSPrimitiveValue getBlue();
+    /**
+     * This attribute is used for the blue value of the RGB color.
+     */
+    public CSSPrimitiveValue getBlue();
 
 }

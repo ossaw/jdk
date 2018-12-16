@@ -66,37 +66,37 @@ import static javax.lang.model.SourceVersion.*;
  */
 @SupportedSourceVersion(RELEASE_8)
 public class TypeKindVisitor8<R, P> extends TypeKindVisitor7<R, P> {
-	/**
-	 * Constructor for concrete subclasses to call; uses {@code null} for the
-	 * default value.
-	 */
-	protected TypeKindVisitor8() {
-		super(null);
-	}
+    /**
+     * Constructor for concrete subclasses to call; uses {@code null} for the
+     * default value.
+     */
+    protected TypeKindVisitor8() {
+        super(null);
+    }
 
-	/**
-	 * Constructor for concrete subclasses to call; uses the argument for the
-	 * default value.
-	 *
-	 * @param defaultValue
-	 *                     the value to assign to {@link #DEFAULT_VALUE}
-	 */
-	protected TypeKindVisitor8(R defaultValue) {
-		super(defaultValue);
-	}
+    /**
+     * Constructor for concrete subclasses to call; uses the argument for the
+     * default value.
+     *
+     * @param defaultValue
+     *                     the value to assign to {@link #DEFAULT_VALUE}
+     */
+    protected TypeKindVisitor8(R defaultValue) {
+        super(defaultValue);
+    }
 
-	/**
-	 * This implementation visits an {@code IntersectionType} by calling
-	 * {@code defaultAction}.
-	 *
-	 * @param t
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of {@code defaultAction}
-	 */
-	@Override
-	public R visitIntersection(IntersectionType t, P p) {
-		return defaultAction(t, p);
-	}
+    /**
+     * This implementation visits an {@code IntersectionType} by calling
+     * {@code defaultAction}.
+     *
+     * @param t
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of {@code defaultAction}
+     */
+    @Override
+    public R visitIntersection(IntersectionType t, P p) {
+        return defaultAction(t, p);
+    }
 }

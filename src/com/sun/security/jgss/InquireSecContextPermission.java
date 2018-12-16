@@ -17,24 +17,24 @@ import java.security.BasicPermission;
  */
 @jdk.Exported
 public final class InquireSecContextPermission extends BasicPermission {
-	private static final long serialVersionUID = -7131173349668647297L;
+    private static final long serialVersionUID = -7131173349668647297L;
 
-	/**
-	 * Constructs a new {@code InquireSecContextPermission} object with the
-	 * specified name. The name is the symbolic name of the {@link InquireType}
-	 * allowed.
-	 *
-	 * @param name
-	 *             the {@link InquireType} allowed by this permission. "*" means
-	 *             all {@link InquireType}s are allowed.
-	 *
-	 * @throws NullPointerException
-	 *                                  if <code>name</code> is
-	 *                                  <code>null</code>.
-	 * @throws IllegalArgumentException
-	 *                                  if <code>name</code> is empty.
-	 */
-	public InquireSecContextPermission(String name) {
-		super(name);
-	}
+    /**
+     * Constructs a new {@code InquireSecContextPermission} object with the
+     * specified name. The name is the symbolic name of the {@link InquireType}
+     * allowed.
+     *
+     * @param name
+     *             the {@link InquireType} allowed by this permission. "*" means
+     *             all {@link InquireType}s are allowed.
+     *
+     * @throws NullPointerException
+     *                                  if <code>name</code> is
+     *                                  <code>null</code>.
+     * @throws IllegalArgumentException
+     *                                  if <code>name</code> is empty.
+     */
+    public InquireSecContextPermission(String name) {
+        super(name);
+    }
 }

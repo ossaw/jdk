@@ -19,29 +19,29 @@ package org.omg.CosNaming;
  */
 public interface BindingIteratorOperations {
 
-	/**
-	 * This operation returns the next binding. If there are no more bindings,
-	 * false is returned.
-	 * 
-	 * @param b
-	 *          the returned binding
-	 */
-	boolean next_one(org.omg.CosNaming.BindingHolder b);
+    /**
+     * This operation returns the next binding. If there are no more bindings,
+     * false is returned.
+     * 
+     * @param b
+     *          the returned binding
+     */
+    boolean next_one(org.omg.CosNaming.BindingHolder b);
 
-	/**
-	 * This operation returns at most the requested number of bindings.
-	 * 
-	 * @param how_many
-	 *                 the maximum number of bindings tro return
-	 *                 <p>
-	 * 
-	 * @param bl
-	 *                 the returned bindings
-	 */
-	boolean next_n(int how_many, org.omg.CosNaming.BindingListHolder bl);
+    /**
+     * This operation returns at most the requested number of bindings.
+     * 
+     * @param how_many
+     *                 the maximum number of bindings tro return
+     *                 <p>
+     * 
+     * @param bl
+     *                 the returned bindings
+     */
+    boolean next_n(int how_many, org.omg.CosNaming.BindingListHolder bl);
 
-	/**
-	 * This operation destroys the iterator.
-	 */
-	void destroy();
+    /**
+     * This operation destroys the iterator.
+     */
+    void destroy();
 } // interface BindingIteratorOperations

@@ -57,7 +57,7 @@ package com.sun.org.apache.bcel.internal.generic;
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public interface IndexedInstruction {
-	public int getIndex();
+    public int getIndex();
 
-	public void setIndex(int index);
+    public void setIndex(int index);
 }

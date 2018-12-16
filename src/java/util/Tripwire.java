@@ -28,28 +28,28 @@ import java.security.PrivilegedAction;
  * @since 1.8
  */
 final class Tripwire {
-	private static final String TRIPWIRE_PROPERTY = "org.openjdk.java.util.stream.tripwire";
+    private static final String TRIPWIRE_PROPERTY = "org.openjdk.java.util.stream.tripwire";
 
-	/** Should debugging checks be enabled? */
-	static final boolean ENABLED = AccessController.doPrivileged(
-			(PrivilegedAction<Boolean>) () -> Boolean.getBoolean(
-					TRIPWIRE_PROPERTY));
+    /** Should debugging checks be enabled? */
+    static final boolean ENABLED = AccessController.doPrivileged(
+            (PrivilegedAction<Boolean>) () -> Boolean.getBoolean(
+                    TRIPWIRE_PROPERTY));
 
-	private Tripwire() {}
+    private Tripwire() {}
 
-	/**
-	 * Produces a log warning, using {@code PlatformLogger.getLogger(className)}
-	 * , using the supplied message. The class name of {@code trippingClass}
-	 * will be used as the first parameter to the message.
-	 *
-	 * @param trippingClass
-	 *                      Name of the class generating the message
-	 * @param msg
-	 *                      A message format string of the type expected by
-	 *                      {@link PlatformLogger}
-	 */
-	static void trip(Class<?> trippingClass, String msg) {
-		PlatformLogger.getLogger(trippingClass.getName()).warning(msg,
-				trippingClass.getName());
-	}
+    /**
+     * Produces a log warning, using {@code PlatformLogger.getLogger(className)}
+     * , using the supplied message. The class name of {@code trippingClass}
+     * will be used as the first parameter to the message.
+     *
+     * @param trippingClass
+     *                      Name of the class generating the message
+     * @param msg
+     *                      A message format string of the type expected by
+     *                      {@link PlatformLogger}
+     */
+    static void trip(Class<?> trippingClass, String msg) {
+        PlatformLogger.getLogger(trippingClass.getName()).warning(msg,
+                trippingClass.getName());
+    }
 }

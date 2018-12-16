@@ -15,14 +15,14 @@ import java.awt.Container;
  */
 public interface ViewFactory {
 
-	/**
-	 * Creates a view from the given structural element of a document.
-	 *
-	 * @param elem
-	 *             the piece of the document to build a view of
-	 * @return the view
-	 * @see View
-	 */
-	public View create(Element elem);
+    /**
+     * Creates a view from the given structural element of a document.
+     *
+     * @param elem
+     *             the piece of the document to build a view of
+     * @return the view
+     * @see View
+     */
+    public View create(Element elem);
 
 }

@@ -30,12 +30,12 @@ import com.sun.org.apache.xml.internal.dtm.DTMManager;
 import com.sun.org.apache.xpath.internal.NodeSetDTM;
 
 public class RTFIterator extends NodeSetDTM {
-	static final long serialVersionUID = 7658117366258528996L;
+    static final long serialVersionUID = 7658117366258528996L;
 
-	/**
-	 * Constructor for RTFIterator
-	 */
-	public RTFIterator(int root, DTMManager manager) {
-		super(root, manager);
-	}
+    /**
+     * Constructor for RTFIterator
+     */
+    public RTFIterator(int root, DTMManager manager) {
+        super(root, manager);
+    }
 }

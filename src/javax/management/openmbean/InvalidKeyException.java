@@ -15,23 +15,23 @@ package javax.management.openmbean;
  */
 public class InvalidKeyException extends IllegalArgumentException {
 
-	private static final long serialVersionUID = 4224269443946322062L;
+    private static final long serialVersionUID = 4224269443946322062L;
 
-	/**
-	 * An InvalidKeyException with no detail message.
-	 */
-	public InvalidKeyException() {
-		super();
-	}
+    /**
+     * An InvalidKeyException with no detail message.
+     */
+    public InvalidKeyException() {
+        super();
+    }
 
-	/**
-	 * An InvalidKeyException with a detail message.
-	 *
-	 * @param msg
-	 *            the detail message.
-	 */
-	public InvalidKeyException(String msg) {
-		super(msg);
-	}
+    /**
+     * An InvalidKeyException with a detail message.
+     *
+     * @param msg
+     *            the detail message.
+     */
+    public InvalidKeyException(String msg) {
+        super(msg);
+    }
 
 }

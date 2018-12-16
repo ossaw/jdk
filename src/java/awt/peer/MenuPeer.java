@@ -17,30 +17,30 @@ import java.awt.MenuItem;
  */
 public interface MenuPeer extends MenuItemPeer {
 
-	/**
-	 * Adds a separator (e.g. a horizontal line or similar) to the menu.
-	 *
-	 * @see Menu#addSeparator()
-	 */
-	void addSeparator();
+    /**
+     * Adds a separator (e.g. a horizontal line or similar) to the menu.
+     *
+     * @see Menu#addSeparator()
+     */
+    void addSeparator();
 
-	/**
-	 * Adds the specified menu item to the menu.
-	 *
-	 * @param item
-	 *             the menu item to add
-	 *
-	 * @see Menu#add(MenuItem)
-	 */
-	void addItem(MenuItem item);
+    /**
+     * Adds the specified menu item to the menu.
+     *
+     * @param item
+     *             the menu item to add
+     *
+     * @see Menu#add(MenuItem)
+     */
+    void addItem(MenuItem item);
 
-	/**
-	 * Removes the menu item at the specified index.
-	 *
-	 * @param index
-	 *              the index of the item to remove
-	 *
-	 * @see Menu#remove(int)
-	 */
-	void delItem(int index);
+    /**
+     * Removes the menu item at the specified index.
+     *
+     * @param index
+     *              the index of the item to remove
+     *
+     * @see Menu#remove(int)
+     */
+    void delItem(int index);
 }

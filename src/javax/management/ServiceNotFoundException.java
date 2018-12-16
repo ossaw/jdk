@@ -15,24 +15,24 @@ import javax.management.OperationsException;
  */
 public class ServiceNotFoundException extends OperationsException {
 
-	/* Serial version */
-	private static final long serialVersionUID = -3990675661956646827L;
+    /* Serial version */
+    private static final long serialVersionUID = -3990675661956646827L;
 
-	/**
-	 * Default constructor.
-	 */
-	public ServiceNotFoundException() {
-		super();
-	}
+    /**
+     * Default constructor.
+     */
+    public ServiceNotFoundException() {
+        super();
+    }
 
-	/**
-	 * Constructor that allows a specific error message to be specified.
-	 *
-	 * @param message
-	 *                the detail message.
-	 */
-	public ServiceNotFoundException(String message) {
-		super(message);
-	}
+    /**
+     * Constructor that allows a specific error message to be specified.
+     *
+     * @param message
+     *                the detail message.
+     */
+    public ServiceNotFoundException(String message) {
+        super(message);
+    }
 
 }

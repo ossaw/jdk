@@ -16,21 +16,21 @@ package org.omg.CORBA.TypeCodePackage;
 
 public final class Bounds extends org.omg.CORBA.UserException {
 
-	/**
-	 * Constructs a <code>Bounds</code> exception with no reason message.
-	 */
-	public Bounds() {
-		super();
-	}
+    /**
+     * Constructs a <code>Bounds</code> exception with no reason message.
+     */
+    public Bounds() {
+        super();
+    }
 
-	/**
-	 * Constructs a <code>Bounds</code> exception with the specified reason
-	 * message.
-	 * 
-	 * @param reason
-	 *               the String containing a reason message
-	 */
-	public Bounds(String reason) {
-		super(reason);
-	}
+    /**
+     * Constructs a <code>Bounds</code> exception with the specified reason
+     * message.
+     * 
+     * @param reason
+     *               the String containing a reason message
+     */
+    public Bounds(String reason) {
+        super(reason);
+    }
 }

@@ -28,23 +28,23 @@ package java.lang;
  * @since JDK1.0
  */
 public class NullPointerException extends RuntimeException {
-	private static final long serialVersionUID = 5162710183389028792L;
+    private static final long serialVersionUID = 5162710183389028792L;
 
-	/**
-	 * Constructs a {@code NullPointerException} with no detail message.
-	 */
-	public NullPointerException() {
-		super();
-	}
+    /**
+     * Constructs a {@code NullPointerException} with no detail message.
+     */
+    public NullPointerException() {
+        super();
+    }
 
-	/**
-	 * Constructs a {@code NullPointerException} with the specified detail
-	 * message.
-	 *
-	 * @param s
-	 *          the detail message.
-	 */
-	public NullPointerException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs a {@code NullPointerException} with the specified detail
+     * message.
+     *
+     * @param s
+     *          the detail message.
+     */
+    public NullPointerException(String s) {
+        super(s);
+    }
 }

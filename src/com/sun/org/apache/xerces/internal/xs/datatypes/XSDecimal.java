@@ -29,48 +29,48 @@ import java.math.BigInteger;
  */
 public interface XSDecimal {
 
-	/**
-	 * @return the <code>BigDecimal</code> representation of this object
-	 */
-	public BigDecimal getBigDecimal();
+    /**
+     * @return the <code>BigDecimal</code> representation of this object
+     */
+    public BigDecimal getBigDecimal();
 
-	/**
-	 * @return the <code>BigInteger</code> representation of this object
-	 * @exception NumberFormatException
-	 *                                  if the value cannot be represented as a
-	 *                                  <code>BigInteger</code>
-	 */
-	public BigInteger getBigInteger() throws NumberFormatException;
+    /**
+     * @return the <code>BigInteger</code> representation of this object
+     * @exception NumberFormatException
+     *                                  if the value cannot be represented as a
+     *                                  <code>BigInteger</code>
+     */
+    public BigInteger getBigInteger() throws NumberFormatException;
 
-	/**
-	 * @return the long value representation of this object
-	 * @exception NumberFormatException
-	 *                                  if the value cannot be represented as a
-	 *                                  <code>long</code>
-	 */
-	public long getLong() throws NumberFormatException;
+    /**
+     * @return the long value representation of this object
+     * @exception NumberFormatException
+     *                                  if the value cannot be represented as a
+     *                                  <code>long</code>
+     */
+    public long getLong() throws NumberFormatException;
 
-	/**
-	 * @return the int value representation of this object
-	 * @exception NumberFormatException
-	 *                                  if the value cannot be represented as a
-	 *                                  <code>int</code>
-	 */
-	public int getInt() throws NumberFormatException;
+    /**
+     * @return the int value representation of this object
+     * @exception NumberFormatException
+     *                                  if the value cannot be represented as a
+     *                                  <code>int</code>
+     */
+    public int getInt() throws NumberFormatException;
 
-	/**
-	 * @return the short value representation of this object
-	 * @exception NumberFormatException
-	 *                                  if the value cannot be represented as a
-	 *                                  <code>short</code>
-	 */
-	public short getShort() throws NumberFormatException;
+    /**
+     * @return the short value representation of this object
+     * @exception NumberFormatException
+     *                                  if the value cannot be represented as a
+     *                                  <code>short</code>
+     */
+    public short getShort() throws NumberFormatException;
 
-	/**
-	 * @return the byte value representation of this object
-	 * @exception NumberFormatException
-	 *                                  if the value cannot be represented as a
-	 *                                  <code>byte</code>
-	 */
-	public byte getByte() throws NumberFormatException;
+    /**
+     * @return the byte value representation of this object
+     * @exception NumberFormatException
+     *                                  if the value cannot be represented as a
+     *                                  <code>byte</code>
+     */
+    public byte getByte() throws NumberFormatException;
 }

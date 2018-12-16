@@ -19,26 +19,26 @@ package javax.security.auth.login;
  */
 public class AccountExpiredException extends AccountException {
 
-	private static final long serialVersionUID = -6064064890162661560L;
+    private static final long serialVersionUID = -6064064890162661560L;
 
-	/**
-	 * Constructs a AccountExpiredException with no detail message. A detail
-	 * message is a String that describes this particular exception.
-	 */
-	public AccountExpiredException() {
-		super();
-	}
+    /**
+     * Constructs a AccountExpiredException with no detail message. A detail
+     * message is a String that describes this particular exception.
+     */
+    public AccountExpiredException() {
+        super();
+    }
 
-	/**
-	 * Constructs a AccountExpiredException with the specified detail message. A
-	 * detail message is a String that describes this particular exception.
-	 *
-	 * <p>
-	 *
-	 * @param msg
-	 *            the detail message.
-	 */
-	public AccountExpiredException(String msg) {
-		super(msg);
-	}
+    /**
+     * Constructs a AccountExpiredException with the specified detail message. A
+     * detail message is a String that describes this particular exception.
+     *
+     * <p>
+     *
+     * @param msg
+     *            the detail message.
+     */
+    public AccountExpiredException(String msg) {
+        super(msg);
+    }
 }

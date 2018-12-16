@@ -31,64 +31,64 @@ import org.omg.CORBA.portable.OutputStream;
  */
 public final class IntHolder implements Streamable {
 
-	/**
-	 * The <code>int</code> value held by this <code>IntHolder</code> object in
-	 * its <code>value</code> field.
-	 */
-	public int value;
+    /**
+     * The <code>int</code> value held by this <code>IntHolder</code> object in
+     * its <code>value</code> field.
+     */
+    public int value;
 
-	/**
-	 * Constructs a new <code>IntHolder</code> object with its
-	 * <code>value</code> field initialized to <code>0</code>.
-	 */
-	public IntHolder() {}
+    /**
+     * Constructs a new <code>IntHolder</code> object with its
+     * <code>value</code> field initialized to <code>0</code>.
+     */
+    public IntHolder() {}
 
-	/**
-	 * Constructs a new <code>IntHolder</code> object with its
-	 * <code>value</code> field initialized to the given <code>int</code>.
-	 * 
-	 * @param initial
-	 *                the <code>int</code> with which to initialize the
-	 *                <code>value</code> field of the newly-created
-	 *                <code>IntHolder</code> object
-	 */
-	public IntHolder(int initial) {
-		value = initial;
-	}
+    /**
+     * Constructs a new <code>IntHolder</code> object with its
+     * <code>value</code> field initialized to the given <code>int</code>.
+     * 
+     * @param initial
+     *                the <code>int</code> with which to initialize the
+     *                <code>value</code> field of the newly-created
+     *                <code>IntHolder</code> object
+     */
+    public IntHolder(int initial) {
+        value = initial;
+    }
 
-	/**
-	 * Reads unmarshalled data from <code>input</code> and assigns it to the
-	 * <code>value</code> field in this <code>IntHolder</code> object.
-	 *
-	 * @param input
-	 *              the <code>InputStream</code> object containing CDR formatted
-	 *              data from the wire
-	 */
-	public void _read(InputStream input) {
-		value = input.read_long();
-	}
+    /**
+     * Reads unmarshalled data from <code>input</code> and assigns it to the
+     * <code>value</code> field in this <code>IntHolder</code> object.
+     *
+     * @param input
+     *              the <code>InputStream</code> object containing CDR formatted
+     *              data from the wire
+     */
+    public void _read(InputStream input) {
+        value = input.read_long();
+    }
 
-	/**
-	 * Marshals the value in this <code>IntHolder</code> object's
-	 * <code>value</code> field to the output stream <code>output</code>.
-	 *
-	 * @param output
-	 *               the <code>OutputStream</code> object that will contain the
-	 *               CDR
-	 *               formatted data
-	 */
-	public void _write(OutputStream output) {
-		output.write_long(value);
-	}
+    /**
+     * Marshals the value in this <code>IntHolder</code> object's
+     * <code>value</code> field to the output stream <code>output</code>.
+     *
+     * @param output
+     *               the <code>OutputStream</code> object that will contain the
+     *               CDR
+     *               formatted data
+     */
+    public void _write(OutputStream output) {
+        output.write_long(value);
+    }
 
-	/**
-	 * Retrieves the <code>TypeCode</code> object that corresponds to the value
-	 * held in this <code>IntHolder</code> object's <code>value</code> field.
-	 *
-	 * @return the type code for the value held in this <code>IntHolder</code>
-	 *         object
-	 */
-	public org.omg.CORBA.TypeCode _type() {
-		return ORB.init().get_primitive_tc(TCKind.tk_long);
-	}
+    /**
+     * Retrieves the <code>TypeCode</code> object that corresponds to the value
+     * held in this <code>IntHolder</code> object's <code>value</code> field.
+     *
+     * @return the type code for the value held in this <code>IntHolder</code>
+     *         object
+     */
+    public org.omg.CORBA.TypeCode _type() {
+        return ORB.init().get_primitive_tc(TCKind.tk_long);
+    }
 }

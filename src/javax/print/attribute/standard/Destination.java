@@ -33,68 +33,68 @@ import javax.print.attribute.PrintJobAttribute;
  * @author Phil Race.
  */
 public final class Destination extends URISyntax implements PrintJobAttribute,
-		PrintRequestAttribute {
+        PrintRequestAttribute {
 
-	private static final long serialVersionUID = 6776739171700415321L;
+    private static final long serialVersionUID = 6776739171700415321L;
 
-	/**
-	 * Constructs a new destination attribute with the specified URI.
-	 *
-	 * @param uri
-	 *            URI.
-	 *
-	 * @exception NullPointerException
-	 *                                 (unchecked exception) Thrown if
-	 *                                 <CODE>uri</CODE> is null.
-	 */
-	public Destination(URI uri) {
-		super(uri);
-	}
+    /**
+     * Constructs a new destination attribute with the specified URI.
+     *
+     * @param uri
+     *            URI.
+     *
+     * @exception NullPointerException
+     *                                 (unchecked exception) Thrown if
+     *                                 <CODE>uri</CODE> is null.
+     */
+    public Destination(URI uri) {
+        super(uri);
+    }
 
-	/**
-	 * Returns whether this destination attribute is equivalent to the passed in
-	 * object. To be equivalent, all of the following conditions must be true:
-	 * <OL TYPE=1>
-	 * <LI><CODE>object</CODE> is not null.
-	 * <LI><CODE>object</CODE> is an instance of class Destination.
-	 * <LI>This destination attribute's URI and <CODE>object</CODE>'s URI are
-	 * equal.
-	 * </OL>
-	 *
-	 * @param object
-	 *               Object to compare to.
-	 *
-	 * @return True if <CODE>object</CODE> is equivalent to this destination
-	 *         attribute, false otherwise.
-	 */
-	public boolean equals(Object object) {
-		return (super.equals(object) && object instanceof Destination);
-	}
+    /**
+     * Returns whether this destination attribute is equivalent to the passed in
+     * object. To be equivalent, all of the following conditions must be true:
+     * <OL TYPE=1>
+     * <LI><CODE>object</CODE> is not null.
+     * <LI><CODE>object</CODE> is an instance of class Destination.
+     * <LI>This destination attribute's URI and <CODE>object</CODE>'s URI are
+     * equal.
+     * </OL>
+     *
+     * @param object
+     *               Object to compare to.
+     *
+     * @return True if <CODE>object</CODE> is equivalent to this destination
+     *         attribute, false otherwise.
+     */
+    public boolean equals(Object object) {
+        return (super.equals(object) && object instanceof Destination);
+    }
 
-	/**
-	 * Get the printing attribute class which is to be used as the "category"
-	 * for this printing attribute value.
-	 * <P>
-	 * For class Destination, the category is class Destination itself.
-	 *
-	 * @return Printing attribute class (category), an instance of class
-	 *         {@link java.lang.Class java.lang.Class}.
-	 */
-	public final Class<? extends Attribute> getCategory() {
-		return Destination.class;
-	}
+    /**
+     * Get the printing attribute class which is to be used as the "category"
+     * for this printing attribute value.
+     * <P>
+     * For class Destination, the category is class Destination itself.
+     *
+     * @return Printing attribute class (category), an instance of class
+     *         {@link java.lang.Class java.lang.Class}.
+     */
+    public final Class<? extends Attribute> getCategory() {
+        return Destination.class;
+    }
 
-	/**
-	 * Get the name of the category of which this attribute value is an
-	 * instance.
-	 * <P>
-	 * For class Destination, the category name is
-	 * <CODE>"spool-data-destination"</CODE>.
-	 *
-	 * @return Attribute category name.
-	 */
-	public final String getName() {
-		return "spool-data-destination";
-	}
+    /**
+     * Get the name of the category of which this attribute value is an
+     * instance.
+     * <P>
+     * For class Destination, the category name is
+     * <CODE>"spool-data-destination"</CODE>.
+     *
+     * @return Attribute category name.
+     */
+    public final String getName() {
+        return "spool-data-destination";
+    }
 
 }

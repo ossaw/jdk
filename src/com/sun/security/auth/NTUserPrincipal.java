@@ -25,103 +25,103 @@ import java.security.Principal;
 @jdk.Exported
 public class NTUserPrincipal implements Principal, java.io.Serializable {
 
-	private static final long serialVersionUID = -8737649811939033735L;
+    private static final long serialVersionUID = -8737649811939033735L;
 
-	/**
-	 * @serial
-	 */
-	private String name;
+    /**
+     * @serial
+     */
+    private String name;
 
-	/**
-	 * Create an <code>NTUserPrincipal</code> with a Windows NT username.
-	 *
-	 * <p>
-	 *
-	 * @param name
-	 *             the Windows NT username for this user.
-	 *             <p>
-	 *
-	 * @exception NullPointerException
-	 *                                 if the <code>name</code> is
-	 *                                 <code>null</code>.
-	 */
-	public NTUserPrincipal(String name) {
-		if (name == null) {
-			java.text.MessageFormat form = new java.text.MessageFormat(
-					sun.security.util.ResourcesMgr.getString(
-							"invalid.null.input.value",
-							"sun.security.util.AuthResources"));
-			Object[] source = { "name" };
-			throw new NullPointerException(form.format(source));
-		}
-		this.name = name;
-	}
+    /**
+     * Create an <code>NTUserPrincipal</code> with a Windows NT username.
+     *
+     * <p>
+     *
+     * @param name
+     *             the Windows NT username for this user.
+     *             <p>
+     *
+     * @exception NullPointerException
+     *                                 if the <code>name</code> is
+     *                                 <code>null</code>.
+     */
+    public NTUserPrincipal(String name) {
+        if (name == null) {
+            java.text.MessageFormat form = new java.text.MessageFormat(
+                    sun.security.util.ResourcesMgr.getString(
+                            "invalid.null.input.value",
+                            "sun.security.util.AuthResources"));
+            Object[] source = { "name" };
+            throw new NullPointerException(form.format(source));
+        }
+        this.name = name;
+    }
 
-	/**
-	 * Return the Windows NT username for this <code>NTPrincipal</code>.
-	 *
-	 * <p>
-	 *
-	 * @return the Windows NT username for this <code>NTPrincipal</code>
-	 */
-	public String getName() {
-		return name;
-	}
+    /**
+     * Return the Windows NT username for this <code>NTPrincipal</code>.
+     *
+     * <p>
+     *
+     * @return the Windows NT username for this <code>NTPrincipal</code>
+     */
+    public String getName() {
+        return name;
+    }
 
-	/**
-	 * Return a string representation of this <code>NTPrincipal</code>.
-	 *
-	 * <p>
-	 *
-	 * @return a string representation of this <code>NTPrincipal</code>.
-	 */
-	public String toString() {
-		java.text.MessageFormat form = new java.text.MessageFormat(
-				sun.security.util.ResourcesMgr.getString("NTUserPrincipal.name",
-						"sun.security.util.AuthResources"));
-		Object[] source = { name };
-		return form.format(source);
-	}
+    /**
+     * Return a string representation of this <code>NTPrincipal</code>.
+     *
+     * <p>
+     *
+     * @return a string representation of this <code>NTPrincipal</code>.
+     */
+    public String toString() {
+        java.text.MessageFormat form = new java.text.MessageFormat(
+                sun.security.util.ResourcesMgr.getString("NTUserPrincipal.name",
+                        "sun.security.util.AuthResources"));
+        Object[] source = { name };
+        return form.format(source);
+    }
 
-	/**
-	 * Compares the specified Object with this <code>NTUserPrincipal</code> for
-	 * equality. Returns true if the given object is also a
-	 * <code>NTUserPrincipal</code> and the two NTUserPrincipals have the same
-	 * name.
-	 *
-	 * <p>
-	 *
-	 * @param o
-	 *          Object to be compared for equality with this
-	 *          <code>NTPrincipal</code>.
-	 *
-	 * @return true if the specified Object is equal equal to this
-	 *         <code>NTPrincipal</code>.
-	 */
-	public boolean equals(Object o) {
-		if (o == null)
-			return false;
+    /**
+     * Compares the specified Object with this <code>NTUserPrincipal</code> for
+     * equality. Returns true if the given object is also a
+     * <code>NTUserPrincipal</code> and the two NTUserPrincipals have the same
+     * name.
+     *
+     * <p>
+     *
+     * @param o
+     *          Object to be compared for equality with this
+     *          <code>NTPrincipal</code>.
+     *
+     * @return true if the specified Object is equal equal to this
+     *         <code>NTPrincipal</code>.
+     */
+    public boolean equals(Object o) {
+        if (o == null)
+            return false;
 
-		if (this == o)
-			return true;
+        if (this == o)
+            return true;
 
-		if (!(o instanceof NTUserPrincipal))
-			return false;
-		NTUserPrincipal that = (NTUserPrincipal) o;
+        if (!(o instanceof NTUserPrincipal))
+            return false;
+        NTUserPrincipal that = (NTUserPrincipal) o;
 
-		if (name.equals(that.getName()))
-			return true;
-		return false;
-	}
+        if (name.equals(that.getName()))
+            return true;
+        return false;
+    }
 
-	/**
-	 * Return a hash code for this <code>NTUserPrincipal</code>.
-	 *
-	 * <p>
-	 *
-	 * @return a hash code for this <code>NTUserPrincipal</code>.
-	 */
-	public int hashCode() {
-		return this.getName().hashCode();
-	}
+    /**
+     * Return a hash code for this <code>NTUserPrincipal</code>.
+     *
+     * <p>
+     *
+     * @return a hash code for this <code>NTUserPrincipal</code>.
+     */
+    public int hashCode() {
+        return this.getName().hashCode();
+    }
 }

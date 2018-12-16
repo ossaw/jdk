@@ -17,14 +17,14 @@ import java.awt.PopupMenu;
  */
 public interface PopupMenuPeer extends MenuPeer {
 
-	/**
-	 * Shows the popup menu.
-	 *
-	 * @param e
-	 *          a synthetic event describing the origin and location of the
-	 *          popup menu
-	 *
-	 * @see PopupMenu#show(java.awt.Component, int, int)
-	 */
-	void show(Event e);
+    /**
+     * Shows the popup menu.
+     *
+     * @param e
+     *          a synthetic event describing the origin and location of the
+     *          popup menu
+     *
+     * @see PopupMenu#show(java.awt.Component, int, int)
+     */
+    void show(Event e);
 }

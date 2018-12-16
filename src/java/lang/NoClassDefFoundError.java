@@ -18,23 +18,23 @@ package java.lang;
  * @since JDK1.0
  */
 public class NoClassDefFoundError extends LinkageError {
-	private static final long serialVersionUID = 9095859863287012458L;
+    private static final long serialVersionUID = 9095859863287012458L;
 
-	/**
-	 * Constructs a <code>NoClassDefFoundError</code> with no detail message.
-	 */
-	public NoClassDefFoundError() {
-		super();
-	}
+    /**
+     * Constructs a <code>NoClassDefFoundError</code> with no detail message.
+     */
+    public NoClassDefFoundError() {
+        super();
+    }
 
-	/**
-	 * Constructs a <code>NoClassDefFoundError</code> with the specified detail
-	 * message.
-	 *
-	 * @param s
-	 *          the detail message.
-	 */
-	public NoClassDefFoundError(String s) {
-		super(s);
-	}
+    /**
+     * Constructs a <code>NoClassDefFoundError</code> with the specified detail
+     * message.
+     *
+     * @param s
+     *          the detail message.
+     */
+    public NoClassDefFoundError(String s) {
+        super(s);
+    }
 }

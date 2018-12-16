@@ -13,18 +13,18 @@ import org.omg.CORBA.INTERNAL;
 import org.omg.CORBA.CompletionStatus;
 
 public class PropertyOnlyDataCollector extends DataCollectorBase {
-	public PropertyOnlyDataCollector(Properties props, String localHostName,
-			String configurationHostName) {
-		super(props, localHostName, configurationHostName);
-	}
+    public PropertyOnlyDataCollector(Properties props, String localHostName,
+            String configurationHostName) {
+        super(props, localHostName, configurationHostName);
+    }
 
-	public boolean isApplet() {
-		return false;
-	}
+    public boolean isApplet() {
+        return false;
+    }
 
-	protected void collect() {
-		checkPropertyDefaults();
+    protected void collect() {
+        checkPropertyDefaults();
 
-		findPropertiesFromProperties();
-	}
+        findPropertiesFromProperties();
+    }
 }

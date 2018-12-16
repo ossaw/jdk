@@ -13,8 +13,8 @@ package org.omg.CORBA;
  * @see org.omg.CORBA.TypeCode
  */
 public interface VM_ABSTRACT {
-	/**
-	 * The value representing an abstract interface value type in a typecode.
-	 */
-	final short value = (short) (2L);
+    /**
+     * The value representing an abstract interface value type in a typecode.
+     */
+    final short value = (short) (2L);
 }

@@ -14,12 +14,12 @@ package java.lang.reflect;
  */
 public interface AnnotatedArrayType extends AnnotatedType {
 
-	/**
-	 * Returns the potentially annotated generic component type of this array
-	 * type.
-	 *
-	 * @return the potentially annotated generic component type of this array
-	 *         type
-	 */
-	AnnotatedType getAnnotatedGenericComponentType();
+    /**
+     * Returns the potentially annotated generic component type of this array
+     * type.
+     *
+     * @return the potentially annotated generic component type of this array
+     *         type
+     */
+    AnnotatedType getAnnotatedGenericComponentType();
 }

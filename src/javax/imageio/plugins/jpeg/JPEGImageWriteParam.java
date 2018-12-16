@@ -72,230 +72,230 @@ import com.sun.imageio.plugins.jpeg.JPEG;
  */
 public class JPEGImageWriteParam extends ImageWriteParam {
 
-	private JPEGQTable[] qTables = null;
-	private JPEGHuffmanTable[] DCHuffmanTables = null;
-	private JPEGHuffmanTable[] ACHuffmanTables = null;
-	private boolean optimizeHuffman = false;
-	private String[] compressionNames = { "JPEG" };
-	private float[] qualityVals = { 0.00F, 0.30F, 0.75F, 1.00F };
-	private String[] qualityDescs = { "Low quality", // 0.00 -> 0.30
-			"Medium quality", // 0.30 -> 0.75
-			"Visually lossless" // 0.75 -> 1.00
-	};
+    private JPEGQTable[] qTables = null;
+    private JPEGHuffmanTable[] DCHuffmanTables = null;
+    private JPEGHuffmanTable[] ACHuffmanTables = null;
+    private boolean optimizeHuffman = false;
+    private String[] compressionNames = { "JPEG" };
+    private float[] qualityVals = { 0.00F, 0.30F, 0.75F, 1.00F };
+    private String[] qualityDescs = { "Low quality", // 0.00 -> 0.30
+            "Medium quality", // 0.30 -> 0.75
+            "Visually lossless" // 0.75 -> 1.00
+    };
 
-	/**
-	 * Constructs a <code>JPEGImageWriteParam</code>. Tiling is not supported.
-	 * Progressive encoding is supported. The default progressive mode is
-	 * MODE_DISABLED. A single form of compression, named "JPEG", is supported.
-	 * The default compression quality is 0.75.
-	 *
-	 * @param locale
-	 *               a <code>Locale</code> to be used by the superclass to
-	 *               localize
-	 *               compression type names and quality descriptions, or
-	 *               <code>null</code>.
-	 */
-	public JPEGImageWriteParam(Locale locale) {
-		super(locale);
-		this.canWriteProgressive = true;
-		this.progressiveMode = MODE_DISABLED;
-		this.canWriteCompressed = true;
-		this.compressionTypes = compressionNames;
-		this.compressionType = compressionTypes[0];
-		this.compressionQuality = JPEG.DEFAULT_QUALITY;
-	}
+    /**
+     * Constructs a <code>JPEGImageWriteParam</code>. Tiling is not supported.
+     * Progressive encoding is supported. The default progressive mode is
+     * MODE_DISABLED. A single form of compression, named "JPEG", is supported.
+     * The default compression quality is 0.75.
+     *
+     * @param locale
+     *               a <code>Locale</code> to be used by the superclass to
+     *               localize
+     *               compression type names and quality descriptions, or
+     *               <code>null</code>.
+     */
+    public JPEGImageWriteParam(Locale locale) {
+        super(locale);
+        this.canWriteProgressive = true;
+        this.progressiveMode = MODE_DISABLED;
+        this.canWriteCompressed = true;
+        this.compressionTypes = compressionNames;
+        this.compressionType = compressionTypes[0];
+        this.compressionQuality = JPEG.DEFAULT_QUALITY;
+    }
 
-	/**
-	 * Removes any previous compression quality setting.
-	 *
-	 * <p>
-	 * The default implementation resets the compression quality to
-	 * <code>0.75F</code>.
-	 *
-	 * @exception IllegalStateException
-	 *                                  if the compression mode is not
-	 *                                  <code>MODE_EXPLICIT</code>.
-	 */
-	public void unsetCompression() {
-		if (getCompressionMode() != MODE_EXPLICIT) {
-			throw new IllegalStateException(
-					"Compression mode not MODE_EXPLICIT!");
-		}
-		this.compressionQuality = JPEG.DEFAULT_QUALITY;
-	}
+    /**
+     * Removes any previous compression quality setting.
+     *
+     * <p>
+     * The default implementation resets the compression quality to
+     * <code>0.75F</code>.
+     *
+     * @exception IllegalStateException
+     *                                  if the compression mode is not
+     *                                  <code>MODE_EXPLICIT</code>.
+     */
+    public void unsetCompression() {
+        if (getCompressionMode() != MODE_EXPLICIT) {
+            throw new IllegalStateException(
+                    "Compression mode not MODE_EXPLICIT!");
+        }
+        this.compressionQuality = JPEG.DEFAULT_QUALITY;
+    }
 
-	/**
-	 * Returns <code>false</code> since the JPEG plug-in only supports lossy
-	 * compression.
-	 *
-	 * @return <code>false</code>.
-	 *
-	 * @exception IllegalStateException
-	 *                                  if the compression mode is not
-	 *                                  <code>MODE_EXPLICIT</code>.
-	 */
-	public boolean isCompressionLossless() {
-		if (getCompressionMode() != MODE_EXPLICIT) {
-			throw new IllegalStateException(
-					"Compression mode not MODE_EXPLICIT!");
-		}
-		return false;
-	}
+    /**
+     * Returns <code>false</code> since the JPEG plug-in only supports lossy
+     * compression.
+     *
+     * @return <code>false</code>.
+     *
+     * @exception IllegalStateException
+     *                                  if the compression mode is not
+     *                                  <code>MODE_EXPLICIT</code>.
+     */
+    public boolean isCompressionLossless() {
+        if (getCompressionMode() != MODE_EXPLICIT) {
+            throw new IllegalStateException(
+                    "Compression mode not MODE_EXPLICIT!");
+        }
+        return false;
+    }
 
-	public String[] getCompressionQualityDescriptions() {
-		if (getCompressionMode() != MODE_EXPLICIT) {
-			throw new IllegalStateException(
-					"Compression mode not MODE_EXPLICIT!");
-		}
-		if ((getCompressionTypes() != null) && (getCompressionType() == null)) {
-			throw new IllegalStateException("No compression type set!");
-		}
-		return (String[]) qualityDescs.clone();
-	}
+    public String[] getCompressionQualityDescriptions() {
+        if (getCompressionMode() != MODE_EXPLICIT) {
+            throw new IllegalStateException(
+                    "Compression mode not MODE_EXPLICIT!");
+        }
+        if ((getCompressionTypes() != null) && (getCompressionType() == null)) {
+            throw new IllegalStateException("No compression type set!");
+        }
+        return (String[]) qualityDescs.clone();
+    }
 
-	public float[] getCompressionQualityValues() {
-		if (getCompressionMode() != MODE_EXPLICIT) {
-			throw new IllegalStateException(
-					"Compression mode not MODE_EXPLICIT!");
-		}
-		if ((getCompressionTypes() != null) && (getCompressionType() == null)) {
-			throw new IllegalStateException("No compression type set!");
-		}
-		return (float[]) qualityVals.clone();
-	}
+    public float[] getCompressionQualityValues() {
+        if (getCompressionMode() != MODE_EXPLICIT) {
+            throw new IllegalStateException(
+                    "Compression mode not MODE_EXPLICIT!");
+        }
+        if ((getCompressionTypes() != null) && (getCompressionType() == null)) {
+            throw new IllegalStateException("No compression type set!");
+        }
+        return (float[]) qualityVals.clone();
+    }
 
-	/**
-	 * Returns <code>true</code> if tables are currently set.
-	 *
-	 * @return <code>true</code> if tables are present.
-	 */
-	public boolean areTablesSet() {
-		return (qTables != null);
-	}
+    /**
+     * Returns <code>true</code> if tables are currently set.
+     *
+     * @return <code>true</code> if tables are present.
+     */
+    public boolean areTablesSet() {
+        return (qTables != null);
+    }
 
-	/**
-	 * Sets the quantization and Huffman tables to use in encoding abbreviated
-	 * streams. There may be a maximum of 4 tables of each type. These tables
-	 * are ignored if tables are specified in the metadata. All arguments must
-	 * be non-<code>null</code>. The two arrays of Huffman tables must have the
-	 * same number of elements. The table specifiers in the frame and scan
-	 * headers in the metadata are assumed to be equivalent to indices into
-	 * these arrays. The argument arrays are copied by this method.
-	 *
-	 * @param qTables
-	 *                        An array of quantization table objects.
-	 * @param DCHuffmanTables
-	 *                        An array of Huffman table objects.
-	 * @param ACHuffmanTables
-	 *                        An array of Huffman table objects.
-	 *
-	 * @exception IllegalArgumentException
-	 *                                     if any of the arguments is
-	 *                                     <code>null</code> or has more
-	 *                                     than 4 elements, or if the numbers of
-	 *                                     DC and AC tables
-	 *                                     differ.
-	 *
-	 * @see #unsetEncodeTables
-	 */
-	public void setEncodeTables(JPEGQTable[] qTables,
-			JPEGHuffmanTable[] DCHuffmanTables,
-			JPEGHuffmanTable[] ACHuffmanTables) {
-		if ((qTables == null) || (DCHuffmanTables == null)
-				|| (ACHuffmanTables == null) || (qTables.length > 4)
-				|| (DCHuffmanTables.length > 4) || (ACHuffmanTables.length > 4)
-				|| (DCHuffmanTables.length != ACHuffmanTables.length)) {
-			throw new IllegalArgumentException("Invalid JPEG table arrays");
-		}
-		this.qTables = (JPEGQTable[]) qTables.clone();
-		this.DCHuffmanTables = (JPEGHuffmanTable[]) DCHuffmanTables.clone();
-		this.ACHuffmanTables = (JPEGHuffmanTable[]) ACHuffmanTables.clone();
-	}
+    /**
+     * Sets the quantization and Huffman tables to use in encoding abbreviated
+     * streams. There may be a maximum of 4 tables of each type. These tables
+     * are ignored if tables are specified in the metadata. All arguments must
+     * be non-<code>null</code>. The two arrays of Huffman tables must have the
+     * same number of elements. The table specifiers in the frame and scan
+     * headers in the metadata are assumed to be equivalent to indices into
+     * these arrays. The argument arrays are copied by this method.
+     *
+     * @param qTables
+     *                        An array of quantization table objects.
+     * @param DCHuffmanTables
+     *                        An array of Huffman table objects.
+     * @param ACHuffmanTables
+     *                        An array of Huffman table objects.
+     *
+     * @exception IllegalArgumentException
+     *                                     if any of the arguments is
+     *                                     <code>null</code> or has more
+     *                                     than 4 elements, or if the numbers of
+     *                                     DC and AC tables
+     *                                     differ.
+     *
+     * @see #unsetEncodeTables
+     */
+    public void setEncodeTables(JPEGQTable[] qTables,
+            JPEGHuffmanTable[] DCHuffmanTables,
+            JPEGHuffmanTable[] ACHuffmanTables) {
+        if ((qTables == null) || (DCHuffmanTables == null)
+                || (ACHuffmanTables == null) || (qTables.length > 4)
+                || (DCHuffmanTables.length > 4) || (ACHuffmanTables.length > 4)
+                || (DCHuffmanTables.length != ACHuffmanTables.length)) {
+            throw new IllegalArgumentException("Invalid JPEG table arrays");
+        }
+        this.qTables = (JPEGQTable[]) qTables.clone();
+        this.DCHuffmanTables = (JPEGHuffmanTable[]) DCHuffmanTables.clone();
+        this.ACHuffmanTables = (JPEGHuffmanTable[]) ACHuffmanTables.clone();
+    }
 
-	/**
-	 * Removes any quantization and Huffman tables that are currently set.
-	 *
-	 * @see #setEncodeTables
-	 */
-	public void unsetEncodeTables() {
-		this.qTables = null;
-		this.DCHuffmanTables = null;
-		this.ACHuffmanTables = null;
-	}
+    /**
+     * Removes any quantization and Huffman tables that are currently set.
+     *
+     * @see #setEncodeTables
+     */
+    public void unsetEncodeTables() {
+        this.qTables = null;
+        this.DCHuffmanTables = null;
+        this.ACHuffmanTables = null;
+    }
 
-	/**
-	 * Returns a copy of the array of quantization tables set on the most recent
-	 * call to <code>setEncodeTables</code>, or <code>null</code> if tables are
-	 * not currently set.
-	 *
-	 * @return an array of <code>JPEGQTable</code> objects, or <code>null</code>
-	 *         .
-	 *
-	 * @see #setEncodeTables
-	 */
-	public JPEGQTable[] getQTables() {
-		return (qTables != null) ? (JPEGQTable[]) qTables.clone() : null;
-	}
+    /**
+     * Returns a copy of the array of quantization tables set on the most recent
+     * call to <code>setEncodeTables</code>, or <code>null</code> if tables are
+     * not currently set.
+     *
+     * @return an array of <code>JPEGQTable</code> objects, or <code>null</code>
+     *         .
+     *
+     * @see #setEncodeTables
+     */
+    public JPEGQTable[] getQTables() {
+        return (qTables != null) ? (JPEGQTable[]) qTables.clone() : null;
+    }
 
-	/**
-	 * Returns a copy of the array of DC Huffman tables set on the most recent
-	 * call to <code>setEncodeTables</code>, or <code>null</code> if tables are
-	 * not currently set.
-	 *
-	 * @return an array of <code>JPEGHuffmanTable</code> objects, or
-	 *         <code>null</code>.
-	 *
-	 * @see #setEncodeTables
-	 */
-	public JPEGHuffmanTable[] getDCHuffmanTables() {
-		return (DCHuffmanTables != null) ? (JPEGHuffmanTable[]) DCHuffmanTables
-				.clone() : null;
-	}
+    /**
+     * Returns a copy of the array of DC Huffman tables set on the most recent
+     * call to <code>setEncodeTables</code>, or <code>null</code> if tables are
+     * not currently set.
+     *
+     * @return an array of <code>JPEGHuffmanTable</code> objects, or
+     *         <code>null</code>.
+     *
+     * @see #setEncodeTables
+     */
+    public JPEGHuffmanTable[] getDCHuffmanTables() {
+        return (DCHuffmanTables != null) ? (JPEGHuffmanTable[]) DCHuffmanTables
+                .clone() : null;
+    }
 
-	/**
-	 * Returns a copy of the array of AC Huffman tables set on the most recent
-	 * call to <code>setEncodeTables</code>, or <code>null</code> if tables are
-	 * not currently set.
-	 *
-	 * @return an array of <code>JPEGHuffmanTable</code> objects, or
-	 *         <code>null</code>.
-	 *
-	 * @see #setEncodeTables
-	 */
-	public JPEGHuffmanTable[] getACHuffmanTables() {
-		return (ACHuffmanTables != null) ? (JPEGHuffmanTable[]) ACHuffmanTables
-				.clone() : null;
-	}
+    /**
+     * Returns a copy of the array of AC Huffman tables set on the most recent
+     * call to <code>setEncodeTables</code>, or <code>null</code> if tables are
+     * not currently set.
+     *
+     * @return an array of <code>JPEGHuffmanTable</code> objects, or
+     *         <code>null</code>.
+     *
+     * @see #setEncodeTables
+     */
+    public JPEGHuffmanTable[] getACHuffmanTables() {
+        return (ACHuffmanTables != null) ? (JPEGHuffmanTable[]) ACHuffmanTables
+                .clone() : null;
+    }
 
-	/**
-	 * Tells the writer to generate optimized Huffman tables for the image as
-	 * part of the writing process. The default is <code>false</code>. If this
-	 * flag is set to <code>true</code>, it overrides any tables specified in
-	 * the metadata. Note that this means that any image written with this flag
-	 * set to <code>true</code> will always contain Huffman tables.
-	 *
-	 * @param optimize
-	 *                 A boolean indicating whether to generate optimized
-	 *                 Huffman
-	 *                 tables when writing.
-	 *
-	 * @see #getOptimizeHuffmanTables
-	 */
-	public void setOptimizeHuffmanTables(boolean optimize) {
-		optimizeHuffman = optimize;
-	}
+    /**
+     * Tells the writer to generate optimized Huffman tables for the image as
+     * part of the writing process. The default is <code>false</code>. If this
+     * flag is set to <code>true</code>, it overrides any tables specified in
+     * the metadata. Note that this means that any image written with this flag
+     * set to <code>true</code> will always contain Huffman tables.
+     *
+     * @param optimize
+     *                 A boolean indicating whether to generate optimized
+     *                 Huffman
+     *                 tables when writing.
+     *
+     * @see #getOptimizeHuffmanTables
+     */
+    public void setOptimizeHuffmanTables(boolean optimize) {
+        optimizeHuffman = optimize;
+    }
 
-	/**
-	 * Returns the value passed into the most recent call to
-	 * <code>setOptimizeHuffmanTables</code>, or <code>false</code> if
-	 * <code>setOptimizeHuffmanTables</code> has never been called.
-	 *
-	 * @return <code>true</code> if the writer will generate optimized Huffman
-	 *         tables.
-	 *
-	 * @see #setOptimizeHuffmanTables
-	 */
-	public boolean getOptimizeHuffmanTables() {
-		return optimizeHuffman;
-	}
+    /**
+     * Returns the value passed into the most recent call to
+     * <code>setOptimizeHuffmanTables</code>, or <code>false</code> if
+     * <code>setOptimizeHuffmanTables</code> has never been called.
+     *
+     * @return <code>true</code> if the writer will generate optimized Huffman
+     *         tables.
+     *
+     * @see #setOptimizeHuffmanTables
+     */
+    public boolean getOptimizeHuffmanTables() {
+        return optimizeHuffman;
+    }
 }

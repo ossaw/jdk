@@ -35,178 +35,178 @@ import java.util.Set;
  */
 @SuppressWarnings("serial")
 public class InputMap implements Serializable {
-	/** Handles the mapping between KeyStroke and Action name. */
-	private transient ArrayTable arrayTable;
-	/** Parent that handles any bindings we don't contain. */
-	private InputMap parent;
+    /** Handles the mapping between KeyStroke and Action name. */
+    private transient ArrayTable arrayTable;
+    /** Parent that handles any bindings we don't contain. */
+    private InputMap parent;
 
-	/**
-	 * Creates an <code>InputMap</code> with no parent and no mappings.
-	 */
-	public InputMap() {}
+    /**
+     * Creates an <code>InputMap</code> with no parent and no mappings.
+     */
+    public InputMap() {}
 
-	/**
-	 * Sets this <code>InputMap</code>'s parent.
-	 *
-	 * @param map
-	 *            the <code>InputMap</code> that is the parent of this one
-	 */
-	public void setParent(InputMap map) {
-		this.parent = map;
-	}
+    /**
+     * Sets this <code>InputMap</code>'s parent.
+     *
+     * @param map
+     *            the <code>InputMap</code> that is the parent of this one
+     */
+    public void setParent(InputMap map) {
+        this.parent = map;
+    }
 
-	/**
-	 * Gets this <code>InputMap</code>'s parent.
-	 *
-	 * @return map the <code>InputMap</code> that is the parent of this one, or
-	 *         null if this <code>InputMap</code> has no parent
-	 */
-	public InputMap getParent() {
-		return parent;
-	}
+    /**
+     * Gets this <code>InputMap</code>'s parent.
+     *
+     * @return map the <code>InputMap</code> that is the parent of this one, or
+     *         null if this <code>InputMap</code> has no parent
+     */
+    public InputMap getParent() {
+        return parent;
+    }
 
-	/**
-	 * Adds a binding for <code>keyStroke</code> to <code>actionMapKey</code>.
-	 * If <code>actionMapKey</code> is null, this removes the current binding
-	 * for <code>keyStroke</code>.
-	 */
-	public void put(KeyStroke keyStroke, Object actionMapKey) {
-		if (keyStroke == null) {
-			return;
-		}
-		if (actionMapKey == null) {
-			remove(keyStroke);
-		} else {
-			if (arrayTable == null) {
-				arrayTable = new ArrayTable();
-			}
-			arrayTable.put(keyStroke, actionMapKey);
-		}
-	}
+    /**
+     * Adds a binding for <code>keyStroke</code> to <code>actionMapKey</code>.
+     * If <code>actionMapKey</code> is null, this removes the current binding
+     * for <code>keyStroke</code>.
+     */
+    public void put(KeyStroke keyStroke, Object actionMapKey) {
+        if (keyStroke == null) {
+            return;
+        }
+        if (actionMapKey == null) {
+            remove(keyStroke);
+        } else {
+            if (arrayTable == null) {
+                arrayTable = new ArrayTable();
+            }
+            arrayTable.put(keyStroke, actionMapKey);
+        }
+    }
 
-	/**
-	 * Returns the binding for <code>keyStroke</code>, messaging the parent
-	 * <code>InputMap</code> if the binding is not locally defined.
-	 */
-	public Object get(KeyStroke keyStroke) {
-		if (arrayTable == null) {
-			InputMap parent = getParent();
+    /**
+     * Returns the binding for <code>keyStroke</code>, messaging the parent
+     * <code>InputMap</code> if the binding is not locally defined.
+     */
+    public Object get(KeyStroke keyStroke) {
+        if (arrayTable == null) {
+            InputMap parent = getParent();
 
-			if (parent != null) {
-				return parent.get(keyStroke);
-			}
-			return null;
-		}
-		Object value = arrayTable.get(keyStroke);
+            if (parent != null) {
+                return parent.get(keyStroke);
+            }
+            return null;
+        }
+        Object value = arrayTable.get(keyStroke);
 
-		if (value == null) {
-			InputMap parent = getParent();
+        if (value == null) {
+            InputMap parent = getParent();
 
-			if (parent != null) {
-				return parent.get(keyStroke);
-			}
-		}
-		return value;
-	}
+            if (parent != null) {
+                return parent.get(keyStroke);
+            }
+        }
+        return value;
+    }
 
-	/**
-	 * Removes the binding for <code>key</code> from this <code>InputMap</code>.
-	 */
-	public void remove(KeyStroke key) {
-		if (arrayTable != null) {
-			arrayTable.remove(key);
-		}
-	}
+    /**
+     * Removes the binding for <code>key</code> from this <code>InputMap</code>.
+     */
+    public void remove(KeyStroke key) {
+        if (arrayTable != null) {
+            arrayTable.remove(key);
+        }
+    }
 
-	/**
-	 * Removes all the mappings from this <code>InputMap</code>.
-	 */
-	public void clear() {
-		if (arrayTable != null) {
-			arrayTable.clear();
-		}
-	}
+    /**
+     * Removes all the mappings from this <code>InputMap</code>.
+     */
+    public void clear() {
+        if (arrayTable != null) {
+            arrayTable.clear();
+        }
+    }
 
-	/**
-	 * Returns the <code>KeyStroke</code>s that are bound in this
-	 * <code>InputMap</code>.
-	 */
-	public KeyStroke[] keys() {
-		if (arrayTable == null) {
-			return null;
-		}
-		KeyStroke[] keys = new KeyStroke[arrayTable.size()];
-		arrayTable.getKeys(keys);
-		return keys;
-	}
+    /**
+     * Returns the <code>KeyStroke</code>s that are bound in this
+     * <code>InputMap</code>.
+     */
+    public KeyStroke[] keys() {
+        if (arrayTable == null) {
+            return null;
+        }
+        KeyStroke[] keys = new KeyStroke[arrayTable.size()];
+        arrayTable.getKeys(keys);
+        return keys;
+    }
 
-	/**
-	 * Returns the number of <code>KeyStroke</code> bindings.
-	 */
-	public int size() {
-		if (arrayTable == null) {
-			return 0;
-		}
-		return arrayTable.size();
-	}
+    /**
+     * Returns the number of <code>KeyStroke</code> bindings.
+     */
+    public int size() {
+        if (arrayTable == null) {
+            return 0;
+        }
+        return arrayTable.size();
+    }
 
-	/**
-	 * Returns an array of the <code>KeyStroke</code>s defined in this
-	 * <code>InputMap</code> and its parent. This differs from
-	 * <code>keys()</code> in that this method includes the keys defined in the
-	 * parent.
-	 */
-	public KeyStroke[] allKeys() {
-		int count = size();
-		InputMap parent = getParent();
+    /**
+     * Returns an array of the <code>KeyStroke</code>s defined in this
+     * <code>InputMap</code> and its parent. This differs from
+     * <code>keys()</code> in that this method includes the keys defined in the
+     * parent.
+     */
+    public KeyStroke[] allKeys() {
+        int count = size();
+        InputMap parent = getParent();
 
-		if (count == 0) {
-			if (parent != null) {
-				return parent.allKeys();
-			}
-			return keys();
-		}
-		if (parent == null) {
-			return keys();
-		}
-		KeyStroke[] keys = keys();
-		KeyStroke[] pKeys = parent.allKeys();
+        if (count == 0) {
+            if (parent != null) {
+                return parent.allKeys();
+            }
+            return keys();
+        }
+        if (parent == null) {
+            return keys();
+        }
+        KeyStroke[] keys = keys();
+        KeyStroke[] pKeys = parent.allKeys();
 
-		if (pKeys == null) {
-			return keys;
-		}
-		if (keys == null) {
-			// Should only happen if size() != keys.length, which should only
-			// happen if mutated from multiple threads (or a bogus subclass).
-			return pKeys;
-		}
+        if (pKeys == null) {
+            return keys;
+        }
+        if (keys == null) {
+            // Should only happen if size() != keys.length, which should only
+            // happen if mutated from multiple threads (or a bogus subclass).
+            return pKeys;
+        }
 
-		HashMap<KeyStroke, KeyStroke> keyMap = new HashMap<KeyStroke, KeyStroke>();
-		int counter;
+        HashMap<KeyStroke, KeyStroke> keyMap = new HashMap<KeyStroke, KeyStroke>();
+        int counter;
 
-		for (counter = keys.length - 1; counter >= 0; counter--) {
-			keyMap.put(keys[counter], keys[counter]);
-		}
-		for (counter = pKeys.length - 1; counter >= 0; counter--) {
-			keyMap.put(pKeys[counter], pKeys[counter]);
-		}
+        for (counter = keys.length - 1; counter >= 0; counter--) {
+            keyMap.put(keys[counter], keys[counter]);
+        }
+        for (counter = pKeys.length - 1; counter >= 0; counter--) {
+            keyMap.put(pKeys[counter], pKeys[counter]);
+        }
 
-		KeyStroke[] allKeys = new KeyStroke[keyMap.size()];
+        KeyStroke[] allKeys = new KeyStroke[keyMap.size()];
 
-		return keyMap.keySet().toArray(allKeys);
-	}
+        return keyMap.keySet().toArray(allKeys);
+    }
 
-	private void writeObject(ObjectOutputStream s) throws IOException {
-		s.defaultWriteObject();
+    private void writeObject(ObjectOutputStream s) throws IOException {
+        s.defaultWriteObject();
 
-		ArrayTable.writeArrayTable(s, arrayTable);
-	}
+        ArrayTable.writeArrayTable(s, arrayTable);
+    }
 
-	private void readObject(ObjectInputStream s) throws ClassNotFoundException,
-			IOException {
-		s.defaultReadObject();
-		for (int counter = s.readInt() - 1; counter >= 0; counter--) {
-			put((KeyStroke) s.readObject(), s.readObject());
-		}
-	}
+    private void readObject(ObjectInputStream s) throws ClassNotFoundException,
+            IOException {
+        s.defaultReadObject();
+        for (int counter = s.readInt() - 1; counter >= 0; counter--) {
+            put((KeyStroke) s.readObject(), s.readObject());
+        }
+    }
 }

@@ -14,16 +14,16 @@ package java.beans;
  */
 
 public class IntrospectionException extends Exception {
-	private static final long serialVersionUID = -3728150539969542619L;
+    private static final long serialVersionUID = -3728150539969542619L;
 
-	/**
-	 * Constructs an <code>IntrospectionException</code> with a detailed
-	 * message.
-	 *
-	 * @param mess
-	 *             Descriptive message
-	 */
-	public IntrospectionException(String mess) {
-		super(mess);
-	}
+    /**
+     * Constructs an <code>IntrospectionException</code> with a detailed
+     * message.
+     *
+     * @param mess
+     *             Descriptive message
+     */
+    public IntrospectionException(String mess) {
+        super(mess);
+    }
 }

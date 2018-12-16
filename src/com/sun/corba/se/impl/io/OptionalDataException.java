@@ -22,31 +22,31 @@ package com.sun.corba.se.impl.io;
  * @since JDK1.1
  */
 public class OptionalDataException extends java.io.IOException {
-	/*
-	 * Create an <code>OptionalDataException</code> with a length.
-	 */
-	OptionalDataException(int len) {
-		eof = false;
-		length = len;
-	}
+    /*
+     * Create an <code>OptionalDataException</code> with a length.
+     */
+    OptionalDataException(int len) {
+        eof = false;
+        length = len;
+    }
 
-	/*
-	 * Create an <code>OptionalDataException</code> signifing no more primitive
-	 * data is available.
-	 */
-	OptionalDataException(boolean end) {
-		length = 0;
-		eof = end;
-	}
+    /*
+     * Create an <code>OptionalDataException</code> signifing no more primitive
+     * data is available.
+     */
+    OptionalDataException(boolean end) {
+        length = 0;
+        eof = end;
+    }
 
-	/**
-	 * The number of bytes of primitive data available to be read in the current
-	 * buffer.
-	 */
-	public int length;
+    /**
+     * The number of bytes of primitive data available to be read in the current
+     * buffer.
+     */
+    public int length;
 
-	/**
-	 * True if there is no more data in the buffered part of the stream.
-	 */
-	public boolean eof;
+    /**
+     * True if there is no more data in the buffered part of the stream.
+     */
+    public boolean eof;
 }

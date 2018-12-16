@@ -45,64 +45,64 @@ package com.sun.org.apache.xml.internal.security.encryption;
  */
 public interface EncryptedKey extends EncryptedType {
 
-	/**
-	 * Returns a hint as to which recipient this encrypted key value is intended
-	 * for.
-	 *
-	 * @return the recipient of the <code>EncryptedKey</code>.
-	 */
-	String getRecipient();
+    /**
+     * Returns a hint as to which recipient this encrypted key value is intended
+     * for.
+     *
+     * @return the recipient of the <code>EncryptedKey</code>.
+     */
+    String getRecipient();
 
-	/**
-	 * Sets the recipient for this <code>EncryptedKey</code>.
-	 *
-	 * @param recipient
-	 *                  the recipient for this <code>EncryptedKey</code>.
-	 */
-	void setRecipient(String recipient);
+    /**
+     * Sets the recipient for this <code>EncryptedKey</code>.
+     *
+     * @param recipient
+     *                  the recipient for this <code>EncryptedKey</code>.
+     */
+    void setRecipient(String recipient);
 
-	/**
-	 * Returns pointers to data and keys encrypted using this key. The reference
-	 * list may contain multiple references to <code>EncryptedKey</code> and
-	 * <code>EncryptedData</code> elements. This is done using
-	 * <code>KeyReference</code> and <code>DataReference</code> elements
-	 * respectively.
-	 *
-	 * @return an <code>Iterator</code> over all the <code>ReferenceList</code>s
-	 *         contained in this <code>EncryptedKey</code>.
-	 */
-	ReferenceList getReferenceList();
+    /**
+     * Returns pointers to data and keys encrypted using this key. The reference
+     * list may contain multiple references to <code>EncryptedKey</code> and
+     * <code>EncryptedData</code> elements. This is done using
+     * <code>KeyReference</code> and <code>DataReference</code> elements
+     * respectively.
+     *
+     * @return an <code>Iterator</code> over all the <code>ReferenceList</code>s
+     *         contained in this <code>EncryptedKey</code>.
+     */
+    ReferenceList getReferenceList();
 
-	/**
-	 * Sets the <code>ReferenceList</code> to the <code>EncryptedKey</code>.
-	 *
-	 * @param list
-	 *             a list of pointers to data elements encrypted using this key.
-	 */
-	void setReferenceList(ReferenceList list);
+    /**
+     * Sets the <code>ReferenceList</code> to the <code>EncryptedKey</code>.
+     *
+     * @param list
+     *             a list of pointers to data elements encrypted using this key.
+     */
+    void setReferenceList(ReferenceList list);
 
-	/**
-	 * Returns a user readable name with the key value. This may then be used to
-	 * reference the key using the <code>ds:KeyName</code> element within
-	 * <code>ds:KeyInfo</code>. The same <code>CarriedKeyName</code> label,
-	 * unlike an ID type, may occur multiple times within a single document. The
-	 * value of the key is to be the same in all <code>EncryptedKey</code>
-	 * elements identified with the same <code>CarriedKeyName</code> label
-	 * within a single XML document. <br>
-	 * <b>Note</b> that because whitespace is significant in the value of the
-	 * <code>ds:KeyName</code> element, whitespace is also significant in the
-	 * value of the <code>CarriedKeyName</code> element.
-	 *
-	 * @return over all the carried names contained in this
-	 *         <code>EncryptedKey</code>.
-	 */
-	String getCarriedName();
+    /**
+     * Returns a user readable name with the key value. This may then be used to
+     * reference the key using the <code>ds:KeyName</code> element within
+     * <code>ds:KeyInfo</code>. The same <code>CarriedKeyName</code> label,
+     * unlike an ID type, may occur multiple times within a single document. The
+     * value of the key is to be the same in all <code>EncryptedKey</code>
+     * elements identified with the same <code>CarriedKeyName</code> label
+     * within a single XML document. <br>
+     * <b>Note</b> that because whitespace is significant in the value of the
+     * <code>ds:KeyName</code> element, whitespace is also significant in the
+     * value of the <code>CarriedKeyName</code> element.
+     *
+     * @return over all the carried names contained in this
+     *         <code>EncryptedKey</code>.
+     */
+    String getCarriedName();
 
-	/**
-	 * Sets the carried name.
-	 *
-	 * @param name
-	 *             the carried name.
-	 */
-	void setCarriedName(String name);
+    /**
+     * Sets the carried name.
+     *
+     * @param name
+     *             the carried name.
+     */
+    void setCarriedName(String name);
 }

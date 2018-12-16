@@ -26,26 +26,26 @@ package javax.accessibility;
  */
 public interface AccessibleExtendedComponent extends AccessibleComponent {
 
-	/**
-	 * Returns the tool tip text
-	 *
-	 * @return the tool tip text, if supported, of the object; otherwise, null
-	 */
-	public String getToolTipText();
+    /**
+     * Returns the tool tip text
+     *
+     * @return the tool tip text, if supported, of the object; otherwise, null
+     */
+    public String getToolTipText();
 
-	/**
-	 * Returns the titled border text
-	 *
-	 * @return the titled border text, if supported, of the object; otherwise,
-	 *         null
-	 */
-	public String getTitledBorderText();
+    /**
+     * Returns the titled border text
+     *
+     * @return the titled border text, if supported, of the object; otherwise,
+     *         null
+     */
+    public String getTitledBorderText();
 
-	/**
-	 * Returns key bindings associated with this object
-	 *
-	 * @return the key bindings, if supported, of the object; otherwise, null
-	 * @see AccessibleKeyBinding
-	 */
-	public AccessibleKeyBinding getAccessibleKeyBinding();
+    /**
+     * Returns key bindings associated with this object
+     *
+     * @return the key bindings, if supported, of the object; otherwise, null
+     * @see AccessibleKeyBinding
+     */
+    public AccessibleKeyBinding getAccessibleKeyBinding();
 }

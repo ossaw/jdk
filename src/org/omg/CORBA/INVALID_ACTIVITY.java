@@ -19,51 +19,51 @@ package org.omg.CORBA;
 
 public final class INVALID_ACTIVITY extends SystemException {
 
-	/**
-	 * Constructs an <code>INVALID_ACTIVITY</code> exception with minor code set
-	 * to 0 and CompletionStatus set to COMPLETED_NO.
-	 */
-	public INVALID_ACTIVITY() {
-		this("");
-	}
+    /**
+     * Constructs an <code>INVALID_ACTIVITY</code> exception with minor code set
+     * to 0 and CompletionStatus set to COMPLETED_NO.
+     */
+    public INVALID_ACTIVITY() {
+        this("");
+    }
 
-	/**
-	 * Constructs an <code>INVALID_ACTIVITY</code> exception with the specified
-	 * message.
-	 *
-	 * @param detailMessage
-	 *                      string containing a detailed message.
-	 */
-	public INVALID_ACTIVITY(String detailMessage) {
-		this(detailMessage, 0, CompletionStatus.COMPLETED_NO);
-	}
+    /**
+     * Constructs an <code>INVALID_ACTIVITY</code> exception with the specified
+     * message.
+     *
+     * @param detailMessage
+     *                      string containing a detailed message.
+     */
+    public INVALID_ACTIVITY(String detailMessage) {
+        this(detailMessage, 0, CompletionStatus.COMPLETED_NO);
+    }
 
-	/**
-	 * Constructs an <code>INVALID_ACTIVITY</code> exception with the specified
-	 * minor code and completion status.
-	 *
-	 * @param minorCode
-	 *                         minor code.
-	 * @param completionStatus
-	 *                         completion status.
-	 */
-	public INVALID_ACTIVITY(int minorCode, CompletionStatus completionStatus) {
-		this("", minorCode, completionStatus);
-	}
+    /**
+     * Constructs an <code>INVALID_ACTIVITY</code> exception with the specified
+     * minor code and completion status.
+     *
+     * @param minorCode
+     *                         minor code.
+     * @param completionStatus
+     *                         completion status.
+     */
+    public INVALID_ACTIVITY(int minorCode, CompletionStatus completionStatus) {
+        this("", minorCode, completionStatus);
+    }
 
-	/**
-	 * Constructs an <code>INVALID_ACTIVITY</code> exception with the specified
-	 * message, minor code, and completion status.
-	 *
-	 * @param detailMessage
-	 *                         string containing a detailed message.
-	 * @param minorCode
-	 *                         minor code.
-	 * @param completionStatus
-	 *                         completion status.
-	 */
-	public INVALID_ACTIVITY(String detailMessage, int minorCode,
-			CompletionStatus completionStatus) {
-		super(detailMessage, minorCode, completionStatus);
-	}
+    /**
+     * Constructs an <code>INVALID_ACTIVITY</code> exception with the specified
+     * message, minor code, and completion status.
+     *
+     * @param detailMessage
+     *                         string containing a detailed message.
+     * @param minorCode
+     *                         minor code.
+     * @param completionStatus
+     *                         completion status.
+     */
+    public INVALID_ACTIVITY(String detailMessage, int minorCode,
+            CompletionStatus completionStatus) {
+        super(detailMessage, minorCode, completionStatus);
+    }
 }

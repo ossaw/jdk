@@ -22,5 +22,5 @@ package org.omg.PortableServer;
  * to be mediated by the servant manager.
  */
 public interface ServantLocator extends ServantLocatorOperations,
-		org.omg.PortableServer.ServantManager,
-		org.omg.CORBA.portable.IDLEntity {} // interface ServantLocator
+        org.omg.PortableServer.ServantManager,
+        org.omg.CORBA.portable.IDLEntity {} // interface ServantLocator

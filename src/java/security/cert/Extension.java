@@ -45,40 +45,40 @@ import java.io.Serializable;
  */
 public interface Extension {
 
-	/**
-	 * Gets the extensions's object identifier.
-	 *
-	 * @return the object identifier as a String
-	 */
-	String getId();
+    /**
+     * Gets the extensions's object identifier.
+     *
+     * @return the object identifier as a String
+     */
+    String getId();
 
-	/**
-	 * Gets the extension's criticality setting.
-	 *
-	 * @return true if this is a critical extension.
-	 */
-	boolean isCritical();
+    /**
+     * Gets the extension's criticality setting.
+     *
+     * @return true if this is a critical extension.
+     */
+    boolean isCritical();
 
-	/**
-	 * Gets the extensions's DER-encoded value. Note, this is the bytes that are
-	 * encoded as an OCTET STRING. It does not include the OCTET STRING tag and
-	 * length.
-	 *
-	 * @return a copy of the extension's value, or {@code null} if no extension
-	 *         value is present.
-	 */
-	byte[] getValue();
+    /**
+     * Gets the extensions's DER-encoded value. Note, this is the bytes that are
+     * encoded as an OCTET STRING. It does not include the OCTET STRING tag and
+     * length.
+     *
+     * @return a copy of the extension's value, or {@code null} if no extension
+     *         value is present.
+     */
+    byte[] getValue();
 
-	/**
-	 * Generates the extension's DER encoding and writes it to the output
-	 * stream.
-	 *
-	 * @param out
-	 *            the output stream
-	 * @exception IOException
-	 *                                 on encoding or output error.
-	 * @exception NullPointerException
-	 *                                 if {@code out} is {@code null}.
-	 */
-	void encode(OutputStream out) throws IOException;
+    /**
+     * Generates the extension's DER encoding and writes it to the output
+     * stream.
+     *
+     * @param out
+     *            the output stream
+     * @exception IOException
+     *                                 on encoding or output error.
+     * @exception NullPointerException
+     *                                 if {@code out} is {@code null}.
+     */
+    void encode(OutputStream out) throws IOException;
 }

@@ -20,28 +20,28 @@ import javax.swing.undo.*;
  * @author Ray Ryan
  */
 public class UndoableEditEvent extends java.util.EventObject {
-	private UndoableEdit myEdit;
+    private UndoableEdit myEdit;
 
-	/**
-	 * Constructs an UndoableEditEvent object.
-	 *
-	 * @param source
-	 *               the Object that originated the event (typically
-	 *               <code>this</code>)
-	 * @param edit
-	 *               an UndoableEdit object
-	 */
-	public UndoableEditEvent(Object source, UndoableEdit edit) {
-		super(source);
-		myEdit = edit;
-	}
+    /**
+     * Constructs an UndoableEditEvent object.
+     *
+     * @param source
+     *               the Object that originated the event (typically
+     *               <code>this</code>)
+     * @param edit
+     *               an UndoableEdit object
+     */
+    public UndoableEditEvent(Object source, UndoableEdit edit) {
+        super(source);
+        myEdit = edit;
+    }
 
-	/**
-	 * Returns the edit value.
-	 *
-	 * @return the UndoableEdit object encapsulating the edit
-	 */
-	public UndoableEdit getEdit() {
-		return myEdit;
-	}
+    /**
+     * Returns the edit value.
+     *
+     * @return the UndoableEdit object encapsulating the edit
+     */
+    public UndoableEdit getEdit() {
+        return myEdit;
+    }
 }

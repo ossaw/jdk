@@ -19,70 +19,70 @@ import java.util.WeakHashMap;
  * This is used internally by CodeSetConversion.
  */
 class CodeSetCache {
-	/**
-	 * The ThreadLocal data is a 2 element Map array indexed by BTC_CACHE_MAP
-	 * and CTB_CACHE_MAP.
-	 */
-	private ThreadLocal converterCaches = new ThreadLocal() {
-		public java.lang.Object initialValue() {
-			return new Map[] { new WeakHashMap(), new WeakHashMap() };
-		}
-	};
+    /**
+     * The ThreadLocal data is a 2 element Map array indexed by BTC_CACHE_MAP
+     * and CTB_CACHE_MAP.
+     */
+    private ThreadLocal converterCaches = new ThreadLocal() {
+        public java.lang.Object initialValue() {
+            return new Map[] { new WeakHashMap(), new WeakHashMap() };
+        }
+    };
 
-	/**
-	 * Index in the thread local converterCaches array for the byte to char
-	 * converter Map. A key is the Java name corresponding to the desired code
-	 * set.
-	 */
-	private static final int BTC_CACHE_MAP = 0;
+    /**
+     * Index in the thread local converterCaches array for the byte to char
+     * converter Map. A key is the Java name corresponding to the desired code
+     * set.
+     */
+    private static final int BTC_CACHE_MAP = 0;
 
-	/**
-	 * Index in the thread local converterCaches array for the char to byte
-	 * converter Map. A key is the Java name corresponding to the desired code
-	 * set.
-	 */
-	private static final int CTB_CACHE_MAP = 1;
+    /**
+     * Index in the thread local converterCaches array for the char to byte
+     * converter Map. A key is the Java name corresponding to the desired code
+     * set.
+     */
+    private static final int CTB_CACHE_MAP = 1;
 
-	/**
-	 * Retrieve a CharsetDecoder from the Map using the given key.
-	 */
-	CharsetDecoder getByteToCharConverter(Object key) {
-		Map btcMap = ((Map[]) converterCaches.get())[BTC_CACHE_MAP];
+    /**
+     * Retrieve a CharsetDecoder from the Map using the given key.
+     */
+    CharsetDecoder getByteToCharConverter(Object key) {
+        Map btcMap = ((Map[]) converterCaches.get())[BTC_CACHE_MAP];
 
-		return (CharsetDecoder) btcMap.get(key);
-	}
+        return (CharsetDecoder) btcMap.get(key);
+    }
 
-	/**
-	 * Retrieve a CharsetEncoder from the Map using the given key.
-	 */
-	CharsetEncoder getCharToByteConverter(Object key) {
-		Map ctbMap = ((Map[]) converterCaches.get())[CTB_CACHE_MAP];
+    /**
+     * Retrieve a CharsetEncoder from the Map using the given key.
+     */
+    CharsetEncoder getCharToByteConverter(Object key) {
+        Map ctbMap = ((Map[]) converterCaches.get())[CTB_CACHE_MAP];
 
-		return (CharsetEncoder) ctbMap.get(key);
-	}
+        return (CharsetEncoder) ctbMap.get(key);
+    }
 
-	/**
-	 * Stores the given CharsetDecoder in the thread local cache, and returns
-	 * the same converter.
-	 */
-	CharsetDecoder setConverter(Object key, CharsetDecoder converter) {
-		Map btcMap = ((Map[]) converterCaches.get())[BTC_CACHE_MAP];
+    /**
+     * Stores the given CharsetDecoder in the thread local cache, and returns
+     * the same converter.
+     */
+    CharsetDecoder setConverter(Object key, CharsetDecoder converter) {
+        Map btcMap = ((Map[]) converterCaches.get())[BTC_CACHE_MAP];
 
-		btcMap.put(key, converter);
+        btcMap.put(key, converter);
 
-		return converter;
-	}
+        return converter;
+    }
 
-	/**
-	 * Stores the given CharsetEncoder in the thread local cache, and returns
-	 * the same converter.
-	 */
-	CharsetEncoder setConverter(Object key, CharsetEncoder converter) {
+    /**
+     * Stores the given CharsetEncoder in the thread local cache, and returns
+     * the same converter.
+     */
+    CharsetEncoder setConverter(Object key, CharsetEncoder converter) {
 
-		Map ctbMap = ((Map[]) converterCaches.get())[CTB_CACHE_MAP];
+        Map ctbMap = ((Map[]) converterCaches.get())[CTB_CACHE_MAP];
 
-		ctbMap.put(key, converter);
+        ctbMap.put(key, converter);
 
-		return converter;
-	}
+        return converter;
+    }
 }

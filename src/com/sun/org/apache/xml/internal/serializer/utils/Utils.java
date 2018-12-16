@@ -29,11 +29,11 @@ package com.sun.org.apache.xml.internal.serializer.utils;
  * @xsl.usage internal
  */
 public final class Utils {
-	/**
-	 * A singleton Messages object is used to load the given resource bundle
-	 * just once, it is used by multiple transformations as long as the JVM
-	 * stays up.
-	 */
-	public static final com.sun.org.apache.xml.internal.serializer.utils.Messages messages = new com.sun.org.apache.xml.internal.serializer.utils.Messages(
-			"com.sun.org.apache.xml.internal.serializer.utils.SerializerMessages");
+    /**
+     * A singleton Messages object is used to load the given resource bundle
+     * just once, it is used by multiple transformations as long as the JVM
+     * stays up.
+     */
+    public static final com.sun.org.apache.xml.internal.serializer.utils.Messages messages = new com.sun.org.apache.xml.internal.serializer.utils.Messages(
+            "com.sun.org.apache.xml.internal.serializer.utils.SerializerMessages");
 }

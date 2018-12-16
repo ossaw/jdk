@@ -15,8 +15,8 @@ package org.omg.CORBA;
  * @see org.omg.CORBA.TypeCode
  */
 public interface VM_TRUNCATABLE {
-	/**
-	 * The value representing a truncatable value type in a typecode.
-	 */
-	final short value = (short) (3L);
+    /**
+     * The value representing a truncatable value type in a typecode.
+     */
+    final short value = (short) (3L);
 }

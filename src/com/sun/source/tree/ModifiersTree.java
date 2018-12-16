@@ -28,7 +28,7 @@ import javax.lang.model.element.Modifier;
  */
 @jdk.Exported
 public interface ModifiersTree extends Tree {
-	Set<Modifier> getFlags();
+    Set<Modifier> getFlags();
 
-	List<? extends AnnotationTree> getAnnotations();
+    List<? extends AnnotationTree> getAnnotations();
 }

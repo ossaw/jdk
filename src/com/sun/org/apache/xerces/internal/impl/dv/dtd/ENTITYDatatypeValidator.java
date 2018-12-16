@@ -38,30 +38,30 @@ import com.sun.org.apache.xerces.internal.impl.dv.*;
  */
 public class ENTITYDatatypeValidator implements DatatypeValidator {
 
-	// construct an ENTITY datatype validator
-	public ENTITYDatatypeValidator() {}
+    // construct an ENTITY datatype validator
+    public ENTITYDatatypeValidator() {}
 
-	/**
-	 * Checks that "content" string is valid ID value. If invalid a Datatype
-	 * validation exception is thrown.
-	 *
-	 * @param content
-	 *                the string value that needs to be validated
-	 * @param context
-	 *                the validation context
-	 * @throws InvalidDatatypeException
-	 *                                  if the content is invalid according to
-	 *                                  the rules for the
-	 *                                  validators
-	 * @see InvalidDatatypeValueException
-	 */
-	public void validate(String content, ValidationContext context)
-			throws InvalidDatatypeValueException {
+    /**
+     * Checks that "content" string is valid ID value. If invalid a Datatype
+     * validation exception is thrown.
+     *
+     * @param content
+     *                the string value that needs to be validated
+     * @param context
+     *                the validation context
+     * @throws InvalidDatatypeException
+     *                                  if the content is invalid according to
+     *                                  the rules for the
+     *                                  validators
+     * @see InvalidDatatypeValueException
+     */
+    public void validate(String content, ValidationContext context)
+            throws InvalidDatatypeValueException {
 
-		if (!context.isEntityUnparsed(content))
-			throw new InvalidDatatypeValueException("ENTITYNotUnparsed",
-					new Object[] { content });
+        if (!context.isEntityUnparsed(content))
+            throw new InvalidDatatypeValueException("ENTITYNotUnparsed",
+                    new Object[] { content });
 
-	}
+    }
 
 }

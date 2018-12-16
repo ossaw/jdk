@@ -18,39 +18,39 @@ import com.sun.corba.se.spi.protocol.CorbaServerRequestDispatcher;
  * between many object references.
  */
 public interface ObjectKeyTemplate extends Writeable {
-	public ORBVersion getORBVersion();
+    public ORBVersion getORBVersion();
 
-	/**
-	 * An ID used to determine how to perform operations on this
-	 * ObjectKeyTemplate. This id determines how to process requests on this
-	 * object reference, and what object adapter type to use.
-	 */
-	public int getSubcontractId();
+    /**
+     * An ID used to determine how to perform operations on this
+     * ObjectKeyTemplate. This id determines how to process requests on this
+     * object reference, and what object adapter type to use.
+     */
+    public int getSubcontractId();
 
-	/**
-	 * Return the server ID for this template. For CORBA 3.0, this should be a
-	 * String, but it is currently an int in the object key template.
-	 */
-	public int getServerId();
+    /**
+     * Return the server ID for this template. For CORBA 3.0, this should be a
+     * String, but it is currently an int in the object key template.
+     */
+    public int getServerId();
 
-	/**
-	 * Return the ORB ID for this template.
-	 */
-	public String getORBId();
+    /**
+     * Return the ORB ID for this template.
+     */
+    public String getORBId();
 
-	/**
-	 * Return the object adapter ID for this template.
-	 */
-	public ObjectAdapterId getObjectAdapterId();
+    /**
+     * Return the object adapter ID for this template.
+     */
+    public ObjectAdapterId getObjectAdapterId();
 
-	/**
-	 * Compute an adapter ID for this template than includes all of the template
-	 * information. This value is cached to avoid the expense of recomputing it.
-	 */
-	public byte[] getAdapterId();
+    /**
+     * Compute an adapter ID for this template than includes all of the template
+     * information. This value is cached to avoid the expense of recomputing it.
+     */
+    public byte[] getAdapterId();
 
-	public void write(ObjectId objectId, OutputStream os);
+    public void write(ObjectId objectId, OutputStream os);
 
-	public CorbaServerRequestDispatcher getServerRequestDispatcher(ORB orb,
-			ObjectId id);
+    public CorbaServerRequestDispatcher getServerRequestDispatcher(ORB orb,
+            ObjectId id);
 }

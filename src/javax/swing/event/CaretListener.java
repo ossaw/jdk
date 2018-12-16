@@ -13,11 +13,11 @@ import java.util.EventListener;
  */
 public interface CaretListener extends EventListener {
 
-	/**
-	 * Called when the caret position is updated.
-	 *
-	 * @param e
-	 *          the caret event
-	 */
-	void caretUpdate(CaretEvent e);
+    /**
+     * Called when the caret position is updated.
+     *
+     * @param e
+     *          the caret event
+     */
+    void caretUpdate(CaretEvent e);
 }

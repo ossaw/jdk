@@ -30,28 +30,28 @@ import javax.naming.NamingException;
  * @since 1.3
  */
 public class SchemaViolationException extends NamingException {
-	/**
-	 * Constructs a new instance of SchemaViolationException. All fields are set
-	 * to null.
-	 */
-	public SchemaViolationException() {
-		super();
-	}
+    /**
+     * Constructs a new instance of SchemaViolationException. All fields are set
+     * to null.
+     */
+    public SchemaViolationException() {
+        super();
+    }
 
-	/**
-	 * Constructs a new instance of SchemaViolationException using the
-	 * explanation supplied. All other fields are set to null.
-	 * 
-	 * @param explanation
-	 *                    Detail about this exception. Can be null.
-	 * @see java.lang.Throwable#getMessage
-	 */
-	public SchemaViolationException(String explanation) {
-		super(explanation);
-	}
+    /**
+     * Constructs a new instance of SchemaViolationException using the
+     * explanation supplied. All other fields are set to null.
+     * 
+     * @param explanation
+     *                    Detail about this exception. Can be null.
+     * @see java.lang.Throwable#getMessage
+     */
+    public SchemaViolationException(String explanation) {
+        super(explanation);
+    }
 
-	/**
-	 * Use serialVersionUID from JNDI 1.1.1 for interoperability
-	 */
-	private static final long serialVersionUID = -3041762429525049663L;
+    /**
+     * Use serialVersionUID from JNDI 1.1.1 for interoperability
+     */
+    private static final long serialVersionUID = -3041762429525049663L;
 }

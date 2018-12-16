@@ -40,63 +40,63 @@ import com.sun.corba.se.impl.orbutil.ORBUtility;
  * request or reply.
  */
 public abstract class ServiceContext {
-	/**
-	 * Simple default constructor used when subclass is constructed from its
-	 * representation.
-	 */
-	protected ServiceContext() {}
+    /**
+     * Simple default constructor used when subclass is constructed from its
+     * representation.
+     */
+    protected ServiceContext() {}
 
-	private void dprint(String msg) {
-		ORBUtility.dprint(this, msg);
-	}
+    private void dprint(String msg) {
+        ORBUtility.dprint(this, msg);
+    }
 
-	/**
-	 * Stream constructor used when subclass is constructed from an InputStream.
-	 * This constructor must be called by super( stream ) in the subclass. After
-	 * this constructor completes, the service context representation can be
-	 * read from in. Note that the service context id has been consumed from the
-	 * input stream before this object is constructed.
-	 */
-	protected ServiceContext(InputStream s, GIOPVersion gv)
-			throws SystemException {
-		in = s;
-	}
+    /**
+     * Stream constructor used when subclass is constructed from an InputStream.
+     * This constructor must be called by super( stream ) in the subclass. After
+     * this constructor completes, the service context representation can be
+     * read from in. Note that the service context id has been consumed from the
+     * input stream before this object is constructed.
+     */
+    protected ServiceContext(InputStream s, GIOPVersion gv)
+            throws SystemException {
+        in = s;
+    }
 
-	/**
-	 * Returns Service context id. Must be overloaded in subclass.
-	 */
-	public abstract int getId();
+    /**
+     * Returns Service context id. Must be overloaded in subclass.
+     */
+    public abstract int getId();
 
-	/**
-	 * Write the service context to an output stream. This method must be used
-	 * for writing the service context to a request or reply header.
-	 */
-	public void write(OutputStream s, GIOPVersion gv) throws SystemException {
-		EncapsOutputStream os = sun.corba.OutputStreamFactory
-				.newEncapsOutputStream((ORB) (s.orb()), gv);
-		os.putEndian();
-		writeData(os);
-		byte[] data = os.toByteArray();
+    /**
+     * Write the service context to an output stream. This method must be used
+     * for writing the service context to a request or reply header.
+     */
+    public void write(OutputStream s, GIOPVersion gv) throws SystemException {
+        EncapsOutputStream os = sun.corba.OutputStreamFactory
+                .newEncapsOutputStream((ORB) (s.orb()), gv);
+        os.putEndian();
+        writeData(os);
+        byte[] data = os.toByteArray();
 
-		s.write_long(getId());
-		s.write_long(data.length);
-		s.write_octet_array(data, 0, data.length);
-	}
+        s.write_long(getId());
+        s.write_long(data.length);
+        s.write_octet_array(data, 0, data.length);
+    }
 
-	/**
-	 * Writes the data used to represent the subclasses service context into an
-	 * encapsulation stream. Must be overloaded in subclass.
-	 */
-	protected abstract void writeData(OutputStream os);
+    /**
+     * Writes the data used to represent the subclasses service context into an
+     * encapsulation stream. Must be overloaded in subclass.
+     */
+    protected abstract void writeData(OutputStream os);
 
-	/**
-	 * in is the stream containing the service context representation. It is
-	 * constructed by the stream constructor, and available for use in the
-	 * subclass stream constructor.
-	 */
-	protected InputStream in = null;
+    /**
+     * in is the stream containing the service context representation. It is
+     * constructed by the stream constructor, and available for use in the
+     * subclass stream constructor.
+     */
+    protected InputStream in = null;
 
-	public String toString() {
-		return "ServiceContext[ id=" + getId() + " ]";
-	}
+    public String toString() {
+        return "ServiceContext[ id=" + getId() + " ]";
+    }
 }

@@ -34,105 +34,105 @@ import org.w3c.dom.Attr;
  */
 public class ResourceResolverException extends XMLSecurityException {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private Attr uri = null;
+    private Attr uri = null;
 
-	private String baseURI = null;
+    private String baseURI = null;
 
-	/**
-	 * Constructor ResourceResolverException
-	 *
-	 * @param msgID
-	 * @param uri
-	 * @param baseURI
-	 */
-	public ResourceResolverException(String msgID, Attr uri, String baseURI) {
-		super(msgID);
+    /**
+     * Constructor ResourceResolverException
+     *
+     * @param msgID
+     * @param uri
+     * @param baseURI
+     */
+    public ResourceResolverException(String msgID, Attr uri, String baseURI) {
+        super(msgID);
 
-		this.uri = uri;
-		this.baseURI = baseURI;
-	}
+        this.uri = uri;
+        this.baseURI = baseURI;
+    }
 
-	/**
-	 * Constructor ResourceResolverException
-	 *
-	 * @param msgID
-	 * @param exArgs
-	 * @param uri
-	 * @param baseURI
-	 */
-	public ResourceResolverException(String msgID, Object exArgs[], Attr uri,
-			String baseURI) {
-		super(msgID, exArgs);
+    /**
+     * Constructor ResourceResolverException
+     *
+     * @param msgID
+     * @param exArgs
+     * @param uri
+     * @param baseURI
+     */
+    public ResourceResolverException(String msgID, Object exArgs[], Attr uri,
+            String baseURI) {
+        super(msgID, exArgs);
 
-		this.uri = uri;
-		this.baseURI = baseURI;
-	}
+        this.uri = uri;
+        this.baseURI = baseURI;
+    }
 
-	/**
-	 * Constructor ResourceResolverException
-	 *
-	 * @param msgID
-	 * @param originalException
-	 * @param uri
-	 * @param baseURI
-	 */
-	public ResourceResolverException(String msgID, Exception originalException,
-			Attr uri, String baseURI) {
-		super(msgID, originalException);
+    /**
+     * Constructor ResourceResolverException
+     *
+     * @param msgID
+     * @param originalException
+     * @param uri
+     * @param baseURI
+     */
+    public ResourceResolverException(String msgID, Exception originalException,
+            Attr uri, String baseURI) {
+        super(msgID, originalException);
 
-		this.uri = uri;
-		this.baseURI = baseURI;
-	}
+        this.uri = uri;
+        this.baseURI = baseURI;
+    }
 
-	/**
-	 * Constructor ResourceResolverException
-	 *
-	 * @param msgID
-	 * @param exArgs
-	 * @param originalException
-	 * @param uri
-	 * @param baseURI
-	 */
-	public ResourceResolverException(String msgID, Object exArgs[],
-			Exception originalException, Attr uri, String baseURI) {
-		super(msgID, exArgs, originalException);
+    /**
+     * Constructor ResourceResolverException
+     *
+     * @param msgID
+     * @param exArgs
+     * @param originalException
+     * @param uri
+     * @param baseURI
+     */
+    public ResourceResolverException(String msgID, Object exArgs[],
+            Exception originalException, Attr uri, String baseURI) {
+        super(msgID, exArgs, originalException);
 
-		this.uri = uri;
-		this.baseURI = baseURI;
-	}
+        this.uri = uri;
+        this.baseURI = baseURI;
+    }
 
-	/**
-	 *
-	 * @param uri
-	 */
-	public void setURI(Attr uri) {
-		this.uri = uri;
-	}
+    /**
+     *
+     * @param uri
+     */
+    public void setURI(Attr uri) {
+        this.uri = uri;
+    }
 
-	/**
-	 *
-	 * @return the uri
-	 */
-	public Attr getURI() {
-		return this.uri;
-	}
+    /**
+     *
+     * @return the uri
+     */
+    public Attr getURI() {
+        return this.uri;
+    }
 
-	/**
-	 *
-	 * @param baseURI
-	 */
-	public void setbaseURI(String baseURI) {
-		this.baseURI = baseURI;
-	}
+    /**
+     *
+     * @param baseURI
+     */
+    public void setbaseURI(String baseURI) {
+        this.baseURI = baseURI;
+    }
 
-	/**
-	 *
-	 * @return the baseURI
-	 */
-	public String getbaseURI() {
-		return this.baseURI;
-	}
+    /**
+     *
+     * @return the baseURI
+     */
+    public String getbaseURI() {
+        return this.baseURI;
+    }
 
 }

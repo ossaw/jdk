@@ -26,53 +26,53 @@ package java.security;
 
 public class GuardedObject implements java.io.Serializable {
 
-	private static final long serialVersionUID = -5240450096227834308L;
+    private static final long serialVersionUID = -5240450096227834308L;
 
-	private Object object; // the object we are guarding
-	private Guard guard; // the guard
+    private Object object; // the object we are guarding
+    private Guard guard; // the guard
 
-	/**
-	 * Constructs a GuardedObject using the specified object and guard. If the
-	 * Guard object is null, then no restrictions will be placed on who can
-	 * access the object.
-	 *
-	 * @param object
-	 *               the object to be guarded.
-	 *
-	 * @param guard
-	 *               the Guard object that guards access to the object.
-	 */
+    /**
+     * Constructs a GuardedObject using the specified object and guard. If the
+     * Guard object is null, then no restrictions will be placed on who can
+     * access the object.
+     *
+     * @param object
+     *               the object to be guarded.
+     *
+     * @param guard
+     *               the Guard object that guards access to the object.
+     */
 
-	public GuardedObject(Object object, Guard guard) {
-		this.guard = guard;
-		this.object = object;
-	}
+    public GuardedObject(Object object, Guard guard) {
+        this.guard = guard;
+        this.object = object;
+    }
 
-	/**
-	 * Retrieves the guarded object, or throws an exception if access to the
-	 * guarded object is denied by the guard.
-	 *
-	 * @return the guarded object.
-	 *
-	 * @exception SecurityException
-	 *                              if access to the guarded object is denied.
-	 */
-	public Object getObject() throws SecurityException {
-		if (guard != null)
-			guard.checkGuard(object);
+    /**
+     * Retrieves the guarded object, or throws an exception if access to the
+     * guarded object is denied by the guard.
+     *
+     * @return the guarded object.
+     *
+     * @exception SecurityException
+     *                              if access to the guarded object is denied.
+     */
+    public Object getObject() throws SecurityException {
+        if (guard != null)
+            guard.checkGuard(object);
 
-		return object;
-	}
+        return object;
+    }
 
-	/**
-	 * Writes this object out to a stream (i.e., serializes it). We check the
-	 * guard if there is one.
-	 */
-	private void writeObject(java.io.ObjectOutputStream oos)
-			throws java.io.IOException {
-		if (guard != null)
-			guard.checkGuard(object);
+    /**
+     * Writes this object out to a stream (i.e., serializes it). We check the
+     * guard if there is one.
+     */
+    private void writeObject(java.io.ObjectOutputStream oos)
+            throws java.io.IOException {
+        if (guard != null)
+            guard.checkGuard(object);
 
-		oos.defaultWriteObject();
-	}
+        oos.defaultWriteObject();
+    }
 }

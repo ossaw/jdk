@@ -46,37 +46,37 @@ import org.w3c.dom.Node;
  */
 public class CDATASectionImpl extends TextImpl implements CDATASection {
 
-	//
-	// Constants
-	//
+    //
+    // Constants
+    //
 
-	/** Serialization version. */
-	static final long serialVersionUID = 2372071297878177780L;
+    /** Serialization version. */
+    static final long serialVersionUID = 2372071297878177780L;
 
-	//
-	// Constructors
-	//
+    //
+    // Constructors
+    //
 
-	/** Factory constructor for creating a CDATA section. */
-	public CDATASectionImpl(CoreDocumentImpl ownerDoc, String data) {
-		super(ownerDoc, data);
-	}
+    /** Factory constructor for creating a CDATA section. */
+    public CDATASectionImpl(CoreDocumentImpl ownerDoc, String data) {
+        super(ownerDoc, data);
+    }
 
-	//
-	// Node methods
-	//
+    //
+    // Node methods
+    //
 
-	/**
-	 * A short integer indicating what type of node this is. The named constants
-	 * for this value are defined in the org.w3c.dom.Node interface.
-	 */
-	public short getNodeType() {
-		return Node.CDATA_SECTION_NODE;
-	}
+    /**
+     * A short integer indicating what type of node this is. The named constants
+     * for this value are defined in the org.w3c.dom.Node interface.
+     */
+    public short getNodeType() {
+        return Node.CDATA_SECTION_NODE;
+    }
 
-	/** Returns the node name. */
-	public String getNodeName() {
-		return "#cdata-section";
-	}
+    /** Returns the node name. */
+    public String getNodeName() {
+        return "#cdata-section";
+    }
 
 } // class CDATASectionImpl

@@ -9,8 +9,8 @@ package com.sun.corba.se.spi.orb;
  * value. This is a building block for property parsing.
  */
 public interface Operation {
-	/**
-	 * Apply some function to a value and return the result.
-	 */
-	Object operate(Object value);
+    /**
+     * Apply some function to a value and return the result.
+     */
+    Object operate(Object value);
 }

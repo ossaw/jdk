@@ -31,14 +31,14 @@ import com.sun.org.apache.xerces.internal.impl.dv.ValidationContext;
  */
 public class AnySimpleDV extends TypeValidator {
 
-	public short getAllowedFacets() {
-		// anySimpleType doesn't allow any facet, not even whiteSpace
-		return 0;
-	}
+    public short getAllowedFacets() {
+        // anySimpleType doesn't allow any facet, not even whiteSpace
+        return 0;
+    }
 
-	public Object getActualValue(String content, ValidationContext context)
-			throws InvalidDatatypeValueException {
-		return content;
-	}
+    public Object getActualValue(String content, ValidationContext context)
+            throws InvalidDatatypeValueException {
+        return content;
+    }
 
 } // class AnySimpleDV

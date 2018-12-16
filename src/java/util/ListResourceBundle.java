@@ -46,43 +46,43 @@ import sun.util.ResourceBundleEnumeration;
  * <pre>
  *
  * public class MyResources extends ListResourceBundle {
- * 	protected Object[][] getContents() {
- * 		return new Object[][] {
- * 				// LOCALIZE THIS
- * 				{ "s1", "The disk \"{1}\" contains {0}." }, // MessageFormat
- * 				// pattern
- * 				{ "s2", "1" }, // location of {0} in pattern
- * 				{ "s3", "My Disk" }, // sample disk name
- * 				{ "s4", "no files" }, // first ChoiceFormat choice
- * 				{ "s5", "one file" }, // second ChoiceFormat choice
- * 				{ "s6", "{0,number} files" }, // third ChoiceFormat choice
- * 				{ "s7", "3 Mar 96" }, // sample date
- * 				{ "s8", new Dimension(1, 5) } // real object, not just string
- * 				// END OF MATERIAL TO LOCALIZE
- * 		};
- * 	}
+ *     protected Object[][] getContents() {
+ *         return new Object[][] {
+ *                 // LOCALIZE THIS
+ *                 { "s1", "The disk \"{1}\" contains {0}." }, // MessageFormat
+ *                 // pattern
+ *                 { "s2", "1" }, // location of {0} in pattern
+ *                 { "s3", "My Disk" }, // sample disk name
+ *                 { "s4", "no files" }, // first ChoiceFormat choice
+ *                 { "s5", "one file" }, // second ChoiceFormat choice
+ *                 { "s6", "{0,number} files" }, // third ChoiceFormat choice
+ *                 { "s7", "3 Mar 96" }, // sample date
+ *                 { "s8", new Dimension(1, 5) } // real object, not just string
+ *                 // END OF MATERIAL TO LOCALIZE
+ *         };
+ *     }
  * }
  *
  * public class MyResources_fr extends ListResourceBundle {
- * 	protected Object[][] getContents() {
- * 		return new Object[][] {
- * 				// LOCALIZE THIS
- * 				{ "s1", "Le disque \"{1}\" {0}." }, // MessageFormat pattern
- * 				{ "s2", "1" }, // location of {0} in pattern
- * 				{ "s3", "Mon disque" }, // sample disk name
- * 				{ "s4", "ne contient pas de fichiers" }, // first
- * 				// ChoiceFormat
- * 				// choice
- * 				{ "s5", "contient un fichier" }, // second ChoiceFormat
- * 				// choice
- * 				{ "s6", "contient {0,number} fichiers" }, // third
- * 				// ChoiceFormat
- * 				// choice
- * 				{ "s7", "3 mars 1996" }, // sample date
- * 				{ "s8", new Dimension(1, 3) } // real object, not just string
- * 				// END OF MATERIAL TO LOCALIZE
- * 		};
- * 	}
+ *     protected Object[][] getContents() {
+ *         return new Object[][] {
+ *                 // LOCALIZE THIS
+ *                 { "s1", "Le disque \"{1}\" {0}." }, // MessageFormat pattern
+ *                 { "s2", "1" }, // location of {0} in pattern
+ *                 { "s3", "Mon disque" }, // sample disk name
+ *                 { "s4", "ne contient pas de fichiers" }, // first
+ *                 // ChoiceFormat
+ *                 // choice
+ *                 { "s5", "contient un fichier" }, // second ChoiceFormat
+ *                 // choice
+ *                 { "s6", "contient {0,number} fichiers" }, // third
+ *                 // ChoiceFormat
+ *                 // choice
+ *                 { "s7", "3 mars 1996" }, // sample date
+ *                 { "s8", new Dimension(1, 3) } // real object, not just string
+ *                 // END OF MATERIAL TO LOCALIZE
+ *         };
+ *     }
  * }
  * </pre>
  * 
@@ -98,94 +98,94 @@ import sun.util.ResourceBundleEnumeration;
  * @since JDK1.1
  */
 public abstract class ListResourceBundle extends ResourceBundle {
-	/**
-	 * Sole constructor. (For invocation by subclass constructors, typically
-	 * implicit.)
-	 */
-	public ListResourceBundle() {}
+    /**
+     * Sole constructor. (For invocation by subclass constructors, typically
+     * implicit.)
+     */
+    public ListResourceBundle() {}
 
-	// Implements java.util.ResourceBundle.handleGetObject; inherits javadoc
-	// specification.
-	public final Object handleGetObject(String key) {
-		// lazily load the lookup hashtable.
-		if (lookup == null) {
-			loadLookup();
-		}
-		if (key == null) {
-			throw new NullPointerException();
-		}
-		return lookup.get(key); // this class ignores locales
-	}
+    // Implements java.util.ResourceBundle.handleGetObject; inherits javadoc
+    // specification.
+    public final Object handleGetObject(String key) {
+        // lazily load the lookup hashtable.
+        if (lookup == null) {
+            loadLookup();
+        }
+        if (key == null) {
+            throw new NullPointerException();
+        }
+        return lookup.get(key); // this class ignores locales
+    }
 
-	/**
-	 * Returns an <code>Enumeration</code> of the keys contained in this
-	 * <code>ResourceBundle</code> and its parent bundles.
-	 *
-	 * @return an <code>Enumeration</code> of the keys contained in this
-	 *         <code>ResourceBundle</code> and its parent bundles.
-	 * @see #keySet()
-	 */
-	public Enumeration<String> getKeys() {
-		// lazily load the lookup hashtable.
-		if (lookup == null) {
-			loadLookup();
-		}
+    /**
+     * Returns an <code>Enumeration</code> of the keys contained in this
+     * <code>ResourceBundle</code> and its parent bundles.
+     *
+     * @return an <code>Enumeration</code> of the keys contained in this
+     *         <code>ResourceBundle</code> and its parent bundles.
+     * @see #keySet()
+     */
+    public Enumeration<String> getKeys() {
+        // lazily load the lookup hashtable.
+        if (lookup == null) {
+            loadLookup();
+        }
 
-		ResourceBundle parent = this.parent;
-		return new ResourceBundleEnumeration(lookup.keySet(), (parent != null)
-				? parent.getKeys()
-				: null);
-	}
+        ResourceBundle parent = this.parent;
+        return new ResourceBundleEnumeration(lookup.keySet(), (parent != null)
+                ? parent.getKeys()
+                : null);
+    }
 
-	/**
-	 * Returns a <code>Set</code> of the keys contained <em>only</em> in this
-	 * <code>ResourceBundle</code>.
-	 *
-	 * @return a <code>Set</code> of the keys contained only in this
-	 *         <code>ResourceBundle</code>
-	 * @since 1.6
-	 * @see #keySet()
-	 */
-	protected Set<String> handleKeySet() {
-		if (lookup == null) {
-			loadLookup();
-		}
-		return lookup.keySet();
-	}
+    /**
+     * Returns a <code>Set</code> of the keys contained <em>only</em> in this
+     * <code>ResourceBundle</code>.
+     *
+     * @return a <code>Set</code> of the keys contained only in this
+     *         <code>ResourceBundle</code>
+     * @since 1.6
+     * @see #keySet()
+     */
+    protected Set<String> handleKeySet() {
+        if (lookup == null) {
+            loadLookup();
+        }
+        return lookup.keySet();
+    }
 
-	/**
-	 * Returns an array in which each item is a pair of objects in an
-	 * <code>Object</code> array. The first element of each pair is the key,
-	 * which must be a <code>String</code>, and the second element is the value
-	 * associated with that key. See the class description for details.
-	 *
-	 * @return an array of an <code>Object</code> array representing a key-value
-	 *         pair.
-	 */
-	abstract protected Object[][] getContents();
+    /**
+     * Returns an array in which each item is a pair of objects in an
+     * <code>Object</code> array. The first element of each pair is the key,
+     * which must be a <code>String</code>, and the second element is the value
+     * associated with that key. See the class description for details.
+     *
+     * @return an array of an <code>Object</code> array representing a key-value
+     *         pair.
+     */
+    abstract protected Object[][] getContents();
 
-	// ==================privates====================
+    // ==================privates====================
 
-	/**
-	 * We lazily load the lookup hashtable. This function does the loading.
-	 */
-	private synchronized void loadLookup() {
-		if (lookup != null)
-			return;
+    /**
+     * We lazily load the lookup hashtable. This function does the loading.
+     */
+    private synchronized void loadLookup() {
+        if (lookup != null)
+            return;
 
-		Object[][] contents = getContents();
-		HashMap<String, Object> temp = new HashMap<>(contents.length);
-		for (int i = 0; i < contents.length; ++i) {
-			// key must be non-null String, value must be non-null
-			String key = (String) contents[i][0];
-			Object value = contents[i][1];
-			if (key == null || value == null) {
-				throw new NullPointerException();
-			}
-			temp.put(key, value);
-		}
-		lookup = temp;
-	}
+        Object[][] contents = getContents();
+        HashMap<String, Object> temp = new HashMap<>(contents.length);
+        for (int i = 0; i < contents.length; ++i) {
+            // key must be non-null String, value must be non-null
+            String key = (String) contents[i][0];
+            Object value = contents[i][1];
+            if (key == null || value == null) {
+                throw new NullPointerException();
+            }
+            temp.put(key, value);
+        }
+        lookup = temp;
+    }
 
-	private Map<String, Object> lookup = null;
+    private Map<String, Object> lookup = null;
 }

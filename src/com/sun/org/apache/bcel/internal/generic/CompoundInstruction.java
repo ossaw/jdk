@@ -65,5 +65,5 @@ package com.sun.org.apache.bcel.internal.generic;
  * @see SWITCH
  */
 public interface CompoundInstruction {
-	public InstructionList getInstructionList();
+    public InstructionList getInstructionList();
 }

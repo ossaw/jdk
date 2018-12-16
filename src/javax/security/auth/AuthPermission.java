@@ -109,52 +109,52 @@ package javax.security.auth;
  */
 public final class AuthPermission extends java.security.BasicPermission {
 
-	private static final long serialVersionUID = 5806031445061587174L;
+    private static final long serialVersionUID = 5806031445061587174L;
 
-	/**
-	 * Creates a new AuthPermission with the specified name. The name is the
-	 * symbolic name of the AuthPermission.
-	 *
-	 * <p>
-	 *
-	 * @param name
-	 *             the name of the AuthPermission
-	 *
-	 * @throws NullPointerException
-	 *                                  if {@code name} is {@code null}.
-	 * @throws IllegalArgumentException
-	 *                                  if {@code name} is empty.
-	 */
-	public AuthPermission(String name) {
-		// for backwards compatibility --
-		// createLoginContext is deprecated in favor of createLoginContext.*
-		super("createLoginContext".equals(name) ? "createLoginContext.*"
-				: name);
-	}
+    /**
+     * Creates a new AuthPermission with the specified name. The name is the
+     * symbolic name of the AuthPermission.
+     *
+     * <p>
+     *
+     * @param name
+     *             the name of the AuthPermission
+     *
+     * @throws NullPointerException
+     *                                  if {@code name} is {@code null}.
+     * @throws IllegalArgumentException
+     *                                  if {@code name} is empty.
+     */
+    public AuthPermission(String name) {
+        // for backwards compatibility --
+        // createLoginContext is deprecated in favor of createLoginContext.*
+        super("createLoginContext".equals(name) ? "createLoginContext.*"
+                : name);
+    }
 
-	/**
-	 * Creates a new AuthPermission object with the specified name. The name is
-	 * the symbolic name of the AuthPermission, and the actions String is
-	 * currently unused and should be null.
-	 *
-	 * <p>
-	 *
-	 * @param name
-	 *                the name of the AuthPermission
-	 *                <p>
-	 *
-	 * @param actions
-	 *                should be null.
-	 *
-	 * @throws NullPointerException
-	 *                                  if {@code name} is {@code null}.
-	 * @throws IllegalArgumentException
-	 *                                  if {@code name} is empty.
-	 */
-	public AuthPermission(String name, String actions) {
-		// for backwards compatibility --
-		// createLoginContext is deprecated in favor of createLoginContext.*
-		super("createLoginContext".equals(name) ? "createLoginContext.*" : name,
-				actions);
-	}
+    /**
+     * Creates a new AuthPermission object with the specified name. The name is
+     * the symbolic name of the AuthPermission, and the actions String is
+     * currently unused and should be null.
+     *
+     * <p>
+     *
+     * @param name
+     *                the name of the AuthPermission
+     *                <p>
+     *
+     * @param actions
+     *                should be null.
+     *
+     * @throws NullPointerException
+     *                                  if {@code name} is {@code null}.
+     * @throws IllegalArgumentException
+     *                                  if {@code name} is empty.
+     */
+    public AuthPermission(String name, String actions) {
+        // for backwards compatibility --
+        // createLoginContext is deprecated in favor of createLoginContext.*
+        super("createLoginContext".equals(name) ? "createLoginContext.*" : name,
+                actions);
+    }
 }

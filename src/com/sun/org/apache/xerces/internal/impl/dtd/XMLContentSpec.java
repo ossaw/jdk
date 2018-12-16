@@ -103,217 +103,217 @@ package com.sun.org.apache.xerces.internal.impl.dtd;
  */
 public class XMLContentSpec {
 
-	//
-	// Constants
-	//
+    //
+    // Constants
+    //
 
-	/**
-	 * Name or #PCDATA. Leaf nodes that represent parsed character data
-	 * (#PCDATA) have values of -1.
-	 */
-	public static final short CONTENTSPECNODE_LEAF = 0;
+    /**
+     * Name or #PCDATA. Leaf nodes that represent parsed character data
+     * (#PCDATA) have values of -1.
+     */
+    public static final short CONTENTSPECNODE_LEAF = 0;
 
-	/** Represents a zero or one occurence count, '?'. */
-	public static final short CONTENTSPECNODE_ZERO_OR_ONE = 1;
+    /** Represents a zero or one occurence count, '?'. */
+    public static final short CONTENTSPECNODE_ZERO_OR_ONE = 1;
 
-	/** Represents a zero or more occurence count, '*'. */
-	public static final short CONTENTSPECNODE_ZERO_OR_MORE = 2;
+    /** Represents a zero or more occurence count, '*'. */
+    public static final short CONTENTSPECNODE_ZERO_OR_MORE = 2;
 
-	/** Represents a one or more occurence count, '+'. */
-	public static final short CONTENTSPECNODE_ONE_OR_MORE = 3;
+    /** Represents a one or more occurence count, '+'. */
+    public static final short CONTENTSPECNODE_ONE_OR_MORE = 3;
 
-	/** Represents choice, '|'. */
-	public static final short CONTENTSPECNODE_CHOICE = 4;
+    /** Represents choice, '|'. */
+    public static final short CONTENTSPECNODE_CHOICE = 4;
 
-	/** Represents sequence, ','. */
-	public static final short CONTENTSPECNODE_SEQ = 5;
+    /** Represents sequence, ','. */
+    public static final short CONTENTSPECNODE_SEQ = 5;
 
-	/**
-	 * Represents any namespace specified namespace. When the element found in
-	 * the document must belong to a specific namespace, <code>otherValue</code>
-	 * will contain the name of the namespace. If <code>otherValue</code> is
-	 * <code>-1</code> then the element can be from any namespace.
-	 * <p>
-	 * Lists of valid namespaces are created from choice content spec nodes that
-	 * have any content spec nodes as children.
-	 */
-	public static final short CONTENTSPECNODE_ANY = 6;
+    /**
+     * Represents any namespace specified namespace. When the element found in
+     * the document must belong to a specific namespace, <code>otherValue</code>
+     * will contain the name of the namespace. If <code>otherValue</code> is
+     * <code>-1</code> then the element can be from any namespace.
+     * <p>
+     * Lists of valid namespaces are created from choice content spec nodes that
+     * have any content spec nodes as children.
+     */
+    public static final short CONTENTSPECNODE_ANY = 6;
 
-	/**
-	 * Represents any other namespace (XML Schema: ##other).
-	 * <p>
-	 * When the content spec node type is set to CONTENTSPECNODE_ANY_OTHER,
-	 * <code>value</code> will contain the namespace that <em>cannot</em> occur.
-	 */
-	public static final short CONTENTSPECNODE_ANY_OTHER = 7;
+    /**
+     * Represents any other namespace (XML Schema: ##other).
+     * <p>
+     * When the content spec node type is set to CONTENTSPECNODE_ANY_OTHER,
+     * <code>value</code> will contain the namespace that <em>cannot</em> occur.
+     */
+    public static final short CONTENTSPECNODE_ANY_OTHER = 7;
 
-	/** Represents any local element (XML Schema: ##local). */
-	public static final short CONTENTSPECNODE_ANY_LOCAL = 8;
+    /** Represents any local element (XML Schema: ##local). */
+    public static final short CONTENTSPECNODE_ANY_LOCAL = 8;
 
-	/** prcessContent is 'lax' **/
-	public static final short CONTENTSPECNODE_ANY_LAX = 22;
+    /** prcessContent is 'lax' **/
+    public static final short CONTENTSPECNODE_ANY_LAX = 22;
 
-	public static final short CONTENTSPECNODE_ANY_OTHER_LAX = 23;
+    public static final short CONTENTSPECNODE_ANY_OTHER_LAX = 23;
 
-	public static final short CONTENTSPECNODE_ANY_LOCAL_LAX = 24;
+    public static final short CONTENTSPECNODE_ANY_LOCAL_LAX = 24;
 
-	/** processContent is 'skip' **/
+    /** processContent is 'skip' **/
 
-	public static final short CONTENTSPECNODE_ANY_SKIP = 38;
+    public static final short CONTENTSPECNODE_ANY_SKIP = 38;
 
-	public static final short CONTENTSPECNODE_ANY_OTHER_SKIP = 39;
+    public static final short CONTENTSPECNODE_ANY_OTHER_SKIP = 39;
 
-	public static final short CONTENTSPECNODE_ANY_LOCAL_SKIP = 40;
-	//
-	// Data
-	//
+    public static final short CONTENTSPECNODE_ANY_LOCAL_SKIP = 40;
+    //
+    // Data
+    //
 
-	/**
-	 * The content spec node type.
-	 *
-	 * @see #CONTENTSPECNODE_LEAF
-	 * @see #CONTENTSPECNODE_ZERO_OR_ONE
-	 * @see #CONTENTSPECNODE_ZERO_OR_MORE
-	 * @see #CONTENTSPECNODE_ONE_OR_MORE
-	 * @see #CONTENTSPECNODE_CHOICE
-	 * @see #CONTENTSPECNODE_SEQ
-	 */
-	public short type;
+    /**
+     * The content spec node type.
+     *
+     * @see #CONTENTSPECNODE_LEAF
+     * @see #CONTENTSPECNODE_ZERO_OR_ONE
+     * @see #CONTENTSPECNODE_ZERO_OR_MORE
+     * @see #CONTENTSPECNODE_ONE_OR_MORE
+     * @see #CONTENTSPECNODE_CHOICE
+     * @see #CONTENTSPECNODE_SEQ
+     */
+    public short type;
 
-	/**
-	 * The "left hand" value object of the content spec node. leaf
-	 * name.localpart, single child for unary ops, left child for binary ops.
-	 */
-	public Object value;
+    /**
+     * The "left hand" value object of the content spec node. leaf
+     * name.localpart, single child for unary ops, left child for binary ops.
+     */
+    public Object value;
 
-	/**
-	 * The "right hand" value of the content spec node. leaf name.uri, right
-	 * child for binary ops
-	 */
-	public Object otherValue;
+    /**
+     * The "right hand" value of the content spec node. leaf name.uri, right
+     * child for binary ops
+     */
+    public Object otherValue;
 
-	//
-	// Constructors
-	//
+    //
+    // Constructors
+    //
 
-	/** Default constructor. */
-	public XMLContentSpec() {
-		clear();
-	}
+    /** Default constructor. */
+    public XMLContentSpec() {
+        clear();
+    }
 
-	/** Constructs a content spec with the specified values. */
-	public XMLContentSpec(short type, Object value, Object otherValue) {
-		setValues(type, value, otherValue);
-	}
+    /** Constructs a content spec with the specified values. */
+    public XMLContentSpec(short type, Object value, Object otherValue) {
+        setValues(type, value, otherValue);
+    }
 
-	/**
-	 * Constructs a content spec from the values in the specified content spec.
-	 */
-	public XMLContentSpec(XMLContentSpec contentSpec) {
-		setValues(contentSpec);
-	}
+    /**
+     * Constructs a content spec from the values in the specified content spec.
+     */
+    public XMLContentSpec(XMLContentSpec contentSpec) {
+        setValues(contentSpec);
+    }
 
-	/**
-	 * Constructs a content spec from the values specified by the given content
-	 * spec provider and identifier.
-	 */
-	public XMLContentSpec(XMLContentSpec.Provider provider,
-			int contentSpecIndex) {
-		setValues(provider, contentSpecIndex);
-	}
+    /**
+     * Constructs a content spec from the values specified by the given content
+     * spec provider and identifier.
+     */
+    public XMLContentSpec(XMLContentSpec.Provider provider,
+            int contentSpecIndex) {
+        setValues(provider, contentSpecIndex);
+    }
 
-	//
-	// Public methods
-	//
+    //
+    // Public methods
+    //
 
-	/** Clears the values. */
-	public void clear() {
-		type = -1;
-		value = null;
-		otherValue = null;
-	}
+    /** Clears the values. */
+    public void clear() {
+        type = -1;
+        value = null;
+        otherValue = null;
+    }
 
-	/** Sets the values. */
-	public void setValues(short type, Object value, Object otherValue) {
-		this.type = type;
-		this.value = value;
-		this.otherValue = otherValue;
-	}
+    /** Sets the values. */
+    public void setValues(short type, Object value, Object otherValue) {
+        this.type = type;
+        this.value = value;
+        this.otherValue = otherValue;
+    }
 
-	/** Sets the values of the specified content spec. */
-	public void setValues(XMLContentSpec contentSpec) {
-		type = contentSpec.type;
-		value = contentSpec.value;
-		otherValue = contentSpec.otherValue;
-	}
+    /** Sets the values of the specified content spec. */
+    public void setValues(XMLContentSpec contentSpec) {
+        type = contentSpec.type;
+        value = contentSpec.value;
+        otherValue = contentSpec.otherValue;
+    }
 
-	/**
-	 * Sets the values from the values specified by the given content spec
-	 * provider and identifier. If the specified content spec cannot be
-	 * provided, the values of this content spec are cleared.
-	 */
-	public void setValues(XMLContentSpec.Provider provider,
-			int contentSpecIndex) {
-		if (!provider.getContentSpec(contentSpecIndex, this)) {
-			clear();
-		}
-	}
+    /**
+     * Sets the values from the values specified by the given content spec
+     * provider and identifier. If the specified content spec cannot be
+     * provided, the values of this content spec are cleared.
+     */
+    public void setValues(XMLContentSpec.Provider provider,
+            int contentSpecIndex) {
+        if (!provider.getContentSpec(contentSpecIndex, this)) {
+            clear();
+        }
+    }
 
-	//
-	// Object methods
-	//
+    //
+    // Object methods
+    //
 
-	/** Returns a hash code for this node. */
-	public int hashCode() {
-		return type << 16 | value.hashCode() << 8 | otherValue.hashCode();
-	}
+    /** Returns a hash code for this node. */
+    public int hashCode() {
+        return type << 16 | value.hashCode() << 8 | otherValue.hashCode();
+    }
 
-	/** Returns true if the two objects are equal. */
-	public boolean equals(Object object) {
-		if (object != null && object instanceof XMLContentSpec) {
-			XMLContentSpec contentSpec = (XMLContentSpec) object;
-			return type == contentSpec.type && value == contentSpec.value
-					&& otherValue == contentSpec.otherValue;
-		}
-		return false;
-	}
+    /** Returns true if the two objects are equal. */
+    public boolean equals(Object object) {
+        if (object != null && object instanceof XMLContentSpec) {
+            XMLContentSpec contentSpec = (XMLContentSpec) object;
+            return type == contentSpec.type && value == contentSpec.value
+                    && otherValue == contentSpec.otherValue;
+        }
+        return false;
+    }
 
-	//
-	// Interfaces
-	//
+    //
+    // Interfaces
+    //
 
-	/**
-	 * Provides a means for walking the structure built out of content spec
-	 * "nodes". The user of this provider interface is responsible for knowing
-	 * what the content spec node values "mean". If those values refer to
-	 * content spec identifiers, then the user can call back into the provider
-	 * to get the next content spec node in the structure.
-	 *
-	 * @xerces.internal
-	 */
-	public interface Provider {
+    /**
+     * Provides a means for walking the structure built out of content spec
+     * "nodes". The user of this provider interface is responsible for knowing
+     * what the content spec node values "mean". If those values refer to
+     * content spec identifiers, then the user can call back into the provider
+     * to get the next content spec node in the structure.
+     *
+     * @xerces.internal
+     */
+    public interface Provider {
 
-		//
-		// XMLContentSpec.Provider methods
-		//
+        //
+        // XMLContentSpec.Provider methods
+        //
 
-		/**
-		 * Fills in the provided content spec structure with content spec
-		 * information for a unique identifier.
-		 *
-		 * @param contentSpecIndex
-		 *                         The content spec identifier. All content spec
-		 *                         "nodes" have
-		 *                         a unique identifier.
-		 * @param contentSpec
-		 *                         The content spec struct to fill in with the
-		 *                         information.
-		 *
-		 * @return Returns true if the contentSpecIndex was found.
-		 */
-		public boolean getContentSpec(int contentSpecIndex,
-				XMLContentSpec contentSpec);
+        /**
+         * Fills in the provided content spec structure with content spec
+         * information for a unique identifier.
+         *
+         * @param contentSpecIndex
+         *                         The content spec identifier. All content spec
+         *                         "nodes" have
+         *                         a unique identifier.
+         * @param contentSpec
+         *                         The content spec struct to fill in with the
+         *                         information.
+         *
+         * @return Returns true if the contentSpecIndex was found.
+         */
+        public boolean getContentSpec(int contentSpecIndex,
+                XMLContentSpec contentSpec);
 
-	} // interface Provider
+    } // interface Provider
 
 } // class XMLContentSpec

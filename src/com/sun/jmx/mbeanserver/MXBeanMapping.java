@@ -107,121 +107,121 @@ import javax.management.openmbean.OpenType;
  *      "Custom MXBean type mappings"</a>
  */
 public abstract class MXBeanMapping {
-	private final Type javaType;
-	private final OpenType<?> openType;
-	private final Class<?> openClass;
+    private final Type javaType;
+    private final OpenType<?> openType;
+    private final Class<?> openClass;
 
-	/**
-	 * <p>
-	 * Construct a mapping between the given Java type and the given Open Type.
-	 * </p>
-	 *
-	 * @param javaType
-	 *                 the Java type (for example, {@code MyLinkedList}).
-	 * @param openType
-	 *                 the Open Type (for example, {@code
-	 * ArrayType.getArrayType(SimpleType.STRING)})
-	 *
-	 * @throws NullPointerException
-	 *                              if either argument is null.
-	 */
-	protected MXBeanMapping(Type javaType, OpenType<?> openType) {
-		if (javaType == null || openType == null)
-			throw new NullPointerException("Null argument");
-		this.javaType = javaType;
-		this.openType = openType;
-		this.openClass = makeOpenClass(javaType, openType);
-	}
+    /**
+     * <p>
+     * Construct a mapping between the given Java type and the given Open Type.
+     * </p>
+     *
+     * @param javaType
+     *                 the Java type (for example, {@code MyLinkedList}).
+     * @param openType
+     *                 the Open Type (for example, {@code
+     * ArrayType.getArrayType(SimpleType.STRING)})
+     *
+     * @throws NullPointerException
+     *                              if either argument is null.
+     */
+    protected MXBeanMapping(Type javaType, OpenType<?> openType) {
+        if (javaType == null || openType == null)
+            throw new NullPointerException("Null argument");
+        this.javaType = javaType;
+        this.openType = openType;
+        this.openClass = makeOpenClass(javaType, openType);
+    }
 
-	/**
-	 * <p>
-	 * The Java type that was supplied to the constructor.
-	 * </p>
-	 * 
-	 * @return the Java type that was supplied to the constructor.
-	 */
-	public final Type getJavaType() {
-		return javaType;
-	}
+    /**
+     * <p>
+     * The Java type that was supplied to the constructor.
+     * </p>
+     * 
+     * @return the Java type that was supplied to the constructor.
+     */
+    public final Type getJavaType() {
+        return javaType;
+    }
 
-	/**
-	 * <p>
-	 * The Open Type that was supplied to the constructor.
-	 * </p>
-	 * 
-	 * @return the Open Type that was supplied to the constructor.
-	 */
-	public final OpenType<?> getOpenType() {
-		return openType;
-	}
+    /**
+     * <p>
+     * The Open Type that was supplied to the constructor.
+     * </p>
+     * 
+     * @return the Open Type that was supplied to the constructor.
+     */
+    public final OpenType<?> getOpenType() {
+        return openType;
+    }
 
-	/**
-	 * <p>
-	 * The Java class that corresponds to instances of the
-	 * {@linkplain #getOpenType() Open Type} for this mapping.
-	 * </p>
-	 * 
-	 * @return the Java class that corresponds to instances of the Open Type for
-	 *         this mapping.
-	 * @see OpenType#getClassName
-	 */
-	public final Class<?> getOpenClass() {
-		return openClass;
-	}
+    /**
+     * <p>
+     * The Java class that corresponds to instances of the
+     * {@linkplain #getOpenType() Open Type} for this mapping.
+     * </p>
+     * 
+     * @return the Java class that corresponds to instances of the Open Type for
+     *         this mapping.
+     * @see OpenType#getClassName
+     */
+    public final Class<?> getOpenClass() {
+        return openClass;
+    }
 
-	private static Class<?> makeOpenClass(Type javaType, OpenType<?> openType) {
-		if (javaType instanceof Class<?> && ((Class<?>) javaType).isPrimitive())
-			return (Class<?>) javaType;
-		try {
-			String className = openType.getClassName();
-			return Class.forName(className, false, MXBeanMapping.class
-					.getClassLoader());
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException(e); // should not happen
-		}
-	}
+    private static Class<?> makeOpenClass(Type javaType, OpenType<?> openType) {
+        if (javaType instanceof Class<?> && ((Class<?>) javaType).isPrimitive())
+            return (Class<?>) javaType;
+        try {
+            String className = openType.getClassName();
+            return Class.forName(className, false, MXBeanMapping.class
+                    .getClassLoader());
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e); // should not happen
+        }
+    }
 
-	/**
-	 * <p>
-	 * Convert an instance of the Open Type into the Java type.
-	 * 
-	 * @param openValue
-	 *                  the value to be converted.
-	 * @return the converted value.
-	 * @throws InvalidObjectException
-	 *                                if the value cannot be converted.
-	 */
-	public abstract Object fromOpenValue(Object openValue)
-			throws InvalidObjectException;
+    /**
+     * <p>
+     * Convert an instance of the Open Type into the Java type.
+     * 
+     * @param openValue
+     *                  the value to be converted.
+     * @return the converted value.
+     * @throws InvalidObjectException
+     *                                if the value cannot be converted.
+     */
+    public abstract Object fromOpenValue(Object openValue)
+            throws InvalidObjectException;
 
-	/**
-	 * <p>
-	 * Convert an instance of the Java type into the Open Type.
-	 * 
-	 * @param javaValue
-	 *                  the value to be converted.
-	 * @return the converted value.
-	 * @throws OpenDataException
-	 *                           if the value cannot be converted.
-	 */
-	public abstract Object toOpenValue(Object javaValue)
-			throws OpenDataException;
+    /**
+     * <p>
+     * Convert an instance of the Java type into the Open Type.
+     * 
+     * @param javaValue
+     *                  the value to be converted.
+     * @return the converted value.
+     * @throws OpenDataException
+     *                           if the value cannot be converted.
+     */
+    public abstract Object toOpenValue(Object javaValue)
+            throws OpenDataException;
 
-	/**
-	 * <p>
-	 * Throw an appropriate InvalidObjectException if we will not be able to
-	 * convert back from the open data to the original Java object. The
-	 * {@link #fromOpenValue fromOpenValue} throws an exception if a given open
-	 * data value cannot be converted. This method throws an exception if
-	 * <em>no</em> open data values can be converted. The default implementation
-	 * of this method never throws an exception. Subclasses can override it as
-	 * appropriate.
-	 * </p>
-	 * 
-	 * @throws InvalidObjectException
-	 *                                if {@code fromOpenValue} will throw an
-	 *                                exception no matter
-	 *                                what its argument is.
-	 */
-	public void checkReconstructible() throws InvalidObjectException {}
+    /**
+     * <p>
+     * Throw an appropriate InvalidObjectException if we will not be able to
+     * convert back from the open data to the original Java object. The
+     * {@link #fromOpenValue fromOpenValue} throws an exception if a given open
+     * data value cannot be converted. This method throws an exception if
+     * <em>no</em> open data values can be converted. The default implementation
+     * of this method never throws an exception. Subclasses can override it as
+     * appropriate.
+     * </p>
+     * 
+     * @throws InvalidObjectException
+     *                                if {@code fromOpenValue} will throw an
+     *                                exception no matter
+     *                                what its argument is.
+     */
+    public void checkReconstructible() throws InvalidObjectException {}
 }

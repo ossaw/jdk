@@ -42,90 +42,90 @@ import org.w3c.dom.Element;
  */
 public class X509CertificateResolver extends KeyResolverSpi {
 
-	/** {@link org.apache.commons.logging} logging facility */
-	private static java.util.logging.Logger log = java.util.logging.Logger
-			.getLogger(X509CertificateResolver.class.getName());
+    /** {@link org.apache.commons.logging} logging facility */
+    private static java.util.logging.Logger log = java.util.logging.Logger
+            .getLogger(X509CertificateResolver.class.getName());
 
-	/**
-	 * Method engineResolvePublicKey
-	 * 
-	 * @inheritDoc
-	 * @param element
-	 * @param BaseURI
-	 * @param storage
-	 *
-	 * @throws KeyResolverException
-	 */
-	public PublicKey engineLookupAndResolvePublicKey(Element element,
-			String BaseURI, StorageResolver storage)
-			throws KeyResolverException {
+    /**
+     * Method engineResolvePublicKey
+     * 
+     * @inheritDoc
+     * @param element
+     * @param BaseURI
+     * @param storage
+     *
+     * @throws KeyResolverException
+     */
+    public PublicKey engineLookupAndResolvePublicKey(Element element,
+            String BaseURI, StorageResolver storage)
+            throws KeyResolverException {
 
-		X509Certificate cert = this.engineLookupResolveX509Certificate(element,
-				BaseURI, storage);
+        X509Certificate cert = this.engineLookupResolveX509Certificate(element,
+                BaseURI, storage);
 
-		if (cert != null) {
-			return cert.getPublicKey();
-		}
+        if (cert != null) {
+            return cert.getPublicKey();
+        }
 
-		return null;
-	}
+        return null;
+    }
 
-	/**
-	 * Method engineResolveX509Certificate
-	 * 
-	 * @inheritDoc
-	 * @param element
-	 * @param BaseURI
-	 * @param storage
-	 *
-	 * @throws KeyResolverException
-	 */
-	public X509Certificate engineLookupResolveX509Certificate(Element element,
-			String BaseURI, StorageResolver storage)
-			throws KeyResolverException {
+    /**
+     * Method engineResolveX509Certificate
+     * 
+     * @inheritDoc
+     * @param element
+     * @param BaseURI
+     * @param storage
+     *
+     * @throws KeyResolverException
+     */
+    public X509Certificate engineLookupResolveX509Certificate(Element element,
+            String BaseURI, StorageResolver storage)
+            throws KeyResolverException {
 
-		try {
-			Element[] els = XMLUtils.selectDsNodes(element.getFirstChild(),
-					Constants._TAG_X509CERTIFICATE);
-			if ((els == null) || (els.length == 0)) {
-				Element el = XMLUtils.selectDsNode(element.getFirstChild(),
-						Constants._TAG_X509DATA, 0);
-				if (el != null) {
-					return engineLookupResolveX509Certificate(el, BaseURI,
-							storage);
-				}
-				return null;
-			}
+        try {
+            Element[] els = XMLUtils.selectDsNodes(element.getFirstChild(),
+                    Constants._TAG_X509CERTIFICATE);
+            if ((els == null) || (els.length == 0)) {
+                Element el = XMLUtils.selectDsNode(element.getFirstChild(),
+                        Constants._TAG_X509DATA, 0);
+                if (el != null) {
+                    return engineLookupResolveX509Certificate(el, BaseURI,
+                            storage);
+                }
+                return null;
+            }
 
-			// populate Object array
-			for (int i = 0; i < els.length; i++) {
-				XMLX509Certificate xmlCert = new XMLX509Certificate(els[i],
-						BaseURI);
-				X509Certificate cert = xmlCert.getX509Certificate();
-				if (cert != null) {
-					return cert;
-				}
-			}
-			return null;
-		} catch (XMLSecurityException ex) {
-			if (log.isLoggable(java.util.logging.Level.FINE)) {
-				log.log(java.util.logging.Level.FINE, "XMLSecurityException",
-						ex);
-			}
-			throw new KeyResolverException("generic.EmptyMessage", ex);
-		}
-	}
+            // populate Object array
+            for (int i = 0; i < els.length; i++) {
+                XMLX509Certificate xmlCert = new XMLX509Certificate(els[i],
+                        BaseURI);
+                X509Certificate cert = xmlCert.getX509Certificate();
+                if (cert != null) {
+                    return cert;
+                }
+            }
+            return null;
+        } catch (XMLSecurityException ex) {
+            if (log.isLoggable(java.util.logging.Level.FINE)) {
+                log.log(java.util.logging.Level.FINE, "XMLSecurityException",
+                        ex);
+            }
+            throw new KeyResolverException("generic.EmptyMessage", ex);
+        }
+    }
 
-	/**
-	 * Method engineResolveSecretKey
-	 * 
-	 * @inheritDoc
-	 * @param element
-	 * @param BaseURI
-	 * @param storage
-	 */
-	public javax.crypto.SecretKey engineLookupAndResolveSecretKey(
-			Element element, String BaseURI, StorageResolver storage) {
-		return null;
-	}
+    /**
+     * Method engineResolveSecretKey
+     * 
+     * @inheritDoc
+     * @param element
+     * @param BaseURI
+     * @param storage
+     */
+    public javax.crypto.SecretKey engineLookupAndResolveSecretKey(
+            Element element, String BaseURI, StorageResolver storage) {
+        return null;
+    }
 }

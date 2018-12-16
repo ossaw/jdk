@@ -32,86 +32,86 @@ import org.w3c.dom.Node;
  */
 public class ElementDefinitionImpl extends ParentNode {
 
-	//
-	// Constants
-	//
+    //
+    // Constants
+    //
 
-	/** Serialization version. */
-	static final long serialVersionUID = -8373890672670022714L;
+    /** Serialization version. */
+    static final long serialVersionUID = -8373890672670022714L;
 
-	//
-	// Data
-	//
+    //
+    // Data
+    //
 
-	/** Element definition name. */
-	protected String name;
+    /** Element definition name. */
+    protected String name;
 
-	/** Default attributes. */
-	protected NamedNodeMapImpl attributes;
+    /** Default attributes. */
+    protected NamedNodeMapImpl attributes;
 
-	//
-	// Constructors
-	//
+    //
+    // Constructors
+    //
 
-	/** Factory constructor. */
-	public ElementDefinitionImpl(CoreDocumentImpl ownerDocument, String name) {
-		super(ownerDocument);
-		this.name = name;
-		attributes = new NamedNodeMapImpl(ownerDocument);
-	}
+    /** Factory constructor. */
+    public ElementDefinitionImpl(CoreDocumentImpl ownerDocument, String name) {
+        super(ownerDocument);
+        this.name = name;
+        attributes = new NamedNodeMapImpl(ownerDocument);
+    }
 
-	//
-	// Node methods
-	//
+    //
+    // Node methods
+    //
 
-	/**
-	 * A short integer indicating what type of node this is. The named constants
-	 * for this value are defined in the org.w3c.dom.Node interface.
-	 */
-	public short getNodeType() {
-		return NodeImpl.ELEMENT_DEFINITION_NODE;
-	}
+    /**
+     * A short integer indicating what type of node this is. The named constants
+     * for this value are defined in the org.w3c.dom.Node interface.
+     */
+    public short getNodeType() {
+        return NodeImpl.ELEMENT_DEFINITION_NODE;
+    }
 
-	/**
-	 * Returns the element definition name
-	 */
-	public String getNodeName() {
-		if (needsSyncData()) {
-			synchronizeData();
-		}
-		return name;
-	}
+    /**
+     * Returns the element definition name
+     */
+    public String getNodeName() {
+        if (needsSyncData()) {
+            synchronizeData();
+        }
+        return name;
+    }
 
-	/**
-	 * Replicate this object.
-	 */
-	public Node cloneNode(boolean deep) {
+    /**
+     * Replicate this object.
+     */
+    public Node cloneNode(boolean deep) {
 
-		ElementDefinitionImpl newnode = (ElementDefinitionImpl) super.cloneNode(
-				deep);
-		// NamedNodeMap must be explicitly replicated to avoid sharing
-		newnode.attributes = attributes.cloneMap(newnode);
-		return newnode;
+        ElementDefinitionImpl newnode = (ElementDefinitionImpl) super.cloneNode(
+                deep);
+        // NamedNodeMap must be explicitly replicated to avoid sharing
+        newnode.attributes = attributes.cloneMap(newnode);
+        return newnode;
 
-	} // cloneNode(boolean):Node
+    } // cloneNode(boolean):Node
 
-	/**
-	 * Query the attributes defined on this Element.
-	 * <p>
-	 * In the base implementation this Map simply contains Attribute objects
-	 * representing the defaults. In a more serious implementation, it would
-	 * contain AttributeDefinitionImpl objects for all declared Attributes,
-	 * indicating which are Default, DefaultFixed, Implicit and/or Required.
-	 *
-	 * @return org.w3c.dom.NamedNodeMap containing org.w3c.dom.Attribute
-	 */
-	public NamedNodeMap getAttributes() {
+    /**
+     * Query the attributes defined on this Element.
+     * <p>
+     * In the base implementation this Map simply contains Attribute objects
+     * representing the defaults. In a more serious implementation, it would
+     * contain AttributeDefinitionImpl objects for all declared Attributes,
+     * indicating which are Default, DefaultFixed, Implicit and/or Required.
+     *
+     * @return org.w3c.dom.NamedNodeMap containing org.w3c.dom.Attribute
+     */
+    public NamedNodeMap getAttributes() {
 
-		if (needsSyncChildren()) {
-			synchronizeChildren();
-		}
-		return attributes;
+        if (needsSyncChildren()) {
+            synchronizeChildren();
+        }
+        return attributes;
 
-	} // getAttributes():NamedNodeMap
+    } // getAttributes():NamedNodeMap
 
 } // class ElementDefinitionImpl

@@ -29,19 +29,19 @@ package com.sun.org.apache.xerces.internal.impl.xs.identity;
  */
 public class UniqueOrKey extends IdentityConstraint {
 
-	//
-	// Constructors
-	//
+    //
+    // Constructors
+    //
 
-	/** Constructs a unique or a key identity constraint. */
-	public UniqueOrKey(String namespace, String identityConstraintName,
-			String elemName, short type) {
-		super(namespace, identityConstraintName, elemName);
-		this.type = type;
-	} // <init>(String,String)
+    /** Constructs a unique or a key identity constraint. */
+    public UniqueOrKey(String namespace, String identityConstraintName,
+            String elemName, short type) {
+        super(namespace, identityConstraintName, elemName);
+        this.type = type;
+    } // <init>(String,String)
 
-	//
-	// Public methods
-	//
+    //
+    // Public methods
+    //
 
 } // class Unique

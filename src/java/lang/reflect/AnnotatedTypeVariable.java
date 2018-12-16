@@ -14,10 +14,10 @@ package java.lang.reflect;
  */
 public interface AnnotatedTypeVariable extends AnnotatedType {
 
-	/**
-	 * Returns the potentially annotated bounds of this type variable.
-	 *
-	 * @return the potentially annotated bounds of this type variable
-	 */
-	AnnotatedType[] getAnnotatedBounds();
+    /**
+     * Returns the potentially annotated bounds of this type variable.
+     *
+     * @return the potentially annotated bounds of this type variable
+     */
+    AnnotatedType[] getAnnotatedBounds();
 }

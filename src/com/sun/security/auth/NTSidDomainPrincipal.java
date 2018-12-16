@@ -28,68 +28,68 @@ package com.sun.security.auth;
 @jdk.Exported
 public class NTSidDomainPrincipal extends NTSid {
 
-	private static final long serialVersionUID = 5247810785821650912L;
+    private static final long serialVersionUID = 5247810785821650912L;
 
-	/**
-	 * Create an <code>NTSidDomainPrincipal</code> with a Windows NT SID.
-	 *
-	 * <p>
-	 *
-	 * @param name
-	 *             a string version of the Windows NT SID for this user's
-	 *             domain.
-	 *             <p>
-	 *
-	 * @exception NullPointerException
-	 *                                 if the <code>name</code> is
-	 *                                 <code>null</code>.
-	 */
-	public NTSidDomainPrincipal(String name) {
-		super(name);
-	}
+    /**
+     * Create an <code>NTSidDomainPrincipal</code> with a Windows NT SID.
+     *
+     * <p>
+     *
+     * @param name
+     *             a string version of the Windows NT SID for this user's
+     *             domain.
+     *             <p>
+     *
+     * @exception NullPointerException
+     *                                 if the <code>name</code> is
+     *                                 <code>null</code>.
+     */
+    public NTSidDomainPrincipal(String name) {
+        super(name);
+    }
 
-	/**
-	 * Return a string representation of this <code>NTSidDomainPrincipal</code>.
-	 *
-	 * <p>
-	 *
-	 * @return a string representation of this <code>NTSidDomainPrincipal</code>
-	 *         .
-	 */
-	public String toString() {
-		java.text.MessageFormat form = new java.text.MessageFormat(
-				sun.security.util.ResourcesMgr.getString(
-						"NTSidDomainPrincipal.name",
-						"sun.security.util.AuthResources"));
-		Object[] source = { getName() };
-		return form.format(source);
-	}
+    /**
+     * Return a string representation of this <code>NTSidDomainPrincipal</code>.
+     *
+     * <p>
+     *
+     * @return a string representation of this <code>NTSidDomainPrincipal</code>
+     *         .
+     */
+    public String toString() {
+        java.text.MessageFormat form = new java.text.MessageFormat(
+                sun.security.util.ResourcesMgr.getString(
+                        "NTSidDomainPrincipal.name",
+                        "sun.security.util.AuthResources"));
+        Object[] source = { getName() };
+        return form.format(source);
+    }
 
-	/**
-	 * Compares the specified Object with this <code>NTSidDomainPrincipal</code>
-	 * for equality. Returns true if the given object is also a
-	 * <code>NTSidDomainPrincipal</code> and the two NTSidDomainPrincipals have
-	 * the same SID.
-	 *
-	 * <p>
-	 *
-	 * @param o
-	 *          Object to be compared for equality with this
-	 *          <code>NTSidDomainPrincipal</code>.
-	 *
-	 * @return true if the specified Object is equal equal to this
-	 *         <code>NTSidDomainPrincipal</code>.
-	 */
-	public boolean equals(Object o) {
-		if (o == null)
-			return false;
+    /**
+     * Compares the specified Object with this <code>NTSidDomainPrincipal</code>
+     * for equality. Returns true if the given object is also a
+     * <code>NTSidDomainPrincipal</code> and the two NTSidDomainPrincipals have
+     * the same SID.
+     *
+     * <p>
+     *
+     * @param o
+     *          Object to be compared for equality with this
+     *          <code>NTSidDomainPrincipal</code>.
+     *
+     * @return true if the specified Object is equal equal to this
+     *         <code>NTSidDomainPrincipal</code>.
+     */
+    public boolean equals(Object o) {
+        if (o == null)
+            return false;
 
-		if (this == o)
-			return true;
+        if (this == o)
+            return true;
 
-		if (!(o instanceof NTSidDomainPrincipal))
-			return false;
+        if (!(o instanceof NTSidDomainPrincipal))
+            return false;
 
-		return super.equals(o);
-	}
+        return super.equals(o);
+    }
 }

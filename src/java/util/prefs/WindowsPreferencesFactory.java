@@ -15,17 +15,17 @@ package java.util.prefs;
  */
 class WindowsPreferencesFactory implements PreferencesFactory {
 
-	/**
-	 * Returns WindowsPreferences.userRoot
-	 */
-	public Preferences userRoot() {
-		return WindowsPreferences.userRoot;
-	}
+    /**
+     * Returns WindowsPreferences.userRoot
+     */
+    public Preferences userRoot() {
+        return WindowsPreferences.userRoot;
+    }
 
-	/**
-	 * Returns WindowsPreferences.systemRoot
-	 */
-	public Preferences systemRoot() {
-		return WindowsPreferences.systemRoot;
-	}
+    /**
+     * Returns WindowsPreferences.systemRoot
+     */
+    public Preferences systemRoot() {
+        return WindowsPreferences.systemRoot;
+    }
 }

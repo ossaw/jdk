@@ -25,7 +25,7 @@ import java.util.List;
  */
 @jdk.Exported
 public interface AnnotationTree extends ExpressionTree {
-	Tree getAnnotationType();
+    Tree getAnnotationType();
 
-	List<? extends ExpressionTree> getArguments();
+    List<? extends ExpressionTree> getArguments();
 }

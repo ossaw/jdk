@@ -38,28 +38,28 @@ package java.lang.management;
  * @since 1.5
  */
 public interface MemoryManagerMXBean extends PlatformManagedObject {
-	/**
-	 * Returns the name representing this memory manager.
-	 *
-	 * @return the name of this memory manager.
-	 */
-	public String getName();
+    /**
+     * Returns the name representing this memory manager.
+     *
+     * @return the name of this memory manager.
+     */
+    public String getName();
 
-	/**
-	 * Tests if this memory manager is valid in the Java virtual machine. A
-	 * memory manager becomes invalid once the Java virtual machine removes it
-	 * from the memory system.
-	 *
-	 * @return <tt>true</tt> if the memory manager is valid in the Java virtual
-	 *         machine; <tt>false</tt> otherwise.
-	 */
-	public boolean isValid();
+    /**
+     * Tests if this memory manager is valid in the Java virtual machine. A
+     * memory manager becomes invalid once the Java virtual machine removes it
+     * from the memory system.
+     *
+     * @return <tt>true</tt> if the memory manager is valid in the Java virtual
+     *         machine; <tt>false</tt> otherwise.
+     */
+    public boolean isValid();
 
-	/**
-	 * Returns the name of memory pools that this memory manager manages.
-	 *
-	 * @return an array of <tt>String</tt> objects, each is the name of a memory
-	 *         pool that this memory manager manages.
-	 */
-	public String[] getMemoryPoolNames();
+    /**
+     * Returns the name of memory pools that this memory manager manages.
+     *
+     * @return an array of <tt>String</tt> objects, each is the name of a memory
+     *         pool that this memory manager manages.
+     */
+    public String[] getMemoryPoolNames();
 }

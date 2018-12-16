@@ -66,230 +66,230 @@ import java.beans.PropertyChangeListener;
  */
 
 public interface TreeSelectionModel {
-	/** Selection can only contain one path at a time. */
-	public static final int SINGLE_TREE_SELECTION = 1;
+    /** Selection can only contain one path at a time. */
+    public static final int SINGLE_TREE_SELECTION = 1;
 
-	/**
-	 * Selection can only be contiguous. This will only be enforced if a
-	 * RowMapper instance is provided. That is, if no RowMapper is set this
-	 * behaves the same as DISCONTIGUOUS_TREE_SELECTION.
-	 */
-	public static final int CONTIGUOUS_TREE_SELECTION = 2;
+    /**
+     * Selection can only be contiguous. This will only be enforced if a
+     * RowMapper instance is provided. That is, if no RowMapper is set this
+     * behaves the same as DISCONTIGUOUS_TREE_SELECTION.
+     */
+    public static final int CONTIGUOUS_TREE_SELECTION = 2;
 
-	/**
-	 * Selection can contain any number of items that are not necessarily
-	 * contiguous.
-	 */
-	public static final int DISCONTIGUOUS_TREE_SELECTION = 4;
+    /**
+     * Selection can contain any number of items that are not necessarily
+     * contiguous.
+     */
+    public static final int DISCONTIGUOUS_TREE_SELECTION = 4;
 
-	/**
-	 * Sets the selection model, which must be one of SINGLE_TREE_SELECTION,
-	 * CONTIGUOUS_TREE_SELECTION or DISCONTIGUOUS_TREE_SELECTION.
-	 * <p>
-	 * This may change the selection if the current selection is not valid for
-	 * the new mode. For example, if three TreePaths are selected when the mode
-	 * is changed to <code>SINGLE_TREE_SELECTION</code>, only one TreePath will
-	 * remain selected. It is up to the particular implementation to decide what
-	 * TreePath remains selected.
-	 */
-	void setSelectionMode(int mode);
+    /**
+     * Sets the selection model, which must be one of SINGLE_TREE_SELECTION,
+     * CONTIGUOUS_TREE_SELECTION or DISCONTIGUOUS_TREE_SELECTION.
+     * <p>
+     * This may change the selection if the current selection is not valid for
+     * the new mode. For example, if three TreePaths are selected when the mode
+     * is changed to <code>SINGLE_TREE_SELECTION</code>, only one TreePath will
+     * remain selected. It is up to the particular implementation to decide what
+     * TreePath remains selected.
+     */
+    void setSelectionMode(int mode);
 
-	/**
-	 * Returns the current selection mode, one of
-	 * <code>SINGLE_TREE_SELECTION</code>,
-	 * <code>CONTIGUOUS_TREE_SELECTION</code> or
-	 * <code>DISCONTIGUOUS_TREE_SELECTION</code>.
-	 */
-	int getSelectionMode();
+    /**
+     * Returns the current selection mode, one of
+     * <code>SINGLE_TREE_SELECTION</code>,
+     * <code>CONTIGUOUS_TREE_SELECTION</code> or
+     * <code>DISCONTIGUOUS_TREE_SELECTION</code>.
+     */
+    int getSelectionMode();
 
-	/**
-	 * Sets the selection to path. If this represents a change, then the
-	 * TreeSelectionListeners are notified. If <code>path</code> is null, this
-	 * has the same effect as invoking <code>clearSelection</code>.
-	 *
-	 * @param path
-	 *             new path to select
-	 */
-	void setSelectionPath(TreePath path);
+    /**
+     * Sets the selection to path. If this represents a change, then the
+     * TreeSelectionListeners are notified. If <code>path</code> is null, this
+     * has the same effect as invoking <code>clearSelection</code>.
+     *
+     * @param path
+     *             new path to select
+     */
+    void setSelectionPath(TreePath path);
 
-	/**
-	 * Sets the selection to path. If this represents a change, then the
-	 * TreeSelectionListeners are notified. If <code>paths</code> is null, this
-	 * has the same effect as invoking <code>clearSelection</code>.
-	 *
-	 * @param paths
-	 *              new selection
-	 */
-	void setSelectionPaths(TreePath[] paths);
+    /**
+     * Sets the selection to path. If this represents a change, then the
+     * TreeSelectionListeners are notified. If <code>paths</code> is null, this
+     * has the same effect as invoking <code>clearSelection</code>.
+     *
+     * @param paths
+     *              new selection
+     */
+    void setSelectionPaths(TreePath[] paths);
 
-	/**
-	 * Adds path to the current selection. If path is not currently in the
-	 * selection the TreeSelectionListeners are notified. This has no effect if
-	 * <code>path</code> is null.
-	 *
-	 * @param path
-	 *             the new path to add to the current selection
-	 */
-	void addSelectionPath(TreePath path);
+    /**
+     * Adds path to the current selection. If path is not currently in the
+     * selection the TreeSelectionListeners are notified. This has no effect if
+     * <code>path</code> is null.
+     *
+     * @param path
+     *             the new path to add to the current selection
+     */
+    void addSelectionPath(TreePath path);
 
-	/**
-	 * Adds paths to the current selection. If any of the paths in paths are not
-	 * currently in the selection the TreeSelectionListeners are notified. This
-	 * has no effect if <code>paths</code> is null.
-	 *
-	 * @param paths
-	 *              the new paths to add to the current selection
-	 */
-	void addSelectionPaths(TreePath[] paths);
+    /**
+     * Adds paths to the current selection. If any of the paths in paths are not
+     * currently in the selection the TreeSelectionListeners are notified. This
+     * has no effect if <code>paths</code> is null.
+     *
+     * @param paths
+     *              the new paths to add to the current selection
+     */
+    void addSelectionPaths(TreePath[] paths);
 
-	/**
-	 * Removes path from the selection. If path is in the selection The
-	 * TreeSelectionListeners are notified. This has no effect if
-	 * <code>path</code> is null.
-	 *
-	 * @param path
-	 *             the path to remove from the selection
-	 */
-	void removeSelectionPath(TreePath path);
+    /**
+     * Removes path from the selection. If path is in the selection The
+     * TreeSelectionListeners are notified. This has no effect if
+     * <code>path</code> is null.
+     *
+     * @param path
+     *             the path to remove from the selection
+     */
+    void removeSelectionPath(TreePath path);
 
-	/**
-	 * Removes paths from the selection. If any of the paths in
-	 * <code>paths</code> are in the selection, the TreeSelectionListeners are
-	 * notified. This method has no effect if <code>paths</code> is null.
-	 *
-	 * @param paths
-	 *              the path to remove from the selection
-	 */
-	void removeSelectionPaths(TreePath[] paths);
+    /**
+     * Removes paths from the selection. If any of the paths in
+     * <code>paths</code> are in the selection, the TreeSelectionListeners are
+     * notified. This method has no effect if <code>paths</code> is null.
+     *
+     * @param paths
+     *              the path to remove from the selection
+     */
+    void removeSelectionPaths(TreePath[] paths);
 
-	/**
-	 * Returns the first path in the selection. How first is defined is up to
-	 * implementors, and may not necessarily be the TreePath with the smallest
-	 * integer value as determined from the <code>RowMapper</code>.
-	 */
-	TreePath getSelectionPath();
+    /**
+     * Returns the first path in the selection. How first is defined is up to
+     * implementors, and may not necessarily be the TreePath with the smallest
+     * integer value as determined from the <code>RowMapper</code>.
+     */
+    TreePath getSelectionPath();
 
-	/**
-	 * Returns the paths in the selection. This will return null (or an empty
-	 * array) if nothing is currently selected.
-	 */
-	TreePath[] getSelectionPaths();
+    /**
+     * Returns the paths in the selection. This will return null (or an empty
+     * array) if nothing is currently selected.
+     */
+    TreePath[] getSelectionPaths();
 
-	/**
-	 * Returns the number of paths that are selected.
-	 */
-	int getSelectionCount();
+    /**
+     * Returns the number of paths that are selected.
+     */
+    int getSelectionCount();
 
-	/**
-	 * Returns true if the path, <code>path</code>, is in the current selection.
-	 */
-	boolean isPathSelected(TreePath path);
+    /**
+     * Returns true if the path, <code>path</code>, is in the current selection.
+     */
+    boolean isPathSelected(TreePath path);
 
-	/**
-	 * Returns true if the selection is currently empty.
-	 */
-	boolean isSelectionEmpty();
+    /**
+     * Returns true if the selection is currently empty.
+     */
+    boolean isSelectionEmpty();
 
-	/**
-	 * Empties the current selection. If this represents a change in the current
-	 * selection, the selection listeners are notified.
-	 */
-	void clearSelection();
+    /**
+     * Empties the current selection. If this represents a change in the current
+     * selection, the selection listeners are notified.
+     */
+    void clearSelection();
 
-	/**
-	 * Sets the RowMapper instance. This instance is used to determine the row
-	 * for a particular TreePath.
-	 */
-	void setRowMapper(RowMapper newMapper);
+    /**
+     * Sets the RowMapper instance. This instance is used to determine the row
+     * for a particular TreePath.
+     */
+    void setRowMapper(RowMapper newMapper);
 
-	/**
-	 * Returns the RowMapper instance that is able to map a TreePath to a row.
-	 */
-	RowMapper getRowMapper();
+    /**
+     * Returns the RowMapper instance that is able to map a TreePath to a row.
+     */
+    RowMapper getRowMapper();
 
-	/**
-	 * Returns all of the currently selected rows. This will return null (or an
-	 * empty array) if there are no selected TreePaths or a RowMapper has not
-	 * been set.
-	 */
-	int[] getSelectionRows();
+    /**
+     * Returns all of the currently selected rows. This will return null (or an
+     * empty array) if there are no selected TreePaths or a RowMapper has not
+     * been set.
+     */
+    int[] getSelectionRows();
 
-	/**
-	 * Returns the smallest value obtained from the RowMapper for the current
-	 * set of selected TreePaths. If nothing is selected, or there is no
-	 * RowMapper, this will return -1.
-	 */
-	int getMinSelectionRow();
+    /**
+     * Returns the smallest value obtained from the RowMapper for the current
+     * set of selected TreePaths. If nothing is selected, or there is no
+     * RowMapper, this will return -1.
+     */
+    int getMinSelectionRow();
 
-	/**
-	 * Returns the largest value obtained from the RowMapper for the current set
-	 * of selected TreePaths. If nothing is selected, or there is no RowMapper,
-	 * this will return -1.
-	 */
-	int getMaxSelectionRow();
+    /**
+     * Returns the largest value obtained from the RowMapper for the current set
+     * of selected TreePaths. If nothing is selected, or there is no RowMapper,
+     * this will return -1.
+     */
+    int getMaxSelectionRow();
 
-	/**
-	 * Returns true if the row identified by <code>row</code> is selected.
-	 */
-	boolean isRowSelected(int row);
+    /**
+     * Returns true if the row identified by <code>row</code> is selected.
+     */
+    boolean isRowSelected(int row);
 
-	/**
-	 * Updates this object's mapping from TreePaths to rows. This should be
-	 * invoked when the mapping from TreePaths to integers has changed (for
-	 * example, a node has been expanded).
-	 * <p>
-	 * You do not normally have to call this; JTree and its associated listeners
-	 * will invoke this for you. If you are implementing your own view class,
-	 * then you will have to invoke this.
-	 */
-	void resetRowSelection();
+    /**
+     * Updates this object's mapping from TreePaths to rows. This should be
+     * invoked when the mapping from TreePaths to integers has changed (for
+     * example, a node has been expanded).
+     * <p>
+     * You do not normally have to call this; JTree and its associated listeners
+     * will invoke this for you. If you are implementing your own view class,
+     * then you will have to invoke this.
+     */
+    void resetRowSelection();
 
-	/**
-	 * Returns the lead selection index. That is the last index that was added.
-	 */
-	int getLeadSelectionRow();
+    /**
+     * Returns the lead selection index. That is the last index that was added.
+     */
+    int getLeadSelectionRow();
 
-	/**
-	 * Returns the last path that was added. This may differ from the
-	 * leadSelectionPath property maintained by the JTree.
-	 */
-	TreePath getLeadSelectionPath();
+    /**
+     * Returns the last path that was added. This may differ from the
+     * leadSelectionPath property maintained by the JTree.
+     */
+    TreePath getLeadSelectionPath();
 
-	/**
-	 * Adds a PropertyChangeListener to the listener list. The listener is
-	 * registered for all properties.
-	 * <p>
-	 * A PropertyChangeEvent will get fired when the selection mode changes.
-	 *
-	 * @param listener
-	 *                 the PropertyChangeListener to be added
-	 */
-	void addPropertyChangeListener(PropertyChangeListener listener);
+    /**
+     * Adds a PropertyChangeListener to the listener list. The listener is
+     * registered for all properties.
+     * <p>
+     * A PropertyChangeEvent will get fired when the selection mode changes.
+     *
+     * @param listener
+     *                 the PropertyChangeListener to be added
+     */
+    void addPropertyChangeListener(PropertyChangeListener listener);
 
-	/**
-	 * Removes a PropertyChangeListener from the listener list. This removes a
-	 * PropertyChangeListener that was registered for all properties.
-	 *
-	 * @param listener
-	 *                 the PropertyChangeListener to be removed
-	 */
-	void removePropertyChangeListener(PropertyChangeListener listener);
+    /**
+     * Removes a PropertyChangeListener from the listener list. This removes a
+     * PropertyChangeListener that was registered for all properties.
+     *
+     * @param listener
+     *                 the PropertyChangeListener to be removed
+     */
+    void removePropertyChangeListener(PropertyChangeListener listener);
 
-	/**
-	 * Adds x to the list of listeners that are notified each time the set of
-	 * selected TreePaths changes.
-	 *
-	 * @param x
-	 *          the new listener to be added
-	 */
-	void addTreeSelectionListener(TreeSelectionListener x);
+    /**
+     * Adds x to the list of listeners that are notified each time the set of
+     * selected TreePaths changes.
+     *
+     * @param x
+     *          the new listener to be added
+     */
+    void addTreeSelectionListener(TreeSelectionListener x);
 
-	/**
-	 * Removes x from the list of listeners that are notified each time the set
-	 * of selected TreePaths changes.
-	 *
-	 * @param x
-	 *          the listener to remove
-	 */
-	void removeTreeSelectionListener(TreeSelectionListener x);
+    /**
+     * Removes x from the list of listeners that are notified each time the set
+     * of selected TreePaths changes.
+     *
+     * @param x
+     *          the listener to remove
+     */
+    void removeTreeSelectionListener(TreeSelectionListener x);
 }

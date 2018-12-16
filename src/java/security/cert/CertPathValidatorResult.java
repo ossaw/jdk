@@ -20,11 +20,11 @@ package java.security.cert;
  */
 public interface CertPathValidatorResult extends Cloneable {
 
-	/**
-	 * Makes a copy of this {@code CertPathValidatorResult}. Changes to the copy
-	 * will not affect the original and vice versa.
-	 *
-	 * @return a copy of this {@code CertPathValidatorResult}
-	 */
-	Object clone();
+    /**
+     * Makes a copy of this {@code CertPathValidatorResult}. Changes to the copy
+     * will not affect the original and vice versa.
+     *
+     * @return a copy of this {@code CertPathValidatorResult}
+     */
+    Object clone();
 }

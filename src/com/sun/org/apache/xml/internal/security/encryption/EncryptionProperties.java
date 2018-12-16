@@ -41,41 +41,41 @@ import java.util.Iterator;
  */
 public interface EncryptionProperties {
 
-	/**
-	 * Returns the <code>EncryptionProperties</code>' id.
-	 *
-	 * @return the id.
-	 */
-	String getId();
+    /**
+     * Returns the <code>EncryptionProperties</code>' id.
+     *
+     * @return the id.
+     */
+    String getId();
 
-	/**
-	 * Sets the id.
-	 *
-	 * @param id
-	 *           the id.
-	 */
-	void setId(String id);
+    /**
+     * Sets the id.
+     *
+     * @param id
+     *           the id.
+     */
+    void setId(String id);
 
-	/**
-	 * Returns an <code>Iterator</code> over all the
-	 * <code>EncryptionPropterty</code> elements contained in this
-	 * <code>EncryptionProperties</code>.
-	 *
-	 * @return an <code>Iterator</code> over all the encryption properties.
-	 */
-	Iterator<EncryptionProperty> getEncryptionProperties();
+    /**
+     * Returns an <code>Iterator</code> over all the
+     * <code>EncryptionPropterty</code> elements contained in this
+     * <code>EncryptionProperties</code>.
+     *
+     * @return an <code>Iterator</code> over all the encryption properties.
+     */
+    Iterator<EncryptionProperty> getEncryptionProperties();
 
-	/**
-	 * Adds an <code>EncryptionProperty</code>.
-	 *
-	 * @param property
-	 */
-	void addEncryptionProperty(EncryptionProperty property);
+    /**
+     * Adds an <code>EncryptionProperty</code>.
+     *
+     * @param property
+     */
+    void addEncryptionProperty(EncryptionProperty property);
 
-	/**
-	 * Removes the specified <code>EncryptionProperty</code>.
-	 *
-	 * @param property
-	 */
-	void removeEncryptionProperty(EncryptionProperty property);
+    /**
+     * Removes the specified <code>EncryptionProperty</code>.
+     *
+     * @param property
+     */
+    void removeEncryptionProperty(EncryptionProperty property);
 }

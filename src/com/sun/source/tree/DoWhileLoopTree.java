@@ -24,7 +24,7 @@ package com.sun.source.tree;
  */
 @jdk.Exported
 public interface DoWhileLoopTree extends StatementTree {
-	ExpressionTree getCondition();
+    ExpressionTree getCondition();
 
-	StatementTree getStatement();
+    StatementTree getStatement();
 }

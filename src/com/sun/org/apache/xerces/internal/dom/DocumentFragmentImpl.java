@@ -60,85 +60,85 @@ import org.w3c.dom.Text;
  * @since PR-DOM-Level-1-19980818.
  */
 public class DocumentFragmentImpl extends ParentNode implements
-		DocumentFragment {
+        DocumentFragment {
 
-	//
-	// Constants
-	//
+    //
+    // Constants
+    //
 
-	/** Serialization version. */
-	static final long serialVersionUID = -7596449967279236746L;
+    /** Serialization version. */
+    static final long serialVersionUID = -7596449967279236746L;
 
-	//
-	// Constructors
-	//
+    //
+    // Constructors
+    //
 
-	/** Factory constructor. */
-	public DocumentFragmentImpl(CoreDocumentImpl ownerDoc) {
-		super(ownerDoc);
-	}
+    /** Factory constructor. */
+    public DocumentFragmentImpl(CoreDocumentImpl ownerDoc) {
+        super(ownerDoc);
+    }
 
-	/** Constructor for serialization. */
-	public DocumentFragmentImpl() {}
+    /** Constructor for serialization. */
+    public DocumentFragmentImpl() {}
 
-	//
-	// Node methods
-	//
+    //
+    // Node methods
+    //
 
-	/**
-	 * A short integer indicating what type of node this is. The named constants
-	 * for this value are defined in the org.w3c.dom.Node interface.
-	 */
-	public short getNodeType() {
-		return Node.DOCUMENT_FRAGMENT_NODE;
-	}
+    /**
+     * A short integer indicating what type of node this is. The named constants
+     * for this value are defined in the org.w3c.dom.Node interface.
+     */
+    public short getNodeType() {
+        return Node.DOCUMENT_FRAGMENT_NODE;
+    }
 
-	/** Returns the node name. */
-	public String getNodeName() {
-		return "#document-fragment";
-	}
+    /** Returns the node name. */
+    public String getNodeName() {
+        return "#document-fragment";
+    }
 
-	/**
-	 * Override default behavior to call normalize() on this Node's children. It
-	 * is up to implementors or Node to override normalize() to take action.
-	 */
-	public void normalize() {
-		// No need to normalize if already normalized.
-		if (isNormalized()) {
-			return;
-		}
-		if (needsSyncChildren()) {
-			synchronizeChildren();
-		}
-		ChildNode kid, next;
+    /**
+     * Override default behavior to call normalize() on this Node's children. It
+     * is up to implementors or Node to override normalize() to take action.
+     */
+    public void normalize() {
+        // No need to normalize if already normalized.
+        if (isNormalized()) {
+            return;
+        }
+        if (needsSyncChildren()) {
+            synchronizeChildren();
+        }
+        ChildNode kid, next;
 
-		for (kid = firstChild; kid != null; kid = next) {
-			next = kid.nextSibling;
+        for (kid = firstChild; kid != null; kid = next) {
+            next = kid.nextSibling;
 
-			// If kid is a text node, we need to check for one of two
-			// conditions:
-			// 1) There is an adjacent text node
-			// 2) There is no adjacent text node, but kid is
-			// an empty text node.
-			if (kid.getNodeType() == Node.TEXT_NODE) {
-				// If an adjacent text node, merge it with kid
-				if (next != null && next.getNodeType() == Node.TEXT_NODE) {
-					((Text) kid).appendData(next.getNodeValue());
-					removeChild(next);
-					next = kid; // Don't advance; there might be another.
-				} else {
-					// If kid is empty, remove it
-					if (kid.getNodeValue() == null || kid.getNodeValue()
-							.length() == 0) {
-						removeChild(kid);
-					}
-				}
-			}
+            // If kid is a text node, we need to check for one of two
+            // conditions:
+            // 1) There is an adjacent text node
+            // 2) There is no adjacent text node, but kid is
+            // an empty text node.
+            if (kid.getNodeType() == Node.TEXT_NODE) {
+                // If an adjacent text node, merge it with kid
+                if (next != null && next.getNodeType() == Node.TEXT_NODE) {
+                    ((Text) kid).appendData(next.getNodeValue());
+                    removeChild(next);
+                    next = kid; // Don't advance; there might be another.
+                } else {
+                    // If kid is empty, remove it
+                    if (kid.getNodeValue() == null || kid.getNodeValue()
+                            .length() == 0) {
+                        removeChild(kid);
+                    }
+                }
+            }
 
-			kid.normalize();
-		}
+            kid.normalize();
+        }
 
-		isNormalized(true);
-	}
+        isNormalized(true);
+    }
 
 } // class DocumentFragmentImpl

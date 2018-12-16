@@ -32,30 +32,30 @@ import javax.swing.text.*;
  */
 public interface AccessibleHypertext extends AccessibleText {
 
-	/**
-	 * Returns the number of links within this hypertext document.
-	 *
-	 * @return number of links in this hypertext doc.
-	 */
-	public abstract int getLinkCount();
+    /**
+     * Returns the number of links within this hypertext document.
+     *
+     * @return number of links in this hypertext doc.
+     */
+    public abstract int getLinkCount();
 
-	/**
-	 * Returns the nth Link of this Hypertext document.
-	 *
-	 * @param linkIndex
-	 *                  within the links of this Hypertext
-	 * @return Link object encapsulating the nth link(s)
-	 */
-	public abstract AccessibleHyperlink getLink(int linkIndex);
+    /**
+     * Returns the nth Link of this Hypertext document.
+     *
+     * @param linkIndex
+     *                  within the links of this Hypertext
+     * @return Link object encapsulating the nth link(s)
+     */
+    public abstract AccessibleHyperlink getLink(int linkIndex);
 
-	/**
-	 * Returns the index into an array of hyperlinks that is associated with
-	 * this character index, or -1 if there is no hyperlink associated with this
-	 * index.
-	 *
-	 * @param charIndex
-	 *                  index within the text
-	 * @return index into the set of hyperlinks for this hypertext doc.
-	 */
-	public abstract int getLinkIndex(int charIndex);
+    /**
+     * Returns the index into an array of hyperlinks that is associated with
+     * this character index, or -1 if there is no hyperlink associated with this
+     * index.
+     *
+     * @param charIndex
+     *                  index within the text
+     * @return index into the set of hyperlinks for this hypertext doc.
+     */
+    public abstract int getLinkIndex(int charIndex);
 }

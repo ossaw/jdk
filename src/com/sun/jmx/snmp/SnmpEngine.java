@@ -41,33 +41,33 @@ package com.sun.jmx.snmp;
  * @since 1.5
  */
 public interface SnmpEngine {
-	/**
-	 * Gets the engine time in seconds. This is the time from the last reboot.
-	 * 
-	 * @return The time from the last reboot.
-	 */
-	public int getEngineTime();
+    /**
+     * Gets the engine time in seconds. This is the time from the last reboot.
+     * 
+     * @return The time from the last reboot.
+     */
+    public int getEngineTime();
 
-	/**
-	 * Gets the engine Id. This is unique for each engine.
-	 * 
-	 * @return The engine Id object.
-	 */
-	public SnmpEngineId getEngineId();
+    /**
+     * Gets the engine Id. This is unique for each engine.
+     * 
+     * @return The engine Id object.
+     */
+    public SnmpEngineId getEngineId();
 
-	/**
-	 * Gets the engine boot number. This is the number of time this engine has
-	 * rebooted. Each time an <CODE>SnmpEngine</CODE> is instantiated, it will
-	 * read this value in its Lcd, and store back the value incremented by one.
-	 * 
-	 * @return The engine's number of reboot.
-	 */
-	public int getEngineBoots();
+    /**
+     * Gets the engine boot number. This is the number of time this engine has
+     * rebooted. Each time an <CODE>SnmpEngine</CODE> is instantiated, it will
+     * read this value in its Lcd, and store back the value incremented by one.
+     * 
+     * @return The engine's number of reboot.
+     */
+    public int getEngineBoots();
 
-	/**
-	 * Gets the Usm key handler.
-	 * 
-	 * @return The key handler.
-	 */
-	public SnmpUsmKeyHandler getUsmKeyHandler();
+    /**
+     * Gets the Usm key handler.
+     * 
+     * @return The key handler.
+     */
+    public SnmpUsmKeyHandler getUsmKeyHandler();
 }

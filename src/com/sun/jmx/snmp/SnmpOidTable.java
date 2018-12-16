@@ -33,39 +33,39 @@ import java.util.Vector;
 
 public interface SnmpOidTable {
 
-	/**
-	 * Searches for a MIB variable given its logical name and returns an
-	 * {@link com.sun.jmx.snmp.SnmpOidRecord} object containing information on
-	 * the variable.
-	 *
-	 * @param name
-	 *             The name of the MIB variable.
-	 * @return The <CODE>SnmpOidRecord</CODE> object containing information on
-	 *         the variable.
-	 * @exception SnmpStatusException
-	 *                                If the variable is not found.
-	 */
-	public SnmpOidRecord resolveVarName(String name) throws SnmpStatusException;
+    /**
+     * Searches for a MIB variable given its logical name and returns an
+     * {@link com.sun.jmx.snmp.SnmpOidRecord} object containing information on
+     * the variable.
+     *
+     * @param name
+     *             The name of the MIB variable.
+     * @return The <CODE>SnmpOidRecord</CODE> object containing information on
+     *         the variable.
+     * @exception SnmpStatusException
+     *                                If the variable is not found.
+     */
+    public SnmpOidRecord resolveVarName(String name) throws SnmpStatusException;
 
-	/**
-	 * Searches for a MIB variable given its OID and returns an
-	 * {@link com.sun.jmx.snmp.SnmpOidRecord} object containing information on
-	 * the variable.
-	 *
-	 * @param oid
-	 *            The OID of the MIB variable.
-	 * @return The <CODE>SnmpOidRecord</CODE> object containing information on
-	 *         the variable.
-	 * @exception SnmpStatusException
-	 *                                If the variable is not found.
-	 */
-	public SnmpOidRecord resolveVarOid(String oid) throws SnmpStatusException;
+    /**
+     * Searches for a MIB variable given its OID and returns an
+     * {@link com.sun.jmx.snmp.SnmpOidRecord} object containing information on
+     * the variable.
+     *
+     * @param oid
+     *            The OID of the MIB variable.
+     * @return The <CODE>SnmpOidRecord</CODE> object containing information on
+     *         the variable.
+     * @exception SnmpStatusException
+     *                                If the variable is not found.
+     */
+    public SnmpOidRecord resolveVarOid(String oid) throws SnmpStatusException;
 
-	/**
-	 * Returns a list that can be used to traverse all the entries this
-	 * <CODE>SnmpOidTable</CODE>.
-	 * 
-	 * @return A Vector of {@link com.sun.jmx.snmp.SnmpOidRecord} objects.
-	 */
-	public Vector<?> getAllEntries();
+    /**
+     * Returns a list that can be used to traverse all the entries this
+     * <CODE>SnmpOidTable</CODE>.
+     * 
+     * @return A Vector of {@link com.sun.jmx.snmp.SnmpOidRecord} objects.
+     */
+    public Vector<?> getAllEntries();
 }

@@ -11,7 +11,7 @@ import java.net.ServerSocket;
  * @author Harold Carr
  */
 public interface SocketOrChannelAcceptor {
-	public ServerSocket getServerSocket();
+    public ServerSocket getServerSocket();
 }
 
 // End of file.

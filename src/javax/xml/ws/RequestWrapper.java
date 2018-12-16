@@ -29,26 +29,26 @@ import java.lang.annotation.RetentionPolicy;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface RequestWrapper {
-	/**
-	 * Element's local name.
-	 */
-	public String localName() default "";
+    /**
+     * Element's local name.
+     */
+    public String localName() default "";
 
-	/**
-	 * Element's namespace name.
-	 */
-	public String targetNamespace() default "";
+    /**
+     * Element's namespace name.
+     */
+    public String targetNamespace() default "";
 
-	/**
-	 * Request wrapper bean name.
-	 */
-	public String className() default "";
+    /**
+     * Request wrapper bean name.
+     */
+    public String className() default "";
 
-	/**
-	 * wsdl:part name for the wrapper part
-	 *
-	 * @since JAX-WS 2.2
-	 */
-	public String partName() default "";
+    /**
+     * wsdl:part name for the wrapper part
+     *
+     * @since JAX-WS 2.2
+     */
+    public String partName() default "";
 
 }

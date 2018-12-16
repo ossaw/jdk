@@ -15,20 +15,20 @@ import java.sql.SQLException;
  */
 public class SerialException extends java.sql.SQLException {
 
-	/**
-	 * Creates a new <code>SerialException</code> without a message.
-	 */
-	public SerialException() {}
+    /**
+     * Creates a new <code>SerialException</code> without a message.
+     */
+    public SerialException() {}
 
-	/**
-	 * Creates a new <code>SerialException</code> with the specified message.
-	 *
-	 * @param msg
-	 *            the detail message
-	 */
-	public SerialException(String msg) {
-		super(msg);
-	}
+    /**
+     * Creates a new <code>SerialException</code> with the specified message.
+     *
+     * @param msg
+     *            the detail message
+     */
+    public SerialException(String msg) {
+        super(msg);
+    }
 
-	static final long serialVersionUID = -489794565168592690L;
+    static final long serialVersionUID = -489794565168592690L;
 }

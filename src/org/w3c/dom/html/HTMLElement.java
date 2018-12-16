@@ -32,44 +32,44 @@ import org.w3c.dom.Element;
  * Model (DOM) Level 2 Specification</a>.
  */
 public interface HTMLElement extends Element {
-	/**
-	 * The element's identifier. See the id attribute definition in HTML 4.0.
-	 */
-	public String getId();
+    /**
+     * The element's identifier. See the id attribute definition in HTML 4.0.
+     */
+    public String getId();
 
-	public void setId(String id);
+    public void setId(String id);
 
-	/**
-	 * The element's advisory title. See the title attribute definition in HTML
-	 * 4.0.
-	 */
-	public String getTitle();
+    /**
+     * The element's advisory title. See the title attribute definition in HTML
+     * 4.0.
+     */
+    public String getTitle();
 
-	public void setTitle(String title);
+    public void setTitle(String title);
 
-	/**
-	 * Language code defined in RFC 1766. See the lang attribute definition in
-	 * HTML 4.0.
-	 */
-	public String getLang();
+    /**
+     * Language code defined in RFC 1766. See the lang attribute definition in
+     * HTML 4.0.
+     */
+    public String getLang();
 
-	public void setLang(String lang);
+    public void setLang(String lang);
 
-	/**
-	 * Specifies the base direction of directionally neutral text and the
-	 * directionality of tables. See the dir attribute definition in HTML 4.0.
-	 */
-	public String getDir();
+    /**
+     * Specifies the base direction of directionally neutral text and the
+     * directionality of tables. See the dir attribute definition in HTML 4.0.
+     */
+    public String getDir();
 
-	public void setDir(String dir);
+    public void setDir(String dir);
 
-	/**
-	 * The class attribute of the element. This attribute has been renamed due
-	 * to conflicts with the "class" keyword exposed by many languages. See the
-	 * class attribute definition in HTML 4.0.
-	 */
-	public String getClassName();
+    /**
+     * The class attribute of the element. This attribute has been renamed due
+     * to conflicts with the "class" keyword exposed by many languages. See the
+     * class attribute definition in HTML 4.0.
+     */
+    public String getClassName();
 
-	public void setClassName(String className);
+    public void setClassName(String className);
 
 }

@@ -15,14 +15,14 @@ import javax.lang.model.element.Name;
  */
 @jdk.Exported
 public interface AttributeTree extends DocTree {
-	@jdk.Exported
-	enum ValueKind {
-		EMPTY, UNQUOTED, SINGLE, DOUBLE
-	};
+    @jdk.Exported
+    enum ValueKind {
+        EMPTY, UNQUOTED, SINGLE, DOUBLE
+    };
 
-	Name getName();
+    Name getName();
 
-	ValueKind getValueKind();
+    ValueKind getValueKind();
 
-	List<? extends DocTree> getValue();
+    List<? extends DocTree> getValue();
 }

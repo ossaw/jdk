@@ -16,10 +16,10 @@ package javax.lang.model.type;
  */
 public interface ArrayType extends ReferenceType {
 
-	/**
-	 * Returns the component type of this array type.
-	 *
-	 * @return the component type of this array type
-	 */
-	TypeMirror getComponentType();
+    /**
+     * Returns the component type of this array type.
+     *
+     * @return the component type of this array type
+     */
+    TypeMirror getComponentType();
 }

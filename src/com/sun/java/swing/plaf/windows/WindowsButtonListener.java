@@ -22,11 +22,11 @@ import javax.swing.plaf.basic.*;
  * @author Rich Schiavi
  */
 public class WindowsButtonListener extends BasicButtonListener {
-	public WindowsButtonListener(AbstractButton b) {
-		super(b);
-	}
-	/*
-	 * This class is currently not used, but exists in case customers were
-	 * subclassing it.
-	 */
+    public WindowsButtonListener(AbstractButton b) {
+        super(b);
+    }
+    /*
+     * This class is currently not used, but exists in case customers were
+     * subclassing it.
+     */
 }

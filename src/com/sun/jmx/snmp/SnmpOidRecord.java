@@ -38,62 +38,62 @@ package com.sun.jmx.snmp;
 
 public class SnmpOidRecord {
 
-	/**
-	 * Creates an <CODE>SnmpOidRecord</CODE> with the specified MIB variable
-	 * name, OID and type.
-	 * 
-	 * @param name
-	 *             The logical name of the MIB variable.
-	 * @param oid
-	 *             The OID of the MIB variable.
-	 * @param type
-	 *             The type of the MIB variable.
-	 */
-	public SnmpOidRecord(String name, String oid, String type) {
-		this.name = name;
-		this.oid = oid;
-		this.type = type;
-	}
+    /**
+     * Creates an <CODE>SnmpOidRecord</CODE> with the specified MIB variable
+     * name, OID and type.
+     * 
+     * @param name
+     *             The logical name of the MIB variable.
+     * @param oid
+     *             The OID of the MIB variable.
+     * @param type
+     *             The type of the MIB variable.
+     */
+    public SnmpOidRecord(String name, String oid, String type) {
+        this.name = name;
+        this.oid = oid;
+        this.type = type;
+    }
 
-	/**
-	 * Gets the logical name of the MIB variable.
-	 * 
-	 * @return The MIB variable name.
-	 */
-	public String getName() {
-		return name;
-	}
+    /**
+     * Gets the logical name of the MIB variable.
+     * 
+     * @return The MIB variable name.
+     */
+    public String getName() {
+        return name;
+    }
 
-	/**
-	 * Gets the OID of the MIB variable.
-	 * 
-	 * @return The MIB variable OID.
-	 */
-	public String getOid() {
-		return oid;
-	}
+    /**
+     * Gets the OID of the MIB variable.
+     * 
+     * @return The MIB variable OID.
+     */
+    public String getOid() {
+        return oid;
+    }
 
-	/**
-	 * Gets the type of the MIB variable.
-	 * 
-	 * @return The MIB variable type.
-	 */
-	public String getType() {
-		return type;
-	}
+    /**
+     * Gets the type of the MIB variable.
+     * 
+     * @return The MIB variable type.
+     */
+    public String getType() {
+        return type;
+    }
 
-	// PRIVATE VARIABLES
+    // PRIVATE VARIABLES
 
-	/**
-	 * The MIB variable name.
-	 */
-	private String name;
-	/**
-	 * The MIB variable OID.
-	 */
-	private String oid;
-	/**
-	 * The MIB variable type.
-	 */
-	private String type;
+    /**
+     * The MIB variable name.
+     */
+    private String name;
+    /**
+     * The MIB variable OID.
+     */
+    private String oid;
+    /**
+     * The MIB variable type.
+     */
+    private String type;
 }

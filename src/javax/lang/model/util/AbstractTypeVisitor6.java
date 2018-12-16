@@ -54,89 +54,89 @@ import javax.lang.model.type.*;
  * @since 1.6
  */
 public abstract class AbstractTypeVisitor6<R, P> implements TypeVisitor<R, P> {
-	/**
-	 * Constructor for concrete subclasses to call.
-	 */
-	protected AbstractTypeVisitor6() {}
+    /**
+     * Constructor for concrete subclasses to call.
+     */
+    protected AbstractTypeVisitor6() {}
 
-	/**
-	 * Visits any type mirror as if by passing itself to that type mirror's
-	 * {@link TypeMirror#accept accept} method. The invocation
-	 * {@code v.visit(t, p)} is equivalent to {@code
-	 * t.accept(v, p)}.
-	 *
-	 * @param t
-	 *          the type to visit
-	 * @param p
-	 *          a visitor-specified parameter
-	 * @return a visitor-specified result
-	 */
-	public final R visit(TypeMirror t, P p) {
-		return t.accept(this, p);
-	}
+    /**
+     * Visits any type mirror as if by passing itself to that type mirror's
+     * {@link TypeMirror#accept accept} method. The invocation
+     * {@code v.visit(t, p)} is equivalent to {@code
+     * t.accept(v, p)}.
+     *
+     * @param t
+     *          the type to visit
+     * @param p
+     *          a visitor-specified parameter
+     * @return a visitor-specified result
+     */
+    public final R visit(TypeMirror t, P p) {
+        return t.accept(this, p);
+    }
 
-	/**
-	 * Visits any type mirror as if by passing itself to that type mirror's
-	 * {@link TypeMirror#accept accept} method and passing {@code null} for the
-	 * additional parameter. The invocation {@code v.visit(t)} is equivalent to
-	 * {@code t.accept(v, null)}.
-	 *
-	 * @param t
-	 *          the type to visit
-	 * @return a visitor-specified result
-	 */
-	public final R visit(TypeMirror t) {
-		return t.accept(this, null);
-	}
+    /**
+     * Visits any type mirror as if by passing itself to that type mirror's
+     * {@link TypeMirror#accept accept} method and passing {@code null} for the
+     * additional parameter. The invocation {@code v.visit(t)} is equivalent to
+     * {@code t.accept(v, null)}.
+     *
+     * @param t
+     *          the type to visit
+     * @return a visitor-specified result
+     */
+    public final R visit(TypeMirror t) {
+        return t.accept(this, null);
+    }
 
-	/**
-	 * Visits a {@code UnionType} element by calling {@code
-	 * visitUnknown}.
-	 * 
-	 * @param t
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of {@code visitUnknown}
-	 *
-	 * @since 1.7
-	 */
-	public R visitUnion(UnionType t, P p) {
-		return visitUnknown(t, p);
-	}
+    /**
+     * Visits a {@code UnionType} element by calling {@code
+     * visitUnknown}.
+     * 
+     * @param t
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of {@code visitUnknown}
+     *
+     * @since 1.7
+     */
+    public R visitUnion(UnionType t, P p) {
+        return visitUnknown(t, p);
+    }
 
-	/**
-	 * Visits an {@code IntersectionType} element by calling {@code
-	 * visitUnknown}.
-	 * 
-	 * @param t
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of {@code visitUnknown}
-	 *
-	 * @since 1.8
-	 */
-	public R visitIntersection(IntersectionType t, P p) {
-		return visitUnknown(t, p);
-	}
+    /**
+     * Visits an {@code IntersectionType} element by calling {@code
+     * visitUnknown}.
+     * 
+     * @param t
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of {@code visitUnknown}
+     *
+     * @since 1.8
+     */
+    public R visitIntersection(IntersectionType t, P p) {
+        return visitUnknown(t, p);
+    }
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>
-	 * The default implementation of this method in {@code
-	 * AbstractTypeVisitor6} will always throw {@code
-	 * UnknownTypeException}. This behavior is not required of a subclass.
-	 *
-	 * @param t
-	 *          the type to visit
-	 * @return a visitor-specified result
-	 * @throws UnknownTypeException
-	 *                              a visitor implementation may optionally
-	 *                              throw this exception
-	 */
-	public R visitUnknown(TypeMirror t, P p) {
-		throw new UnknownTypeException(t, p);
-	}
+    /**
+     * {@inheritDoc}
+     *
+     * <p>
+     * The default implementation of this method in {@code
+     * AbstractTypeVisitor6} will always throw {@code
+     * UnknownTypeException}. This behavior is not required of a subclass.
+     *
+     * @param t
+     *          the type to visit
+     * @return a visitor-specified result
+     * @throws UnknownTypeException
+     *                              a visitor implementation may optionally
+     *                              throw this exception
+     */
+    public R visitUnknown(TypeMirror t, P p) {
+        throw new UnknownTypeException(t, p);
+    }
 }

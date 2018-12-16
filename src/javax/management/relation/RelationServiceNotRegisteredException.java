@@ -13,23 +13,23 @@ package javax.management.relation;
  */
 public class RelationServiceNotRegisteredException extends RelationException {
 
-	/* Serial version */
-	private static final long serialVersionUID = 8454744887157122910L;
+    /* Serial version */
+    private static final long serialVersionUID = 8454744887157122910L;
 
-	/**
-	 * Default constructor, no message put in exception.
-	 */
-	public RelationServiceNotRegisteredException() {
-		super();
-	}
+    /**
+     * Default constructor, no message put in exception.
+     */
+    public RelationServiceNotRegisteredException() {
+        super();
+    }
 
-	/**
-	 * Constructor with given message put in exception.
-	 *
-	 * @param message
-	 *                the detail message.
-	 */
-	public RelationServiceNotRegisteredException(String message) {
-		super(message);
-	}
+    /**
+     * Constructor with given message put in exception.
+     *
+     * @param message
+     *                the detail message.
+     */
+    public RelationServiceNotRegisteredException(String message) {
+        super(message);
+    }
 }

@@ -71,36 +71,36 @@ import static javax.lang.model.SourceVersion.*;
  */
 @SupportedSourceVersion(RELEASE_7)
 public class ElementScanner7<R, P> extends ElementScanner6<R, P> {
-	/**
-	 * Constructor for concrete subclasses; uses {@code null} for the default
-	 * value.
-	 */
-	protected ElementScanner7() {
-		super(null);
-	}
+    /**
+     * Constructor for concrete subclasses; uses {@code null} for the default
+     * value.
+     */
+    protected ElementScanner7() {
+        super(null);
+    }
 
-	/**
-	 * Constructor for concrete subclasses; uses the argument for the default
-	 * value.
-	 *
-	 * @param defaultValue
-	 *                     the default value
-	 */
-	protected ElementScanner7(R defaultValue) {
-		super(defaultValue);
-	}
+    /**
+     * Constructor for concrete subclasses; uses the argument for the default
+     * value.
+     *
+     * @param defaultValue
+     *                     the default value
+     */
+    protected ElementScanner7(R defaultValue) {
+        super(defaultValue);
+    }
 
-	/**
-	 * This implementation scans the enclosed elements.
-	 *
-	 * @param e
-	 *          {@inheritDoc}
-	 * @param p
-	 *          {@inheritDoc}
-	 * @return the result of scanning
-	 */
-	@Override
-	public R visitVariable(VariableElement e, P p) {
-		return scan(e.getEnclosedElements(), p);
-	}
+    /**
+     * This implementation scans the enclosed elements.
+     *
+     * @param e
+     *          {@inheritDoc}
+     * @param p
+     *          {@inheritDoc}
+     * @return the result of scanning
+     */
+    @Override
+    public R visitVariable(VariableElement e, P p) {
+        return scan(e.getEnclosedElements(), p);
+    }
 }

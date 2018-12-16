@@ -50,7 +50,7 @@ import java.util.List;
  * <pre>
  * KeyInfoFactory factory = KeyInfoFactory.getInstance("DOM");
  * X509Data x509Data = factory.newX509Data(Collections.singletonList(
- * 		"cn=Alice"));
+ *         "cn=Alice"));
  * </pre>
  *
  * @author Sean Mullan
@@ -61,33 +61,33 @@ import java.util.List;
 // @@@ check for illegal combinations of data violating MUSTs in W3c spec
 public interface X509Data extends XMLStructure {
 
-	/**
-	 * URI identifying the X509Data KeyInfo type:
-	 * http://www.w3.org/2000/09/xmldsig#X509Data. This can be specified as the
-	 * value of the <code>type</code> parameter of the {@link RetrievalMethod}
-	 * class to describe a remote <code>X509Data</code> structure.
-	 */
-	final static String TYPE = "http://www.w3.org/2000/09/xmldsig#X509Data";
+    /**
+     * URI identifying the X509Data KeyInfo type:
+     * http://www.w3.org/2000/09/xmldsig#X509Data. This can be specified as the
+     * value of the <code>type</code> parameter of the {@link RetrievalMethod}
+     * class to describe a remote <code>X509Data</code> structure.
+     */
+    final static String TYPE = "http://www.w3.org/2000/09/xmldsig#X509Data";
 
-	/**
-	 * URI identifying the binary (ASN.1 DER) X.509 Certificate KeyInfo type:
-	 * http://www.w3.org/2000/09/xmldsig#rawX509Certificate. This can be
-	 * specified as the value of the <code>type</code> parameter of the
-	 * {@link RetrievalMethod} class to describe a remote X509 Certificate.
-	 */
-	final static String RAW_X509_CERTIFICATE_TYPE = "http://www.w3.org/2000/09/xmldsig#rawX509Certificate";
+    /**
+     * URI identifying the binary (ASN.1 DER) X.509 Certificate KeyInfo type:
+     * http://www.w3.org/2000/09/xmldsig#rawX509Certificate. This can be
+     * specified as the value of the <code>type</code> parameter of the
+     * {@link RetrievalMethod} class to describe a remote X509 Certificate.
+     */
+    final static String RAW_X509_CERTIFICATE_TYPE = "http://www.w3.org/2000/09/xmldsig#rawX509Certificate";
 
-	/**
-	 * Returns an {@link java.util.Collections#unmodifiableList unmodifiable
-	 * list} of the content in this <code>X509Data</code>. Valid types are
-	 * {@link String} (subject names), <code>byte[]</code> (subject key ids),
-	 * {@link java.security.cert.X509Certificate}, {@link X509CRL}, or
-	 * {@link XMLStructure} ({@link X509IssuerSerial} objects or elements from
-	 * an external namespace).
-	 *
-	 * @return an unmodifiable list of the content in this <code>X509Data</code>
-	 *         (never <code>null</code> or empty)
-	 */
-	@SuppressWarnings("rawtypes")
-	List getContent();
+    /**
+     * Returns an {@link java.util.Collections#unmodifiableList unmodifiable
+     * list} of the content in this <code>X509Data</code>. Valid types are
+     * {@link String} (subject names), <code>byte[]</code> (subject key ids),
+     * {@link java.security.cert.X509Certificate}, {@link X509CRL}, or
+     * {@link XMLStructure} ({@link X509IssuerSerial} objects or elements from
+     * an external namespace).
+     *
+     * @return an unmodifiable list of the content in this <code>X509Data</code>
+     *         (never <code>null</code> or empty)
+     */
+    @SuppressWarnings("rawtypes")
+    List getContent();
 }

@@ -15,84 +15,84 @@ import sun.nio.ch.DirectBuffer;
 
 class DirectFloatBufferRS
 
-		extends DirectFloatBufferS
+        extends DirectFloatBufferS
 
-		implements DirectBuffer {
+        implements DirectBuffer {
 
-	// For duplicates and slices
-	//
-	DirectFloatBufferRS(DirectBuffer db, // package-private
-			int mark, int pos, int lim, int cap, int off) {
+    // For duplicates and slices
+    //
+    DirectFloatBufferRS(DirectBuffer db, // package-private
+            int mark, int pos, int lim, int cap, int off) {
 
-		super(db, mark, pos, lim, cap, off);
+        super(db, mark, pos, lim, cap, off);
 
-	}
+    }
 
-	public FloatBuffer slice() {
-		int pos = this.position();
-		int lim = this.limit();
-		assert (pos <= lim);
-		int rem = (pos <= lim ? lim - pos : 0);
-		int off = (pos << 2);
-		assert (off >= 0);
-		return new DirectFloatBufferRS(this, -1, 0, rem, rem, off);
-	}
+    public FloatBuffer slice() {
+        int pos = this.position();
+        int lim = this.limit();
+        assert (pos <= lim);
+        int rem = (pos <= lim ? lim - pos : 0);
+        int off = (pos << 2);
+        assert (off >= 0);
+        return new DirectFloatBufferRS(this, -1, 0, rem, rem, off);
+    }
 
-	public FloatBuffer duplicate() {
-		return new DirectFloatBufferRS(this, this.markValue(), this.position(),
-				this.limit(), this.capacity(), 0);
-	}
+    public FloatBuffer duplicate() {
+        return new DirectFloatBufferRS(this, this.markValue(), this.position(),
+                this.limit(), this.capacity(), 0);
+    }
 
-	public FloatBuffer asReadOnlyBuffer() {
+    public FloatBuffer asReadOnlyBuffer() {
 
-		return duplicate();
+        return duplicate();
 
-	}
+    }
 
-	public FloatBuffer put(float x) {
+    public FloatBuffer put(float x) {
 
-		throw new ReadOnlyBufferException();
+        throw new ReadOnlyBufferException();
 
-	}
+    }
 
-	public FloatBuffer put(int i, float x) {
+    public FloatBuffer put(int i, float x) {
 
-		throw new ReadOnlyBufferException();
+        throw new ReadOnlyBufferException();
 
-	}
+    }
 
-	public FloatBuffer put(FloatBuffer src) {
+    public FloatBuffer put(FloatBuffer src) {
 
-		throw new ReadOnlyBufferException();
+        throw new ReadOnlyBufferException();
 
-	}
+    }
 
-	public FloatBuffer put(float[] src, int offset, int length) {
+    public FloatBuffer put(float[] src, int offset, int length) {
 
-		throw new ReadOnlyBufferException();
+        throw new ReadOnlyBufferException();
 
-	}
+    }
 
-	public FloatBuffer compact() {
+    public FloatBuffer compact() {
 
-		throw new ReadOnlyBufferException();
+        throw new ReadOnlyBufferException();
 
-	}
+    }
 
-	public boolean isDirect() {
-		return true;
-	}
+    public boolean isDirect() {
+        return true;
+    }
 
-	public boolean isReadOnly() {
-		return true;
-	}
+    public boolean isReadOnly() {
+        return true;
+    }
 
-	public ByteOrder order() {
+    public ByteOrder order() {
 
-		return ((ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN)
-				? ByteOrder.LITTLE_ENDIAN
-				: ByteOrder.BIG_ENDIAN);
+        return ((ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN)
+                ? ByteOrder.LITTLE_ENDIAN
+                : ByteOrder.BIG_ENDIAN);
 
-	}
+    }
 
 }

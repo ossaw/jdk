@@ -46,69 +46,69 @@ import com.sun.org.apache.xerces.internal.utils.XMLSecurityManager;
  */
 public class SecurityConfiguration extends XIncludeAwareParserConfiguration {
 
-	//
-	// Constants
-	//
+    //
+    // Constants
+    //
 
-	protected static final String SECURITY_MANAGER_PROPERTY = Constants.XERCES_PROPERTY_PREFIX
-			+ Constants.SECURITY_MANAGER_PROPERTY;
+    protected static final String SECURITY_MANAGER_PROPERTY = Constants.XERCES_PROPERTY_PREFIX
+            + Constants.SECURITY_MANAGER_PROPERTY;
 
-	//
-	// Constructors
-	//
+    //
+    // Constructors
+    //
 
-	/** Default constructor. */
-	public SecurityConfiguration() {
-		this(null, null, null);
-	} // <init>()
+    /** Default constructor. */
+    public SecurityConfiguration() {
+        this(null, null, null);
+    } // <init>()
 
-	/**
-	 * Constructs a parser configuration using the specified symbol table.
-	 *
-	 * @param symbolTable
-	 *                    The symbol table to use.
-	 */
-	public SecurityConfiguration(SymbolTable symbolTable) {
-		this(symbolTable, null, null);
-	} // <init>(SymbolTable)
+    /**
+     * Constructs a parser configuration using the specified symbol table.
+     *
+     * @param symbolTable
+     *                    The symbol table to use.
+     */
+    public SecurityConfiguration(SymbolTable symbolTable) {
+        this(symbolTable, null, null);
+    } // <init>(SymbolTable)
 
-	/**
-	 * Constructs a parser configuration using the specified symbol table and
-	 * grammar pool.
-	 * <p>
-	 * <strong>REVISIT:</strong> Grammar pool will be updated when the new
-	 * validation engine is implemented.
-	 *
-	 * @param symbolTable
-	 *                    The symbol table to use.
-	 * @param grammarPool
-	 *                    The grammar pool to use.
-	 */
-	public SecurityConfiguration(SymbolTable symbolTable,
-			XMLGrammarPool grammarPool) {
-		this(symbolTable, grammarPool, null);
-	} // <init>(SymbolTable,XMLGrammarPool)
+    /**
+     * Constructs a parser configuration using the specified symbol table and
+     * grammar pool.
+     * <p>
+     * <strong>REVISIT:</strong> Grammar pool will be updated when the new
+     * validation engine is implemented.
+     *
+     * @param symbolTable
+     *                    The symbol table to use.
+     * @param grammarPool
+     *                    The grammar pool to use.
+     */
+    public SecurityConfiguration(SymbolTable symbolTable,
+            XMLGrammarPool grammarPool) {
+        this(symbolTable, grammarPool, null);
+    } // <init>(SymbolTable,XMLGrammarPool)
 
-	/**
-	 * Constructs a parser configuration using the specified symbol table,
-	 * grammar pool, and parent settings.
-	 * <p>
-	 * <strong>REVISIT:</strong> Grammar pool will be updated when the new
-	 * validation engine is implemented.
-	 *
-	 * @param symbolTable
-	 *                       The symbol table to use.
-	 * @param grammarPool
-	 *                       The grammar pool to use.
-	 * @param parentSettings
-	 *                       The parent settings.
-	 */
-	public SecurityConfiguration(SymbolTable symbolTable,
-			XMLGrammarPool grammarPool, XMLComponentManager parentSettings) {
-		super(symbolTable, grammarPool, parentSettings);
+    /**
+     * Constructs a parser configuration using the specified symbol table,
+     * grammar pool, and parent settings.
+     * <p>
+     * <strong>REVISIT:</strong> Grammar pool will be updated when the new
+     * validation engine is implemented.
+     *
+     * @param symbolTable
+     *                       The symbol table to use.
+     * @param grammarPool
+     *                       The grammar pool to use.
+     * @param parentSettings
+     *                       The parent settings.
+     */
+    public SecurityConfiguration(SymbolTable symbolTable,
+            XMLGrammarPool grammarPool, XMLComponentManager parentSettings) {
+        super(symbolTable, grammarPool, parentSettings);
 
-		// create the SecurityManager property:
-		setProperty(SECURITY_MANAGER_PROPERTY, new XMLSecurityManager(true));
-	} // <init>(SymbolTable,XMLGrammarPool)
+        // create the SecurityManager property:
+        setProperty(SECURITY_MANAGER_PROPERTY, new XMLSecurityManager(true));
+    } // <init>(SymbolTable,XMLGrammarPool)
 
 } // class SecurityConfiguration

@@ -20,13 +20,13 @@ import java.util.EventListener;
  */
 public interface MetaEventListener extends EventListener {
 
-	/**
-	 * Invoked when a <code>{@link Sequencer}</code> has encountered and
-	 * processed a <code>MetaMessage</code> in the <code>{@link Sequence}</code>
-	 * it is processing.
-	 * 
-	 * @param meta
-	 *             the meta-message that the sequencer encountered
-	 */
-	public void meta(MetaMessage meta);
+    /**
+     * Invoked when a <code>{@link Sequencer}</code> has encountered and
+     * processed a <code>MetaMessage</code> in the <code>{@link Sequence}</code>
+     * it is processing.
+     * 
+     * @param meta
+     *             the meta-message that the sequencer encountered
+     */
+    public void meta(MetaMessage meta);
 }

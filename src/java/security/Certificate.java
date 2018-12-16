@@ -44,98 +44,98 @@ import java.util.Date;
 @Deprecated
 public interface Certificate {
 
-	/**
-	 * Returns the guarantor of the certificate, that is, the principal
-	 * guaranteeing that the public key associated with this certificate is that
-	 * of the principal associated with this certificate. For X.509
-	 * certificates, the guarantor will typically be a Certificate Authority
-	 * (such as the United States Postal Service or Verisign, Inc.).
-	 *
-	 * @return the guarantor which guaranteed the principal-key binding.
-	 */
-	public abstract Principal getGuarantor();
+    /**
+     * Returns the guarantor of the certificate, that is, the principal
+     * guaranteeing that the public key associated with this certificate is that
+     * of the principal associated with this certificate. For X.509
+     * certificates, the guarantor will typically be a Certificate Authority
+     * (such as the United States Postal Service or Verisign, Inc.).
+     *
+     * @return the guarantor which guaranteed the principal-key binding.
+     */
+    public abstract Principal getGuarantor();
 
-	/**
-	 * Returns the principal of the principal-key pair being guaranteed by the
-	 * guarantor.
-	 *
-	 * @return the principal to which this certificate is bound.
-	 */
-	public abstract Principal getPrincipal();
+    /**
+     * Returns the principal of the principal-key pair being guaranteed by the
+     * guarantor.
+     *
+     * @return the principal to which this certificate is bound.
+     */
+    public abstract Principal getPrincipal();
 
-	/**
-	 * Returns the key of the principal-key pair being guaranteed by the
-	 * guarantor.
-	 *
-	 * @return the public key that this certificate certifies belongs to a
-	 *         particular principal.
-	 */
-	public abstract PublicKey getPublicKey();
+    /**
+     * Returns the key of the principal-key pair being guaranteed by the
+     * guarantor.
+     *
+     * @return the public key that this certificate certifies belongs to a
+     *         particular principal.
+     */
+    public abstract PublicKey getPublicKey();
 
-	/**
-	 * Encodes the certificate to an output stream in a format that can be
-	 * decoded by the {@code decode} method.
-	 *
-	 * @param stream
-	 *               the output stream to which to encode the certificate.
-	 *
-	 * @exception KeyException
-	 *                         if the certificate is not properly initialized,
-	 *                         or data is
-	 *                         missing, etc.
-	 *
-	 * @exception IOException
-	 *                         if a stream exception occurs while trying to
-	 *                         output the
-	 *                         encoded certificate to the output stream.
-	 *
-	 * @see #decode
-	 * @see #getFormat
-	 */
-	public abstract void encode(OutputStream stream) throws KeyException,
-			IOException;
+    /**
+     * Encodes the certificate to an output stream in a format that can be
+     * decoded by the {@code decode} method.
+     *
+     * @param stream
+     *               the output stream to which to encode the certificate.
+     *
+     * @exception KeyException
+     *                         if the certificate is not properly initialized,
+     *                         or data is
+     *                         missing, etc.
+     *
+     * @exception IOException
+     *                         if a stream exception occurs while trying to
+     *                         output the
+     *                         encoded certificate to the output stream.
+     *
+     * @see #decode
+     * @see #getFormat
+     */
+    public abstract void encode(OutputStream stream) throws KeyException,
+            IOException;
 
-	/**
-	 * Decodes a certificate from an input stream. The format should be that
-	 * returned by {@code getFormat} and produced by {@code encode}.
-	 *
-	 * @param stream
-	 *               the input stream from which to fetch the data being
-	 *               decoded.
-	 *
-	 * @exception KeyException
-	 *                         if the certificate is not properly initialized,
-	 *                         or data is
-	 *                         missing, etc.
-	 *
-	 * @exception IOException
-	 *                         if an exception occurs while trying to input the
-	 *                         encoded
-	 *                         certificate from the input stream.
-	 *
-	 * @see #encode
-	 * @see #getFormat
-	 */
-	public abstract void decode(InputStream stream) throws KeyException,
-			IOException;
+    /**
+     * Decodes a certificate from an input stream. The format should be that
+     * returned by {@code getFormat} and produced by {@code encode}.
+     *
+     * @param stream
+     *               the input stream from which to fetch the data being
+     *               decoded.
+     *
+     * @exception KeyException
+     *                         if the certificate is not properly initialized,
+     *                         or data is
+     *                         missing, etc.
+     *
+     * @exception IOException
+     *                         if an exception occurs while trying to input the
+     *                         encoded
+     *                         certificate from the input stream.
+     *
+     * @see #encode
+     * @see #getFormat
+     */
+    public abstract void decode(InputStream stream) throws KeyException,
+            IOException;
 
-	/**
-	 * Returns the name of the coding format. This is used as a hint to find an
-	 * appropriate parser. It could be "X.509", "PGP", etc. This is the format
-	 * produced and understood by the {@code encode} and {@code decode} methods.
-	 *
-	 * @return the name of the coding format.
-	 */
-	public abstract String getFormat();
+    /**
+     * Returns the name of the coding format. This is used as a hint to find an
+     * appropriate parser. It could be "X.509", "PGP", etc. This is the format
+     * produced and understood by the {@code encode} and {@code decode} methods.
+     *
+     * @return the name of the coding format.
+     */
+    public abstract String getFormat();
 
-	/**
-	 * Returns a string that represents the contents of the certificate.
-	 *
-	 * @param detailed
-	 *                 whether or not to give detailed information about the
-	 *                 certificate
-	 *
-	 * @return a string representing the contents of the certificate
-	 */
-	public String toString(boolean detailed);
+    /**
+     * Returns a string that represents the contents of the certificate.
+     *
+     * @param detailed
+     *                 whether or not to give detailed information about the
+     *                 certificate
+     *
+     * @return a string representing the contents of the certificate
+     */
+    public String toString(boolean detailed);
 }

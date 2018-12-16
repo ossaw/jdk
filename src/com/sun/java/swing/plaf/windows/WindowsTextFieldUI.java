@@ -39,111 +39,111 @@ import sun.swing.DefaultLookup;
  * @author Timothy Prinzing
  */
 public class WindowsTextFieldUI extends BasicTextFieldUI {
-	/**
-	 * Creates a UI for a JTextField.
-	 *
-	 * @param c
-	 *          the text field
-	 * @return the UI
-	 */
-	public static ComponentUI createUI(JComponent c) {
-		return new WindowsTextFieldUI();
-	}
+    /**
+     * Creates a UI for a JTextField.
+     *
+     * @param c
+     *          the text field
+     * @return the UI
+     */
+    public static ComponentUI createUI(JComponent c) {
+        return new WindowsTextFieldUI();
+    }
 
-	/**
-	 * Paints a background for the view. This will only be called if isOpaque()
-	 * on the associated component is true. The default is to paint the
-	 * background color of the component.
-	 *
-	 * @param g
-	 *          the graphics context
-	 */
-	protected void paintBackground(Graphics g) {
-		super.paintBackground(g);
-	}
+    /**
+     * Paints a background for the view. This will only be called if isOpaque()
+     * on the associated component is true. The default is to paint the
+     * background color of the component.
+     *
+     * @param g
+     *          the graphics context
+     */
+    protected void paintBackground(Graphics g) {
+        super.paintBackground(g);
+    }
 
-	/**
-	 * Creates the caret for a field.
-	 *
-	 * @return the caret
-	 */
-	protected Caret createCaret() {
-		return new WindowsFieldCaret();
-	}
+    /**
+     * Creates the caret for a field.
+     *
+     * @return the caret
+     */
+    protected Caret createCaret() {
+        return new WindowsFieldCaret();
+    }
 
-	/**
-	 * WindowsFieldCaret has different scrolling behavior than DefaultCaret.
-	 */
-	static class WindowsFieldCaret extends DefaultCaret implements UIResource {
+    /**
+     * WindowsFieldCaret has different scrolling behavior than DefaultCaret.
+     */
+    static class WindowsFieldCaret extends DefaultCaret implements UIResource {
 
-		public WindowsFieldCaret() {
-			super();
-		}
+        public WindowsFieldCaret() {
+            super();
+        }
 
-		/**
-		 * Adjusts the visibility of the caret according to the windows feel
-		 * which seems to be to move the caret out into the field by about a
-		 * quarter of a field length if not visible.
-		 */
-		protected void adjustVisibility(Rectangle r) {
-			SwingUtilities.invokeLater(new SafeScroller(r));
-		}
+        /**
+         * Adjusts the visibility of the caret according to the windows feel
+         * which seems to be to move the caret out into the field by about a
+         * quarter of a field length if not visible.
+         */
+        protected void adjustVisibility(Rectangle r) {
+            SwingUtilities.invokeLater(new SafeScroller(r));
+        }
 
-		/**
-		 * Gets the painter for the Highlighter.
-		 *
-		 * @return the painter
-		 */
-		protected Highlighter.HighlightPainter getSelectionPainter() {
-			return WindowsTextUI.WindowsPainter;
-		}
+        /**
+         * Gets the painter for the Highlighter.
+         *
+         * @return the painter
+         */
+        protected Highlighter.HighlightPainter getSelectionPainter() {
+            return WindowsTextUI.WindowsPainter;
+        }
 
-		private class SafeScroller implements Runnable {
-			SafeScroller(Rectangle r) {
-				this.r = r;
-			}
+        private class SafeScroller implements Runnable {
+            SafeScroller(Rectangle r) {
+                this.r = r;
+            }
 
-			public void run() {
-				JTextField field = (JTextField) getComponent();
-				if (field != null) {
-					TextUI ui = field.getUI();
-					int dot = getDot();
-					// PENDING: We need to expose the bias in DefaultCaret.
-					Position.Bias bias = Position.Bias.Forward;
-					Rectangle startRect = null;
-					try {
-						startRect = ui.modelToView(field, dot, bias);
-					} catch (BadLocationException ble) {
-					}
+            public void run() {
+                JTextField field = (JTextField) getComponent();
+                if (field != null) {
+                    TextUI ui = field.getUI();
+                    int dot = getDot();
+                    // PENDING: We need to expose the bias in DefaultCaret.
+                    Position.Bias bias = Position.Bias.Forward;
+                    Rectangle startRect = null;
+                    try {
+                        startRect = ui.modelToView(field, dot, bias);
+                    } catch (BadLocationException ble) {
+                    }
 
-					Insets i = field.getInsets();
-					BoundedRangeModel vis = field.getHorizontalVisibility();
-					int x = r.x + vis.getValue() - i.left;
-					int quarterSpan = vis.getExtent() / 4;
-					if (r.x < i.left) {
-						vis.setValue(x - quarterSpan);
-					} else if (r.x + r.width > i.left + vis.getExtent()) {
-						vis.setValue(x - (3 * quarterSpan));
-					}
-					// If we scroll, our visual location will have changed,
-					// but we won't have updated our internal location as
-					// the model hasn't changed. This checks for the change,
-					// and if necessary, resets the internal location.
-					if (startRect != null) {
-						try {
-							Rectangle endRect;
-							endRect = ui.modelToView(field, dot, bias);
-							if (endRect != null && !endRect.equals(startRect)) {
-								damage(endRect);
-							}
-						} catch (BadLocationException ble) {
-						}
-					}
-				}
-			}
+                    Insets i = field.getInsets();
+                    BoundedRangeModel vis = field.getHorizontalVisibility();
+                    int x = r.x + vis.getValue() - i.left;
+                    int quarterSpan = vis.getExtent() / 4;
+                    if (r.x < i.left) {
+                        vis.setValue(x - quarterSpan);
+                    } else if (r.x + r.width > i.left + vis.getExtent()) {
+                        vis.setValue(x - (3 * quarterSpan));
+                    }
+                    // If we scroll, our visual location will have changed,
+                    // but we won't have updated our internal location as
+                    // the model hasn't changed. This checks for the change,
+                    // and if necessary, resets the internal location.
+                    if (startRect != null) {
+                        try {
+                            Rectangle endRect;
+                            endRect = ui.modelToView(field, dot, bias);
+                            if (endRect != null && !endRect.equals(startRect)) {
+                                damage(endRect);
+                            }
+                        } catch (BadLocationException ble) {
+                        }
+                    }
+                }
+            }
 
-			private Rectangle r;
-		}
-	}
+            private Rectangle r;
+        }
+    }
 
 }

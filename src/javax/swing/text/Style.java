@@ -24,29 +24,29 @@ import java.util.Hashtable;
  */
 public interface Style extends MutableAttributeSet {
 
-	/**
-	 * Fetches the name of the style. A style is not required to be named, so
-	 * <code>null</code> is returned if there is no name associated with the
-	 * style.
-	 *
-	 * @return the name
-	 */
-	public String getName();
+    /**
+     * Fetches the name of the style. A style is not required to be named, so
+     * <code>null</code> is returned if there is no name associated with the
+     * style.
+     *
+     * @return the name
+     */
+    public String getName();
 
-	/**
-	 * Adds a listener to track whenever an attribute has been changed.
-	 *
-	 * @param l
-	 *          the change listener
-	 */
-	public void addChangeListener(ChangeListener l);
+    /**
+     * Adds a listener to track whenever an attribute has been changed.
+     *
+     * @param l
+     *          the change listener
+     */
+    public void addChangeListener(ChangeListener l);
 
-	/**
-	 * Removes a listener that was tracking attribute changes.
-	 *
-	 * @param l
-	 *          the change listener
-	 */
-	public void removeChangeListener(ChangeListener l);
+    /**
+     * Removes a listener that was tracking attribute changes.
+     *
+     * @param l
+     *          the change listener
+     */
+    public void removeChangeListener(ChangeListener l);
 
 }

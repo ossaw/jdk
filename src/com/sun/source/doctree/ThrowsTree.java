@@ -20,7 +20,7 @@ import java.util.List;
  */
 @jdk.Exported
 public interface ThrowsTree extends BlockTagTree {
-	ReferenceTree getExceptionName();
+    ReferenceTree getExceptionName();
 
-	List<? extends DocTree> getDescription();
+    List<? extends DocTree> getDescription();
 }

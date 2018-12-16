@@ -30,15 +30,15 @@ import com.sun.org.apache.xerces.internal.impl.dv.ValidationContext;
  */
 public interface DatatypeValidator {
 
-	/**
-	 * validate a given string against this DV
-	 *
-	 * @param content
-	 *                the string value that needs to be validated
-	 * @param context
-	 *                the validation context
-	 */
-	public void validate(String content, ValidationContext context)
-			throws InvalidDatatypeValueException;
+    /**
+     * validate a given string against this DV
+     *
+     * @param content
+     *                the string value that needs to be validated
+     * @param context
+     *                the validation context
+     */
+    public void validate(String content, ValidationContext context)
+            throws InvalidDatatypeValueException;
 
 }

@@ -16,8 +16,8 @@ import javax.swing.undo.*;
 
 public interface UndoableEditListener extends java.util.EventListener {
 
-	/**
-	 * An undoable edit happened
-	 */
-	void undoableEditHappened(UndoableEditEvent e);
+    /**
+     * An undoable edit happened
+     */
+    void undoableEditHappened(UndoableEditEvent e);
 }

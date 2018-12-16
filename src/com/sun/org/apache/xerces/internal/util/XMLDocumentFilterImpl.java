@@ -73,101 +73,101 @@ import com.sun.org.apache.xerces.internal.xni.parser.XMLDocumentSource;
  * @author Kohsuke Kawaguchi (kohsuke.kawaguchi@sun.com)
  */
 public class XMLDocumentFilterImpl implements XMLDocumentFilter {
-	private XMLDocumentHandler next;
-	private XMLDocumentSource source;
+    private XMLDocumentHandler next;
+    private XMLDocumentSource source;
 
-	public void setDocumentHandler(XMLDocumentHandler handler) {
-		this.next = handler;
-	}
+    public void setDocumentHandler(XMLDocumentHandler handler) {
+        this.next = handler;
+    }
 
-	public XMLDocumentHandler getDocumentHandler() {
-		return next;
-	}
+    public XMLDocumentHandler getDocumentHandler() {
+        return next;
+    }
 
-	public void setDocumentSource(XMLDocumentSource source) {
-		this.source = source;
-	}
+    public void setDocumentSource(XMLDocumentSource source) {
+        this.source = source;
+    }
 
-	public XMLDocumentSource getDocumentSource() {
-		return source;
-	}
+    public XMLDocumentSource getDocumentSource() {
+        return source;
+    }
 
-	public void characters(XMLString text, Augmentations augs)
-			throws XNIException {
-		next.characters(text, augs);
-	}
+    public void characters(XMLString text, Augmentations augs)
+            throws XNIException {
+        next.characters(text, augs);
+    }
 
-	public void comment(XMLString text, Augmentations augs)
-			throws XNIException {
-		next.comment(text, augs);
-	}
+    public void comment(XMLString text, Augmentations augs)
+            throws XNIException {
+        next.comment(text, augs);
+    }
 
-	public void doctypeDecl(String rootElement, String publicId,
-			String systemId, Augmentations augs) throws XNIException {
-		next.doctypeDecl(rootElement, publicId, systemId, augs);
-	}
+    public void doctypeDecl(String rootElement, String publicId,
+            String systemId, Augmentations augs) throws XNIException {
+        next.doctypeDecl(rootElement, publicId, systemId, augs);
+    }
 
-	public void emptyElement(QName element, XMLAttributes attributes,
-			Augmentations augs) throws XNIException {
-		next.emptyElement(element, attributes, augs);
-	}
+    public void emptyElement(QName element, XMLAttributes attributes,
+            Augmentations augs) throws XNIException {
+        next.emptyElement(element, attributes, augs);
+    }
 
-	public void endCDATA(Augmentations augs) throws XNIException {
-		next.endCDATA(augs);
-	}
+    public void endCDATA(Augmentations augs) throws XNIException {
+        next.endCDATA(augs);
+    }
 
-	public void endDocument(Augmentations augs) throws XNIException {
-		next.endDocument(augs);
-	}
+    public void endDocument(Augmentations augs) throws XNIException {
+        next.endDocument(augs);
+    }
 
-	public void endElement(QName element, Augmentations augs)
-			throws XNIException {
-		next.endElement(element, augs);
-	}
+    public void endElement(QName element, Augmentations augs)
+            throws XNIException {
+        next.endElement(element, augs);
+    }
 
-	public void endGeneralEntity(String name, Augmentations augs)
-			throws XNIException {
-		next.endGeneralEntity(name, augs);
-	}
+    public void endGeneralEntity(String name, Augmentations augs)
+            throws XNIException {
+        next.endGeneralEntity(name, augs);
+    }
 
-	public void ignorableWhitespace(XMLString text, Augmentations augs)
-			throws XNIException {
-		next.ignorableWhitespace(text, augs);
-	}
+    public void ignorableWhitespace(XMLString text, Augmentations augs)
+            throws XNIException {
+        next.ignorableWhitespace(text, augs);
+    }
 
-	public void processingInstruction(String target, XMLString data,
-			Augmentations augs) throws XNIException {
-		next.processingInstruction(target, data, augs);
-	}
+    public void processingInstruction(String target, XMLString data,
+            Augmentations augs) throws XNIException {
+        next.processingInstruction(target, data, augs);
+    }
 
-	public void startCDATA(Augmentations augs) throws XNIException {
-		next.startCDATA(augs);
-	}
+    public void startCDATA(Augmentations augs) throws XNIException {
+        next.startCDATA(augs);
+    }
 
-	public void startDocument(XMLLocator locator, String encoding,
-			NamespaceContext namespaceContext, Augmentations augs)
-			throws XNIException {
-		next.startDocument(locator, encoding, namespaceContext, augs);
-	}
+    public void startDocument(XMLLocator locator, String encoding,
+            NamespaceContext namespaceContext, Augmentations augs)
+            throws XNIException {
+        next.startDocument(locator, encoding, namespaceContext, augs);
+    }
 
-	public void startElement(QName element, XMLAttributes attributes,
-			Augmentations augs) throws XNIException {
-		next.startElement(element, attributes, augs);
-	}
+    public void startElement(QName element, XMLAttributes attributes,
+            Augmentations augs) throws XNIException {
+        next.startElement(element, attributes, augs);
+    }
 
-	public void startGeneralEntity(String name,
-			XMLResourceIdentifier identifier, String encoding,
-			Augmentations augs) throws XNIException {
-		next.startGeneralEntity(name, identifier, encoding, augs);
-	}
+    public void startGeneralEntity(String name,
+            XMLResourceIdentifier identifier, String encoding,
+            Augmentations augs) throws XNIException {
+        next.startGeneralEntity(name, identifier, encoding, augs);
+    }
 
-	public void textDecl(String version, String encoding, Augmentations augs)
-			throws XNIException {
-		next.textDecl(version, encoding, augs);
-	}
+    public void textDecl(String version, String encoding, Augmentations augs)
+            throws XNIException {
+        next.textDecl(version, encoding, augs);
+    }
 
-	public void xmlDecl(String version, String encoding, String standalone,
-			Augmentations augs) throws XNIException {
-		next.xmlDecl(version, encoding, standalone, augs);
-	}
+    public void xmlDecl(String version, String encoding, String standalone,
+            Augmentations augs) throws XNIException {
+        next.xmlDecl(version, encoding, standalone, augs);
+    }
 }

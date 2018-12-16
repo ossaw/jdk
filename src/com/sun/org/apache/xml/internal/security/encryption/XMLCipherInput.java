@@ -48,156 +48,156 @@ import com.sun.org.apache.xml.internal.security.utils.Base64;
  */
 public class XMLCipherInput {
 
-	private static java.util.logging.Logger logger = java.util.logging.Logger
-			.getLogger(XMLCipherInput.class.getName());
+    private static java.util.logging.Logger logger = java.util.logging.Logger
+            .getLogger(XMLCipherInput.class.getName());
 
-	/** The data we are working with */
-	private CipherData cipherData;
+    /** The data we are working with */
+    private CipherData cipherData;
 
-	/** MODES */
-	private int mode;
+    /** MODES */
+    private int mode;
 
-	private boolean secureValidation;
+    private boolean secureValidation;
 
-	/**
-	 * Constructor for processing encrypted octets
-	 *
-	 * @param data
-	 *             The <code>CipherData</code> object to read the bytes from
-	 * @throws XMLEncryptionException
-	 *                                {@link XMLEncryptionException}
-	 */
-	public XMLCipherInput(CipherData data) throws XMLEncryptionException {
-		cipherData = data;
-		mode = XMLCipher.DECRYPT_MODE;
-		if (cipherData == null) {
-			throw new XMLEncryptionException("CipherData is null");
-		}
-	}
+    /**
+     * Constructor for processing encrypted octets
+     *
+     * @param data
+     *             The <code>CipherData</code> object to read the bytes from
+     * @throws XMLEncryptionException
+     *                                {@link XMLEncryptionException}
+     */
+    public XMLCipherInput(CipherData data) throws XMLEncryptionException {
+        cipherData = data;
+        mode = XMLCipher.DECRYPT_MODE;
+        if (cipherData == null) {
+            throw new XMLEncryptionException("CipherData is null");
+        }
+    }
 
-	/**
-	 * Constructor for processing encrypted octets
-	 *
-	 * @param input
-	 *              The <code>EncryptedType</code> object to read the bytes
-	 *              from.
-	 * @throws XMLEncryptionException
-	 *                                {@link XMLEncryptionException}
-	 */
-	public XMLCipherInput(EncryptedType input) throws XMLEncryptionException {
-		cipherData = ((input == null) ? null : input.getCipherData());
-		mode = XMLCipher.DECRYPT_MODE;
-		if (cipherData == null) {
-			throw new XMLEncryptionException("CipherData is null");
-		}
-	}
+    /**
+     * Constructor for processing encrypted octets
+     *
+     * @param input
+     *              The <code>EncryptedType</code> object to read the bytes
+     *              from.
+     * @throws XMLEncryptionException
+     *                                {@link XMLEncryptionException}
+     */
+    public XMLCipherInput(EncryptedType input) throws XMLEncryptionException {
+        cipherData = ((input == null) ? null : input.getCipherData());
+        mode = XMLCipher.DECRYPT_MODE;
+        if (cipherData == null) {
+            throw new XMLEncryptionException("CipherData is null");
+        }
+    }
 
-	/**
-	 * Set whether secure validation is enabled or not. The default is false.
-	 */
-	public void setSecureValidation(boolean secureValidation) {
-		this.secureValidation = secureValidation;
-	}
+    /**
+     * Set whether secure validation is enabled or not. The default is false.
+     */
+    public void setSecureValidation(boolean secureValidation) {
+        this.secureValidation = secureValidation;
+    }
 
-	/**
-	 * Dereferences the input and returns it as a single byte array.
-	 *
-	 * @throws XMLEncryptionException
-	 * @return The decripted bytes.
-	 */
-	public byte[] getBytes() throws XMLEncryptionException {
-		if (mode == XMLCipher.DECRYPT_MODE) {
-			return getDecryptBytes();
-		}
-		return null;
-	}
+    /**
+     * Dereferences the input and returns it as a single byte array.
+     *
+     * @throws XMLEncryptionException
+     * @return The decripted bytes.
+     */
+    public byte[] getBytes() throws XMLEncryptionException {
+        if (mode == XMLCipher.DECRYPT_MODE) {
+            return getDecryptBytes();
+        }
+        return null;
+    }
 
-	/**
-	 * Internal method to get bytes in decryption mode
-	 * 
-	 * @return the decrypted bytes
-	 * @throws XMLEncryptionException
-	 */
-	private byte[] getDecryptBytes() throws XMLEncryptionException {
-		String base64EncodedEncryptedOctets = null;
+    /**
+     * Internal method to get bytes in decryption mode
+     * 
+     * @return the decrypted bytes
+     * @throws XMLEncryptionException
+     */
+    private byte[] getDecryptBytes() throws XMLEncryptionException {
+        String base64EncodedEncryptedOctets = null;
 
-		if (cipherData.getDataType() == CipherData.REFERENCE_TYPE) {
-			// Fun time!
-			if (logger.isLoggable(java.util.logging.Level.FINE)) {
-				logger.log(java.util.logging.Level.FINE,
-						"Found a reference type CipherData");
-			}
-			CipherReference cr = cipherData.getCipherReference();
+        if (cipherData.getDataType() == CipherData.REFERENCE_TYPE) {
+            // Fun time!
+            if (logger.isLoggable(java.util.logging.Level.FINE)) {
+                logger.log(java.util.logging.Level.FINE,
+                        "Found a reference type CipherData");
+            }
+            CipherReference cr = cipherData.getCipherReference();
 
-			// Need to wrap the uri in an Attribute node so that we can
-			// Pass to the resource resolvers
+            // Need to wrap the uri in an Attribute node so that we can
+            // Pass to the resource resolvers
 
-			Attr uriAttr = cr.getURIAsAttr();
-			XMLSignatureInput input = null;
+            Attr uriAttr = cr.getURIAsAttr();
+            XMLSignatureInput input = null;
 
-			try {
-				ResourceResolver resolver = ResourceResolver.getInstance(
-						uriAttr, null, secureValidation);
-				input = resolver.resolve(uriAttr, null, secureValidation);
-			} catch (ResourceResolverException ex) {
-				throw new XMLEncryptionException("empty", ex);
-			}
+            try {
+                ResourceResolver resolver = ResourceResolver.getInstance(
+                        uriAttr, null, secureValidation);
+                input = resolver.resolve(uriAttr, null, secureValidation);
+            } catch (ResourceResolverException ex) {
+                throw new XMLEncryptionException("empty", ex);
+            }
 
-			if (input != null) {
-				if (logger.isLoggable(java.util.logging.Level.FINE)) {
-					logger.log(java.util.logging.Level.FINE,
-							"Managed to resolve URI \"" + cr.getURI() + "\"");
-				}
-			} else {
-				if (logger.isLoggable(java.util.logging.Level.FINE)) {
-					logger.log(java.util.logging.Level.FINE,
-							"Failed to resolve URI \"" + cr.getURI() + "\"");
-				}
-			}
+            if (input != null) {
+                if (logger.isLoggable(java.util.logging.Level.FINE)) {
+                    logger.log(java.util.logging.Level.FINE,
+                            "Managed to resolve URI \"" + cr.getURI() + "\"");
+                }
+            } else {
+                if (logger.isLoggable(java.util.logging.Level.FINE)) {
+                    logger.log(java.util.logging.Level.FINE,
+                            "Failed to resolve URI \"" + cr.getURI() + "\"");
+                }
+            }
 
-			// Lets see if there are any transforms
-			Transforms transforms = cr.getTransforms();
-			if (transforms != null) {
-				if (logger.isLoggable(java.util.logging.Level.FINE)) {
-					logger.log(java.util.logging.Level.FINE,
-							"Have transforms in cipher reference");
-				}
-				try {
-					com.sun.org.apache.xml.internal.security.transforms.Transforms dsTransforms = transforms
-							.getDSTransforms();
-					dsTransforms.setSecureValidation(secureValidation);
-					input = dsTransforms.performTransforms(input);
-				} catch (TransformationException ex) {
-					throw new XMLEncryptionException("empty", ex);
-				}
-			}
+            // Lets see if there are any transforms
+            Transforms transforms = cr.getTransforms();
+            if (transforms != null) {
+                if (logger.isLoggable(java.util.logging.Level.FINE)) {
+                    logger.log(java.util.logging.Level.FINE,
+                            "Have transforms in cipher reference");
+                }
+                try {
+                    com.sun.org.apache.xml.internal.security.transforms.Transforms dsTransforms = transforms
+                            .getDSTransforms();
+                    dsTransforms.setSecureValidation(secureValidation);
+                    input = dsTransforms.performTransforms(input);
+                } catch (TransformationException ex) {
+                    throw new XMLEncryptionException("empty", ex);
+                }
+            }
 
-			try {
-				return input.getBytes();
-			} catch (IOException ex) {
-				throw new XMLEncryptionException("empty", ex);
-			} catch (CanonicalizationException ex) {
-				throw new XMLEncryptionException("empty", ex);
-			}
+            try {
+                return input.getBytes();
+            } catch (IOException ex) {
+                throw new XMLEncryptionException("empty", ex);
+            } catch (CanonicalizationException ex) {
+                throw new XMLEncryptionException("empty", ex);
+            }
 
-			// retrieve the cipher text
-		} else if (cipherData.getDataType() == CipherData.VALUE_TYPE) {
-			base64EncodedEncryptedOctets = cipherData.getCipherValue()
-					.getValue();
-		} else {
-			throw new XMLEncryptionException(
-					"CipherData.getDataType() returned unexpected value");
-		}
+            // retrieve the cipher text
+        } else if (cipherData.getDataType() == CipherData.VALUE_TYPE) {
+            base64EncodedEncryptedOctets = cipherData.getCipherValue()
+                    .getValue();
+        } else {
+            throw new XMLEncryptionException(
+                    "CipherData.getDataType() returned unexpected value");
+        }
 
-		if (logger.isLoggable(java.util.logging.Level.FINE)) {
-			logger.log(java.util.logging.Level.FINE, "Encrypted octets:\n"
-					+ base64EncodedEncryptedOctets);
-		}
+        if (logger.isLoggable(java.util.logging.Level.FINE)) {
+            logger.log(java.util.logging.Level.FINE, "Encrypted octets:\n"
+                    + base64EncodedEncryptedOctets);
+        }
 
-		try {
-			return Base64.decode(base64EncodedEncryptedOctets);
-		} catch (Base64DecodingException bde) {
-			throw new XMLEncryptionException("empty", bde);
-		}
-	}
+        try {
+            return Base64.decode(base64EncodedEncryptedOctets);
+        } catch (Base64DecodingException bde) {
+            throw new XMLEncryptionException("empty", bde);
+        }
+    }
 }

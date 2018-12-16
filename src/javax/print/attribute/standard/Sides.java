@@ -90,99 +90,99 @@ import javax.print.attribute.PrintJobAttribute;
  */
 
 public final class Sides extends EnumSyntax implements DocAttribute,
-		PrintRequestAttribute, PrintJobAttribute {
+        PrintRequestAttribute, PrintJobAttribute {
 
-	private static final long serialVersionUID = -6890309414893262822L;
+    private static final long serialVersionUID = -6890309414893262822L;
 
-	/**
-	 * Imposes each consecutive print-stream page upon the same side of
-	 * consecutive media sheets.
-	 */
-	public static final Sides ONE_SIDED = new Sides(0);
+    /**
+     * Imposes each consecutive print-stream page upon the same side of
+     * consecutive media sheets.
+     */
+    public static final Sides ONE_SIDED = new Sides(0);
 
-	/**
-	 * Imposes each consecutive pair of print-stream pages upon front and back
-	 * sides of consecutive media sheets, such that the orientation of each pair
-	 * of print-stream pages on the medium would be correct for the reader as if
-	 * for binding on the long edge. This imposition is also known as "duplex"
-	 * (see {@link #DUPLEX DUPLEX}).
-	 */
-	public static final Sides TWO_SIDED_LONG_EDGE = new Sides(1);
+    /**
+     * Imposes each consecutive pair of print-stream pages upon front and back
+     * sides of consecutive media sheets, such that the orientation of each pair
+     * of print-stream pages on the medium would be correct for the reader as if
+     * for binding on the long edge. This imposition is also known as "duplex"
+     * (see {@link #DUPLEX DUPLEX}).
+     */
+    public static final Sides TWO_SIDED_LONG_EDGE = new Sides(1);
 
-	/**
-	 * Imposes each consecutive pair of print-stream pages upon front and back
-	 * sides of consecutive media sheets, such that the orientation of each pair
-	 * of print-stream pages on the medium would be correct for the reader as if
-	 * for binding on the short edge. This imposition is also known as "tumble"
-	 * (see {@link #TUMBLE TUMBLE}).
-	 */
-	public static final Sides TWO_SIDED_SHORT_EDGE = new Sides(2);
+    /**
+     * Imposes each consecutive pair of print-stream pages upon front and back
+     * sides of consecutive media sheets, such that the orientation of each pair
+     * of print-stream pages on the medium would be correct for the reader as if
+     * for binding on the short edge. This imposition is also known as "tumble"
+     * (see {@link #TUMBLE TUMBLE}).
+     */
+    public static final Sides TWO_SIDED_SHORT_EDGE = new Sides(2);
 
-	/**
-	 * An alias for "two sided long edge" (see {@link #TWO_SIDED_LONG_EDGE
-	 * TWO_SIDED_LONG_EDGE}).
-	 */
-	public static final Sides DUPLEX = TWO_SIDED_LONG_EDGE;
+    /**
+     * An alias for "two sided long edge" (see {@link #TWO_SIDED_LONG_EDGE
+     * TWO_SIDED_LONG_EDGE}).
+     */
+    public static final Sides DUPLEX = TWO_SIDED_LONG_EDGE;
 
-	/**
-	 * An alias for "two sided short edge" (see {@link #TWO_SIDED_SHORT_EDGE
-	 * TWO_SIDED_SHORT_EDGE}).
-	 */
-	public static final Sides TUMBLE = TWO_SIDED_SHORT_EDGE;
+    /**
+     * An alias for "two sided short edge" (see {@link #TWO_SIDED_SHORT_EDGE
+     * TWO_SIDED_SHORT_EDGE}).
+     */
+    public static final Sides TUMBLE = TWO_SIDED_SHORT_EDGE;
 
-	/**
-	 * Construct a new sides enumeration value with the given integer value.
-	 *
-	 * @param value
-	 *              Integer value.
-	 */
-	protected Sides(int value) {
-		super(value);
-	}
+    /**
+     * Construct a new sides enumeration value with the given integer value.
+     *
+     * @param value
+     *              Integer value.
+     */
+    protected Sides(int value) {
+        super(value);
+    }
 
-	private static final String[] myStringTable = { "one-sided",
-			"two-sided-long-edge", "two-sided-short-edge" };
+    private static final String[] myStringTable = { "one-sided",
+            "two-sided-long-edge", "two-sided-short-edge" };
 
-	private static final Sides[] myEnumValueTable = { ONE_SIDED,
-			TWO_SIDED_LONG_EDGE, TWO_SIDED_SHORT_EDGE };
+    private static final Sides[] myEnumValueTable = { ONE_SIDED,
+            TWO_SIDED_LONG_EDGE, TWO_SIDED_SHORT_EDGE };
 
-	/**
-	 * Returns the string table for class Sides.
-	 */
-	protected String[] getStringTable() {
-		return myStringTable;
-	}
+    /**
+     * Returns the string table for class Sides.
+     */
+    protected String[] getStringTable() {
+        return myStringTable;
+    }
 
-	/**
-	 * Returns the enumeration value table for class Sides.
-	 */
-	protected EnumSyntax[] getEnumValueTable() {
-		return myEnumValueTable;
-	}
+    /**
+     * Returns the enumeration value table for class Sides.
+     */
+    protected EnumSyntax[] getEnumValueTable() {
+        return myEnumValueTable;
+    }
 
-	/**
-	 * Get the printing attribute class which is to be used as the "category"
-	 * for this printing attribute value.
-	 * <P>
-	 * For class Sides, the category is class Sides itself.
-	 *
-	 * @return Printing attribute class (category), an instance of class
-	 *         {@link java.lang.Class java.lang.Class}.
-	 */
-	public final Class<? extends Attribute> getCategory() {
-		return Sides.class;
-	}
+    /**
+     * Get the printing attribute class which is to be used as the "category"
+     * for this printing attribute value.
+     * <P>
+     * For class Sides, the category is class Sides itself.
+     *
+     * @return Printing attribute class (category), an instance of class
+     *         {@link java.lang.Class java.lang.Class}.
+     */
+    public final Class<? extends Attribute> getCategory() {
+        return Sides.class;
+    }
 
-	/**
-	 * Get the name of the category of which this attribute value is an
-	 * instance.
-	 * <P>
-	 * For class Sides, the category name is <CODE>"sides"</CODE>.
-	 *
-	 * @return Attribute category name.
-	 */
-	public final String getName() {
-		return "sides";
-	}
+    /**
+     * Get the name of the category of which this attribute value is an
+     * instance.
+     * <P>
+     * For class Sides, the category name is <CODE>"sides"</CODE>.
+     *
+     * @return Attribute category name.
+     */
+    public final String getName() {
+        return "sides";
+    }
 
 }

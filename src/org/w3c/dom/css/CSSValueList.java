@@ -34,25 +34,25 @@ package org.w3c.dom.css;
  * @since DOM Level 2
  */
 public interface CSSValueList extends CSSValue {
-	/**
-	 * The number of <code>CSSValues</code> in the list. The range of valid
-	 * values of the indices is <code>0</code> to <code>length-1</code>
-	 * inclusive.
-	 */
-	public int getLength();
+    /**
+     * The number of <code>CSSValues</code> in the list. The range of valid
+     * values of the indices is <code>0</code> to <code>length-1</code>
+     * inclusive.
+     */
+    public int getLength();
 
-	/**
-	 * Used to retrieve a <code>CSSValue</code> by ordinal index. The order in
-	 * this collection represents the order of the values in the CSS style
-	 * property. If index is greater than or equal to the number of values in
-	 * the list, this returns <code>null</code>.
-	 * 
-	 * @param index
-	 *              Index into the collection.
-	 * @return The <code>CSSValue</code> at the <code>index</code> position in
-	 *         the <code>CSSValueList</code>, or <code>null</code> if that is
-	 *         not a valid index.
-	 */
-	public CSSValue item(int index);
+    /**
+     * Used to retrieve a <code>CSSValue</code> by ordinal index. The order in
+     * this collection represents the order of the values in the CSS style
+     * property. If index is greater than or equal to the number of values in
+     * the list, this returns <code>null</code>.
+     * 
+     * @param index
+     *              Index into the collection.
+     * @return The <code>CSSValue</code> at the <code>index</code> position in
+     *         the <code>CSSValueList</code>, or <code>null</code> if that is
+     *         not a valid index.
+     */
+    public CSSValue item(int index);
 
 }

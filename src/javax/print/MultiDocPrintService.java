@@ -12,11 +12,11 @@ package javax.print;
  */
 public interface MultiDocPrintService extends PrintService {
 
-	/**
-	 * Create a job which can print a multiDoc.
-	 * 
-	 * @return a MultiDocPrintJob
-	 */
-	public MultiDocPrintJob createMultiDocPrintJob();
+    /**
+     * Create a job which can print a multiDoc.
+     * 
+     * @return a MultiDocPrintJob
+     */
+    public MultiDocPrintJob createMultiDocPrintJob();
 
 }

@@ -16,8 +16,8 @@ import javax.swing.JComponent;
  * @since 1.3
  */
 public class ComponentInputMapUIResource extends ComponentInputMap implements
-		UIResource {
-	public ComponentInputMapUIResource(JComponent component) {
-		super(component);
-	}
+        UIResource {
+    public ComponentInputMapUIResource(JComponent component) {
+        super(component);
+    }
 }

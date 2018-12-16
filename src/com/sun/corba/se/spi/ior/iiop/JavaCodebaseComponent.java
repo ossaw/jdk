@@ -11,5 +11,5 @@ import com.sun.corba.se.spi.ior.TaggedComponent;
  * @author Ken Cavanaugh
  */
 public interface JavaCodebaseComponent extends TaggedComponent {
-	public String getURLs();
+    public String getURLs();
 }

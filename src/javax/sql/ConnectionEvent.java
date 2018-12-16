@@ -24,62 +24,62 @@ import java.sql.SQLException;
 
 public class ConnectionEvent extends java.util.EventObject {
 
-	/**
-	 * <P>
-	 * Constructs a <code>ConnectionEvent</code> object initialized with the
-	 * given <code>PooledConnection</code> object. <code>SQLException</code>
-	 * defaults to <code>null</code>.
-	 *
-	 * @param con
-	 *            the pooled connection that is the source of the event
-	 * @throws IllegalArgumentException
-	 *                                  if <code>con</code> is null.
-	 */
-	public ConnectionEvent(PooledConnection con) {
-		super(con);
-	}
+    /**
+     * <P>
+     * Constructs a <code>ConnectionEvent</code> object initialized with the
+     * given <code>PooledConnection</code> object. <code>SQLException</code>
+     * defaults to <code>null</code>.
+     *
+     * @param con
+     *            the pooled connection that is the source of the event
+     * @throws IllegalArgumentException
+     *                                  if <code>con</code> is null.
+     */
+    public ConnectionEvent(PooledConnection con) {
+        super(con);
+    }
 
-	/**
-	 * <P>
-	 * Constructs a <code>ConnectionEvent</code> object initialized with the
-	 * given <code>PooledConnection</code> object and <code>SQLException</code>
-	 * object.
-	 *
-	 * @param con
-	 *            the pooled connection that is the source of the event
-	 * @param ex
-	 *            the SQLException about to be thrown to the application
-	 * @throws IllegalArgumentException
-	 *                                  if <code>con</code> is null.
-	 */
-	public ConnectionEvent(PooledConnection con, SQLException ex) {
-		super(con);
-		this.ex = ex;
-	}
+    /**
+     * <P>
+     * Constructs a <code>ConnectionEvent</code> object initialized with the
+     * given <code>PooledConnection</code> object and <code>SQLException</code>
+     * object.
+     *
+     * @param con
+     *            the pooled connection that is the source of the event
+     * @param ex
+     *            the SQLException about to be thrown to the application
+     * @throws IllegalArgumentException
+     *                                  if <code>con</code> is null.
+     */
+    public ConnectionEvent(PooledConnection con, SQLException ex) {
+        super(con);
+        this.ex = ex;
+    }
 
-	/**
-	 * <P>
-	 * Retrieves the <code>SQLException</code> for this
-	 * <code>ConnectionEvent</code> object. May be <code>null</code>.
-	 *
-	 * @return the SQLException about to be thrown or <code>null</code>
-	 */
-	public SQLException getSQLException() {
-		return ex;
-	}
+    /**
+     * <P>
+     * Retrieves the <code>SQLException</code> for this
+     * <code>ConnectionEvent</code> object. May be <code>null</code>.
+     *
+     * @return the SQLException about to be thrown or <code>null</code>
+     */
+    public SQLException getSQLException() {
+        return ex;
+    }
 
-	/**
-	 * The <code>SQLException</code> that the driver will throw to the
-	 * application when an error occurs and the pooled connection is no longer
-	 * usable.
-	 * 
-	 * @serial
-	 */
-	private SQLException ex = null;
+    /**
+     * The <code>SQLException</code> that the driver will throw to the
+     * application when an error occurs and the pooled connection is no longer
+     * usable.
+     * 
+     * @serial
+     */
+    private SQLException ex = null;
 
-	/**
-	 * Private serial version unique ID to ensure serialization compatibility.
-	 */
-	static final long serialVersionUID = -4843217645290030002L;
+    /**
+     * Private serial version unique ID to ensure serialization compatibility.
+     */
+    static final long serialVersionUID = -4843217645290030002L;
 
 }

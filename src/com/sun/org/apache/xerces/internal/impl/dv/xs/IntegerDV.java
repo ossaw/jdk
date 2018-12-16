@@ -30,14 +30,14 @@ import com.sun.org.apache.xerces.internal.impl.dv.ValidationContext;
  */
 public class IntegerDV extends DecimalDV {
 
-	public Object getActualValue(String content, ValidationContext context)
-			throws InvalidDatatypeValueException {
-		try {
-			return new XDecimal(content, true);
-		} catch (NumberFormatException nfe) {
-			throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1",
-					new Object[] { content, "integer" });
-		}
-	}
+    public Object getActualValue(String content, ValidationContext context)
+            throws InvalidDatatypeValueException {
+        try {
+            return new XDecimal(content, true);
+        } catch (NumberFormatException nfe) {
+            throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1",
+                    new Object[] { content, "integer" });
+        }
+    }
 
 } // class EntityDV

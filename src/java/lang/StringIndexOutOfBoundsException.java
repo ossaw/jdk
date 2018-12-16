@@ -16,37 +16,37 @@ package java.lang;
  * @since JDK1.0
  */
 public class StringIndexOutOfBoundsException extends IndexOutOfBoundsException {
-	private static final long serialVersionUID = -6762910422159637258L;
+    private static final long serialVersionUID = -6762910422159637258L;
 
-	/**
-	 * Constructs a {@code StringIndexOutOfBoundsException} with no detail
-	 * message.
-	 *
-	 * @since JDK1.0.
-	 */
-	public StringIndexOutOfBoundsException() {
-		super();
-	}
+    /**
+     * Constructs a {@code StringIndexOutOfBoundsException} with no detail
+     * message.
+     *
+     * @since JDK1.0.
+     */
+    public StringIndexOutOfBoundsException() {
+        super();
+    }
 
-	/**
-	 * Constructs a {@code StringIndexOutOfBoundsException} with the specified
-	 * detail message.
-	 *
-	 * @param s
-	 *          the detail message.
-	 */
-	public StringIndexOutOfBoundsException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs a {@code StringIndexOutOfBoundsException} with the specified
+     * detail message.
+     *
+     * @param s
+     *          the detail message.
+     */
+    public StringIndexOutOfBoundsException(String s) {
+        super(s);
+    }
 
-	/**
-	 * Constructs a new {@code StringIndexOutOfBoundsException} class with an
-	 * argument indicating the illegal index.
-	 *
-	 * @param index
-	 *              the illegal index.
-	 */
-	public StringIndexOutOfBoundsException(int index) {
-		super("String index out of range: " + index);
-	}
+    /**
+     * Constructs a new {@code StringIndexOutOfBoundsException} class with an
+     * argument indicating the illegal index.
+     *
+     * @param index
+     *              the illegal index.
+     */
+    public StringIndexOutOfBoundsException(int index) {
+        super("String index out of range: " + index);
+    }
 }

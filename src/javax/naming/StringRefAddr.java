@@ -31,40 +31,40 @@ package javax.naming;
  */
 
 public class StringRefAddr extends RefAddr {
-	/**
-	 * Contains the contents of this address. Can be null.
-	 * 
-	 * @serial
-	 */
-	private String contents;
+    /**
+     * Contains the contents of this address. Can be null.
+     * 
+     * @serial
+     */
+    private String contents;
 
-	/**
-	 * Constructs a new instance of StringRefAddr using its address type and
-	 * contents.
-	 *
-	 * @param addrType
-	 *                 A non-null string describing the type of the address.
-	 * @param addr
-	 *                 The possibly null contents of the address in the form of
-	 *                 a
-	 *                 string.
-	 */
-	public StringRefAddr(String addrType, String addr) {
-		super(addrType);
-		contents = addr;
-	}
+    /**
+     * Constructs a new instance of StringRefAddr using its address type and
+     * contents.
+     *
+     * @param addrType
+     *                 A non-null string describing the type of the address.
+     * @param addr
+     *                 The possibly null contents of the address in the form of
+     *                 a
+     *                 string.
+     */
+    public StringRefAddr(String addrType, String addr) {
+        super(addrType);
+        contents = addr;
+    }
 
-	/**
-	 * Retrieves the contents of this address. The result is a string.
-	 *
-	 * @return The possibly null address contents.
-	 */
-	public Object getContent() {
-		return contents;
-	}
+    /**
+     * Retrieves the contents of this address. The result is a string.
+     *
+     * @return The possibly null address contents.
+     */
+    public Object getContent() {
+        return contents;
+    }
 
-	/**
-	 * Use serialVersionUID from JNDI 1.1.1 for interoperability
-	 */
-	private static final long serialVersionUID = -8913762495138505527L;
+    /**
+     * Use serialVersionUID from JNDI 1.1.1 for interoperability
+     */
+    private static final long serialVersionUID = -8913762495138505527L;
 }

@@ -9,5 +9,5 @@ package com.sun.corba.se.spi.ior;
  * @author Ken Cavanaugh
  */
 public interface ObjectId extends Writeable {
-	public byte[] getId();
+    public byte[] getId();
 }

@@ -16,26 +16,26 @@ package javax.security.auth.login;
  */
 public class AccountLockedException extends AccountException {
 
-	private static final long serialVersionUID = 8280345554014066334L;
+    private static final long serialVersionUID = 8280345554014066334L;
 
-	/**
-	 * Constructs a AccountLockedException with no detail message. A detail
-	 * message is a String that describes this particular exception.
-	 */
-	public AccountLockedException() {
-		super();
-	}
+    /**
+     * Constructs a AccountLockedException with no detail message. A detail
+     * message is a String that describes this particular exception.
+     */
+    public AccountLockedException() {
+        super();
+    }
 
-	/**
-	 * Constructs a AccountLockedException with the specified detail message. A
-	 * detail message is a String that describes this particular exception.
-	 *
-	 * <p>
-	 *
-	 * @param msg
-	 *            the detail message.
-	 */
-	public AccountLockedException(String msg) {
-		super(msg);
-	}
+    /**
+     * Constructs a AccountLockedException with the specified detail message. A
+     * detail message is a String that describes this particular exception.
+     *
+     * <p>
+     *
+     * @param msg
+     *            the detail message.
+     */
+    public AccountLockedException(String msg) {
+        super(msg);
+    }
 }

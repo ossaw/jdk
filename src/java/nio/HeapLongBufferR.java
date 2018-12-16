@@ -20,89 +20,89 @@ package java.nio;
 
 class HeapLongBufferR extends HeapLongBuffer {
 
-	// For speed these fields are actually declared in X-Buffer;
-	// these declarations are here as documentation
-	/*
-	
-	
-	
-	
-	*/
+    // For speed these fields are actually declared in X-Buffer;
+    // these declarations are here as documentation
+    /*
+    
+    
+    
+    
+    */
 
-	HeapLongBufferR(int cap, int lim) { // package-private
+    HeapLongBufferR(int cap, int lim) { // package-private
 
-		super(cap, lim);
-		this.isReadOnly = true;
+        super(cap, lim);
+        this.isReadOnly = true;
 
-	}
+    }
 
-	HeapLongBufferR(long[] buf, int off, int len) { // package-private
+    HeapLongBufferR(long[] buf, int off, int len) { // package-private
 
-		super(buf, off, len);
-		this.isReadOnly = true;
+        super(buf, off, len);
+        this.isReadOnly = true;
 
-	}
+    }
 
-	protected HeapLongBufferR(long[] buf, int mark, int pos, int lim, int cap,
-			int off) {
+    protected HeapLongBufferR(long[] buf, int mark, int pos, int lim, int cap,
+            int off) {
 
-		super(buf, mark, pos, lim, cap, off);
-		this.isReadOnly = true;
+        super(buf, mark, pos, lim, cap, off);
+        this.isReadOnly = true;
 
-	}
+    }
 
-	public LongBuffer slice() {
-		return new HeapLongBufferR(hb, -1, 0, this.remaining(), this
-				.remaining(), this.position() + offset);
-	}
+    public LongBuffer slice() {
+        return new HeapLongBufferR(hb, -1, 0, this.remaining(), this
+                .remaining(), this.position() + offset);
+    }
 
-	public LongBuffer duplicate() {
-		return new HeapLongBufferR(hb, this.markValue(), this.position(), this
-				.limit(), this.capacity(), offset);
-	}
+    public LongBuffer duplicate() {
+        return new HeapLongBufferR(hb, this.markValue(), this.position(), this
+                .limit(), this.capacity(), offset);
+    }
 
-	public LongBuffer asReadOnlyBuffer() {
+    public LongBuffer asReadOnlyBuffer() {
 
-		return duplicate();
+        return duplicate();
 
-	}
+    }
 
-	public boolean isReadOnly() {
-		return true;
-	}
+    public boolean isReadOnly() {
+        return true;
+    }
 
-	public LongBuffer put(long x) {
+    public LongBuffer put(long x) {
 
-		throw new ReadOnlyBufferException();
+        throw new ReadOnlyBufferException();
 
-	}
+    }
 
-	public LongBuffer put(int i, long x) {
+    public LongBuffer put(int i, long x) {
 
-		throw new ReadOnlyBufferException();
+        throw new ReadOnlyBufferException();
 
-	}
+    }
 
-	public LongBuffer put(long[] src, int offset, int length) {
+    public LongBuffer put(long[] src, int offset, int length) {
 
-		throw new ReadOnlyBufferException();
+        throw new ReadOnlyBufferException();
 
-	}
+    }
 
-	public LongBuffer put(LongBuffer src) {
+    public LongBuffer put(LongBuffer src) {
 
-		throw new ReadOnlyBufferException();
+        throw new ReadOnlyBufferException();
 
-	}
+    }
 
-	public LongBuffer compact() {
+    public LongBuffer compact() {
 
-		throw new ReadOnlyBufferException();
+        throw new ReadOnlyBufferException();
 
-	}
+    }
 
-	public ByteOrder order() {
-		return ByteOrder.nativeOrder();
-	}
+    public ByteOrder order() {
+        return ByteOrder.nativeOrder();
+    }
 
 }

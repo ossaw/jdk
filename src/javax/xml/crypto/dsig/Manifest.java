@@ -35,7 +35,7 @@ import java.util.List;
  * <pre>
  * XMLSignatureFactory factory = XMLSignatureFactory.getInstance("DOM");
  * List references = Collections.singletonList(factory.newReference(
- * 		"#reference-1", DigestMethod.SHA1));
+ *         "#reference-1", DigestMethod.SHA1));
  * Manifest manifest = factory.newManifest(references, "manifest-1");
  * </pre>
  *
@@ -47,28 +47,28 @@ import java.util.List;
  */
 public interface Manifest extends XMLStructure {
 
-	/**
-	 * URI that identifies the <code>Manifest</code> element (this can be
-	 * specified as the value of the <code>type</code> parameter of the
-	 * {@link Reference} class to identify the referent's type).
-	 */
-	final static String TYPE = "http://www.w3.org/2000/09/xmldsig#Manifest";
+    /**
+     * URI that identifies the <code>Manifest</code> element (this can be
+     * specified as the value of the <code>type</code> parameter of the
+     * {@link Reference} class to identify the referent's type).
+     */
+    final static String TYPE = "http://www.w3.org/2000/09/xmldsig#Manifest";
 
-	/**
-	 * Returns the Id of this <code>Manifest</code>.
-	 *
-	 * @return the Id of this <code>Manifest</code> (or <code>null</code> if not
-	 *         specified)
-	 */
-	String getId();
+    /**
+     * Returns the Id of this <code>Manifest</code>.
+     *
+     * @return the Id of this <code>Manifest</code> (or <code>null</code> if not
+     *         specified)
+     */
+    String getId();
 
-	/**
-	 * Returns an {@link java.util.Collections#unmodifiableList unmodifiable
-	 * list} of one or more {@link Reference}s that are contained in this
-	 * <code>Manifest</code>.
-	 *
-	 * @return an unmodifiable list of one or more <code>Reference</code>s
-	 */
-	@SuppressWarnings("rawtypes")
-	List getReferences();
+    /**
+     * Returns an {@link java.util.Collections#unmodifiableList unmodifiable
+     * list} of one or more {@link Reference}s that are contained in this
+     * <code>Manifest</code>.
+     *
+     * @return an unmodifiable list of one or more <code>Reference</code>s
+     */
+    @SuppressWarnings("rawtypes")
+    List getReferences();
 }

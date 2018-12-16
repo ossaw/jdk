@@ -82,17 +82,17 @@ package com.sun.org.apache.bcel.internal.generic;
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
 public final class TargetLostException extends Exception {
-	private InstructionHandle[] targets;
+    private InstructionHandle[] targets;
 
-	TargetLostException(InstructionHandle[] t, String mesg) {
-		super(mesg);
-		targets = t;
-	}
+    TargetLostException(InstructionHandle[] t, String mesg) {
+        super(mesg);
+        targets = t;
+    }
 
-	/**
-	 * @return list of instructions still being targeted.
-	 */
-	public InstructionHandle[] getTargets() {
-		return targets;
-	}
+    /**
+     * @return list of instructions still being targeted.
+     */
+    public InstructionHandle[] getTargets() {
+        return targets;
+    }
 }

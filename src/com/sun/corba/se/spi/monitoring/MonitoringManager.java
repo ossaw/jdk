@@ -22,30 +22,30 @@ import java.util.*;
  */
 public interface MonitoringManager extends Closeable {
 
-	///////////////////////////////////////
-	// operations
+    ///////////////////////////////////////
+    // operations
 
-	/**
-	 * <p>
-	 * Gets the Root Monitored Object which contains a Hierarchy Of Monitored
-	 * Objects exposing various Monitorable Attributes of Various modules.
-	 * </p>
-	 * <p>
-	 *
-	 * @param MonitoredObject
-	 *                        ...
-	 *                        </p>
-	 */
-	public MonitoredObject getRootMonitoredObject();
+    /**
+     * <p>
+     * Gets the Root Monitored Object which contains a Hierarchy Of Monitored
+     * Objects exposing various Monitorable Attributes of Various modules.
+     * </p>
+     * <p>
+     *
+     * @param MonitoredObject
+     *                        ...
+     *                        </p>
+     */
+    public MonitoredObject getRootMonitoredObject();
 
-	/**
-	 * <p>
-	 * Initialize is called whenever there is a start monitoring call to CORBA
-	 * MBean. This will result in triaging initialize to all the
-	 * MonitoredObjects and it's Monitored Attributes.
-	 * </p>
-	 *
-	 */
-	public void clearState();
+    /**
+     * <p>
+     * Initialize is called whenever there is a start monitoring call to CORBA
+     * MBean. This will result in triaging initialize to all the
+     * MonitoredObjects and it's Monitored Attributes.
+     * </p>
+     *
+     */
+    public void clearState();
 
 } // end MonitoringManager

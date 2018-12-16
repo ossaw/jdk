@@ -12,10 +12,10 @@ package java.awt;
  */
 public interface PrintGraphics {
 
-	/**
-	 * Returns the PrintJob object from which this PrintGraphics object
-	 * originated.
-	 */
-	public PrintJob getPrintJob();
+    /**
+     * Returns the PrintJob object from which this PrintGraphics object
+     * originated.
+     */
+    public PrintJob getPrintJob();
 
 }

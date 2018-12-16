@@ -13,30 +13,30 @@ package javax.management;
  */
 public class MBeanRegistrationException extends MBeanException {
 
-	/* Serial version */
-	private static final long serialVersionUID = 4482382455277067805L;
+    /* Serial version */
+    private static final long serialVersionUID = 4482382455277067805L;
 
-	/**
-	 * Creates an <CODE>MBeanRegistrationException</CODE> that wraps the actual
-	 * <CODE>java.lang.Exception</CODE>.
-	 *
-	 * @param e
-	 *          the wrapped exception.
-	 */
-	public MBeanRegistrationException(java.lang.Exception e) {
-		super(e);
-	}
+    /**
+     * Creates an <CODE>MBeanRegistrationException</CODE> that wraps the actual
+     * <CODE>java.lang.Exception</CODE>.
+     *
+     * @param e
+     *          the wrapped exception.
+     */
+    public MBeanRegistrationException(java.lang.Exception e) {
+        super(e);
+    }
 
-	/**
-	 * Creates an <CODE>MBeanRegistrationException</CODE> that wraps the actual
-	 * <CODE>java.lang.Exception</CODE> with a detailed message.
-	 *
-	 * @param e
-	 *                the wrapped exception.
-	 * @param message
-	 *                the detail message.
-	 */
-	public MBeanRegistrationException(java.lang.Exception e, String message) {
-		super(e, message);
-	}
+    /**
+     * Creates an <CODE>MBeanRegistrationException</CODE> that wraps the actual
+     * <CODE>java.lang.Exception</CODE> with a detailed message.
+     *
+     * @param e
+     *                the wrapped exception.
+     * @param message
+     *                the detail message.
+     */
+    public MBeanRegistrationException(java.lang.Exception e, String message) {
+        super(e, message);
+    }
 }

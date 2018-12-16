@@ -26,10 +26,10 @@ import static java.lang.annotation.ElementType.*;
 @Target(TYPE)
 @Retention(RUNTIME)
 public @interface SupportedOptions {
-	/**
-	 * Returns the supported options.
-	 * 
-	 * @return the supported options
-	 */
-	String[] value();
+    /**
+     * Returns the supported options.
+     * 
+     * @return the supported options
+     */
+    String[] value();
 }

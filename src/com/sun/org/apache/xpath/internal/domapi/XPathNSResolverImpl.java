@@ -47,22 +47,22 @@ import org.w3c.dom.xpath.XPathNSResolver;
  * @xsl.usage internal
  */
 class XPathNSResolverImpl extends PrefixResolverDefault implements
-		XPathNSResolver {
+        XPathNSResolver {
 
-	/**
-	 * Constructor for XPathNSResolverImpl.
-	 * 
-	 * @param xpathExpressionContext
-	 */
-	public XPathNSResolverImpl(Node xpathExpressionContext) {
-		super(xpathExpressionContext);
-	}
+    /**
+     * Constructor for XPathNSResolverImpl.
+     * 
+     * @param xpathExpressionContext
+     */
+    public XPathNSResolverImpl(Node xpathExpressionContext) {
+        super(xpathExpressionContext);
+    }
 
-	/**
-	 * @see org.w3c.dom.xpath.XPathNSResolver#lookupNamespaceURI(String)
-	 */
-	public String lookupNamespaceURI(String prefix) {
-		return super.getNamespaceForPrefix(prefix);
-	}
+    /**
+     * @see org.w3c.dom.xpath.XPathNSResolver#lookupNamespaceURI(String)
+     */
+    public String lookupNamespaceURI(String prefix) {
+        return super.getNamespaceForPrefix(prefix);
+    }
 
 }

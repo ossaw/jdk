@@ -53,100 +53,100 @@ import org.w3c.dom.Element;
  */
 public class EncryptedKeyResolver extends KeyResolverSpi {
 
-	/** {@link org.apache.commons.logging} logging facility */
-	private static java.util.logging.Logger log = java.util.logging.Logger
-			.getLogger(EncryptedKeyResolver.class.getName());
+    /** {@link org.apache.commons.logging} logging facility */
+    private static java.util.logging.Logger log = java.util.logging.Logger
+            .getLogger(EncryptedKeyResolver.class.getName());
 
-	private Key kek;
-	private String algorithm;
-	private List<KeyResolverSpi> internalKeyResolvers;
+    private Key kek;
+    private String algorithm;
+    private List<KeyResolverSpi> internalKeyResolvers;
 
-	/**
-	 * Constructor for use when a KEK needs to be derived from a KeyInfo list
-	 * 
-	 * @param algorithm
-	 */
-	public EncryptedKeyResolver(String algorithm) {
-		kek = null;
-		this.algorithm = algorithm;
-	}
+    /**
+     * Constructor for use when a KEK needs to be derived from a KeyInfo list
+     * 
+     * @param algorithm
+     */
+    public EncryptedKeyResolver(String algorithm) {
+        kek = null;
+        this.algorithm = algorithm;
+    }
 
-	/**
-	 * Constructor used for when a KEK has been set
-	 * 
-	 * @param algorithm
-	 * @param kek
-	 */
-	public EncryptedKeyResolver(String algorithm, Key kek) {
-		this.algorithm = algorithm;
-		this.kek = kek;
-	}
+    /**
+     * Constructor used for when a KEK has been set
+     * 
+     * @param algorithm
+     * @param kek
+     */
+    public EncryptedKeyResolver(String algorithm, Key kek) {
+        this.algorithm = algorithm;
+        this.kek = kek;
+    }
 
-	/**
-	 * This method is used to add a custom {@link KeyResolverSpi} to help
-	 * resolve the KEK.
-	 *
-	 * @param realKeyResolver
-	 */
-	public void registerInternalKeyResolver(KeyResolverSpi realKeyResolver) {
-		if (internalKeyResolvers == null) {
-			internalKeyResolvers = new ArrayList<KeyResolverSpi>();
-		}
-		internalKeyResolvers.add(realKeyResolver);
-	}
+    /**
+     * This method is used to add a custom {@link KeyResolverSpi} to help
+     * resolve the KEK.
+     *
+     * @param realKeyResolver
+     */
+    public void registerInternalKeyResolver(KeyResolverSpi realKeyResolver) {
+        if (internalKeyResolvers == null) {
+            internalKeyResolvers = new ArrayList<KeyResolverSpi>();
+        }
+        internalKeyResolvers.add(realKeyResolver);
+    }
 
-	/** @inheritDoc */
-	public PublicKey engineLookupAndResolvePublicKey(Element element,
-			String BaseURI, StorageResolver storage) {
-		return null;
-	}
+    /** @inheritDoc */
+    public PublicKey engineLookupAndResolvePublicKey(Element element,
+            String BaseURI, StorageResolver storage) {
+        return null;
+    }
 
-	/** @inheritDoc */
-	public X509Certificate engineLookupResolveX509Certificate(Element element,
-			String BaseURI, StorageResolver storage) {
-		return null;
-	}
+    /** @inheritDoc */
+    public X509Certificate engineLookupResolveX509Certificate(Element element,
+            String BaseURI, StorageResolver storage) {
+        return null;
+    }
 
-	/** @inheritDoc */
-	public javax.crypto.SecretKey engineLookupAndResolveSecretKey(
-			Element element, String BaseURI, StorageResolver storage) {
-		if (log.isLoggable(java.util.logging.Level.FINE)) {
-			log.log(java.util.logging.Level.FINE,
-					"EncryptedKeyResolver - Can I resolve " + element
-							.getTagName());
-		}
+    /** @inheritDoc */
+    public javax.crypto.SecretKey engineLookupAndResolveSecretKey(
+            Element element, String BaseURI, StorageResolver storage) {
+        if (log.isLoggable(java.util.logging.Level.FINE)) {
+            log.log(java.util.logging.Level.FINE,
+                    "EncryptedKeyResolver - Can I resolve " + element
+                            .getTagName());
+        }
 
-		if (element == null) {
-			return null;
-		}
+        if (element == null) {
+            return null;
+        }
 
-		SecretKey key = null;
-		boolean isEncryptedKey = XMLUtils.elementIsInEncryptionSpace(element,
-				EncryptionConstants._TAG_ENCRYPTEDKEY);
-		if (isEncryptedKey) {
-			if (log.isLoggable(java.util.logging.Level.FINE)) {
-				log.log(java.util.logging.Level.FINE,
-						"Passed an Encrypted Key");
-			}
-			try {
-				XMLCipher cipher = XMLCipher.getInstance();
-				cipher.init(XMLCipher.UNWRAP_MODE, kek);
-				if (internalKeyResolvers != null) {
-					int size = internalKeyResolvers.size();
-					for (int i = 0; i < size; i++) {
-						cipher.registerInternalKeyResolver(internalKeyResolvers
-								.get(i));
-					}
-				}
-				EncryptedKey ek = cipher.loadEncryptedKey(element);
-				key = (SecretKey) cipher.decryptKey(ek, algorithm);
-			} catch (XMLEncryptionException e) {
-				if (log.isLoggable(java.util.logging.Level.FINE)) {
-					log.log(java.util.logging.Level.FINE, e.getMessage(), e);
-				}
-			}
-		}
+        SecretKey key = null;
+        boolean isEncryptedKey = XMLUtils.elementIsInEncryptionSpace(element,
+                EncryptionConstants._TAG_ENCRYPTEDKEY);
+        if (isEncryptedKey) {
+            if (log.isLoggable(java.util.logging.Level.FINE)) {
+                log.log(java.util.logging.Level.FINE,
+                        "Passed an Encrypted Key");
+            }
+            try {
+                XMLCipher cipher = XMLCipher.getInstance();
+                cipher.init(XMLCipher.UNWRAP_MODE, kek);
+                if (internalKeyResolvers != null) {
+                    int size = internalKeyResolvers.size();
+                    for (int i = 0; i < size; i++) {
+                        cipher.registerInternalKeyResolver(internalKeyResolvers
+                                .get(i));
+                    }
+                }
+                EncryptedKey ek = cipher.loadEncryptedKey(element);
+                key = (SecretKey) cipher.decryptKey(ek, algorithm);
+            } catch (XMLEncryptionException e) {
+                if (log.isLoggable(java.util.logging.Level.FINE)) {
+                    log.log(java.util.logging.Level.FINE, e.getMessage(), e);
+                }
+            }
+        }
 
-		return key;
-	}
+        return key;
+    }
 }

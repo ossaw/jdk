@@ -22,5 +22,5 @@ package org.omg.CORBA;
  * @author unattributed
  */
 public interface PRIVATE_MEMBER {
-	final short value = (short) (0L);
+    final short value = (short) (0L);
 };

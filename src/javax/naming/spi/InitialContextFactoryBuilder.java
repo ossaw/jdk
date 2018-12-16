@@ -30,21 +30,21 @@ import javax.naming.NamingException;
  * @since 1.3
  */
 public interface InitialContextFactoryBuilder {
-	/**
-	 * Creates an initial context factory using the specified environment.
-	 * <p>
-	 * The environment parameter is owned by the caller. The implementation will
-	 * not modify the object or keep a reference to it, although it may keep a
-	 * reference to a clone or copy.
-	 *
-	 * @param environment
-	 *                    Environment used in creating an initial context
-	 *                    implementation. Can be null.
-	 * @return A non-null initial context factory.
-	 * @exception NamingException
-	 *                            If an initial context factory could not be
-	 *                            created.
-	 */
-	public InitialContextFactory createInitialContextFactory(
-			Hashtable<?, ?> environment) throws NamingException;
+    /**
+     * Creates an initial context factory using the specified environment.
+     * <p>
+     * The environment parameter is owned by the caller. The implementation will
+     * not modify the object or keep a reference to it, although it may keep a
+     * reference to a clone or copy.
+     *
+     * @param environment
+     *                    Environment used in creating an initial context
+     *                    implementation. Can be null.
+     * @return A non-null initial context factory.
+     * @exception NamingException
+     *                            If an initial context factory could not be
+     *                            created.
+     */
+    public InitialContextFactory createInitialContextFactory(
+            Hashtable<?, ?> environment) throws NamingException;
 }

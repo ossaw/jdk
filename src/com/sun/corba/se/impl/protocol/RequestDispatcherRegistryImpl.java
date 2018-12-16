@@ -31,127 +31,127 @@ import com.sun.corba.se.impl.orbutil.DenseIntMapImpl;
  * ServerSubcontract, and ObjectAdapterFactory.
  */
 public class RequestDispatcherRegistryImpl implements
-		RequestDispatcherRegistry {
-	private ORB orb;
+        RequestDispatcherRegistry {
+    private ORB orb;
 
-	protected int defaultId; // The default subcontract ID to use if
-								// there is no more specific ID available.
-								// This happens when invoking a foreign IOR.
-	private DenseIntMapImpl SDRegistry; // ServerRequestDispatcher registry
-	private DenseIntMapImpl CSRegistry; // ClientRequestDispatcher registry
-	private DenseIntMapImpl OAFRegistry; // ObjectAdapterFactory registry
-	private DenseIntMapImpl LCSFRegistry; // LocalClientRequestDispatcherFactory
-											// registry
-	private Set objectAdapterFactories; // Set of all ObjectAdapterFactory
-										// instances
-	private Set objectAdapterFactoriesView; // Read-only view of oaf instances
-	private Map stringToServerSubcontract; // Map from obect key string to
-											// ServerSubcontract
-											// for special bootstrap IORs
+    protected int defaultId; // The default subcontract ID to use if
+                             // there is no more specific ID available.
+                             // This happens when invoking a foreign IOR.
+    private DenseIntMapImpl SDRegistry; // ServerRequestDispatcher registry
+    private DenseIntMapImpl CSRegistry; // ClientRequestDispatcher registry
+    private DenseIntMapImpl OAFRegistry; // ObjectAdapterFactory registry
+    private DenseIntMapImpl LCSFRegistry; // LocalClientRequestDispatcherFactory
+                                          // registry
+    private Set objectAdapterFactories; // Set of all ObjectAdapterFactory
+                                        // instances
+    private Set objectAdapterFactoriesView; // Read-only view of oaf instances
+    private Map stringToServerSubcontract; // Map from obect key string to
+                                           // ServerSubcontract
+                                           // for special bootstrap IORs
 
-	public RequestDispatcherRegistryImpl(ORB orb, int defaultId) {
-		this.orb = orb;
-		this.defaultId = defaultId;
-		SDRegistry = new DenseIntMapImpl();
-		CSRegistry = new DenseIntMapImpl();
-		OAFRegistry = new DenseIntMapImpl();
-		LCSFRegistry = new DenseIntMapImpl();
-		objectAdapterFactories = new HashSet();
-		objectAdapterFactoriesView = Collections.unmodifiableSet(
-				objectAdapterFactories);
-		stringToServerSubcontract = new HashMap();
-	}
+    public RequestDispatcherRegistryImpl(ORB orb, int defaultId) {
+        this.orb = orb;
+        this.defaultId = defaultId;
+        SDRegistry = new DenseIntMapImpl();
+        CSRegistry = new DenseIntMapImpl();
+        OAFRegistry = new DenseIntMapImpl();
+        LCSFRegistry = new DenseIntMapImpl();
+        objectAdapterFactories = new HashSet();
+        objectAdapterFactoriesView = Collections.unmodifiableSet(
+                objectAdapterFactories);
+        stringToServerSubcontract = new HashMap();
+    }
 
-	public synchronized void registerClientRequestDispatcher(
-			ClientRequestDispatcher csc, int scid) {
-		CSRegistry.set(scid, csc);
-	}
+    public synchronized void registerClientRequestDispatcher(
+            ClientRequestDispatcher csc, int scid) {
+        CSRegistry.set(scid, csc);
+    }
 
-	public synchronized void registerLocalClientRequestDispatcherFactory(
-			LocalClientRequestDispatcherFactory csc, int scid) {
-		LCSFRegistry.set(scid, csc);
-	}
+    public synchronized void registerLocalClientRequestDispatcherFactory(
+            LocalClientRequestDispatcherFactory csc, int scid) {
+        LCSFRegistry.set(scid, csc);
+    }
 
-	public synchronized void registerServerRequestDispatcher(
-			CorbaServerRequestDispatcher ssc, int scid) {
-		SDRegistry.set(scid, ssc);
-	}
+    public synchronized void registerServerRequestDispatcher(
+            CorbaServerRequestDispatcher ssc, int scid) {
+        SDRegistry.set(scid, ssc);
+    }
 
-	public synchronized void registerServerRequestDispatcher(
-			CorbaServerRequestDispatcher scc, String name) {
-		stringToServerSubcontract.put(name, scc);
-	}
+    public synchronized void registerServerRequestDispatcher(
+            CorbaServerRequestDispatcher scc, String name) {
+        stringToServerSubcontract.put(name, scc);
+    }
 
-	public synchronized void registerObjectAdapterFactory(
-			ObjectAdapterFactory oaf, int scid) {
-		objectAdapterFactories.add(oaf);
-		OAFRegistry.set(scid, oaf);
-	}
+    public synchronized void registerObjectAdapterFactory(
+            ObjectAdapterFactory oaf, int scid) {
+        objectAdapterFactories.add(oaf);
+        OAFRegistry.set(scid, oaf);
+    }
 
-	// **************************************************
-	// Methods to find the subcontract side subcontract
-	// **************************************************
+    // **************************************************
+    // Methods to find the subcontract side subcontract
+    // **************************************************
 
-	// Note that both forms of getServerRequestDispatcher need to return
-	// the default server delegate if no other match is found.
-	// This is essential to proper handling of errors for
-	// malformed requests. In particular, a bad MAGIC will
-	// result in a lookup in the named key table (stringToServerSubcontract),
-	// which must return a valid ServerRequestDispatcher. A bad subcontract ID
-	// will similarly need to return the default ServerRequestDispatcher.
+    // Note that both forms of getServerRequestDispatcher need to return
+    // the default server delegate if no other match is found.
+    // This is essential to proper handling of errors for
+    // malformed requests. In particular, a bad MAGIC will
+    // result in a lookup in the named key table (stringToServerSubcontract),
+    // which must return a valid ServerRequestDispatcher. A bad subcontract ID
+    // will similarly need to return the default ServerRequestDispatcher.
 
-	public CorbaServerRequestDispatcher getServerRequestDispatcher(int scid) {
-		CorbaServerRequestDispatcher sdel = (CorbaServerRequestDispatcher) (SDRegistry
-				.get(scid));
-		if (sdel == null)
-			sdel = (CorbaServerRequestDispatcher) (SDRegistry.get(defaultId));
+    public CorbaServerRequestDispatcher getServerRequestDispatcher(int scid) {
+        CorbaServerRequestDispatcher sdel = (CorbaServerRequestDispatcher) (SDRegistry
+                .get(scid));
+        if (sdel == null)
+            sdel = (CorbaServerRequestDispatcher) (SDRegistry.get(defaultId));
 
-		return sdel;
-	}
+        return sdel;
+    }
 
-	public CorbaServerRequestDispatcher getServerRequestDispatcher(
-			String name) {
-		CorbaServerRequestDispatcher sdel = (CorbaServerRequestDispatcher) stringToServerSubcontract
-				.get(name);
+    public CorbaServerRequestDispatcher getServerRequestDispatcher(
+            String name) {
+        CorbaServerRequestDispatcher sdel = (CorbaServerRequestDispatcher) stringToServerSubcontract
+                .get(name);
 
-		if (sdel == null)
-			sdel = (CorbaServerRequestDispatcher) (SDRegistry.get(defaultId));
+        if (sdel == null)
+            sdel = (CorbaServerRequestDispatcher) (SDRegistry.get(defaultId));
 
-		return sdel;
-	}
+        return sdel;
+    }
 
-	public LocalClientRequestDispatcherFactory getLocalClientRequestDispatcherFactory(
-			int scid) {
-		LocalClientRequestDispatcherFactory factory = (LocalClientRequestDispatcherFactory) (LCSFRegistry
-				.get(scid));
-		if (factory == null) {
-			factory = (LocalClientRequestDispatcherFactory) (LCSFRegistry.get(
-					defaultId));
-		}
+    public LocalClientRequestDispatcherFactory getLocalClientRequestDispatcherFactory(
+            int scid) {
+        LocalClientRequestDispatcherFactory factory = (LocalClientRequestDispatcherFactory) (LCSFRegistry
+                .get(scid));
+        if (factory == null) {
+            factory = (LocalClientRequestDispatcherFactory) (LCSFRegistry.get(
+                    defaultId));
+        }
 
-		return factory;
-	}
+        return factory;
+    }
 
-	public ClientRequestDispatcher getClientRequestDispatcher(int scid) {
-		ClientRequestDispatcher subcontract = (ClientRequestDispatcher) (CSRegistry
-				.get(scid));
-		if (subcontract == null) {
-			subcontract = (ClientRequestDispatcher) (CSRegistry.get(defaultId));
-		}
+    public ClientRequestDispatcher getClientRequestDispatcher(int scid) {
+        ClientRequestDispatcher subcontract = (ClientRequestDispatcher) (CSRegistry
+                .get(scid));
+        if (subcontract == null) {
+            subcontract = (ClientRequestDispatcher) (CSRegistry.get(defaultId));
+        }
 
-		return subcontract;
-	}
+        return subcontract;
+    }
 
-	public ObjectAdapterFactory getObjectAdapterFactory(int scid) {
-		ObjectAdapterFactory oaf = (ObjectAdapterFactory) (OAFRegistry.get(
-				scid));
-		if (oaf == null)
-			oaf = (ObjectAdapterFactory) (OAFRegistry.get(defaultId));
+    public ObjectAdapterFactory getObjectAdapterFactory(int scid) {
+        ObjectAdapterFactory oaf = (ObjectAdapterFactory) (OAFRegistry.get(
+                scid));
+        if (oaf == null)
+            oaf = (ObjectAdapterFactory) (OAFRegistry.get(defaultId));
 
-		return oaf;
-	}
+        return oaf;
+    }
 
-	public Set getObjectAdapterFactories() {
-		return objectAdapterFactoriesView;
-	}
+    public Set getObjectAdapterFactories() {
+        return objectAdapterFactoriesView;
+    }
 }

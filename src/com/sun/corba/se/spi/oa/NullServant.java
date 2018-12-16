@@ -16,8 +16,8 @@ import org.omg.CORBA.SystemException;
  * perform some other action in response to the NullServant result.
  */
 public interface NullServant {
-	/**
-	 * Obtain the exception that is associated with this NullServant instance.
-	 */
-	SystemException getException();
+    /**
+     * Obtain the exception that is associated with this NullServant instance.
+     */
+    SystemException getException();
 }

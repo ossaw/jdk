@@ -58,133 +58,133 @@ import javax.net.ssl.HostnameVerifier;
  */
 public abstract class StartTlsResponse implements ExtendedResponse {
 
-	// Constant
+    // Constant
 
-	/**
-	 * The StartTLS extended response's assigned object identifier is
-	 * 1.3.6.1.4.1.1466.20037.
-	 */
-	public static final String OID = "1.3.6.1.4.1.1466.20037";
+    /**
+     * The StartTLS extended response's assigned object identifier is
+     * 1.3.6.1.4.1.1466.20037.
+     */
+    public static final String OID = "1.3.6.1.4.1.1466.20037";
 
-	// Called by subclass
+    // Called by subclass
 
-	/**
-	 * Constructs a StartTLS extended response. A concrete subclass must have a
-	 * public no-arg constructor.
-	 */
-	protected StartTlsResponse() {}
+    /**
+     * Constructs a StartTLS extended response. A concrete subclass must have a
+     * public no-arg constructor.
+     */
+    protected StartTlsResponse() {}
 
-	// ExtendedResponse methods
+    // ExtendedResponse methods
 
-	/**
-	 * Retrieves the StartTLS response's object identifier string.
-	 *
-	 * @return The object identifier string, "1.3.6.1.4.1.1466.20037".
-	 */
-	public String getID() {
-		return OID;
-	}
+    /**
+     * Retrieves the StartTLS response's object identifier string.
+     *
+     * @return The object identifier string, "1.3.6.1.4.1.1466.20037".
+     */
+    public String getID() {
+        return OID;
+    }
 
-	/**
-	 * Retrieves the StartTLS response's ASN.1 BER encoded value. Since the
-	 * response has no defined value, null is always returned.
-	 *
-	 * @return The null value.
-	 */
-	public byte[] getEncodedValue() {
-		return null;
-	}
+    /**
+     * Retrieves the StartTLS response's ASN.1 BER encoded value. Since the
+     * response has no defined value, null is always returned.
+     *
+     * @return The null value.
+     */
+    public byte[] getEncodedValue() {
+        return null;
+    }
 
-	// StartTls-specific methods
+    // StartTls-specific methods
 
-	/**
-	 * Overrides the default list of cipher suites enabled for use on the TLS
-	 * connection. The cipher suites must have already been listed by
-	 * <tt>SSLSocketFactory.getSupportedCipherSuites()</tt> as being supported.
-	 * Even if a suite has been enabled, it still might not be used because the
-	 * peer does not support it, or because the requisite certificates (and
-	 * private keys) are not available.
-	 *
-	 * @param suites
-	 *               The non-null list of names of all the cipher suites to
-	 *               enable.
-	 * @see #negotiate
-	 */
-	public abstract void setEnabledCipherSuites(String[] suites);
+    /**
+     * Overrides the default list of cipher suites enabled for use on the TLS
+     * connection. The cipher suites must have already been listed by
+     * <tt>SSLSocketFactory.getSupportedCipherSuites()</tt> as being supported.
+     * Even if a suite has been enabled, it still might not be used because the
+     * peer does not support it, or because the requisite certificates (and
+     * private keys) are not available.
+     *
+     * @param suites
+     *               The non-null list of names of all the cipher suites to
+     *               enable.
+     * @see #negotiate
+     */
+    public abstract void setEnabledCipherSuites(String[] suites);
 
-	/**
-	 * Sets the hostname verifier used by <tt>negotiate()</tt> after the TLS
-	 * handshake has completed and the default hostname verification has failed.
-	 * <tt>setHostnameVerifier()</tt> must be called before <tt>negotiate()</tt>
-	 * is invoked for it to have effect. If called after <tt>negotiate()</tt>,
-	 * this method does not do anything.
-	 *
-	 * @param verifier
-	 *                 The non-null hostname verifier callback.
-	 * @see #negotiate
-	 */
-	public abstract void setHostnameVerifier(HostnameVerifier verifier);
+    /**
+     * Sets the hostname verifier used by <tt>negotiate()</tt> after the TLS
+     * handshake has completed and the default hostname verification has failed.
+     * <tt>setHostnameVerifier()</tt> must be called before <tt>negotiate()</tt>
+     * is invoked for it to have effect. If called after <tt>negotiate()</tt>,
+     * this method does not do anything.
+     *
+     * @param verifier
+     *                 The non-null hostname verifier callback.
+     * @see #negotiate
+     */
+    public abstract void setHostnameVerifier(HostnameVerifier verifier);
 
-	/**
-	 * Negotiates a TLS session using the default SSL socket factory.
-	 * <p>
-	 * This method is equivalent to <tt>negotiate(null)</tt>.
-	 *
-	 * @return The negotiated SSL session
-	 * @throws IOException
-	 *                     If an IO error was encountered while establishing the
-	 *                     TLS
-	 *                     session.
-	 * @see #setEnabledCipherSuites
-	 * @see #setHostnameVerifier
-	 */
-	public abstract SSLSession negotiate() throws IOException;
+    /**
+     * Negotiates a TLS session using the default SSL socket factory.
+     * <p>
+     * This method is equivalent to <tt>negotiate(null)</tt>.
+     *
+     * @return The negotiated SSL session
+     * @throws IOException
+     *                     If an IO error was encountered while establishing the
+     *                     TLS
+     *                     session.
+     * @see #setEnabledCipherSuites
+     * @see #setHostnameVerifier
+     */
+    public abstract SSLSession negotiate() throws IOException;
 
-	/**
-	 * Negotiates a TLS session using an SSL socket factory.
-	 * <p>
-	 * Creates an SSL socket using the supplied SSL socket factory and attaches
-	 * it to the existing connection. Performs the TLS handshake and returns the
-	 * negotiated session information.
-	 * <p>
-	 * If cipher suites have been set via <tt>setEnabledCipherSuites</tt> then
-	 * they are enabled before the TLS handshake begins.
-	 * <p>
-	 * Hostname verification is performed after the TLS handshake completes. The
-	 * default hostname verification performs a match of the server's hostname
-	 * against the hostname information found in the server's certificate. If
-	 * this verification fails and no callback has been set via
-	 * <tt>setHostnameVerifier</tt> then the negotiation fails. If this
-	 * verification fails and a callback has been set via
-	 * <tt>setHostnameVerifier</tt>, then the callback is used to determine
-	 * whether the negotiation succeeds.
-	 * <p>
-	 * If an error occurs then the SSL socket is closed and an IOException is
-	 * thrown. The underlying connection remains intact.
-	 *
-	 * @param factory
-	 *                The possibly null SSL socket factory to use. If null, the
-	 *                default SSL socket factory is used.
-	 * @return The negotiated SSL session
-	 * @throws IOException
-	 *                     If an IO error was encountered while establishing the
-	 *                     TLS
-	 *                     session.
-	 * @see #setEnabledCipherSuites
-	 * @see #setHostnameVerifier
-	 */
-	public abstract SSLSession negotiate(SSLSocketFactory factory)
-			throws IOException;
+    /**
+     * Negotiates a TLS session using an SSL socket factory.
+     * <p>
+     * Creates an SSL socket using the supplied SSL socket factory and attaches
+     * it to the existing connection. Performs the TLS handshake and returns the
+     * negotiated session information.
+     * <p>
+     * If cipher suites have been set via <tt>setEnabledCipherSuites</tt> then
+     * they are enabled before the TLS handshake begins.
+     * <p>
+     * Hostname verification is performed after the TLS handshake completes. The
+     * default hostname verification performs a match of the server's hostname
+     * against the hostname information found in the server's certificate. If
+     * this verification fails and no callback has been set via
+     * <tt>setHostnameVerifier</tt> then the negotiation fails. If this
+     * verification fails and a callback has been set via
+     * <tt>setHostnameVerifier</tt>, then the callback is used to determine
+     * whether the negotiation succeeds.
+     * <p>
+     * If an error occurs then the SSL socket is closed and an IOException is
+     * thrown. The underlying connection remains intact.
+     *
+     * @param factory
+     *                The possibly null SSL socket factory to use. If null, the
+     *                default SSL socket factory is used.
+     * @return The negotiated SSL session
+     * @throws IOException
+     *                     If an IO error was encountered while establishing the
+     *                     TLS
+     *                     session.
+     * @see #setEnabledCipherSuites
+     * @see #setHostnameVerifier
+     */
+    public abstract SSLSession negotiate(SSLSocketFactory factory)
+            throws IOException;
 
-	/**
-	 * Closes the TLS connection gracefully and reverts back to the underlying
-	 * connection.
-	 *
-	 * @throws IOException
-	 *                     If an IO error was encountered while closing the TLS
-	 *                     connection
-	 */
-	public abstract void close() throws IOException;
+    /**
+     * Closes the TLS connection gracefully and reverts back to the underlying
+     * connection.
+     *
+     * @throws IOException
+     *                     If an IO error was encountered while closing the TLS
+     *                     connection
+     */
+    public abstract void close() throws IOException;
 
-	private static final long serialVersionUID = 8372842182579276418L;
+    private static final long serialVersionUID = 8372842182579276418L;
 }

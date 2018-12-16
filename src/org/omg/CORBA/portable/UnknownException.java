@@ -21,20 +21,20 @@ package org.omg.CORBA.portable;
  * directly to the user.
  */
 public class UnknownException extends org.omg.CORBA.SystemException {
-	/**
-	 * A throwable--the original exception that was wrapped in a CORBA
-	 * UnknownException.
-	 */
-	public Throwable originalEx;
+    /**
+     * A throwable--the original exception that was wrapped in a CORBA
+     * UnknownException.
+     */
+    public Throwable originalEx;
 
-	/**
-	 * Constructs an UnknownException object.
-	 * 
-	 * @param ex
-	 *           a Throwable object--to be wrapped in this exception.
-	 */
-	public UnknownException(Throwable ex) {
-		super("", 0, org.omg.CORBA.CompletionStatus.COMPLETED_MAYBE);
-		originalEx = ex;
-	}
+    /**
+     * Constructs an UnknownException object.
+     * 
+     * @param ex
+     *           a Throwable object--to be wrapped in this exception.
+     */
+    public UnknownException(Throwable ex) {
+        super("", 0, org.omg.CORBA.CompletionStatus.COMPLETED_MAYBE);
+        originalEx = ex;
+    }
 }

@@ -66,73 +66,73 @@ import javax.imageio.metadata.IIOMetadata;
  */
 public interface ImageTranscoder {
 
-	/**
-	 * Returns an <code>IIOMetadata</code> object that may be used for encoding
-	 * and optionally modified using its document interfaces or other interfaces
-	 * specific to the writer plug-in that will be used for encoding.
-	 *
-	 * <p>
-	 * An optional <code>ImageWriteParam</code> may be supplied for cases where
-	 * it may affect the structure of the stream metadata.
-	 *
-	 * <p>
-	 * If the supplied <code>ImageWriteParam</code> contains optional setting
-	 * values not understood by this writer or transcoder, they will be ignored.
-	 *
-	 * @param inData
-	 *               an <code>IIOMetadata</code> object representing stream
-	 *               metadata, used to initialize the state of the returned
-	 *               object.
-	 * @param param
-	 *               an <code>ImageWriteParam</code> that will be used to encode
-	 *               the image, or <code>null</code>.
-	 *
-	 * @return an <code>IIOMetadata</code> object, or <code>null</code> if the
-	 *         plug-in does not provide metadata encoding capabilities.
-	 *
-	 * @exception IllegalArgumentException
-	 *                                     if <code>inData</code> is
-	 *                                     <code>null</code>.
-	 */
-	IIOMetadata convertStreamMetadata(IIOMetadata inData,
-			ImageWriteParam param);
+    /**
+     * Returns an <code>IIOMetadata</code> object that may be used for encoding
+     * and optionally modified using its document interfaces or other interfaces
+     * specific to the writer plug-in that will be used for encoding.
+     *
+     * <p>
+     * An optional <code>ImageWriteParam</code> may be supplied for cases where
+     * it may affect the structure of the stream metadata.
+     *
+     * <p>
+     * If the supplied <code>ImageWriteParam</code> contains optional setting
+     * values not understood by this writer or transcoder, they will be ignored.
+     *
+     * @param inData
+     *               an <code>IIOMetadata</code> object representing stream
+     *               metadata, used to initialize the state of the returned
+     *               object.
+     * @param param
+     *               an <code>ImageWriteParam</code> that will be used to encode
+     *               the image, or <code>null</code>.
+     *
+     * @return an <code>IIOMetadata</code> object, or <code>null</code> if the
+     *         plug-in does not provide metadata encoding capabilities.
+     *
+     * @exception IllegalArgumentException
+     *                                     if <code>inData</code> is
+     *                                     <code>null</code>.
+     */
+    IIOMetadata convertStreamMetadata(IIOMetadata inData,
+            ImageWriteParam param);
 
-	/**
-	 * Returns an <code>IIOMetadata</code> object that may be used for encoding
-	 * and optionally modified using its document interfaces or other interfaces
-	 * specific to the writer plug-in that will be used for encoding.
-	 *
-	 * <p>
-	 * An optional <code>ImageWriteParam</code> may be supplied for cases where
-	 * it may affect the structure of the image metadata.
-	 *
-	 * <p>
-	 * If the supplied <code>ImageWriteParam</code> contains optional setting
-	 * values not understood by this writer or transcoder, they will be ignored.
-	 *
-	 * @param inData
-	 *                  an <code>IIOMetadata</code> object representing image
-	 *                  metadata, used to initialize the state of the returned
-	 *                  object.
-	 * @param imageType
-	 *                  an <code>ImageTypeSpecifier</code> indicating the layout
-	 *                  and
-	 *                  color information of the image with which the metadata
-	 *                  will be
-	 *                  associated.
-	 * @param param
-	 *                  an <code>ImageWriteParam</code> that will be used to
-	 *                  encode
-	 *                  the image, or <code>null</code>.
-	 *
-	 * @return an <code>IIOMetadata</code> object, or <code>null</code> if the
-	 *         plug-in does not provide metadata encoding capabilities.
-	 *
-	 * @exception IllegalArgumentException
-	 *                                     if either of <code>inData</code> or
-	 *                                     <code>imageType</code>
-	 *                                     is <code>null</code>.
-	 */
-	IIOMetadata convertImageMetadata(IIOMetadata inData,
-			ImageTypeSpecifier imageType, ImageWriteParam param);
+    /**
+     * Returns an <code>IIOMetadata</code> object that may be used for encoding
+     * and optionally modified using its document interfaces or other interfaces
+     * specific to the writer plug-in that will be used for encoding.
+     *
+     * <p>
+     * An optional <code>ImageWriteParam</code> may be supplied for cases where
+     * it may affect the structure of the image metadata.
+     *
+     * <p>
+     * If the supplied <code>ImageWriteParam</code> contains optional setting
+     * values not understood by this writer or transcoder, they will be ignored.
+     *
+     * @param inData
+     *                  an <code>IIOMetadata</code> object representing image
+     *                  metadata, used to initialize the state of the returned
+     *                  object.
+     * @param imageType
+     *                  an <code>ImageTypeSpecifier</code> indicating the layout
+     *                  and
+     *                  color information of the image with which the metadata
+     *                  will be
+     *                  associated.
+     * @param param
+     *                  an <code>ImageWriteParam</code> that will be used to
+     *                  encode
+     *                  the image, or <code>null</code>.
+     *
+     * @return an <code>IIOMetadata</code> object, or <code>null</code> if the
+     *         plug-in does not provide metadata encoding capabilities.
+     *
+     * @exception IllegalArgumentException
+     *                                     if either of <code>inData</code> or
+     *                                     <code>imageType</code>
+     *                                     is <code>null</code>.
+     */
+    IIOMetadata convertImageMetadata(IIOMetadata inData,
+            ImageTypeSpecifier imageType, ImageWriteParam param);
 }

@@ -33,8 +33,8 @@ import static java.lang.annotation.ElementType.PARAMETER;
  * <pre>
  * &#64;XmlRootElement
  * class Foo {
- * 	&#64;XmlElement
- * 	List&lt;String> data;
+ *     &#64;XmlElement
+ *     List&lt;String> data;
  * }
  * </pre>
  *
@@ -53,9 +53,9 @@ import static java.lang.annotation.ElementType.PARAMETER;
  * <pre>
  * &#64;XmlRootElement
  * class Foo {
- * 	&#64;XmlElement
- * 	&#64;XmlList
- * 	List&lt;String> data;
+ *     &#64;XmlElement
+ *     &#64;XmlList
+ *     List&lt;String> data;
  * }
  * </pre>
  *

@@ -20,9 +20,9 @@ import com.sun.java.swing.plaf.windows.TMSchema.State;
  * @author Igor Kushnirskiy
  */
 interface WindowsMenuItemUIAccessor {
-	JMenuItem getMenuItem();
+    JMenuItem getMenuItem();
 
-	State getState(JMenuItem menuItem);
+    State getState(JMenuItem menuItem);
 
-	Part getPart(JMenuItem menuItem);
+    Part getPart(JMenuItem menuItem);
 }

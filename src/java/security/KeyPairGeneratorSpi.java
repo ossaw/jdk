@@ -33,60 +33,60 @@ import java.security.spec.AlgorithmParameterSpec;
 
 public abstract class KeyPairGeneratorSpi {
 
-	/**
-	 * Initializes the key pair generator for a certain keysize, using the
-	 * default parameter set.
-	 *
-	 * @param keysize
-	 *                the keysize. This is an algorithm-specific metric, such as
-	 *                modulus length, specified in number of bits.
-	 *
-	 * @param random
-	 *                the source of randomness for this generator.
-	 *
-	 * @exception InvalidParameterException
-	 *                                      if the {@code keysize} is not
-	 *                                      supported by this
-	 *                                      KeyPairGeneratorSpi object.
-	 */
-	public abstract void initialize(int keysize, SecureRandom random);
+    /**
+     * Initializes the key pair generator for a certain keysize, using the
+     * default parameter set.
+     *
+     * @param keysize
+     *                the keysize. This is an algorithm-specific metric, such as
+     *                modulus length, specified in number of bits.
+     *
+     * @param random
+     *                the source of randomness for this generator.
+     *
+     * @exception InvalidParameterException
+     *                                      if the {@code keysize} is not
+     *                                      supported by this
+     *                                      KeyPairGeneratorSpi object.
+     */
+    public abstract void initialize(int keysize, SecureRandom random);
 
-	/**
-	 * Initializes the key pair generator using the specified parameter set and
-	 * user-provided source of randomness.
-	 *
-	 * <p>
-	 * This concrete method has been added to this previously-defined abstract
-	 * class. (For backwards compatibility, it cannot be abstract.) It may be
-	 * overridden by a provider to initialize the key pair generator. Such an
-	 * override is expected to throw an InvalidAlgorithmParameterException if a
-	 * parameter is inappropriate for this key pair generator. If this method is
-	 * not overridden, it always throws an UnsupportedOperationException.
-	 *
-	 * @param params
-	 *               the parameter set used to generate the keys.
-	 *
-	 * @param random
-	 *               the source of randomness for this generator.
-	 *
-	 * @exception InvalidAlgorithmParameterException
-	 *                                               if the given parameters are
-	 *                                               inappropriate for this key
-	 *                                               pair generator.
-	 *
-	 * @since 1.2
-	 */
-	public void initialize(AlgorithmParameterSpec params, SecureRandom random)
-			throws InvalidAlgorithmParameterException {
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Initializes the key pair generator using the specified parameter set and
+     * user-provided source of randomness.
+     *
+     * <p>
+     * This concrete method has been added to this previously-defined abstract
+     * class. (For backwards compatibility, it cannot be abstract.) It may be
+     * overridden by a provider to initialize the key pair generator. Such an
+     * override is expected to throw an InvalidAlgorithmParameterException if a
+     * parameter is inappropriate for this key pair generator. If this method is
+     * not overridden, it always throws an UnsupportedOperationException.
+     *
+     * @param params
+     *               the parameter set used to generate the keys.
+     *
+     * @param random
+     *               the source of randomness for this generator.
+     *
+     * @exception InvalidAlgorithmParameterException
+     *                                               if the given parameters are
+     *                                               inappropriate for this key
+     *                                               pair generator.
+     *
+     * @since 1.2
+     */
+    public void initialize(AlgorithmParameterSpec params, SecureRandom random)
+            throws InvalidAlgorithmParameterException {
+        throw new UnsupportedOperationException();
+    }
 
-	/**
-	 * Generates a key pair. Unless an initialization method is called using a
-	 * KeyPairGenerator interface, algorithm-specific defaults will be used.
-	 * This will generate a new key pair every time it is called.
-	 *
-	 * @return the newly generated {@code KeyPair}
-	 */
-	public abstract KeyPair generateKeyPair();
+    /**
+     * Generates a key pair. Unless an initialization method is called using a
+     * KeyPairGenerator interface, algorithm-specific defaults will be used.
+     * This will generate a new key pair every time it is called.
+     *
+     * @return the newly generated {@code KeyPair}
+     */
+    public abstract KeyPair generateKeyPair();
 }

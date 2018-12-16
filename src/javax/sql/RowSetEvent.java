@@ -22,23 +22,23 @@ package javax.sql;
 
 public class RowSetEvent extends java.util.EventObject {
 
-	/**
-	 * Constructs a <code>RowSetEvent</code> object initialized with the given
-	 * <code>RowSet</code> object.
-	 *
-	 * @param source
-	 *               the <code>RowSet</code> object whose data has changed or
-	 *               whose
-	 *               cursor has moved
-	 * @throws IllegalArgumentException
-	 *                                  if <code>source</code> is null.
-	 */
-	public RowSetEvent(RowSet source) {
-		super(source);
-	}
+    /**
+     * Constructs a <code>RowSetEvent</code> object initialized with the given
+     * <code>RowSet</code> object.
+     *
+     * @param source
+     *               the <code>RowSet</code> object whose data has changed or
+     *               whose
+     *               cursor has moved
+     * @throws IllegalArgumentException
+     *                                  if <code>source</code> is null.
+     */
+    public RowSetEvent(RowSet source) {
+        super(source);
+    }
 
-	/**
-	 * Private serial version unique ID to ensure serialization compatibility.
-	 */
-	static final long serialVersionUID = -1875450876546332005L;
+    /**
+     * Private serial version unique ID to ensure serialization compatibility.
+     */
+    static final long serialVersionUID = -1875450876546332005L;
 }

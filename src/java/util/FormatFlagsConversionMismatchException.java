@@ -16,49 +16,49 @@ package java.util;
  * @since 1.5
  */
 public class FormatFlagsConversionMismatchException extends
-		IllegalFormatException {
-	private static final long serialVersionUID = 19120414L;
+        IllegalFormatException {
+    private static final long serialVersionUID = 19120414L;
 
-	private String f;
+    private String f;
 
-	private char c;
+    private char c;
 
-	/**
-	 * Constructs an instance of this class with the specified flag and
-	 * conversion.
-	 *
-	 * @param f
-	 *          The flag
-	 *
-	 * @param c
-	 *          The conversion
-	 */
-	public FormatFlagsConversionMismatchException(String f, char c) {
-		if (f == null)
-			throw new NullPointerException();
-		this.f = f;
-		this.c = c;
-	}
+    /**
+     * Constructs an instance of this class with the specified flag and
+     * conversion.
+     *
+     * @param f
+     *          The flag
+     *
+     * @param c
+     *          The conversion
+     */
+    public FormatFlagsConversionMismatchException(String f, char c) {
+        if (f == null)
+            throw new NullPointerException();
+        this.f = f;
+        this.c = c;
+    }
 
-	/**
-	 * Returns the incompatible flag.
-	 *
-	 * @return The flag
-	 */
-	public String getFlags() {
-		return f;
-	}
+    /**
+     * Returns the incompatible flag.
+     *
+     * @return The flag
+     */
+    public String getFlags() {
+        return f;
+    }
 
-	/**
-	 * Returns the incompatible conversion.
-	 *
-	 * @return The conversion
-	 */
-	public char getConversion() {
-		return c;
-	}
+    /**
+     * Returns the incompatible conversion.
+     *
+     * @return The conversion
+     */
+    public char getConversion() {
+        return c;
+    }
 
-	public String getMessage() {
-		return "Conversion = " + c + ", Flags = " + f;
-	}
+    public String getMessage() {
+        return "Conversion = " + c + ", Flags = " + f;
+    }
 }

@@ -15,21 +15,21 @@ package org.omg.CORBA.ORBPackage;
  */
 
 final public class InvalidName extends org.omg.CORBA.UserException {
-	/**
-	 * Constructs an <code>InvalidName</code> exception with no reason message.
-	 */
-	public InvalidName() {
-		super();
-	}
+    /**
+     * Constructs an <code>InvalidName</code> exception with no reason message.
+     */
+    public InvalidName() {
+        super();
+    }
 
-	/**
-	 * Constructs an <code>InvalidName</code> exception with the specified
-	 * reason message.
-	 * 
-	 * @param reason
-	 *               the String containing a reason message
-	 */
-	public InvalidName(String reason) {
-		super(reason);
-	}
+    /**
+     * Constructs an <code>InvalidName</code> exception with the specified
+     * reason message.
+     * 
+     * @param reason
+     *               the String containing a reason message
+     */
+    public InvalidName(String reason) {
+        super(reason);
+    }
 }

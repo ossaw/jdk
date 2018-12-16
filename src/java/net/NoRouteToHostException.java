@@ -13,22 +13,22 @@ package java.net;
  * @since JDK1.1
  */
 public class NoRouteToHostException extends SocketException {
-	private static final long serialVersionUID = -1897550894873493790L;
+    private static final long serialVersionUID = -1897550894873493790L;
 
-	/**
-	 * Constructs a new NoRouteToHostException with the specified detail message
-	 * as to why the remote host cannot be reached. A detail message is a String
-	 * that gives a specific description of this error.
-	 * 
-	 * @param msg
-	 *            the detail message
-	 */
-	public NoRouteToHostException(String msg) {
-		super(msg);
-	}
+    /**
+     * Constructs a new NoRouteToHostException with the specified detail message
+     * as to why the remote host cannot be reached. A detail message is a String
+     * that gives a specific description of this error.
+     * 
+     * @param msg
+     *            the detail message
+     */
+    public NoRouteToHostException(String msg) {
+        super(msg);
+    }
 
-	/**
-	 * Construct a new NoRouteToHostException with no detailed message.
-	 */
-	public NoRouteToHostException() {}
+    /**
+     * Construct a new NoRouteToHostException with no detailed message.
+     */
+    public NoRouteToHostException() {}
 }

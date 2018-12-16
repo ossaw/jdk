@@ -43,33 +43,33 @@ package javax.management;
  */
 public interface ValueExp extends java.io.Serializable {
 
-	/**
-	 * Applies the ValueExp on a MBean.
-	 *
-	 * @param name
-	 *             The name of the MBean on which the ValueExp will be applied.
-	 *
-	 * @return The <CODE>ValueExp</CODE>.
-	 *
-	 * @exception BadStringOperationException
-	 * @exception BadBinaryOpValueExpException
-	 * @exception BadAttributeValueExpException
-	 * @exception InvalidApplicationException
-	 */
-	public ValueExp apply(ObjectName name) throws BadStringOperationException,
-			BadBinaryOpValueExpException, BadAttributeValueExpException,
-			InvalidApplicationException;
+    /**
+     * Applies the ValueExp on a MBean.
+     *
+     * @param name
+     *             The name of the MBean on which the ValueExp will be applied.
+     *
+     * @return The <CODE>ValueExp</CODE>.
+     *
+     * @exception BadStringOperationException
+     * @exception BadBinaryOpValueExpException
+     * @exception BadAttributeValueExpException
+     * @exception InvalidApplicationException
+     */
+    public ValueExp apply(ObjectName name) throws BadStringOperationException,
+            BadBinaryOpValueExpException, BadAttributeValueExpException,
+            InvalidApplicationException;
 
-	/**
-	 * Sets the MBean server on which the query is to be performed.
-	 *
-	 * @param s
-	 *          The MBean server on which the query is to be performed.
-	 *
-	 * @deprecated This method is not needed because a <code>ValueExp</code> can
-	 *             access the MBean server in which it is being evaluated by
-	 *             using {@link QueryEval#getMBeanServer()}.
-	 */
-	@Deprecated
-	public void setMBeanServer(MBeanServer s);
+    /**
+     * Sets the MBean server on which the query is to be performed.
+     *
+     * @param s
+     *          The MBean server on which the query is to be performed.
+     *
+     * @deprecated This method is not needed because a <code>ValueExp</code> can
+     *             access the MBean server in which it is being evaluated by
+     *             using {@link QueryEval#getMBeanServer()}.
+     */
+    @Deprecated
+    public void setMBeanServer(MBeanServer s);
 }

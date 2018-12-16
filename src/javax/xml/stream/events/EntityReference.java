@@ -30,15 +30,15 @@ package javax.xml.stream.events;
  */
 public interface EntityReference extends XMLEvent {
 
-	/**
-	 * Return the declaration of this entity.
-	 */
-	EntityDeclaration getDeclaration();
+    /**
+     * Return the declaration of this entity.
+     */
+    EntityDeclaration getDeclaration();
 
-	/**
-	 * The name of the entity
-	 * 
-	 * @return the entity's name, may not be null
-	 */
-	String getName();
+    /**
+     * The name of the entity
+     * 
+     * @return the entity's name, may not be null
+     */
+    String getName();
 }

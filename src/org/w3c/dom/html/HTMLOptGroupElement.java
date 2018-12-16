@@ -25,20 +25,20 @@ package org.w3c.dom.html;
  * Model (DOM) Level 2 Specification</a>.
  */
 public interface HTMLOptGroupElement extends HTMLElement {
-	/**
-	 * The control is unavailable in this context. See the disabled attribute
-	 * definition in HTML 4.0.
-	 */
-	public boolean getDisabled();
+    /**
+     * The control is unavailable in this context. See the disabled attribute
+     * definition in HTML 4.0.
+     */
+    public boolean getDisabled();
 
-	public void setDisabled(boolean disabled);
+    public void setDisabled(boolean disabled);
 
-	/**
-	 * Assigns a label to this option group. See the label attribute definition
-	 * in HTML 4.0.
-	 */
-	public String getLabel();
+    /**
+     * Assigns a label to this option group. See the label attribute definition
+     * in HTML 4.0.
+     */
+    public String getLabel();
 
-	public void setLabel(String label);
+    public void setLabel(String label);
 
 }

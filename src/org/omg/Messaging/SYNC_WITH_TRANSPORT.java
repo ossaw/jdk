@@ -10,9 +10,9 @@ package org.omg.Messaging;
 
 public interface SYNC_WITH_TRANSPORT {
 
-	/**
-	 * Constant, defined in the Messaging spec, to define how far the request
-	 * shall progress before control is returned to the client.
-	 */
-	public static final short value = (short) (1);
+    /**
+     * Constant, defined in the Messaging spec, to define how far the request
+     * shall progress before control is returned to the client.
+     */
+    public static final short value = (short) (1);
 }

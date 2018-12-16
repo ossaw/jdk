@@ -27,28 +27,28 @@ import javax.naming.Name;
  */
 
 public class LimitExceededException extends NamingException {
-	/**
-	 * Constructs a new instance of LimitExceededException with all name
-	 * resolution fields and explanation initialized to null.
-	 */
-	public LimitExceededException() {
-		super();
-	}
+    /**
+     * Constructs a new instance of LimitExceededException with all name
+     * resolution fields and explanation initialized to null.
+     */
+    public LimitExceededException() {
+        super();
+    }
 
-	/**
-	 * Constructs a new instance of LimitExceededException using an explanation.
-	 * All other fields default to null.
-	 * 
-	 * @param explanation
-	 *                    Possibly null detail about this exception.
-	 * @see java.lang.Throwable#getMessage
-	 */
-	public LimitExceededException(String explanation) {
-		super(explanation);
-	}
+    /**
+     * Constructs a new instance of LimitExceededException using an explanation.
+     * All other fields default to null.
+     * 
+     * @param explanation
+     *                    Possibly null detail about this exception.
+     * @see java.lang.Throwable#getMessage
+     */
+    public LimitExceededException(String explanation) {
+        super(explanation);
+    }
 
-	/**
-	 * Use serialVersionUID from JNDI 1.1.1 for interoperability
-	 */
-	private static final long serialVersionUID = -776898738660207856L;
+    /**
+     * Use serialVersionUID from JNDI 1.1.1 for interoperability
+     */
+    private static final long serialVersionUID = -776898738660207856L;
 }

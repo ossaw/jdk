@@ -28,16 +28,16 @@ package org.w3c.dom.xpath;
  * Object Model (DOM) Level 3 XPath Specification</a>.
  */
 public interface XPathNSResolver {
-	/**
-	 * Look up the namespace URI associated to the given namespace prefix. The
-	 * XPath evaluator must never call this with a <code>null</code> or empty
-	 * argument, because the result of doing this is undefined.
-	 * 
-	 * @param prefix
-	 *               The prefix to look for.
-	 * @return Returns the associated namespace URI or <code>null</code> if none
-	 *         is found.
-	 */
-	public String lookupNamespaceURI(String prefix);
+    /**
+     * Look up the namespace URI associated to the given namespace prefix. The
+     * XPath evaluator must never call this with a <code>null</code> or empty
+     * argument, because the result of doing this is undefined.
+     * 
+     * @param prefix
+     *               The prefix to look for.
+     * @return Returns the associated namespace URI or <code>null</code> if none
+     *         is found.
+     */
+    public String lookupNamespaceURI(String prefix);
 
 }

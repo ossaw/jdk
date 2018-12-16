@@ -15,44 +15,44 @@ package com.sun.javadoc;
  */
 public interface FieldDoc extends MemberDoc {
 
-	/**
-	 * Get type of this field.
-	 */
-	Type type();
+    /**
+     * Get type of this field.
+     */
+    Type type();
 
-	/**
-	 * Return true if this field is transient
-	 */
-	boolean isTransient();
+    /**
+     * Return true if this field is transient
+     */
+    boolean isTransient();
 
-	/**
-	 * Return true if this field is volatile
-	 */
-	boolean isVolatile();
+    /**
+     * Return true if this field is volatile
+     */
+    boolean isVolatile();
 
-	/**
-	 * Return the serialField tags in this FieldDoc item.
-	 *
-	 * @return an array of <tt>SerialFieldTag</tt> objects containing all
-	 *         <code>@serialField</code> tags.
-	 */
-	SerialFieldTag[] serialFieldTags();
+    /**
+     * Return the serialField tags in this FieldDoc item.
+     *
+     * @return an array of <tt>SerialFieldTag</tt> objects containing all
+     *         <code>@serialField</code> tags.
+     */
+    SerialFieldTag[] serialFieldTags();
 
-	/**
-	 * Get the value of a constant field.
-	 *
-	 * @return the value of a constant field. The value is automatically wrapped
-	 *         in an object if it has a primitive type. If the field is not
-	 *         constant, returns null.
-	 */
-	Object constantValue();
+    /**
+     * Get the value of a constant field.
+     *
+     * @return the value of a constant field. The value is automatically wrapped
+     *         in an object if it has a primitive type. If the field is not
+     *         constant, returns null.
+     */
+    Object constantValue();
 
-	/**
-	 * Get the value of a constant field.
-	 *
-	 * @return the text of a Java language expression whose value is the value
-	 *         of the constant. The expression uses no identifiers other than
-	 *         primitive literals. If the field is not constant, returns null.
-	 */
-	String constantValueExpression();
+    /**
+     * Get the value of a constant field.
+     *
+     * @return the text of a Java language expression whose value is the value
+     *         of the constant. The expression uses no identifiers other than
+     *         primitive literals. If the field is not constant, returns null.
+     */
+    String constantValueExpression();
 }

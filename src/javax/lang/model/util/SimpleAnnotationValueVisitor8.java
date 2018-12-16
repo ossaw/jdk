@@ -58,23 +58,23 @@ import static javax.lang.model.SourceVersion.*;
  */
 @SupportedSourceVersion(RELEASE_8)
 public class SimpleAnnotationValueVisitor8<R, P> extends
-		SimpleAnnotationValueVisitor7<R, P> {
-	/**
-	 * Constructor for concrete subclasses; uses {@code null} for the default
-	 * value.
-	 */
-	protected SimpleAnnotationValueVisitor8() {
-		super(null);
-	}
+        SimpleAnnotationValueVisitor7<R, P> {
+    /**
+     * Constructor for concrete subclasses; uses {@code null} for the default
+     * value.
+     */
+    protected SimpleAnnotationValueVisitor8() {
+        super(null);
+    }
 
-	/**
-	 * Constructor for concrete subclasses; uses the argument for the default
-	 * value.
-	 *
-	 * @param defaultValue
-	 *                     the value to assign to {@link #DEFAULT_VALUE}
-	 */
-	protected SimpleAnnotationValueVisitor8(R defaultValue) {
-		super(defaultValue);
-	}
+    /**
+     * Constructor for concrete subclasses; uses the argument for the default
+     * value.
+     *
+     * @param defaultValue
+     *                     the value to assign to {@link #DEFAULT_VALUE}
+     */
+    protected SimpleAnnotationValueVisitor8(R defaultValue) {
+        super(defaultValue);
+    }
 }

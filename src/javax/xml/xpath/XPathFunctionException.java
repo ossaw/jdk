@@ -16,57 +16,57 @@ package javax.xml.xpath;
  */
 public class XPathFunctionException extends XPathExpressionException {
 
-	/**
-	 * <p>
-	 * Stream Unique Identifier.
-	 * </p>
-	 */
-	private static final long serialVersionUID = -1837080260374986980L;
+    /**
+     * <p>
+     * Stream Unique Identifier.
+     * </p>
+     */
+    private static final long serialVersionUID = -1837080260374986980L;
 
-	/**
-	 * <p>
-	 * Constructs a new <code>XPathFunctionException</code> with the specified
-	 * detail <code>message</code>.
-	 * </p>
-	 *
-	 * <p>
-	 * The <code>cause</code> is not initialized.
-	 * </p>
-	 *
-	 * <p>
-	 * If <code>message</code> is <code>null</code>, then a
-	 * <code>NullPointerException</code> is thrown.
-	 * </p>
-	 *
-	 * @param message
-	 *                The detail message.
-	 *
-	 * @throws NullPointerException
-	 *                              When <code>message</code> is
-	 *                              <code>null</code>.
-	 */
-	public XPathFunctionException(String message) {
-		super(message);
-	}
+    /**
+     * <p>
+     * Constructs a new <code>XPathFunctionException</code> with the specified
+     * detail <code>message</code>.
+     * </p>
+     *
+     * <p>
+     * The <code>cause</code> is not initialized.
+     * </p>
+     *
+     * <p>
+     * If <code>message</code> is <code>null</code>, then a
+     * <code>NullPointerException</code> is thrown.
+     * </p>
+     *
+     * @param message
+     *                The detail message.
+     *
+     * @throws NullPointerException
+     *                              When <code>message</code> is
+     *                              <code>null</code>.
+     */
+    public XPathFunctionException(String message) {
+        super(message);
+    }
 
-	/**
-	 * <p>
-	 * Constructs a new <code>XPathFunctionException</code> with the specified
-	 * <code>cause</code>.
-	 * </p>
-	 *
-	 * <p>
-	 * If <code>cause</code> is <code>null</code>, then a
-	 * <code>NullPointerException</code> is thrown.
-	 * </p>
-	 *
-	 * @param cause
-	 *              The cause.
-	 *
-	 * @throws NullPointerException
-	 *                              if <code>cause</code> is <code>null</code>.
-	 */
-	public XPathFunctionException(Throwable cause) {
-		super(cause);
-	}
+    /**
+     * <p>
+     * Constructs a new <code>XPathFunctionException</code> with the specified
+     * <code>cause</code>.
+     * </p>
+     *
+     * <p>
+     * If <code>cause</code> is <code>null</code>, then a
+     * <code>NullPointerException</code> is thrown.
+     * </p>
+     *
+     * @param cause
+     *              The cause.
+     *
+     * @throws NullPointerException
+     *                              if <code>cause</code> is <code>null</code>.
+     */
+    public XPathFunctionException(Throwable cause) {
+        super(cause);
+    }
 }

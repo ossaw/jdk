@@ -23,46 +23,46 @@ package java.util.concurrent;
  *
  * <pre>
  * {
- * 	&#64;code
- * 	static class SortTask extends RecursiveAction {
- * 		final long[] array;
- * 		final int lo, hi;
+ *     &#64;code
+ *     static class SortTask extends RecursiveAction {
+ *         final long[] array;
+ *         final int lo, hi;
  * 
- * 		SortTask(long[] array, int lo, int hi) {
- * 			this.array = array;
- * 			this.lo = lo;
- * 			this.hi = hi;
- * 		}
+ *         SortTask(long[] array, int lo, int hi) {
+ *             this.array = array;
+ *             this.lo = lo;
+ *             this.hi = hi;
+ *         }
  * 
- * 		SortTask(long[] array) {
- * 			this(array, 0, array.length);
- * 		}
+ *         SortTask(long[] array) {
+ *             this(array, 0, array.length);
+ *         }
  * 
- * 		protected void compute() {
- * 			if (hi - lo < THRESHOLD)
- * 				sortSequentially(lo, hi);
- * 			else {
- * 				int mid = (lo + hi) >>> 1;
- * 				invokeAll(new SortTask(array, lo, mid), new SortTask(array,
- * 						mid, hi));
- * 				merge(lo, mid, hi);
- * 			}
- * 		}
+ *         protected void compute() {
+ *             if (hi - lo < THRESHOLD)
+ *                 sortSequentially(lo, hi);
+ *             else {
+ *                 int mid = (lo + hi) >>> 1;
+ *                 invokeAll(new SortTask(array, lo, mid), new SortTask(array,
+ *                         mid, hi));
+ *                 merge(lo, mid, hi);
+ *             }
+ *         }
  * 
- * 		// implementation details follow:
- * 		static final int THRESHOLD = 1000;
+ *         // implementation details follow:
+ *         static final int THRESHOLD = 1000;
  * 
- * 		void sortSequentially(int lo, int hi) {
- * 			Arrays.sort(array, lo, hi);
- * 		}
+ *         void sortSequentially(int lo, int hi) {
+ *             Arrays.sort(array, lo, hi);
+ *         }
  * 
- * 		void merge(int lo, int mid, int hi) {
- * 			long[] buf = Arrays.copyOfRange(array, lo, mid);
- * 			for (int i = 0, j = lo, k = mid; i < buf.length; j++)
- * 				array[j] = (k == hi || buf[i] < array[k]) ? buf[i++]
- * 						: array[k++];
- * 		}
- * 	}
+ *         void merge(int lo, int mid, int hi) {
+ *             long[] buf = Arrays.copyOfRange(array, lo, mid);
+ *             for (int i = 0, j = lo, k = mid; i < buf.length; j++)
+ *                 array[j] = (k == hi || buf[i] < array[k]) ? buf[i++]
+ *                         : array[k++];
+ *         }
+ *     }
  * }
  * </pre>
  *
@@ -72,28 +72,28 @@ package java.util.concurrent;
  * 
  * <pre>
  * {
- * 	&#64;code
- * 	class IncrementTask extends RecursiveAction {
- * 		final long[] array;
- * 		final int lo, hi;
+ *     &#64;code
+ *     class IncrementTask extends RecursiveAction {
+ *         final long[] array;
+ *         final int lo, hi;
  * 
- * 		IncrementTask(long[] array, int lo, int hi) {
- * 			this.array = array;
- * 			this.lo = lo;
- * 			this.hi = hi;
- * 		}
+ *         IncrementTask(long[] array, int lo, int hi) {
+ *             this.array = array;
+ *             this.lo = lo;
+ *             this.hi = hi;
+ *         }
  * 
- * 		protected void compute() {
- * 			if (hi - lo < THRESHOLD) {
- * 				for (int i = lo; i < hi; ++i)
- * 					array[i]++;
- * 			} else {
- * 				int mid = (lo + hi) >>> 1;
- * 				invokeAll(new IncrementTask(array, lo, mid),
- * 						new IncrementTask(array, mid, hi));
- * 			}
- * 		}
- * 	}
+ *         protected void compute() {
+ *             if (hi - lo < THRESHOLD) {
+ *                 for (int i = lo; i < hi; ++i)
+ *                     array[i]++;
+ *             } else {
+ *                 int mid = (lo + hi) >>> 1;
+ *                 invokeAll(new IncrementTask(array, lo, mid),
+ *                         new IncrementTask(array, mid, hi));
+ *             }
+ *         }
+ *     }
  * }
  * </pre>
  *
@@ -163,33 +163,33 @@ package java.util.concurrent;
  * @author Doug Lea
  */
 public abstract class RecursiveAction extends ForkJoinTask<Void> {
-	private static final long serialVersionUID = 5232453952276485070L;
+    private static final long serialVersionUID = 5232453952276485070L;
 
-	/**
-	 * The main computation performed by this task.
-	 */
-	protected abstract void compute();
+    /**
+     * The main computation performed by this task.
+     */
+    protected abstract void compute();
 
-	/**
-	 * Always returns {@code null}.
-	 *
-	 * @return {@code null} always
-	 */
-	public final Void getRawResult() {
-		return null;
-	}
+    /**
+     * Always returns {@code null}.
+     *
+     * @return {@code null} always
+     */
+    public final Void getRawResult() {
+        return null;
+    }
 
-	/**
-	 * Requires null completion value.
-	 */
-	protected final void setRawResult(Void mustBeNull) {}
+    /**
+     * Requires null completion value.
+     */
+    protected final void setRawResult(Void mustBeNull) {}
 
-	/**
-	 * Implements execution conventions for RecursiveActions.
-	 */
-	protected final boolean exec() {
-		compute();
-		return true;
-	}
+    /**
+     * Implements execution conventions for RecursiveActions.
+     */
+    protected final boolean exec() {
+        compute();
+        return true;
+    }
 
 }

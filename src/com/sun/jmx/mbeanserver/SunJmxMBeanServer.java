@@ -16,61 +16,61 @@ import javax.management.MBeanServerDelegate;
  */
 public interface SunJmxMBeanServer extends MBeanServer {
 
-	/**
-	 * Return the MBeanInstantiator associated to this MBeanServer.
-	 * 
-	 * @exception UnsupportedOperationException
-	 *                                          if
-	 *                                          {@link MBeanServerInterceptor}s
-	 *                                          are not enabled on this
-	 *                                          object.
-	 * @see #interceptorsEnabled
-	 */
-	public MBeanInstantiator getMBeanInstantiator();
+    /**
+     * Return the MBeanInstantiator associated to this MBeanServer.
+     * 
+     * @exception UnsupportedOperationException
+     *                                          if
+     *                                          {@link MBeanServerInterceptor}s
+     *                                          are not enabled on this
+     *                                          object.
+     * @see #interceptorsEnabled
+     */
+    public MBeanInstantiator getMBeanInstantiator();
 
-	/**
-	 * Tell whether {@link MBeanServerInterceptor}s are enabled on this object.
-	 * 
-	 * @return <code>true</code> if {@link MBeanServerInterceptor}s are enabled.
-	 * @see #getMBeanServerInterceptor
-	 * @see #setMBeanServerInterceptor
-	 * @see #getMBeanInstantiator
-	 * @see com.sun.jmx.mbeanserver.JmxMBeanServerBuilder
-	 **/
-	public boolean interceptorsEnabled();
+    /**
+     * Tell whether {@link MBeanServerInterceptor}s are enabled on this object.
+     * 
+     * @return <code>true</code> if {@link MBeanServerInterceptor}s are enabled.
+     * @see #getMBeanServerInterceptor
+     * @see #setMBeanServerInterceptor
+     * @see #getMBeanInstantiator
+     * @see com.sun.jmx.mbeanserver.JmxMBeanServerBuilder
+     **/
+    public boolean interceptorsEnabled();
 
-	/**
-	 * Return the MBeanServerInterceptor.
-	 * 
-	 * @exception UnsupportedOperationException
-	 *                                          if
-	 *                                          {@link MBeanServerInterceptor}s
-	 *                                          are not enabled on this
-	 *                                          object.
-	 * @see #interceptorsEnabled
-	 **/
-	public MBeanServer getMBeanServerInterceptor();
+    /**
+     * Return the MBeanServerInterceptor.
+     * 
+     * @exception UnsupportedOperationException
+     *                                          if
+     *                                          {@link MBeanServerInterceptor}s
+     *                                          are not enabled on this
+     *                                          object.
+     * @see #interceptorsEnabled
+     **/
+    public MBeanServer getMBeanServerInterceptor();
 
-	/**
-	 * Set the MBeanServerInterceptor.
-	 * 
-	 * @exception UnsupportedOperationException
-	 *                                          if
-	 *                                          {@link MBeanServerInterceptor}s
-	 *                                          are not enabled on this
-	 *                                          object.
-	 * @see #interceptorsEnabled
-	 **/
-	public void setMBeanServerInterceptor(MBeanServer interceptor);
+    /**
+     * Set the MBeanServerInterceptor.
+     * 
+     * @exception UnsupportedOperationException
+     *                                          if
+     *                                          {@link MBeanServerInterceptor}s
+     *                                          are not enabled on this
+     *                                          object.
+     * @see #interceptorsEnabled
+     **/
+    public void setMBeanServerInterceptor(MBeanServer interceptor);
 
-	/**
-	 * <p>
-	 * Return the MBeanServerDelegate representing the MBeanServer.
-	 * Notifications can be sent from the MBean server delegate using the method
-	 * {@link MBeanServerDelegate#sendNotification} in the returned object.
-	 * </p>
-	 *
-	 */
-	public MBeanServerDelegate getMBeanServerDelegate();
+    /**
+     * <p>
+     * Return the MBeanServerDelegate representing the MBeanServer.
+     * Notifications can be sent from the MBean server delegate using the method
+     * {@link MBeanServerDelegate#sendNotification} in the returned object.
+     * </p>
+     *
+     */
+    public MBeanServerDelegate getMBeanServerDelegate();
 
 }

@@ -13,27 +13,27 @@ package java.awt;
  * @author Michael Martak
  */
 public class HeadlessException extends UnsupportedOperationException {
-	/*
-	 * JDK 1.4 serialVersionUID
-	 */
-	private static final long serialVersionUID = 167183644944358563L;
+    /*
+     * JDK 1.4 serialVersionUID
+     */
+    private static final long serialVersionUID = 167183644944358563L;
 
-	public HeadlessException() {}
+    public HeadlessException() {}
 
-	public HeadlessException(String msg) {
-		super(msg);
-	}
+    public HeadlessException(String msg) {
+        super(msg);
+    }
 
-	public String getMessage() {
-		String superMessage = super.getMessage();
-		String headlessMessage = GraphicsEnvironment.getHeadlessMessage();
+    public String getMessage() {
+        String superMessage = super.getMessage();
+        String headlessMessage = GraphicsEnvironment.getHeadlessMessage();
 
-		if (superMessage == null) {
-			return headlessMessage;
-		} else if (headlessMessage == null) {
-			return superMessage;
-		} else {
-			return superMessage + headlessMessage;
-		}
-	}
+        if (superMessage == null) {
+            return headlessMessage;
+        } else if (headlessMessage == null) {
+            return superMessage;
+        } else {
+            return superMessage + headlessMessage;
+        }
+    }
 }

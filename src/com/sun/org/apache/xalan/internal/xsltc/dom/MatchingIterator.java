@@ -46,79 +46,79 @@ import com.sun.org.apache.xml.internal.dtm.ref.DTMAxisIteratorBase;
  */
 public final class MatchingIterator extends DTMAxisIteratorBase {
 
-	/**
-	 * A reference to a source iterator.
-	 */
-	private DTMAxisIterator _source;
+    /**
+     * A reference to a source iterator.
+     */
+    private DTMAxisIterator _source;
 
-	/**
-	 * The node to match.
-	 */
-	private final int _match;
+    /**
+     * The node to match.
+     */
+    private final int _match;
 
-	public MatchingIterator(int match, DTMAxisIterator source) {
-		_source = source;
-		_match = match;
-	}
+    public MatchingIterator(int match, DTMAxisIterator source) {
+        _source = source;
+        _match = match;
+    }
 
-	public void setRestartable(boolean isRestartable) {
-		_isRestartable = isRestartable;
-		_source.setRestartable(isRestartable);
-	}
+    public void setRestartable(boolean isRestartable) {
+        _isRestartable = isRestartable;
+        _source.setRestartable(isRestartable);
+    }
 
-	public DTMAxisIterator cloneIterator() {
+    public DTMAxisIterator cloneIterator() {
 
-		try {
-			final MatchingIterator clone = (MatchingIterator) super.clone();
-			clone._source = _source.cloneIterator();
-			clone._isRestartable = false;
-			return clone.reset();
-		} catch (CloneNotSupportedException e) {
-			BasisLibrary.runTimeError(BasisLibrary.ITERATOR_CLONE_ERR, e
-					.toString());
-			return null;
-		}
-	}
+        try {
+            final MatchingIterator clone = (MatchingIterator) super.clone();
+            clone._source = _source.cloneIterator();
+            clone._isRestartable = false;
+            return clone.reset();
+        } catch (CloneNotSupportedException e) {
+            BasisLibrary.runTimeError(BasisLibrary.ITERATOR_CLONE_ERR, e
+                    .toString());
+            return null;
+        }
+    }
 
-	public DTMAxisIterator setStartNode(int node) {
-		if (_isRestartable) {
-			// iterator is not a clone
-			_source.setStartNode(node);
+    public DTMAxisIterator setStartNode(int node) {
+        if (_isRestartable) {
+            // iterator is not a clone
+            _source.setStartNode(node);
 
-			// Calculate the position of the node in the set
-			_position = 1;
-			while ((node = _source.next()) != END && node != _match) {
-				_position++;
-			}
-		}
-		return this;
-	}
+            // Calculate the position of the node in the set
+            _position = 1;
+            while ((node = _source.next()) != END && node != _match) {
+                _position++;
+            }
+        }
+        return this;
+    }
 
-	public DTMAxisIterator reset() {
-		_source.reset();
-		return resetPosition();
-	}
+    public DTMAxisIterator reset() {
+        _source.reset();
+        return resetPosition();
+    }
 
-	public int next() {
-		return _source.next();
-	}
+    public int next() {
+        return _source.next();
+    }
 
-	public int getLast() {
-		if (_last == -1) {
-			_last = _source.getLast();
-		}
-		return _last;
-	}
+    public int getLast() {
+        if (_last == -1) {
+            _last = _source.getLast();
+        }
+        return _last;
+    }
 
-	public int getPosition() {
-		return _position;
-	}
+    public int getPosition() {
+        return _position;
+    }
 
-	public void setMark() {
-		_source.setMark();
-	}
+    public void setMark() {
+        _source.setMark();
+    }
 
-	public void gotoMark() {
-		_source.gotoMark();
-	}
+    public void gotoMark() {
+        _source.gotoMark();
+    }
 }

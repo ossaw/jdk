@@ -55,88 +55,88 @@ import org.w3c.dom.Node;
  * </p>
  */
 public class DTMAxisIterNodeList extends DTMNodeListBase {
-	private DTM m_dtm;
-	private DTMAxisIterator m_iter;
-	private IntVector m_cachedNodes;
-	private int m_last = -1;
+    private DTM m_dtm;
+    private DTMAxisIterator m_iter;
+    private IntVector m_cachedNodes;
+    private int m_last = -1;
 
-	// ================================================================
-	// Methods unique to this class
-	private DTMAxisIterNodeList() {}
+    // ================================================================
+    // Methods unique to this class
+    private DTMAxisIterNodeList() {}
 
-	/**
-	 * Public constructor: Wrap a DTMNodeList around an existing and
-	 * preconfigured DTMAxisIterator
-	 */
-	public DTMAxisIterNodeList(DTM dtm, DTMAxisIterator dtmAxisIterator) {
-		if (dtmAxisIterator == null) {
-			m_last = 0;
-		} else {
-			m_cachedNodes = new IntVector();
-			m_dtm = dtm;
-		}
-		m_iter = dtmAxisIterator;
-	}
+    /**
+     * Public constructor: Wrap a DTMNodeList around an existing and
+     * preconfigured DTMAxisIterator
+     */
+    public DTMAxisIterNodeList(DTM dtm, DTMAxisIterator dtmAxisIterator) {
+        if (dtmAxisIterator == null) {
+            m_last = 0;
+        } else {
+            m_cachedNodes = new IntVector();
+            m_dtm = dtm;
+        }
+        m_iter = dtmAxisIterator;
+    }
 
-	/**
-	 * Access the wrapped DTMIterator. I'm not sure whether anyone will need
-	 * this or not, but let's write it and think about it.
-	 *
-	 */
-	public DTMAxisIterator getDTMAxisIterator() {
-		return m_iter;
-	}
+    /**
+     * Access the wrapped DTMIterator. I'm not sure whether anyone will need
+     * this or not, but let's write it and think about it.
+     *
+     */
+    public DTMAxisIterator getDTMAxisIterator() {
+        return m_iter;
+    }
 
-	// ================================================================
-	// org.w3c.dom.NodeList API follows
+    // ================================================================
+    // org.w3c.dom.NodeList API follows
 
-	/**
-	 * Returns the <code>index</code>th item in the collection. If
-	 * <code>index</code> is greater than or equal to the number of nodes in the
-	 * list, this returns <code>null</code>.
-	 * 
-	 * @param index
-	 *              Index into the collection.
-	 * @return The node at the <code>index</code>th position in the
-	 *         <code>NodeList</code>, or <code>null</code> if that is not a
-	 *         valid index.
-	 */
-	public Node item(int index) {
-		if (m_iter != null) {
-			int node = 0;
-			int count = m_cachedNodes.size();
+    /**
+     * Returns the <code>index</code>th item in the collection. If
+     * <code>index</code> is greater than or equal to the number of nodes in the
+     * list, this returns <code>null</code>.
+     * 
+     * @param index
+     *              Index into the collection.
+     * @return The node at the <code>index</code>th position in the
+     *         <code>NodeList</code>, or <code>null</code> if that is not a
+     *         valid index.
+     */
+    public Node item(int index) {
+        if (m_iter != null) {
+            int node = 0;
+            int count = m_cachedNodes.size();
 
-			if (count > index) {
-				node = m_cachedNodes.elementAt(index);
-				return m_dtm.getNode(node);
-			} else if (m_last == -1) {
-				while (count <= index && ((node = m_iter
-						.next()) != DTMAxisIterator.END)) {
-					m_cachedNodes.addElement(node);
-					count++;
-				}
-				if (node == DTMAxisIterator.END) {
-					m_last = count;
-				} else {
-					return m_dtm.getNode(node);
-				}
-			}
-		}
-		return null;
-	}
+            if (count > index) {
+                node = m_cachedNodes.elementAt(index);
+                return m_dtm.getNode(node);
+            } else if (m_last == -1) {
+                while (count <= index && ((node = m_iter
+                        .next()) != DTMAxisIterator.END)) {
+                    m_cachedNodes.addElement(node);
+                    count++;
+                }
+                if (node == DTMAxisIterator.END) {
+                    m_last = count;
+                } else {
+                    return m_dtm.getNode(node);
+                }
+            }
+        }
+        return null;
+    }
 
-	/**
-	 * The number of nodes in the list. The range of valid child node indices is
-	 * 0 to <code>length-1</code> inclusive.
-	 */
-	public int getLength() {
-		if (m_last == -1) {
-			int node;
-			while ((node = m_iter.next()) != DTMAxisIterator.END) {
-				m_cachedNodes.addElement(node);
-			}
-			m_last = m_cachedNodes.size();
-		}
-		return m_last;
-	}
+    /**
+     * The number of nodes in the list. The range of valid child node indices is
+     * 0 to <code>length-1</code> inclusive.
+     */
+    public int getLength() {
+        if (m_last == -1) {
+            int node;
+            while ((node = m_iter.next()) != DTMAxisIterator.END) {
+                m_cachedNodes.addElement(node);
+            }
+            m_last = m_cachedNodes.size();
+        }
+        return m_last;
+    }
 }

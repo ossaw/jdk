@@ -68,9 +68,9 @@ import org.xml.sax.SAXException;
  * @author Kohsuke Kawaguchi (kohsuke.kawaguchi@sun.com)
  */
 public class WrappedSAXException extends RuntimeException {
-	public final SAXException exception;
+    public final SAXException exception;
 
-	WrappedSAXException(SAXException e) {
-		this.exception = e;
-	}
+    WrappedSAXException(SAXException e) {
+        this.exception = e;
+    }
 }

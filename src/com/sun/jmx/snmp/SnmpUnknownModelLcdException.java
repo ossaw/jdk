@@ -15,15 +15,15 @@ package com.sun.jmx.snmp;
  * @since 1.5
  */
 public class SnmpUnknownModelLcdException extends Exception {
-	private static final long serialVersionUID = 6369064741633646317L;
+    private static final long serialVersionUID = 6369064741633646317L;
 
-	/**
-	 * Constructor.
-	 * 
-	 * @param msg
-	 *            The exception msg to display.
-	 */
-	public SnmpUnknownModelLcdException(String msg) {
-		super(msg);
-	}
+    /**
+     * Constructor.
+     * 
+     * @param msg
+     *            The exception msg to display.
+     */
+    public SnmpUnknownModelLcdException(String msg) {
+        super(msg);
+    }
 }

@@ -32,14 +32,14 @@ import com.sun.org.apache.xerces.internal.xni.XMLDocumentHandler;
  */
 public interface XMLDocumentSource {
 
-	//
-	// XMLDocumentSource methods
-	//
+    //
+    // XMLDocumentSource methods
+    //
 
-	/** Sets the document handler. */
-	public void setDocumentHandler(XMLDocumentHandler handler);
+    /** Sets the document handler. */
+    public void setDocumentHandler(XMLDocumentHandler handler);
 
-	/** Returns the document handler */
-	public XMLDocumentHandler getDocumentHandler();
+    /** Returns the document handler */
+    public XMLDocumentHandler getDocumentHandler();
 
 } // interface XMLDocumentSource

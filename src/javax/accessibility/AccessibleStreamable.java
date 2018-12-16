@@ -25,22 +25,22 @@ import java.awt.datatransfer.DataFlavor;
  * @since 1.5
  */
 public interface AccessibleStreamable {
-	/**
-	 * Returns an array of DataFlavor objects for the MIME types this object
-	 * supports.
-	 *
-	 * @return an array of DataFlavor objects for the MIME types this object
-	 *         supports.
-	 */
-	DataFlavor[] getMimeTypes();
+    /**
+     * Returns an array of DataFlavor objects for the MIME types this object
+     * supports.
+     *
+     * @return an array of DataFlavor objects for the MIME types this object
+     *         supports.
+     */
+    DataFlavor[] getMimeTypes();
 
-	/**
-	 * Returns an InputStream for a DataFlavor
-	 *
-	 * @param flavor
-	 *               the DataFlavor
-	 * @return an ImputStream if an ImputStream for this DataFlavor exists.
-	 *         Otherwise, null is returned.
-	 */
-	InputStream getStream(DataFlavor flavor);
+    /**
+     * Returns an InputStream for a DataFlavor
+     *
+     * @param flavor
+     *               the DataFlavor
+     * @return an ImputStream if an ImputStream for this DataFlavor exists.
+     *         Otherwise, null is returned.
+     */
+    InputStream getStream(DataFlavor flavor);
 }

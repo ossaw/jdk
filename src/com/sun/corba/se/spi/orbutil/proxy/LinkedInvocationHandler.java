@@ -14,7 +14,7 @@ import java.lang.reflect.Proxy;
  * by identity on the Proxy.
  */
 public interface LinkedInvocationHandler extends InvocationHandler {
-	void setProxy(Proxy proxy);
+    void setProxy(Proxy proxy);
 
-	Proxy getProxy();
+    Proxy getProxy();
 }

@@ -412,114 +412,114 @@ import org.xml.sax.*;
 
 public interface WebRowSet extends CachedRowSet {
 
-	/**
-	 * Reads a {@code WebRowSet} object in its XML format from the given
-	 * {@code Reader} object.
-	 *
-	 * @param reader
-	 *               the {@code java.io.Reader} stream from which this
-	 *               {@code WebRowSet} object will be populated
-	 * 
-	 * @throws SQLException
-	 *                      if a database access error occurs
-	 */
-	public void readXml(java.io.Reader reader) throws SQLException;
+    /**
+     * Reads a {@code WebRowSet} object in its XML format from the given
+     * {@code Reader} object.
+     *
+     * @param reader
+     *               the {@code java.io.Reader} stream from which this
+     *               {@code WebRowSet} object will be populated
+     * 
+     * @throws SQLException
+     *                      if a database access error occurs
+     */
+    public void readXml(java.io.Reader reader) throws SQLException;
 
-	/**
-	 * Reads a stream based XML input to populate this {@code WebRowSet} object.
-	 *
-	 * @param iStream
-	 *                the {@code java.io.InputStream} from which this
-	 *                {@code WebRowSet} object will be populated
-	 * @throws SQLException
-	 *                      if a data source access error occurs
-	 * @throws IOException
-	 *                      if an IO exception occurs
-	 */
-	public void readXml(java.io.InputStream iStream) throws SQLException,
-			IOException;
+    /**
+     * Reads a stream based XML input to populate this {@code WebRowSet} object.
+     *
+     * @param iStream
+     *                the {@code java.io.InputStream} from which this
+     *                {@code WebRowSet} object will be populated
+     * @throws SQLException
+     *                      if a data source access error occurs
+     * @throws IOException
+     *                      if an IO exception occurs
+     */
+    public void readXml(java.io.InputStream iStream) throws SQLException,
+            IOException;
 
-	/**
-	 * Populates this {@code WebRowSet} object with the contents of the given
-	 * {@code ResultSet} object and writes its data, properties, and metadata to
-	 * the given {@code Writer} object in XML format.
-	 * <p>
-	 * NOTE: The {@code WebRowSet} cursor may be moved to write out the contents
-	 * to the XML data source. If implemented in this way, the cursor
-	 * <b>must</b> be returned to its position just prior to the
-	 * {@code writeXml()} call.
-	 *
-	 * @param rs
-	 *               the {@code ResultSet} object with which to populate this
-	 *               {@code WebRowSet} object
-	 * @param writer
-	 *               the {@code java.io.Writer} object to write to.
-	 * @throws SQLException
-	 *                      if an error occurs writing out the rowset contents
-	 *                      in XML
-	 *                      format
-	 */
-	public void writeXml(ResultSet rs, java.io.Writer writer)
-			throws SQLException;
+    /**
+     * Populates this {@code WebRowSet} object with the contents of the given
+     * {@code ResultSet} object and writes its data, properties, and metadata to
+     * the given {@code Writer} object in XML format.
+     * <p>
+     * NOTE: The {@code WebRowSet} cursor may be moved to write out the contents
+     * to the XML data source. If implemented in this way, the cursor
+     * <b>must</b> be returned to its position just prior to the
+     * {@code writeXml()} call.
+     *
+     * @param rs
+     *               the {@code ResultSet} object with which to populate this
+     *               {@code WebRowSet} object
+     * @param writer
+     *               the {@code java.io.Writer} object to write to.
+     * @throws SQLException
+     *                      if an error occurs writing out the rowset contents
+     *                      in XML
+     *                      format
+     */
+    public void writeXml(ResultSet rs, java.io.Writer writer)
+            throws SQLException;
 
-	/**
-	 * Populates this {@code WebRowSet} object with the contents of the given
-	 * {@code ResultSet} object and writes its data, properties, and metadata to
-	 * the given {@code OutputStream} object in XML format.
-	 * <p>
-	 * NOTE: The {@code WebRowSet} cursor may be moved to write out the contents
-	 * to the XML data source. If implemented in this way, the cursor
-	 * <b>must</b> be returned to its position just prior to the
-	 * {@code writeXml()} call.
-	 *
-	 * @param rs
-	 *                the {@code ResultSet} object with which to populate this
-	 *                {@code WebRowSet} object
-	 * @param oStream
-	 *                the {@code java.io.OutputStream} to write to
-	 * @throws SQLException
-	 *                      if a data source access error occurs
-	 * @throws IOException
-	 *                      if a IO exception occurs
-	 */
-	public void writeXml(ResultSet rs, java.io.OutputStream oStream)
-			throws SQLException, IOException;
+    /**
+     * Populates this {@code WebRowSet} object with the contents of the given
+     * {@code ResultSet} object and writes its data, properties, and metadata to
+     * the given {@code OutputStream} object in XML format.
+     * <p>
+     * NOTE: The {@code WebRowSet} cursor may be moved to write out the contents
+     * to the XML data source. If implemented in this way, the cursor
+     * <b>must</b> be returned to its position just prior to the
+     * {@code writeXml()} call.
+     *
+     * @param rs
+     *                the {@code ResultSet} object with which to populate this
+     *                {@code WebRowSet} object
+     * @param oStream
+     *                the {@code java.io.OutputStream} to write to
+     * @throws SQLException
+     *                      if a data source access error occurs
+     * @throws IOException
+     *                      if a IO exception occurs
+     */
+    public void writeXml(ResultSet rs, java.io.OutputStream oStream)
+            throws SQLException, IOException;
 
-	/**
-	 * Writes the data, properties, and metadata for this {@code WebRowSet}
-	 * object to the given {@code Writer} object in XML format.
-	 *
-	 * @param writer
-	 *               the {@code java.io.Writer} stream to write to
-	 * @throws SQLException
-	 *                      if an error occurs writing out the rowset contents
-	 *                      to XML
-	 */
-	public void writeXml(java.io.Writer writer) throws SQLException;
+    /**
+     * Writes the data, properties, and metadata for this {@code WebRowSet}
+     * object to the given {@code Writer} object in XML format.
+     *
+     * @param writer
+     *               the {@code java.io.Writer} stream to write to
+     * @throws SQLException
+     *                      if an error occurs writing out the rowset contents
+     *                      to XML
+     */
+    public void writeXml(java.io.Writer writer) throws SQLException;
 
-	/**
-	 * Writes the data, properties, and metadata for this {@code WebRowSet}
-	 * object to the given {@code OutputStream} object in XML format.
-	 *
-	 * @param oStream
-	 *                the {@code java.io.OutputStream} stream to write to
-	 * @throws SQLException
-	 *                      if a data source access error occurs
-	 * @throws IOException
-	 *                      if a IO exception occurs
-	 */
-	public void writeXml(java.io.OutputStream oStream) throws SQLException,
-			IOException;
+    /**
+     * Writes the data, properties, and metadata for this {@code WebRowSet}
+     * object to the given {@code OutputStream} object in XML format.
+     *
+     * @param oStream
+     *                the {@code java.io.OutputStream} stream to write to
+     * @throws SQLException
+     *                      if a data source access error occurs
+     * @throws IOException
+     *                      if a IO exception occurs
+     */
+    public void writeXml(java.io.OutputStream oStream) throws SQLException,
+            IOException;
 
-	/**
-	 * The public identifier for the XML Schema definition that defines the XML
-	 * tags and their valid values for a {@code WebRowSet} implementation.
-	 */
-	public static String PUBLIC_XML_SCHEMA = "--//Oracle Corporation//XSD Schema//EN";
+    /**
+     * The public identifier for the XML Schema definition that defines the XML
+     * tags and their valid values for a {@code WebRowSet} implementation.
+     */
+    public static String PUBLIC_XML_SCHEMA = "--//Oracle Corporation//XSD Schema//EN";
 
-	/**
-	 * The URL for the XML Schema definition file that defines the XML tags and
-	 * their valid values for a {@code WebRowSet} implementation.
-	 */
-	public static String SCHEMA_SYSTEM_ID = "http://java.sun.com/xml/ns/jdbc/webrowset.xsd";
+    /**
+     * The URL for the XML Schema definition file that defines the XML tags and
+     * their valid values for a {@code WebRowSet} implementation.
+     */
+    public static String SCHEMA_SYSTEM_ID = "http://java.sun.com/xml/ns/jdbc/webrowset.xsd";
 }

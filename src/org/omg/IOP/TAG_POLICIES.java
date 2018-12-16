@@ -10,9 +10,9 @@ package org.omg.IOP;
 
 public interface TAG_POLICIES {
 
-	/**
-	 * A profile component containing the sequence of QoS policies exported with
-	 * the object reference by an object adapter.
-	 */
-	public static final int value = (int) (2L);
+    /**
+     * A profile component containing the sequence of QoS policies exported with
+     * the object reference by an object adapter.
+     */
+    public static final int value = (int) (2L);
 }

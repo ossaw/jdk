@@ -11,24 +11,24 @@ package org.omg.CORBA.portable;
  */
 
 public interface ResponseHandler {
-	/**
-	 * Called by the servant during a method invocation. The servant should call
-	 * this method to create a reply marshal buffer if no exception occurred.
-	 *
-	 * @return an OutputStream suitable for marshalling the reply.
-	 *
-	 * @see <a href="package-summary.html#unimpl"><code>portable</code> package
-	 *      comments for unimplemented features</a>
-	 */
-	OutputStream createReply();
+    /**
+     * Called by the servant during a method invocation. The servant should call
+     * this method to create a reply marshal buffer if no exception occurred.
+     *
+     * @return an OutputStream suitable for marshalling the reply.
+     *
+     * @see <a href="package-summary.html#unimpl"><code>portable</code> package
+     *      comments for unimplemented features</a>
+     */
+    OutputStream createReply();
 
-	/**
-	 * Called by the servant during a method invocation. The servant should call
-	 * this method to create a reply marshal buffer if a user exception
-	 * occurred.
-	 *
-	 * @return an OutputStream suitable for marshalling the exception ID and the
-	 *         user exception body.
-	 */
-	OutputStream createExceptionReply();
+    /**
+     * Called by the servant during a method invocation. The servant should call
+     * this method to create a reply marshal buffer if a user exception
+     * occurred.
+     *
+     * @return an OutputStream suitable for marshalling the exception ID and the
+     *         user exception body.
+     */
+    OutputStream createExceptionReply();
 }

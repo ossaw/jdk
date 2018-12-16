@@ -34,27 +34,27 @@ import javax.xml.soap.SOAPFault;
  **/
 public class SOAPFaultException extends javax.xml.ws.ProtocolException {
 
-	private SOAPFault fault;
+    private SOAPFault fault;
 
-	/**
-	 * Constructor for SOAPFaultException
-	 * 
-	 * @param fault
-	 *              <code>SOAPFault</code> representing the fault
-	 *
-	 * @see javax.xml.soap.SOAPFactory#createFault
-	 **/
-	public SOAPFaultException(SOAPFault fault) {
-		super(fault.getFaultString());
-		this.fault = fault;
-	}
+    /**
+     * Constructor for SOAPFaultException
+     * 
+     * @param fault
+     *              <code>SOAPFault</code> representing the fault
+     *
+     * @see javax.xml.soap.SOAPFactory#createFault
+     **/
+    public SOAPFaultException(SOAPFault fault) {
+        super(fault.getFaultString());
+        this.fault = fault;
+    }
 
-	/**
-	 * Gets the embedded <code>SOAPFault</code> instance.
-	 *
-	 * @return <code>javax.xml.soap.SOAPFault</code> SOAP fault element
-	 **/
-	public javax.xml.soap.SOAPFault getFault() {
-		return this.fault;
-	}
+    /**
+     * Gets the embedded <code>SOAPFault</code> instance.
+     *
+     * @return <code>javax.xml.soap.SOAPFault</code> SOAP fault element
+     **/
+    public javax.xml.soap.SOAPFault getFault() {
+        return this.fault;
+    }
 }

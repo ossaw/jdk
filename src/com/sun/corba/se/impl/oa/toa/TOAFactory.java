@@ -29,57 +29,57 @@ import com.sun.corba.se.spi.logging.CORBALogDomains;
 import com.sun.corba.se.impl.logging.ORBUtilSystemException;
 
 public class TOAFactory implements ObjectAdapterFactory {
-	private ORB orb;
-	private ORBUtilSystemException wrapper;
+    private ORB orb;
+    private ORBUtilSystemException wrapper;
 
-	private TOAImpl toa;
-	private Map codebaseToTOA;
-	private TransientObjectManager tom;
+    private TOAImpl toa;
+    private Map codebaseToTOA;
+    private TransientObjectManager tom;
 
-	public ObjectAdapter find(ObjectAdapterId oaid) {
-		if (oaid.equals(ObjectKeyTemplateBase.JIDL_OAID))
-			// Return the dispatch-only TOA, which can dispatch
-			// request for objects created by any TOA.
-			return getTOA();
-		else
-			throw wrapper.badToaOaid();
-	}
+    public ObjectAdapter find(ObjectAdapterId oaid) {
+        if (oaid.equals(ObjectKeyTemplateBase.JIDL_OAID))
+            // Return the dispatch-only TOA, which can dispatch
+            // request for objects created by any TOA.
+            return getTOA();
+        else
+            throw wrapper.badToaOaid();
+    }
 
-	public void init(ORB orb) {
-		this.orb = orb;
-		wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.OA_LIFECYCLE);
-		tom = new TransientObjectManager(orb);
-		codebaseToTOA = new HashMap();
-	}
+    public void init(ORB orb) {
+        this.orb = orb;
+        wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.OA_LIFECYCLE);
+        tom = new TransientObjectManager(orb);
+        codebaseToTOA = new HashMap();
+    }
 
-	public void shutdown(boolean waitForCompletion) {
-		if (Util.isInstanceDefined()) {
-			Util.getInstance().unregisterTargetsForORB(orb);
-		}
-	}
+    public void shutdown(boolean waitForCompletion) {
+        if (Util.isInstanceDefined()) {
+            Util.getInstance().unregisterTargetsForORB(orb);
+        }
+    }
 
-	public synchronized TOA getTOA(String codebase) {
-		TOA toa = (TOA) (codebaseToTOA.get(codebase));
-		if (toa == null) {
-			toa = new TOAImpl(orb, tom, codebase);
+    public synchronized TOA getTOA(String codebase) {
+        TOA toa = (TOA) (codebaseToTOA.get(codebase));
+        if (toa == null) {
+            toa = new TOAImpl(orb, tom, codebase);
 
-			codebaseToTOA.put(codebase, toa);
-		}
+            codebaseToTOA.put(codebase, toa);
+        }
 
-		return toa;
-	}
+        return toa;
+    }
 
-	public synchronized TOA getTOA() {
-		if (toa == null)
-			// The dispatch-only TOA is not used for creating
-			// objrefs, so its codebase can be null (and must
-			// be, since we do not have a servant at this point)
-			toa = new TOAImpl(orb, tom, null);
+    public synchronized TOA getTOA() {
+        if (toa == null)
+            // The dispatch-only TOA is not used for creating
+            // objrefs, so its codebase can be null (and must
+            // be, since we do not have a servant at this point)
+            toa = new TOAImpl(orb, tom, null);
 
-		return toa;
-	}
+        return toa;
+    }
 
-	public ORB getORB() {
-		return orb;
-	}
+    public ORB getORB() {
+        return orb;
+    }
 };

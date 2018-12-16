@@ -32,42 +32,42 @@ import org.omg.CORBA.portable.OutputStream;
  */
 @Deprecated
 public final class PrincipalHolder implements Streamable {
-	/**
-	 * The <code>Principal</code> value held by this
-	 * <code>PrincipalHolder</code> object.
-	 */
-	public Principal value;
+    /**
+     * The <code>Principal</code> value held by this
+     * <code>PrincipalHolder</code> object.
+     */
+    public Principal value;
 
-	/**
-	 * Constructs a new <code>PrincipalHolder</code> object with its
-	 * <code>value</code> field initialized to <code>null</code>.
-	 */
-	public PrincipalHolder() {}
+    /**
+     * Constructs a new <code>PrincipalHolder</code> object with its
+     * <code>value</code> field initialized to <code>null</code>.
+     */
+    public PrincipalHolder() {}
 
-	/**
-	 * Constructs a new <code>PrincipalHolder</code> object with its
-	 * <code>value</code> field initialized to the given <code>Principal</code>
-	 * object.
-	 * 
-	 * @param initial
-	 *                the <code>Principal</code> with which to initialize the
-	 *                <code>value</code> field of the newly-created
-	 *                <code>PrincipalHolder</code> object
-	 */
-	public PrincipalHolder(Principal initial) {
-		value = initial;
-	}
+    /**
+     * Constructs a new <code>PrincipalHolder</code> object with its
+     * <code>value</code> field initialized to the given <code>Principal</code>
+     * object.
+     * 
+     * @param initial
+     *                the <code>Principal</code> with which to initialize the
+     *                <code>value</code> field of the newly-created
+     *                <code>PrincipalHolder</code> object
+     */
+    public PrincipalHolder(Principal initial) {
+        value = initial;
+    }
 
-	public void _read(InputStream input) {
-		value = input.read_Principal();
-	}
+    public void _read(InputStream input) {
+        value = input.read_Principal();
+    }
 
-	public void _write(OutputStream output) {
-		output.write_Principal(value);
-	}
+    public void _write(OutputStream output) {
+        output.write_Principal(value);
+    }
 
-	public org.omg.CORBA.TypeCode _type() {
-		return ORB.init().get_primitive_tc(TCKind.tk_Principal);
-	}
+    public org.omg.CORBA.TypeCode _type() {
+        return ORB.init().get_primitive_tc(TCKind.tk_Principal);
+    }
 
 }

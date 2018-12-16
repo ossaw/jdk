@@ -60,207 +60,207 @@ import java.io.IOException;
  */
 public class JRadioButton extends JToggleButton implements Accessible {
 
-	/**
-	 * @see #getUIClassID
-	 * @see #readObject
-	 */
-	private static final String uiClassID = "RadioButtonUI";
+    /**
+     * @see #getUIClassID
+     * @see #readObject
+     */
+    private static final String uiClassID = "RadioButtonUI";
 
-	/**
-	 * Creates an initially unselected radio button with no set text.
-	 */
-	public JRadioButton() {
-		this(null, null, false);
-	}
+    /**
+     * Creates an initially unselected radio button with no set text.
+     */
+    public JRadioButton() {
+        this(null, null, false);
+    }
 
-	/**
-	 * Creates an initially unselected radio button with the specified image but
-	 * no text.
-	 *
-	 * @param icon
-	 *             the image that the button should display
-	 */
-	public JRadioButton(Icon icon) {
-		this(null, icon, false);
-	}
+    /**
+     * Creates an initially unselected radio button with the specified image but
+     * no text.
+     *
+     * @param icon
+     *             the image that the button should display
+     */
+    public JRadioButton(Icon icon) {
+        this(null, icon, false);
+    }
 
-	/**
-	 * Creates a radiobutton where properties are taken from the Action
-	 * supplied.
-	 *
-	 * @since 1.3
-	 */
-	public JRadioButton(Action a) {
-		this();
-		setAction(a);
-	}
+    /**
+     * Creates a radiobutton where properties are taken from the Action
+     * supplied.
+     *
+     * @since 1.3
+     */
+    public JRadioButton(Action a) {
+        this();
+        setAction(a);
+    }
 
-	/**
-	 * Creates a radio button with the specified image and selection state, but
-	 * no text.
-	 *
-	 * @param icon
-	 *                 the image that the button should display
-	 * @param selected
-	 *                 if true, the button is initially selected; otherwise, the
-	 *                 button is initially unselected
-	 */
-	public JRadioButton(Icon icon, boolean selected) {
-		this(null, icon, selected);
-	}
+    /**
+     * Creates a radio button with the specified image and selection state, but
+     * no text.
+     *
+     * @param icon
+     *                 the image that the button should display
+     * @param selected
+     *                 if true, the button is initially selected; otherwise, the
+     *                 button is initially unselected
+     */
+    public JRadioButton(Icon icon, boolean selected) {
+        this(null, icon, selected);
+    }
 
-	/**
-	 * Creates an unselected radio button with the specified text.
-	 *
-	 * @param text
-	 *             the string displayed on the radio button
-	 */
-	public JRadioButton(String text) {
-		this(text, null, false);
-	}
+    /**
+     * Creates an unselected radio button with the specified text.
+     *
+     * @param text
+     *             the string displayed on the radio button
+     */
+    public JRadioButton(String text) {
+        this(text, null, false);
+    }
 
-	/**
-	 * Creates a radio button with the specified text and selection state.
-	 *
-	 * @param text
-	 *                 the string displayed on the radio button
-	 * @param selected
-	 *                 if true, the button is initially selected; otherwise, the
-	 *                 button is initially unselected
-	 */
-	public JRadioButton(String text, boolean selected) {
-		this(text, null, selected);
-	}
+    /**
+     * Creates a radio button with the specified text and selection state.
+     *
+     * @param text
+     *                 the string displayed on the radio button
+     * @param selected
+     *                 if true, the button is initially selected; otherwise, the
+     *                 button is initially unselected
+     */
+    public JRadioButton(String text, boolean selected) {
+        this(text, null, selected);
+    }
 
-	/**
-	 * Creates a radio button that has the specified text and image, and that is
-	 * initially unselected.
-	 *
-	 * @param text
-	 *             the string displayed on the radio button
-	 * @param icon
-	 *             the image that the button should display
-	 */
-	public JRadioButton(String text, Icon icon) {
-		this(text, icon, false);
-	}
+    /**
+     * Creates a radio button that has the specified text and image, and that is
+     * initially unselected.
+     *
+     * @param text
+     *             the string displayed on the radio button
+     * @param icon
+     *             the image that the button should display
+     */
+    public JRadioButton(String text, Icon icon) {
+        this(text, icon, false);
+    }
 
-	/**
-	 * Creates a radio button that has the specified text, image, and selection
-	 * state.
-	 *
-	 * @param text
-	 *             the string displayed on the radio button
-	 * @param icon
-	 *             the image that the button should display
-	 */
-	public JRadioButton(String text, Icon icon, boolean selected) {
-		super(text, icon, selected);
-		setBorderPainted(false);
-		setHorizontalAlignment(LEADING);
-	}
+    /**
+     * Creates a radio button that has the specified text, image, and selection
+     * state.
+     *
+     * @param text
+     *             the string displayed on the radio button
+     * @param icon
+     *             the image that the button should display
+     */
+    public JRadioButton(String text, Icon icon, boolean selected) {
+        super(text, icon, selected);
+        setBorderPainted(false);
+        setHorizontalAlignment(LEADING);
+    }
 
-	/**
-	 * Resets the UI property to a value from the current look and feel.
-	 *
-	 * @see JComponent#updateUI
-	 */
-	public void updateUI() {
-		setUI((ButtonUI) UIManager.getUI(this));
-	}
+    /**
+     * Resets the UI property to a value from the current look and feel.
+     *
+     * @see JComponent#updateUI
+     */
+    public void updateUI() {
+        setUI((ButtonUI) UIManager.getUI(this));
+    }
 
-	/**
-	 * Returns the name of the L&amp;F class that renders this component.
-	 *
-	 * @return String "RadioButtonUI"
-	 * @see JComponent#getUIClassID
-	 * @see UIDefaults#getUI
-	 * @beaninfo expert: true description: A string that specifies the name of
-	 *           the L&amp;F class.
-	 */
-	public String getUIClassID() {
-		return uiClassID;
-	}
+    /**
+     * Returns the name of the L&amp;F class that renders this component.
+     *
+     * @return String "RadioButtonUI"
+     * @see JComponent#getUIClassID
+     * @see UIDefaults#getUI
+     * @beaninfo expert: true description: A string that specifies the name of
+     *           the L&amp;F class.
+     */
+    public String getUIClassID() {
+        return uiClassID;
+    }
 
-	/**
-	 * The icon for radio buttons comes from the look and feel, not the Action.
-	 */
-	void setIconFromAction(Action a) {}
+    /**
+     * The icon for radio buttons comes from the look and feel, not the Action.
+     */
+    void setIconFromAction(Action a) {}
 
-	/**
-	 * See readObject() and writeObject() in JComponent for more information
-	 * about serialization in Swing.
-	 */
-	private void writeObject(ObjectOutputStream s) throws IOException {
-		s.defaultWriteObject();
-		if (getUIClassID().equals(uiClassID)) {
-			byte count = JComponent.getWriteObjCounter(this);
-			JComponent.setWriteObjCounter(this, --count);
-			if (count == 0 && ui != null) {
-				ui.installUI(this);
-			}
-		}
-	}
+    /**
+     * See readObject() and writeObject() in JComponent for more information
+     * about serialization in Swing.
+     */
+    private void writeObject(ObjectOutputStream s) throws IOException {
+        s.defaultWriteObject();
+        if (getUIClassID().equals(uiClassID)) {
+            byte count = JComponent.getWriteObjCounter(this);
+            JComponent.setWriteObjCounter(this, --count);
+            if (count == 0 && ui != null) {
+                ui.installUI(this);
+            }
+        }
+    }
 
-	/**
-	 * Returns a string representation of this JRadioButton. This method is
-	 * intended to be used only for debugging purposes, and the content and
-	 * format of the returned string may vary between implementations. The
-	 * returned string may be empty but may not be <code>null</code>.
-	 *
-	 * @return a string representation of this JRadioButton.
-	 */
-	protected String paramString() {
-		return super.paramString();
-	}
+    /**
+     * Returns a string representation of this JRadioButton. This method is
+     * intended to be used only for debugging purposes, and the content and
+     * format of the returned string may vary between implementations. The
+     * returned string may be empty but may not be <code>null</code>.
+     *
+     * @return a string representation of this JRadioButton.
+     */
+    protected String paramString() {
+        return super.paramString();
+    }
 
-	/////////////////
-	// Accessibility support
-	////////////////
+    /////////////////
+    // Accessibility support
+    ////////////////
 
-	/**
-	 * Gets the AccessibleContext associated with this JRadioButton. For
-	 * JRadioButtons, the AccessibleContext takes the form of an
-	 * AccessibleJRadioButton. A new AccessibleJRadioButton instance is created
-	 * if necessary.
-	 *
-	 * @return an AccessibleJRadioButton that serves as the AccessibleContext of
-	 *         this JRadioButton
-	 * @beaninfo expert: true description: The AccessibleContext associated with
-	 *           this Button
-	 */
-	public AccessibleContext getAccessibleContext() {
-		if (accessibleContext == null) {
-			accessibleContext = new AccessibleJRadioButton();
-		}
-		return accessibleContext;
-	}
+    /**
+     * Gets the AccessibleContext associated with this JRadioButton. For
+     * JRadioButtons, the AccessibleContext takes the form of an
+     * AccessibleJRadioButton. A new AccessibleJRadioButton instance is created
+     * if necessary.
+     *
+     * @return an AccessibleJRadioButton that serves as the AccessibleContext of
+     *         this JRadioButton
+     * @beaninfo expert: true description: The AccessibleContext associated with
+     *           this Button
+     */
+    public AccessibleContext getAccessibleContext() {
+        if (accessibleContext == null) {
+            accessibleContext = new AccessibleJRadioButton();
+        }
+        return accessibleContext;
+    }
 
-	/**
-	 * This class implements accessibility support for the
-	 * <code>JRadioButton</code> class. It provides an implementation of the
-	 * Java Accessibility API appropriate to radio button user-interface
-	 * elements.
-	 * <p>
-	 * <strong>Warning:</strong> Serialized objects of this class will not be
-	 * compatible with future Swing releases. The current serialization support
-	 * is appropriate for short term storage or RMI between applications running
-	 * the same version of Swing. As of 1.4, support for long term storage of
-	 * all JavaBeans&trade; has been added to the <code>java.beans</code>
-	 * package. Please see {@link java.beans.XMLEncoder}.
-	 */
-	protected class AccessibleJRadioButton extends AccessibleJToggleButton {
+    /**
+     * This class implements accessibility support for the
+     * <code>JRadioButton</code> class. It provides an implementation of the
+     * Java Accessibility API appropriate to radio button user-interface
+     * elements.
+     * <p>
+     * <strong>Warning:</strong> Serialized objects of this class will not be
+     * compatible with future Swing releases. The current serialization support
+     * is appropriate for short term storage or RMI between applications running
+     * the same version of Swing. As of 1.4, support for long term storage of
+     * all JavaBeans&trade; has been added to the <code>java.beans</code>
+     * package. Please see {@link java.beans.XMLEncoder}.
+     */
+    protected class AccessibleJRadioButton extends AccessibleJToggleButton {
 
-		/**
-		 * Get the role of this object.
-		 *
-		 * @return an instance of AccessibleRole describing the role of the
-		 *         object
-		 * @see AccessibleRole
-		 */
-		public AccessibleRole getAccessibleRole() {
-			return AccessibleRole.RADIO_BUTTON;
-		}
+        /**
+         * Get the role of this object.
+         *
+         * @return an instance of AccessibleRole describing the role of the
+         *         object
+         * @see AccessibleRole
+         */
+        public AccessibleRole getAccessibleRole() {
+            return AccessibleRole.RADIO_BUTTON;
+        }
 
-	} // inner class AccessibleJRadioButton
+    } // inner class AccessibleJRadioButton
 }

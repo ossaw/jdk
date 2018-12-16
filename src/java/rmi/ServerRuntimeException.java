@@ -26,22 +26,22 @@ package java.rmi;
 @Deprecated
 public class ServerRuntimeException extends RemoteException {
 
-	/* indicate compatibility with JDK 1.1.x version of class */
-	private static final long serialVersionUID = 7054464920481467219L;
+    /* indicate compatibility with JDK 1.1.x version of class */
+    private static final long serialVersionUID = 7054464920481467219L;
 
-	/**
-	 * Constructs a <code>ServerRuntimeException</code> with the specified
-	 * detail message and nested exception.
-	 *
-	 * @param s
-	 *           the detail message
-	 * @param ex
-	 *           the nested exception
-	 * @deprecated no replacement
-	 * @since JDK1.1
-	 */
-	@Deprecated
-	public ServerRuntimeException(String s, Exception ex) {
-		super(s, ex);
-	}
+    /**
+     * Constructs a <code>ServerRuntimeException</code> with the specified
+     * detail message and nested exception.
+     *
+     * @param s
+     *           the detail message
+     * @param ex
+     *           the nested exception
+     * @deprecated no replacement
+     * @since JDK1.1
+     */
+    @Deprecated
+    public ServerRuntimeException(String s, Exception ex) {
+        super(s, ex);
+    }
 }

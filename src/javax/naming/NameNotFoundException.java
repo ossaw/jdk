@@ -18,28 +18,28 @@ package javax.naming;
  */
 
 public class NameNotFoundException extends NamingException {
-	/**
-	 * Constructs a new instance of NameNotFoundException using the explanation
-	 * supplied. All other fields default to null.
-	 *
-	 * @param explanation
-	 *                    Possibly null additional detail about this exception.
-	 * @see java.lang.Throwable#getMessage
-	 */
-	public NameNotFoundException(String explanation) {
-		super(explanation);
-	}
+    /**
+     * Constructs a new instance of NameNotFoundException using the explanation
+     * supplied. All other fields default to null.
+     *
+     * @param explanation
+     *                    Possibly null additional detail about this exception.
+     * @see java.lang.Throwable#getMessage
+     */
+    public NameNotFoundException(String explanation) {
+        super(explanation);
+    }
 
-	/**
-	 * Constructs a new instance of NameNotFoundException. all name resolution
-	 * fields and explanation initialized to null.
-	 */
-	public NameNotFoundException() {
-		super();
-	}
+    /**
+     * Constructs a new instance of NameNotFoundException. all name resolution
+     * fields and explanation initialized to null.
+     */
+    public NameNotFoundException() {
+        super();
+    }
 
-	/**
-	 * Use serialVersionUID from JNDI 1.1.1 for interoperability
-	 */
-	private static final long serialVersionUID = -8007156725367842053L;
+    /**
+     * Use serialVersionUID from JNDI 1.1.1 for interoperability
+     */
+    private static final long serialVersionUID = -8007156725367842053L;
 }

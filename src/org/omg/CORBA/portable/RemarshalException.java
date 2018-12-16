@@ -18,10 +18,10 @@ package org.omg.CORBA.portable;
  */
 
 public final class RemarshalException extends Exception {
-	/**
-	 * Constructs a RemarshalException.
-	 */
-	public RemarshalException() {
-		super();
-	}
+    /**
+     * Constructs a RemarshalException.
+     */
+    public RemarshalException() {
+        super();
+    }
 }

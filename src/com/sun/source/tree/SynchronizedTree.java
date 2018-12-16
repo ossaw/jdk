@@ -23,7 +23,7 @@ package com.sun.source.tree;
  */
 @jdk.Exported
 public interface SynchronizedTree extends StatementTree {
-	ExpressionTree getExpression();
+    ExpressionTree getExpression();
 
-	BlockTree getBlock();
+    BlockTree getBlock();
 }

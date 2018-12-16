@@ -30,60 +30,60 @@ import java.lang.reflect.Method;
 
 class ObjectStreamClassCorbaExt {
 
-	/**
-	 * Return true, iff,
-	 *
-	 * 1. 'cl' is an interface, and 2. 'cl' and all its ancestors do not
-	 * implement java.rmi.Remote, and 3. if 'cl' has no methods (including those
-	 * of its ancestors), or, if all the methods (including those of its
-	 * ancestors) throw an exception that is atleast java.rmi.RemoteException or
-	 * one of java.rmi.RemoteException's super classes.
-	 */
-	static final boolean isAbstractInterface(Class cl) {
-		if (!cl.isInterface() || // #1
-				java.rmi.Remote.class.isAssignableFrom(cl)) { // #2
-			return false;
-		}
-		Method[] methods = cl.getMethods();
-		for (int i = 0; i < methods.length; i++) {
-			Class exceptions[] = methods[i].getExceptionTypes();
-			boolean exceptionMatch = false;
-			for (int j = 0; (j < exceptions.length) && !exceptionMatch; j++) {
-				if ((java.rmi.RemoteException.class == exceptions[j])
-						|| (java.lang.Throwable.class == exceptions[j])
-						|| (java.lang.Exception.class == exceptions[j])
-						|| (java.io.IOException.class == exceptions[j])) {
-					exceptionMatch = true;
-				}
-			}
-			if (!exceptionMatch) {
-				return false;
-			}
-		}
-		return true;
-	}
+    /**
+     * Return true, iff,
+     *
+     * 1. 'cl' is an interface, and 2. 'cl' and all its ancestors do not
+     * implement java.rmi.Remote, and 3. if 'cl' has no methods (including those
+     * of its ancestors), or, if all the methods (including those of its
+     * ancestors) throw an exception that is atleast java.rmi.RemoteException or
+     * one of java.rmi.RemoteException's super classes.
+     */
+    static final boolean isAbstractInterface(Class cl) {
+        if (!cl.isInterface() || // #1
+                java.rmi.Remote.class.isAssignableFrom(cl)) { // #2
+            return false;
+        }
+        Method[] methods = cl.getMethods();
+        for (int i = 0; i < methods.length; i++) {
+            Class exceptions[] = methods[i].getExceptionTypes();
+            boolean exceptionMatch = false;
+            for (int j = 0; (j < exceptions.length) && !exceptionMatch; j++) {
+                if ((java.rmi.RemoteException.class == exceptions[j])
+                        || (java.lang.Throwable.class == exceptions[j])
+                        || (java.lang.Exception.class == exceptions[j])
+                        || (java.io.IOException.class == exceptions[j])) {
+                    exceptionMatch = true;
+                }
+            }
+            if (!exceptionMatch) {
+                return false;
+            }
+        }
+        return true;
+    }
 
-	/*
-	 * Returns TRUE if type is 'any'.
-	 */
-	static final boolean isAny(String typeString) {
+    /*
+     * Returns TRUE if type is 'any'.
+     */
+    static final boolean isAny(String typeString) {
 
-		int isAny = 0;
+        int isAny = 0;
 
-		if ((typeString != null) && (typeString.equals("Ljava/lang/Object;")
-				|| typeString.equals("Ljava/io/Serializable;") || typeString
-						.equals("Ljava/io/Externalizable;")))
-			isAny = 1;
+        if ((typeString != null) && (typeString.equals("Ljava/lang/Object;")
+                || typeString.equals("Ljava/io/Serializable;") || typeString
+                        .equals("Ljava/io/Externalizable;")))
+            isAny = 1;
 
-		return (isAny == 1);
-	}
+        return (isAny == 1);
+    }
 
-	private static final Method[] getDeclaredMethods(final Class clz) {
-		return (Method[]) AccessController.doPrivileged(new PrivilegedAction() {
-			public Object run() {
-				return clz.getDeclaredMethods();
-			}
-		});
-	}
+    private static final Method[] getDeclaredMethods(final Class clz) {
+        return (Method[]) AccessController.doPrivileged(new PrivilegedAction() {
+            public Object run() {
+                return clz.getDeclaredMethods();
+            }
+        });
+    }
 
 }

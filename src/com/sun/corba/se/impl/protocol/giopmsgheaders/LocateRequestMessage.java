@@ -14,7 +14,7 @@ import com.sun.corba.se.spi.ior.ObjectKey;
  */
 
 public interface LocateRequestMessage extends Message {
-	int getRequestId();
+    int getRequestId();
 
-	ObjectKey getObjectKey();
+    ObjectKey getObjectKey();
 }

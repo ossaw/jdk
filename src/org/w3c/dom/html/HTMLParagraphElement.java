@@ -24,12 +24,12 @@ package org.w3c.dom.html;
  * Model (DOM) Level 2 Specification</a>.
  */
 public interface HTMLParagraphElement extends HTMLElement {
-	/**
-	 * Horizontal text alignment. See the align attribute definition in HTML
-	 * 4.0. This attribute is deprecated in HTML 4.0.
-	 */
-	public String getAlign();
+    /**
+     * Horizontal text alignment. See the align attribute definition in HTML
+     * 4.0. This attribute is deprecated in HTML 4.0.
+     */
+    public String getAlign();
 
-	public void setAlign(String align);
+    public void setAlign(String align);
 
 }

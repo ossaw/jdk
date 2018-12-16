@@ -15,15 +15,15 @@ package com.sun.jmx.snmp;
  * @since 1.5
  */
 public class SnmpUnknownSubSystemException extends Exception {
-	private static final long serialVersionUID = 4463202140045245052L;
+    private static final long serialVersionUID = 4463202140045245052L;
 
-	/**
-	 * Constructor.
-	 * 
-	 * @param msg
-	 *            The exception msg to display.
-	 */
-	public SnmpUnknownSubSystemException(String msg) {
-		super(msg);
-	}
+    /**
+     * Constructor.
+     * 
+     * @param msg
+     *            The exception msg to display.
+     */
+    public SnmpUnknownSubSystemException(String msg) {
+        super(msg);
+    }
 }

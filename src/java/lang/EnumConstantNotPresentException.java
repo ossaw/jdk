@@ -17,49 +17,49 @@ package java.lang;
  */
 @SuppressWarnings("rawtypes") /* rawtypes are part of the public api */
 public class EnumConstantNotPresentException extends RuntimeException {
-	private static final long serialVersionUID = -6046998521960521108L;
+    private static final long serialVersionUID = -6046998521960521108L;
 
-	/**
-	 * The type of the missing enum constant.
-	 */
-	private Class<? extends Enum> enumType;
+    /**
+     * The type of the missing enum constant.
+     */
+    private Class<? extends Enum> enumType;
 
-	/**
-	 * The name of the missing enum constant.
-	 */
-	private String constantName;
+    /**
+     * The name of the missing enum constant.
+     */
+    private String constantName;
 
-	/**
-	 * Constructs an <tt>EnumConstantNotPresentException</tt> for the specified
-	 * constant.
-	 *
-	 * @param enumType
-	 *                     the type of the missing enum constant
-	 * @param constantName
-	 *                     the name of the missing enum constant
-	 */
-	public EnumConstantNotPresentException(Class<? extends Enum> enumType,
-			String constantName) {
-		super(enumType.getName() + "." + constantName);
-		this.enumType = enumType;
-		this.constantName = constantName;
-	}
+    /**
+     * Constructs an <tt>EnumConstantNotPresentException</tt> for the specified
+     * constant.
+     *
+     * @param enumType
+     *                     the type of the missing enum constant
+     * @param constantName
+     *                     the name of the missing enum constant
+     */
+    public EnumConstantNotPresentException(Class<? extends Enum> enumType,
+            String constantName) {
+        super(enumType.getName() + "." + constantName);
+        this.enumType = enumType;
+        this.constantName = constantName;
+    }
 
-	/**
-	 * Returns the type of the missing enum constant.
-	 *
-	 * @return the type of the missing enum constant
-	 */
-	public Class<? extends Enum> enumType() {
-		return enumType;
-	}
+    /**
+     * Returns the type of the missing enum constant.
+     *
+     * @return the type of the missing enum constant
+     */
+    public Class<? extends Enum> enumType() {
+        return enumType;
+    }
 
-	/**
-	 * Returns the name of the missing enum constant.
-	 *
-	 * @return the name of the missing enum constant
-	 */
-	public String constantName() {
-		return constantName;
-	}
+    /**
+     * Returns the name of the missing enum constant.
+     *
+     * @return the name of the missing enum constant
+     */
+    public String constantName() {
+        return constantName;
+    }
 }

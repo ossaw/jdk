@@ -74,442 +74,442 @@ import org.w3c.dom.DOMError;
  */
 public class XML11Serializer extends XMLSerializer {
 
-	//
-	// constants
-	//
+    //
+    // constants
+    //
 
-	protected static final boolean DEBUG = false;
+    protected static final boolean DEBUG = false;
 
-	//
-	// data
-	//
+    //
+    // data
+    //
 
-	//
-	// DOM Level 3 implementation: variables intialized in DOMSerializerImpl
-	//
+    //
+    // DOM Level 3 implementation: variables intialized in DOMSerializerImpl
+    //
 
-	/** stores namespaces in scope */
-	protected NamespaceSupport fNSBinder;
+    /** stores namespaces in scope */
+    protected NamespaceSupport fNSBinder;
 
-	/** stores all namespace bindings on the current element */
-	protected NamespaceSupport fLocalNSBinder;
+    /** stores all namespace bindings on the current element */
+    protected NamespaceSupport fLocalNSBinder;
 
-	/** symbol table for serialization */
-	protected SymbolTable fSymbolTable;
+    /** symbol table for serialization */
+    protected SymbolTable fSymbolTable;
 
-	// is node dom level 1 node?
-	protected boolean fDOML1 = false;
-	// counter for new prefix names
-	protected int fNamespaceCounter = 1;
-	protected final static String PREFIX = "NS";
+    // is node dom level 1 node?
+    protected boolean fDOML1 = false;
+    // counter for new prefix names
+    protected int fNamespaceCounter = 1;
+    protected final static String PREFIX = "NS";
 
-	/**
-	 * Controls whether namespace fixup should be performed during the
-	 * serialization. NOTE: if this field is set to true the following fields
-	 * need to be initialized: fNSBinder, fLocalNSBinder, fSymbolTable,
-	 * XMLSymbols.EMPTY_STRING, fXmlSymbol, fXmlnsSymbol, fNamespaceCounter.
-	 */
-	protected boolean fNamespaces = false;
+    /**
+     * Controls whether namespace fixup should be performed during the
+     * serialization. NOTE: if this field is set to true the following fields
+     * need to be initialized: fNSBinder, fLocalNSBinder, fSymbolTable,
+     * XMLSymbols.EMPTY_STRING, fXmlSymbol, fXmlnsSymbol, fNamespaceCounter.
+     */
+    protected boolean fNamespaces = false;
 
-	private boolean fPreserveSpace;
+    private boolean fPreserveSpace;
 
-	/**
-	 * Constructs a new serializer. The serializer cannot be used without
-	 * calling {@link #setOutputCharStream} or {@link #setOutputByteStream}
-	 * first.
-	 */
-	public XML11Serializer() {
-		super();
-		_format.setVersion("1.1");
-	}
+    /**
+     * Constructs a new serializer. The serializer cannot be used without
+     * calling {@link #setOutputCharStream} or {@link #setOutputByteStream}
+     * first.
+     */
+    public XML11Serializer() {
+        super();
+        _format.setVersion("1.1");
+    }
 
-	/**
-	 * Constructs a new serializer. The serializer cannot be used without
-	 * calling {@link #setOutputCharStream} or {@link #setOutputByteStream}
-	 * first.
-	 */
-	public XML11Serializer(OutputFormat format) {
-		super(format);
-		_format.setVersion("1.1");
-	}
+    /**
+     * Constructs a new serializer. The serializer cannot be used without
+     * calling {@link #setOutputCharStream} or {@link #setOutputByteStream}
+     * first.
+     */
+    public XML11Serializer(OutputFormat format) {
+        super(format);
+        _format.setVersion("1.1");
+    }
 
-	/**
-	 * Constructs a new serializer that writes to the specified writer using the
-	 * specified output format. If <tt>format</tt> is null, will use a default
-	 * output format.
-	 *
-	 * @param writer
-	 *               The writer to use
-	 * @param format
-	 *               The output format to use, null for the default
-	 */
-	public XML11Serializer(Writer writer, OutputFormat format) {
-		super(writer, format);
-		_format.setVersion("1.1");
-	}
+    /**
+     * Constructs a new serializer that writes to the specified writer using the
+     * specified output format. If <tt>format</tt> is null, will use a default
+     * output format.
+     *
+     * @param writer
+     *               The writer to use
+     * @param format
+     *               The output format to use, null for the default
+     */
+    public XML11Serializer(Writer writer, OutputFormat format) {
+        super(writer, format);
+        _format.setVersion("1.1");
+    }
 
-	/**
-	 * Constructs a new serializer that writes to the specified output stream
-	 * using the specified output format. If <tt>format</tt> is null, will use a
-	 * default output format.
-	 *
-	 * @param output
-	 *               The output stream to use
-	 * @param format
-	 *               The output format to use, null for the default
-	 */
-	public XML11Serializer(OutputStream output, OutputFormat format) {
-		super(output, format != null ? format
-				: new OutputFormat(Method.XML, null, false));
-		_format.setVersion("1.1");
-	}
+    /**
+     * Constructs a new serializer that writes to the specified output stream
+     * using the specified output format. If <tt>format</tt> is null, will use a
+     * default output format.
+     *
+     * @param output
+     *               The output stream to use
+     * @param format
+     *               The output format to use, null for the default
+     */
+    public XML11Serializer(OutputStream output, OutputFormat format) {
+        super(output, format != null ? format
+                : new OutputFormat(Method.XML, null, false));
+        _format.setVersion("1.1");
+    }
 
-	// -----------------------------------------//
-	// SAX content handler serializing methods //
-	// -----------------------------------------//
+    // -----------------------------------------//
+    // SAX content handler serializing methods //
+    // -----------------------------------------//
 
-	public void characters(char[] chars, int start, int length)
-			throws SAXException {
-		ElementState state;
+    public void characters(char[] chars, int start, int length)
+            throws SAXException {
+        ElementState state;
 
-		try {
-			state = content();
+        try {
+            state = content();
 
-			// Check if text should be print as CDATA section or unescaped
-			// based on elements listed in the output format (the element
-			// state) or whether we are inside a CDATA section or entity.
+            // Check if text should be print as CDATA section or unescaped
+            // based on elements listed in the output format (the element
+            // state) or whether we are inside a CDATA section or entity.
 
-			if (state.inCData || state.doCData) {
-				int saveIndent;
+            if (state.inCData || state.doCData) {
+                int saveIndent;
 
-				// Print a CDATA section. The text is not escaped, but ']]>'
-				// appearing in the code must be identified and dealt with.
-				// The contents of a text node is considered space preserving.
-				if (!state.inCData) {
-					_printer.printText("<![CDATA[");
-					state.inCData = true;
-				}
-				saveIndent = _printer.getNextIndent();
-				_printer.setNextIndent(0);
-				char ch;
-				final int end = start + length;
-				for (int index = start; index < end; ++index) {
-					ch = chars[index];
-					if (ch == ']' && index + 2 < end && chars[index + 1] == ']'
-							&& chars[index + 2] == '>') {
-						_printer.printText("]]]]><![CDATA[>");
-						index += 2;
-						continue;
-					}
-					if (!XML11Char.isXML11Valid(ch)) {
-						// check if it is surrogate
-						if (++index < end) {
-							surrogates(ch, chars[index]);
-						} else {
-							fatalError("The character '" + (char) ch
-									+ "' is an invalid XML character");
-						}
-						continue;
-					} else {
-						if (_encodingInfo.isPrintable((char) ch) && XML11Char
-								.isXML11ValidLiteral(ch)) {
-							_printer.printText((char) ch);
-						} else {
-							// The character is not printable -- split CDATA
-							// section
-							_printer.printText("]]>&#x");
-							_printer.printText(Integer.toHexString(ch));
-							_printer.printText(";<![CDATA[");
-						}
-					}
-				}
-				_printer.setNextIndent(saveIndent);
+                // Print a CDATA section. The text is not escaped, but ']]>'
+                // appearing in the code must be identified and dealt with.
+                // The contents of a text node is considered space preserving.
+                if (!state.inCData) {
+                    _printer.printText("<![CDATA[");
+                    state.inCData = true;
+                }
+                saveIndent = _printer.getNextIndent();
+                _printer.setNextIndent(0);
+                char ch;
+                final int end = start + length;
+                for (int index = start; index < end; ++index) {
+                    ch = chars[index];
+                    if (ch == ']' && index + 2 < end && chars[index + 1] == ']'
+                            && chars[index + 2] == '>') {
+                        _printer.printText("]]]]><![CDATA[>");
+                        index += 2;
+                        continue;
+                    }
+                    if (!XML11Char.isXML11Valid(ch)) {
+                        // check if it is surrogate
+                        if (++index < end) {
+                            surrogates(ch, chars[index]);
+                        } else {
+                            fatalError("The character '" + (char) ch
+                                    + "' is an invalid XML character");
+                        }
+                        continue;
+                    } else {
+                        if (_encodingInfo.isPrintable((char) ch) && XML11Char
+                                .isXML11ValidLiteral(ch)) {
+                            _printer.printText((char) ch);
+                        } else {
+                            // The character is not printable -- split CDATA
+                            // section
+                            _printer.printText("]]>&#x");
+                            _printer.printText(Integer.toHexString(ch));
+                            _printer.printText(";<![CDATA[");
+                        }
+                    }
+                }
+                _printer.setNextIndent(saveIndent);
 
-			} else {
+            } else {
 
-				int saveIndent;
+                int saveIndent;
 
-				if (state.preserveSpace) {
-					// If preserving space then hold of indentation so no
-					// excessive spaces are printed at line breaks, escape
-					// the text content without replacing spaces and print
-					// the text breaking only at line breaks.
-					saveIndent = _printer.getNextIndent();
-					_printer.setNextIndent(0);
-					printText(chars, start, length, true, state.unescaped);
-					_printer.setNextIndent(saveIndent);
-				} else {
-					printText(chars, start, length, false, state.unescaped);
-				}
-			}
-		} catch (IOException except) {
-			throw new SAXException(except);
-		}
-	}
+                if (state.preserveSpace) {
+                    // If preserving space then hold of indentation so no
+                    // excessive spaces are printed at line breaks, escape
+                    // the text content without replacing spaces and print
+                    // the text breaking only at line breaks.
+                    saveIndent = _printer.getNextIndent();
+                    _printer.setNextIndent(0);
+                    printText(chars, start, length, true, state.unescaped);
+                    _printer.setNextIndent(saveIndent);
+                } else {
+                    printText(chars, start, length, false, state.unescaped);
+                }
+            }
+        } catch (IOException except) {
+            throw new SAXException(except);
+        }
+    }
 
-	//
-	// overwrite printing functions to make sure serializer prints out valid XML
-	//
-	protected void printEscaped(String source) throws IOException {
-		int length = source.length();
-		for (int i = 0; i < length; ++i) {
-			int ch = source.charAt(i);
-			if (!XML11Char.isXML11Valid(ch)) {
-				if (++i < length) {
-					surrogates(ch, source.charAt(i));
-				} else {
-					fatalError("The character '" + (char) ch
-							+ "' is an invalid XML character");
-				}
-				continue;
-			}
-			if (ch == '\n' || ch == '\r' || ch == '\t' || ch == 0x0085
-					|| ch == 0x2028) {
-				printHex(ch);
-			} else if (ch == '<') {
-				_printer.printText("&lt;");
-			} else if (ch == '&') {
-				_printer.printText("&amp;");
-			} else if (ch == '"') {
-				_printer.printText("&quot;");
-			} else if ((ch >= ' ' && _encodingInfo.isPrintable((char) ch))) {
-				_printer.printText((char) ch);
-			} else {
-				printHex(ch);
-			}
-		}
-	}
+    //
+    // overwrite printing functions to make sure serializer prints out valid XML
+    //
+    protected void printEscaped(String source) throws IOException {
+        int length = source.length();
+        for (int i = 0; i < length; ++i) {
+            int ch = source.charAt(i);
+            if (!XML11Char.isXML11Valid(ch)) {
+                if (++i < length) {
+                    surrogates(ch, source.charAt(i));
+                } else {
+                    fatalError("The character '" + (char) ch
+                            + "' is an invalid XML character");
+                }
+                continue;
+            }
+            if (ch == '\n' || ch == '\r' || ch == '\t' || ch == 0x0085
+                    || ch == 0x2028) {
+                printHex(ch);
+            } else if (ch == '<') {
+                _printer.printText("&lt;");
+            } else if (ch == '&') {
+                _printer.printText("&amp;");
+            } else if (ch == '"') {
+                _printer.printText("&quot;");
+            } else if ((ch >= ' ' && _encodingInfo.isPrintable((char) ch))) {
+                _printer.printText((char) ch);
+            } else {
+                printHex(ch);
+            }
+        }
+    }
 
-	protected final void printCDATAText(String text) throws IOException {
-		int length = text.length();
-		char ch;
+    protected final void printCDATAText(String text) throws IOException {
+        int length = text.length();
+        char ch;
 
-		for (int index = 0; index < length; ++index) {
-			ch = text.charAt(index);
+        for (int index = 0; index < length; ++index) {
+            ch = text.charAt(index);
 
-			if (ch == ']' && index + 2 < length && text.charAt(index + 1) == ']'
-					&& text.charAt(index + 2) == '>') { // check for ']]>'
-				if (fDOMErrorHandler != null) {
-					// REVISIT: this means that if DOM Error handler is not
-					// registered we don't report any
-					// fatal errors and might serialize not wellformed document
-					if ((features & DOMSerializerImpl.SPLITCDATA) == 0
-							&& (features & DOMSerializerImpl.WELLFORMED) == 0) {
-						// issue fatal error
-						String msg = DOMMessageFormatter.formatMessage(
-								DOMMessageFormatter.SERIALIZER_DOMAIN,
-								"EndingCDATA", null);
-						modifyDOMError(msg, DOMError.SEVERITY_FATAL_ERROR, null,
-								fCurrentNode);
-						boolean continueProcess = fDOMErrorHandler.handleError(
-								fDOMError);
-						if (!continueProcess) {
-							throw new IOException();
-						}
-					} else {
-						// issue warning
-						String msg = DOMMessageFormatter.formatMessage(
-								DOMMessageFormatter.SERIALIZER_DOMAIN,
-								"SplittingCDATA", null);
-						modifyDOMError(msg, DOMError.SEVERITY_WARNING, null,
-								fCurrentNode);
-						fDOMErrorHandler.handleError(fDOMError);
-					}
-				}
-				// split CDATA section
-				_printer.printText("]]]]><![CDATA[>");
-				index += 2;
-				continue;
-			}
+            if (ch == ']' && index + 2 < length && text.charAt(index + 1) == ']'
+                    && text.charAt(index + 2) == '>') { // check for ']]>'
+                if (fDOMErrorHandler != null) {
+                    // REVISIT: this means that if DOM Error handler is not
+                    // registered we don't report any
+                    // fatal errors and might serialize not wellformed document
+                    if ((features & DOMSerializerImpl.SPLITCDATA) == 0
+                            && (features & DOMSerializerImpl.WELLFORMED) == 0) {
+                        // issue fatal error
+                        String msg = DOMMessageFormatter.formatMessage(
+                                DOMMessageFormatter.SERIALIZER_DOMAIN,
+                                "EndingCDATA", null);
+                        modifyDOMError(msg, DOMError.SEVERITY_FATAL_ERROR, null,
+                                fCurrentNode);
+                        boolean continueProcess = fDOMErrorHandler.handleError(
+                                fDOMError);
+                        if (!continueProcess) {
+                            throw new IOException();
+                        }
+                    } else {
+                        // issue warning
+                        String msg = DOMMessageFormatter.formatMessage(
+                                DOMMessageFormatter.SERIALIZER_DOMAIN,
+                                "SplittingCDATA", null);
+                        modifyDOMError(msg, DOMError.SEVERITY_WARNING, null,
+                                fCurrentNode);
+                        fDOMErrorHandler.handleError(fDOMError);
+                    }
+                }
+                // split CDATA section
+                _printer.printText("]]]]><![CDATA[>");
+                index += 2;
+                continue;
+            }
 
-			if (!XML11Char.isXML11Valid(ch)) {
-				// check if it is surrogate
-				if (++index < length) {
-					surrogates(ch, text.charAt(index));
-				} else {
-					fatalError("The character '" + (char) ch
-							+ "' is an invalid XML character");
-				}
-				continue;
-			} else {
-				if (_encodingInfo.isPrintable((char) ch) && XML11Char
-						.isXML11ValidLiteral(ch)) {
-					_printer.printText((char) ch);
-				} else {
+            if (!XML11Char.isXML11Valid(ch)) {
+                // check if it is surrogate
+                if (++index < length) {
+                    surrogates(ch, text.charAt(index));
+                } else {
+                    fatalError("The character '" + (char) ch
+                            + "' is an invalid XML character");
+                }
+                continue;
+            } else {
+                if (_encodingInfo.isPrintable((char) ch) && XML11Char
+                        .isXML11ValidLiteral(ch)) {
+                    _printer.printText((char) ch);
+                } else {
 
-					// The character is not printable -- split CDATA section
-					_printer.printText("]]>&#x");
-					_printer.printText(Integer.toHexString(ch));
-					_printer.printText(";<![CDATA[");
-				}
-			}
-		}
-	}
+                    // The character is not printable -- split CDATA section
+                    _printer.printText("]]>&#x");
+                    _printer.printText(Integer.toHexString(ch));
+                    _printer.printText(";<![CDATA[");
+                }
+            }
+        }
+    }
 
-	// note that this "int" should, in all cases, be a char.
-	// REVISIT: make it a char...
-	protected final void printXMLChar(int ch) throws IOException {
+    // note that this "int" should, in all cases, be a char.
+    // REVISIT: make it a char...
+    protected final void printXMLChar(int ch) throws IOException {
 
-		if (ch == '\r' || ch == 0x0085 || ch == 0x2028) {
-			printHex(ch);
-		} else if (ch == '<') {
-			_printer.printText("&lt;");
-		} else if (ch == '&') {
-			_printer.printText("&amp;");
-		} else if (ch == '>') {
-			// character sequence "]]>" can't appear in content, therefore
-			// we should escape '>'
-			_printer.printText("&gt;");
-		} else if (_encodingInfo.isPrintable((char) ch) && XML11Char
-				.isXML11ValidLiteral(ch)) {
-			_printer.printText((char) ch);
-		} else {
-			printHex(ch);
-		}
-	}
+        if (ch == '\r' || ch == 0x0085 || ch == 0x2028) {
+            printHex(ch);
+        } else if (ch == '<') {
+            _printer.printText("&lt;");
+        } else if (ch == '&') {
+            _printer.printText("&amp;");
+        } else if (ch == '>') {
+            // character sequence "]]>" can't appear in content, therefore
+            // we should escape '>'
+            _printer.printText("&gt;");
+        } else if (_encodingInfo.isPrintable((char) ch) && XML11Char
+                .isXML11ValidLiteral(ch)) {
+            _printer.printText((char) ch);
+        } else {
+            printHex(ch);
+        }
+    }
 
-	protected final void surrogates(int high, int low) throws IOException {
-		if (XMLChar.isHighSurrogate(high)) {
-			if (!XMLChar.isLowSurrogate(low)) {
-				// Invalid XML
-				fatalError("The character '" + (char) low
-						+ "' is an invalid XML character");
-			} else {
-				int supplemental = XMLChar.supplemental((char) high,
-						(char) low);
-				if (!XML11Char.isXML11Valid(supplemental)) {
-					// Invalid XML
-					fatalError("The character '" + (char) supplemental
-							+ "' is an invalid XML character");
-				} else {
-					if (content().inCData) {
-						_printer.printText("]]>&#x");
-						_printer.printText(Integer.toHexString(supplemental));
-						_printer.printText(";<![CDATA[");
-					} else {
-						printHex(supplemental);
-					}
-				}
-			}
-		} else {
-			fatalError("The character '" + (char) high
-					+ "' is an invalid XML character");
-		}
+    protected final void surrogates(int high, int low) throws IOException {
+        if (XMLChar.isHighSurrogate(high)) {
+            if (!XMLChar.isLowSurrogate(low)) {
+                // Invalid XML
+                fatalError("The character '" + (char) low
+                        + "' is an invalid XML character");
+            } else {
+                int supplemental = XMLChar.supplemental((char) high,
+                        (char) low);
+                if (!XML11Char.isXML11Valid(supplemental)) {
+                    // Invalid XML
+                    fatalError("The character '" + (char) supplemental
+                            + "' is an invalid XML character");
+                } else {
+                    if (content().inCData) {
+                        _printer.printText("]]>&#x");
+                        _printer.printText(Integer.toHexString(supplemental));
+                        _printer.printText(";<![CDATA[");
+                    } else {
+                        printHex(supplemental);
+                    }
+                }
+            }
+        } else {
+            fatalError("The character '" + (char) high
+                    + "' is an invalid XML character");
+        }
 
-	}
+    }
 
-	protected void printText(String text, boolean preserveSpace,
-			boolean unescaped) throws IOException {
-		int index;
-		char ch;
-		int length = text.length();
-		if (preserveSpace) {
-			// Preserving spaces: the text must print exactly as it is,
-			// without breaking when spaces appear in the text and without
-			// consolidating spaces. If a line terminator is used, a line
-			// break will occur.
-			for (index = 0; index < length; ++index) {
-				ch = text.charAt(index);
-				if (!XML11Char.isXML11Valid(ch)) {
-					// check if it is surrogate
-					if (++index < length) {
-						surrogates(ch, text.charAt(index));
-					} else {
-						fatalError("The character '" + (char) ch
-								+ "' is an invalid XML character");
-					}
-					continue;
-				}
-				if (unescaped && XML11Char.isXML11ValidLiteral(ch)) {
-					_printer.printText(ch);
-				} else
-					printXMLChar(ch);
-			}
-		} else {
-			// Not preserving spaces: print one part at a time, and
-			// use spaces between parts to break them into different
-			// lines. Spaces at beginning of line will be stripped
-			// by printing mechanism. Line terminator is treated
-			// no different than other text part.
-			for (index = 0; index < length; ++index) {
-				ch = text.charAt(index);
-				if (!XML11Char.isXML11Valid(ch)) {
-					// check if it is surrogate
-					if (++index < length) {
-						surrogates(ch, text.charAt(index));
-					} else {
-						fatalError("The character '" + (char) ch
-								+ "' is an invalid XML character");
-					}
-					continue;
-				}
+    protected void printText(String text, boolean preserveSpace,
+            boolean unescaped) throws IOException {
+        int index;
+        char ch;
+        int length = text.length();
+        if (preserveSpace) {
+            // Preserving spaces: the text must print exactly as it is,
+            // without breaking when spaces appear in the text and without
+            // consolidating spaces. If a line terminator is used, a line
+            // break will occur.
+            for (index = 0; index < length; ++index) {
+                ch = text.charAt(index);
+                if (!XML11Char.isXML11Valid(ch)) {
+                    // check if it is surrogate
+                    if (++index < length) {
+                        surrogates(ch, text.charAt(index));
+                    } else {
+                        fatalError("The character '" + (char) ch
+                                + "' is an invalid XML character");
+                    }
+                    continue;
+                }
+                if (unescaped && XML11Char.isXML11ValidLiteral(ch)) {
+                    _printer.printText(ch);
+                } else
+                    printXMLChar(ch);
+            }
+        } else {
+            // Not preserving spaces: print one part at a time, and
+            // use spaces between parts to break them into different
+            // lines. Spaces at beginning of line will be stripped
+            // by printing mechanism. Line terminator is treated
+            // no different than other text part.
+            for (index = 0; index < length; ++index) {
+                ch = text.charAt(index);
+                if (!XML11Char.isXML11Valid(ch)) {
+                    // check if it is surrogate
+                    if (++index < length) {
+                        surrogates(ch, text.charAt(index));
+                    } else {
+                        fatalError("The character '" + (char) ch
+                                + "' is an invalid XML character");
+                    }
+                    continue;
+                }
 
-				if (unescaped && XML11Char.isXML11ValidLiteral(ch))
-					_printer.printText(ch);
-				else
-					printXMLChar(ch);
-			}
-		}
-	}
+                if (unescaped && XML11Char.isXML11ValidLiteral(ch))
+                    _printer.printText(ch);
+                else
+                    printXMLChar(ch);
+            }
+        }
+    }
 
-	protected void printText(char[] chars, int start, int length,
-			boolean preserveSpace, boolean unescaped) throws IOException {
-		int index;
-		char ch;
+    protected void printText(char[] chars, int start, int length,
+            boolean preserveSpace, boolean unescaped) throws IOException {
+        int index;
+        char ch;
 
-		if (preserveSpace) {
-			// Preserving spaces: the text must print exactly as it is,
-			// without breaking when spaces appear in the text and without
-			// consolidating spaces. If a line terminator is used, a line
-			// break will occur.
-			while (length-- > 0) {
-				ch = chars[start++];
-				if (!XML11Char.isXML11Valid(ch)) {
-					// check if it is surrogate
-					if (length-- > 0) {
-						surrogates(ch, chars[start++]);
-					} else {
-						fatalError("The character '" + (char) ch
-								+ "' is an invalid XML character");
-					}
-					continue;
-				}
-				if (unescaped && XML11Char.isXML11ValidLiteral(ch))
-					_printer.printText(ch);
-				else
-					printXMLChar(ch);
-			}
-		} else {
-			// Not preserving spaces: print one part at a time, and
-			// use spaces between parts to break them into different
-			// lines. Spaces at beginning of line will be stripped
-			// by printing mechanism. Line terminator is treated
-			// no different than other text part.
-			while (length-- > 0) {
-				ch = chars[start++];
-				if (!XML11Char.isXML11Valid(ch)) {
-					// check if it is surrogate
-					if (length-- > 0) {
-						surrogates(ch, chars[start++]);
-					} else {
-						fatalError("The character '" + (char) ch
-								+ "' is an invalid XML character");
-					}
-					continue;
-				}
+        if (preserveSpace) {
+            // Preserving spaces: the text must print exactly as it is,
+            // without breaking when spaces appear in the text and without
+            // consolidating spaces. If a line terminator is used, a line
+            // break will occur.
+            while (length-- > 0) {
+                ch = chars[start++];
+                if (!XML11Char.isXML11Valid(ch)) {
+                    // check if it is surrogate
+                    if (length-- > 0) {
+                        surrogates(ch, chars[start++]);
+                    } else {
+                        fatalError("The character '" + (char) ch
+                                + "' is an invalid XML character");
+                    }
+                    continue;
+                }
+                if (unescaped && XML11Char.isXML11ValidLiteral(ch))
+                    _printer.printText(ch);
+                else
+                    printXMLChar(ch);
+            }
+        } else {
+            // Not preserving spaces: print one part at a time, and
+            // use spaces between parts to break them into different
+            // lines. Spaces at beginning of line will be stripped
+            // by printing mechanism. Line terminator is treated
+            // no different than other text part.
+            while (length-- > 0) {
+                ch = chars[start++];
+                if (!XML11Char.isXML11Valid(ch)) {
+                    // check if it is surrogate
+                    if (length-- > 0) {
+                        surrogates(ch, chars[start++]);
+                    } else {
+                        fatalError("The character '" + (char) ch
+                                + "' is an invalid XML character");
+                    }
+                    continue;
+                }
 
-				if (unescaped && XML11Char.isXML11ValidLiteral(ch))
-					_printer.printText(ch);
-				else
-					printXMLChar(ch);
-			}
-		}
-	}
+                if (unescaped && XML11Char.isXML11ValidLiteral(ch))
+                    _printer.printText(ch);
+                else
+                    printXMLChar(ch);
+            }
+        }
+    }
 
-	public boolean reset() {
-		super.reset();
-		return true;
+    public boolean reset() {
+        super.reset();
+        return true;
 
-	}
+    }
 
 }

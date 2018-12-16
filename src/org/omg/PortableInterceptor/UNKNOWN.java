@@ -10,8 +10,8 @@ package org.omg.PortableInterceptor;
 
 public interface UNKNOWN {
 
-	/**
-	 * XXX
-	 */
-	public static final short value = (short) (5);
+    /**
+     * XXX
+     */
+    public static final short value = (short) (5);
 }

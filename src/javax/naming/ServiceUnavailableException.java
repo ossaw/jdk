@@ -21,28 +21,28 @@ package javax.naming;
  */
 
 public class ServiceUnavailableException extends NamingException {
-	/**
-	 * Constructs a new instance of ServiceUnavailableException using an
-	 * explanation. All other fields default to null.
-	 *
-	 * @param explanation
-	 *                    Possibly null additional detail about this exception.
-	 * @see java.lang.Throwable#getMessage
-	 */
-	public ServiceUnavailableException(String explanation) {
-		super(explanation);
-	}
+    /**
+     * Constructs a new instance of ServiceUnavailableException using an
+     * explanation. All other fields default to null.
+     *
+     * @param explanation
+     *                    Possibly null additional detail about this exception.
+     * @see java.lang.Throwable#getMessage
+     */
+    public ServiceUnavailableException(String explanation) {
+        super(explanation);
+    }
 
-	/**
-	 * Constructs a new instance of ServiceUnavailableException. All fields
-	 * default to null.
-	 */
-	public ServiceUnavailableException() {
-		super();
-	}
+    /**
+     * Constructs a new instance of ServiceUnavailableException. All fields
+     * default to null.
+     */
+    public ServiceUnavailableException() {
+        super();
+    }
 
-	/**
-	 * Use serialVersionUID from JNDI 1.1.1 for interoperability
-	 */
-	private static final long serialVersionUID = -4996964726566773444L;
+    /**
+     * Use serialVersionUID from JNDI 1.1.1 for interoperability
+     */
+    private static final long serialVersionUID = -4996964726566773444L;
 }

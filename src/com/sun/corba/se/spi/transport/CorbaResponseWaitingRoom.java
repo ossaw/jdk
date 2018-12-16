@@ -13,9 +13,9 @@ import org.omg.CORBA.SystemException;
  * @author Harold Carr
  */
 public interface CorbaResponseWaitingRoom extends ResponseWaitingRoom {
-	public void signalExceptionToAllWaiters(SystemException systemException);
+    public void signalExceptionToAllWaiters(SystemException systemException);
 
-	public MessageMediator getMessageMediator(int requestId);
+    public MessageMediator getMessageMediator(int requestId);
 }
 
 // End of file.

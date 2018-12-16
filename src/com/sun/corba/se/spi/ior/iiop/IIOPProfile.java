@@ -20,22 +20,22 @@ import com.sun.corba.se.spi.ior.iiop.GIOPVersion;
  * profile.
  */
 public interface IIOPProfile extends TaggedProfile {
-	ORBVersion getORBVersion();
+    ORBVersion getORBVersion();
 
-	/**
-	 * Return the servant for this profile, if it is local AND if the OA that
-	 * implements this objref supports direct access to servants outside of an
-	 * invocation. XXX move this to the ObjectKeyTemplate
-	 */
-	java.lang.Object getServant();
+    /**
+     * Return the servant for this profile, if it is local AND if the OA that
+     * implements this objref supports direct access to servants outside of an
+     * invocation. XXX move this to the ObjectKeyTemplate
+     */
+    java.lang.Object getServant();
 
-	/**
-	 * Return the GIOPVersion of this profile. Caches the result.
-	 */
-	GIOPVersion getGIOPVersion();
+    /**
+     * Return the GIOPVersion of this profile. Caches the result.
+     */
+    GIOPVersion getGIOPVersion();
 
-	/**
-	 * Return the Codebase of this profile. Caches the result.
-	 */
-	String getCodebase();
+    /**
+     * Return the Codebase of this profile. Caches the result.
+     */
+    String getCodebase();
 }

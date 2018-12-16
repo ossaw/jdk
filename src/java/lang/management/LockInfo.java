@@ -34,117 +34,117 @@ import sun.management.LockInfoCompositeData;
 
 public class LockInfo {
 
-	private String className;
-	private int identityHashCode;
+    private String className;
+    private int identityHashCode;
 
-	/**
-	 * Constructs a <tt>LockInfo</tt> object.
-	 *
-	 * @param className
-	 *                         the fully qualified name of the class of the lock
-	 *                         object.
-	 * @param identityHashCode
-	 *                         the {@link System#identityHashCode identity hash
-	 *                         code} of the
-	 *                         lock object.
-	 */
-	public LockInfo(String className, int identityHashCode) {
-		if (className == null) {
-			throw new NullPointerException(
-					"Parameter className cannot be null");
-		}
-		this.className = className;
-		this.identityHashCode = identityHashCode;
-	}
+    /**
+     * Constructs a <tt>LockInfo</tt> object.
+     *
+     * @param className
+     *                         the fully qualified name of the class of the lock
+     *                         object.
+     * @param identityHashCode
+     *                         the {@link System#identityHashCode identity hash
+     *                         code} of the
+     *                         lock object.
+     */
+    public LockInfo(String className, int identityHashCode) {
+        if (className == null) {
+            throw new NullPointerException(
+                    "Parameter className cannot be null");
+        }
+        this.className = className;
+        this.identityHashCode = identityHashCode;
+    }
 
-	/**
-	 * package-private constructors
-	 */
-	LockInfo(Object lock) {
-		this.className = lock.getClass().getName();
-		this.identityHashCode = System.identityHashCode(lock);
-	}
+    /**
+     * package-private constructors
+     */
+    LockInfo(Object lock) {
+        this.className = lock.getClass().getName();
+        this.identityHashCode = System.identityHashCode(lock);
+    }
 
-	/**
-	 * Returns the fully qualified name of the class of the lock object.
-	 *
-	 * @return the fully qualified name of the class of the lock object.
-	 */
-	public String getClassName() {
-		return className;
-	}
+    /**
+     * Returns the fully qualified name of the class of the lock object.
+     *
+     * @return the fully qualified name of the class of the lock object.
+     */
+    public String getClassName() {
+        return className;
+    }
 
-	/**
-	 * Returns the identity hash code of the lock object returned from the
-	 * {@link System#identityHashCode} method.
-	 *
-	 * @return the identity hash code of the lock object.
-	 */
-	public int getIdentityHashCode() {
-		return identityHashCode;
-	}
+    /**
+     * Returns the identity hash code of the lock object returned from the
+     * {@link System#identityHashCode} method.
+     *
+     * @return the identity hash code of the lock object.
+     */
+    public int getIdentityHashCode() {
+        return identityHashCode;
+    }
 
-	/**
-	 * Returns a {@code LockInfo} object represented by the given
-	 * {@code CompositeData}. The given {@code CompositeData} must contain the
-	 * following attributes: <blockquote> <table border summary=
-	 * "The attributes and the types the given CompositeData contains">
-	 * <tr>
-	 * <th align=left>Attribute Name</th>
-	 * <th align=left>Type</th>
-	 * </tr>
-	 * <tr>
-	 * <td>className</td>
-	 * <td><tt>java.lang.String</tt></td>
-	 * </tr>
-	 * <tr>
-	 * <td>identityHashCode</td>
-	 * <td><tt>java.lang.Integer</tt></td>
-	 * </tr>
-	 * </table>
-	 * </blockquote>
-	 *
-	 * @param cd
-	 *           {@code CompositeData} representing a {@code LockInfo}
-	 *
-	 * @throws IllegalArgumentException
-	 *                                  if {@code cd} does not represent a
-	 *                                  {@code LockInfo} with the
-	 *                                  attributes described above.
-	 * @return a {@code LockInfo} object represented by {@code cd} if {@code cd}
-	 *         is not {@code null}; {@code null} otherwise.
-	 *
-	 * @since 1.8
-	 */
-	public static LockInfo from(CompositeData cd) {
-		if (cd == null) {
-			return null;
-		}
+    /**
+     * Returns a {@code LockInfo} object represented by the given
+     * {@code CompositeData}. The given {@code CompositeData} must contain the
+     * following attributes: <blockquote> <table border summary=
+     * "The attributes and the types the given CompositeData contains">
+     * <tr>
+     * <th align=left>Attribute Name</th>
+     * <th align=left>Type</th>
+     * </tr>
+     * <tr>
+     * <td>className</td>
+     * <td><tt>java.lang.String</tt></td>
+     * </tr>
+     * <tr>
+     * <td>identityHashCode</td>
+     * <td><tt>java.lang.Integer</tt></td>
+     * </tr>
+     * </table>
+     * </blockquote>
+     *
+     * @param cd
+     *           {@code CompositeData} representing a {@code LockInfo}
+     *
+     * @throws IllegalArgumentException
+     *                                  if {@code cd} does not represent a
+     *                                  {@code LockInfo} with the
+     *                                  attributes described above.
+     * @return a {@code LockInfo} object represented by {@code cd} if {@code cd}
+     *         is not {@code null}; {@code null} otherwise.
+     *
+     * @since 1.8
+     */
+    public static LockInfo from(CompositeData cd) {
+        if (cd == null) {
+            return null;
+        }
 
-		if (cd instanceof LockInfoCompositeData) {
-			return ((LockInfoCompositeData) cd).getLockInfo();
-		} else {
-			return LockInfoCompositeData.toLockInfo(cd);
-		}
-	}
+        if (cd instanceof LockInfoCompositeData) {
+            return ((LockInfoCompositeData) cd).getLockInfo();
+        } else {
+            return LockInfoCompositeData.toLockInfo(cd);
+        }
+    }
 
-	/**
-	 * Returns a string representation of a lock. The returned string
-	 * representation consists of the name of the class of the lock object, the
-	 * at-sign character `@', and the unsigned hexadecimal representation of the
-	 * <em>identity</em> hash code of the object. This method returns a string
-	 * equals to the value of: <blockquote>
-	 * 
-	 * <pre>
-	 * lock.getClass().getName() + '@' + Integer.toHexString(System
-	 * 		.identityHashCode(lock))
-	 * </pre>
-	 * 
-	 * </blockquote> where <tt>lock</tt> is the lock object.
-	 *
-	 * @return the string representation of a lock.
-	 */
-	public String toString() {
-		return className + '@' + Integer.toHexString(identityHashCode);
-	}
+    /**
+     * Returns a string representation of a lock. The returned string
+     * representation consists of the name of the class of the lock object, the
+     * at-sign character `@', and the unsigned hexadecimal representation of the
+     * <em>identity</em> hash code of the object. This method returns a string
+     * equals to the value of: <blockquote>
+     * 
+     * <pre>
+     * lock.getClass().getName() + '@' + Integer.toHexString(System
+     *         .identityHashCode(lock))
+     * </pre>
+     * 
+     * </blockquote> where <tt>lock</tt> is the lock object.
+     *
+     * @return the string representation of a lock.
+     */
+    public String toString() {
+        return className + '@' + Integer.toHexString(identityHashCode);
+    }
 }

@@ -17,25 +17,25 @@ package javax.management.monitor;
  * @since 1.5
  */
 public class MonitorSettingException extends
-		javax.management.JMRuntimeException {
+        javax.management.JMRuntimeException {
 
-	/* Serial version */
-	private static final long serialVersionUID = -8807913418190202007L;
+    /* Serial version */
+    private static final long serialVersionUID = -8807913418190202007L;
 
-	/**
-	 * Default constructor.
-	 */
-	public MonitorSettingException() {
-		super();
-	}
+    /**
+     * Default constructor.
+     */
+    public MonitorSettingException() {
+        super();
+    }
 
-	/**
-	 * Constructor that allows an error message to be specified.
-	 *
-	 * @param message
-	 *                The specific error message.
-	 */
-	public MonitorSettingException(String message) {
-		super(message);
-	}
+    /**
+     * Constructor that allows an error message to be specified.
+     *
+     * @param message
+     *                The specific error message.
+     */
+    public MonitorSettingException(String message) {
+        super(message);
+    }
 }

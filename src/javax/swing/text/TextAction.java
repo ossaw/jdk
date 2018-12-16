@@ -35,74 +35,74 @@ import javax.swing.KeyStroke;
  */
 public abstract class TextAction extends AbstractAction {
 
-	/**
-	 * Creates a new JTextAction object.
-	 *
-	 * @param name
-	 *             the name of the action
-	 */
-	public TextAction(String name) {
-		super(name);
-	}
+    /**
+     * Creates a new JTextAction object.
+     *
+     * @param name
+     *             the name of the action
+     */
+    public TextAction(String name) {
+        super(name);
+    }
 
-	/**
-	 * Determines the component to use for the action. This if fetched from the
-	 * source of the ActionEvent if it's not null and can be narrowed.
-	 * Otherwise, the last focused component is used.
-	 *
-	 * @param e
-	 *          the ActionEvent
-	 * @return the component
-	 */
-	protected final JTextComponent getTextComponent(ActionEvent e) {
-		if (e != null) {
-			Object o = e.getSource();
-			if (o instanceof JTextComponent) {
-				return (JTextComponent) o;
-			}
-		}
-		return getFocusedComponent();
-	}
+    /**
+     * Determines the component to use for the action. This if fetched from the
+     * source of the ActionEvent if it's not null and can be narrowed.
+     * Otherwise, the last focused component is used.
+     *
+     * @param e
+     *          the ActionEvent
+     * @return the component
+     */
+    protected final JTextComponent getTextComponent(ActionEvent e) {
+        if (e != null) {
+            Object o = e.getSource();
+            if (o instanceof JTextComponent) {
+                return (JTextComponent) o;
+            }
+        }
+        return getFocusedComponent();
+    }
 
-	/**
-	 * Takes one list of commands and augments it with another list of commands.
-	 * The second list takes precedence over the first list; that is, when both
-	 * lists contain a command with the same name, the command from the second
-	 * list is used.
-	 *
-	 * @param list1
-	 *              the first list, may be empty but not <code>null</code>
-	 * @param list2
-	 *              the second list, may be empty but not <code>null</code>
-	 * @return the augmented list
-	 */
-	public static final Action[] augmentList(Action[] list1, Action[] list2) {
-		Hashtable<String, Action> h = new Hashtable<String, Action>();
-		for (Action a : list1) {
-			String value = (String) a.getValue(Action.NAME);
-			h.put((value != null ? value : ""), a);
-		}
-		for (Action a : list2) {
-			String value = (String) a.getValue(Action.NAME);
-			h.put((value != null ? value : ""), a);
-		}
-		Action[] actions = new Action[h.size()];
-		int index = 0;
-		for (Enumeration e = h.elements(); e.hasMoreElements();) {
-			actions[index++] = (Action) e.nextElement();
-		}
-		return actions;
-	}
+    /**
+     * Takes one list of commands and augments it with another list of commands.
+     * The second list takes precedence over the first list; that is, when both
+     * lists contain a command with the same name, the command from the second
+     * list is used.
+     *
+     * @param list1
+     *              the first list, may be empty but not <code>null</code>
+     * @param list2
+     *              the second list, may be empty but not <code>null</code>
+     * @return the augmented list
+     */
+    public static final Action[] augmentList(Action[] list1, Action[] list2) {
+        Hashtable<String, Action> h = new Hashtable<String, Action>();
+        for (Action a : list1) {
+            String value = (String) a.getValue(Action.NAME);
+            h.put((value != null ? value : ""), a);
+        }
+        for (Action a : list2) {
+            String value = (String) a.getValue(Action.NAME);
+            h.put((value != null ? value : ""), a);
+        }
+        Action[] actions = new Action[h.size()];
+        int index = 0;
+        for (Enumeration e = h.elements(); e.hasMoreElements();) {
+            actions[index++] = (Action) e.nextElement();
+        }
+        return actions;
+    }
 
-	/**
-	 * Fetches the text component that currently has focus. This allows actions
-	 * to be shared across text components which is useful for key-bindings
-	 * where a large set of actions are defined, but generally used the same way
-	 * across many different components.
-	 *
-	 * @return the component
-	 */
-	protected final JTextComponent getFocusedComponent() {
-		return JTextComponent.getFocusedComponent();
-	}
+    /**
+     * Fetches the text component that currently has focus. This allows actions
+     * to be shared across text components which is useful for key-bindings
+     * where a large set of actions are defined, but generally used the same way
+     * across many different components.
+     *
+     * @return the component
+     */
+    protected final JTextComponent getFocusedComponent() {
+        return JTextComponent.getFocusedComponent();
+    }
 }

@@ -42,72 +42,72 @@ import com.sun.corba.se.impl.orbutil.ORBUtility;
  * 
  * <pre>
  * class Node {
- * 	Object item;
- * 	Node next;
- * 	Mutex lock = new Mutex(); // each node keeps its own lock
+ *     Object item;
+ *     Node next;
+ *     Mutex lock = new Mutex(); // each node keeps its own lock
  *
- * 	Node(Object x, Node n) {
- * 		item = x;
- * 		next = n;
- * 	}
+ *     Node(Object x, Node n) {
+ *         item = x;
+ *         next = n;
+ *     }
  * }
  *
  * class List {
- * 	protected Node head; // pointer to first node of list
+ *     protected Node head; // pointer to first node of list
  *
- * 	// Use plain java synchronization to protect head field.
- * 	//  (We could instead use a Mutex here too but there is no
- * 	//  reason to do so.)
- * 	protected synchronized Node getHead() {
- * 		return head;
- * 	}
+ *     // Use plain java synchronization to protect head field.
+ *     //  (We could instead use a Mutex here too but there is no
+ *     //  reason to do so.)
+ *     protected synchronized Node getHead() {
+ *         return head;
+ *     }
  *
- * 	boolean search(Object x) throws InterruptedException {
- * 		Node p = getHead();
- * 		if (p == null)
- * 			return false;
+ *     boolean search(Object x) throws InterruptedException {
+ *         Node p = getHead();
+ *         if (p == null)
+ *             return false;
  *
- * 		//  (This could be made more compact, but for clarity of illustration,
- * 		//  all of the cases that can arise are handled separately.)
+ *         //  (This could be made more compact, but for clarity of illustration,
+ *         //  all of the cases that can arise are handled separately.)
  *
- * 		p.lock.acquire(); // Prime loop by acquiring first lock.
- * 							//    (If the acquire fails due to
- * 							//    interrupt, the method will throw
- * 							//    InterruptedException now,
- * 							//    so there is no need for any
- * 							//    further cleanup.)
- * 		for (;;) {
- * 			if (x.equals(p.item)) {
- * 				p.lock.release(); // release current before return
- * 				return true;
- * 			} else {
- * 				Node nextp = p.next;
- * 				if (nextp == null) {
- * 					p.lock.release(); // release final lock that was held
- * 					return false;
- * 				} else {
- * 					try {
- * 						nextp.lock.acquire(); // get next lock before releasing current
- * 					} catch (InterruptedException ex) {
- * 						p.lock.release(); // also release current if acquire fails
- * 						throw ex;
- * 					}
- * 					p.lock.release(); // release old lock now that new one held
- * 					p = nextp;
- * 				}
- * 			}
- * 		}
- * 	}
+ *         p.lock.acquire(); // Prime loop by acquiring first lock.
+ *                           //    (If the acquire fails due to
+ *                           //    interrupt, the method will throw
+ *                           //    InterruptedException now,
+ *                           //    so there is no need for any
+ *                           //    further cleanup.)
+ *         for (;;) {
+ *             if (x.equals(p.item)) {
+ *                 p.lock.release(); // release current before return
+ *                 return true;
+ *             } else {
+ *                 Node nextp = p.next;
+ *                 if (nextp == null) {
+ *                     p.lock.release(); // release final lock that was held
+ *                     return false;
+ *                 } else {
+ *                     try {
+ *                         nextp.lock.acquire(); // get next lock before releasing current
+ *                     } catch (InterruptedException ex) {
+ *                         p.lock.release(); // also release current if acquire fails
+ *                         throw ex;
+ *                     }
+ *                     p.lock.release(); // release old lock now that new one held
+ *                     p = nextp;
+ *                 }
+ *             }
+ *         }
+ *     }
  *
- * 	synchronized void add(Object x) { // simple prepend
- * 		// The use of `synchronized'  here protects only head field.
- * 		// The method does not need to wait out other traversers
- * 		// who have already made it past head.
+ *     synchronized void add(Object x) { // simple prepend
+ *         // The use of `synchronized'  here protects only head field.
+ *         // The method does not need to wait out other traversers
+ *         // who have already made it past head.
  *
- * 		head = new Node(x, head);
- * 	}
+ *         head = new Node(x, head);
+ *     }
  *
- * 	// ...  other similar traversal and update methods ...
+ *     // ...  other similar traversal and update methods ...
  * }
  * </pre>
  * <p>
@@ -129,201 +129,201 @@ import org.omg.CORBA.INTERNAL;
 
 public class ReentrantMutex implements Sync {
 
-	/** The thread holding the lock **/
-	protected Thread holder_ = null;
+    /** The thread holding the lock **/
+    protected Thread holder_ = null;
 
-	/** number of times thread has acquired the lock **/
-	protected int counter_ = 0;
+    /** number of times thread has acquired the lock **/
+    protected int counter_ = 0;
 
-	protected boolean debug = false;
+    protected boolean debug = false;
 
-	public ReentrantMutex() {
-		this(false);
-	}
+    public ReentrantMutex() {
+        this(false);
+    }
 
-	public ReentrantMutex(boolean debug) {
-		this.debug = debug;
-	}
+    public ReentrantMutex(boolean debug) {
+        this.debug = debug;
+    }
 
-	public void acquire() throws InterruptedException {
-		if (Thread.interrupted())
-			throw new InterruptedException();
+    public void acquire() throws InterruptedException {
+        if (Thread.interrupted())
+            throw new InterruptedException();
 
-		synchronized (this) {
-			try {
-				if (debug)
-					ORBUtility.dprintTrace(this, "acquire enter: holder_="
-							+ ORBUtility.getThreadName(holder_) + " counter_="
-							+ counter_);
+        synchronized (this) {
+            try {
+                if (debug)
+                    ORBUtility.dprintTrace(this, "acquire enter: holder_="
+                            + ORBUtility.getThreadName(holder_) + " counter_="
+                            + counter_);
 
-				Thread thr = Thread.currentThread();
-				if (holder_ != thr) {
-					try {
-						while (counter_ > 0)
-							wait();
+                Thread thr = Thread.currentThread();
+                if (holder_ != thr) {
+                    try {
+                        while (counter_ > 0)
+                            wait();
 
-						// This can't happen, but make sure anyway
-						if (counter_ != 0)
-							throw new INTERNAL(
-									"counter not 0 when first acquiring mutex");
+                        // This can't happen, but make sure anyway
+                        if (counter_ != 0)
+                            throw new INTERNAL(
+                                    "counter not 0 when first acquiring mutex");
 
-						holder_ = thr;
-					} catch (InterruptedException ex) {
-						notify();
-						throw ex;
-					}
-				}
+                        holder_ = thr;
+                    } catch (InterruptedException ex) {
+                        notify();
+                        throw ex;
+                    }
+                }
 
-				counter_++;
-			} finally {
-				if (debug)
-					ORBUtility.dprintTrace(this, "acquire exit: holder_="
-							+ ORBUtility.getThreadName(holder_) + " counter_="
-							+ counter_);
-			}
-		}
-	}
+                counter_++;
+            } finally {
+                if (debug)
+                    ORBUtility.dprintTrace(this, "acquire exit: holder_="
+                            + ORBUtility.getThreadName(holder_) + " counter_="
+                            + counter_);
+            }
+        }
+    }
 
-	void acquireAll(int count) throws InterruptedException {
-		if (Thread.interrupted())
-			throw new InterruptedException();
+    void acquireAll(int count) throws InterruptedException {
+        if (Thread.interrupted())
+            throw new InterruptedException();
 
-		synchronized (this) {
-			try {
-				if (debug)
-					ORBUtility.dprintTrace(this, "acquireAll enter: count="
-							+ count + " holder_=" + ORBUtility.getThreadName(
-									holder_) + " counter_=" + counter_);
-				Thread thr = Thread.currentThread();
-				if (holder_ == thr) {
-					throw new INTERNAL(
-							"Cannot acquireAll while holding the mutex");
-				} else {
-					try {
-						while (counter_ > 0)
-							wait();
+        synchronized (this) {
+            try {
+                if (debug)
+                    ORBUtility.dprintTrace(this, "acquireAll enter: count="
+                            + count + " holder_=" + ORBUtility.getThreadName(
+                                    holder_) + " counter_=" + counter_);
+                Thread thr = Thread.currentThread();
+                if (holder_ == thr) {
+                    throw new INTERNAL(
+                            "Cannot acquireAll while holding the mutex");
+                } else {
+                    try {
+                        while (counter_ > 0)
+                            wait();
 
-						// This can't happen, but make sure anyway
-						if (counter_ != 0)
-							throw new INTERNAL(
-									"counter not 0 when first acquiring mutex");
+                        // This can't happen, but make sure anyway
+                        if (counter_ != 0)
+                            throw new INTERNAL(
+                                    "counter not 0 when first acquiring mutex");
 
-						holder_ = thr;
-					} catch (InterruptedException ex) {
-						notify();
-						throw ex;
-					}
-				}
+                        holder_ = thr;
+                    } catch (InterruptedException ex) {
+                        notify();
+                        throw ex;
+                    }
+                }
 
-				counter_ = count;
-			} finally {
-				if (debug)
-					ORBUtility.dprintTrace(this, "acquireAll exit: count="
-							+ count + " holder_=" + ORBUtility.getThreadName(
-									holder_) + " counter_=" + counter_);
-			}
-		}
-	}
+                counter_ = count;
+            } finally {
+                if (debug)
+                    ORBUtility.dprintTrace(this, "acquireAll exit: count="
+                            + count + " holder_=" + ORBUtility.getThreadName(
+                                    holder_) + " counter_=" + counter_);
+            }
+        }
+    }
 
-	public synchronized void release() {
-		try {
-			if (debug)
-				ORBUtility.dprintTrace(this, "release enter: " + " holder_="
-						+ ORBUtility.getThreadName(holder_) + " counter_="
-						+ counter_);
+    public synchronized void release() {
+        try {
+            if (debug)
+                ORBUtility.dprintTrace(this, "release enter: " + " holder_="
+                        + ORBUtility.getThreadName(holder_) + " counter_="
+                        + counter_);
 
-			Thread thr = Thread.currentThread();
-			if (thr != holder_)
-				throw new INTERNAL(
-						"Attempt to release Mutex by thread not holding the Mutex");
-			else
-				counter_--;
+            Thread thr = Thread.currentThread();
+            if (thr != holder_)
+                throw new INTERNAL(
+                        "Attempt to release Mutex by thread not holding the Mutex");
+            else
+                counter_--;
 
-			if (counter_ == 0) {
-				holder_ = null;
-				notify();
-			}
-		} finally {
-			if (debug)
-				ORBUtility.dprintTrace(this, "release exit: " + " holder_="
-						+ ORBUtility.getThreadName(holder_) + " counter_="
-						+ counter_);
-		}
-	}
+            if (counter_ == 0) {
+                holder_ = null;
+                notify();
+            }
+        } finally {
+            if (debug)
+                ORBUtility.dprintTrace(this, "release exit: " + " holder_="
+                        + ORBUtility.getThreadName(holder_) + " counter_="
+                        + counter_);
+        }
+    }
 
-	synchronized int releaseAll() {
-		try {
-			if (debug)
-				ORBUtility.dprintTrace(this, "releaseAll enter: " + " holder_="
-						+ ORBUtility.getThreadName(holder_) + " counter_="
-						+ counter_);
+    synchronized int releaseAll() {
+        try {
+            if (debug)
+                ORBUtility.dprintTrace(this, "releaseAll enter: " + " holder_="
+                        + ORBUtility.getThreadName(holder_) + " counter_="
+                        + counter_);
 
-			Thread thr = Thread.currentThread();
-			if (thr != holder_)
-				throw new INTERNAL(
-						"Attempt to releaseAll Mutex by thread not holding the Mutex");
+            Thread thr = Thread.currentThread();
+            if (thr != holder_)
+                throw new INTERNAL(
+                        "Attempt to releaseAll Mutex by thread not holding the Mutex");
 
-			int result = counter_;
-			counter_ = 0;
-			holder_ = null;
-			notify();
-			return result;
-		} finally {
-			if (debug)
-				ORBUtility.dprintTrace(this, "releaseAll exit: " + " holder_="
-						+ ORBUtility.getThreadName(holder_) + " counter_="
-						+ counter_);
-		}
-	}
+            int result = counter_;
+            counter_ = 0;
+            holder_ = null;
+            notify();
+            return result;
+        } finally {
+            if (debug)
+                ORBUtility.dprintTrace(this, "releaseAll exit: " + " holder_="
+                        + ORBUtility.getThreadName(holder_) + " counter_="
+                        + counter_);
+        }
+    }
 
-	public boolean attempt(long msecs) throws InterruptedException {
-		if (Thread.interrupted())
-			throw new InterruptedException();
+    public boolean attempt(long msecs) throws InterruptedException {
+        if (Thread.interrupted())
+            throw new InterruptedException();
 
-		synchronized (this) {
-			try {
-				if (debug)
-					ORBUtility.dprintTrace(this, "attempt enter: msecs=" + msecs
-							+ " holder_=" + ORBUtility.getThreadName(holder_)
-							+ " counter_=" + counter_);
+        synchronized (this) {
+            try {
+                if (debug)
+                    ORBUtility.dprintTrace(this, "attempt enter: msecs=" + msecs
+                            + " holder_=" + ORBUtility.getThreadName(holder_)
+                            + " counter_=" + counter_);
 
-				Thread thr = Thread.currentThread();
+                Thread thr = Thread.currentThread();
 
-				if (counter_ == 0) {
-					holder_ = thr;
-					counter_ = 1;
-					return true;
-				} else if (msecs <= 0) {
-					return false;
-				} else {
-					long waitTime = msecs;
-					long start = System.currentTimeMillis();
-					try {
-						for (;;) {
-							wait(waitTime);
-							if (counter_ == 0) {
-								holder_ = thr;
-								counter_ = 1;
-								return true;
-							} else {
-								waitTime = msecs - (System.currentTimeMillis()
-										- start);
+                if (counter_ == 0) {
+                    holder_ = thr;
+                    counter_ = 1;
+                    return true;
+                } else if (msecs <= 0) {
+                    return false;
+                } else {
+                    long waitTime = msecs;
+                    long start = System.currentTimeMillis();
+                    try {
+                        for (;;) {
+                            wait(waitTime);
+                            if (counter_ == 0) {
+                                holder_ = thr;
+                                counter_ = 1;
+                                return true;
+                            } else {
+                                waitTime = msecs - (System.currentTimeMillis()
+                                        - start);
 
-								if (waitTime <= 0)
-									return false;
-							}
-						}
-					} catch (InterruptedException ex) {
-						notify();
-						throw ex;
-					}
-				}
-			} finally {
-				if (debug)
-					ORBUtility.dprintTrace(this, "attempt exit: " + " holder_="
-							+ ORBUtility.getThreadName(holder_) + " counter_="
-							+ counter_);
-			}
-		}
-	}
+                                if (waitTime <= 0)
+                                    return false;
+                            }
+                        }
+                    } catch (InterruptedException ex) {
+                        notify();
+                        throw ex;
+                    }
+                }
+            } finally {
+                if (debug)
+                    ORBUtility.dprintTrace(this, "attempt exit: " + " holder_="
+                            + ORBUtility.getThreadName(holder_) + " counter_="
+                            + counter_);
+            }
+        }
+    }
 }

@@ -20,28 +20,28 @@ import javax.naming.NamingException;
  * @since 1.3
  */
 public class InvalidSearchFilterException extends NamingException {
-	/**
-	 * Constructs a new instance of InvalidSearchFilterException. All fields are
-	 * set to null.
-	 */
-	public InvalidSearchFilterException() {
-		super();
-	}
+    /**
+     * Constructs a new instance of InvalidSearchFilterException. All fields are
+     * set to null.
+     */
+    public InvalidSearchFilterException() {
+        super();
+    }
 
-	/**
-	 * Constructs a new instance of InvalidSearchFilterException with an
-	 * explanation. All other fields are set to null.
-	 * 
-	 * @param msg
-	 *            Detail about this exception. Can be null.
-	 * @see java.lang.Throwable#getMessage
-	 */
-	public InvalidSearchFilterException(String msg) {
-		super(msg);
-	}
+    /**
+     * Constructs a new instance of InvalidSearchFilterException with an
+     * explanation. All other fields are set to null.
+     * 
+     * @param msg
+     *            Detail about this exception. Can be null.
+     * @see java.lang.Throwable#getMessage
+     */
+    public InvalidSearchFilterException(String msg) {
+        super(msg);
+    }
 
-	/**
-	 * Use serialVersionUID from JNDI 1.1.1 for interoperability
-	 */
-	private static final long serialVersionUID = 2902700940682875441L;
+    /**
+     * Use serialVersionUID from JNDI 1.1.1 for interoperability
+     */
+    private static final long serialVersionUID = 2902700940682875441L;
 }

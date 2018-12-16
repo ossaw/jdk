@@ -43,83 +43,83 @@ import sun.java2d.cmm.ProfileDeferralInfo;
 
 public class ICC_ProfileGray extends ICC_Profile {
 
-	static final long serialVersionUID = -1124721290732002649L;
+    static final long serialVersionUID = -1124721290732002649L;
 
-	/**
-	 * Constructs a new ICC_ProfileGray from a CMM ID.
-	 */
-	ICC_ProfileGray(Profile p) {
-		super(p);
-	}
+    /**
+     * Constructs a new ICC_ProfileGray from a CMM ID.
+     */
+    ICC_ProfileGray(Profile p) {
+        super(p);
+    }
 
-	/**
-	 * Constructs a new ICC_ProfileGray from a ProfileDeferralInfo object.
-	 */
-	ICC_ProfileGray(ProfileDeferralInfo pdi) {
-		super(pdi);
-	}
+    /**
+     * Constructs a new ICC_ProfileGray from a ProfileDeferralInfo object.
+     */
+    ICC_ProfileGray(ProfileDeferralInfo pdi) {
+        super(pdi);
+    }
 
-	/**
-	 * Returns a float array of length 3 containing the X, Y, and Z components
-	 * of the mediaWhitePointTag in the ICC profile.
-	 * 
-	 * @return an array containing the components of the mediaWhitePointTag in
-	 *         the ICC profile.
-	 */
-	public float[] getMediaWhitePoint() {
-		return super.getMediaWhitePoint();
-	}
+    /**
+     * Returns a float array of length 3 containing the X, Y, and Z components
+     * of the mediaWhitePointTag in the ICC profile.
+     * 
+     * @return an array containing the components of the mediaWhitePointTag in
+     *         the ICC profile.
+     */
+    public float[] getMediaWhitePoint() {
+        return super.getMediaWhitePoint();
+    }
 
-	/**
-	 * Returns a gamma value representing the tone reproduction curve (TRC). If
-	 * the profile represents the TRC as a table rather than a single gamma
-	 * value, then an exception is thrown. In this case the actual table can be
-	 * obtained via getTRC(). When using a gamma value, the PCS Y component is
-	 * computed as follows:
-	 * 
-	 * <pre>
-	
-	&nbsp;                         gamma
-	&nbsp;        PCSY = deviceGray
-	 * 
-	 * </pre>
-	 * 
-	 * @return the gamma value as a float.
-	 * @exception ProfileDataException
-	 *                                 if the profile does not specify the TRC
-	 *                                 as a single gamma
-	 *                                 value.
-	 */
-	public float getGamma() {
-		float theGamma;
+    /**
+     * Returns a gamma value representing the tone reproduction curve (TRC). If
+     * the profile represents the TRC as a table rather than a single gamma
+     * value, then an exception is thrown. In this case the actual table can be
+     * obtained via getTRC(). When using a gamma value, the PCS Y component is
+     * computed as follows:
+     * 
+     * <pre>
+    
+    &nbsp;                         gamma
+    &nbsp;        PCSY = deviceGray
+     * 
+     * </pre>
+     * 
+     * @return the gamma value as a float.
+     * @exception ProfileDataException
+     *                                 if the profile does not specify the TRC
+     *                                 as a single gamma
+     *                                 value.
+     */
+    public float getGamma() {
+        float theGamma;
 
-		theGamma = super.getGamma(ICC_Profile.icSigGrayTRCTag);
-		return theGamma;
-	}
+        theGamma = super.getGamma(ICC_Profile.icSigGrayTRCTag);
+        return theGamma;
+    }
 
-	/**
-	 * Returns the TRC as an array of shorts. If the profile has specified the
-	 * TRC as linear (gamma = 1.0) or as a simple gamma value, this method
-	 * throws an exception, and the getGamma() method should be used to get the
-	 * gamma value. Otherwise the short array returned here represents a lookup
-	 * table where the input Gray value is conceptually in the range [0.0, 1.0].
-	 * Value 0.0 maps to array index 0 and value 1.0 maps to array index
-	 * length-1. Interpolation may be used to generate output values for input
-	 * values which do not map exactly to an index in the array. Output values
-	 * also map linearly to the range [0.0, 1.0]. Value 0.0 is represented by an
-	 * array value of 0x0000 and value 1.0 by 0xFFFF, i.e. the values are really
-	 * unsigned short values, although they are returned in a short array.
-	 * 
-	 * @return a short array representing the TRC.
-	 * @exception ProfileDataException
-	 *                                 if the profile does not specify the TRC
-	 *                                 as a table.
-	 */
-	public short[] getTRC() {
-		short[] theTRC;
+    /**
+     * Returns the TRC as an array of shorts. If the profile has specified the
+     * TRC as linear (gamma = 1.0) or as a simple gamma value, this method
+     * throws an exception, and the getGamma() method should be used to get the
+     * gamma value. Otherwise the short array returned here represents a lookup
+     * table where the input Gray value is conceptually in the range [0.0, 1.0].
+     * Value 0.0 maps to array index 0 and value 1.0 maps to array index
+     * length-1. Interpolation may be used to generate output values for input
+     * values which do not map exactly to an index in the array. Output values
+     * also map linearly to the range [0.0, 1.0]. Value 0.0 is represented by an
+     * array value of 0x0000 and value 1.0 by 0xFFFF, i.e. the values are really
+     * unsigned short values, although they are returned in a short array.
+     * 
+     * @return a short array representing the TRC.
+     * @exception ProfileDataException
+     *                                 if the profile does not specify the TRC
+     *                                 as a table.
+     */
+    public short[] getTRC() {
+        short[] theTRC;
 
-		theTRC = super.getTRC(ICC_Profile.icSigGrayTRCTag);
-		return theTRC;
-	}
+        theTRC = super.getTRC(ICC_Profile.icSigGrayTRCTag);
+        return theTRC;
+    }
 
 }

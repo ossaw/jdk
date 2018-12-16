@@ -17,50 +17,50 @@ package org.omg.CORBA;
 
 public final class BAD_QOS extends SystemException {
 
-	/**
-	 * Constructs an <code>BAD_QOS</code> exception with minor code set to 0 and
-	 * CompletionStatus set to COMPLETED_NO.
-	 */
-	public BAD_QOS() {
-		this("");
-	}
+    /**
+     * Constructs an <code>BAD_QOS</code> exception with minor code set to 0 and
+     * CompletionStatus set to COMPLETED_NO.
+     */
+    public BAD_QOS() {
+        this("");
+    }
 
-	/**
-	 * Constructs an <code>BAD_QOS</code> exception with the specified message.
-	 *
-	 * @param detailMessage
-	 *                      string containing a detailed message.
-	 */
-	public BAD_QOS(String detailMessage) {
-		this(detailMessage, 0, CompletionStatus.COMPLETED_NO);
-	}
+    /**
+     * Constructs an <code>BAD_QOS</code> exception with the specified message.
+     *
+     * @param detailMessage
+     *                      string containing a detailed message.
+     */
+    public BAD_QOS(String detailMessage) {
+        this(detailMessage, 0, CompletionStatus.COMPLETED_NO);
+    }
 
-	/**
-	 * Constructs an <code>BAD_QOS</code> exception with the specified minor
-	 * code and completion status.
-	 *
-	 * @param minorCode
-	 *                         minor code.
-	 * @param completionStatus
-	 *                         completion status.
-	 */
-	public BAD_QOS(int minorCode, CompletionStatus completionStatus) {
-		this("", minorCode, completionStatus);
-	}
+    /**
+     * Constructs an <code>BAD_QOS</code> exception with the specified minor
+     * code and completion status.
+     *
+     * @param minorCode
+     *                         minor code.
+     * @param completionStatus
+     *                         completion status.
+     */
+    public BAD_QOS(int minorCode, CompletionStatus completionStatus) {
+        this("", minorCode, completionStatus);
+    }
 
-	/**
-	 * Constructs an <code>BAD_QOS</code> exception with the specified message,
-	 * minor code, and completion status.
-	 *
-	 * @param detailMessage
-	 *                         string containing a detailed message.
-	 * @param minorCode
-	 *                         minor code.
-	 * @param completionStatus
-	 *                         completion status.
-	 */
-	public BAD_QOS(String detailMessage, int minorCode,
-			CompletionStatus completionStatus) {
-		super(detailMessage, minorCode, completionStatus);
-	}
+    /**
+     * Constructs an <code>BAD_QOS</code> exception with the specified message,
+     * minor code, and completion status.
+     *
+     * @param detailMessage
+     *                         string containing a detailed message.
+     * @param minorCode
+     *                         minor code.
+     * @param completionStatus
+     *                         completion status.
+     */
+    public BAD_QOS(String detailMessage, int minorCode,
+            CompletionStatus completionStatus) {
+        super(detailMessage, minorCode, completionStatus);
+    }
 }

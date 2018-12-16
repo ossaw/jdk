@@ -71,111 +71,111 @@ import java.util.ResourceBundle;
  * is not guaranteed that orientation objects will be unique.
  */
 public final class ComponentOrientation implements java.io.Serializable {
-	/*
-	 * serialVersionUID
-	 */
-	private static final long serialVersionUID = -4113291392143563828L;
+    /*
+     * serialVersionUID
+     */
+    private static final long serialVersionUID = -4113291392143563828L;
 
-	// Internal constants used in the implementation
-	private static final int UNK_BIT = 1;
-	private static final int HORIZ_BIT = 2;
-	private static final int LTR_BIT = 4;
+    // Internal constants used in the implementation
+    private static final int UNK_BIT = 1;
+    private static final int HORIZ_BIT = 2;
+    private static final int LTR_BIT = 4;
 
-	/**
-	 * Items run left to right and lines flow top to bottom Examples: English,
-	 * French.
-	 */
-	public static final ComponentOrientation LEFT_TO_RIGHT = new ComponentOrientation(
-			HORIZ_BIT | LTR_BIT);
+    /**
+     * Items run left to right and lines flow top to bottom Examples: English,
+     * French.
+     */
+    public static final ComponentOrientation LEFT_TO_RIGHT = new ComponentOrientation(
+            HORIZ_BIT | LTR_BIT);
 
-	/**
-	 * Items run right to left and lines flow top to bottom Examples: Arabic,
-	 * Hebrew.
-	 */
-	public static final ComponentOrientation RIGHT_TO_LEFT = new ComponentOrientation(
-			HORIZ_BIT);
+    /**
+     * Items run right to left and lines flow top to bottom Examples: Arabic,
+     * Hebrew.
+     */
+    public static final ComponentOrientation RIGHT_TO_LEFT = new ComponentOrientation(
+            HORIZ_BIT);
 
-	/**
-	 * Indicates that a component's orientation has not been set. To preserve
-	 * the behavior of existing applications, isLeftToRight will return true for
-	 * this value.
-	 */
-	public static final ComponentOrientation UNKNOWN = new ComponentOrientation(
-			HORIZ_BIT | LTR_BIT | UNK_BIT);
+    /**
+     * Indicates that a component's orientation has not been set. To preserve
+     * the behavior of existing applications, isLeftToRight will return true for
+     * this value.
+     */
+    public static final ComponentOrientation UNKNOWN = new ComponentOrientation(
+            HORIZ_BIT | LTR_BIT | UNK_BIT);
 
-	/**
-	 * Are lines horizontal? This will return true for horizontal, left-to-right
-	 * writing systems such as Roman.
-	 */
-	public boolean isHorizontal() {
-		return (orientation & HORIZ_BIT) != 0;
-	}
+    /**
+     * Are lines horizontal? This will return true for horizontal, left-to-right
+     * writing systems such as Roman.
+     */
+    public boolean isHorizontal() {
+        return (orientation & HORIZ_BIT) != 0;
+    }
 
-	/**
-	 * HorizontalLines: Do items run left-to-right?<br>
-	 * Vertical Lines: Do lines run left-to-right?<br>
-	 * This will return true for horizontal, left-to-right writing systems such
-	 * as Roman.
-	 */
-	public boolean isLeftToRight() {
-		return (orientation & LTR_BIT) != 0;
-	}
+    /**
+     * HorizontalLines: Do items run left-to-right?<br>
+     * Vertical Lines: Do lines run left-to-right?<br>
+     * This will return true for horizontal, left-to-right writing systems such
+     * as Roman.
+     */
+    public boolean isLeftToRight() {
+        return (orientation & LTR_BIT) != 0;
+    }
 
-	/**
-	 * Returns the orientation that is appropriate for the given locale.
-	 * 
-	 * @param locale
-	 *               the specified locale
-	 */
-	public static ComponentOrientation getOrientation(Locale locale) {
-		// A more flexible implementation would consult a ResourceBundle
-		// to find the appropriate orientation. Until pluggable locales
-		// are introduced however, the flexiblity isn't really needed.
-		// So we choose efficiency instead.
-		String lang = locale.getLanguage();
-		if ("iw".equals(lang) || "ar".equals(lang) || "fa".equals(lang) || "ur"
-				.equals(lang)) {
-			return RIGHT_TO_LEFT;
-		} else {
-			return LEFT_TO_RIGHT;
-		}
-	}
+    /**
+     * Returns the orientation that is appropriate for the given locale.
+     * 
+     * @param locale
+     *               the specified locale
+     */
+    public static ComponentOrientation getOrientation(Locale locale) {
+        // A more flexible implementation would consult a ResourceBundle
+        // to find the appropriate orientation. Until pluggable locales
+        // are introduced however, the flexiblity isn't really needed.
+        // So we choose efficiency instead.
+        String lang = locale.getLanguage();
+        if ("iw".equals(lang) || "ar".equals(lang) || "fa".equals(lang) || "ur"
+                .equals(lang)) {
+            return RIGHT_TO_LEFT;
+        } else {
+            return LEFT_TO_RIGHT;
+        }
+    }
 
-	/**
-	 * Returns the orientation appropriate for the given ResourceBundle's
-	 * localization. Three approaches are tried, in the following order:
-	 * <ol>
-	 * <li>Retrieve a ComponentOrientation object from the ResourceBundle using
-	 * the string "Orientation" as the key.
-	 * <li>Use the ResourceBundle.getLocale to determine the bundle's locale,
-	 * then return the orientation for that locale.
-	 * <li>Return the default locale's orientation.
-	 * </ol>
-	 *
-	 * @deprecated As of J2SE 1.4, use {@link #getOrientation(java.util.Locale)}
-	 *             .
-	 */
-	@Deprecated
-	public static ComponentOrientation getOrientation(ResourceBundle bdl) {
-		ComponentOrientation result = null;
+    /**
+     * Returns the orientation appropriate for the given ResourceBundle's
+     * localization. Three approaches are tried, in the following order:
+     * <ol>
+     * <li>Retrieve a ComponentOrientation object from the ResourceBundle using
+     * the string "Orientation" as the key.
+     * <li>Use the ResourceBundle.getLocale to determine the bundle's locale,
+     * then return the orientation for that locale.
+     * <li>Return the default locale's orientation.
+     * </ol>
+     *
+     * @deprecated As of J2SE 1.4, use {@link #getOrientation(java.util.Locale)}
+     *             .
+     */
+    @Deprecated
+    public static ComponentOrientation getOrientation(ResourceBundle bdl) {
+        ComponentOrientation result = null;
 
-		try {
-			result = (ComponentOrientation) bdl.getObject("Orientation");
-		} catch (Exception e) {
-		}
+        try {
+            result = (ComponentOrientation) bdl.getObject("Orientation");
+        } catch (Exception e) {
+        }
 
-		if (result == null) {
-			result = getOrientation(bdl.getLocale());
-		}
-		if (result == null) {
-			result = getOrientation(Locale.getDefault());
-		}
-		return result;
-	}
+        if (result == null) {
+            result = getOrientation(bdl.getLocale());
+        }
+        if (result == null) {
+            result = getOrientation(Locale.getDefault());
+        }
+        return result;
+    }
 
-	private int orientation;
+    private int orientation;
 
-	private ComponentOrientation(int value) {
-		orientation = value;
-	}
+    private ComponentOrientation(int value) {
+        orientation = value;
+    }
 }

@@ -15,26 +15,26 @@ package javax.security.auth;
  */
 public class RefreshFailedException extends Exception {
 
-	private static final long serialVersionUID = 5058444488565265840L;
+    private static final long serialVersionUID = 5058444488565265840L;
 
-	/**
-	 * Constructs a RefreshFailedException with no detail message. A detail
-	 * message is a String that describes this particular exception.
-	 */
-	public RefreshFailedException() {
-		super();
-	}
+    /**
+     * Constructs a RefreshFailedException with no detail message. A detail
+     * message is a String that describes this particular exception.
+     */
+    public RefreshFailedException() {
+        super();
+    }
 
-	/**
-	 * Constructs a RefreshFailedException with the specified detail message. A
-	 * detail message is a String that describes this particular exception.
-	 *
-	 * <p>
-	 *
-	 * @param msg
-	 *            the detail message.
-	 */
-	public RefreshFailedException(String msg) {
-		super(msg);
-	}
+    /**
+     * Constructs a RefreshFailedException with the specified detail message. A
+     * detail message is a String that describes this particular exception.
+     *
+     * <p>
+     *
+     * @param msg
+     *            the detail message.
+     */
+    public RefreshFailedException(String msg) {
+        super(msg);
+    }
 }

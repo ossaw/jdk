@@ -30,51 +30,51 @@ import com.sun.corba.se.impl.oa.NullServantImpl;
  * </ul>
  */
 public class POAPolicyMediatorImpl_R_AOM extends POAPolicyMediatorBase_R {
-	POAPolicyMediatorImpl_R_AOM(Policies policies, POAImpl poa) {
-		// assert policies.retainServants()
-		super(policies, poa);
+    POAPolicyMediatorImpl_R_AOM(Policies policies, POAImpl poa) {
+        // assert policies.retainServants()
+        super(policies, poa);
 
-		// policies.useActiveObjectMapOnly()
-		if (!policies.useActiveMapOnly())
-			throw poa.invocationWrapper().policyMediatorBadPolicyInFactory();
-	}
+        // policies.useActiveObjectMapOnly()
+        if (!policies.useActiveMapOnly())
+            throw poa.invocationWrapper().policyMediatorBadPolicyInFactory();
+    }
 
-	protected java.lang.Object internalGetServant(byte[] id, String operation)
-			throws ForwardRequest {
-		java.lang.Object servant = internalIdToServant(id);
-		if (servant == null)
-			servant = new NullServantImpl(poa.invocationWrapper()
-					.nullServant());
-		return servant;
-	}
+    protected java.lang.Object internalGetServant(byte[] id, String operation)
+            throws ForwardRequest {
+        java.lang.Object servant = internalIdToServant(id);
+        if (servant == null)
+            servant = new NullServantImpl(poa.invocationWrapper()
+                    .nullServant());
+        return servant;
+    }
 
-	public void etherealizeAll() {
-		// NO-OP
-	}
+    public void etherealizeAll() {
+        // NO-OP
+    }
 
-	public ServantManager getServantManager() throws WrongPolicy {
-		throw new WrongPolicy();
-	}
+    public ServantManager getServantManager() throws WrongPolicy {
+        throw new WrongPolicy();
+    }
 
-	public void setServantManager(ServantManager servantManager)
-			throws WrongPolicy {
-		throw new WrongPolicy();
-	}
+    public void setServantManager(ServantManager servantManager)
+            throws WrongPolicy {
+        throw new WrongPolicy();
+    }
 
-	public Servant getDefaultServant() throws NoServant, WrongPolicy {
-		throw new WrongPolicy();
-	}
+    public Servant getDefaultServant() throws NoServant, WrongPolicy {
+        throw new WrongPolicy();
+    }
 
-	public void setDefaultServant(Servant servant) throws WrongPolicy {
-		throw new WrongPolicy();
-	}
+    public void setDefaultServant(Servant servant) throws WrongPolicy {
+        throw new WrongPolicy();
+    }
 
-	public Servant idToServant(byte[] id) throws WrongPolicy, ObjectNotActive {
-		Servant s = internalIdToServant(id);
+    public Servant idToServant(byte[] id) throws WrongPolicy, ObjectNotActive {
+        Servant s = internalIdToServant(id);
 
-		if (s == null)
-			throw new ObjectNotActive();
-		else
-			return s;
-	}
+        if (s == null)
+            throw new ObjectNotActive();
+        else
+            return s;
+    }
 }

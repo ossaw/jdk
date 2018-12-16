@@ -10,15 +10,15 @@ import com.sun.corba.se.spi.ior.IOR;
 
 public interface LocateReplyOrReplyMessage extends Message {
 
-	int getRequestId();
+    int getRequestId();
 
-	int getReplyStatus();
+    int getReplyStatus();
 
-	SystemException getSystemException(String message);
+    SystemException getSystemException(String message);
 
-	IOR getIOR();
+    IOR getIOR();
 
-	short getAddrDisposition();
+    short getAddrDisposition();
 }
 
 // End of file.

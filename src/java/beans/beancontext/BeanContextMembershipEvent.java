@@ -33,98 +33,98 @@ import java.util.Iterator;
  * @see java.beans.beancontext.BeanContextMembershipListener
  */
 public class BeanContextMembershipEvent extends BeanContextEvent {
-	private static final long serialVersionUID = 3499346510334590959L;
+    private static final long serialVersionUID = 3499346510334590959L;
 
-	/**
-	 * Contruct a BeanContextMembershipEvent
-	 *
-	 * @param bc
-	 *                The BeanContext source
-	 * @param changes
-	 *                The Children affected
-	 * @throws NullPointerException
-	 *                              if <CODE>changes</CODE> is <CODE>null</CODE>
-	 */
+    /**
+     * Contruct a BeanContextMembershipEvent
+     *
+     * @param bc
+     *                The BeanContext source
+     * @param changes
+     *                The Children affected
+     * @throws NullPointerException
+     *                              if <CODE>changes</CODE> is <CODE>null</CODE>
+     */
 
-	@SuppressWarnings("rawtypes")
-	public BeanContextMembershipEvent(BeanContext bc, Collection changes) {
-		super(bc);
+    @SuppressWarnings("rawtypes")
+    public BeanContextMembershipEvent(BeanContext bc, Collection changes) {
+        super(bc);
 
-		if (changes == null)
-			throw new NullPointerException(
-					"BeanContextMembershipEvent constructor:  changes is null.");
+        if (changes == null)
+            throw new NullPointerException(
+                    "BeanContextMembershipEvent constructor:  changes is null.");
 
-		children = changes;
-	}
+        children = changes;
+    }
 
-	/**
-	 * Contruct a BeanContextMembershipEvent
-	 *
-	 * @param bc
-	 *                The BeanContext source
-	 * @param changes
-	 *                The Children effected
-	 * @exception NullPointerException
-	 *                                 if changes associated with this event are
-	 *                                 null.
-	 */
+    /**
+     * Contruct a BeanContextMembershipEvent
+     *
+     * @param bc
+     *                The BeanContext source
+     * @param changes
+     *                The Children effected
+     * @exception NullPointerException
+     *                                 if changes associated with this event are
+     *                                 null.
+     */
 
-	public BeanContextMembershipEvent(BeanContext bc, Object[] changes) {
-		super(bc);
+    public BeanContextMembershipEvent(BeanContext bc, Object[] changes) {
+        super(bc);
 
-		if (changes == null)
-			throw new NullPointerException(
-					"BeanContextMembershipEvent:  changes is null.");
+        if (changes == null)
+            throw new NullPointerException(
+                    "BeanContextMembershipEvent:  changes is null.");
 
-		children = Arrays.asList(changes);
-	}
+        children = Arrays.asList(changes);
+    }
 
-	/**
-	 * Gets the number of children affected by the notification.
-	 * 
-	 * @return the number of children affected by the notification
-	 */
-	public int size() {
-		return children.size();
-	}
+    /**
+     * Gets the number of children affected by the notification.
+     * 
+     * @return the number of children affected by the notification
+     */
+    public int size() {
+        return children.size();
+    }
 
-	/**
-	 * Is the child specified affected by the event?
-	 * 
-	 * @return <code>true</code> if affected, <code>false</code> if not
-	 * @param child
-	 *              the object to check for being affected
-	 */
-	public boolean contains(Object child) {
-		return children.contains(child);
-	}
+    /**
+     * Is the child specified affected by the event?
+     * 
+     * @return <code>true</code> if affected, <code>false</code> if not
+     * @param child
+     *              the object to check for being affected
+     */
+    public boolean contains(Object child) {
+        return children.contains(child);
+    }
 
-	/**
-	 * Gets the array of children affected by this event.
-	 * 
-	 * @return the array of children affected
-	 */
-	public Object[] toArray() {
-		return children.toArray();
-	}
+    /**
+     * Gets the array of children affected by this event.
+     * 
+     * @return the array of children affected
+     */
+    public Object[] toArray() {
+        return children.toArray();
+    }
 
-	/**
-	 * Gets the array of children affected by this event.
-	 * 
-	 * @return the array of children effected
-	 */
-	@SuppressWarnings("rawtypes")
-	public Iterator iterator() {
-		return children.iterator();
-	}
+    /**
+     * Gets the array of children affected by this event.
+     * 
+     * @return the array of children effected
+     */
+    @SuppressWarnings("rawtypes")
+    public Iterator iterator() {
+        return children.iterator();
+    }
 
-	/*
-	 * fields
-	 */
+    /*
+     * fields
+     */
 
-	/**
-	 * The list of children affected by this event notification.
-	 */
-	@SuppressWarnings("rawtypes")
-	protected Collection children;
+    /**
+     * The list of children affected by this event notification.
+     */
+    @SuppressWarnings("rawtypes")
+    protected Collection children;
 }

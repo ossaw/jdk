@@ -21,16 +21,16 @@ package com.sun.corba.se.spi.orbutil.fsm;
  * @author Ken Cavanaugh
  */
 public interface FSM {
-	/**
-	 * Get the current state of this FSM.
-	 */
-	public State getState();
+    /**
+     * Get the current state of this FSM.
+     */
+    public State getState();
 
-	/**
-	 * Perform the action and transition to the next state based on the current
-	 * state of the FSM and the input.
-	 */
-	public void doIt(Input in);
+    /**
+     * Perform the action and transition to the next state based on the current
+     * state of the FSM and the input.
+     */
+    public void doIt(Input in);
 }
 
 // end of FSM.java

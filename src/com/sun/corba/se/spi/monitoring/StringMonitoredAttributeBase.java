@@ -18,36 +18,36 @@ import java.util.*;
  *         </p>
  */
 public abstract class StringMonitoredAttributeBase extends
-		MonitoredAttributeBase {
+        MonitoredAttributeBase {
 
-	///////////////////////////////////////
-	// operations
+    ///////////////////////////////////////
+    // operations
 
-	/**
-	 * <p>
-	 * Constructs StringMonitoredAttribute with the MonitoredAttributeInfo built
-	 * with the class type of String.
-	 * </p>
-	 * <p>
-	 *
-	 * @param name
-	 *                    of this attribute
-	 *                    </p>
-	 *                    <p>
-	 * @param description
-	 *                    of this attribute
-	 *                    </p>
-	 *                    <p>
-	 * @return a StringMonitoredAttributeBase
-	 *         </p>
-	 */
-	public StringMonitoredAttributeBase(String name, String description) {
-		super(name);
-		MonitoredAttributeInfoFactory f = MonitoringFactories
-				.getMonitoredAttributeInfoFactory();
-		MonitoredAttributeInfo maInfo = f.createMonitoredAttributeInfo(
-				description, String.class, false, false);
-		this.setMonitoredAttributeInfo(maInfo);
-	} // end StringMonitoredAttributeBase
+    /**
+     * <p>
+     * Constructs StringMonitoredAttribute with the MonitoredAttributeInfo built
+     * with the class type of String.
+     * </p>
+     * <p>
+     *
+     * @param name
+     *                    of this attribute
+     *                    </p>
+     *                    <p>
+     * @param description
+     *                    of this attribute
+     *                    </p>
+     *                    <p>
+     * @return a StringMonitoredAttributeBase
+     *         </p>
+     */
+    public StringMonitoredAttributeBase(String name, String description) {
+        super(name);
+        MonitoredAttributeInfoFactory f = MonitoringFactories
+                .getMonitoredAttributeInfoFactory();
+        MonitoredAttributeInfo maInfo = f.createMonitoredAttributeInfo(
+                description, String.class, false, false);
+        this.setMonitoredAttributeInfo(maInfo);
+    } // end StringMonitoredAttributeBase
 
 } // end StringMonitoredAttributeBase

@@ -64,5 +64,5 @@ import static java.lang.annotation.RetentionPolicy.*;
 @Retention(RUNTIME)
 @Target({ PACKAGE, TYPE })
 public @interface XmlAccessorOrder {
-	XmlAccessOrder value() default XmlAccessOrder.UNDEFINED;
+    XmlAccessOrder value() default XmlAccessOrder.UNDEFINED;
 }

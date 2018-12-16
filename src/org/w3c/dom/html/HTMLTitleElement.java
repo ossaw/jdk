@@ -24,11 +24,11 @@ package org.w3c.dom.html;
  * Model (DOM) Level 2 Specification</a>.
  */
 public interface HTMLTitleElement extends HTMLElement {
-	/**
-	 * The specified title as a string.
-	 */
-	public String getText();
+    /**
+     * The specified title as a string.
+     */
+    public String getText();
 
-	public void setText(String text);
+    public void setText(String text);
 
 }

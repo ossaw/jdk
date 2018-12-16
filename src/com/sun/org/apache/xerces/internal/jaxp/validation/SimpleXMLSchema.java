@@ -30,53 +30,53 @@ import com.sun.org.apache.xerces.internal.xni.grammars.XMLGrammarPool;
  * @author Michael Glavassevich, IBM
  */
 final class SimpleXMLSchema extends AbstractXMLSchema implements
-		XMLGrammarPool {
+        XMLGrammarPool {
 
-	/** Zero length grammar array. */
-	private static final Grammar[] ZERO_LENGTH_GRAMMAR_ARRAY = new Grammar[0];
+    /** Zero length grammar array. */
+    private static final Grammar[] ZERO_LENGTH_GRAMMAR_ARRAY = new Grammar[0];
 
-	private Grammar fGrammar;
-	private Grammar[] fGrammars;
-	private XMLGrammarDescription fGrammarDescription;
+    private Grammar fGrammar;
+    private Grammar[] fGrammars;
+    private XMLGrammarDescription fGrammarDescription;
 
-	public SimpleXMLSchema(Grammar grammar) {
-		fGrammar = grammar;
-		fGrammars = new Grammar[] { grammar };
-		fGrammarDescription = grammar.getGrammarDescription();
-	}
+    public SimpleXMLSchema(Grammar grammar) {
+        fGrammar = grammar;
+        fGrammars = new Grammar[] { grammar };
+        fGrammarDescription = grammar.getGrammarDescription();
+    }
 
-	/*
-	 * XMLGrammarPool methods
-	 */
+    /*
+     * XMLGrammarPool methods
+     */
 
-	public Grammar[] retrieveInitialGrammarSet(String grammarType) {
-		return XMLGrammarDescription.XML_SCHEMA.equals(grammarType)
-				? (Grammar[]) fGrammars.clone()
-				: ZERO_LENGTH_GRAMMAR_ARRAY;
-	}
+    public Grammar[] retrieveInitialGrammarSet(String grammarType) {
+        return XMLGrammarDescription.XML_SCHEMA.equals(grammarType)
+                ? (Grammar[]) fGrammars.clone()
+                : ZERO_LENGTH_GRAMMAR_ARRAY;
+    }
 
-	public void cacheGrammars(String grammarType, Grammar[] grammars) {}
+    public void cacheGrammars(String grammarType, Grammar[] grammars) {}
 
-	public Grammar retrieveGrammar(XMLGrammarDescription desc) {
-		return fGrammarDescription.equals(desc) ? fGrammar : null;
-	}
+    public Grammar retrieveGrammar(XMLGrammarDescription desc) {
+        return fGrammarDescription.equals(desc) ? fGrammar : null;
+    }
 
-	public void lockPool() {}
+    public void lockPool() {}
 
-	public void unlockPool() {}
+    public void unlockPool() {}
 
-	public void clear() {}
+    public void clear() {}
 
-	/*
-	 * XSGrammarPoolContainer methods
-	 */
+    /*
+     * XSGrammarPoolContainer methods
+     */
 
-	public XMLGrammarPool getGrammarPool() {
-		return this;
-	}
+    public XMLGrammarPool getGrammarPool() {
+        return this;
+    }
 
-	public boolean isFullyComposed() {
-		return true;
-	}
+    public boolean isFullyComposed() {
+        return true;
+    }
 
 } // SimpleXMLSchema

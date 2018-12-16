@@ -20,32 +20,32 @@ import java.rmi.RemoteException;
 @Deprecated
 public class SkeletonNotFoundException extends RemoteException {
 
-	/* indicate compatibility with JDK 1.1.x version of class */
-	private static final long serialVersionUID = -7860299673822761231L;
+    /* indicate compatibility with JDK 1.1.x version of class */
+    private static final long serialVersionUID = -7860299673822761231L;
 
-	/**
-	 * Constructs a <code>SkeletonNotFoundException</code> with the specified
-	 * detail message.
-	 *
-	 * @param s
-	 *          the detail message.
-	 * @since JDK1.1
-	 */
-	public SkeletonNotFoundException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs a <code>SkeletonNotFoundException</code> with the specified
+     * detail message.
+     *
+     * @param s
+     *          the detail message.
+     * @since JDK1.1
+     */
+    public SkeletonNotFoundException(String s) {
+        super(s);
+    }
 
-	/**
-	 * Constructs a <code>SkeletonNotFoundException</code> with the specified
-	 * detail message and nested exception.
-	 *
-	 * @param s
-	 *           the detail message.
-	 * @param ex
-	 *           the nested exception
-	 * @since JDK1.1
-	 */
-	public SkeletonNotFoundException(String s, Exception ex) {
-		super(s, ex);
-	}
+    /**
+     * Constructs a <code>SkeletonNotFoundException</code> with the specified
+     * detail message and nested exception.
+     *
+     * @param s
+     *           the detail message.
+     * @param ex
+     *           the nested exception
+     * @since JDK1.1
+     */
+    public SkeletonNotFoundException(String s, Exception ex) {
+        super(s, ex);
+    }
 }

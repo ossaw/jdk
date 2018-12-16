@@ -14,5 +14,5 @@ package com.sun.corba.se.PortableActivationIDL;
  * implementation.
  */
 public interface ServerManager extends ServerManagerOperations,
-		com.sun.corba.se.PortableActivationIDL.Activator,
-		com.sun.corba.se.PortableActivationIDL.Locator {} // interface ServerManager
+        com.sun.corba.se.PortableActivationIDL.Activator,
+        com.sun.corba.se.PortableActivationIDL.Locator {} // interface ServerManager

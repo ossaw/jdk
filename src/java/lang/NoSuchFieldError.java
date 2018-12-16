@@ -16,23 +16,23 @@ package java.lang;
  * @since JDK1.0
  */
 public class NoSuchFieldError extends IncompatibleClassChangeError {
-	private static final long serialVersionUID = -3456430195886129035L;
+    private static final long serialVersionUID = -3456430195886129035L;
 
-	/**
-	 * Constructs a <code>NoSuchFieldError</code> with no detail message.
-	 */
-	public NoSuchFieldError() {
-		super();
-	}
+    /**
+     * Constructs a <code>NoSuchFieldError</code> with no detail message.
+     */
+    public NoSuchFieldError() {
+        super();
+    }
 
-	/**
-	 * Constructs a <code>NoSuchFieldError</code> with the specified detail
-	 * message.
-	 *
-	 * @param s
-	 *          the detail message.
-	 */
-	public NoSuchFieldError(String s) {
-		super(s);
-	}
+    /**
+     * Constructs a <code>NoSuchFieldError</code> with the specified detail
+     * message.
+     *
+     * @param s
+     *          the detail message.
+     */
+    public NoSuchFieldError(String s) {
+        super(s);
+    }
 }

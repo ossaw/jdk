@@ -25,14 +25,14 @@ import java.io.Serializable;
  */
 
 public interface ValueFactory {
-	/**
-	 * Is called by the ORB runtime while in the process of unmarshaling a value
-	 * type. A user shall implement this method as part of implementing a type
-	 * specific value factory.
-	 * 
-	 * @param is
-	 *           an InputStream object--from which the value will be read.
-	 * @return a Serializable object--the value read off of "is" Input stream.
-	 */
-	Serializable read_value(org.omg.CORBA_2_3.portable.InputStream is);
+    /**
+     * Is called by the ORB runtime while in the process of unmarshaling a value
+     * type. A user shall implement this method as part of implementing a type
+     * specific value factory.
+     * 
+     * @param is
+     *           an InputStream object--from which the value will be read.
+     * @return a Serializable object--the value read off of "is" Input stream.
+     */
+    Serializable read_value(org.omg.CORBA_2_3.portable.InputStream is);
 }

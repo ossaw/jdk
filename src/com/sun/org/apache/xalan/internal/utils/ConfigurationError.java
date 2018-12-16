@@ -25,32 +25,32 @@ package com.sun.org.apache.xalan.internal.utils;
  */
 public final class ConfigurationError extends Error {
 
-	//
-	// Data
-	//
+    //
+    // Data
+    //
 
-	/** Exception. */
-	private Exception exception;
+    /** Exception. */
+    private Exception exception;
 
-	//
-	// Constructors
-	//
+    //
+    // Constructors
+    //
 
-	/**
-	 * Construct a new instance with the specified detail string and exception.
-	 */
-	ConfigurationError(String msg, Exception x) {
-		super(msg);
-		this.exception = x;
-	} // <init>(String,Exception)
+    /**
+     * Construct a new instance with the specified detail string and exception.
+     */
+    ConfigurationError(String msg, Exception x) {
+        super(msg);
+        this.exception = x;
+    } // <init>(String,Exception)
 
-	//
-	// methods
-	//
+    //
+    // methods
+    //
 
-	/** Returns the exception associated to this error. */
-	public Exception getException() {
-		return exception;
-	} // getException():Exception
+    /** Returns the exception associated to this error. */
+    public Exception getException() {
+        return exception;
+    } // getException():Exception
 
 } // class ConfigurationError

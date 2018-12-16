@@ -29,21 +29,21 @@ package com.sun.image.codec.jpeg;
  * @since 1.2
  */
 public class ImageFormatException extends RuntimeException {
-	/**
-	 * Constructs an <code>ImageFormatException</code> with no detail message.
-	 */
-	public ImageFormatException() {
-		super();
-	}
+    /**
+     * Constructs an <code>ImageFormatException</code> with no detail message.
+     */
+    public ImageFormatException() {
+        super();
+    }
 
-	/**
-	 * Constructs an <code>ImageFormatException</code> with the specified
-	 * detailed message.
-	 *
-	 * @param s
-	 *          the message.
-	 */
-	public ImageFormatException(String s) {
-		super(s);
-	}
+    /**
+     * Constructs an <code>ImageFormatException</code> with the specified
+     * detailed message.
+     *
+     * @param s
+     *          the message.
+     */
+    public ImageFormatException(String s) {
+        super(s);
+    }
 }

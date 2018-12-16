@@ -17,32 +17,32 @@ package java.util;
  */
 public class MissingFormatWidthException extends IllegalFormatException {
 
-	private static final long serialVersionUID = 15560123L;
+    private static final long serialVersionUID = 15560123L;
 
-	private String s;
+    private String s;
 
-	/**
-	 * Constructs an instance of this class with the specified format specifier.
-	 *
-	 * @param s
-	 *          The format specifier which does not have a width
-	 */
-	public MissingFormatWidthException(String s) {
-		if (s == null)
-			throw new NullPointerException();
-		this.s = s;
-	}
+    /**
+     * Constructs an instance of this class with the specified format specifier.
+     *
+     * @param s
+     *          The format specifier which does not have a width
+     */
+    public MissingFormatWidthException(String s) {
+        if (s == null)
+            throw new NullPointerException();
+        this.s = s;
+    }
 
-	/**
-	 * Returns the format specifier which does not have a width.
-	 *
-	 * @return The format specifier which does not have a width
-	 */
-	public String getFormatSpecifier() {
-		return s;
-	}
+    /**
+     * Returns the format specifier which does not have a width.
+     *
+     * @return The format specifier which does not have a width
+     */
+    public String getFormatSpecifier() {
+        return s;
+    }
 
-	public String getMessage() {
-		return s;
-	}
+    public String getMessage() {
+        return s;
+    }
 }

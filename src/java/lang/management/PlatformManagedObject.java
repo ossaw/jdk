@@ -27,12 +27,12 @@ import javax.management.ObjectName;
  * @since 1.7
  */
 public interface PlatformManagedObject {
-	/**
-	 * Returns an {@link ObjectName ObjectName} instance representing the object
-	 * name of this platform managed object.
-	 *
-	 * @return an {@link ObjectName ObjectName} instance representing the object
-	 *         name of this platform managed object.
-	 */
-	public ObjectName getObjectName();
+    /**
+     * Returns an {@link ObjectName ObjectName} instance representing the object
+     * name of this platform managed object.
+     *
+     * @return an {@link ObjectName ObjectName} instance representing the object
+     *         name of this platform managed object.
+     */
+    public ObjectName getObjectName();
 }

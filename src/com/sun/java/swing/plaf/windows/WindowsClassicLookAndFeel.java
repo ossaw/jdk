@@ -17,7 +17,7 @@ package com.sun.java.swing.plaf.windows;
  * @since 1.5
  */
 public class WindowsClassicLookAndFeel extends WindowsLookAndFeel {
-	public String getName() {
-		return "Windows Classic";
-	}
+    public String getName() {
+        return "Windows Classic";
+    }
 }

@@ -31,9 +31,9 @@ package org.w3c.dom.stylesheets;
  * @since DOM Level 2
  */
 public interface LinkStyle {
-	/**
-	 * The style sheet.
-	 */
-	public StyleSheet getSheet();
+    /**
+     * The style sheet.
+     */
+    public StyleSheet getSheet();
 
 }

@@ -25,139 +25,139 @@ import java.security.Principal;
  */
 @jdk.Exported
 public class UnixNumericUserPrincipal implements Principal,
-		java.io.Serializable {
-	private static final long serialVersionUID = -4329764253802397821L;
+        java.io.Serializable {
+    private static final long serialVersionUID = -4329764253802397821L;
 
-	/**
-	 * @serial
-	 */
-	private String name;
+    /**
+     * @serial
+     */
+    private String name;
 
-	/**
-	 * Create a <code>UnixNumericUserPrincipal</code> using a
-	 * <code>String</code> representation of the user's identification number
-	 * (UID).
-	 *
-	 * <p>
-	 *
-	 * @param name
-	 *             the user identification number (UID) for this user.
-	 *
-	 * @exception NullPointerException
-	 *                                 if the <code>name</code> is
-	 *                                 <code>null</code>.
-	 */
-	public UnixNumericUserPrincipal(String name) {
-		if (name == null) {
-			java.text.MessageFormat form = new java.text.MessageFormat(
-					sun.security.util.ResourcesMgr.getString(
-							"invalid.null.input.value",
-							"sun.security.util.AuthResources"));
-			Object[] source = { "name" };
-			throw new NullPointerException(form.format(source));
-		}
+    /**
+     * Create a <code>UnixNumericUserPrincipal</code> using a
+     * <code>String</code> representation of the user's identification number
+     * (UID).
+     *
+     * <p>
+     *
+     * @param name
+     *             the user identification number (UID) for this user.
+     *
+     * @exception NullPointerException
+     *                                 if the <code>name</code> is
+     *                                 <code>null</code>.
+     */
+    public UnixNumericUserPrincipal(String name) {
+        if (name == null) {
+            java.text.MessageFormat form = new java.text.MessageFormat(
+                    sun.security.util.ResourcesMgr.getString(
+                            "invalid.null.input.value",
+                            "sun.security.util.AuthResources"));
+            Object[] source = { "name" };
+            throw new NullPointerException(form.format(source));
+        }
 
-		this.name = name;
-	}
+        this.name = name;
+    }
 
-	/**
-	 * Create a <code>UnixNumericUserPrincipal</code> using a long
-	 * representation of the user's identification number (UID).
-	 *
-	 * <p>
-	 *
-	 * @param name
-	 *             the user identification number (UID) for this user
-	 *             represented
-	 *             as a long.
-	 */
-	public UnixNumericUserPrincipal(long name) {
-		this.name = (new Long(name)).toString();
-	}
+    /**
+     * Create a <code>UnixNumericUserPrincipal</code> using a long
+     * representation of the user's identification number (UID).
+     *
+     * <p>
+     *
+     * @param name
+     *             the user identification number (UID) for this user
+     *             represented
+     *             as a long.
+     */
+    public UnixNumericUserPrincipal(long name) {
+        this.name = (new Long(name)).toString();
+    }
 
-	/**
-	 * Return the user identification number (UID) for this
-	 * <code>UnixNumericUserPrincipal</code>.
-	 *
-	 * <p>
-	 *
-	 * @return the user identification number (UID) for this
-	 *         <code>UnixNumericUserPrincipal</code>
-	 */
-	public String getName() {
-		return name;
-	}
+    /**
+     * Return the user identification number (UID) for this
+     * <code>UnixNumericUserPrincipal</code>.
+     *
+     * <p>
+     *
+     * @return the user identification number (UID) for this
+     *         <code>UnixNumericUserPrincipal</code>
+     */
+    public String getName() {
+        return name;
+    }
 
-	/**
-	 * Return the user identification number (UID) for this
-	 * <code>UnixNumericUserPrincipal</code> as a long.
-	 *
-	 * <p>
-	 *
-	 * @return the user identification number (UID) for this
-	 *         <code>UnixNumericUserPrincipal</code> as a long.
-	 */
-	public long longValue() {
-		return ((new Long(name)).longValue());
-	}
+    /**
+     * Return the user identification number (UID) for this
+     * <code>UnixNumericUserPrincipal</code> as a long.
+     *
+     * <p>
+     *
+     * @return the user identification number (UID) for this
+     *         <code>UnixNumericUserPrincipal</code> as a long.
+     */
+    public long longValue() {
+        return ((new Long(name)).longValue());
+    }
 
-	/**
-	 * Return a string representation of this
-	 * <code>UnixNumericUserPrincipal</code>.
-	 *
-	 * <p>
-	 *
-	 * @return a string representation of this
-	 *         <code>UnixNumericUserPrincipal</code>.
-	 */
-	public String toString() {
-		java.text.MessageFormat form = new java.text.MessageFormat(
-				sun.security.util.ResourcesMgr.getString(
-						"UnixNumericUserPrincipal.name",
-						"sun.security.util.AuthResources"));
-		Object[] source = { name };
-		return form.format(source);
-	}
+    /**
+     * Return a string representation of this
+     * <code>UnixNumericUserPrincipal</code>.
+     *
+     * <p>
+     *
+     * @return a string representation of this
+     *         <code>UnixNumericUserPrincipal</code>.
+     */
+    public String toString() {
+        java.text.MessageFormat form = new java.text.MessageFormat(
+                sun.security.util.ResourcesMgr.getString(
+                        "UnixNumericUserPrincipal.name",
+                        "sun.security.util.AuthResources"));
+        Object[] source = { name };
+        return form.format(source);
+    }
 
-	/**
-	 * Compares the specified Object with this
-	 * <code>UnixNumericUserPrincipal</code> for equality. Returns true if the
-	 * given object is also a <code>UnixNumericUserPrincipal</code> and the two
-	 * UnixNumericUserPrincipals have the same user identification number (UID).
-	 *
-	 * <p>
-	 *
-	 * @param o
-	 *          Object to be compared for equality with this
-	 *          <code>UnixNumericUserPrincipal</code>.
-	 *
-	 * @return true if the specified Object is equal equal to this
-	 *         <code>UnixNumericUserPrincipal</code>.
-	 */
-	public boolean equals(Object o) {
-		if (o == null)
-			return false;
+    /**
+     * Compares the specified Object with this
+     * <code>UnixNumericUserPrincipal</code> for equality. Returns true if the
+     * given object is also a <code>UnixNumericUserPrincipal</code> and the two
+     * UnixNumericUserPrincipals have the same user identification number (UID).
+     *
+     * <p>
+     *
+     * @param o
+     *          Object to be compared for equality with this
+     *          <code>UnixNumericUserPrincipal</code>.
+     *
+     * @return true if the specified Object is equal equal to this
+     *         <code>UnixNumericUserPrincipal</code>.
+     */
+    public boolean equals(Object o) {
+        if (o == null)
+            return false;
 
-		if (this == o)
-			return true;
+        if (this == o)
+            return true;
 
-		if (!(o instanceof UnixNumericUserPrincipal))
-			return false;
-		UnixNumericUserPrincipal that = (UnixNumericUserPrincipal) o;
+        if (!(o instanceof UnixNumericUserPrincipal))
+            return false;
+        UnixNumericUserPrincipal that = (UnixNumericUserPrincipal) o;
 
-		if (this.getName().equals(that.getName()))
-			return true;
-		return false;
-	}
+        if (this.getName().equals(that.getName()))
+            return true;
+        return false;
+    }
 
-	/**
-	 * Return a hash code for this <code>UnixNumericUserPrincipal</code>.
-	 *
-	 * <p>
-	 *
-	 * @return a hash code for this <code>UnixNumericUserPrincipal</code>.
-	 */
-	public int hashCode() {
-		return name.hashCode();
-	}
+    /**
+     * Return a hash code for this <code>UnixNumericUserPrincipal</code>.
+     *
+     * <p>
+     *
+     * @return a hash code for this <code>UnixNumericUserPrincipal</code>.
+     */
+    public int hashCode() {
+        return name.hashCode();
+    }
 }

@@ -42,96 +42,96 @@ package java.awt;
  * @since JDK1.0
  */
 public class CheckboxGroup implements java.io.Serializable {
-	/**
-	 * The current choice.
-	 * 
-	 * @serial
-	 * @see #getCurrent()
-	 * @see #setCurrent(Checkbox)
-	 */
-	Checkbox selectedCheckbox = null;
+    /**
+     * The current choice.
+     * 
+     * @serial
+     * @see #getCurrent()
+     * @see #setCurrent(Checkbox)
+     */
+    Checkbox selectedCheckbox = null;
 
-	/*
-	 * JDK 1.1 serialVersionUID
-	 */
-	private static final long serialVersionUID = 3729780091441768983L;
+    /*
+     * JDK 1.1 serialVersionUID
+     */
+    private static final long serialVersionUID = 3729780091441768983L;
 
-	/**
-	 * Creates a new instance of <code>CheckboxGroup</code>.
-	 */
-	public CheckboxGroup() {}
+    /**
+     * Creates a new instance of <code>CheckboxGroup</code>.
+     */
+    public CheckboxGroup() {}
 
-	/**
-	 * Gets the current choice from this check box group. The current choice is
-	 * the check box in this group that is currently in the "on" state, or
-	 * <code>null</code> if all check boxes in the group are off.
-	 * 
-	 * @return the check box that is currently in the "on" state, or
-	 *         <code>null</code>.
-	 * @see java.awt.Checkbox
-	 * @see java.awt.CheckboxGroup#setSelectedCheckbox
-	 * @since JDK1.1
-	 */
-	public Checkbox getSelectedCheckbox() {
-		return getCurrent();
-	}
+    /**
+     * Gets the current choice from this check box group. The current choice is
+     * the check box in this group that is currently in the "on" state, or
+     * <code>null</code> if all check boxes in the group are off.
+     * 
+     * @return the check box that is currently in the "on" state, or
+     *         <code>null</code>.
+     * @see java.awt.Checkbox
+     * @see java.awt.CheckboxGroup#setSelectedCheckbox
+     * @since JDK1.1
+     */
+    public Checkbox getSelectedCheckbox() {
+        return getCurrent();
+    }
 
-	/**
-	 * @deprecated As of JDK version 1.1, replaced by
-	 *             <code>getSelectedCheckbox()</code>.
-	 */
-	@Deprecated
-	public Checkbox getCurrent() {
-		return selectedCheckbox;
-	}
+    /**
+     * @deprecated As of JDK version 1.1, replaced by
+     *             <code>getSelectedCheckbox()</code>.
+     */
+    @Deprecated
+    public Checkbox getCurrent() {
+        return selectedCheckbox;
+    }
 
-	/**
-	 * Sets the currently selected check box in this group to be the specified
-	 * check box. This method sets the state of that check box to "on" and sets
-	 * all other check boxes in the group to be off.
-	 * <p>
-	 * If the check box argument is <tt>null</tt>, all check boxes in this check
-	 * box group are deselected. If the check box argument belongs to a
-	 * different check box group, this method does nothing.
-	 * 
-	 * @param box
-	 *            the <code>Checkbox</code> to set as the current selection.
-	 * @see java.awt.Checkbox
-	 * @see java.awt.CheckboxGroup#getSelectedCheckbox
-	 * @since JDK1.1
-	 */
-	public void setSelectedCheckbox(Checkbox box) {
-		setCurrent(box);
-	}
+    /**
+     * Sets the currently selected check box in this group to be the specified
+     * check box. This method sets the state of that check box to "on" and sets
+     * all other check boxes in the group to be off.
+     * <p>
+     * If the check box argument is <tt>null</tt>, all check boxes in this check
+     * box group are deselected. If the check box argument belongs to a
+     * different check box group, this method does nothing.
+     * 
+     * @param box
+     *            the <code>Checkbox</code> to set as the current selection.
+     * @see java.awt.Checkbox
+     * @see java.awt.CheckboxGroup#getSelectedCheckbox
+     * @since JDK1.1
+     */
+    public void setSelectedCheckbox(Checkbox box) {
+        setCurrent(box);
+    }
 
-	/**
-	 * @deprecated As of JDK version 1.1, replaced by
-	 *             <code>setSelectedCheckbox(Checkbox)</code>.
-	 */
-	@Deprecated
-	public synchronized void setCurrent(Checkbox box) {
-		if (box != null && box.group != this) {
-			return;
-		}
-		Checkbox oldChoice = this.selectedCheckbox;
-		this.selectedCheckbox = box;
-		if (oldChoice != null && oldChoice != box && oldChoice.group == this) {
-			oldChoice.setState(false);
-		}
-		if (box != null && oldChoice != box && !box.getState()) {
-			box.setStateInternal(true);
-		}
-	}
+    /**
+     * @deprecated As of JDK version 1.1, replaced by
+     *             <code>setSelectedCheckbox(Checkbox)</code>.
+     */
+    @Deprecated
+    public synchronized void setCurrent(Checkbox box) {
+        if (box != null && box.group != this) {
+            return;
+        }
+        Checkbox oldChoice = this.selectedCheckbox;
+        this.selectedCheckbox = box;
+        if (oldChoice != null && oldChoice != box && oldChoice.group == this) {
+            oldChoice.setState(false);
+        }
+        if (box != null && oldChoice != box && !box.getState()) {
+            box.setStateInternal(true);
+        }
+    }
 
-	/**
-	 * Returns a string representation of this check box group, including the
-	 * value of its current selection.
-	 * 
-	 * @return a string representation of this check box group.
-	 */
-	public String toString() {
-		return getClass().getName() + "[selectedCheckbox=" + selectedCheckbox
-				+ "]";
-	}
+    /**
+     * Returns a string representation of this check box group, including the
+     * value of its current selection.
+     * 
+     * @return a string representation of this check box group.
+     */
+    public String toString() {
+        return getClass().getName() + "[selectedCheckbox=" + selectedCheckbox
+                + "]";
+    }
 
 }

@@ -34,24 +34,24 @@ import javax.naming.NamingException;
  * @since 1.3
  */
 public interface ObjectFactoryBuilder {
-	/**
-	 * Creates a new object factory using the environment supplied.
-	 * <p>
-	 * The environment parameter is owned by the caller. The implementation will
-	 * not modify the object or keep a reference to it, although it may keep a
-	 * reference to a clone or copy.
-	 *
-	 * @param obj
-	 *                    The possibly null object for which to create a
-	 *                    factory.
-	 * @param environment
-	 *                    Environment to use when creating the factory. Can be
-	 *                    null.
-	 * @return A non-null new instance of an ObjectFactory.
-	 * @exception NamingException
-	 *                            If an object factory cannot be created.
-	 *
-	 */
-	public ObjectFactory createObjectFactory(Object obj,
-			Hashtable<?, ?> environment) throws NamingException;
+    /**
+     * Creates a new object factory using the environment supplied.
+     * <p>
+     * The environment parameter is owned by the caller. The implementation will
+     * not modify the object or keep a reference to it, although it may keep a
+     * reference to a clone or copy.
+     *
+     * @param obj
+     *                    The possibly null object for which to create a
+     *                    factory.
+     * @param environment
+     *                    Environment to use when creating the factory. Can be
+     *                    null.
+     * @return A non-null new instance of an ObjectFactory.
+     * @exception NamingException
+     *                            If an object factory cannot be created.
+     *
+     */
+    public ObjectFactory createObjectFactory(Object obj,
+            Hashtable<?, ?> environment) throws NamingException;
 }

@@ -23,7 +23,7 @@ package com.sun.source.tree;
  */
 @jdk.Exported
 public interface BinaryTree extends ExpressionTree {
-	ExpressionTree getLeftOperand();
+    ExpressionTree getLeftOperand();
 
-	ExpressionTree getRightOperand();
+    ExpressionTree getRightOperand();
 }

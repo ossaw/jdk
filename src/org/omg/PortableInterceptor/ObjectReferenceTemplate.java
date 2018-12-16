@@ -16,11 +16,11 @@ package org.omg.PortableInterceptor;
  * less useful in many cases.
  */
 public interface ObjectReferenceTemplate extends
-		org.omg.PortableInterceptor.ObjectReferenceFactory {
-	public abstract String server_id();
+        org.omg.PortableInterceptor.ObjectReferenceFactory {
+    public abstract String server_id();
 
-	public abstract String orb_id();
+    public abstract String orb_id();
 
-	public abstract String[] adapter_name();
+    public abstract String[] adapter_name();
 
 } // interface ObjectReferenceTemplate

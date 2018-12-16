@@ -174,181 +174,181 @@ import java.beans.*;
  * @see AbstractAction
  */
 public interface Action extends ActionListener {
-	/**
-	 * Useful constants that can be used as the storage-retrieval key when
-	 * setting or getting one of this object's properties (text or icon).
-	 */
-	/**
-	 * Not currently used.
-	 */
-	public static final String DEFAULT = "Default";
-	/**
-	 * The key used for storing the <code>String</code> name for the action,
-	 * used for a menu or button.
-	 */
-	public static final String NAME = "Name";
-	/**
-	 * The key used for storing a short <code>String</code> description for the
-	 * action, used for tooltip text.
-	 */
-	public static final String SHORT_DESCRIPTION = "ShortDescription";
-	/**
-	 * The key used for storing a longer <code>String</code> description for the
-	 * action, could be used for context-sensitive help.
-	 */
-	public static final String LONG_DESCRIPTION = "LongDescription";
-	/**
-	 * The key used for storing a small <code>Icon</code>, such as
-	 * <code>ImageIcon</code>. This is typically used with menus such as
-	 * <code>JMenuItem</code>.
-	 * <p>
-	 * If the same <code>Action</code> is used with menus and buttons you'll
-	 * typically specify both a <code>SMALL_ICON</code> and a
-	 * <code>LARGE_ICON_KEY</code>. The menu will use the
-	 * <code>SMALL_ICON</code> and the button will use the
-	 * <code>LARGE_ICON_KEY</code>.
-	 */
-	public static final String SMALL_ICON = "SmallIcon";
+    /**
+     * Useful constants that can be used as the storage-retrieval key when
+     * setting or getting one of this object's properties (text or icon).
+     */
+    /**
+     * Not currently used.
+     */
+    public static final String DEFAULT = "Default";
+    /**
+     * The key used for storing the <code>String</code> name for the action,
+     * used for a menu or button.
+     */
+    public static final String NAME = "Name";
+    /**
+     * The key used for storing a short <code>String</code> description for the
+     * action, used for tooltip text.
+     */
+    public static final String SHORT_DESCRIPTION = "ShortDescription";
+    /**
+     * The key used for storing a longer <code>String</code> description for the
+     * action, could be used for context-sensitive help.
+     */
+    public static final String LONG_DESCRIPTION = "LongDescription";
+    /**
+     * The key used for storing a small <code>Icon</code>, such as
+     * <code>ImageIcon</code>. This is typically used with menus such as
+     * <code>JMenuItem</code>.
+     * <p>
+     * If the same <code>Action</code> is used with menus and buttons you'll
+     * typically specify both a <code>SMALL_ICON</code> and a
+     * <code>LARGE_ICON_KEY</code>. The menu will use the
+     * <code>SMALL_ICON</code> and the button will use the
+     * <code>LARGE_ICON_KEY</code>.
+     */
+    public static final String SMALL_ICON = "SmallIcon";
 
-	/**
-	 * The key used to determine the command <code>String</code> for the
-	 * <code>ActionEvent</code> that will be created when an <code>Action</code>
-	 * is going to be notified as the result of residing in a
-	 * <code>Keymap</code> associated with a <code>JComponent</code>.
-	 */
-	public static final String ACTION_COMMAND_KEY = "ActionCommandKey";
+    /**
+     * The key used to determine the command <code>String</code> for the
+     * <code>ActionEvent</code> that will be created when an <code>Action</code>
+     * is going to be notified as the result of residing in a
+     * <code>Keymap</code> associated with a <code>JComponent</code>.
+     */
+    public static final String ACTION_COMMAND_KEY = "ActionCommandKey";
 
-	/**
-	 * The key used for storing a <code>KeyStroke</code> to be used as the
-	 * accelerator for the action.
-	 *
-	 * @since 1.3
-	 */
-	public static final String ACCELERATOR_KEY = "AcceleratorKey";
+    /**
+     * The key used for storing a <code>KeyStroke</code> to be used as the
+     * accelerator for the action.
+     *
+     * @since 1.3
+     */
+    public static final String ACCELERATOR_KEY = "AcceleratorKey";
 
-	/**
-	 * The key used for storing an <code>Integer</code> that corresponds to one
-	 * of the <code>KeyEvent</code> key codes. The value is commonly used to
-	 * specify a mnemonic. For example:
-	 * <code>myAction.putValue(Action.MNEMONIC_KEY, KeyEvent.VK_A)</code> sets
-	 * the mnemonic of <code>myAction</code> to 'a', while
-	 * <code>myAction.putValue(Action.MNEMONIC_KEY, KeyEvent.getExtendedKeyCodeForChar('\u0444'))</code>
-	 * sets the mnemonic of <code>myAction</code> to Cyrillic letter "Ef".
-	 *
-	 * @since 1.3
-	 */
-	public static final String MNEMONIC_KEY = "MnemonicKey";
+    /**
+     * The key used for storing an <code>Integer</code> that corresponds to one
+     * of the <code>KeyEvent</code> key codes. The value is commonly used to
+     * specify a mnemonic. For example:
+     * <code>myAction.putValue(Action.MNEMONIC_KEY, KeyEvent.VK_A)</code> sets
+     * the mnemonic of <code>myAction</code> to 'a', while
+     * <code>myAction.putValue(Action.MNEMONIC_KEY, KeyEvent.getExtendedKeyCodeForChar('\u0444'))</code>
+     * sets the mnemonic of <code>myAction</code> to Cyrillic letter "Ef".
+     *
+     * @since 1.3
+     */
+    public static final String MNEMONIC_KEY = "MnemonicKey";
 
-	/**
-	 * The key used for storing a <code>Boolean</code> that corresponds to the
-	 * selected state. This is typically used only for components that have a
-	 * meaningful selection state. For example, <code>JRadioButton</code> and
-	 * <code>JCheckBox</code> make use of this but instances of
-	 * <code>JMenu</code> don't.
-	 * <p>
-	 * This property differs from the others in that it is both read by the
-	 * component and set by the component. For example, if an
-	 * <code>Action</code> is attached to a <code>JCheckBox</code> the selected
-	 * state of the <code>JCheckBox</code> will be set from that of the
-	 * <code>Action</code>. If the user clicks on the <code>JCheckBox</code> the
-	 * selected state of the <code>JCheckBox</code> <b>and</b> the
-	 * <code>Action</code> will <b>both</b> be updated.
-	 * <p>
-	 * Note: the value of this field is prefixed with 'Swing' to avoid possible
-	 * collisions with existing <code>Actions</code>.
-	 *
-	 * @since 1.6
-	 */
-	public static final String SELECTED_KEY = "SwingSelectedKey";
+    /**
+     * The key used for storing a <code>Boolean</code> that corresponds to the
+     * selected state. This is typically used only for components that have a
+     * meaningful selection state. For example, <code>JRadioButton</code> and
+     * <code>JCheckBox</code> make use of this but instances of
+     * <code>JMenu</code> don't.
+     * <p>
+     * This property differs from the others in that it is both read by the
+     * component and set by the component. For example, if an
+     * <code>Action</code> is attached to a <code>JCheckBox</code> the selected
+     * state of the <code>JCheckBox</code> will be set from that of the
+     * <code>Action</code>. If the user clicks on the <code>JCheckBox</code> the
+     * selected state of the <code>JCheckBox</code> <b>and</b> the
+     * <code>Action</code> will <b>both</b> be updated.
+     * <p>
+     * Note: the value of this field is prefixed with 'Swing' to avoid possible
+     * collisions with existing <code>Actions</code>.
+     *
+     * @since 1.6
+     */
+    public static final String SELECTED_KEY = "SwingSelectedKey";
 
-	/**
-	 * The key used for storing an <code>Integer</code> that corresponds to the
-	 * index in the text (identified by the <code>NAME</code> property) that the
-	 * decoration for a mnemonic should be rendered at. If the value of this
-	 * property is greater than or equal to the length of the text, it will
-	 * treated as -1.
-	 * <p>
-	 * Note: the value of this field is prefixed with 'Swing' to avoid possible
-	 * collisions with existing <code>Actions</code>.
-	 *
-	 * @see AbstractButton#setDisplayedMnemonicIndex
-	 * @since 1.6
-	 */
-	public static final String DISPLAYED_MNEMONIC_INDEX_KEY = "SwingDisplayedMnemonicIndexKey";
+    /**
+     * The key used for storing an <code>Integer</code> that corresponds to the
+     * index in the text (identified by the <code>NAME</code> property) that the
+     * decoration for a mnemonic should be rendered at. If the value of this
+     * property is greater than or equal to the length of the text, it will
+     * treated as -1.
+     * <p>
+     * Note: the value of this field is prefixed with 'Swing' to avoid possible
+     * collisions with existing <code>Actions</code>.
+     *
+     * @see AbstractButton#setDisplayedMnemonicIndex
+     * @since 1.6
+     */
+    public static final String DISPLAYED_MNEMONIC_INDEX_KEY = "SwingDisplayedMnemonicIndexKey";
 
-	/**
-	 * The key used for storing an <code>Icon</code>. This is typically used by
-	 * buttons, such as <code>JButton</code> and <code>JToggleButton</code>.
-	 * <p>
-	 * If the same <code>Action</code> is used with menus and buttons you'll
-	 * typically specify both a <code>SMALL_ICON</code> and a
-	 * <code>LARGE_ICON_KEY</code>. The menu will use the
-	 * <code>SMALL_ICON</code> and the button the <code>LARGE_ICON_KEY</code>.
-	 * <p>
-	 * Note: the value of this field is prefixed with 'Swing' to avoid possible
-	 * collisions with existing <code>Actions</code>.
-	 *
-	 * @since 1.6
-	 */
-	public static final String LARGE_ICON_KEY = "SwingLargeIconKey";
+    /**
+     * The key used for storing an <code>Icon</code>. This is typically used by
+     * buttons, such as <code>JButton</code> and <code>JToggleButton</code>.
+     * <p>
+     * If the same <code>Action</code> is used with menus and buttons you'll
+     * typically specify both a <code>SMALL_ICON</code> and a
+     * <code>LARGE_ICON_KEY</code>. The menu will use the
+     * <code>SMALL_ICON</code> and the button the <code>LARGE_ICON_KEY</code>.
+     * <p>
+     * Note: the value of this field is prefixed with 'Swing' to avoid possible
+     * collisions with existing <code>Actions</code>.
+     *
+     * @since 1.6
+     */
+    public static final String LARGE_ICON_KEY = "SwingLargeIconKey";
 
-	/**
-	 * Gets one of this object's properties using the associated key.
-	 * 
-	 * @see #putValue
-	 */
-	public Object getValue(String key);
+    /**
+     * Gets one of this object's properties using the associated key.
+     * 
+     * @see #putValue
+     */
+    public Object getValue(String key);
 
-	/**
-	 * Sets one of this object's properties using the associated key. If the
-	 * value has changed, a <code>PropertyChangeEvent</code> is sent to
-	 * listeners.
-	 *
-	 * @param key
-	 *              a <code>String</code> containing the key
-	 * @param value
-	 *              an <code>Object</code> value
-	 */
-	public void putValue(String key, Object value);
+    /**
+     * Sets one of this object's properties using the associated key. If the
+     * value has changed, a <code>PropertyChangeEvent</code> is sent to
+     * listeners.
+     *
+     * @param key
+     *              a <code>String</code> containing the key
+     * @param value
+     *              an <code>Object</code> value
+     */
+    public void putValue(String key, Object value);
 
-	/**
-	 * Sets the enabled state of the <code>Action</code>. When enabled, any
-	 * component associated with this object is active and able to fire this
-	 * object's <code>actionPerformed</code> method. If the value has changed, a
-	 * <code>PropertyChangeEvent</code> is sent to listeners.
-	 *
-	 * @param b
-	 *          true to enable this <code>Action</code>, false to disable it
-	 */
-	public void setEnabled(boolean b);
+    /**
+     * Sets the enabled state of the <code>Action</code>. When enabled, any
+     * component associated with this object is active and able to fire this
+     * object's <code>actionPerformed</code> method. If the value has changed, a
+     * <code>PropertyChangeEvent</code> is sent to listeners.
+     *
+     * @param b
+     *          true to enable this <code>Action</code>, false to disable it
+     */
+    public void setEnabled(boolean b);
 
-	/**
-	 * Returns the enabled state of the <code>Action</code>. When enabled, any
-	 * component associated with this object is active and able to fire this
-	 * object's <code>actionPerformed</code> method.
-	 *
-	 * @return true if this <code>Action</code> is enabled
-	 */
-	public boolean isEnabled();
+    /**
+     * Returns the enabled state of the <code>Action</code>. When enabled, any
+     * component associated with this object is active and able to fire this
+     * object's <code>actionPerformed</code> method.
+     *
+     * @return true if this <code>Action</code> is enabled
+     */
+    public boolean isEnabled();
 
-	/**
-	 * Adds a <code>PropertyChange</code> listener. Containers and attached
-	 * components use these methods to register interest in this
-	 * <code>Action</code> object. When its enabled state or other property
-	 * changes, the registered listeners are informed of the change.
-	 *
-	 * @param listener
-	 *                 a <code>PropertyChangeListener</code> object
-	 */
-	public void addPropertyChangeListener(PropertyChangeListener listener);
+    /**
+     * Adds a <code>PropertyChange</code> listener. Containers and attached
+     * components use these methods to register interest in this
+     * <code>Action</code> object. When its enabled state or other property
+     * changes, the registered listeners are informed of the change.
+     *
+     * @param listener
+     *                 a <code>PropertyChangeListener</code> object
+     */
+    public void addPropertyChangeListener(PropertyChangeListener listener);
 
-	/**
-	 * Removes a <code>PropertyChange</code> listener.
-	 *
-	 * @param listener
-	 *                 a <code>PropertyChangeListener</code> object
-	 * @see #addPropertyChangeListener
-	 */
-	public void removePropertyChangeListener(PropertyChangeListener listener);
+    /**
+     * Removes a <code>PropertyChange</code> listener.
+     *
+     * @param listener
+     *                 a <code>PropertyChangeListener</code> object
+     * @see #addPropertyChangeListener
+     */
+    public void removePropertyChangeListener(PropertyChangeListener listener);
 
 }

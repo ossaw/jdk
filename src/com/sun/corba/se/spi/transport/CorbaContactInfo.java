@@ -14,17 +14,17 @@ import com.sun.corba.se.pept.transport.ContactInfo;
  * @author Harold Carr
  */
 public interface CorbaContactInfo extends ContactInfo {
-	public IOR getTargetIOR();
+    public IOR getTargetIOR();
 
-	public IOR getEffectiveTargetIOR();
+    public IOR getEffectiveTargetIOR();
 
-	public IIOPProfile getEffectiveProfile(); // REVISIT - type
+    public IIOPProfile getEffectiveProfile(); // REVISIT - type
 
-	public void setAddressingDisposition(short addressingDisposition);
+    public void setAddressingDisposition(short addressingDisposition);
 
-	public short getAddressingDisposition();
+    public short getAddressingDisposition();
 
-	public String getMonitoringName();
+    public String getMonitoringName();
 }
 
 // End of file.

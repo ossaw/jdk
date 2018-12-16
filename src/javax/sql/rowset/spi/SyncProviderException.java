@@ -46,111 +46,111 @@ import javax.sql.rowset.*;
  */
 public class SyncProviderException extends java.sql.SQLException {
 
-	/**
-	 * The instance of <code>javax.sql.rowset.spi.SyncResolver</code> that this
-	 * <code>SyncProviderException</code> object will return when its
-	 * <code>getSyncResolver</code> method is called.
-	 */
-	private SyncResolver syncResolver = null;
+    /**
+     * The instance of <code>javax.sql.rowset.spi.SyncResolver</code> that this
+     * <code>SyncProviderException</code> object will return when its
+     * <code>getSyncResolver</code> method is called.
+     */
+    private SyncResolver syncResolver = null;
 
-	/**
-	 * Creates a new <code>SyncProviderException</code> object without a detail
-	 * message.
-	 */
-	public SyncProviderException() {
-		super();
-	}
+    /**
+     * Creates a new <code>SyncProviderException</code> object without a detail
+     * message.
+     */
+    public SyncProviderException() {
+        super();
+    }
 
-	/**
-	 * Constructs a <code>SyncProviderException</code> object with the specified
-	 * detail message.
-	 *
-	 * @param msg
-	 *            the detail message
-	 */
-	public SyncProviderException(String msg) {
-		super(msg);
-	}
+    /**
+     * Constructs a <code>SyncProviderException</code> object with the specified
+     * detail message.
+     *
+     * @param msg
+     *            the detail message
+     */
+    public SyncProviderException(String msg) {
+        super(msg);
+    }
 
-	/**
-	 * Constructs a <code>SyncProviderException</code> object with the specified
-	 * <code>SyncResolver</code> instance.
-	 *
-	 * @param syncResolver
-	 *                     the <code>SyncResolver</code> instance used to to
-	 *                     process the
-	 *                     synchronization conflicts
-	 * @throws IllegalArgumentException
-	 *                                  if the <code>SyncResolver</code> object
-	 *                                  is <code>null</code>.
-	 */
-	public SyncProviderException(SyncResolver syncResolver) {
-		if (syncResolver == null) {
-			throw new IllegalArgumentException(
-					"Cannot instantiate a SyncProviderException "
-							+ "with a null SyncResolver object");
-		} else {
-			this.syncResolver = syncResolver;
-		}
-	}
+    /**
+     * Constructs a <code>SyncProviderException</code> object with the specified
+     * <code>SyncResolver</code> instance.
+     *
+     * @param syncResolver
+     *                     the <code>SyncResolver</code> instance used to to
+     *                     process the
+     *                     synchronization conflicts
+     * @throws IllegalArgumentException
+     *                                  if the <code>SyncResolver</code> object
+     *                                  is <code>null</code>.
+     */
+    public SyncProviderException(SyncResolver syncResolver) {
+        if (syncResolver == null) {
+            throw new IllegalArgumentException(
+                    "Cannot instantiate a SyncProviderException "
+                            + "with a null SyncResolver object");
+        } else {
+            this.syncResolver = syncResolver;
+        }
+    }
 
-	/**
-	 * Retrieves the <code>SyncResolver</code> object that has been set for this
-	 * <code>SyncProviderException</code> object, or if none has been set, an
-	 * instance of the default <code>SyncResolver</code> implementation included
-	 * in the reference implementation.
-	 * <P>
-	 * If a <code>SyncProviderException</code> object is thrown, an application
-	 * may use this method to generate a <code>SyncResolver</code> object with
-	 * which to resolve the conflict or conflicts that caused the exception to
-	 * be thrown.
-	 *
-	 * @return the <code>SyncResolver</code> object set for this
-	 *         <code>SyncProviderException</code> object or, if none has been
-	 *         set, an instance of the default <code>SyncResolver</code>
-	 *         implementation. In addition, the default
-	 *         <code>SyncResolver</code> implementation is also returned if the
-	 *         <code>SyncResolver()</code> or <code>SyncResolver(String)</code>
-	 *         constructors are used to instantiate the
-	 *         <code>SyncResolver</code> instance.
-	 */
-	public SyncResolver getSyncResolver() {
-		if (syncResolver != null) {
-			return syncResolver;
-		} else {
-			try {
-				syncResolver = new com.sun.rowset.internal.SyncResolverImpl();
-			} catch (SQLException sqle) {
-			}
-			return syncResolver;
-		}
-	}
+    /**
+     * Retrieves the <code>SyncResolver</code> object that has been set for this
+     * <code>SyncProviderException</code> object, or if none has been set, an
+     * instance of the default <code>SyncResolver</code> implementation included
+     * in the reference implementation.
+     * <P>
+     * If a <code>SyncProviderException</code> object is thrown, an application
+     * may use this method to generate a <code>SyncResolver</code> object with
+     * which to resolve the conflict or conflicts that caused the exception to
+     * be thrown.
+     *
+     * @return the <code>SyncResolver</code> object set for this
+     *         <code>SyncProviderException</code> object or, if none has been
+     *         set, an instance of the default <code>SyncResolver</code>
+     *         implementation. In addition, the default
+     *         <code>SyncResolver</code> implementation is also returned if the
+     *         <code>SyncResolver()</code> or <code>SyncResolver(String)</code>
+     *         constructors are used to instantiate the
+     *         <code>SyncResolver</code> instance.
+     */
+    public SyncResolver getSyncResolver() {
+        if (syncResolver != null) {
+            return syncResolver;
+        } else {
+            try {
+                syncResolver = new com.sun.rowset.internal.SyncResolverImpl();
+            } catch (SQLException sqle) {
+            }
+            return syncResolver;
+        }
+    }
 
-	/**
-	 * Sets the <code>SyncResolver</code> object for this
-	 * <code>SyncProviderException</code> object to the one supplied. If the
-	 * argument supplied is <code>null</code>, a call to the method
-	 * <code>getSyncResolver</code> will return the default reference
-	 * implementation of the <code>SyncResolver</code> interface.
-	 *
-	 * @param syncResolver
-	 *                     the <code>SyncResolver</code> object to be set;
-	 *                     cannot be
-	 *                     <code>null</code>
-	 * @throws IllegalArgumentException
-	 *                                  if the <code>SyncResolver</code> object
-	 *                                  is <code>null</code>.
-	 * @see #getSyncResolver
-	 */
-	public void setSyncResolver(SyncResolver syncResolver) {
-		if (syncResolver == null) {
-			throw new IllegalArgumentException("Cannot set a null SyncResolver "
-					+ "object");
-		} else {
-			this.syncResolver = syncResolver;
-		}
-	}
+    /**
+     * Sets the <code>SyncResolver</code> object for this
+     * <code>SyncProviderException</code> object to the one supplied. If the
+     * argument supplied is <code>null</code>, a call to the method
+     * <code>getSyncResolver</code> will return the default reference
+     * implementation of the <code>SyncResolver</code> interface.
+     *
+     * @param syncResolver
+     *                     the <code>SyncResolver</code> object to be set;
+     *                     cannot be
+     *                     <code>null</code>
+     * @throws IllegalArgumentException
+     *                                  if the <code>SyncResolver</code> object
+     *                                  is <code>null</code>.
+     * @see #getSyncResolver
+     */
+    public void setSyncResolver(SyncResolver syncResolver) {
+        if (syncResolver == null) {
+            throw new IllegalArgumentException("Cannot set a null SyncResolver "
+                    + "object");
+        } else {
+            this.syncResolver = syncResolver;
+        }
+    }
 
-	static final long serialVersionUID = -939908523620640692L;
+    static final long serialVersionUID = -939908523620640692L;
 
 }
